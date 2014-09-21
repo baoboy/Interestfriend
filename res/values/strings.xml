@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">趣友</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input_phone_num">请输入手机号</string>
+    <string name="next_step">下一步</string>
+    <string name="inupt_user_name">请输入用户名</string>
+    <string name="inupt_telephone">请输入手机号码</string>
+    <string name="inupt_password">请输入密码</string>
+    <string name="inupt_again_password">请再一次输入密码</string>
+    <string name="take_photo">拍照</string>
+    <string name="from_photo_album">从相册选择</string>
+    <string name="cancel">取消</string>
+    <string name="finished">完成</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_create_circle">CreateCircleActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+
+</resources>

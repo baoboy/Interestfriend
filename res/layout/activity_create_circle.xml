@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:scrollbars="none" >
+
+    <include
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        layout="@layout/title_bar" />
+
+    <RelativeLayout
+        android:id="@+id/avatar_layout"
+        android:layout_width="100.0dip"
+        android:layout_height="100.0dip"
+        android:layout_below="@+id/title_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20.0dip" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/bg_reg_header_stroke"
+            android:drawablePadding="15.0dip"
+            android:drawableTop="@drawable/ic_camra"
+            android:gravity="center_horizontal"
+            android:padding="15.0dip"
+            android:text="圈子图标"
+            android:textColor="@color/unberlineview_text"
+            android:textSize="14.0sp" />
+
+        <ImageView
+            android:id="@+id/img_circle_avatar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_circle_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatar_layout"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="20dip"
+        android:text="圈子名称："
+        android:textColor="@color/unberlineview_text"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/edit_circle_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_circle_name"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/input_new"
+        android:hint="给圈子起个让人容易加入的名字"
+        android:padding="10dip"
+        android:textSize="15sp" >
+    </EditText>
+
+    <TextView
+        android:id="@+id/txt_circle_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_circle_name"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
+        android:text="圈子描述："
+        android:textColor="@color/unberlineview_text"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/edit_circle_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_circle_description"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/input_new"
+        android:gravity="top"
+        android:hint="输入一些关于圈子的描述，让更多的小伙们能非常容易的找到你的圈子\n
+         比如：喜欢刘德华的小伙们都进来吧，一起聊聊华仔的点滴。"
+        android:padding="10dip"
+        android:textColor="@color/black"
+        android:textColorHint="@color/editTextClolor"
+        android:textSize="15sp" >
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp94"
+        android:layout_below="@+id/edit_circle_description"
+        android:layout_marginLeft="@dimen/dp76"
+        android:layout_marginRight="@dimen/dp76"
+        android:layout_marginTop="@dimen/dp38"
+        android:background="@drawable/button_hui_new"
+        android:text="创建"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_48" />
+
+</RelativeLayout>
