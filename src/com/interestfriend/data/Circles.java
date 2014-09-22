@@ -9,11 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
-import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
-import com.interestfriend.parser.StringParser;
+import com.interestfriend.parser.MapParser;
 
 public class Circles extends AbstractData {
 	/**
@@ -26,6 +26,15 @@ public class Circles extends AbstractData {
 	private String circle_name = "";
 	private String circle_description = "";
 	private String circle_logo = "";
+	private String group_id = "";
+
+	public String getGroup_id() {
+		return group_id;
+	}
+
+	public void setGroup_id(String group_id) {
+		this.group_id = group_id;
+	}
 
 	public int getCircle_id() {
 		return circle_id;
@@ -72,7 +81,8 @@ public class Circles extends AbstractData {
 	 * @return
 	 */
 	public RetError createNewCircle() {
-		IParser parser = new StringParser("circle_logo");
+		String[] keys = { "circle_logo", "group_id" };
+		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_name", circle_name);
 		params.put("circle_description", circle_description);
@@ -81,8 +91,9 @@ public class Circles extends AbstractData {
 		System.out.println("httpResult=============" + ret.getStatus());
 
 		if (ret.getStatus() == RetStatus.SUCC) {
-			StringResult sret = (StringResult) ret;
-			circle_logo = sret.getStr();
+			MapResult mret = (MapResult) ret;
+			circle_logo = (String) (mret.getMaps().get("circle_logo"));
+			group_id = (String) (mret.getMaps().get("group_id"));
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -96,6 +107,8 @@ public class Circles extends AbstractData {
 		values.put("circle_logo", circle_logo);
 		values.put("circle_name", circle_name);
 		values.put("circle_description", circle_description);
+		values.put("group_id", group_id);
+
 		db.insert(tableName, null, values);
 	}
 
