@@ -18,7 +18,7 @@ import com.interestfriend.fragment.CircleMemberFragment;
 
 public class MainActivity extends FragmentActivity implements
 		RadioGroup.OnCheckedChangeListener {
-
+ 
 	private List<Fragment> fragmentList = new ArrayList<Fragment>();
 
 	private int currentTabIndex = -1;
