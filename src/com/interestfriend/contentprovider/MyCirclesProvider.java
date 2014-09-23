@@ -29,6 +29,7 @@ public class MyCirclesProvider {
 		public static final String CIRCLE_NAME = "circle_name";
 		public static final String CIRCLE_DESCRIPTION = "circle_description";
 		public static final String CIRCLE_LOGO = "circle_logo";
+		public static final String GROUP_ID = "group_id";
 
 	}
 
