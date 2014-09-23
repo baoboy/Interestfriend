@@ -23,6 +23,7 @@ import android.widget.ListView;
 
 import com.interestfriend.MainActivity;
 import com.interestfriend.R;
+import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.contentprovider.MyCirclesProvider;
 import com.interestfriend.data.MyCircleList;
@@ -83,7 +84,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		String[] projection = { MyCirclesProvider.MyCirclesColumns.CIRCLE_ID,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_NAME,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_DESCRIPTION,
-				MyCirclesProvider.MyCirclesColumns.CIRCLE_LOGO, }; // 查询的列
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_LOGO,
+				MyCirclesProvider.MyCirclesColumns.GROUP_ID, }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCirclesProvider.MyCirclesColumns.CONTENT_URI, projection,
 				null, null, null);
@@ -115,11 +117,13 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					String circle_name = cursor.getString(1);
 					String circle_description = cursor.getString(2);
 					String circle_logo = cursor.getString(3);
+					String group_id = cursor.getString(4);
 					MyCircles circles = new MyCircles();
 					circles.setCircle_id(circle_id);
 					circles.setCircle_description(circle_description);
 					circles.setCircle_name(circle_name);
 					circles.setCircle_logo(circle_logo);
+					circles.setGroup_id(group_id);
 					lists.add(circles);
 					cursor.moveToNext();
 				}
@@ -188,6 +192,11 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		startActivity(new Intent(getActivity(), MainActivity.class));
+		// startActivity(new Intent(getActivity(), MainActivity.class));
+		Intent intent = new Intent();
+		intent.putExtra("groupId", lists.get(arg2).getGroup_id());
+		intent.putExtra("chatType", 2);
+		intent.setClass(getActivity(), ChatActivity.class);
+		startActivity(intent);
 	};
 }
