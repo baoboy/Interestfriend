@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.interestfriend"
+    android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,8 +11,24 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
 
     <application
         android:name="com.interestfriend.applation.MyApplation"
@@ -41,6 +58,49 @@
             android:name="com.interestfriend.activity.CreateCircleActivity"
             android:label="@string/title_activity_create_circle" >
         </activity>
+        <!-- 聊天页面 -->
+        <activity
+            android:name=".activity.ChatActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".activity.BaiduMapActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name=".activity.ShowBigImage"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 下载文件 -->
+        <activity
+            android:name=".activity.ShowNormalFileActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 语音通话页面 -->
+        <activity
+            android:name=".activity.VoiceCallActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activity.ShowVideoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <!-- choose video -->
+        <activity
+            android:name=".activity.ImageGridActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name=".activity.RecorderVideoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
 
         <!-- 注意这个地方的位置，是在application标签里面；android:authorities对应Provider.AUTHORITY -->
         <provider
@@ -51,6 +111,17 @@
             android:name="com.interestfriend.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
+
+        <!-- 设置应用的 appkey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="774663576#interestfriend" />
+        <!-- 声明sdk所需的service -->
+        <service android:name="com.easemob.chat.EMChatService" />
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
     </application>
 
 </manifest>
