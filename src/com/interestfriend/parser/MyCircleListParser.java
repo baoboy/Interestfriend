@@ -29,11 +29,13 @@ public class MyCircleListParser implements IParser {
 			String circle_name = obj.getString("circle_name");
 			String circle_description = obj.getString("circle_description");
 			String circle_avatar = obj.getString("circle_avatar");
+			String group_id = obj.getString("group_id");
 			MyCircles circle = new MyCircles();
 			circle.setCircle_description(circle_description);
 			circle.setCircle_id(id);
 			circle.setCircle_logo(circle_avatar);
 			circle.setCircle_name(circle_name);
+			circle.setGroup_id(group_id);
 			lists.add(circle);
 		}
 		MyCircleList cl = new MyCircleList();
