@@ -22,10 +22,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.easemob.EMCallBack;
+import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
 import com.interestfriend.fragment.MyCircleFragment;
 import com.interestfriend.fragment.NearCircleFragmen;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.HackyViewPager;
 
@@ -37,7 +41,7 @@ public class HomeActivity extends FragmentActivity implements
 	private Button btn_tab_neay_circle, btn_tab_my_circle;
 	public DrawerLayout drawerLayout;// 侧边栏布局
 	private ImageView img_add;
- 
+
 	private NearCircleFragmen nearFragment;
 	private MyCircleFragment myCircleFragment;
 	private List<Fragment> listFragments = new ArrayList<Fragment>();
@@ -52,6 +56,47 @@ public class HomeActivity extends FragmentActivity implements
 		initFragment();
 		initView();
 
+		new Thread() {
+			public void run() {
+				login("a", "binbin");
+			}
+		}.start();
+	}
+
+	private void login(final String username, String password) {
+		// 调用sdk登陆方法登陆聊天服务器
+		EMChatManager.getInstance().login(username, password, new EMCallBack() {
+			@Override
+			public void onSuccess() {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						Toast.makeText(getApplicationContext(), "登录成功", 0)
+								.show();
+
+					}
+				});
+				// 登陆成功，保存用户名密码
+				SharedUtils.setUserName(username);
+
+			}
+
+			@Override
+			public void onProgress(int progress, String status) {
+
+			}
+
+			@Override
+			public void onError(int code, final String message) {
+
+				runOnUiThread(new Runnable() {
+					public void run() {
+						Toast.makeText(getApplicationContext(),
+								"登录失败: " + message, 0).show();
+
+					}
+				});
+			}
+		});
 	}
 
 	private void initView() {
@@ -78,7 +123,6 @@ public class HomeActivity extends FragmentActivity implements
 		myCircleFragment = new MyCircleFragment();
 		listFragments.add(myCircleFragment);
 		listFragments.add(nearFragment);
-
 	}
 
 	/**
@@ -146,7 +190,6 @@ public class HomeActivity extends FragmentActivity implements
 
 	@Override
 	public void onPageSelected(int arg0) {
-
 	}
 
 	@Override
@@ -165,5 +208,12 @@ public class HomeActivity extends FragmentActivity implements
 		default:
 			break;
 		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EMChatManager.getInstance().logout();
+
 	}
 }
