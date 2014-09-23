@@ -72,4 +72,14 @@ public class SharedUtils {
 		}
 		return 0;
 	}
+
+	public static void setUserName(String value) {
+		editor.putString("username", value);
+		editor.commit();
+	}
+
+	public static String getUserName() {
+		return sharedPreferences.getString("username", "");
+
+	}
 }
