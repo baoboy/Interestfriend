@@ -3,6 +3,7 @@ package com.interestfriend.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import com.interestfriend.fragment.CircleMemberFragment;
 
 public class MainActivity extends FragmentActivity implements
 		RadioGroup.OnCheckedChangeListener {
- 
+
 	private List<Fragment> fragmentList = new ArrayList<Fragment>();
 
 	private int currentTabIndex = -1;
@@ -44,6 +45,7 @@ public class MainActivity extends FragmentActivity implements
 		RadioGroup rg = (RadioGroup) this.findViewById(R.id.tabs_rg);
 		rg.setOnCheckedChangeListener(this);
 		showTab(0);
+
 	}
 
 	public void showTab(int tabIndex) {

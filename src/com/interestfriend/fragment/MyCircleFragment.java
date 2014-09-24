@@ -21,9 +21,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.interestfriend.MainActivity;
 import com.interestfriend.R;
-import com.interestfriend.activity.ChatActivity;
+import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.contentprovider.MyCirclesProvider;
 import com.interestfriend.data.MyCircleList;
@@ -192,11 +191,11 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// startActivity(new Intent(getActivity(), MainActivity.class));
-		Intent intent = new Intent();
-		intent.putExtra("groupId", lists.get(arg2).getGroup_id());
-		intent.putExtra("chatType", 2);
-		intent.setClass(getActivity(), ChatActivity.class);
-		startActivity(intent);
+		startActivity(new Intent(getActivity(), MainActivity.class));
+		// Intent intent = new Intent();
+		// intent.putExtra("groupId", lists.get(arg2).getGroup_id());
+		// intent.putExtra("chatType", 2);
+		// intent.setClass(getActivity(), ChatActivity.class);
+		// startActivity(intent);
 	};
 }

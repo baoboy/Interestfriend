@@ -53,8 +53,10 @@ public class HomeActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
-		initFragment();
-		initView();
+		 startActivity(new Intent(this, MainActivity.class));
+
+		// initFragment();
+		// initView();
 
 		new Thread() {
 			public void run() {
@@ -72,6 +74,8 @@ public class HomeActivity extends FragmentActivity implements
 					public void run() {
 						Toast.makeText(getApplicationContext(), "µÇÂ¼³É¹¦", 0)
 								.show();
+//						startActivity(new Intent(HomeActivity.this,
+//								ChatActivity.class));
 
 					}
 				});

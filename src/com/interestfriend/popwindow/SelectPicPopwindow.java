@@ -33,10 +33,6 @@ public class SelectPicPopwindow implements OnClickListener {
 		this.mSelectOnclick = mSelectOnclick;
 	}
 
-	public SelectPicPopwindow(Context mContext, View v, int cid, int imageNum) {
-		this(mContext, v);
-	}
-
 	public SelectPicPopwindow(Context context, View v) {
 		this.mContext = context;
 		this.v = v;

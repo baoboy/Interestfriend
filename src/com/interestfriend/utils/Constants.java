@@ -1,12 +1,21 @@
 package com.interestfriend.utils;
 
 public class Constants {
-	
-	//环信
-	
+
+	// 环信
+
 	public static final String NEW_FRIENDS_USERNAME = "item_new_friends";
 	public static final String GROUP_USERNAME = "item_groups";
 	public static final String MESSAGE_ATTR_IS_VOICE_CALL = "is_voice_call";
 	// 广播值
 	public static final String CREATE_CIRCLS = "com.interestfriend.create_circles";
+
+	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;// 选择图片
+	public static final int REQUEST_CODE_GETIMAGE_BYCAMERA = 1;// 拍照
+	public static final int REQUEST_CODE_GETIMAGE_DROP = 2;// 裁剪
+	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD_MORE = 4;// 图片多选
+
+	public static final String STATE_POSITION = "STATE_POSITION";
+	public static final String EXTRA_IMAGE_INDEX = "image_index";
+	public static final String EXTRA_IMAGE_URLS = "image_urls";
 }

@@ -17,8 +17,8 @@ import com.easemob.chat.EMChatOptions;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnNotificationClickListener;
-import com.interestfriend.MainActivity;
 import com.interestfriend.activity.ChatActivity;
+import com.interestfriend.activity.MainActivity;
 import com.interestfriend.receive.VoiceCallReceiver;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
 

@@ -26,7 +26,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 创建根目�?
+	 * 创建根目�?
 	 * 
 	 * @param path
 	 *            目录路径
@@ -43,7 +43,7 @@ public class FileUtils {
 	 * 
 	 * @param path
 	 *            文件路径
-	 * @return 创建的文�?
+	 * @return 创建的文�?
 	 */
 	public static File createNewFile(String path) {
 		File file = new File(path);
@@ -58,7 +58,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 删除文件�?
+	 * 删除文件�?
 	 * 
 	 * @param folderPath
 	 *            文件夹的路径
@@ -75,7 +75,7 @@ public class FileUtils {
 	 * 删除文件
 	 * 
 	 * @param path
-	 *            文件的路�?
+	 *            文件的路�?
 	 */
 	public static void delAllFile(String path) {
 		File file = new File(path);
@@ -107,7 +107,7 @@ public class FileUtils {
 	 * 获取文件的Uri
 	 * 
 	 * @param path
-	 *            文件的路�?
+	 *            文件的路�?
 	 * @return
 	 */
 	public static Uri getUriFromFile(String path) {
@@ -149,14 +149,14 @@ public class FileUtils {
 	}
 
 	/**
-	 * 获取根目�?
+	 * 获取根目�?
 	 */
 	public static String getRootDir() {
 		return Environment.getExternalStorageDirectory().getAbsolutePath();
 	}
 
 	/**
-	 * 使用当前时间戳拼接一个唯�?��文件�?
+	 * 使用当前时间戳拼接一个唯�?��文件�?
 	 * 
 	 * @param format
 	 * @return
@@ -169,7 +169,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 获取文件扩展�?
+	 * 获取文件扩展�?
 	 * 
 	 * @param fileName
 	 * @return
@@ -183,7 +183,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 判断sd卡是否存�?
+	 * 判断sd卡是否存�?
 	 * 
 	 * @return
 	 */
@@ -196,14 +196,14 @@ public class FileUtils {
 	}
 
 	/**
-	 * 创建文件�?
+	 * 创建文件�?
 	 * 
 	 * @param dir
 	 */
 	public static void createDir(String dir) {
 		String sdpath = getRootDir();
 		File destDir = new File(sdpath + dir);
-		if (!destDir.exists()) {// 创建文件�?
+		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();
 		}
 	}
@@ -224,8 +224,8 @@ public class FileUtils {
 	 */
 	public static String getCameraPath() {
 		String sdpath = getRootDir();
-		File destDir = new File(sdpath + "/changlianxi/camera");
-		if (!destDir.exists()) {// 创建文件�?
+		File destDir = new File(sdpath + "/quyou/camera");
+		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();
 		}
 		createNoMediaFile();
@@ -234,14 +234,14 @@ public class FileUtils {
 	}
 
 	public static String getCLXDir() {
-		return getRootDir() + "/changlianxi/";
+		return getRootDir() + "/quyou/";
 
 	}
 
 	public static String getClxImgSavePath() {
-		String path = getRootDir() + "/changlianxiImgSave/";
+		String path = getRootDir() + "/quyouImgSave/";
 		File destDir = new File(path);
-		if (!destDir.exists()) {// 创建文件�?
+		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();
 		}
 		return path;
@@ -249,7 +249,7 @@ public class FileUtils {
 	}
 
 	private static void createNoMediaFile() {
-		File file = new File(getRootDir() + "/changlianxi/.nomedia");
+		File file = new File(getRootDir() + "/quyou/.nomedia");
 		if (!file.exists()) {// 判断文件是否存在（不存在则创建这个文件）
 			try {
 				file.createNewFile();

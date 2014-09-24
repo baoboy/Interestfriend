@@ -92,7 +92,6 @@ public class BaiduMapActivity extends BaseActivity {
 		mMapController = mMapView.getController();
 		sendButton = (Button) findViewById(R.id.btn_location_send);
 		initMapView();
-
 		mMapView.getController().setZoom(17);
 		mMapView.getController().enableClick(true);
 		mMapView.setBuiltInZoomControls(true);
