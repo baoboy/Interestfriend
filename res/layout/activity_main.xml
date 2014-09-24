@@ -15,13 +15,13 @@
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#d7d7d7" />
- 
+
     <RadioGroup
         android:id="@+id/tabs_rg"
         android:layout_width="fill_parent"
         android:layout_height="58dp"
         android:background="#efefef"
-        android:gravity="center" 
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <RadioButton
@@ -31,7 +31,7 @@
             android:layout_weight="1.0"
             android:background="#00ffffff"
             android:button="@null"
-            android:checked="false"
+            android:checked="true"
             android:drawableTop="@drawable/tab_member"
             android:gravity="center"
             android:singleLine="true"
@@ -45,7 +45,7 @@
             android:layout_weight="1.0"
             android:background="#00ffffff"
             android:button="@null"
-            android:checked="true"
+            android:checked="false"
             android:drawableTop="@drawable/tab_growth"
             android:gravity="center" />
 
@@ -63,19 +63,19 @@
             android:textColor="#000000"
             android:textSize="13sp" />
 
-<!--         <RadioButton -->
-<!--             android:id="@+id/tab_selfinfo" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:layout_weight="1.0" -->
-<!--             android:background="#00ffffff" -->
-<!--             android:button="@null" -->
-<!--             android:checked="false" -->
-<!--             android:drawableTop="@drawable/tab_setting" -->
-<!--             android:gravity="bottom" -->
-<!--             android:singleLine="true" -->
-<!--             android:textColor="#000000" -->
-<!--             android:textSize="13sp" /> -->
+        <!-- <RadioButton -->
+        <!-- android:id="@+id/tab_selfinfo" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_weight="1.0" -->
+        <!-- android:background="#00ffffff" -->
+        <!-- android:button="@null" -->
+        <!-- android:checked="false" -->
+        <!-- android:drawableTop="@drawable/tab_setting" -->
+        <!-- android:gravity="bottom" -->
+        <!-- android:singleLine="true" -->
+        <!-- android:textColor="#000000" -->
+        <!-- android:textSize="13sp" /> -->
     </RadioGroup>
 
 </LinearLayout>
