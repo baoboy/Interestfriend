@@ -15,7 +15,7 @@ public class BaseActivity extends Activity {
 	protected int mScreenWidth;
 	protected int mScreenHeight;
 	protected float mDensity;
-
+ 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
