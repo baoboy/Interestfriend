@@ -733,7 +733,7 @@ public class BitmapUtils {
 		}
 		String fileName = picPath.substring(picPath.lastIndexOf("/"));
 		// 保存入sdCard
-		String filePthh = FileUtils.getRootDir() + "/changlianxi" + fileName;
+		String filePthh = FileUtils.getRootDir() + "/quyou" + fileName;
 		File file = new File(filePthh);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		int options = 70;//

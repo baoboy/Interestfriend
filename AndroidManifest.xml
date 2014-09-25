@@ -124,7 +124,10 @@
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-
+       <activity
+            android:name="com.interestfriend.showbigpic.ImagePagerActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
         <!-- 设置应用的 appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"

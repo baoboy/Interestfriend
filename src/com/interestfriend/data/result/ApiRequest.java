@@ -1,6 +1,7 @@
 package com.interestfriend.data.result;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -62,4 +63,19 @@ public class ApiRequest {
 		return parse(parser, result, params);
 	}
 
+	public static Result uploadFileArrayWithToken(String url,
+			Map<String, Object> params, List<File> files, IParser parser) {
+
+		for (String key : params.keySet()) {
+			Logger.out("ApiRequest.request",
+					"[param] " + key + ", " + params.get(key), Level.DEBUG);
+		}
+		Logger.out("ApiRequest.request", "[url] " + url, Level.DEBUG);
+
+		String result = HttpUrlHelper.upLoadPicArray(
+				HttpUrlHelper.DEFAULT_HOST, url, params, files);
+		Logger.out("ApiRequest.request", "[result] " + result, Level.DEBUG);
+
+		return parse(parser, result, params);
+	}
 }

@@ -1,14 +1,26 @@
 package com.interestfriend.data;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.data.enums.RetStatus;
+import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.Result;
+import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.UploadGrowthParser;
+import com.interestfriend.utils.BitmapUtils;
 
 public class Growth implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final String ADD_GROWTH_API = "AddGrowthServlet";
 	private int growth_id = 0;// 成长id
 	private int cid = 0;// 所在圈子id
 	private int publisher_id = 0;// 发布者id
@@ -16,6 +28,15 @@ public class Growth implements Serializable {
 	private String location = "";// 发布地点
 	private String published = ""; // 发布时间
 	private List<GrowthImage> images = new ArrayList<GrowthImage>();
+	private String tag = "";
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
 	public int getGrowth_id() {
 		return growth_id;
@@ -73,4 +94,47 @@ public class Growth implements Serializable {
 		this.images = images;
 	}
 
+	@Override
+	public String toString() {
+		return "gid:" + growth_id + "  content:" + this.content + "   images:"
+				+ this.images;
+	}
+
+	public RetError uploadForAdd() {
+		List<File> bytesimg = new ArrayList<File>();
+		for (GrowthImage img : this.images) {
+			File file = BitmapUtils.getImageFile(img.getImg());
+			if (file == null) {
+				continue;
+			}
+			bytesimg.add(file);
+		}
+		IParser parser = new UploadGrowthParser();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("cid", cid);
+		params.put("content", content);
+		params.put("publisher_id", publisher_id);
+		params.put("time", published);
+		Result ret = ApiRequest.uploadFileArrayWithToken(ADD_GROWTH_API,
+				params, bytesimg, parser);
+		delGorwthImgFile(bytesimg);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			Growth g = (Growth) ret.getData();
+			this.growth_id = g.getGrowth_id();
+			this.images.clear();
+			this.images = g.getImages();
+
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	private void delGorwthImgFile(List<File> files) {
+		for (File file : files) {
+			if (file.exists()) {
+				file.delete();
+			}
+		}
+	}
 }

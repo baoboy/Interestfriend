@@ -1,17 +1,26 @@
 package com.interestfriend.adapter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.data.Growth;
+import com.interestfriend.data.GrowthImage;
+import com.interestfriend.showbigpic.ImagePagerActivity;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.ExpandGridView;
 
@@ -84,6 +93,8 @@ public class GrowthAdapter extends BaseAdapter {
 			holder.img.setVisibility(View.GONE);
 			holder.img_grid_view.setVisibility(View.GONE);
 		}
+		holder.img_grid_view.setOnItemClickListener(new GridViewOnItemClick(
+				position));
 		holder.txt_context.setText(lists.get(position).getContent());
 		holder.txt_time.setText(lists.get(position).getPublished());
 		return contentView;
@@ -96,5 +107,29 @@ public class GrowthAdapter extends BaseAdapter {
 		TextView txt_context;
 		ImageView img;
 		ExpandGridView img_grid_view;
+	}
+
+	class GridViewOnItemClick implements OnItemClickListener {
+		int position;
+
+		public GridViewOnItemClick(int position) {
+			this.position = position;
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View v, int posit,
+				long arg3) {
+			List<String> imgUrl = new ArrayList<String>();
+			for (GrowthImage img : lists.get(position).getImages()) {
+				imgUrl.add(img.getImg());
+			}
+			Intent intent = new Intent(mContext, ImagePagerActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+					(Serializable) imgUrl);
+			intent.putExtras(bundle);
+			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
+			mContext.startActivity(intent);
+		}
 	}
 }
