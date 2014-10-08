@@ -25,8 +25,6 @@ public class MyCircles extends Circles {
 		cv.put("circle_description", getCircle_description());
 		cv.put("circle_logo", getCircle_logo());
 		cv.put("group_id", getGroup_id());
-
 		db.insert(dbName, null, cv);
-
 	}
 }

@@ -4,11 +4,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <LinearLayout
+        android:id="@+id/category_item"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:text="附近圈子" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/record_bg" >
+
+        <com.interestfriend.view.RoundAngleImageView
+            android:layout_width="55dip"
+            android:layout_height="55dip"
+            android:layout_margin="7dip"
+            android:src="@drawable/picture_default_head" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:singleLine="true"
+            android:text="分类查找"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/near_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/record_bg" >
+
+        <com.interestfriend.view.RoundAngleImageView
+            android:layout_width="55dip"
+            android:layout_height="55dip"
+            android:layout_margin="7dip"
+            android:src="@drawable/picture_default_head" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:singleLine="true"
+            android:text="附近圈子"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -45,6 +45,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		// my circles
 		db.execSQL("create table IF NOT EXISTS " + Const.MY_CIRCLE_TABLE_NAME
 				+ "( " + Const.MY_CIRCLE_TABLE_STRUCTURE + " )");
+
+		db.execSQL("create table IF NOT EXISTS " + Const.GROWTHS_TABLE_NAME
+				+ "( " + Const.GROWTHS_TABLE_STRUCTURE + " )");
+
+		db.execSQL("create table IF NOT EXISTS "
+				+ Const.GROWTH_IMAGE_TABLE_NAME + "( "
+				+ Const.GROWTH_IMAGE_TABLE_STRUCTURE + " )");
 	}
 
 	@Override

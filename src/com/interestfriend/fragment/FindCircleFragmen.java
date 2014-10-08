@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 @SuppressLint("NewApi")
-public class NearCircleFragmen extends Fragment {
+public class FindCircleFragmen extends Fragment implements OnClickListener {
+
+	private LinearLayout category_item;
+	private LinearLayout near_item;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -20,6 +26,23 @@ public class NearCircleFragmen extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		System.out.println("aaaaaaaaaaaaaaaaaaaaNearCircleFragmen");
+		initView();
+	}
+
+	private void initView() {
+		category_item = (LinearLayout) getView().findViewById(
+				R.id.category_item);
+		near_item = (LinearLayout) getView().findViewById(R.id.near_item);
+		setListener();
+	}
+
+	private void setListener() {
+		category_item.setOnClickListener(this);
+		near_item.setOnClickListener(this);
+	};
+
+	@Override
+	public void onClick(View v) {
+
 	}
 }

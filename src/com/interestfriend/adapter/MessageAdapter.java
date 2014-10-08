@@ -27,7 +27,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.Spannable;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;

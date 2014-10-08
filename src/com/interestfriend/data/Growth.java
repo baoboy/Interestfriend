@@ -7,15 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.UploadGrowthParser;
 import com.interestfriend.utils.BitmapUtils;
 
-public class Growth implements Serializable {
+public class Growth extends AbstractData implements Serializable {
 	/**
 	 * 
 	 */
@@ -136,5 +140,17 @@ public class Growth implements Serializable {
 				file.delete();
 			}
 		}
+	}
+
+	@Override
+	public void write(SQLiteDatabase db) {
+		String dbName = Const.GROWTHS_TABLE_NAME;
+		ContentValues cv = new ContentValues();
+		cv.put("growth_id", this.growth_id);
+		cv.put("cid", this.cid);
+		cv.put("publisher_id", this.publisher_id);
+		cv.put("content", this.content);
+		cv.put("time", this.published);
+		db.insert(dbName, null, cv);
 	}
 }

@@ -119,12 +119,15 @@
         <provider
             android:name="com.interestfriend.contentprovider.MyCirclesContentProvider"
             android:authorities="com.changlianxi.circle.members" />
+        <provider
+            android:name="com.interestfriend.contentprovider.MyCircleGrowthsContentProvider"
+            android:authorities="com.quyou.circle.growths" />
 
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
-       <activity
+        <activity
             android:name="com.interestfriend.showbigpic.ImagePagerActivity"
             android:label="@string/title_activity_main" >
         </activity>

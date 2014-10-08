@@ -23,6 +23,7 @@ import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.GetGrowthFormDBTask;
 import com.interestfriend.task.GetGrowthListTask;
 import com.interestfriend.task.UpLoadGrowthTask;
 import com.interestfriend.utils.DialogUtil;
@@ -54,7 +55,8 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 		initView();
 		setValue();
 		glist = new GrowthList();
-		getGrowthFromServer();
+		getGrowthFromDB();
+		// getGrowthFromServer();
 	}
 
 	private void initView() {
@@ -73,9 +75,30 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 		img_send.setOnClickListener(this);
 	}
 
-	private void getGrowthFromServer() {
+	private void getGrowthFromDB() {
 		dialog = DialogUtil.createLoadingDialog(getActivity(), "«Î…‘∫Ú");
 		dialog.show();
+		GetGrowthFormDBTask task = new GetGrowthFormDBTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				lists.addAll(glist.getGrowths());
+				if (lists.size() == 0) {
+					getGrowthFromServer();
+				} else {
+					if (dialog != null) {
+						dialog.dismiss();
+					}
+				}
+				adapter.notifyDataSetChanged();
+
+			}
+		});
+		task.execute(glist);
+	}
+
+	private void getGrowthFromServer() {
+
 		GetGrowthListTask task = new GetGrowthListTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override

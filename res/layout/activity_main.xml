@@ -34,6 +34,7 @@
             android:checked="true"
             android:drawableTop="@drawable/tab_member"
             android:gravity="center"
+            android:paddingTop="8dip"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="13sp" />
@@ -47,7 +48,8 @@
             android:button="@null"
             android:checked="false"
             android:drawableTop="@drawable/tab_growth"
-            android:gravity="center" />
+            android:gravity="center"
+            android:paddingTop="8dip" />
 
         <RadioButton
             android:id="@+id/tab_square"
@@ -59,6 +61,7 @@
             android:checked="false"
             android:drawableTop="@drawable/tab_dynamic"
             android:gravity="center"
+            android:paddingTop="8dip"
             android:singleLine="true"
             android:textColor="#000000"
             android:textSize="13sp" />

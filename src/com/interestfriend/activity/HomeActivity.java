@@ -28,7 +28,7 @@ import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
 import com.interestfriend.fragment.MyCircleFragment;
-import com.interestfriend.fragment.NearCircleFragmen;
+import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.HackyViewPager;
@@ -42,7 +42,7 @@ public class HomeActivity extends FragmentActivity implements
 	public DrawerLayout drawerLayout;// 侧边栏布局
 	private ImageView img_add;
 
-	private NearCircleFragmen nearFragment;
+	private FindCircleFragmen nearFragment;
 	private MyCircleFragment myCircleFragment;
 	private List<Fragment> listFragments = new ArrayList<Fragment>();
 	private int screenW;
@@ -53,16 +53,15 @@ public class HomeActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
-		 startActivity(new Intent(this, MainActivity.class));
-
-		// initFragment();
-		// initView();
-
-		new Thread() {
-			public void run() {
-				login("a", "binbin");
-			}
-		}.start();
+		// startActivity(new Intent(this, MainActivity.class));
+		initFragment();
+		initView();
+		//
+		// new Thread() {
+		// public void run() {
+		// login("a", "binbin");
+		// }
+		// }.start();
 	}
 
 	private void login(final String username, String password) {
@@ -74,8 +73,8 @@ public class HomeActivity extends FragmentActivity implements
 					public void run() {
 						Toast.makeText(getApplicationContext(), "登录成功", 0)
 								.show();
-//						startActivity(new Intent(HomeActivity.this,
-//								ChatActivity.class));
+						// startActivity(new Intent(HomeActivity.this,
+						// ChatActivity.class));
 
 					}
 				});
@@ -123,7 +122,7 @@ public class HomeActivity extends FragmentActivity implements
 	}
 
 	private void initFragment() {
-		nearFragment = new NearCircleFragmen();
+		nearFragment = new FindCircleFragmen();
 		myCircleFragment = new MyCircleFragment();
 		listFragments.add(myCircleFragment);
 		listFragments.add(nearFragment);

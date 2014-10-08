@@ -29,6 +29,9 @@ public class GrowthAdapter extends BaseAdapter {
 
 	private Context mContext;
 
+	private static final int VIEW_TYPE_OTHER = 0;
+	private static final int VIEW_TYPE_SELF = 1;
+
 	public GrowthAdapter(Context context, List<Growth> lists) {
 		this.mContext = context;
 		this.lists = lists;
@@ -50,11 +53,34 @@ public class GrowthAdapter extends BaseAdapter {
 	}
 
 	@Override
+	public int getViewTypeCount() {
+		return 2;
+	}
+
+	@Override
+	public int getItemViewType(int position) {
+		if (position % 2 == 0) {
+			return VIEW_TYPE_SELF;
+		} else {
+			return VIEW_TYPE_OTHER;
+		}
+	}
+
+	private View createView(int type) {
+		if (type == VIEW_TYPE_OTHER) {
+			return LayoutInflater.from(mContext).inflate(R.layout.growth_item,
+					null);
+		}
+		return LayoutInflater.from(mContext).inflate(R.layout.growth_item_self,
+				null);
+	}
+
+	@Override
 	public View getView(int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
+		int type = getItemViewType(position);
 		if (contentView == null) {
-			contentView = LayoutInflater.from(mContext).inflate(
-					R.layout.growth_item, null);
+			contentView = createView(type);
 			holder = new ViewHolder();
 			holder.img = (ImageView) contentView.findViewById(R.id.img);
 			holder.txt_context = (TextView) contentView
@@ -128,7 +154,7 @@ public class GrowthAdapter extends BaseAdapter {
 			bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
 					(Serializable) imgUrl);
 			intent.putExtras(bundle);
-			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
+			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, posit);
 			mContext.startActivity(intent);
 		}
 	}

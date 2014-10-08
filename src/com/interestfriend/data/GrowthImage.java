@@ -2,11 +2,16 @@ package com.interestfriend.data;
 
 import java.io.Serializable;
 
+import com.interestfriend.db.Const;
+
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Image in growth.
  * 
  */
-public class GrowthImage implements Serializable {
+public class GrowthImage extends AbstractData implements Serializable {
 	/**
 	 * 
 	 */
@@ -17,7 +22,7 @@ public class GrowthImage implements Serializable {
 	private String img = "";
 
 	public GrowthImage() {
- 	}
+	}
 
 	public GrowthImage(int cid, int gid, int imgId) {
 		this(cid, gid, imgId, "");
@@ -66,6 +71,17 @@ public class GrowthImage implements Serializable {
 	public String toString() {
 		return "GrowthImage [cid=" + cid + ", gid=" + gid + ", imgId=" + imgId
 				+ ", img=" + img + "]";
+	}
+
+	@Override
+	public void write(SQLiteDatabase db) {
+		String dbName = Const.GROWTH_IMAGE_TABLE_NAME;
+		ContentValues cv = new ContentValues();
+		cv.put("cid", cid);
+		cv.put("growth_id", gid);
+		cv.put("img_id", imgId);
+		cv.put("img", img);
+		db.insert(dbName, null, cv);
 	}
 
 }
