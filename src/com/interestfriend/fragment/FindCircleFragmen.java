@@ -1,8 +1,10 @@
 package com.interestfriend.fragment;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.CategoryCircleActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,6 +45,16 @@ public class FindCircleFragmen extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.category_item:
+			startActivity(new Intent(getActivity(),
+					CategoryCircleActivity.class));
+			break;
+		case R.id.near_item:
 
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -12,7 +12,6 @@
     <string name="inupt_again_password">请再一次输入密码</string>
     <string name="take_photo">拍照</string>
     <string name="from_photo_album">从相册选择</string>
-    <string name="cancel">取消</string>
     <string name="finished">完成</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_create_circle">CreateCircleActivity</string>
@@ -81,5 +80,6 @@
     <string name="dissolution_group_hint">退出后，此群将被解散</string>
     <string name="exit_group">退出</string>
     <string name="connect_conflict">同一帐号已在其他设备登录</string>
+    <string name="title_activity_category_circle">CategoryCircleActivity</string>
 
 </resources>

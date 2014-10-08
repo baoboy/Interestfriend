@@ -60,44 +60,44 @@
         </activity>
         <!-- 聊天页面 -->
         <activity
-            android:name=".activity.ChatActivity"
+            android:name="com.interestfriend.activity.ChatActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
-            android:name=".activity.BaiduMapActivity"
+            android:name="com.interestfriend.activity.BaiduMapActivity"
             android:screenOrientation="portrait" >
         </activity>
 
         <!-- 显示下载大图页面 -->
         <activity
-            android:name=".activity.ShowBigImage"
+            android:name="com.interestfriend.activity.ShowBigImage"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 下载文件 -->
         <activity
-            android:name=".activity.ShowNormalFileActivity"
+            android:name="com.interestfriend.activity.ShowNormalFileActivity"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 语音通话页面 -->
         <activity
-            android:name=".activity.VoiceCallActivity"
+            android:name="com.interestfriend.activity.VoiceCallActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.ShowVideoActivity"
+            android:name="com.interestfriend.activity.ShowVideoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <!-- choose video -->
         <activity
-            android:name=".activity.ImageGridActivity"
+            android:name="com.interestfriend.activity.ImageGridActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".activity.RecorderVideoActivity"
+            android:name="com.interestfriend.activity.RecorderVideoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
@@ -108,11 +108,11 @@
 
         <!-- 发布成长界面 -->
         <activity
-            android:name=".activity.PublicshGrowthActivity"
+            android:name="com.interestfriend.activity.PublicshGrowthActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".activity.PublishGrowthImagePagerActivity"
+            android:name="com.interestfriend.activity.PublishGrowthImagePagerActivity"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 注意这个地方的位置，是在application标签里面；android:authorities对应Provider.AUTHORITY -->
@@ -124,7 +124,7 @@
             android:authorities="com.quyou.circle.growths" />
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.interestfriend.activity.MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
         <activity
@@ -141,6 +141,11 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
+        <activity
+            android:name="com.interestfriend.activity.CategoryCircleActivity"
+            android:label="@string/title_activity_category_circle" >
+        </activity>
     </application>
 
 </manifest>
