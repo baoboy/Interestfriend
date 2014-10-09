@@ -24,6 +24,7 @@ import com.interestfriend.utils.CheckImageLoaderConfiguration;
 
 public class MyApplation extends Application {
 	private static MyApplation instance;
+	private static int circle_id;
 
 	@Override
 	public void onCreate() {
@@ -177,4 +178,13 @@ public class MyApplation extends Application {
 		public void onConnected() {
 		}
 	}
+
+	public static int getCircle_id() {
+		return circle_id;
+	}
+
+	public static void setCircle_id(int circle_id) {
+		MyApplation.circle_id = circle_id;
+	}
+
 }

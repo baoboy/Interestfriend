@@ -83,5 +83,7 @@
     <string name="title_activity_category_circle">CategoryCircleActivity</string>
     <string name="title_activity_search_circls">SearchCirclsActivity</string>
     <string name="title_activity_circle_info">CircleInfoActivity</string>
+    <string name="title_activity_circle_member_info">CircleMemberInfoActivity</string>
+    <string name="title_activity_welcom">WelcomActivity</string>
 
 </resources>

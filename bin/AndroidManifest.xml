@@ -154,6 +154,14 @@
             android:name="com.interestfriend.activity.CircleInfoActivity"
             android:label="@string/title_activity_circle_info" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.CircleMemberInfoActivity"
+            android:label="@string/title_activity_circle_member_info" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.WelcomActivity"
+            android:label="@string/title_activity_welcom" >
+        </activity>
     </application>
 
 </manifest>

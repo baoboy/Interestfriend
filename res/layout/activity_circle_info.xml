@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/img_logo"
                 android:layout_width="match_parent"
-                android:layout_height="260dip"
+                android:layout_height="300dip"
                 android:scaleType="centerCrop"
                 android:src="@drawable/chat_image_normal" />
 

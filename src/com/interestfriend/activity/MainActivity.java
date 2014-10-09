@@ -23,6 +23,7 @@ public class MainActivity extends FragmentActivity implements
 	private List<Fragment> fragmentList = new ArrayList<Fragment>();
 
 	private int currentTabIndex = -1;
+	private int circle_id = 0;
 
 	private CircleMemberFragment memberFragment;
 	private CircleGroupChatFragment chatFragment;
@@ -32,6 +33,7 @@ public class MainActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		circle_id = getIntent().getIntExtra("circle_id", 0);
 		initFragment();
 	}
 
