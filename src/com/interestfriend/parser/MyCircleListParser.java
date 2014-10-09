@@ -21,7 +21,6 @@ public class MyCircleListParser implements IParser {
 		if (jsonArr == null) {
 			return Result.defContentErrorResult();
 		}
-		System.out.println("result::::::::::::;" + jsonObj);
 		List<MyCircles> lists = new ArrayList<MyCircles>();
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
