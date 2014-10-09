@@ -128,10 +128,9 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				}
 				adapter.notifyDataSetChanged();
 			} else {
-				// dialog = DialogUtil.createLoadingDialog(getActivity(),
-				// "«Î…‘∫Ú");
-				// dialog.show();
-				// getCircleList();
+				dialog = DialogUtil.createLoadingDialog(getActivity(), "«Î…‘∫Ú");
+				dialog.show();
+				getCircleList();
 			}
 		}
 	}

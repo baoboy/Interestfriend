@@ -81,5 +81,7 @@
     <string name="exit_group">退出</string>
     <string name="connect_conflict">同一帐号已在其他设备登录</string>
     <string name="title_activity_category_circle">CategoryCircleActivity</string>
+    <string name="title_activity_search_circls">SearchCirclsActivity</string>
+    <string name="title_activity_circle_info">CircleInfoActivity</string>
 
 </resources>

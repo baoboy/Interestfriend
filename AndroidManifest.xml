@@ -7,7 +7,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -145,6 +145,14 @@
         <activity
             android:name="com.interestfriend.activity.CategoryCircleActivity"
             android:label="@string/title_activity_category_circle" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.SearchCirclsActivity"
+            android:label="@string/title_activity_search_circls" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.CircleInfoActivity"
+            android:label="@string/title_activity_circle_info" >
         </activity>
     </application>
 

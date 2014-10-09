@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <include
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        layout="@layout/title_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_join"
+        android:layout_below="@+id/title" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="match_parent"
+                android:layout_height="260dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chat_image_normal" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f1f2ec"
+                android:paddingBottom="5dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="5dip"
+                android:text="圈子资料"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="8dip"
+                android:text="圈子介绍"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/circle_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="8dip"
+                android:text="趣友官方圈子，欢迎您的加入"
+                android:textColor="#adadad"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp98"
+        android:layout_above="@+id/bo"
+        android:layout_marginLeft="@dimen/dp76"
+        android:layout_marginRight="@dimen/dp76"
+        android:background="@drawable/btn_14c1c7"
+        android:text="加入圈子"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/bo"
+        android:layout_width="fill_parent"
+        android:layout_height="10dip"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

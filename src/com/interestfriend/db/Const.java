@@ -10,4 +10,10 @@ public class Const {
 	public static final String GROWTH_IMAGE_TABLE_NAME = "growth_images";
 	public static final String GROWTH_IMAGE_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
 			+ " cid integer, growth_id integer, img_id integer, img varchar";
+
+	public static final String CIRCLE_MEMBER_TABLE_NAME = "circle_members";
+	public static final String CIRCLE_MEMBER_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
+			+ " circle_id integer, user_id integer,  user_name varchar, user_cellphone varchar, "
+			+ " user_avatar varchar, "
+			+ " sortkey varchar, pinyinFir varchar, user_birthday varchar, user_gender varchar";
 }
