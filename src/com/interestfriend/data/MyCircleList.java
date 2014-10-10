@@ -1,5 +1,6 @@
 package com.interestfriend.data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import com.interestfriend.parser.MyCircleListParser;
 
 public class MyCircleList extends AbstractData {
 	private static final String CIRCLE_LIST_API = "CircleListServlet";
-	private List<MyCircles> listCircles;
+	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
 
 	public List<MyCircles> getListCircles() {
 		return listCircles;
