@@ -161,7 +161,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private NewMessageBroadcastReceiver receiver;
 	public static ChatActivity activityInstance = null;
 	// 给谁发送消息
-	private String toChatUsername = "1411440289245";
+	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
 	private MessageAdapter adapter;
 	private File cameraFile;
@@ -320,7 +320,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
 
 		// if (chatType == CHATTYPE_SINGLE) { // 单聊
-		// toChatUsername = getIntent().getStringExtra("userId");
+		toChatUsername = getIntent().getStringExtra("userId");
 		// ((TextView) findViewById(R.id.name)).setText(toChatUsername);
 		// conversation =
 		// EMChatManager.getInstance().getConversation(toChatUsername,false);
@@ -1087,6 +1087,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			if (message.getChatType() == ChatType.GroupChat) {
 				username = message.getTo();
 			}
+			System.out.println("chat:::::::::::::::" + toChatUsername);
 			if (!username.equals(toChatUsername)) {
 				// 消息不是发给当前会话，return
 				return;

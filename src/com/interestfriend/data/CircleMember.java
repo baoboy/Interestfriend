@@ -8,16 +8,26 @@ import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class CircleMember {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
 	private int user_id;
 	private int circle_id;
+	private String group_id = "";
 	private String user_name = "";// 用户姓名
 	private String user_cellphone = "";// 用户电话
 	private String user_avatar = "";// 用户注册头像
 	private String user_gender = "";// 用户注册性别
 	private String user_birthday = "";// 用户注册生日
+
+	public String getGroup_id() {
+		return group_id;
+	}
+
+	public void setGroup_id(String group_id) {
+		this.group_id = group_id;
+	}
 
 	public String getUser_name() {
 		return user_name;
@@ -85,6 +95,8 @@ public class CircleMember {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("user_id", user_id);
 		params.put("circle_id", circle_id);
+		params.put("group_id", group_id);
+		params.put("huanxin_username", SharedUtils.getUserName());
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

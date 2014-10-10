@@ -92,6 +92,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private void joinCircle() {
 		CircleMember member = new CircleMember();
 		member.setCircle_id(circle_id);
+		member.setGroup_id(circle.getGroup_id());
 		member.setUser_id(SharedUtils.getIntUid());
 		final Dialog dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();

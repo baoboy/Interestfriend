@@ -1,5 +1,7 @@
 package com.interestfriend.activity;
 
+import java.util.List;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroup;
+import com.easemob.chat.EMGroupManager;
 import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
@@ -147,12 +151,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
 			@Override
 			public void onSuccess() {
+				System.out.println("huanxin success ");
 				SharedUtils.setUid(user_id + "");
 				// 登陆成功，保存用户名密码
 				SharedUtils.setUserName(username);
 				mHandler.sendEmptyMessage(2);
 				mHandler.sendEmptyMessage(1);
-
+				List<EMGroup> grouplist = EMGroupManager.getInstance()
+						.getAllGroups();
+				System.out.println("size::::::::::::;;" + grouplist.size());
 			}
 
 			@Override

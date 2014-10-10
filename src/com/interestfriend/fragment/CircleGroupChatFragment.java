@@ -77,6 +77,7 @@ import com.interestfriend.activity.VoiceCallActivity;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.adapter.MessageAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
@@ -147,7 +148,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private EMConversation conversation;
 	private NewMessageBroadcastReceiver receiver;
 	// 给谁发送消息
-	private String toChatUsername = "1411440289245";
+	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
 	private MessageAdapter adapter;
 	private File cameraFile;
@@ -187,6 +188,9 @@ public class CircleGroupChatFragment extends Fragment implements
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		// toChatUsername = MyApplation.getCircle_group_id();
+		toChatUsername = "141294789539463";
+		System.out.println("group:::::::::::::" + toChatUsername);
 		initView();
 		setUpView();
 	}
@@ -360,7 +364,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		// 群聊
 
 		// toChatUsername = getIntent().getStringExtra("groupId");
-
+		System.out.println("group::::::::::;" + toChatUsername);
 		group = EMGroupManager.getInstance().getGroup(toChatUsername);
 		// ((TextView) findViewById(R.id.name)).setText(group.getGroupName());
 		// conversation =

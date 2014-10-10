@@ -27,6 +27,7 @@ import com.interestfriend.utils.CheckImageLoaderConfiguration;
 public class MyApplation extends Application {
 	private static MyApplation instance;
 	private static int circle_id;
+	private static String circle_group_id = "";
 	private static List<Activity> activityList = new ArrayList<Activity>();
 
 	@Override
@@ -73,7 +74,6 @@ public class MyApplation extends Application {
 			// 则此application::onCreate 是被service 调用的，直接返回
 			return;
 		}
-
 		EMChat.getInstance().setDebugMode(true);
 		// 初始化环信SDK,一定要先调用init()
 		EMChat.getInstance().init(instance);
@@ -99,6 +99,7 @@ public class MyApplation extends Application {
 			public Intent onNotificationClick(EMMessage message) {
 				Intent intent = new Intent(instance, ChatActivity.class);
 				ChatType chatType = message.getChatType();
+				System.out.println("type:::::::::;" + chatType);
 				if (chatType == ChatType.Chat) { // 单聊信息
 					intent.putExtra("userId", message.getFrom());
 					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
@@ -207,6 +208,14 @@ public class MyApplation extends Application {
 
 	public static void setCircle_id(int circle_id) {
 		MyApplation.circle_id = circle_id;
+	}
+
+	public static String getCircle_group_id() {
+		return circle_group_id;
+	}
+
+	public static void setCircle_group_id(String circle_group_id) {
+		MyApplation.circle_group_id = circle_group_id;
 	}
 
 }
