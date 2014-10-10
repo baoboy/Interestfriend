@@ -7,12 +7,15 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
+import com.interestfriend.parser.StringParser;
 
-public class Register {
+public class User {
 	private static final String VERIFY_CELLPHONE_API = "VerifyCellPhoneServlet";
 	private static final String USER_REGISTER_API = "UserRegisterServlet";
+	private static final String USER_LOGIN_API = "UserLoginServlet";
 
 	private String user_cellphone = "";// 用户注册电话
 	private String user_name = "";// 用户注册姓名
@@ -20,6 +23,16 @@ public class Register {
 	private String user_gender = "";// 用户注册性别
 	private String user_birthday = "";// 用户注册生日
 	private String user_password = "";// 用户注册密码
+
+	private int user_id = 0;
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 
 	public String getUser_cellphone() {
 		return user_cellphone;
@@ -108,4 +121,26 @@ public class Register {
 		}
 
 	}
+
+	/**
+	 * 用户 登录
+	 * 
+	 * @return
+	 */
+	public RetError userLogin() {
+		IParser parser = new StringParser("user_id");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_cellphone", user_cellphone);
+		params.put("user_password", user_password);
+		Result ret = ApiRequest.request(USER_LOGIN_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.user_id = Integer.valueOf(sr.getStr());
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+
+	}
+
 }

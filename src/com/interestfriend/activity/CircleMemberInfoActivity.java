@@ -1,11 +1,10 @@
 package com.interestfriend.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.interestfriend.R;
 
-public class CircleMemberInfoActivity extends Activity {
+public class CircleMemberInfoActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.interestfriend.R;
-import com.interestfriend.data.Register;
+import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.MyEditTextWatcher;
@@ -43,7 +43,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 	}
 
 	private void verifyCellPhone() {
-		Register re = new Register();
+		User re = new User();
 		re.setUser_cellphone(edit_telephone.getText().toString());
 		VerifyCellPhoneTask task = new VerifyCellPhoneTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {

@@ -1,12 +1,14 @@
 package com.interestfriend.register;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.LoginActivity;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.UserRegisterTask;
@@ -65,6 +67,7 @@ public class RegisterSetPassword extends RegisterStep implements
 					return;
 				}
 				ToastUtil.showToast("×¢²á³É¹¦", Toast.LENGTH_SHORT);
+				mContext.startActivity(new Intent(mContext, LoginActivity.class));
 			}
 		});
 		taks.execute(mActivity.getmRegister());

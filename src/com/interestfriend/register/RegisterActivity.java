@@ -13,7 +13,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.interestfriend.R;
-import com.interestfriend.data.Register;
+import com.interestfriend.data.User;
 import com.interestfriend.register.RegisterStep.onNextListener;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
@@ -27,7 +27,7 @@ public class RegisterActivity extends Activity implements onNextListener {
 	private RegisterBasicInfo reBasicInfo;
 	private RegisterPhone rePhone;
 	private RegisterSetPassword reSetPasswd;
-	private Register mRegister;
+	private User mRegister;
 
 	private int mCurrentStepIndex = 1;
 
@@ -36,7 +36,7 @@ public class RegisterActivity extends Activity implements onNextListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.register_activity);
-		mRegister = new Register();
+		mRegister = new User();
 		initView();
 	}
 
@@ -51,11 +51,11 @@ public class RegisterActivity extends Activity implements onNextListener {
 		reStep.setmOnNextListener(this);
 	}
 
-	protected Register getmRegister() {
+	protected User getmRegister() {
 		return mRegister;
 	}
 
-	public void setmRegister(Register mRegister) {
+	public void setmRegister(User mRegister) {
 		this.mRegister = mRegister;
 	}
 

@@ -59,7 +59,7 @@ public class ApiRequest {
 					"[param] " + key + ", " + params.get(key), Level.DEBUG);
 		}
 		String result = HttpUrlHelper.postDataFile(url, params, file);
-		Logger.out("httpResult", result, Level.DEBUG);
+		Logger.out("ApiRequest.request.result", result, Level.DEBUG);
 		return parse(parser, result, params);
 	}
 

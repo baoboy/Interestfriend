@@ -62,7 +62,7 @@ public class SharedUtils {
 	}
 
 	public static String getUid() {
-		return getString(SP_UID, "1");
+		return getString(SP_UID, "0");
 	}
 
 	public static int getIntUid() {

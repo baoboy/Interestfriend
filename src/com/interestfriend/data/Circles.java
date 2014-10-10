@@ -108,6 +108,7 @@ public class Circles extends AbstractData {
 		values.put("circle_name", circle_name);
 		values.put("circle_description", circle_description);
 		values.put("group_id", group_id);
+		values.put("circle_id", circle_id);
 
 		db.insert(tableName, null, values);
 	}

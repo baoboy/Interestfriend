@@ -17,6 +17,8 @@
     <dimen name="scale69dip">32dip</dimen>
     <dimen name="scale83dip">39dip</dimen>
     <dimen name="scale28dip">13dip</dimen>
+    <dimen name="dp48">23dip</dimen>
+    <dimen name="sp_30">16sp</dimen>
 
     <!-- //环信 -->
     <dimen name="height_top_bar">46dp</dimen>

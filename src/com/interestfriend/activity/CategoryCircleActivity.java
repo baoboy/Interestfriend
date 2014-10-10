@@ -21,7 +21,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCatetoryCircleListTask;
 import com.interestfriend.utils.DialogUtil;
 
-public class CategoryCircleActivity extends Activity implements
+public class CategoryCircleActivity extends BaseActivity implements
 		OnItemClickListener {
 	private ListView listView;
 

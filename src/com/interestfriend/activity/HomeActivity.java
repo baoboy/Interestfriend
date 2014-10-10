@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.MyCircleFragment;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.utils.SharedUtils;
@@ -53,6 +54,7 @@ public class HomeActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
+		MyApplation.addActivity(this);
 		// startActivity(new Intent(this, MainActivity.class));
 		initFragment();
 		initView();
@@ -193,6 +195,11 @@ public class HomeActivity extends FragmentActivity implements
 
 	@Override
 	public void onPageSelected(int arg0) {
+		if (arg0 == 0) {
+			img_add.setVisibility(View.VISIBLE);
+		} else {
+			img_add.setVisibility(View.GONE);
+		}
 	}
 
 	@Override

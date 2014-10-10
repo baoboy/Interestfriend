@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.CircleGroupChatFragment;
 import com.interestfriend.fragment.CircleGrowthFragment;
 import com.interestfriend.fragment.CircleMemberFragment;
@@ -33,6 +34,7 @@ public class MainActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		MyApplation.addActivity(this);
 		circle_id = getIntent().getIntExtra("circle_id", 0);
 		initFragment();
 	}

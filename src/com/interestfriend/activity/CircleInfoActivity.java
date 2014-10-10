@@ -1,7 +1,7 @@
 package com.interestfriend.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,16 +12,20 @@ import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.data.CircleMember;
+import com.interestfriend.data.Circles;
 import com.interestfriend.data.enums.RetError;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.task.JoinCircleTask;
+import com.interestfriend.utils.BroadCast;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 
-public class CircleInfoActivity extends Activity implements OnClickListener {
+public class CircleInfoActivity extends BaseActivity implements OnClickListener {
 	private ImageView img_logo;
 	private TextView txt_description;
 	private Button btn_join;
@@ -29,6 +33,8 @@ public class CircleInfoActivity extends Activity implements OnClickListener {
 	private String imgLogo = "";
 	private String description = "";
 	private int circle_id = 0;
+
+	private Circles circle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +46,13 @@ public class CircleInfoActivity extends Activity implements OnClickListener {
 	}
 
 	private void getIntentData() {
-		imgLogo = getIntent().getStringExtra("imgLogo");
-		description = getIntent().getStringExtra("description");
-		circle_id = getIntent().getIntExtra("circle_id", 0);
+		// imgLogo = getIntent().getStringExtra("imgLogo");
+		// description = getIntent().getStringExtra("description");
+		// circle_id = getIntent().getIntExtra("circle_id", 0);
+		circle = (Circles) getIntent().getSerializableExtra("circle");
+		imgLogo = circle.getCircle_logo();
+		circle_id = circle.getCircle_id();
+		description = circle.getCircle_description();
 	}
 
 	private void initView() {
@@ -96,6 +106,12 @@ public class CircleInfoActivity extends Activity implements OnClickListener {
 					return;
 				}
 				ToastUtil.showToast("成功加入", Toast.LENGTH_SHORT);
+				Intent intent = new Intent();
+				intent.putExtra("circle", circle);
+				intent.setAction(Constants.JOIN_CIRCLE);
+				BroadCast.sendBroadCast(CircleInfoActivity.this, intent);
+
+				circle.write(DBUtils.getDBsa(2));
 			}
 		});
 		task.execute(member);

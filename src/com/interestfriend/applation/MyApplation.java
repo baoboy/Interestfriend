@@ -1,8 +1,10 @@
 package com.interestfriend.applation;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Intent;
@@ -25,6 +27,7 @@ import com.interestfriend.utils.CheckImageLoaderConfiguration;
 public class MyApplation extends Application {
 	private static MyApplation instance;
 	private static int circle_id;
+	private static List<Activity> activityList = new ArrayList<Activity>();
 
 	@Override
 	public void onCreate() {
@@ -36,6 +39,25 @@ public class MyApplation extends Application {
 
 	public static MyApplation getInstance() {
 		return instance;
+	}
+
+	// 添加Activity到容器中
+	public static void addActivity(Activity activity) {
+		activityList.add(activity);
+	}
+
+	// 遍历所有Activity并finish
+	public static void exit(boolean flag) {
+		for (int i = 0; i < activityList.size(); i++) {
+			Activity activity = activityList.get(i);
+			if (activity != null) {
+				activity.finish();
+			}
+		}
+		activityList.clear();
+		if (flag) {
+			System.exit(0);
+		}
 	}
 
 	private void initHuanxin() {

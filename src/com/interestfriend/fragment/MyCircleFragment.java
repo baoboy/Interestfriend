@@ -26,6 +26,7 @@ import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
+import com.interestfriend.data.Circles;
 import com.interestfriend.data.MyCircleList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
@@ -142,6 +143,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	public void registerBoradcastReceiver() {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.CREATE_CIRCLS);
+		myIntentFilter.addAction(Constants.JOIN_CIRCLE);
+
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
 	}
@@ -164,6 +167,11 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				circle.setCircle_name(circle_name);
 				circle.setCircle_logo(circle_logo);
 				circle.setCircle_id(circle_id);
+				lists.add(circle);
+				adapter.notifyDataSetChanged();
+			} else if (action.equals(Constants.JOIN_CIRCLE)) {
+				MyCircles circle = (MyCircles) intent
+						.getSerializableExtra("circle");
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
 			}
@@ -203,4 +211,5 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		intent.setClass(getActivity(), MainActivity.class);
 		startActivity(intent);
 	};
+
 }

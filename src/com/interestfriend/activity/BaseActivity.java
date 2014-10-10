@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.utils.Utils;
 
 import android.app.Activity;
@@ -15,7 +16,7 @@ public class BaseActivity extends Activity {
 	protected int mScreenWidth;
 	protected int mScreenHeight;
 	protected float mDensity;
- 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class BaseActivity extends Activity {
 		mScreenWidth = metric.widthPixels;
 		mScreenHeight = metric.heightPixels;
 		mDensity = metric.density;
+		MyApplation.addActivity(this);
 	}
 
 	@Override

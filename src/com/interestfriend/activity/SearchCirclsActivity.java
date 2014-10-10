@@ -21,7 +21,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.SearchCirclesByCategoryTask;
 import com.interestfriend.utils.DialogUtil;
 
-public class SearchCirclsActivity extends Activity implements
+public class SearchCirclsActivity extends BaseActivity implements
 		OnItemClickListener {
 	private int category = 0;
 
@@ -67,10 +67,13 @@ public class SearchCirclsActivity extends Activity implements
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
 		Intent intent = new Intent();
-		intent.putExtra("imgLogo", listCircles.get(position).getCircle_logo());
-		intent.putExtra("description", listCircles.get(position)
-				.getCircle_description());
-		intent.putExtra("circle_id", listCircles.get(position).getCircle_id());
+		// intent.putExtra("imgLogo",
+		// listCircles.get(position).getCircle_logo());
+		// intent.putExtra("description", listCircles.get(position)
+		// .getCircle_description());
+		// intent.putExtra("circle_id",
+		// listCircles.get(position).getCircle_id());
+		intent.putExtra("circle", listCircles.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
 	}
