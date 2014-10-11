@@ -161,7 +161,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private NewMessageBroadcastReceiver receiver;
 	public static ChatActivity activityInstance = null;
 	// 给谁发送消息
-	private String toChatUsername = "1411440289245";
+	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
 	private MessageAdapter adapter;
 	private File cameraFile;
@@ -178,6 +178,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private boolean haveMoreData = true;
 	private Button btnMore;
 
+	private String userName = "";
+	private TextView txt_title;
 	private Handler micImageHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -191,6 +193,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
+		userName = getIntent().getStringExtra("userName");
 		initView();
 		setUpView();
 	}
@@ -199,6 +202,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	 * initView
 	 */
 	protected void initView() {
+		txt_title = (TextView) findViewById(R.id.title_txt);
 		recordingContainer = findViewById(R.id.recording_container);
 		micImage = (ImageView) findViewById(R.id.mic_image);
 		recordingHint = (TextView) findViewById(R.id.recording_hint);
@@ -318,25 +322,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 				.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
 		chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
-
-		// if (chatType == CHATTYPE_SINGLE) { // 单聊
-		// toChatUsername = getIntent().getStringExtra("userId");
-		// ((TextView) findViewById(R.id.name)).setText(toChatUsername);
-		// conversation =
-		// EMChatManager.getInstance().getConversation(toChatUsername,false);
-		// } else {
-		// 群聊
-		findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
-		findViewById(R.id.container_remove).setVisibility(View.GONE);
-		findViewById(R.id.container_voice_call).setVisibility(View.GONE);
-		// toChatUsername = getIntent().getStringExtra("groupId");
-		System.out.println("tochatid:::::::::::::::::" + toChatUsername);
-
-		// group = EMGroupManager.getInstance().getGroup(toChatUsername);
-		// ((TextView) findViewById(R.id.name)).setText(group.getGroupName());
-		// conversation =
-		// EMChatManager.getInstance().getConversation(toChatUsername,true);
-		// }
+		txt_title.setText(userName);
+		toChatUsername = getIntent().getStringExtra("userId");
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
@@ -1087,6 +1074,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			if (message.getChatType() == ChatType.GroupChat) {
 				username = message.getTo();
 			}
+			System.out.println("chat:::::::::::::::" + toChatUsername);
 			if (!username.equals(toChatUsername)) {
 				// 消息不是发给当前会话，return
 				return;

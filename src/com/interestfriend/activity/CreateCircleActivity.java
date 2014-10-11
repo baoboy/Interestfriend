@@ -14,14 +14,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.data.CategoryCircle;
 import com.interestfriend.data.Circles;
 import com.interestfriend.data.enums.RetError;
-import com.interestfriend.db.Const;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.popwindow.SelectCircleCategoryPopWindow;
+import com.interestfriend.popwindow.SelectCircleCategoryPopWindow.OnSelectKey;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.task.CreateCircleTask;
@@ -41,9 +44,12 @@ public class CreateCircleActivity extends BaseActivity implements
 	private Button btn_create;
 	private ImageView img_back;
 	private TextView txt_title;
+	private TextView txt_category;
+	private RelativeLayout layout_category;
 
 	private String imgPath = "";
 	private String mTakePicturePath;
+	private int category_code;
 
 	private SelectPicPopwindow pop;
 
@@ -67,6 +73,9 @@ public class CreateCircleActivity extends BaseActivity implements
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		txt_title.setText("´´½¨È¦×Ó");
 		img_back = (ImageView) findViewById(R.id.back);
+		txt_category = (TextView) findViewById(R.id.txt_category);
+		layout_category = (RelativeLayout) findViewById(R.id.layout_category);
+		layout_category.setOnClickListener(this);
 		setListener();
 	}
 
@@ -176,6 +185,7 @@ public class CreateCircleActivity extends BaseActivity implements
 					Intent intent = new Intent(Constants.CREATE_CIRCLS);
 					intent.putExtra("circle_name", circle.getCircle_name());
 					intent.putExtra("circle_logo", circle.getCircle_logo());
+					intent.putExtra("circle_id", circle.getCircle_id());
 					BroadCast.sendBroadCast(CreateCircleActivity.this, intent);
 					finish();
 					Utils.rightOut(CreateCircleActivity.this);
@@ -212,10 +222,24 @@ public class CreateCircleActivity extends BaseActivity implements
 			circle.setCircle_description(circleDesc);
 			circle.setCircle_name(circleName);
 			circle.setCircle_logo(imgPath);
+			circle.setCircle_category(category_code);
 			createCircle();
 			break;
 		case R.id.back:
 			finishThisActivity();
+			break;
+		case R.id.layout_category:
+			SelectCircleCategoryPopWindow pop = new SelectCircleCategoryPopWindow(
+					this, v);
+			pop.setCallBack(new OnSelectKey() {
+
+				@Override
+				public void getSelectKey(CategoryCircle category) {
+					category_code = category.getCode();
+					txt_category.setText(category.getName());
+				}
+			});
+			pop.show();
 			break;
 		default:
 			break;

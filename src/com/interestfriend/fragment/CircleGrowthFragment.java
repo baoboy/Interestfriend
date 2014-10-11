@@ -60,7 +60,9 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 	}
 
 	private void initView() {
-		img_send = (ImageView) getView().findViewById(R.id.img_send);
+		img_send = (ImageView) getView().findViewById(R.id.rightImg);
+		img_send.setVisibility(View.VISIBLE);
+		img_send.setImageResource(R.drawable.growth_send_tie_main_img);
 		growth_listView = (ListView) getView().findViewById(
 				R.id.growth_listView);
 		setListener();
@@ -120,7 +122,7 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.img_send:
+		case R.id.rightImg:
 			startActivityForResult(new Intent(getActivity(),
 					PublicshGrowthActivity.class), 200);
 			break;

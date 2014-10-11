@@ -238,7 +238,7 @@ public class FileUtils {
 
 	}
 
-	public static String getClxImgSavePath() {
+	public static String getQuYouImgSavePath() {
 		String path = getRootDir() + "/quyouImgSave/";
 		File destDir = new File(path);
 		if (!destDir.exists()) {// 创建文件�?

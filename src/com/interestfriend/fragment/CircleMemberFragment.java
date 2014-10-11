@@ -105,6 +105,9 @@ public class CircleMemberFragment extends Fragment implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
-		startActivity(new Intent(getActivity(), CircleMemberInfoActivity.class));
+		Intent intent = new Intent();
+		intent.putExtra("circle_ember", cirlceMemberLists.get(position));
+		intent.setClass(getActivity(), CircleMemberInfoActivity.class);
+		startActivity(intent);
 	}
 }

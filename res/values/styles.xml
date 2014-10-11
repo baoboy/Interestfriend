@@ -2,7 +2,7 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
@@ -72,6 +72,11 @@
         <!-- 设置完全透明 -->
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 设置屏幕变暗 -->
+    </style>
+
+    <style name="select_circle_cagegory_popwindow_anim" mce_bogus="1" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/up_in</item>
+        <item name="android:windowExitAnimation">@anim/down_out</item>
     </style>
 
 </resources>

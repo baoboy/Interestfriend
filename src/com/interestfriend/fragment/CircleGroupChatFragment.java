@@ -77,6 +77,7 @@ import com.interestfriend.activity.VoiceCallActivity;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.adapter.MessageAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
@@ -147,7 +148,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private EMConversation conversation;
 	private NewMessageBroadcastReceiver receiver;
 	// 给谁发送消息
-	private String toChatUsername = "1411440289245";
+	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
 	private MessageAdapter adapter;
 	private File cameraFile;
@@ -349,23 +350,9 @@ public class CircleGroupChatFragment extends Fragment implements
 				Context.POWER_SERVICE)).newWakeLock(
 				PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
-		// chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
-
-		// if (chatType == CHATTYPE_SINGLE) { // 单聊
-		// toChatUsername = getIntent().getStringExtra("userId");
-		// ((TextView) findViewById(R.id.name)).setText(toChatUsername);
-		// conversation =
-		// EMChatManager.getInstance().getConversation(toChatUsername,false);
-		// } else {
-		// 群聊
-
-		// toChatUsername = getIntent().getStringExtra("groupId");
-
+		chatType = CHATTYPE_GROUP;
+		toChatUsername = MyApplation.getCircle_group_id();
 		group = EMGroupManager.getInstance().getGroup(toChatUsername);
-		// ((TextView) findViewById(R.id.name)).setText(group.getGroupName());
-		// conversation =
-		// EMChatManager.getInstance().getConversation(toChatUsername,true);
-		// }
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
@@ -378,7 +365,6 @@ public class CircleGroupChatFragment extends Fragment implements
 		if (count > 0) {
 			listView.setSelection(count - 1);
 		}
-
 		// 注册接收消息广播
 		receiver = new NewMessageBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(EMChatManager

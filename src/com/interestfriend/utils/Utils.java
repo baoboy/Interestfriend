@@ -1,8 +1,14 @@
 package com.interestfriend.utils;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.interestfriend.R;
@@ -73,5 +79,31 @@ public class Utils {
 		dm = context.getResources().getDisplayMetrics();
 		int screenHeight = dm.heightPixels;
 		return screenHeight;
+	} // 媒体库更新
+
+	// - 通过 Intent.ACTION_MEDIA_MOUNTED 进行全扫描
+	public static void allScan(Context context) {
+		context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri
+				.parse("file://" + Environment.getExternalStorageDirectory())));
+	}
+
+	// - 通过 Intent.ACTION_MEDIA_SCANNER_SCAN_FILE 扫描某个文件
+	public static void fileScan(Context context, String fName) {
+		Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		Uri uri = Uri.fromFile(new File(fName));
+		intent.setData(uri);
+		context.sendBroadcast(intent);
+	}
+
+	/**
+	 * 获取焦点
+	 * 
+	 * @param v
+	 */
+	public static void getFocus(View v) {
+		v.setFocusable(true);
+		v.setFocusableInTouchMode(true);
+		v.requestFocus();
+		v.requestFocusFromTouch();
 	}
 }

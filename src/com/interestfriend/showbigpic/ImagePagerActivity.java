@@ -3,6 +3,7 @@ package com.interestfriend.showbigpic;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,18 +11,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.showbigpic.ImageDetailFragment.OnBack;
+import com.interestfriend.task.SaveImageTask;
+import com.interestfriend.task.SaveImageTask.SaveImge;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.HackyViewPager;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
-public class ImagePagerActivity extends FragmentActivity implements OnBack {
+public class ImagePagerActivity extends FragmentActivity implements OnBack,
+		OnClickListener {
 	private HackyViewPager mPager;
 	private int pagerPosition;
 	private TextView indicator;
@@ -29,6 +39,8 @@ public class ImagePagerActivity extends FragmentActivity implements OnBack {
 	private ImagePagerAdapter mAdapter;
 
 	private LinearLayout title;
+	private ImageView img_back;
+	private ImageView img_save;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -70,7 +82,18 @@ public class ImagePagerActivity extends FragmentActivity implements OnBack {
 
 		mPager.setCurrentItem(pagerPosition);
 		title = (LinearLayout) findViewById(R.id.layTitle);
+		initView();
+	}
 
+	private void initView() {
+		img_back = (ImageView) findViewById(R.id.imgBack);
+		img_save = (ImageView) findViewById(R.id.imgSave);
+		setListener();
+	}
+
+	private void setListener() {
+		img_back.setOnClickListener(this);
+		img_save.setOnClickListener(this);
 	}
 
 	@Override
@@ -121,6 +144,40 @@ public class ImagePagerActivity extends FragmentActivity implements OnBack {
 			title.setAnimation(AnimationUtils
 					.loadAnimation(this, R.anim.up_out));
 
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.imgBack:
+			finish();
+			break;
+		case R.id.imgSave:
+			img_save.setEnabled(false);
+			if (lists.size() == 1) {
+				pagerPosition = 0;
+			}
+			Bitmap bmp = ImageLoader.getInstance().loadImageSync(
+					lists.get(pagerPosition));
+			if (bmp != null) {
+				SaveImageTask task = new SaveImageTask(bmp);
+				task.setCallBack(new SaveImge() {
+					@Override
+					public void saveFinish() {
+						img_save.setEnabled(true);
+						ToastUtil.showToast("保存成功", Toast.LENGTH_SHORT);
+					}
+				});
+				task.execute();
+			} else {
+				ToastUtil.showToast("保存失败", Toast.LENGTH_SHORT);
+				img_save.setEnabled(true);
+
+			}
+			break;
+		default:
+			break;
 		}
 	}
 

@@ -27,6 +27,15 @@ public class Circles extends AbstractData {
 	private String circle_description = "";
 	private String circle_logo = "";
 	private String group_id = "";
+	private int circle_category;
+
+	public int getCircle_category() {
+		return circle_category;
+	}
+
+	public void setCircle_category(int circle_category) {
+		this.circle_category = circle_category;
+	}
 
 	public String getGroup_id() {
 		return group_id;
@@ -81,19 +90,21 @@ public class Circles extends AbstractData {
 	 * @return
 	 */
 	public RetError createNewCircle() {
-		String[] keys = { "circle_logo", "group_id" };
+		String[] keys = { "circle_logo", "group_id", "circle_id" };
 		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_name", circle_name);
 		params.put("circle_description", circle_description);
+		params.put("category", circle_category);
 		Result ret = ApiRequest.requestWithFile(CREATE_CIRCLE_API, params,
 				new File(circle_logo), parser);
-		System.out.println("httpResult=============" + ret.getStatus());
 
 		if (ret.getStatus() == RetStatus.SUCC) {
 			MapResult mret = (MapResult) ret;
 			circle_logo = (String) (mret.getMaps().get("circle_logo"));
 			group_id = (String) (mret.getMaps().get("group_id"));
+			circle_id = Integer.valueOf((String) mret.getMaps()
+					.get("circle_id"));
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_chat_activity" >
 
-        <ImageView
+        <com.interestfriend.view.RoundAngleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="@dimen/size_avatar"
             android:layout_height="@dimen/size_avatar"
@@ -44,14 +44,15 @@
                 android:gravity="center"
                 android:textColor="@android:color/white" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/tv_userid"
             style="@style/chat_text_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/row_rec_location"
-            android:layout_below="@id/iv_userhead"/>
+            android:layout_below="@id/iv_userhead"
+            android:layout_toLeftOf="@id/row_rec_location" />
     </RelativeLayout>
 
 </LinearLayout>

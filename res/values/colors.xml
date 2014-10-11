@@ -15,6 +15,8 @@
     <color name="titleBarBackGround">#58BCDD</color>
     <color name="bg_color">#ebebeb</color>
     <color name="transparent">#00000000</color>
+    <color name="f6f">#6f6f6f</color>
+
     <!-- 环信 -->
 
     <color name="common_top_bar_blue">#4ebcd3</color>

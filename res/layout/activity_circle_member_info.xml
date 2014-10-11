@@ -23,7 +23,7 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/img_logo"
+                android:id="@+id/img_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="300dip"
                 android:scaleType="centerCrop"
@@ -35,7 +35,6 @@
                 android:background="@color/bg_line" />
 
             <TextView
-                android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f1f2ec"
@@ -57,7 +56,6 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="注册时间" />
@@ -127,7 +125,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_join"
+        android:id="@+id/btn_chat"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/dp98"
         android:layout_above="@+id/bo"

@@ -1,5 +1,7 @@
 package com.interestfriend.activity;
 
+import java.util.List;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,9 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroup;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
@@ -126,8 +131,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 					user_id = user.getUser_id();
 					new Thread() {
 						public void run() {
-							loginHuanXin(MD5.Md5_16(user_cellphone),
-									MD5.Md5_16(user_password));
+							// loginHuanXin(MD5.Md5_16(user_cellphone),
+							// MD5.Md5_16(user_password));
+							loginHuanXin(user_cellphone, user_password);
 						}
 					}.start();
 				} else if (ret == RetError.NOT_EXIST_USER) {
@@ -147,12 +153,23 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
 			@Override
 			public void onSuccess() {
+				System.out.println("huanxin success ");
 				SharedUtils.setUid(user_id + "");
 				// 登陆成功，保存用户名密码
 				SharedUtils.setUserName(username);
+				// try {
+				// // 获取群聊列表(群聊里只有groupid和groupname的简单信息),sdk会把群组存入到内存和db中
+				// EMGroupManager.getInstance().getGroupsFromServer();
+				// } catch (EaseMobException e) {
+				// e.printStackTrace();
+				//
+				// }
+				// List<EMGroup> grouplist = EMGroupManager.getInstance()
+				// .getAllGroups();
+				// System.out.println("grou::::::::::::quyou--login"
+				// + grouplist.toString());
 				mHandler.sendEmptyMessage(2);
 				mHandler.sendEmptyMessage(1);
-
 			}
 
 			@Override

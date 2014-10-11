@@ -72,6 +72,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.ImageCache;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SmileUtils;
+import com.interestfriend.view.RoundAngleImageView;
 
 public class MessageAdapter extends BaseAdapter {
 
@@ -230,7 +231,7 @@ public class MessageAdapter extends BaseAdapter {
 				try {
 					holder.iv = ((ImageView) convertView
 							.findViewById(R.id.iv_sendPicture));
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView
 							.findViewById(R.id.percentage);
@@ -250,7 +251,7 @@ public class MessageAdapter extends BaseAdapter {
 							.findViewById(R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView
 							.findViewById(R.id.msg_status);
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					// 这里是文字内容
 					holder.tv = (TextView) convertView
@@ -273,7 +274,7 @@ public class MessageAdapter extends BaseAdapter {
 				try {
 					holder.iv = ((ImageView) convertView
 							.findViewById(R.id.iv_voice));
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView
 							.findViewById(R.id.tv_length);
@@ -289,7 +290,7 @@ public class MessageAdapter extends BaseAdapter {
 				}
 			} else if (message.getType() == EMMessage.Type.LOCATION) {
 				try {
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView
 							.findViewById(R.id.tv_location);
@@ -305,7 +306,7 @@ public class MessageAdapter extends BaseAdapter {
 				try {
 					holder.iv = ((ImageView) convertView
 							.findViewById(R.id.chatting_content_iv));
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					holder.tv = (TextView) convertView
 							.findViewById(R.id.percentage);
@@ -328,7 +329,7 @@ public class MessageAdapter extends BaseAdapter {
 				}
 			} else if (message.getType() == EMMessage.Type.FILE) {
 				try {
-					holder.head_iv = (ImageView) convertView
+					holder.head_iv = (RoundAngleImageView) convertView
 							.findViewById(R.id.iv_userhead);
 					holder.tv_file_name = (TextView) convertView
 							.findViewById(R.id.tv_file_name);
@@ -1340,7 +1341,7 @@ public class MessageAdapter extends BaseAdapter {
 		TextView tv;
 		ProgressBar pb;
 		ImageView staus_iv;
-		ImageView head_iv;
+		RoundAngleImageView head_iv;
 		TextView tv_userId;
 		ImageView playBtn;
 		TextView timeLength;

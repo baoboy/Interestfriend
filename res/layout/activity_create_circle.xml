@@ -55,15 +55,58 @@
         android:layout_marginTop="10dip"
         android:background="@drawable/input_new"
         android:hint="给圈子起个让人容易加入的名字"
-        android:padding="10dip"
+       android:paddingBottom="10dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:textColor="@color/unberlineview_text"
         android:textSize="15sp" >
     </EditText>
+
+    <TextView
+        android:id="@+id/txt_circle_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_circle_name"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="20dip"
+        android:text="选择圈子类别："
+        android:textColor="@color/unberlineview_text"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/layout_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_circle_category"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/input_new"
+        android:paddingLeft="20dip"
+        android:paddingRight="10dip" >
+
+        <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/unberlineview_text"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right_arrow_icon" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/txt_circle_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_circle_name"
+        android:layout_below="@+id/layout_category"
         android:layout_marginLeft="20dip"
         android:layout_marginTop="10dip"
         android:text="圈子描述："
@@ -80,8 +123,11 @@
         android:gravity="top"
         android:hint="输入一些关于圈子的描述，让更多的小伙们能非常容易的找到你的圈子\n
          比如：喜欢刘德华的小伙们都进来吧，一起聊聊华仔的点滴。"
-        android:padding="10dip"
-        android:textColor="@color/black"
+        android:paddingBottom="10dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:textColor="@color/unberlineview_text"
         android:textColorHint="@color/editTextClolor"
         android:textSize="15sp" >
     </EditText>

@@ -26,9 +26,19 @@ public class CircleMemberListParser implements IParser {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			int userID = obj.getInt("userID");
 			String userName = obj.getString("userName");
+			String userAvatar = obj.getString("userAvatar");
+			String userGender = obj.getString("userGender");
+			String userBirthday = obj.getString("userBirthday");
+			String userRegisterTime = obj.getString("userRegisterTime");
+			String userChatId = obj.getString("userChatId");
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
 			member.setUser_name(userName);
+			member.setUser_avatar(userAvatar);
+			member.setUser_birthday(userBirthday);
+			member.setUser_gender(userGender);
+			member.setUser_register_time(userRegisterTime);
+			member.setUser_chat_id(userChatId);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();
