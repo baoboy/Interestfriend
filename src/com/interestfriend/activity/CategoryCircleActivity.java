@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.CategoryCircleAdapter;
@@ -24,6 +25,7 @@ import com.interestfriend.utils.DialogUtil;
 public class CategoryCircleActivity extends BaseActivity implements
 		OnItemClickListener {
 	private ListView listView;
+	private TextView txt_title;
 
 	private List<CategoryCircle> lists = new ArrayList<CategoryCircle>();
 
@@ -45,6 +47,7 @@ public class CategoryCircleActivity extends BaseActivity implements
 
 	private void initView() {
 		listView = (ListView) findViewById(R.id.Listview);
+		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
 	}
 
@@ -53,6 +56,7 @@ public class CategoryCircleActivity extends BaseActivity implements
 	}
 
 	private void setValue() {
+		txt_title.setText("È¦×Ó·ÖÀà");
 		adapter = new CategoryCircleAdapter(this, lists);
 		listView.setAdapter(adapter);
 		getCategory();
@@ -81,6 +85,7 @@ public class CategoryCircleActivity extends BaseActivity implements
 		Intent intent = new Intent();
 		intent.putExtra("category", lists.get(position).getCode());
 		intent.setClass(this, SearchCirclsActivity.class);
+		intent.putExtra("category_name", lists.get(position).getName());
 		startActivity(intent);
 	}
 

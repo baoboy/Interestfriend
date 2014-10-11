@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -26,6 +27,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private int category = 0;
 
 	private ListView mlistView;
+	private TextView txt_title;
 
 	private Dialog dialog;
 
@@ -34,12 +36,14 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private MyCircleAdapter adapter;
 
 	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
+	private String category_name = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_circls);
 		category = getIntent().getIntExtra("category", 0);
+		category_name = getIntent().getStringExtra("category_name");
 		lists = new CategoryCircleList();
 		lists.setCategory(category);
 		initView();
@@ -50,6 +54,8 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private void initView() {
 		mlistView = (ListView) findViewById(R.id.listview);
 		mlistView.setCacheColorHint(0);
+		txt_title = (TextView) findViewById(R.id.title_txt);
+
 		setListener();
 	}
 
@@ -60,6 +66,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private void setValue() {
 		adapter = new MyCircleAdapter(this, listCircles);
 		mlistView.setAdapter(adapter);
+		txt_title.setText(category_name);
 
 	}
 
