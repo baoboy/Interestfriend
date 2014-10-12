@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CircleMemberList;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.utils.SharedUtils;
 
 public class CircleMemberListParser implements IParser {
 
@@ -17,6 +18,9 @@ public class CircleMemberListParser implements IParser {
 		if (jsonObj == null) {
 			return Result.defContentErrorResult();
 		}
+		int circle_id = jsonObj.getInt("circle_id");
+		long lastReqTime = jsonObj.getLong("lastReqTime");
+		SharedUtils.setCircleMemberLastReqTime(lastReqTime);
 		JSONArray jsonArr = jsonObj.getJSONArray("members");
 		if (jsonArr == null) {
 			return Result.defContentErrorResult();
@@ -39,6 +43,7 @@ public class CircleMemberListParser implements IParser {
 			member.setUser_gender(userGender);
 			member.setUser_register_time(userRegisterTime);
 			member.setUser_chat_id(userChatId);
+			member.setCircle_id(circle_id);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();
@@ -47,5 +52,4 @@ public class CircleMemberListParser implements IParser {
 		ret.setData(list);
 		return ret;
 	}
-
 }

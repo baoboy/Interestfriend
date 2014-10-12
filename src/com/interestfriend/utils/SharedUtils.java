@@ -82,4 +82,14 @@ public class SharedUtils {
 		return sharedPreferences.getString("username", "");
 
 	}
+
+	public static void setCircleMemberLastReqTime(long lastReqTime) {
+		editor.putLong("circle_member_last_req_time", lastReqTime);
+		editor.commit();
+	}
+
+	public static long getCircleMemberLastReqTime() {
+		return sharedPreferences.getLong("circle_member_last_req_time", 0l);
+
+	}
 }

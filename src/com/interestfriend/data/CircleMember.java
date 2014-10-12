@@ -22,6 +22,24 @@ public class CircleMember extends AbstractData {
 	private String user_birthday = "";// 用户注册生日
 	private String user_register_time = "";
 	private String user_chat_id = "";
+	private String sortkey = "";
+	private String pinyinFir = "";
+
+	public String getSortkey() {
+		return sortkey;
+	}
+
+	public void setSortkey(String sortkey) {
+		this.sortkey = sortkey;
+	}
+
+	public String getPinyinFir() {
+		return pinyinFir;
+	}
+
+	public void setPinyinFir(String pinyinFir) {
+		this.pinyinFir = pinyinFir;
+	}
 
 	public String getUser_chat_id() {
 		return user_chat_id;
@@ -129,5 +147,23 @@ public class CircleMember extends AbstractData {
 		} else {
 			return ret.getErr();
 		}
+	}
+
+	// public String toDbUnionInsertString() {
+	// return circle_id + "," + user_id + "," + user_name + ","
+	// + user_cellphone + ",'" + user_avatar + "','" + user_birthday
+	// + "','" + user_gender + "','" + sortkey + "','" + pinyinFir
+	// + "'";
+	// }
+	public String toDbUnionInsertString() {
+		return circle_id + "," + user_id + ",'" + user_name + "','"
+				+ user_cellphone + "','" + user_avatar + "','" + user_birthday
+				+ "','" + user_gender + "','" + sortkey + "','" + pinyinFir
+				+ "'";
+	}
+
+	public static String getDbInsertKeyString() {
+		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir"
+				+ ") ";
 	}
 }
