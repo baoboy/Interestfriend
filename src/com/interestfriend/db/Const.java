@@ -15,5 +15,5 @@ public class Const {
 	public static final String CIRCLE_MEMBER_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
 			+ " circle_id integer, user_id integer,  user_name varchar, user_cellphone varchar, "
 			+ " user_avatar varchar, "
-			+ " sortkey varchar, pinyinFir varchar, user_birthday varchar, user_gender varchar";
+			+ " sortkey varchar, pinyinFir varchar, user_birthday varchar, user_gender varchar, user_chat_id varchar, user_register_time varchar";
 }

@@ -20,7 +20,7 @@ public class MyCircleMemberProvider {
 	 * 跟circle_members表相关的常量
 	 * 
 	 */
-	public static final class MyCirclesColumns implements BaseColumns {
+	public static final class MyCircleMemberColumns implements BaseColumns {
 		// CONTENT_URI跟数据库的表关联，最后根据CONTENT_URI来查询对应的表
 		public static final Uri CONTENT_URI = Uri.parse("content://"
 				+ AUTHORITY + "/members");
@@ -34,6 +34,8 @@ public class MyCircleMemberProvider {
 		public static final String USER_GENDER = "user_gender";
 		public static final String SORT_KEY = "sortkey";
 		public static final String PINYIN_FIR = "pinyinFir";
+		public static final String USER_CHAT_ID = "user_chat_id";
+		public static final String USER_REGISTER_TIME = "user_register_time";
 
 	}
 

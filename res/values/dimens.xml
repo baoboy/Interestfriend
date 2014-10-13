@@ -19,7 +19,7 @@
     <dimen name="scale28dip">13dip</dimen>
     <dimen name="dp48">23dip</dimen>
     <dimen name="sp_30">16sp</dimen>
-
+    <dimen name="scale56dip">26dip</dimen>
     <!-- //环信 -->
     <dimen name="height_top_bar">46dp</dimen>
     <dimen name="padding_search_bar">5dp</dimen>

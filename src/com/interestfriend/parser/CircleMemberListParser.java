@@ -35,6 +35,9 @@ public class CircleMemberListParser implements IParser {
 			String userBirthday = obj.getString("userBirthday");
 			String userRegisterTime = obj.getString("userRegisterTime");
 			String userChatId = obj.getString("userChatId");
+			String pinyinFir = obj.getString("pinYinFir");
+			String sortKey = obj.getString("sortKey");
+
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
 			member.setUser_name(userName);
@@ -44,6 +47,8 @@ public class CircleMemberListParser implements IParser {
 			member.setUser_register_time(userRegisterTime);
 			member.setUser_chat_id(userChatId);
 			member.setCircle_id(circle_id);
+			member.setSortkey(sortKey);
+			member.setPinyinFir(pinyinFir);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();

@@ -159,11 +159,11 @@ public class CircleMember extends AbstractData {
 		return circle_id + "," + user_id + ",'" + user_name + "','"
 				+ user_cellphone + "','" + user_avatar + "','" + user_birthday
 				+ "','" + user_gender + "','" + sortkey + "','" + pinyinFir
-				+ "'";
+				+ "','" + user_chat_id + "','" + user_register_time + "'";
 	}
 
 	public static String getDbInsertKeyString() {
-		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir"
+		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir, user_chat_id, user_register_time"
 				+ ") ";
 	}
 }

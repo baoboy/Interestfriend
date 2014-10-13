@@ -1,6 +1,8 @@
 package com.interestfriend.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class CircleMemberList extends AbstractData {
 	private List<CircleMember> circleMemberLists = new ArrayList<CircleMember>();
 
 	public List<CircleMember> getCircleMemberLists() {
+		sort();
 		return circleMemberLists;
 	}
 
@@ -33,6 +36,16 @@ public class CircleMemberList extends AbstractData {
 
 	public void setCid(int circle_id) {
 		this.circle_id = circle_id;
+	}
+
+	private void sort() {
+		Collections.sort(circleMemberLists, new Comparator<CircleMember>() {
+			@Override
+			public int compare(CircleMember lhs, CircleMember rhs) {
+				return lhs.getSortkey().compareTo(rhs.getSortkey());
+			}
+		});
+
 	}
 
 	public RetError getCircleMemberList() {

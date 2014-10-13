@@ -77,11 +77,11 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	private void setValue() {
 		adapter = new MyCircleAdapter(getActivity(), lists);
 		my_circls_listView.setAdapter(adapter);
-		asyncQuery = new MyAsyncQueryHandler(getActivity().getContentResolver());
 		initQuery();
 	}
 
 	private void initQuery() {
+		asyncQuery = new MyAsyncQueryHandler(getActivity().getContentResolver());
 		String[] projection = { MyCirclesProvider.MyCirclesColumns.CIRCLE_ID,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_NAME,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_DESCRIPTION,
