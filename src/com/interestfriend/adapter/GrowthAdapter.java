@@ -9,14 +9,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.ShowVideoActivity;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.showbigpic.ImagePagerActivity;
@@ -29,12 +32,12 @@ public class GrowthAdapter extends BaseAdapter {
 
 	private Context mContext;
 
-	private static final int VIEW_TYPE_OTHER = 0;
-	private static final int VIEW_TYPE_SELF = 1;
+	private LayoutInflater inflater;
 
 	public GrowthAdapter(Context context, List<Growth> lists) {
 		this.mContext = context;
 		this.lists = lists;
+		inflater = LayoutInflater.from(context);
 	}
 
 	@Override
@@ -54,34 +57,38 @@ public class GrowthAdapter extends BaseAdapter {
 
 	@Override
 	public int getViewTypeCount() {
-		return 2;
+		return 4;
+	}
+
+	private View createView(int type, int direct) {
+		switch (type) {
+		case 1:
+			System.out.println("type:::::::::::::;===" + type + direct);
+
+			return direct == 1 ? inflater.inflate(R.layout.growth_item_self,
+					null) : inflater.inflate(R.layout.growth_item, null);
+		case 2:
+			System.out.println("type:::::::::::::;" + type + direct);
+			return direct == 1 ? inflater.inflate(
+					R.layout.growth_video_self_item, null) : inflater.inflate(
+					R.layout.growth_video_self_item, null);
+		default:
+			break;
+		}
+		return null;
+
 	}
 
 	@Override
-	public int getItemViewType(int position) {
-		if (position % 2 == 0) {
-			return VIEW_TYPE_SELF;
-		} else {
-			return VIEW_TYPE_OTHER;
-		}
-	}
-
-	private View createView(int type) {
-		if (type == VIEW_TYPE_OTHER) {
-			return LayoutInflater.from(mContext).inflate(R.layout.growth_item,
-					null);
-		}
-		return LayoutInflater.from(mContext).inflate(R.layout.growth_item_self,
-				null);
-	}
-
-	@Override
-	public View getView(int position, View contentView, ViewGroup arg2) {
+	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
-		int type = getItemViewType(position);
-		if (contentView == null) {
-			contentView = createView(type);
-			holder = new ViewHolder();
+		int type = lists.get(position).getType();
+		int direct = lists.get(position).getDirect();
+
+		// if (contentView == null) {
+		holder = new ViewHolder();
+		contentView = createView(type, direct);
+		if (type == 1) {
 			holder.img = (ImageView) contentView.findViewById(R.id.img);
 			holder.txt_context = (TextView) contentView
 					.findViewById(R.id.txt_content);
@@ -91,38 +98,82 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.txt_user_name);
 			holder.img_grid_view = (ExpandGridView) contentView
 					.findViewById(R.id.imgGridview);
-			contentView.setTag(holder);
-		} else {
-			holder = (ViewHolder) contentView.getTag();
+			System.out.println("type::::::::::::::;;------" + type);
 		}
-		int imageSize = lists.get(position).getImages().size();
-		if (imageSize > 1) {
-			if (imageSize > 2) {
-				holder.img_grid_view.setNumColumns(3);
+		if (type == 2) {
+			System.out.println("type::::::::::::::;;" + type);
+			holder.video_size = (TextView) contentView
+					.findViewById(R.id.chatting_size_iv);
+			holder.video_timeLength = (TextView) contentView
+					.findViewById(R.id.chatting_length_iv);
+			holder.playBtn = (ImageView) contentView
+					.findViewById(R.id.chatting_status_btn);
+			holder.container_status_btn = (LinearLayout) contentView
+					.findViewById(R.id.container_status_btn);
+			holder.iv = ((ImageView) contentView
+					.findViewById(R.id.chatting_content_iv));
+		}
+		contentView.setTag(holder);
+		// } else {
+		// holder = (ViewHolder) contentView.getTag();
+		// }
+		if (type == 1) {
+			int imageSize = lists.get(position).getImages().size();
+			if (imageSize > 1) {
+				if (imageSize > 2) {
+					holder.img_grid_view.setNumColumns(3);
+				} else {
+					holder.img_grid_view.setNumColumns(2);
+				}
+				holder.img_grid_view.setAdapter(new GrowthImgAdapter(mContext,
+						lists.get(position).getImages()));
+				holder.img.setVisibility(View.GONE);
+				holder.img_grid_view.setVisibility(View.VISIBLE);
+			} else if (imageSize == 1) {
+				String path = lists.get(position).getImages().get(0).getImg();
+				if (!path.startsWith("http")) {
+					path = "file://" + path;
+				}
+				UniversalImageLoadTool.disPlay(path, holder.img,
+						R.drawable.empty_photo);
+				holder.img.setVisibility(View.VISIBLE);
+				holder.img_grid_view.setVisibility(View.GONE);
 			} else {
-				holder.img_grid_view.setNumColumns(2);
+				holder.img.setVisibility(View.GONE);
+				holder.img_grid_view.setVisibility(View.GONE);
 			}
-			holder.img_grid_view.setAdapter(new GrowthImgAdapter(mContext,
-					lists.get(position).getImages()));
-			holder.img.setVisibility(View.GONE);
-			holder.img_grid_view.setVisibility(View.VISIBLE);
-		} else if (imageSize == 1) {
-			String path = lists.get(position).getImages().get(0).getImg();
+			holder.img_grid_view
+					.setOnItemClickListener(new GridViewOnItemClick(position));
+			holder.txt_context.setText(lists.get(position).getContent());
+			holder.txt_time.setText(lists.get(position).getPublished());
+		} else {
+			holder.video_size.setText(lists.get(position).getVideo_size());
+			holder.video_timeLength
+					.setText(lists.get(position).getVideo_time());
+			String path = lists.get(position).getVideo_img();
 			if (!path.startsWith("http")) {
 				path = "file://" + path;
 			}
-			UniversalImageLoadTool.disPlay(path, holder.img,
+			UniversalImageLoadTool.disPlay(path, holder.iv,
 					R.drawable.empty_photo);
-			holder.img.setVisibility(View.VISIBLE);
-			holder.img_grid_view.setVisibility(View.GONE);
-		} else {
-			holder.img.setVisibility(View.GONE);
-			holder.img_grid_view.setVisibility(View.GONE);
+			holder.playBtn.setImageResource(R.drawable.video_download_btn_nor);
+
+			holder.iv.setClickable(true);
+			holder.iv.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					Intent intent = new Intent(mContext,
+							ShowVideoActivity.class);
+					intent.putExtra("localpath", lists.get(position)
+							.getVideo_path());
+					intent.putExtra("secret", "");
+					intent.putExtra("remotepath", "");
+					mContext.startActivity(intent);
+				}
+			});
+
 		}
-		holder.img_grid_view.setOnItemClickListener(new GridViewOnItemClick(
-				position));
-		holder.txt_context.setText(lists.get(position).getContent());
-		holder.txt_time.setText(lists.get(position).getPublished());
 		return contentView;
 	}
 
@@ -133,6 +184,13 @@ public class GrowthAdapter extends BaseAdapter {
 		TextView txt_context;
 		ImageView img;
 		ExpandGridView img_grid_view;
+		ImageView playBtn;
+		TextView video_timeLength;
+		TextView video_size;
+		LinearLayout container_status_btn;
+		LinearLayout ll_container;
+		ImageView iv;
+
 	}
 
 	class GridViewOnItemClick implements OnItemClickListener {

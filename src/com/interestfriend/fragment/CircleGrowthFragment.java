@@ -1,11 +1,18 @@
 package com.interestfriend.fragment;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Bitmap.CompressFormat;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,8 +23,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.easemob.util.EMLog;
+import com.easemob.util.PathUtil;
 import com.interestfriend.R;
-import com.interestfriend.activity.PublicshGrowthActivity;
+import com.interestfriend.activity.ChatActivity;
+import com.interestfriend.activity.ImageGridActivity;
 import com.interestfriend.adapter.GrowthAdapter;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthList;
@@ -123,8 +133,11 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rightImg:
-			startActivityForResult(new Intent(getActivity(),
-					PublicshGrowthActivity.class), 200);
+			// startActivityForResult(new Intent(getActivity(),
+			// PublicshGrowthActivity.class), 200);
+			Intent intent = new Intent(getActivity(), ImageGridActivity.class);
+			startActivityForResult(intent,
+					ChatActivity.REQUEST_CODE_SELECT_VIDEO);
 			break;
 
 		default:
@@ -135,14 +148,65 @@ public class CircleGrowthFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode != 200 || data == null) {
+		if (data == null) {
 			return;
 		}
-		Growth growth = (Growth) data.getSerializableExtra("growth");
-		growth.setTag(System.currentTimeMillis() + "");
-		lists.add(0, growth);
-		adapter.notifyDataSetChanged();
-		upLoadGrowth(growth);
+		if (requestCode == 200) {
+			Growth growth = (Growth) data.getSerializableExtra("growth");
+			growth.setTag(System.currentTimeMillis() + "");
+			lists.add(0, growth);
+			adapter.notifyDataSetChanged();
+			upLoadGrowth(growth);
+		} else if (requestCode == ChatActivity.REQUEST_CODE_SELECT_VIDEO) {
+			System.out.println("video:video:video:video:video:video:video:");
+			int duration = data.getIntExtra("dur", 0);
+			String videoPath = data.getStringExtra("path");
+			File file = new File(PathUtil.getInstance().getImagePath(),
+					"thvideo" + System.currentTimeMillis());
+			Bitmap bitmap = null;
+			FileOutputStream fos = null;
+			try {
+				if (!file.getParentFile().exists()) {
+					file.getParentFile().mkdirs();
+				}
+				bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, 3);
+				if (bitmap == null) {
+					EMLog.d("chatactivity",
+							"problem load video thumbnail bitmap,use default icon");
+					bitmap = BitmapFactory.decodeResource(getResources(),
+							R.drawable.app_panel_video_icon);
+				}
+				fos = new FileOutputStream(file);
+
+				bitmap.compress(CompressFormat.JPEG, 100, fos);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (fos != null) {
+					try {
+						fos.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					fos = null;
+				}
+				if (bitmap != null) {
+					bitmap.recycle();
+					bitmap = null;
+				}
+
+			}
+			Growth growth = new Growth();
+			growth.setDirect(1);
+			growth.setType(2);
+			growth.setTag(System.currentTimeMillis() + "");
+			growth.setVideo_img(file.getAbsolutePath());
+			growth.setVideo_time(duration / 1000 + "");
+			growth.setVideo_path(videoPath);
+			lists.add(0, growth);
+			adapter.notifyDataSetChanged();
+		}
 	}
 
 	private void upLoadGrowth(final Growth growth) {
