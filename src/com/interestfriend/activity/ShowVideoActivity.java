@@ -23,6 +23,7 @@ import com.easemob.cloud.CloudOperationCallback;
 import com.easemob.cloud.HttpFileManager;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;
+import com.interestfriend.utils.FileUtils;
 
 /**
  * 展示视频内容
@@ -77,15 +78,11 @@ public class ShowVideoActivity extends BaseActivity implements OnTouchListener {
 	 */
 	private void downloadVideo(final String remoteUrl,
 			final Map<String, String> header) {
-
 		if (TextUtils.isEmpty(localFilePath)) {
-			localFilePath = PathUtil.getInstance().getVideoPath()
-					.getAbsolutePath()
-					+ "/"
+			localFilePath = FileUtils.getQuYouVideoSavePath() + "/"
 					+ remoteUrl.substring(remoteUrl.lastIndexOf("/") + 1)
 					+ ".mp4";
 		}
-
 		if (new File(localFilePath).exists()) {
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setDataAndType(Uri.fromFile(new File(localFilePath)),

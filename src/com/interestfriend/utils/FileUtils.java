@@ -233,13 +233,23 @@ public class FileUtils {
 
 	}
 
-	public static String getCLXDir() {
+	public static String getQuYouDir() {
 		return getRootDir() + "/quyou/";
 
 	}
 
 	public static String getQuYouImgSavePath() {
 		String path = getRootDir() + "/quyouImgSave/";
+		File destDir = new File(path);
+		if (!destDir.exists()) {// 创建文件�?
+			destDir.mkdirs();
+		}
+		return path;
+
+	}
+
+	public static String getQuYouVideoSavePath() {
+		String path = getQuYouDir() + "/quyouVideo/";
 		File destDir = new File(path);
 		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();
