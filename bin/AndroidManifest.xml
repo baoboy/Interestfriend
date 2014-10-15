@@ -122,6 +122,9 @@
         <provider
             android:name="com.interestfriend.contentprovider.MyCircleGrowthsContentProvider"
             android:authorities="com.quyou.circle.growths" />
+        <provider
+            android:name="com.interestfriend.contentprovider.MyCircleMemberContentProvider"
+            android:authorities="com.quyou.circle.members" />
 
         <activity
             android:name="com.interestfriend.activity.MainActivity"
@@ -167,6 +170,10 @@
         <activity
             android:name="com.interestfriend.activity.LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.PublishVideoActivity"
+            android:label="@string/title_activity_publish_video" >
         </activity>
     </application>
 
