@@ -12,5 +12,4 @@ public class UpLoadGrowthTask extends BaseAsyncTask<Growth, Void, RetError> {
 		RetError ret = growth.uploadForAdd();
 		return ret;
 	}
-
 }

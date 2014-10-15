@@ -90,7 +90,7 @@ public class Circles extends AbstractData {
 	 * @return
 	 */
 	public RetError createNewCircle() {
-		String[] keys = { "circle_logo", "group_id", "circle_id" };
+		String[] keys = { "video_img_path", "video_path" };
 		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_name", circle_name);

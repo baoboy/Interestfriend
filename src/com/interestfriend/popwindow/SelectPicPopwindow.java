@@ -22,8 +22,8 @@ public class SelectPicPopwindow implements OnClickListener {
 	private PopupWindow popupWindow;
 	private Context mContext;
 	private View v;
-	private Button btnTakePhoto;
-	private Button btnPickPhoto;
+	private Button btn_menu_1;
+	private Button btn_menu_2;
 	private Button btnCancle;
 	private View view;
 	private String fileName = "";
@@ -33,22 +33,27 @@ public class SelectPicPopwindow implements OnClickListener {
 		this.mSelectOnclick = mSelectOnclick;
 	}
 
-	public SelectPicPopwindow(Context context, View v) {
+	public SelectPicPopwindow(Context context, View v, String txt_menu_1,
+			String txt_menu_2) {
 		this.mContext = context;
 		this.v = v;
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		view = inflater.inflate(R.layout.select_image_layout, null);
 		initView();
 		initPopwindow();
+		btn_menu_1.setText(txt_menu_1);
+		btn_menu_2.setText(txt_menu_2);
+
 	}
 
 	private void initView() {
 		btnCancle = (Button) view.findViewById(R.id.btn_cancel);
-		btnPickPhoto = (Button) view.findViewById(R.id.btn_pick_photo);
-		btnTakePhoto = (Button) view.findViewById(R.id.btn_take_photo);
+		btn_menu_1 = (Button) view.findViewById(R.id.btn_menu_1);
+		btn_menu_2 = (Button) view.findViewById(R.id.btn_menu_2);
 		btnCancle.setOnClickListener(this);
-		btnPickPhoto.setOnClickListener(this);
-		btnTakePhoto.setOnClickListener(this);
+		btn_menu_1.setOnClickListener(this);
+		btn_menu_2.setOnClickListener(this);
+
 	}
 
 	/**
@@ -95,11 +100,11 @@ public class SelectPicPopwindow implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.btn_cancel:
 			break;
-		case R.id.btn_pick_photo:
-			mSelectOnclick.pickPhoto();
+		case R.id.btn_menu_1:
+			mSelectOnclick.menu1_select();
 			break;
-		case R.id.btn_take_photo:
-			mSelectOnclick.takePhoto();
+		case R.id.btn_menu_2:
+			mSelectOnclick.menu2_select();
 			break;
 		default:
 			break;
@@ -108,9 +113,9 @@ public class SelectPicPopwindow implements OnClickListener {
 	}
 
 	public interface SelectOnclick {
-		void pickPhoto();
+		void menu1_select();
 
-		void takePhoto();
+		void menu2_select();
 
 	}
 }

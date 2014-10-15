@@ -13,9 +13,12 @@ import android.database.sqlite.SQLiteDatabase;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.UploadGrowthParser;
 import com.interestfriend.utils.BitmapUtils;
 
@@ -25,6 +28,8 @@ public class Growth extends AbstractData implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final String ADD_GROWTH_API = "AddGrowthServlet";
+	private final String UP_LOAD_VIDEO = "UpLoadVideoServlet";
+
 	private int growth_id = 0;// 成长id
 	private int cid = 0;// 所在圈子id
 	private int publisher_id = 0;// 发布者id
@@ -35,9 +40,9 @@ public class Growth extends AbstractData implements Serializable {
 	private String tag = "";
 
 	private String video_img = "";
-	private String video_size = "";
-	private String video_time = "";
 	private String video_path = "";
+	public int video_size;
+	public int video_duration;
 
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 正常 2 video
@@ -58,20 +63,20 @@ public class Growth extends AbstractData implements Serializable {
 		this.video_img = video_img;
 	}
 
-	public String getVideo_size() {
+	public int getVideo_size() {
 		return video_size;
 	}
 
-	public void setVideo_size(String video_size) {
+	public void setVideo_size(int video_size) {
 		this.video_size = video_size;
 	}
 
-	public String getVideo_time() {
-		return video_time;
+	public int getVideo_duration() {
+		return video_duration;
 	}
 
-	public void setVideo_time(String video_time) {
-		this.video_time = video_time;
+	public void setVideo_duration(int video_duration) {
+		this.video_duration = video_duration;
 	}
 
 	public int getDirect() {
@@ -158,6 +163,22 @@ public class Growth extends AbstractData implements Serializable {
 	public String toString() {
 		return "gid:" + growth_id + "  content:" + this.content + "   images:"
 				+ this.images;
+	}
+
+	public RetError upLoadVideo() {
+		String[] keys = { "video_img_path", "video_path" };
+		IParser parser = new MapParser(keys);
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		Result ret = ApiRequest.requestWithFile(UP_LOAD_VIDEO, params,
+				new File(video_path), parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			MapResult mret = (MapResult) ret;
+			video_path = (String) (mret.getMaps().get("video_path"));
+			video_img = (String) (mret.getMaps().get("video_img_path"));
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
 	}
 
 	public RetError uploadForAdd() {

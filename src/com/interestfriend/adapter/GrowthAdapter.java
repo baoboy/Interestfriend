@@ -16,8 +16,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.easemob.util.DateUtils;
+import com.easemob.util.TextFormater;
 import com.interestfriend.R;
 import com.interestfriend.activity.ShowVideoActivity;
 import com.interestfriend.data.Growth;
@@ -112,6 +115,8 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.container_status_btn);
 			holder.iv = ((ImageView) contentView
 					.findViewById(R.id.chatting_content_iv));
+			// holder.pg = (ProgressBar) contentView
+			// .findViewById(R.id.progressBar1);
 		}
 		contentView.setTag(holder);
 		// } else {
@@ -147,9 +152,13 @@ public class GrowthAdapter extends BaseAdapter {
 			holder.txt_context.setText(lists.get(position).getContent());
 			holder.txt_time.setText(lists.get(position).getPublished());
 		} else {
-			holder.video_size.setText(lists.get(position).getVideo_size());
-			holder.video_timeLength
-					.setText(lists.get(position).getVideo_time());
+			// holder.video_size.setText(lists.get(position).getVideo_size());
+			// holder.video_timeLength
+			// .setText(lists.get(position).getVideo_time());
+			holder.video_timeLength.setText(DateUtils.toTime(lists
+					.get(position).getVideo_duration()));
+			holder.video_size.setText(TextFormater.getDataSize(Long
+					.valueOf(lists.get(position).getVideo_size())));
 			String path = lists.get(position).getVideo_img();
 			if (!path.startsWith("http")) {
 				path = "file://" + path;
@@ -165,10 +174,13 @@ public class GrowthAdapter extends BaseAdapter {
 				public void onClick(View arg0) {
 					Intent intent = new Intent(mContext,
 							ShowVideoActivity.class);
-					intent.putExtra("localpath", lists.get(position)
-							.getVideo_path());
+					String path = lists.get(position).getVideo_path();
+					if (path.startsWith("http")) {
+						intent.putExtra("remotepath", path);
+					} else {
+						intent.putExtra("localpath", path);
+					}
 					intent.putExtra("secret", "");
-					intent.putExtra("remotepath", "");
 					mContext.startActivity(intent);
 				}
 			});
@@ -190,6 +202,7 @@ public class GrowthAdapter extends BaseAdapter {
 		LinearLayout container_status_btn;
 		LinearLayout ll_container;
 		ImageView iv;
+		ProgressBar pg;
 
 	}
 

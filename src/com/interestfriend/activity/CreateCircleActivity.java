@@ -158,18 +158,6 @@ public class CreateCircleActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
-	public void pickPhoto() {
-		PhotoUtils.selectPhoto(this);
-
-	}
-
-	@Override
-	public void takePhoto() {
-		mTakePicturePath = PhotoUtils.takePicture(this);
-
-	}
-
 	private void createCircle() {
 		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();
@@ -202,7 +190,7 @@ public class CreateCircleActivity extends BaseActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.img_circle_avatar:
-			pop = new SelectPicPopwindow(this, v);
+			pop = new SelectPicPopwindow(this, v, "≈ƒ’’", "¥”œ‡≤·—°‘Ò");
 			pop.setmSelectOnclick(this);
 			pop.show();
 			break;
@@ -252,6 +240,18 @@ public class CreateCircleActivity extends BaseActivity implements
 			finishThisActivity();
 		}
 		return super.onKeyDown(keyCode, event);
+
+	}
+
+	@Override
+	public void menu1_select() {
+		PhotoUtils.selectPhoto(this);
+
+	}
+
+	@Override
+	public void menu2_select() {
+		mTakePicturePath = PhotoUtils.takePicture(this);
 
 	}
 

@@ -188,7 +188,7 @@ public class PublicshGrowthActivity extends BaseActivity implements
 				ToastUtil.showToast("一次最多允许发布9张图片", Toast.LENGTH_SHORT);
 				return;
 			}
-			pop = new SelectPicPopwindow(this, v);
+			pop = new SelectPicPopwindow(this, v, "拍照", "从相册选择");
 			pop.setmSelectOnclick(this);
 			pop.show();
 			return;
@@ -209,19 +209,9 @@ public class PublicshGrowthActivity extends BaseActivity implements
 	}
 
 	@Override
-	public void pickPhoto() {
-		Intent intent = new Intent();
-		intent.putExtra("count", photoPathLists.size() - 1);
-		intent.setClass(this, SelectPhotoActivity.class);
-		startActivityForResult(intent,
-				Constants.REQUEST_CODE_GETIMAGE_BYSDCARD_MORE);
-	}
-
-	@Override
-	public void takePhoto() {
+	public void menu1_select() {
 		String name = FileUtils.getFileName() + ".jpg";
 		cameraPath = FileUtils.getCameraPath() + File.separator + name;
-
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		// 下面这句指定调用相机拍照后的照片存储的路径
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -230,8 +220,19 @@ public class PublicshGrowthActivity extends BaseActivity implements
 	}
 
 	@Override
+	public void menu2_select() {
+
+		Intent intent = new Intent();
+		intent.putExtra("count", photoPathLists.size() - 1);
+		intent.setClass(this, SelectPhotoActivity.class);
+		startActivityForResult(intent,
+				Constants.REQUEST_CODE_GETIMAGE_BYSDCARD_MORE);
+	}
+
+	@Override
 	public void del(int position) {
 		photoPathLists.remove(position);
 		adapter.notifyDataSetChanged();
 	}
+
 }

@@ -124,7 +124,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 					DATEPICKER_TAG);
 			break;
 		case R.id.img_avatar:
-			pop = new SelectPicPopwindow(mContext, v);
+			pop = new SelectPicPopwindow(mContext, v, "≈ƒ’’", "¥”œ‡≤·—°‘Ò");
 			pop.setmSelectOnclick(this);
 			pop.show();
 			break;
@@ -157,13 +157,13 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	}
 
 	@Override
-	public void pickPhoto() {
+	public void menu1_select() {
 		PhotoUtils.selectPhoto(mActivity);
 
 	}
 
 	@Override
-	public void takePhoto() {
+	public void menu2_select() {
 		mTakePicturePath = PhotoUtils.takePicture(mActivity);
 
 	}

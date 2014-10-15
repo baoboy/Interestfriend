@@ -44,10 +44,10 @@ import com.interestfriend.utils.Logger.Level;
 public class HttpUrlHelper {
 	// 10.6.7.158 公司
 	// 192.168.1.101 家
-	public static final String strUrl = "http://192.168.1.101:8080/InterestFriend/servlet/";// 服务器地址
+	public static final String strUrl = "http://10.6.7.158:8080/InterestFriend/servlet/";// 服务器地址
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://192.168.1.101:8080/InterestFriend/servlet/"; // http://pi.changlianxi.com/
+	public static final String DEFAULT_HOST = "http://10.6.7.158:8080/InterestFriend/servlet/"; // http://pi.changlianxi.com/
 
 	/**
 	 * get 提交方式 // *
@@ -110,7 +110,6 @@ public class HttpUrlHelper {
 				HttpEntity httpentity = new UrlEncodedFormEntity(pairs, "utf8");
 				httpPost.setEntity(httpentity);
 			}
-
 			HttpResponse httpResponse = httpclient.execute(httpPost);
 			// 判断是否成功
 			if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {

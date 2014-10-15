@@ -1,13 +1,13 @@
 package com.interestfriend.activity;
 
-import com.interestfriend.applation.MyApplation;
-import com.interestfriend.utils.Utils;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.Window;
+
+import com.interestfriend.applation.MyApplation;
+import com.interestfriend.utils.Utils;
 
 public class BaseActivity extends Activity {
 	/**

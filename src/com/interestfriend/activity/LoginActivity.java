@@ -1,7 +1,5 @@
 package com.interestfriend.activity;
 
-import java.util.List;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +12,6 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMGroup;
-import com.easemob.chat.EMGroupManager;
-import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
@@ -24,7 +19,6 @@ import com.interestfriend.interfaces.MyEditTextWatcher;
 import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
 import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.utils.DialogUtil;
-import com.interestfriend.utils.MD5;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.view.MyEditTextDeleteImg;
