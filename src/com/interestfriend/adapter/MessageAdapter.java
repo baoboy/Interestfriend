@@ -225,8 +225,10 @@ public class MessageAdapter extends BaseAdapter {
 		ChatType chatType = message.getChatType();
 		final ViewHolder holder;
 		if (convertView == null) {
+			System.out.println("type:::::::::::;99" + message.getType());
 			holder = new ViewHolder();
 			convertView = createViewByMessage(message, position);
+
 			if (message.getType() == EMMessage.Type.IMAGE) {
 				try {
 					holder.iv = ((ImageView) convertView
@@ -358,6 +360,7 @@ public class MessageAdapter extends BaseAdapter {
 
 			convertView.setTag(holder);
 		} else {
+			System.out.println("otnulLLLLLLLLLLLLL");
 			holder = (ViewHolder) convertView.getTag();
 		}
 
@@ -684,11 +687,14 @@ public class MessageAdapter extends BaseAdapter {
 		// final File image=new File(PathUtil.getInstance().getVideoPath(),
 		// videoBody.getFileName());
 		String localThumb = videoBody.getLocalThumb();
-
+		System.out.println("path::::::::::::::" + localThumb);
 		if (localThumb != null) {
 
 			showVideoThumbView(localThumb, holder.iv,
 					videoBody.getThumbnailUrl(), message);
+			System.out.println("path::::::::::::::"
+					+ videoBody.getThumbnailUrl());
+
 		}
 		if (videoBody.getLength() > 0) {
 			String time = DateUtils.toTimeBySecond(videoBody.getLength());

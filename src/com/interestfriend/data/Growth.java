@@ -34,6 +34,62 @@ public class Growth extends AbstractData implements Serializable {
 	private List<GrowthImage> images = new ArrayList<GrowthImage>();
 	private String tag = "";
 
+	private String video_img = "";
+	private String video_size = "";
+	private String video_time = "";
+	private String video_path = "";
+
+	private int direct = 1;// 1 send 2 receive
+	private int type = 1;// 1 Õý³£ 2 video
+
+	public String getVideo_path() {
+		return video_path;
+	}
+
+	public void setVideo_path(String video_path) {
+		this.video_path = video_path;
+	}
+
+	public String getVideo_img() {
+		return video_img;
+	}
+
+	public void setVideo_img(String video_img) {
+		this.video_img = video_img;
+	}
+
+	public String getVideo_size() {
+		return video_size;
+	}
+
+	public void setVideo_size(String video_size) {
+		this.video_size = video_size;
+	}
+
+	public String getVideo_time() {
+		return video_time;
+	}
+
+	public void setVideo_time(String video_time) {
+		this.video_time = video_time;
+	}
+
+	public int getDirect() {
+		return direct;
+	}
+
+	public void setDirect(int direct) {
+		this.direct = direct;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public String getTag() {
 		return tag;
 	}
