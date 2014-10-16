@@ -21,5 +21,5 @@ public class Const {
 
 	public static final String VIDEO_TABLE_NAME = "videos";
 	public static final String VIDEO_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
-			+ " video_id integer, cid integer, publisher_id integer, video_size integer, video_duration integer, video_img varchar, video_path varchar";
+			+ " video_id integer, cid integer, publisher_id integer, video_size integer, video_duration integer, video_img varchar, video_path varchar, time varchar";
 }

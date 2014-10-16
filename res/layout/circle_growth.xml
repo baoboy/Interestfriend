@@ -5,16 +5,23 @@
     android:background="@color/background_main_grey"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/growth_listView"
-        android:layout_width="match_parent"
+    <!-- <com.changlianxi.view.PullDownView -->
+    <!-- android:id="@+id/growth_listView" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="fill_parent" -->
+    <!-- android:layout_below="@+id/top_bar" -->
+    <!-- android:cacheColorHint="@color/transparent" -->
+    <!-- android:divider="@null" -->
+    <!-- android:fadingEdge="none" -->
+    <!-- android:listSelector="#00000000" -->
+    <!-- android:scrollbars="none" > -->
+    <!-- </com.changlianxi.view.PullDownView> -->
+
+    <com.interestfriend.view.PullDownView
+        android:id="@+id/PullDownlistView"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/top_bar"
-        android:cacheColorHint="@color/transparent"
-        android:divider="@null"
-        android:fadingEdge="none"
-        android:listSelector="#00000000"
-        android:scrollbars="none" >
-    </ListView>
+        android:cacheColorHint="@android:color/transparent" >
+    </com.interestfriend.view.PullDownView>
 
 </RelativeLayout>

@@ -32,6 +32,7 @@ public class MyCircleVideoProvider {
 		public static final String VIDEO_DURATION = "video_duration";
 		public static final String VIDEO_IMG = "video_img";
 		public static final String VIDEO_PATH = "video_path";
+		public static final String TIME = "time";
 
 	}
 

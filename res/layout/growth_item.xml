@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:layout_marginRight="50dip" >
 
-        <ImageView
+        <com.interestfriend.view.RoundAngleImageView
             android:id="@+id/img_avatar"
             android:layout_width="35dip"
             android:layout_height="35dip"
@@ -27,6 +27,7 @@
                 android:id="@+id/txt_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="5dp"
                 android:text="舒淇"
@@ -53,7 +54,6 @@
                 android:layout_below="@+id/txt_user_name"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
                 android:paddingBottom="10dp"
                 android:text="无病呻吟"
                 android:textColor="#666666"

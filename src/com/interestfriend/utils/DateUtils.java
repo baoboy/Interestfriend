@@ -96,17 +96,8 @@ public class DateUtils {
 		return strdate;
 	}
 
-	public static String getGrowthShowTime(String str) {
-		DateFormat df1 = new SimpleDateFormat("yyyyÄêMMÔÂddÈÕ");
-		String strdate = "";
-		try {
-			Date date = df.parse(str);
-			strdate = df1.format(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-
-		}
-		return strdate;
+	public static String getGrowthShowTime() {
+		return format(new Date(), "yyyy-MM-dd HH:mm");
 	}
 
 	public static DateFormat getFormat(String pattern) {

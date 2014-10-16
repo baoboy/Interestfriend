@@ -125,7 +125,6 @@ public class CircleMemberFragment extends Fragment implements
 			if (cursor == null) {
 				return;
 			}
-			System.out.println("cout:::::::::::;" + cursor.getCount());
 			if (cursor.getCount() > 0) {
 				cursor.moveToFirst();
 				for (int i = 0; i < cursor.getCount(); i++) {
@@ -145,6 +144,7 @@ public class CircleMemberFragment extends Fragment implements
 					cursor.moveToNext();
 				}
 				adapter.notifyDataSetChanged();
+				getCircleMemberFormServer();
 			} else {
 				// dialog = DialogUtil.createLoadingDialog(getActivity(),
 				// "ÇëÉÔºò");

@@ -28,7 +28,6 @@ public class Growth extends AbstractData implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final String ADD_GROWTH_API = "AddGrowthServlet";
-	private final String UP_LOAD_VIDEO = "UpLoadVideoServlet";
 
 	private int growth_id = 0;// 成长id
 	private int cid = 0;// 所在圈子id
@@ -39,45 +38,8 @@ public class Growth extends AbstractData implements Serializable {
 	private List<GrowthImage> images = new ArrayList<GrowthImage>();
 	private String tag = "";
 
-	private String video_img = "";
-	private String video_path = "";
-	public int video_size;
-	public int video_duration;
-
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 正常 2 video
-
-	public String getVideo_path() {
-		return video_path;
-	}
-
-	public void setVideo_path(String video_path) {
-		this.video_path = video_path;
-	}
-
-	public String getVideo_img() {
-		return video_img;
-	}
-
-	public void setVideo_img(String video_img) {
-		this.video_img = video_img;
-	}
-
-	public int getVideo_size() {
-		return video_size;
-	}
-
-	public void setVideo_size(int video_size) {
-		this.video_size = video_size;
-	}
-
-	public int getVideo_duration() {
-		return video_duration;
-	}
-
-	public void setVideo_duration(int video_duration) {
-		this.video_duration = video_duration;
-	}
 
 	public int getDirect() {
 		return direct;
@@ -165,22 +127,6 @@ public class Growth extends AbstractData implements Serializable {
 				+ this.images;
 	}
 
-	public RetError upLoadVideo() {
-		String[] keys = { "video_img_path", "video_path" };
-		IParser parser = new MapParser(keys);
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		Result ret = ApiRequest.requestWithFile(UP_LOAD_VIDEO, params,
-				new File(video_path), parser);
-		if (ret.getStatus() == RetStatus.SUCC) {
-			MapResult mret = (MapResult) ret;
-			video_path = (String) (mret.getMaps().get("video_path"));
-			video_img = (String) (mret.getMaps().get("video_img_path"));
-			return RetError.NONE;
-		} else {
-			return ret.getErr();
-		}
-	}
-
 	public RetError uploadForAdd() {
 		List<File> bytesimg = new ArrayList<File>();
 		for (GrowthImage img : this.images) {
@@ -194,7 +140,6 @@ public class Growth extends AbstractData implements Serializable {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("cid", cid);
 		params.put("content", content);
-		params.put("publisher_id", publisher_id);
 		params.put("time", published);
 		Result ret = ApiRequest.uploadFileArrayWithToken(ADD_GROWTH_API,
 				params, bytesimg, parser);
@@ -229,5 +174,8 @@ public class Growth extends AbstractData implements Serializable {
 		cv.put("content", this.content);
 		cv.put("time", this.published);
 		db.insert(dbName, null, cv);
+		for (GrowthImage img : this.images) {
+			img.write(db);
+		}
 	}
 }

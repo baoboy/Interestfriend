@@ -210,6 +210,9 @@ public class MyCircleVideoContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap.put(
 				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_SIZE,
 				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_SIZE);
+		sMyCirclesProjectionMap.put(
+				MyCircleVideoProvider.MyCircleVideoColumns.TIME,
+				MyCircleVideoProvider.MyCircleVideoColumns.TIME);
 
 	}
 }

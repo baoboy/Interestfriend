@@ -28,6 +28,24 @@ public class Video extends AbstractData implements Serializable {
 	private int cid = 0;
 	private int publisher_id = 0;
 	int video_id;
+	private String video_txt_content = "";
+	private String time = "";
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getVideo_txt_content() {
+		return video_txt_content;
+	}
+
+	public void setVideo_txt_content(String video_txt_content) {
+		this.video_txt_content = video_txt_content;
+	}
 
 	public int getVideo_id() {
 		return video_id;
@@ -98,9 +116,9 @@ public class Video extends AbstractData implements Serializable {
 		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("cid", cid);
-		params.put("publisher_id", publisher_id);
 		params.put("video_size", video_size);
 		params.put("video_duration", video_duration);
+		params.put("time", time);
 		Result ret = ApiRequest.requestWithFile(UP_LOAD_VIDEO, params,
 				new File(video_path), parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
@@ -119,11 +137,12 @@ public class Video extends AbstractData implements Serializable {
 		ContentValues cv = new ContentValues();
 		cv.put("video_id", this.video_id);
 		cv.put("cid", this.cid);
-		cv.put("publisher_id", this.publisher_id);
 		cv.put("video_size", this.video_size);
 		cv.put("video_duration", this.video_duration);
 		cv.put("video_img", this.video_img);
 		cv.put("video_path", this.video_path);
+		cv.put("publisher_id", this.publisher_id);
+		cv.put("time", time);
 		db.insert(dbName, null, cv);
 	}
 }

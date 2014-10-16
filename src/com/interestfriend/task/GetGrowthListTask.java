@@ -11,7 +11,7 @@ public class GetGrowthListTask extends
 	@Override
 	protected RetError doInBackground(GrowthList... params) {
 		list = params[0];
-		RetError ret = list.getGrowthList();
+		RetError ret = list.refushGrowth();
 		if (ret == RetError.NONE) {
 			list.writeGrowth(DBUtils.getDBsa(2));
 		}

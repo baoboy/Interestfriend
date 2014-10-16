@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -17,8 +18,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.interestfriend.R;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -67,7 +70,10 @@ public class GrowthAdapter extends BaseAdapter {
 	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
 		int direct = lists.get(position).getDirect();
-
+		CircleMember member = new CircleMember();
+		member.setCircle_id(lists.get(position).getCid());
+		member.setUser_id(lists.get(position).getPublisher_id());
+		member.getNameAndAvatar(DBUtils.getDBsa(1));
 		if (contentView == null) {
 			holder = new ViewHolder();
 			contentView = createView(direct);
@@ -78,6 +84,8 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.txt_time);
 			holder.txt_user_name = (TextView) contentView
 					.findViewById(R.id.txt_user_name);
+			holder.img_avatar = (ImageView) contentView
+					.findViewById(R.id.img_avatar);
 			holder.img_grid_view = (ExpandGridView) contentView
 					.findViewById(R.id.imgGridview);
 
@@ -105,14 +113,26 @@ public class GrowthAdapter extends BaseAdapter {
 					R.drawable.empty_photo);
 			holder.img.setVisibility(View.VISIBLE);
 			holder.img_grid_view.setVisibility(View.GONE);
+			holder.img.setOnClickListener(new Onclick(position));
 		} else {
 			holder.img.setVisibility(View.GONE);
 			holder.img_grid_view.setVisibility(View.GONE);
 		}
 		holder.img_grid_view.setOnItemClickListener(new GridViewOnItemClick(
 				position));
-		holder.txt_context.setText(lists.get(position).getContent());
+		String content = lists.get(position).getContent();
+		if ("".equals(content)) {
+			holder.txt_context.setVisibility(View.GONE);
+		} else {
+			holder.txt_context.setVisibility(View.VISIBLE);
+			holder.txt_context.setText(content);
+
+		}
 		holder.txt_time.setText(lists.get(position).getPublished());
+		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+				holder.img_avatar, R.drawable.default_avatar);
+		holder.txt_user_name.setText(member.getUser_name());
+
 		return contentView;
 	}
 
@@ -126,6 +146,21 @@ public class GrowthAdapter extends BaseAdapter {
 
 	}
 
+	class Onclick implements OnClickListener {
+		int position;
+
+		public Onclick(int position) {
+			this.position = position;
+		}
+
+		@Override
+		public void onClick(View arg0) {
+			intentImagePager(position, 1);
+
+		}
+
+	}
+
 	class GridViewOnItemClick implements OnItemClickListener {
 		int position;
 
@@ -136,17 +171,21 @@ public class GrowthAdapter extends BaseAdapter {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View v, int posit,
 				long arg3) {
-			List<String> imgUrl = new ArrayList<String>();
-			for (GrowthImage img : lists.get(position).getImages()) {
-				imgUrl.add(img.getImg());
-			}
-			Intent intent = new Intent(mContext, ImagePagerActivity.class);
-			Bundle bundle = new Bundle();
-			bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
-					(Serializable) imgUrl);
-			intent.putExtras(bundle);
-			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, posit);
-			mContext.startActivity(intent);
+			intentImagePager(position, posit);
 		}
+	}
+
+	private void intentImagePager(int position, int index) {
+		List<String> imgUrl = new ArrayList<String>();
+		for (GrowthImage img : lists.get(position).getImages()) {
+			imgUrl.add(img.getImg());
+		}
+		Intent intent = new Intent(mContext, ImagePagerActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+				(Serializable) imgUrl);
+		intent.putExtras(bundle);
+		intent.putExtra(Constants.EXTRA_IMAGE_INDEX, index);
+		mContext.startActivity(intent);
 	}
 }

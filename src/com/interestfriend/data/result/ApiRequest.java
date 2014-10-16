@@ -65,6 +65,7 @@ public class ApiRequest {
 
 	public static Result uploadFileArrayWithToken(String url,
 			Map<String, Object> params, List<File> files, IParser parser) {
+		params.put("user_id", SharedUtils.getUid());
 
 		for (String key : params.keySet()) {
 			Logger.out("ApiRequest.request",

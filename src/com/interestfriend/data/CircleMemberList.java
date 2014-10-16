@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -58,7 +59,8 @@ public class CircleMemberList extends AbstractData {
 		if (ret.getStatus() == RetStatus.SUCC) {
 			if (ret.getData() instanceof CircleMemberList) {
 				CircleMemberList lists = (CircleMemberList) ret.getData();
-				this.circleMemberLists.addAll(lists.getCircleMemberLists());
+				// this.circleMemberLists.addAll(lists.getCircleMemberLists());
+				updateMembers(lists.getCircleMemberLists());
 			}
 			return RetError.NONE;
 		} else {
@@ -66,14 +68,81 @@ public class CircleMemberList extends AbstractData {
 		}
 	}
 
+	private void delById(int uid) {
+		for (Iterator<CircleMember> it = circleMemberLists.iterator(); it
+				.hasNext();) {
+			if (it.next().getUser_id() == uid) {
+				it.remove();
+			}
+		}
+	}
+
+	private void updateMembers(List<CircleMember> circleMemberLists) {
+		System.out.println("size:::::::::::::::" + circleMemberLists.size());
+		for (CircleMember m : circleMemberLists) {
+			if ("add".equals(m.getUser_state())) {
+				this.circleMemberLists.add(m);
+			}
+			if ("del".equals(m.getUser_state())) {
+				delById(m.getUser_id());
+				continue;
+			}
+			if ("update".equals(m.getUser_state())) {
+				delById(m.getUser_id());
+				this.circleMemberLists.add(m);
+			}
+		}
+		System.out.println("size:::::::::::::::==" + circleMemberLists.size());
+
+	}
+
 	@Override
 	public void write(SQLiteDatabase db) {
-		// insert newMembers
+		List<CircleMember> newMembers = new ArrayList<CircleMember>();
+		List<CircleMember> delMembers = new ArrayList<CircleMember>();
+		for (CircleMember m : circleMemberLists) {
+			if ("add".equals(m.getUser_state())) {
+				newMembers.add(m);
+			}
+			if ("del".equals(m.getUser_state())) {
+				delMembers.add(m);
+				continue;
+			}
+			if ("update".equals(m.getUser_state())) {
+				delMembers.add(m);
+				newMembers.add(m);
+			}
+		}
 		StringBuilder sqlBuffer = new StringBuilder();
+
+		// basic info: delete delMembers
+		sqlBuffer.append("delete from " + Const.CIRCLE_MEMBER_TABLE_NAME
+				+ " where user_id in (");
+		int cnt = 0;
+		for (CircleMember dm : delMembers) {
+			if (cnt > 0) {
+				sqlBuffer.append(",");
+			}
+
+			sqlBuffer.append(dm.getUser_id());
+			cnt++;
+		}
+		if (cnt > 0) {
+			sqlBuffer.append(")");
+			try {
+				db.execSQL(sqlBuffer.toString());
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+		}
+		// insert newMembers
+		sqlBuffer = new StringBuilder();
 		sqlBuffer.append("insert into " + Const.CIRCLE_MEMBER_TABLE_NAME
 				+ CircleMember.getDbInsertKeyString() + " select ");
-		int cnt = 0;
-		for (CircleMember nm : circleMemberLists) {
+		cnt = 0;
+		for (CircleMember nm : newMembers) {
 			if (cnt > 0) {
 				sqlBuffer.append(" union all select ");
 			}

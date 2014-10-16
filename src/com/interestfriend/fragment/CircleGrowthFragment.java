@@ -35,6 +35,8 @@ import com.interestfriend.data.Growth;
 import com.interestfriend.data.Video;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
+import com.interestfriend.utils.DateUtils;
+import com.interestfriend.utils.SharedUtils;
 
 public class CircleGrowthFragment extends Fragment implements
 		RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
@@ -167,6 +169,9 @@ public class CircleGrowthFragment extends Fragment implements
 		if (requestCode == 200) {
 			Growth growth = (Growth) data.getSerializableExtra("growth");
 			growth.setTag(System.currentTimeMillis() + "");
+			growth.setPublisher_id(SharedUtils.getIntUid());
+			growth.setCid(MyApplation.getCircle_id());
+			growth.setPublished(DateUtils.getGrowthShowTime());
 			imgFragment.refushAdapter(growth);
 		} else if (requestCode == ChatActivity.REQUEST_CODE_SELECT_VIDEO) {
 			int duration = data.getIntExtra("dur", 0);
@@ -215,6 +220,9 @@ public class CircleGrowthFragment extends Fragment implements
 			video.setVideo_duration(duration);
 			video.setVideo_size((int) new File(videoPath).length());
 			video.setVideo_path(videoPath);
+			video.setPublisher_id(SharedUtils.getIntUid());
+			video.setCid(MyApplation.getCircle_id());
+			video.setTime(DateUtils.getGrowthShowTime());
 			videoFragment.refushAdapter(video);
 
 		}

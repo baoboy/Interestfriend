@@ -37,6 +37,7 @@ public class CircleMemberListParser implements IParser {
 			String userChatId = obj.getString("userChatId");
 			String pinyinFir = obj.getString("pinYinFir");
 			String sortKey = obj.getString("sortKey");
+			String user_state = obj.getString("userState");
 
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
@@ -49,6 +50,7 @@ public class CircleMemberListParser implements IParser {
 			member.setCircle_id(circle_id);
 			member.setSortkey(sortKey);
 			member.setPinyinFir(pinyinFir);
+			member.setUser_state(user_state);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();

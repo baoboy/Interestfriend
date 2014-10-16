@@ -3,6 +3,7 @@ package com.interestfriend.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,9 +14,9 @@ import android.widget.RadioGroup;
 
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.fragment.CircleGroupChatFragment;
 import com.interestfriend.fragment.CircleGrowthFragment;
-import com.interestfriend.fragment.ImageFragment;
 import com.interestfriend.fragment.CircleMemberFragment;
 
 public class MainActivity extends FragmentActivity implements
@@ -37,6 +38,7 @@ public class MainActivity extends FragmentActivity implements
 		MyApplation.addActivity(this);
 		circle_id = getIntent().getIntExtra("circle_id", 0);
 		initFragment();
+		SQLiteDatabase db = DBUtils.getDBsa(2);
 	}
 
 	private void initFragment() {

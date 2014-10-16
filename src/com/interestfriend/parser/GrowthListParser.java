@@ -57,8 +57,7 @@ public class GrowthListParser implements IParser {
 
 		}
 
-		GrowthList gl = new GrowthList();
-		gl.setCid(cid);
+		GrowthList gl = new GrowthList(cid);
 		gl.setGrowths(growths);
 		Result ret = new Result();
 		ret.setData(gl);

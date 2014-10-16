@@ -1,6 +1,8 @@
 package com.interestfriend.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,39 @@ public class GrowthList extends AbstractData {
 
 	private int cid = 0;
 
+	private String refushTime = "0";
+	private int refushState = 1;// 1 上拉刷新 2 加载更多
+
+	public int getRefushState() {
+		return refushState;
+	}
+
+	public void setRefushState(int refushState) {
+		this.refushState = refushState;
+	}
+
+	public GrowthList(int cid) {
+		this.cid = cid;
+	}
+
+	public List<Growth> getWriteGrowths() {
+		return writeGrowths;
+	}
+
+	public void setWriteGrowths(List<Growth> writeGrowths) {
+		this.writeGrowths = writeGrowths;
+	}
+
+	public String getRefushTime() {
+		return refushTime;
+	}
+
+	public void setRefushTime(String refushTime) {
+		this.refushTime = refushTime;
+	}
+
 	public List<Growth> getGrowths() {
+		sort();
 		return growths;
 	}
 
@@ -45,10 +79,22 @@ public class GrowthList extends AbstractData {
 		this.cid = cid;
 	}
 
-	public RetError getGrowthList() {
+	private void sort() {
+		Collections.sort(growths, new Comparator<Growth>() {
+			@Override
+			public int compare(Growth lhs, Growth rhs) {
+				return rhs.getPublished().compareTo(lhs.getPublished());
+			}
+		});
+
+	}
+
+	public RetError refushGrowth() {
 		IParser parser = new GrowthListParser();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("cid", cid);
+		params.put("refushTime", refushTime);
+		params.put("refushState", refushState);
 		Result ret = ApiRequest.request(GROWTH_LIST_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			GrowthList lists = (GrowthList) ret.getData();
@@ -63,9 +109,6 @@ public class GrowthList extends AbstractData {
 	public void writeGrowth(SQLiteDatabase db) {
 		for (Growth growth : writeGrowths) {
 			growth.write(db);
-			for (GrowthImage img : growth.getImages()) {
-				img.write(db);
-			}
 		}
 		writeGrowths.clear();
 	}

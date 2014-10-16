@@ -10,7 +10,7 @@ public class GetVideoListTask extends BaseAsyncTask<VideoList, Void, RetError> {
 	@Override
 	protected RetError doInBackground(VideoList... params) {
 		list = params[0];
-		RetError ret = list.getGrowthList();
+		RetError ret = list.refushVideo();
 		if (ret == RetError.NONE) {
 			list.write(DBUtils.getDBsa(2));
 		}

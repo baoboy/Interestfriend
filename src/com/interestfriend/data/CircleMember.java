@@ -2,10 +2,14 @@ package com.interestfriend.data;
 
 import java.util.HashMap;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.utils.SharedUtils;
@@ -24,6 +28,15 @@ public class CircleMember extends AbstractData {
 	private String user_chat_id = "";
 	private String sortkey = "";
 	private String pinyinFir = "";
+	private String user_state = "";
+
+	public String getUser_state() {
+		return user_state;
+	}
+
+	public void setUser_state(String user_state) {
+		this.user_state = user_state;
+	}
 
 	public String getSortkey() {
 		return sortkey;
@@ -126,6 +139,24 @@ public class CircleMember extends AbstractData {
 		return "user_name:" + user_name + "  user_cellphone£º" + user_cellphone
 				+ "  user_birthday:" + user_birthday + "  user_gender:"
 				+ user_gender + "  user_avatar:" + user_avatar;
+	}
+
+	public void getNameAndAvatar(SQLiteDatabase db) {
+		String conditionsKey = "circle_id=? and user_id=?";
+		String[] conditionsValue = { this.circle_id + "", this.user_id + "" };
+		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE_NAME, new String[] {
+				"user_name", "user_avatar" }, conditionsKey, conditionsValue,
+				null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+
+			String name = cursor.getString(cursor.getColumnIndex("user_name"));
+			String avatar = cursor.getString(cursor
+					.getColumnIndex("user_avatar"));
+			this.user_avatar = avatar;
+			this.user_name = name;
+		}
+		cursor.close();
 	}
 
 	/**

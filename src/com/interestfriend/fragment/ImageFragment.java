@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,19 +17,22 @@ import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.GrowthAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
-import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.task.GetGrowthFormDBTask;
 import com.interestfriend.task.GetGrowthListTask;
 import com.interestfriend.task.UpLoadGrowthTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.view.PullDownView;
+import com.interestfriend.view.PullDownView.OnPullDownListener;
 
 @SuppressLint("NewApi")
-public class ImageFragment extends Fragment {
+public class ImageFragment extends Fragment implements OnPullDownListener {
+	private PullDownView mPullDownView;
 
 	private ListView growth_listView;
 
@@ -50,23 +55,31 @@ public class ImageFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		initView();
 		setValue();
-		glist = new GrowthList();
+		glist = new GrowthList(MyApplation.getCircle_id());
 		getGrowthFromDB();
-		// getGrowthFromServer();
 	}
 
 	private void initView() {
-		growth_listView = (ListView) getView().findViewById(
-				R.id.growth_listView);
+		mPullDownView = (PullDownView) getView().findViewById(
+				R.id.PullDownlistView);
+		growth_listView = mPullDownView.getListView();
+		growth_listView.setCacheColorHint(0);
+		growth_listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
 		setListener();
 	}
 
 	private void setValue() {
 		adapter = new GrowthAdapter(getActivity(), lists);
 		growth_listView.setAdapter(adapter);
+		mPullDownView.addFooterView();
+
 	}
 
 	private void setListener() {
+		mPullDownView.setOnPullDownListener(this);
+		mPullDownView.notifyDidMore();
+		mPullDownView.setFooterVisible(false);
+
 	}
 
 	private void getGrowthFromDB() {
@@ -83,6 +96,12 @@ public class ImageFragment extends Fragment {
 					if (dialog != null) {
 						dialog.dismiss();
 					}
+					if (lists.size() > 19) {
+						mPullDownView.setFooterVisible(true);
+					} else {
+						mPullDownView.setFooterVisible(false);
+
+					}
 				}
 				adapter.notifyDataSetChanged();
 
@@ -97,6 +116,9 @@ public class ImageFragment extends Fragment {
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
+				mPullDownView.RefreshComplete();
+				mPullDownView.notifyDidMore();
+
 				if (dialog != null) {
 					dialog.dismiss();
 				}
@@ -104,8 +126,14 @@ public class ImageFragment extends Fragment {
 					ToastUtil.showToast("»ñÈ¡Ê§°Ü", Toast.LENGTH_SHORT);
 					return;
 				}
+				lists.clear();
 				lists.addAll(glist.getGrowths());
 				adapter.notifyDataSetChanged();
+				if (lists.size() > 19) {
+					mPullDownView.setFooterVisible(true);
+				} else {
+					mPullDownView.setFooterVisible(false);
+				}
 			}
 		});
 		task.execute(glist);
@@ -131,5 +159,23 @@ public class ImageFragment extends Fragment {
 			}
 		});
 		task.execute(growth);
+	}
+
+	@Override
+	public void onRefresh() {
+		if (lists.size() == 0) {
+			mPullDownView.RefreshComplete();
+			return;
+		}
+		glist.setRefushState(1);
+		glist.setRefushTime(lists.get(0).getPublished());
+		getGrowthFromServer();
+	}
+
+	@Override
+	public void onMore() {
+		glist.setRefushState(2);
+		glist.setRefushTime(lists.get(lists.size() - 1).getPublished());
+		getGrowthFromServer();
 	}
 }
