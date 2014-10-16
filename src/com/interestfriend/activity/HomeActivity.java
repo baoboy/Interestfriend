@@ -22,16 +22,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
-import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.DrawerLeftMenu;
 import com.interestfriend.view.HackyViewPager;
 
 public class HomeActivity extends FragmentActivity implements
@@ -48,6 +46,7 @@ public class HomeActivity extends FragmentActivity implements
 	private List<Fragment> listFragments = new ArrayList<Fragment>();
 	private int screenW;
 	private int old;
+	private DrawerLeftMenu lfetMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,56 +54,13 @@ public class HomeActivity extends FragmentActivity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
 		MyApplation.addActivity(this);
-		// startActivity(new Intent(this, MainActivity.class));
 		initFragment();
 		initView();
-		//
-		// new Thread() {
-		// public void run() {
-		// login("a", "binbin");
-		// }
-		// }.start();
-	}
 
-	private void login(final String username, String password) {
-		// 调用sdk登陆方法登陆聊天服务器
-		EMChatManager.getInstance().login(username, password, new EMCallBack() {
-			@Override
-			public void onSuccess() {
-				runOnUiThread(new Runnable() {
-					public void run() {
-						Toast.makeText(getApplicationContext(), "登录成功", 0)
-								.show();
-						// startActivity(new Intent(HomeActivity.this,
-						// ChatActivity.class));
-
-					}
-				});
-				// 登陆成功，保存用户名密码
-				SharedUtils.setUserName(username);
-
-			}
-
-			@Override
-			public void onProgress(int progress, String status) {
-
-			}
-
-			@Override
-			public void onError(int code, final String message) {
-
-				runOnUiThread(new Runnable() {
-					public void run() {
-						Toast.makeText(getApplicationContext(),
-								"登录失败: " + message, 0).show();
-
-					}
-				});
-			}
-		});
 	}
 
 	private void initView() {
+		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
 		btn_tab_my_circle = (Button) findViewById(R.id.btn_tab_my_circle);
 		btn_tab_neay_circle = (Button) findViewById(R.id.btn_tab_near_circle);
 		img_add = (ImageView) findViewById(R.id.img_add);

@@ -6,9 +6,11 @@ import java.util.HashMap;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.MapParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 
@@ -16,6 +18,7 @@ public class User {
 	private static final String VERIFY_CELLPHONE_API = "VerifyCellPhoneServlet";
 	private static final String USER_REGISTER_API = "UserRegisterServlet";
 	private static final String USER_LOGIN_API = "UserLoginServlet";
+	private static final String GET_USER_INFO = "GetUserInfoServlet";
 
 	private String user_cellphone = "";// 用户注册电话
 	private String user_name = "";// 用户注册姓名
@@ -143,4 +146,18 @@ public class User {
 
 	}
 
+	public RetError getUserInfo() {
+		String[] keys = { "user_name", "user_avatar" };
+		IParser parser = new MapParser(keys);
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		Result ret = ApiRequest.request(GET_USER_INFO, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			MapResult mret = (MapResult) ret;
+			user_avatar = (String) (mret.getMaps().get("user_avatar"));
+			user_name = (String) (mret.getMaps().get("user_name"));
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
 }

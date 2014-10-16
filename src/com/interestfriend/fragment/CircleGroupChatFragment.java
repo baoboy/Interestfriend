@@ -73,7 +73,6 @@ import com.easemob.util.VoiceRecorder;
 import com.interestfriend.R;
 import com.interestfriend.activity.BaiduMapActivity;
 import com.interestfriend.activity.ImageGridActivity;
-import com.interestfriend.activity.VoiceCallActivity;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.adapter.MessageAdapter;
@@ -167,6 +166,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private ImageView img_pic;
 	private ImageView img_file;
 	private ImageView img_video;
+	private TextView txt_title;
 
 	private PowerManager.WakeLock wakeLock;
 
@@ -196,6 +196,8 @@ public class CircleGroupChatFragment extends Fragment implements
 	 * initView
 	 */
 	protected void initView() {
+		txt_title = (TextView) getView().findViewById(R.id.title_txt);
+		txt_title.setText(MyApplation.getCircle_name());
 		recordingContainer = getView().findViewById(R.id.recording_container);
 		micImage = (ImageView) getView().findViewById(R.id.mic_image);
 		recordingHint = (TextView) getView().findViewById(R.id.recording_hint);

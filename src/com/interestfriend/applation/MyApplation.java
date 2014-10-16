@@ -28,6 +28,7 @@ public class MyApplation extends Application {
 	private static MyApplation instance;
 	private static int circle_id;
 	private static String circle_group_id = "";
+	private static String circle_name = "";
 	private static List<Activity> activityList = new ArrayList<Activity>();
 
 	@Override
@@ -216,6 +217,14 @@ public class MyApplation extends Application {
 
 	public static void setCircle_group_id(String circle_group_id) {
 		MyApplation.circle_group_id = circle_group_id;
+	}
+
+	public static String getCircle_name() {
+		return circle_name;
+	}
+
+	public static void setCircle_name(String circle_name) {
+		MyApplation.circle_name = circle_name;
 	}
 
 }

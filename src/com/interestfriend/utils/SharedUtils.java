@@ -83,6 +83,26 @@ public class SharedUtils {
 
 	}
 
+	public static String getAPPUserName() {
+		return sharedPreferences.getString("app_user_name", "");
+
+	}
+
+	public static void setAPPUserName(String value) {
+		editor.putString("app_user_name", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserAvatar() {
+		return sharedPreferences.getString("app_user_avatar", "");
+
+	}
+
+	public static void setAPPUserAvatar(String value) {
+		editor.putString("app_user_avatar", value);
+		editor.commit();
+	}
+
 	public static void setCircleMemberLastReqTime(long lastReqTime) {
 		editor.putLong("circle_member_last_req_time", lastReqTime);
 		editor.commit();

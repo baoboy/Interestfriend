@@ -208,6 +208,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// startActivity(intent);
 		MyApplation.setCircle_id(lists.get(arg2).getCircle_id());
 		MyApplation.setCircle_group_id(lists.get(arg2).getGroup_id());
+		MyApplation.setCircle_name(lists.get(arg2).getCircle_name());
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), MainActivity.class);
 		startActivity(intent);

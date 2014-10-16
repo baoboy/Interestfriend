@@ -67,6 +67,7 @@
     <!-- 侧边栏的选项 -->
 
     <com.interestfriend.view.DrawerLeftMenu
+        android:id="@+id/left_menu"
         android:layout_width="300dip"
         android:layout_height="match_parent"
         android:layout_gravity="left"

@@ -26,8 +26,26 @@ public class CircleMemberList extends AbstractData {
 
 	private List<CircleMember> circleMemberLists = new ArrayList<CircleMember>();
 
+	private List<CircleMember> localMembersLists = new ArrayList<CircleMember>();
+
+	public int getCircle_id() {
+		return circle_id;
+	}
+
+	public void setCircle_id(int circle_id) {
+		this.circle_id = circle_id;
+	}
+
+	public List<CircleMember> getLocalMembersLists() {
+		return localMembersLists;
+	}
+
+	public void setLocalMembersLists(List<CircleMember> localMembersLists) {
+		this.localMembersLists = localMembersLists;
+	}
+
 	public List<CircleMember> getCircleMemberLists() {
-		sort();
+		sort(circleMemberLists);
 		return circleMemberLists;
 	}
 
@@ -39,7 +57,7 @@ public class CircleMemberList extends AbstractData {
 		this.circle_id = circle_id;
 	}
 
-	private void sort() {
+	public void sort(List<CircleMember> circleMemberLists) {
 		Collections.sort(circleMemberLists, new Comparator<CircleMember>() {
 			@Override
 			public int compare(CircleMember lhs, CircleMember rhs) {
@@ -69,7 +87,7 @@ public class CircleMemberList extends AbstractData {
 	}
 
 	private void delById(int uid) {
-		for (Iterator<CircleMember> it = circleMemberLists.iterator(); it
+		for (Iterator<CircleMember> it = localMembersLists.iterator(); it
 				.hasNext();) {
 			if (it.next().getUser_id() == uid) {
 				it.remove();

@@ -17,9 +17,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.platform.comapi.map.m;
 import com.interestfriend.R;
 import com.interestfriend.activity.CircleMemberInfoActivity;
 import com.interestfriend.adapter.CircleMemberAdapter;
@@ -47,6 +47,7 @@ public class CircleMemberFragment extends Fragment implements
 	private CircleMemberAdapter adapter;
 
 	private ListView circle_member_listView;
+	private TextView txt_title;
 
 	private AsyncQueryHandler asyncQuery;
 
@@ -68,6 +69,7 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void initView() {
+		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		circle_member_listView = (ListView) getView().findViewById(
 				R.id.circle_member_listview);
 		setListener();
@@ -78,6 +80,7 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void setValue() {
+		txt_title.setText(MyApplation.getCircle_name());
 		adapter = new CircleMemberAdapter(getActivity(), cirlceMemberLists);
 		circle_member_listView.setAdapter(adapter);
 		initQuery();
@@ -143,12 +146,12 @@ public class CircleMemberFragment extends Fragment implements
 					cirlceMemberLists.add(member);
 					cursor.moveToNext();
 				}
+				list.setLocalMembersLists(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 				getCircleMemberFormServer();
 			} else {
-				// dialog = DialogUtil.createLoadingDialog(getActivity(),
-				// "«Î…‘∫Ú");
-				// dialog.show();
+				dialog = DialogUtil.createLoadingDialog(getActivity(), "«Î…‘∫Ú");
+				dialog.show();
 				getCircleMemberFormServer();
 
 			}
@@ -169,6 +172,7 @@ public class CircleMemberFragment extends Fragment implements
 					return;
 				}
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
+				list.sort(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 			}
 		});
