@@ -29,6 +29,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private ImageView img_logo;
 	private TextView txt_description;
 	private Button btn_join;
+	private TextView txt_title;
 
 	private String imgLogo = "";
 	private String description = "";
@@ -59,6 +60,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		img_logo = (ImageView) findViewById(R.id.img_logo);
 		txt_description = (TextView) findViewById(R.id.circle_description);
 		btn_join = (Button) findViewById(R.id.btn_join);
+		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
 	}
 
@@ -70,6 +72,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		UniversalImageLoadTool.disPlay(imgLogo, img_logo,
 				R.drawable.picture_default_head);
 		txt_description.setText(description);
+		txt_title.setText(circle.getCircle_name());
 	}
 
 	private void joinDialog() {

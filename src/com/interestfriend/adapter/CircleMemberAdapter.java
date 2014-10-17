@@ -52,7 +52,6 @@ public class CircleMemberAdapter extends BaseAdapter {
 			holder.txt_user_name = (TextView) contentView
 					.findViewById(R.id.txt_circle_name);
 			holder.alpha = (TextView) contentView.findViewById(R.id.alpha);
-
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();

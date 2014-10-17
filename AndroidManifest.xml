@@ -178,6 +178,11 @@
         <provider
             android:name="com.interestfriend.contentprovider.MyCircleVideoContentProvider"
             android:authorities="com.quyou.circle.videos" />
+
+        <activity
+            android:name="com.interestfriend.activity.NearCirclesActivity"
+            android:label="@string/title_activity_near_circles" >
+        </activity>
     </application>
 
 </manifest>

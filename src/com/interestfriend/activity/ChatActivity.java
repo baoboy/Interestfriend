@@ -83,9 +83,11 @@ import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.interestfriend.R;
+import com.interestfriend.adapter.ChatAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
-import com.interestfriend.adapter.MessageAdapter;
+import com.interestfriend.data.CircleMember;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
@@ -162,7 +164,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	// 给谁发送消息
 	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
-	private MessageAdapter adapter;
+	private ChatAdapter adapter;
 	private File cameraFile;
 	static int resendPos;
 
@@ -192,7 +194,12 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
-		userName = getIntent().getStringExtra("userName");
+		toChatUsername = getIntent().getStringExtra("userId");
+		System.out.println("to:::::::::::::" + toChatUsername);
+		CircleMember mbmer = new CircleMember();
+		mbmer.setUser_chat_id(toChatUsername);
+		mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
+		userName = mbmer.getUser_name();
 		initView();
 		setUpView();
 	}
@@ -322,12 +329,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		// 判断单聊还是群聊
 		chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
 		txt_title.setText(userName);
-		toChatUsername = getIntent().getStringExtra("userId");
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
-		adapter = new MessageAdapter(this, toChatUsername, chatType);
+		adapter = new ChatAdapter(this, toChatUsername, chatType);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());

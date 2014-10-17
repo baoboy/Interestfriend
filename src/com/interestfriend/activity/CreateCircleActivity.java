@@ -245,13 +245,13 @@ public class CreateCircleActivity extends BaseActivity implements
 
 	@Override
 	public void menu1_select() {
-		PhotoUtils.selectPhoto(this);
+		mTakePicturePath = PhotoUtils.takePicture(this);
 
 	}
 
 	@Override
 	public void menu2_select() {
-		mTakePicturePath = PhotoUtils.takePicture(this);
+		PhotoUtils.selectPhoto(this);
 
 	}
 

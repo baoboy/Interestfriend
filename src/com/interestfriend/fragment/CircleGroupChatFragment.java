@@ -28,7 +28,6 @@ import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -75,7 +74,7 @@ import com.interestfriend.activity.BaiduMapActivity;
 import com.interestfriend.activity.ImageGridActivity;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
-import com.interestfriend.adapter.MessageAdapter;
+import com.interestfriend.adapter.GroupChatAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.utils.CommonUtils;
@@ -138,8 +137,6 @@ public class CircleGroupChatFragment extends Fragment implements
 	private LinearLayout btnContainer;
 	private ImageView locationImgview;
 	private View more;
-	private int position;
-	private ClipboardManager clipboard;
 	private InputMethodManager manager;
 	private List<String> reslist;
 	private Drawable[] micImages;
@@ -149,7 +146,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	// 给谁发送消息
 	private String toChatUsername = "";
 	private VoiceRecorder voiceRecorder;
-	private MessageAdapter adapter;
+	private GroupChatAdapter adapter;
 	private File cameraFile;
 	static int resendPos;
 
@@ -341,9 +338,6 @@ public class CircleGroupChatFragment extends Fragment implements
 
 	private void setUpView() {
 
-		// position = getIntent().getIntExtra("position", -1);
-		clipboard = (ClipboardManager) getActivity().getSystemService(
-				Context.CLIPBOARD_SERVICE);
 		manager = (InputMethodManager) getActivity().getSystemService(
 				Context.INPUT_METHOD_SERVICE);
 		getActivity().getWindow().setSoftInputMode(
@@ -359,7 +353,7 @@ public class CircleGroupChatFragment extends Fragment implements
 				toChatUsername);
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
-		adapter = new MessageAdapter(getActivity(), toChatUsername, chatType);
+		adapter = new GroupChatAdapter(getActivity(), toChatUsername, chatType);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());
@@ -436,28 +430,7 @@ public class CircleGroupChatFragment extends Fragment implements
 			// getActivity().finish();
 			return;
 		}
-		if (requestCode == REQUEST_CODE_CONTEXT_MENU) {
-			switch (resultCode) {
-			case RESULT_CODE_COPY: // 复制消息
-				EMMessage copyMsg = ((EMMessage) adapter.getItem(data
-						.getIntExtra("position", -1)));
-				if (copyMsg.getType() == EMMessage.Type.IMAGE) {
-					ImageMessageBody imageBody = (ImageMessageBody) copyMsg
-							.getBody();
-					// 加上一个特定前缀，粘贴时知道这是要粘贴一个图片
-					clipboard.setText(COPY_IMAGE + imageBody.getLocalUrl());
-				} else {
-					// clipboard.setText(SmileUtils.getSmiledText(getActivity(),
-					// ((TextMessageBody) copyMsg.getBody()).getMessage()));
-					clipboard.setText(((TextMessageBody) copyMsg.getBody())
-							.getMessage());
-				}
-				break;
 
-			default:
-				break;
-			}
-		}
 		if (resultCode == getActivity().RESULT_OK) { // 清空消息
 			if (requestCode == REQUEST_CODE_EMPTY_HISTORY) {
 				// 清空会话
@@ -545,16 +518,6 @@ public class CircleGroupChatFragment extends Fragment implements
 			} else if (requestCode == REQUEST_CODE_VIDEO
 					|| requestCode == REQUEST_CODE_FILE) {
 				resendMessage();
-			} else if (requestCode == REQUEST_CODE_COPY_AND_PASTE) {
-				// 粘贴
-				if (!TextUtils.isEmpty(clipboard.getText())) {
-					String pasteText = clipboard.getText().toString();
-					if (pasteText.startsWith(COPY_IMAGE)) {
-						// 把图片前缀去掉，还原成正常的path
-						sendPicture(pasteText.replace(COPY_IMAGE, ""));
-					}
-
-				}
 			}
 		}
 	}

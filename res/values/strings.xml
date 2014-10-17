@@ -92,5 +92,6 @@
     <string name="title_activity_welcom">WelcomActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_publish_video">PublishVideoActivity</string>
+    <string name="title_activity_near_circles">NearCirclesActivity</string>
 
 </resources>

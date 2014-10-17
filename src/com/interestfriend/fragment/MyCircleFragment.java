@@ -27,7 +27,7 @@ import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
 import com.interestfriend.data.Circles;
-import com.interestfriend.data.MyCircleList;
+import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
@@ -44,7 +44,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 
 	private ListView my_circls_listView;
 
-	private MyCircleList myCircleList;
+	private CirclesList myCircleList;
 
 	private Dialog dialog;
 
@@ -57,7 +57,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		myCircleList = new MyCircleList();
+		myCircleList = new CirclesList();
 		initView();
 		setValue();
 		registerBoradcastReceiver();

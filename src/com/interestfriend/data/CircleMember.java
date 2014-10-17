@@ -159,6 +159,24 @@ public class CircleMember extends AbstractData {
 		cursor.close();
 	}
 
+	public void getNameAndAvatarByUserChatId(SQLiteDatabase db) {
+		String conditionsKey = "user_chat_id=?";
+		String[] conditionsValue = { this.user_chat_id + "" };
+		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE_NAME, new String[] {
+				"user_name", "user_avatar" }, conditionsKey, conditionsValue,
+				null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+
+			String name = cursor.getString(cursor.getColumnIndex("user_name"));
+			String avatar = cursor.getString(cursor
+					.getColumnIndex("user_avatar"));
+			this.user_avatar = avatar;
+			this.user_name = name;
+		}
+		cursor.close();
+	}
+
 	/**
 	 * 加入官方圈子
 	 * 

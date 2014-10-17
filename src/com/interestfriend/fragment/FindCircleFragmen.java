@@ -1,8 +1,5 @@
 package com.interestfriend.fragment;
 
-import com.interestfriend.R;
-import com.interestfriend.activity.CategoryCircleActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +9,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.interestfriend.R;
+import com.interestfriend.activity.CategoryCircleActivity;
+import com.interestfriend.activity.NearCirclesActivity;
+import com.interestfriend.data.NearCircleList;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.GetNearCirclesTask;
+import com.interestfriend.utils.ToastUtil;
 
 @SuppressLint("NewApi")
 public class FindCircleFragmen extends Fragment implements OnClickListener {
@@ -51,7 +58,7 @@ public class FindCircleFragmen extends Fragment implements OnClickListener {
 					CategoryCircleActivity.class));
 			break;
 		case R.id.near_item:
-
+			startActivity(new Intent(getActivity(), NearCirclesActivity.class));
 			break;
 		default:
 			break;

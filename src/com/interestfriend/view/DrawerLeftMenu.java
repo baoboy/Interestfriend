@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.interestfriend.R;
@@ -21,6 +22,7 @@ public class DrawerLeftMenu extends FrameLayout {
 	private View rootView;
 	private ImageView img_avatar;
 	private TextView txt_user_name;
+	private LinearLayout layotu_parent;
 
 	public DrawerLeftMenu(Context context) {
 		super(context);
@@ -53,6 +55,16 @@ public class DrawerLeftMenu extends FrameLayout {
 				R.layout.drawer_left_view_layout, null);
 		img_avatar = (ImageView) rootView.findViewById(R.id.img_avatar);
 		txt_user_name = (TextView) rootView.findViewById(R.id.txt_user_name);
+		txt_user_name.getBackground().setAlpha(120);
+		layotu_parent = (LinearLayout) rootView
+				.findViewById(R.id.layout_parent);
+		layotu_parent.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+
+			}
+		});
 		addView(rootView);
 	}
 

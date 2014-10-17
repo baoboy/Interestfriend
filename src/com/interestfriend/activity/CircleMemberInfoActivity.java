@@ -63,7 +63,6 @@ public class CircleMemberInfoActivity extends BaseActivity implements
 		case R.id.btn_chat:
 			Intent intent = new Intent();
 			intent.putExtra("userId", member.getUser_chat_id());
-			intent.putExtra("userName", member.getUser_name());
 			intent.setClass(this, ChatActivity.class);
 			startActivity(intent);
 			break;

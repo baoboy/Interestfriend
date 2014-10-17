@@ -12,15 +12,22 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.easemob.chat.ConnectionListener;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
+import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
 import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.MainActivity;
+import com.interestfriend.data.CircleMember;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
 
@@ -30,12 +37,17 @@ public class MyApplation extends Application {
 	private static String circle_group_id = "";
 	private static String circle_name = "";
 	private static List<Activity> activityList = new ArrayList<Activity>();
+	private static LocationClient locationClient = null;
+	private static double nLatitude = 0;// 维度
+	private static double nLontitude = 0;// 经度
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
+		initBaiduLocation();
+		locationClient.start();
 		initHuanxin();
 	}
 
@@ -59,6 +71,10 @@ public class MyApplation extends Application {
 		activityList.clear();
 		if (flag) {
 			System.exit(0);
+		}
+		if (locationClient != null && locationClient.isStarted()) {
+			locationClient.stop();
+			locationClient = null;
 		}
 	}
 
@@ -100,14 +116,9 @@ public class MyApplation extends Application {
 			public Intent onNotificationClick(EMMessage message) {
 				Intent intent = new Intent(instance, ChatActivity.class);
 				ChatType chatType = message.getChatType();
-				System.out.println("type:::::::::;" + chatType);
 				if (chatType == ChatType.Chat) { // 单聊信息
 					intent.putExtra("userId", message.getFrom());
 					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
-				} else { // 群聊信息
-							// message.getTo()为群聊id
-					intent.putExtra("groupId", message.getTo());
-					intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
 				}
 				return intent;
 			}
@@ -116,28 +127,29 @@ public class MyApplation extends Application {
 		EMChatManager.getInstance().addConnectionListener(
 				new MyConnectionListener());
 		// // 取消注释，app在后台，有新消息来时，状态栏的消息提示换成自己写的
-		// options.setNotifyText(new OnMessageNotifyListener() {
-		//
-		// @Override
-		// public String onNewMessageNotify(EMMessage message) {
-		// // 可以根据message的类型提示不同文字(可参考微信或qq)，demo简单的覆盖了原来的提示
-		// return "你的好基友" + message.getFrom() + "发来了一条消息哦";
-		// }
-		//
-		// @Override
-		// public String onLatestMessageNotify(EMMessage message, int
-		// fromUsersNum, int messageNum) {
-		// return fromUsersNum + "个基友，发来了" + messageNum + "条消息";
-		// }
-		//
-		// @Override
-		// public String onSetNotificationTitle(EMMessage message) {
-		// //修改标题
-		// return "环信notification";
-		// }
-		//
-		//
-		// });
+		options.setNotifyText(new OnMessageNotifyListener() {
+
+			@Override
+			public String onNewMessageNotify(EMMessage message) {
+				CircleMember mbmer = new CircleMember();
+				mbmer.setUser_chat_id(message.getFrom());
+				mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
+				return "你的趣友 " + mbmer.getUser_name() + " 发来了一条消息";
+			}
+
+			@Override
+			public String onLatestMessageNotify(EMMessage message,
+					int fromUsersNum, int messageNum) {
+				return fromUsersNum + "个趣友，发来了" + messageNum + "条消息";
+			}
+
+			@Override
+			public String onSetNotificationTitle(EMMessage message) {
+				// 修改标题
+				return "趣友";
+			}
+
+		});
 
 		// // 注册一个语言电话的广播接收者
 		IntentFilter callFilter = new IntentFilter(EMChatManager.getInstance()
@@ -203,6 +215,35 @@ public class MyApplation extends Application {
 		}
 	}
 
+	private void initBaiduLocation() {
+		locationClient = new LocationClient(this);
+		// 设置定位条件
+		LocationClientOption option = new LocationClientOption();
+		option.setOpenGps(true); // 是否打开GPS
+		option.setCoorType("bd09ll"); // 设置返回值的坐标类型。
+		option.setPriority(LocationClientOption.NetWorkFirst); // 设置定位优先级
+		option.setProdName("趣友"); // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
+		locationClient.setLocOption(option);
+
+		// 注册位置监听器
+		locationClient.registerLocationListener(new BDLocationListener() {
+
+			@Override
+			public void onReceiveLocation(BDLocation location) {
+				if (location == null) {
+					return;
+				}
+				setnLontitude(location.getLongitude());
+				setnLatitude(location.getLatitude());
+			}
+
+			@Override
+			public void onReceivePoi(BDLocation location) {
+			}
+
+		});
+	}
+
 	public static int getCircle_id() {
 		return circle_id;
 	}
@@ -225,6 +266,22 @@ public class MyApplation extends Application {
 
 	public static void setCircle_name(String circle_name) {
 		MyApplation.circle_name = circle_name;
+	}
+
+	public static double getnLatitude() {
+		return nLatitude;
+	}
+
+	public static void setnLatitude(double nLatitude) {
+		MyApplation.nLatitude = nLatitude;
+	}
+
+	public static double getnLontitude() {
+		return nLontitude;
+	}
+
+	public static void setnLontitude(double nLontitude) {
+		MyApplation.nLontitude = nLontitude;
 	}
 
 }

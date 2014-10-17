@@ -6,14 +6,14 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.interestfriend.data.MyCircleList;
+import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.result.Result;
 
 public class MyCircleListParser implements IParser {
 
 	@Override
-	public Result<MyCircleList> parse(JSONObject jsonObj) throws Exception {
+	public Result<CirclesList> parse(JSONObject jsonObj) throws Exception {
 		if (jsonObj == null) {
 			return Result.defContentErrorResult();
 		}
@@ -29,17 +29,19 @@ public class MyCircleListParser implements IParser {
 			String circle_description = obj.getString("circle_description");
 			String circle_avatar = obj.getString("circle_avatar");
 			String group_id = obj.getString("group_id");
+			int diatance = obj.getInt("distance");
 			MyCircles circle = new MyCircles();
 			circle.setCircle_description(circle_description);
 			circle.setCircle_id(id);
 			circle.setCircle_logo(circle_avatar);
 			circle.setCircle_name(circle_name);
 			circle.setGroup_id(group_id);
+			circle.setDistance(diatance);
 			lists.add(circle);
 		}
-		MyCircleList cl = new MyCircleList();
+		CirclesList cl = new CirclesList();
 		cl.setListCircles(lists);
-		Result<MyCircleList> ret = new Result<MyCircleList>();
+		Result<CirclesList> ret = new Result<CirclesList>();
 		ret.setData(cl);
 		return ret;
 	}

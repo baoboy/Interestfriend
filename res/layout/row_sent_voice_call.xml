@@ -24,8 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="@dimen/margin_chat_activity"
-            android:background="@drawable/mini_avatar_shadow"
-            android:scaleType="fitXY" />
+            android:background="@drawable/mini_avatar_shadow" />
 
         <RelativeLayout
             android:id="@+id/rl_picture"
@@ -36,11 +35,11 @@
             android:background="@drawable/chatto_bg" >
 
             <ImageView
-                android:layout_marginLeft="4dp"
                 android:id="@+id/iv_call_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
                 android:src="@drawable/chat_voice_call_self" />
 
             <TextView
@@ -52,8 +51,7 @@
                 android:layout_toRightOf="@id/iv_call_icon"
                 android:background="@null"
                 android:minHeight="40dp"
-                android:padding="6dp"
-              />
+                android:padding="6dp" />
         </RelativeLayout>
 
         <ImageView

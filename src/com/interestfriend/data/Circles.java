@@ -6,6 +6,7 @@ import java.util.HashMap;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -28,6 +29,15 @@ public class Circles extends AbstractData {
 	private String circle_logo = "";
 	private String group_id = "";
 	private int circle_category;
+	private int distance;
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
 
 	public int getCircle_category() {
 		return circle_category;
@@ -90,15 +100,16 @@ public class Circles extends AbstractData {
 	 * @return
 	 */
 	public RetError createNewCircle() {
-		String[] keys = { "video_img_path", "video_path" };
+		String[] keys = { "circle_logo", "group_id", "circle_id" };
 		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_name", circle_name);
 		params.put("circle_description", circle_description);
 		params.put("category", circle_category);
+		params.put("longitude", MyApplation.getnLontitude());
+		params.put("latitude", MyApplation.getnLatitude());
 		Result ret = ApiRequest.requestWithFile(CREATE_CIRCLE_API, params,
 				new File(circle_logo), parser);
-
 		if (ret.getStatus() == RetStatus.SUCC) {
 			MapResult mret = (MapResult) ret;
 			circle_logo = (String) (mret.getMaps().get("circle_logo"));
@@ -120,7 +131,6 @@ public class Circles extends AbstractData {
 		values.put("circle_description", circle_description);
 		values.put("group_id", group_id);
 		values.put("circle_id", circle_id);
-
 		db.insert(tableName, null, values);
 	}
 

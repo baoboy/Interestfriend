@@ -68,8 +68,8 @@ public class CategoryCircleList {
 		Result<?> ret = ApiRequest.request(GET_CIRCLES_BY_CATEGORY, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
-			if (ret.getData() instanceof MyCircleList) {
-				MyCircleList lists = (MyCircleList) ret.getData();
+			if (ret.getData() instanceof CirclesList) {
+				CirclesList lists = (CirclesList) ret.getData();
 				this.listCircles = lists.getListCircles();
 			}
 			return RetError.NONE;
