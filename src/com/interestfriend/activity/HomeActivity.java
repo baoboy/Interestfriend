@@ -160,7 +160,7 @@ public class HomeActivity extends FragmentActivity implements
 
 	@Override
 	public void onPageSelected(int arg0) {
-		if (arg0 == 0 && mPager.getCurrentItem() == 0) {
+		if (arg0 == 0) {
 			img_add.setVisibility(View.VISIBLE);
 		} else {
 			img_add.setVisibility(View.GONE);
@@ -216,8 +216,9 @@ public class HomeActivity extends FragmentActivity implements
 
 	@Override
 	public void onDrawerClosed(View arg0) {
-		img_add.setVisibility(View.VISIBLE);
-
+		if (mPager.getCurrentItem() == 0) {
+			img_add.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
