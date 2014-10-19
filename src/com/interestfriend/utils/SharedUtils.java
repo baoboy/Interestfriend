@@ -103,13 +103,14 @@ public class SharedUtils {
 		editor.commit();
 	}
 
-	public static void setCircleMemberLastReqTime(long lastReqTime) {
-		editor.putLong("circle_member_last_req_time", lastReqTime);
+	public static void setCircleMemberLastReqTime(int cid, long lastReqTime) {
+		editor.putLong("circle_member_last_req_time" + cid, lastReqTime);
 		editor.commit();
 	}
 
-	public static long getCircleMemberLastReqTime() {
-		return sharedPreferences.getLong("circle_member_last_req_time", 0l);
+	public static long getCircleMemberLastReqTime(int cid) {
+		return sharedPreferences.getLong("circle_member_last_req_time" + cid,
+				0l);
 
 	}
 }

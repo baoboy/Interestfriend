@@ -71,9 +71,10 @@ public class GrowthAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 		int direct = lists.get(position).getDirect();
 		CircleMember member = new CircleMember();
-		member.setCircle_id(lists.get(position).getCid());
 		member.setUser_id(lists.get(position).getPublisher_id());
 		member.getNameAndAvatar(DBUtils.getDBsa(1));
+		System.out.println("id:::::::::::::::;"
+				+ lists.get(position).getPublisher_id());
 		if (contentView == null) {
 			holder = new ViewHolder();
 			contentView = createView(direct);

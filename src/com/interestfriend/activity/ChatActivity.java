@@ -715,7 +715,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			mEditTextContent.setText("");
 
 			setResult(RESULT_OK);
-
 		}
 	}
 

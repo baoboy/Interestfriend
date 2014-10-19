@@ -93,5 +93,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_publish_video">PublishVideoActivity</string>
     <string name="title_activity_near_circles">NearCirclesActivity</string>
+    <string name="title_activity_chat_all_history">ChatAllHistoryActivity</string>
 
 </resources>

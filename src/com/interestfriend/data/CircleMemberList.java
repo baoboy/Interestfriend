@@ -46,7 +46,18 @@ public class CircleMemberList extends AbstractData {
 
 	public List<CircleMember> getCircleMemberLists() {
 		sort(circleMemberLists);
+		getMe(circleMemberLists);
 		return circleMemberLists;
+	}
+
+	public void getMe(List<CircleMember> circleMemberLists) {
+		for (CircleMember m : circleMemberLists) {
+			if (m.getUser_id() == SharedUtils.getIntUid()) {
+				circleMemberLists.remove(m);
+				circleMemberLists.add(0, m);
+				break;
+			}
+		}
 	}
 
 	public void setCircleMemberLists(List<CircleMember> circleMemberLists) {
@@ -71,7 +82,8 @@ public class CircleMemberList extends AbstractData {
 		IParser parser = new CircleMemberListParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_id", circle_id);
-		params.put("lastReqTime", SharedUtils.getCircleMemberLastReqTime());
+		params.put("lastReqTime",
+				SharedUtils.getCircleMemberLastReqTime(circle_id));
 		Result<?> ret = ApiRequest.request(CIRCLE_MEMBER_LIST_API, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

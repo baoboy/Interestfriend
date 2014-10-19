@@ -142,8 +142,8 @@ public class CircleMember extends AbstractData {
 	}
 
 	public void getNameAndAvatar(SQLiteDatabase db) {
-		String conditionsKey = "circle_id=? and user_id=?";
-		String[] conditionsValue = { this.circle_id + "", this.user_id + "" };
+		String conditionsKey = "user_id=?";
+		String[] conditionsValue = { this.user_id + "" };
 		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE_NAME, new String[] {
 				"user_name", "user_avatar" }, conditionsKey, conditionsValue,
 				null, null, null);

@@ -20,7 +20,7 @@ public class CircleMemberListParser implements IParser {
 		}
 		int circle_id = jsonObj.getInt("circle_id");
 		long lastReqTime = jsonObj.getLong("lastReqTime");
-		SharedUtils.setCircleMemberLastReqTime(lastReqTime);
+		SharedUtils.setCircleMemberLastReqTime(circle_id, lastReqTime);
 		JSONArray jsonArr = jsonObj.getJSONArray("members");
 		if (jsonArr == null) {
 			return Result.defContentErrorResult();

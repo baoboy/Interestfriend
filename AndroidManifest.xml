@@ -183,6 +183,10 @@
             android:name="com.interestfriend.activity.NearCirclesActivity"
             android:label="@string/title_activity_near_circles" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.ChatAllHistoryActivity"
+            android:label="@string/title_activity_chat_all_history" >
+        </activity>
     </application>
 
 </manifest>

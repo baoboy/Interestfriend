@@ -1,12 +1,14 @@
 package com.interestfriend.activity;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +31,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.EMMessage.ChatType;
+import com.easemob.chat.EMMessage.Type;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.FindCircleFragmen;
@@ -54,6 +60,8 @@ public class HomeActivity extends FragmentActivity implements
 	private int old;
 	private DrawerLeftMenu lfetMenu;
 
+	private NewMessageBroadcastReceiver msgReceiver;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +70,14 @@ public class HomeActivity extends FragmentActivity implements
 		MyApplation.addActivity(this);
 		initFragment();
 		initView();
+		registerReceive();
+		getCircleGroupChatHositiory();
+	}
 
+	@Override
+	protected void onResume() {
+		updateUnreadLabel();
+		super.onResume();
 	}
 
 	private void initView() {
@@ -93,6 +108,33 @@ public class HomeActivity extends FragmentActivity implements
 		myCircleFragment = new MyCircleFragment();
 		listFragments.add(myCircleFragment);
 		listFragments.add(nearFragment);
+	}
+
+	private void registerReceive() {
+		// 注册一个接收消息的BroadcastReceiver
+		msgReceiver = new NewMessageBroadcastReceiver();
+		IntentFilter intentFilter = new IntentFilter(EMChatManager
+				.getInstance().getNewMessageBroadcastAction());
+		intentFilter.setPriority(3);
+		registerReceiver(msgReceiver, intentFilter);
+	}
+
+	private void getCircleGroupChatHositiory() {
+		// 获取所有会话，包括陌生人
+		Hashtable<String, EMConversation> conversations = EMChatManager
+				.getInstance().getAllConversations();
+		List<EMConversation> conversationList = new ArrayList<EMConversation>();
+		// 过滤掉messages seize为0的conversation
+		for (EMConversation conversation : conversations.values()) {
+			if (!conversation.getIsGroup()) {
+				continue;
+			}
+			if (conversation.getUnreadMsgCount() == 0) {
+				continue;
+			}
+			conversationList.add(conversation);
+		}
+		System.out.println("size::::::::::::::::;" + conversationList.size());
 	}
 
 	/**
@@ -197,7 +239,7 @@ public class HomeActivity extends FragmentActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		EMChatManager.getInstance().logout();
+		unregisterReceiver(msgReceiver);
 
 	}
 
@@ -210,8 +252,36 @@ public class HomeActivity extends FragmentActivity implements
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// 主页面收到消息后，主要为了提示未读，实际消息内容需要到chat页面查看
+			String msgId = intent.getStringExtra("msgid");
+			EMMessage message = EMChatManager.getInstance().getMessage(msgId);
+			if (message.getChatType() == ChatType.Chat) {
+				updateUnreadLabel();
+			}
 			abortBroadcast();
 		}
+	}
+
+	/**
+	 * 刷新未读消息数
+	 */
+	public void updateUnreadLabel() {
+		int count = getUnreadMsgCountTotal();
+		if (count > 0) {
+			lfetMenu.setMessagePrompt(true);
+		} else {
+			lfetMenu.setMessagePrompt(false);
+		}
+	}
+
+	/**
+	 * 获取未读消息数
+	 * 
+	 * @return
+	 */
+	public int getUnreadMsgCountTotal() {
+		int unreadMsgCountTotal = 0;
+		unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
+		return unreadMsgCountTotal;
 	}
 
 	@Override
