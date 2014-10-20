@@ -242,6 +242,7 @@ public class CircleMemberFragment extends Fragment implements
 
 	@Override
 	public void onDestroy() {
+		super.onDestroy();
 		getActivity().unregisterReceiver(mBroadcastReceiver);
 	};
 }
