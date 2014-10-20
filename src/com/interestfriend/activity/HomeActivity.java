@@ -34,11 +34,12 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
-import com.easemob.chat.EMMessage.Type;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
 import com.interestfriend.view.HackyViewPager;
@@ -115,6 +116,9 @@ public class HomeActivity extends FragmentActivity implements
 		msgReceiver = new NewMessageBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter(EMChatManager
 				.getInstance().getNewMessageBroadcastAction());
+		intentFilter.addAction(Constants.UPDATE_USER_AVATAR);
+		intentFilter.addAction(Constants.UPDATE_USER_NAME);
+
 		intentFilter.setPriority(3);
 		registerReceiver(msgReceiver, intentFilter);
 	}
@@ -251,6 +255,17 @@ public class HomeActivity extends FragmentActivity implements
 	private class NewMessageBroadcastReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.UPDATE_USER_AVATAR)) {
+				String avatar = intent.getStringExtra("user_avatar");
+				lfetMenu.setAvatar(avatar);
+				return;
+			}
+			if (action.equals(Constants.UPDATE_USER_NAME)) {
+				String name = intent.getStringExtra("user_name");
+				lfetMenu.setName(name);
+				return;
+			}
 			// 主页面收到消息后，主要为了提示未读，实际消息内容需要到chat页面查看
 			String msgId = intent.getStringExtra("msgid");
 			EMMessage message = EMChatManager.getInstance().getMessage(msgId);

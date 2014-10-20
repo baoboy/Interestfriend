@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.interestfriend.R;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.enums.RetError;
-import com.interestfriend.db.Const;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.UpDateMemberInfoTask;
 import com.interestfriend.utils.BroadCast;

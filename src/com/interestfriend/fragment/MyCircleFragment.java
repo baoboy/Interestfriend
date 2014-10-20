@@ -31,7 +31,7 @@ import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
-import com.interestfriend.task.GetMyCircleListTask;
+import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 
@@ -179,7 +179,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	};
 
 	private void getCircleList() {
-		GetMyCircleListTask task = new GetMyCircleListTask();
+		GetCircleListTask task = new GetCircleListTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {

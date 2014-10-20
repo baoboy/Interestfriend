@@ -4,7 +4,7 @@ import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 
-public class GetMyCircleListTask extends
+public class GetCircleListTask extends
 		BaseAsyncTask<CirclesList, Void, RetError> {
 	private CirclesList list;
 

@@ -1,5 +1,6 @@
 package com.interestfriend.data;
 
+import java.io.File;
 import java.util.HashMap;
 
 import android.content.ContentValues;
@@ -11,14 +12,18 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
+import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
 
 public class CircleMember extends AbstractData {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
 	private static final String UPDATE_USER_INFO = "UpdateUserInfoServlet";
+	private static String UPDATE_MEMBER_AVATAR = "UpdateUserAvatarServlet";
+
 	private int user_id;
 	private int circle_id;
 	private String group_id = "";
@@ -213,6 +218,20 @@ public class CircleMember extends AbstractData {
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError updateAvatar() {
+		IParser parser = new StringParser("user_avatar");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		Result ret = ApiRequest.requestWithFile(UPDATE_MEMBER_AVATAR, params,
+				new File(user_avatar), parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.user_avatar = sr.getStr();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

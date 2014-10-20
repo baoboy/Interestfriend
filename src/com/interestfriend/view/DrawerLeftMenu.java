@@ -55,6 +55,16 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		getUserInfo();
 	}
 
+	public void setAvatar(String user_avatar) {
+		UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
+				R.drawable.picture_default_head);
+	}
+
+	public void setName(String name) {
+		txt_user_name.setText(name);
+
+	}
+
 	private void initView() {
 		rootView = LayoutInflater.from(mContext).inflate(
 				R.layout.drawer_left_view_layout, null);
