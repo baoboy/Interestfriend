@@ -26,8 +26,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	private RelativeLayout layout_declaration;
 	private RelativeLayout layout_description;
 	private RelativeLayout layout_user_name;
-	private Button btn_chat;
-
+ 
 	private CircleMember member;
 
 	@Override
@@ -51,8 +50,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		layout_declaration = (RelativeLayout) findViewById(R.id.layout_declaration);
 		layout_description = (RelativeLayout) findViewById(R.id.layout_description);
 		layout_user_name = (RelativeLayout) findViewById(R.id.layout_user_name);
-		btn_chat = (Button) findViewById(R.id.btn_chat);
-		setListener();
+ 		setListener();
 		setValue();
 	}
 
@@ -69,8 +67,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
-		btn_chat.setOnClickListener(this);
-		layout_declaration.setOnClickListener(this);
+ 		layout_declaration.setOnClickListener(this);
 		layout_description.setOnClickListener(this);
 		txt_user_name.setOnClickListener(this);
 		layout_user_name.setOnClickListener(this);
@@ -79,14 +76,8 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_chat:
-			Intent intent = new Intent();
-			intent.putExtra("userId", member.getUser_chat_id());
-			intent.setClass(this, ChatActivity.class);
-			startActivity(intent);
-			break;
-
-		case R.id.layout_declaration:
+		 
+ 		case R.id.layout_declaration:
 			intentUpdateActivity("½»ÓÑÐûÑÔ", txt_declaration.getText().toString(),
 					300);
 			break;
