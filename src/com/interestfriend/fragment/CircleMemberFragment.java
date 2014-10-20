@@ -6,8 +6,11 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.AsyncQueryHandler;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
-import com.interestfriend.activity.CircleMemberInfoActivity;
+import com.interestfriend.activity.CircleMemberActivity;
+import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.adapter.CircleMemberAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCircleMemberProvider;
@@ -30,7 +34,9 @@ import com.interestfriend.data.CircleMemberList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleMemberTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 
 @SuppressLint("NewApi")
@@ -65,7 +71,7 @@ public class CircleMemberFragment extends Fragment implements
 		list.setCid(circle_id);
 		initView();
 		setValue();
-
+		registerBoradcastReceiver();
 	}
 
 	private void initView() {
@@ -99,7 +105,9 @@ public class CircleMemberFragment extends Fragment implements
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_ID,
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_NAME,
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_CHAT_ID,
-				MyCircleMemberProvider.MyCircleMemberColumns.USER_REGISTER_TIME }; // 查询的列
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_REGISTER_TIME,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DECLARATION,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCircleMemberProvider.MyCircleMemberColumns.CONTENT_URI,
 				projection,
@@ -143,11 +151,14 @@ public class CircleMemberFragment extends Fragment implements
 					member.setUser_name(cursor.getString(8));
 					member.setUser_chat_id(cursor.getString(9));
 					member.setUser_register_time(cursor.getString(10));
+					member.setUser_declaration(cursor.getString(11));
+					member.setUser_description(cursor.getString(12));
 					cirlceMemberLists.add(member);
 					cursor.moveToNext();
 				}
 				list.setLocalMembersLists(cirlceMemberLists);
-				list.getMe(cirlceMemberLists);
+				list.sort(cirlceMemberLists);
+				// list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 				getCircleMemberFormServer();
 			} else {
@@ -174,7 +185,7 @@ public class CircleMemberFragment extends Fragment implements
 				}
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
 				list.sort(cirlceMemberLists);
-				list.getMe(cirlceMemberLists);
+				// list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -189,9 +200,48 @@ public class CircleMemberFragment extends Fragment implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
+		CircleMember m = cirlceMemberLists.get(position);
 		Intent intent = new Intent();
-		intent.putExtra("circle_ember", cirlceMemberLists.get(position));
-		intent.setClass(getActivity(), CircleMemberInfoActivity.class);
+		intent.putExtra("circle_ember", m);
+		if (m.getUser_id() == SharedUtils.getIntUid()) {
+			intent.setClass(getActivity(), CircleMemberOfSelfInfoActivity.class);
+		} else {
+			intent.setClass(getActivity(), CircleMemberActivity.class);
+		}
 		startActivity(intent);
 	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.UPDATE_USER_INFO);
+
+		// 注册广播
+		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.UPDATE_USER_INFO)) {
+				CircleMember member = (CircleMember) intent
+						.getSerializableExtra("member");
+				cirlceMemberLists.remove(0);
+				cirlceMemberLists.add(0, member);
+				adapter.notifyDataSetChanged();
+
+			}
+		}
+	};
+
+	@Override
+	public void onDestroy() {
+		getActivity().unregisterReceiver(mBroadcastReceiver);
+	};
 }

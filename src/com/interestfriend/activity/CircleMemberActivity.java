@@ -12,13 +12,17 @@ import com.interestfriend.R;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.utils.UniversalImageLoadTool;
 
-public class CircleMemberInfoActivity extends BaseActivity implements
+public class CircleMemberActivity extends BaseActivity implements
 		OnClickListener {
 	private ImageView img_avatar;
 	private TextView txt_register_time;
 	private TextView txt_gender;
 	private TextView txt_birthday;
 	private TextView txt_title;
+	private TextView txt_user_name;
+	private TextView txt_declaration;
+	private TextView txt_description;
+
 	private Button btn_chat;
 
 	private CircleMember member;
@@ -26,11 +30,10 @@ public class CircleMemberInfoActivity extends BaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_circle_member_info);
+		setContentView(R.layout.activity_circle_member);
 		member = (CircleMember) getIntent()
 				.getSerializableExtra("circle_ember");
 		initView();
-
 	}
 
 	private void initView() {
@@ -39,6 +42,9 @@ public class CircleMemberInfoActivity extends BaseActivity implements
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
 		txt_register_time = (TextView) findViewById(R.id.txt_register_time);
 		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
+		txt_declaration = (TextView) findViewById(R.id.txt_declaration);
+		txt_description = (TextView) findViewById(R.id.txt_description);
 		btn_chat = (Button) findViewById(R.id.btn_chat);
 		setListener();
 		setValue();
@@ -50,11 +56,15 @@ public class CircleMemberInfoActivity extends BaseActivity implements
 		txt_birthday.setText(member.getUser_birthday());
 		txt_gender.setText(member.getUser_gender());
 		txt_register_time.setText(member.getUser_register_time());
-		txt_title.setText(member.getUser_name());
+		txt_title.setText("个人资料");
+		txt_user_name.setText(member.getUser_name());
+		txt_declaration.setText(member.getUser_declaration());
+		txt_description.setText(member.getUser_description());
 	}
 
 	private void setListener() {
 		btn_chat.setOnClickListener(this);
+		txt_user_name.setOnClickListener(this);
 	}
 
 	@Override
@@ -71,4 +81,5 @@ public class CircleMemberInfoActivity extends BaseActivity implements
 			break;
 		}
 	}
+
 }

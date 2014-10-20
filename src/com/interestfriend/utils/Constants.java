@@ -10,6 +10,8 @@ public class Constants {
 	// π„≤•÷µ
 	public static final String CREATE_CIRCLS = "com.interestfriend.create_circles";
 	public static final String JOIN_CIRCLE = "com.interestfriend.join_circle";
+	public static final String UPDATE_USER_INFO = "com.interestfriend.update.uer_info";
+
 	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;// —°‘ÒÕº∆¨
 	public static final int REQUEST_CODE_GETIMAGE_BYCAMERA = 1;// ≈ƒ’’
 	public static final int REQUEST_CODE_GETIMAGE_DROP = 2;// ≤√ºÙ

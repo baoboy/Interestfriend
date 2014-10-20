@@ -9,6 +9,7 @@ import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -110,14 +111,18 @@ public class CircleMemberList extends AbstractData {
 	private void updateMembers(List<CircleMember> circleMemberLists) {
 		System.out.println("size:::::::::::::::" + circleMemberLists.size());
 		for (CircleMember m : circleMemberLists) {
-			if ("add".equals(m.getUser_state())) {
+			System.out.println("state::::::::::::" + m.getState().name());
+
+			if (m.getState() == CircleMemberState.ADD) {
 				this.circleMemberLists.add(m);
 			}
-			if ("del".equals(m.getUser_state())) {
+			if (m.getState() == CircleMemberState.DEL) {
 				delById(m.getUser_id());
 				continue;
 			}
-			if ("update".equals(m.getUser_state())) {
+			if (m.getState() == CircleMemberState.UPDATE) {
+				System.out.println("size:::::::::::::::======"
+						+ circleMemberLists.size());
 				delById(m.getUser_id());
 				this.circleMemberLists.add(m);
 			}
@@ -131,18 +136,19 @@ public class CircleMemberList extends AbstractData {
 		List<CircleMember> newMembers = new ArrayList<CircleMember>();
 		List<CircleMember> delMembers = new ArrayList<CircleMember>();
 		for (CircleMember m : circleMemberLists) {
-			if ("add".equals(m.getUser_state())) {
+			if (m.getState() == CircleMemberState.ADD) {
 				newMembers.add(m);
 			}
-			if ("del".equals(m.getUser_state())) {
+			if (m.getState() == CircleMemberState.DEL) {
 				delMembers.add(m);
 				continue;
 			}
-			if ("update".equals(m.getUser_state())) {
+			if (m.getState() == CircleMemberState.UPDATE) {
 				delMembers.add(m);
 				newMembers.add(m);
 			}
 		}
+		System.out.println("del:::::::::::::" + delMembers.size());
 		StringBuilder sqlBuffer = new StringBuilder();
 
 		// basic info: delete delMembers
@@ -158,7 +164,7 @@ public class CircleMemberList extends AbstractData {
 			cnt++;
 		}
 		if (cnt > 0) {
-			sqlBuffer.append(")");
+			sqlBuffer.append(") and circle_id=" + circle_id);
 			try {
 				db.execSQL(sqlBuffer.toString());
 

@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main_grey" >
+
+    <include
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        layout="@layout/title_bar" />
+
+    <EditText
+        android:id="@+id/txt_content"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:layout_below="@+id/layout_title"
+        android:layout_margin="15dip"
+        android:background="@drawable/input_bg"
+        android:gravity="top"
+        android:padding="10dip"
+        android:textColor="#818181"
+        android:textSize="15sp" >
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp98"
+        android:layout_below="@+id/txt_content"
+        android:layout_margin="15dip"
+        android:background="@drawable/btn_14c1c7"
+        android:text="保存"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+</RelativeLayout>

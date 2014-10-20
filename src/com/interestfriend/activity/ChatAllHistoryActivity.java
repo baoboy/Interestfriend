@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
@@ -23,6 +24,7 @@ import com.interestfriend.adapter.ChatAllHistoryAdapter;
 public class ChatAllHistoryActivity extends Activity implements
 		OnItemClickListener {
 	private ListView listView;
+	private TextView txt_title;
 
 	private ChatAllHistoryAdapter adapter;
 
@@ -52,6 +54,7 @@ public class ChatAllHistoryActivity extends Activity implements
 	}
 
 	private void initView() {
+		txt_title = (TextView) findViewById(R.id.title_txt);
 		listView = (ListView) findViewById(R.id.list);
 		setListener();
 	}
@@ -61,6 +64,7 @@ public class ChatAllHistoryActivity extends Activity implements
 	}
 
 	private void setValue() {
+		txt_title.setText("ÁÄÌì¼ÇÂ¼");
 		adapter = new ChatAllHistoryAdapter(this, 1,
 				loadConversationsWithRecentChat());
 		listView.setAdapter(adapter);

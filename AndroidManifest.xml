@@ -147,7 +147,7 @@
             android:label="@string/title_activity_circle_info" >
         </activity>
         <activity
-            android:name="com.interestfriend.activity.CircleMemberInfoActivity"
+            android:name="com.interestfriend.activity.CircleMemberOfSelfInfoActivity"
             android:label="@string/title_activity_circle_member_info" >
         </activity>
         <activity
@@ -186,6 +186,14 @@
         <activity
             android:name="com.interestfriend.activity.ChatAllHistoryActivity"
             android:label="@string/title_activity_chat_all_history" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.UpdateUserInfoActivity"
+            android:label="@string/title_activity_update_user_info" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.CircleMemberActivity"
+            android:label="@string/title_activity_circle_member" >
         </activity>
     </application>
 

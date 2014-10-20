@@ -225,6 +225,12 @@ public class MyCircleMemberContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap
 				.put(MyCircleMemberProvider.MyCircleMemberColumns.USER_REGISTER_TIME,
 						MyCircleMemberProvider.MyCircleMemberColumns.USER_REGISTER_TIME);
+		sMyCirclesProjectionMap.put(
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DECLARATION,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DECLARATION);
+		sMyCirclesProjectionMap.put(
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION);
 
 	}
 }

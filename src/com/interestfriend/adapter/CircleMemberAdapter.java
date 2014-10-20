@@ -104,9 +104,9 @@ public class CircleMemberAdapter extends BaseAdapter {
 		} else {
 			holder.alpha.setVisibility(View.GONE);
 		}
-		if (position == 0) {
-			holder.alpha.setVisibility(View.GONE);
-		}
+//		if (position == 0) {
+//			holder.alpha.setVisibility(View.GONE);
+//		}
 	}
 
 	static class ViewHolder {

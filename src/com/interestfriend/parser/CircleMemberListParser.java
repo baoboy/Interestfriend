@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CircleMemberList;
+import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.utils.SharedUtils;
 
@@ -38,6 +39,8 @@ public class CircleMemberListParser implements IParser {
 			String pinyinFir = obj.getString("pinYinFir");
 			String sortKey = obj.getString("sortKey");
 			String user_state = obj.getString("userState");
+			String user_declaration = obj.getString("userDeclaration");
+			String user_description = obj.getString("userDescription");
 
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
@@ -50,7 +53,9 @@ public class CircleMemberListParser implements IParser {
 			member.setCircle_id(circle_id);
 			member.setSortkey(sortKey);
 			member.setPinyinFir(pinyinFir);
-			member.setUser_state(user_state);
+			member.setState(CircleMemberState.convert(user_state));
+			member.setUser_declaration(user_declaration);
+			member.setUser_description(user_description);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();

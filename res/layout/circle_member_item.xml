@@ -8,9 +8,9 @@
         android:id="@+id/alpha"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/scale56dip"
+        android:layout_marginTop="9dip"
         android:gravity="center_vertical"
         android:paddingLeft="13dip"
-        android:paddingTop="9dip"
         android:textColor="#3e3a39"
         android:textSize="@dimen/sp_30" />
 

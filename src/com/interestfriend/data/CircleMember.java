@@ -2,9 +2,11 @@ package com.interestfriend.data;
 
 import java.util.HashMap;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -16,6 +18,7 @@ import com.interestfriend.utils.SharedUtils;
 
 public class CircleMember extends AbstractData {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
+	private static final String UPDATE_USER_INFO = "UpdateUserInfoServlet";
 	private int user_id;
 	private int circle_id;
 	private String group_id = "";
@@ -28,14 +31,32 @@ public class CircleMember extends AbstractData {
 	private String user_chat_id = "";
 	private String sortkey = "";
 	private String pinyinFir = "";
-	private String user_state = "";
+	private CircleMemberState state;
+	private String user_declaration = "";
+	private String user_description = "";
 
-	public String getUser_state() {
-		return user_state;
+	public String getUser_declaration() {
+		return user_declaration;
 	}
 
-	public void setUser_state(String user_state) {
-		this.user_state = user_state;
+	public void setUser_declaration(String user_declaration) {
+		this.user_declaration = user_declaration;
+	}
+
+	public String getUser_description() {
+		return user_description;
+	}
+
+	public void setUser_description(String user_description) {
+		this.user_description = user_description;
+	}
+
+	public CircleMemberState getState() {
+		return state;
+	}
+
+	public void setState(CircleMemberState state) {
+		this.state = state;
 	}
 
 	public String getSortkey() {
@@ -198,21 +219,61 @@ public class CircleMember extends AbstractData {
 		}
 	}
 
-	// public String toDbUnionInsertString() {
-	// return circle_id + "," + user_id + "," + user_name + ","
-	// + user_cellphone + ",'" + user_avatar + "','" + user_birthday
-	// + "','" + user_gender + "','" + sortkey + "','" + pinyinFir
-	// + "'";
-	// }
+	/**
+	 * 成员编辑 主要针对编辑自己
+	 * 
+	 * @param cloumn
+	 * @param value
+	 * @return
+	 */
+	public RetError upDateUserInfo(String cloumn, String value) {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("cloumn", cloumn);
+		params.put("value", value);
+		Result ret = ApiRequest.request(UPDATE_USER_INFO, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	@Override
+	public void write(SQLiteDatabase db) {
+		String dbName = Const.CIRCLE_MEMBER_TABLE_NAME;
+		String conditionsKey = "circle_id=? and user_id=?";
+		String[] conditionsValue = { this.circle_id + "", this.user_id + "" };
+		ContentValues cv = new ContentValues();
+		cv.put("circle_id", circle_id);
+		cv.put("user_id", user_id);
+		cv.put("user_name", user_name);
+		cv.put("user_cellphone", user_cellphone);
+		cv.put("user_avatar", user_avatar);
+		cv.put("user_birthday", user_birthday);
+		cv.put("user_gender", user_gender);
+		cv.put("sortkey", sortkey);
+		cv.put("pinyinFir", pinyinFir);
+		cv.put("user_chat_id", user_chat_id);
+		cv.put("user_register_time", user_register_time);
+		cv.put("user_declaration", user_declaration);
+		cv.put("user_description", user_description);
+
+		if (this.state == CircleMemberState.UPDATE) {
+			db.update(dbName, cv, conditionsKey, conditionsValue);
+		}
+	}
+
 	public String toDbUnionInsertString() {
 		return circle_id + "," + user_id + ",'" + user_name + "','"
 				+ user_cellphone + "','" + user_avatar + "','" + user_birthday
 				+ "','" + user_gender + "','" + sortkey + "','" + pinyinFir
-				+ "','" + user_chat_id + "','" + user_register_time + "'";
+				+ "','" + user_chat_id + "','" + user_register_time + "','"
+				+ user_declaration + "','" + user_description + "'";
 	}
 
 	public static String getDbInsertKeyString() {
-		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir, user_chat_id, user_register_time"
+		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir, user_chat_id, user_register_time, user_declaration, user_description"
 				+ ") ";
 	}
 }

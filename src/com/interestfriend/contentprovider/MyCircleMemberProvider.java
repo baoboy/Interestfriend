@@ -36,6 +36,8 @@ public class MyCircleMemberProvider {
 		public static final String PINYIN_FIR = "pinyinFir";
 		public static final String USER_CHAT_ID = "user_chat_id";
 		public static final String USER_REGISTER_TIME = "user_register_time";
+		public static final String USER_DECLARATION = "user_declaration";
+		public static final String USER_DESCRIPTION = "user_description";
 
 	}
 

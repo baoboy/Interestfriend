@@ -94,5 +94,7 @@
     <string name="title_activity_publish_video">PublishVideoActivity</string>
     <string name="title_activity_near_circles">NearCirclesActivity</string>
     <string name="title_activity_chat_all_history">ChatAllHistoryActivity</string>
+    <string name="title_activity_update_user_info">UpdateUserInfoActivity</string>
+    <string name="title_activity_circle_member">CircleMemberActivity</string>
 
 </resources>
