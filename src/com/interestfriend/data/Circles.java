@@ -30,6 +30,15 @@ public class Circles extends AbstractData {
 	private String group_id = "";
 	private int circle_category;
 	private int distance;
+	private int unread;
+
+	public int getUnread() {
+		return unread;
+	}
+
+	public void setUnread(int unread) {
+		this.unread = unread;
+	}
 
 	public int getDistance() {
 		return distance;

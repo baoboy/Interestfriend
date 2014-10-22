@@ -126,6 +126,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 					ToastUtil.showToast("ªÒ»° ß∞‹", Toast.LENGTH_SHORT);
 					return;
 				}
+
 				lists.clear();
 				lists.addAll(glist.getGrowths());
 				adapter.notifyDataSetChanged();
@@ -141,6 +142,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 
 	public void refushAdapter(Growth growth) {
 		lists.add(0, growth);
+		glist.getGrowths().add(0, growth);
 		adapter.notifyDataSetChanged();
 		upLoadGrowth(growth);
 	}

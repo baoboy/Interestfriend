@@ -103,6 +103,66 @@ public class SharedUtils {
 		editor.commit();
 	}
 
+	public static String getAPPUserGender() {
+		return sharedPreferences.getString("app_user_gender", "");
+
+	}
+
+	public static void setAPPUserGender(String value) {
+		editor.putString("app_user_gender", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserBirthday() {
+		return sharedPreferences.getString("app_user_birthday", "");
+
+	}
+
+	public static void setAPPUserBirthday(String value) {
+		editor.putString("app_user_birthday", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserRegisterTime() {
+		return sharedPreferences.getString("app_user_rigistertime", "");
+
+	}
+
+	public static void setAPPUserRegisterTime(String value) {
+		editor.putString("app_user_rigistertime", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserDeclaration() {
+		return sharedPreferences.getString("app_user_declaration", "");
+
+	}
+
+	public static void setAPPUserDeclaration(String value) {
+		editor.putString("app_user_declaration", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserDescription() {
+		return sharedPreferences.getString("app_user_description", "");
+
+	}
+
+	public static void setAPPUserSortKey(String value) {
+		editor.putString("app_user_sortkey", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserSortKey() {
+		return sharedPreferences.getString("app_user_sortkey", "");
+
+	}
+
+	public static void setAPPUserDescription(String value) {
+		editor.putString("app_user_description", value);
+		editor.commit();
+	}
+
 	public static void setCircleMemberLastReqTime(int cid, long lastReqTime) {
 		editor.putLong("circle_member_last_req_time" + cid, lastReqTime);
 		editor.commit();

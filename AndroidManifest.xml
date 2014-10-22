@@ -195,6 +195,10 @@
             android:name="com.interestfriend.activity.CircleMemberActivity"
             android:label="@string/title_activity_circle_member" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.CommentActivity"
+            android:label="@string/title_activity_comment" >
+        </activity>
     </application>
 
 </manifest>

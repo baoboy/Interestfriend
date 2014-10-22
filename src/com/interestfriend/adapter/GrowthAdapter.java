@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.CommentActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
@@ -25,6 +26,7 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
 
 public class GrowthAdapter extends BaseAdapter {
@@ -89,11 +91,13 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.img_avatar);
 			holder.img_grid_view = (ExpandGridView) contentView
 					.findViewById(R.id.imgGridview);
-
+			holder.btn_comment = (TextView) contentView
+					.findViewById(R.id.btn_comment);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
+		holder.btn_comment.setOnClickListener(new Onclick(position));
 		int imageSize = lists.get(position).getImages().size();
 		if (imageSize > 1) {
 			if (imageSize > 2) {
@@ -142,6 +146,7 @@ public class GrowthAdapter extends BaseAdapter {
 		TextView txt_user_name;
 		TextView txt_time;
 		TextView txt_context;
+		TextView btn_comment;
 		ImageView img;
 		ExpandGridView img_grid_view;
 
@@ -155,8 +160,19 @@ public class GrowthAdapter extends BaseAdapter {
 		}
 
 		@Override
-		public void onClick(View arg0) {
-			intentImagePager(position, 1);
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.btn_comment:
+				Intent intent = new Intent();
+				intent.putExtra("growth", lists.get(position));
+				intent.setClass(mContext, CommentActivity.class);
+				mContext.startActivity(intent);
+				Utils.leftOutRightIn(mContext);
+				break;
+			default:
+				intentImagePager(position, 1);
+				break;
+			}
 
 		}
 

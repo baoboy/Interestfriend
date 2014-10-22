@@ -36,7 +36,6 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
 import com.interestfriend.utils.Constants;
@@ -72,7 +71,6 @@ public class HomeActivity extends FragmentActivity implements
 		initFragment();
 		initView();
 		registerReceive();
-		getCircleGroupChatHositiory();
 	}
 
 	@Override
@@ -121,24 +119,6 @@ public class HomeActivity extends FragmentActivity implements
 
 		intentFilter.setPriority(3);
 		registerReceiver(msgReceiver, intentFilter);
-	}
-
-	private void getCircleGroupChatHositiory() {
-		// 获取所有会话，包括陌生人
-		Hashtable<String, EMConversation> conversations = EMChatManager
-				.getInstance().getAllConversations();
-		List<EMConversation> conversationList = new ArrayList<EMConversation>();
-		// 过滤掉messages seize为0的conversation
-		for (EMConversation conversation : conversations.values()) {
-			if (!conversation.getIsGroup()) {
-				continue;
-			}
-			if (conversation.getUnreadMsgCount() == 0) {
-				continue;
-			}
-			conversationList.add(conversation);
-		}
-		System.out.println("size::::::::::::::::;" + conversationList.size());
 	}
 
 	/**
@@ -271,6 +251,8 @@ public class HomeActivity extends FragmentActivity implements
 			EMMessage message = EMChatManager.getInstance().getMessage(msgId);
 			if (message.getChatType() == ChatType.Chat) {
 				updateUnreadLabel();
+			} else {
+				myCircleFragment.refushCircleGroupChatHositiory();
 			}
 			abortBroadcast();
 		}

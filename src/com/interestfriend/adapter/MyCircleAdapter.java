@@ -50,6 +50,8 @@ public class MyCircleAdapter extends BaseAdapter {
 					.findViewById(R.id.img_circle_logo);
 			holder.txt_circle_name = (TextView) contentView
 					.findViewById(R.id.txt_circle_name);
+			holder.txt_unread = (TextView) contentView
+					.findViewById(R.id.unread_msg_number);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
@@ -57,11 +59,18 @@ public class MyCircleAdapter extends BaseAdapter {
 		holder.txt_circle_name.setText(list.get(position).getCircle_name());
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 				holder.img_circle_logo, R.drawable.picture_default_head);
+		if (list.get(position).getUnread() > 0) {
+			holder.txt_unread.setText(list.get(position).getUnread() + "");
+			holder.txt_unread.setVisibility(View.VISIBLE);
+		} else {
+			holder.txt_unread.setVisibility(View.GONE);
+		}
 		return contentView;
 	}
 
 	static class ViewHolder {
 		private RoundAngleImageView img_circle_logo;
 		private TextView txt_circle_name;
+		private TextView txt_unread;
 	}
 }

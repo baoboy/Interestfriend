@@ -4,28 +4,15 @@
     android:layout_height="fill_parent"
     android:background="@color/white" >
 
-    <RelativeLayout
-        android:id="@+id/top_bar"
+    <include
+        android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/top_bar_normal_bg"
-        android:gravity="center_vertical" >
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:singleLine="true"
-            android:text="发布成长"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </RelativeLayout>
+        layout="@layout/title_bar" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/top_bar"
+        android:layout_below="@+id/layout_title"
         android:orientation="vertical"
         android:padding="13dip"
         android:scrollbars="none" >

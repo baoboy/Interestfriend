@@ -18,6 +18,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
@@ -40,6 +42,8 @@ public class PublicshGrowthActivity extends BaseActivity implements
 	private Button btnPublish;
 	private EditText content;// 内容输入框
 	private ExpandGridView mGridView;
+	private TextView txt_title;
+	private ImageView back;
 
 	private List<String> photoPathLists = new ArrayList<String>();
 
@@ -59,6 +63,9 @@ public class PublicshGrowthActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("发布成长");
 		btnPublish = (Button) findViewById(R.id.btnUpload);
 		content = (EditText) findViewById(R.id.txt_content);
 		photoPathLists.add("");
@@ -71,6 +78,7 @@ public class PublicshGrowthActivity extends BaseActivity implements
 	private void setListener() {
 		mGridView.setOnItemClickListener(this);
 		btnPublish.setOnClickListener(this);
+		back.setOnClickListener(this);
 	}
 
 	@Override
@@ -175,7 +183,9 @@ public class PublicshGrowthActivity extends BaseActivity implements
 			setResult(200, intent);
 			finish();
 			break;
-
+		case R.id.back:
+			finishThisActivity();
+			break;
 		default:
 			break;
 		}

@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
+import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
@@ -28,6 +30,9 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private TextView txt_user_name;
 	private LinearLayout layotu_parent;
 	private TextView txt_message;
+	private TextView txt_user_info;
+
+	private CircleMember memberSelf = new CircleMember();;
 
 	public DrawerLeftMenu(Context context) {
 		super(context);
@@ -49,7 +54,8 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		if (!"".equals(user_avatar)) {
 			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
 					R.drawable.picture_default_head);
-			txt_user_name.setText(SharedUtils.getAPPUserName());
+			setName(SharedUtils.getAPPUserName());
+			initMember();
 			return;
 		}
 		getUserInfo();
@@ -74,8 +80,10 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		layotu_parent = (LinearLayout) rootView
 				.findViewById(R.id.layout_parent);
 		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
+		txt_user_info = (TextView) rootView.findViewById(R.id.txt_user_info);
 		layotu_parent.setOnClickListener(this);
 		txt_message.setOnClickListener(this);
+		txt_user_info.setOnClickListener(this);
 		addView(rootView);
 	}
 
@@ -97,22 +105,41 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			@Override
 			public void taskFinish(RetError result) {
 				if (result == RetError.NONE) {
-					UniversalImageLoadTool.disPlay(user.getUser_avatar(),
-							img_avatar, R.drawable.picture_default_head);
+					setAvatar(user.getUser_avatar());
+					setName(user.getUser_name());
+					initMember();
 				}
 			}
 		});
 		task.execute(user);
 	}
 
+	private void initMember() {
+		memberSelf.setUser_avatar(SharedUtils.getAPPUserAvatar());
+		memberSelf.setUser_birthday(SharedUtils.getAPPUserBirthday());
+		memberSelf.setUser_declaration(SharedUtils.getAPPUserDeclaration());
+		memberSelf.setUser_description(SharedUtils.getAPPUserDescription());
+		memberSelf.setUser_gender(SharedUtils.getAPPUserGender());
+		memberSelf.setUser_id(SharedUtils.getIntUid());
+		memberSelf.setUser_name(SharedUtils.getAPPUserName());
+		memberSelf.setUser_register_time(SharedUtils.getAPPUserRegisterTime());
+		memberSelf.setSortkey(SharedUtils.getAPPUserSortKey());
+	}
+
 	@Override
 	public void onClick(View v) {
+		Intent intent;
 		switch (v.getId()) {
 		case R.id.txt_message:
 			mContext.startActivity(new Intent(mContext,
 					ChatAllHistoryActivity.class));
 			break;
-
+		case R.id.txt_user_info:
+			intent = new Intent();
+			intent.putExtra("circle_ember", memberSelf);
+			intent.setClass(mContext, CircleMemberOfSelfInfoActivity.class);
+			mContext.startActivity(intent);
+			break;
 		default:
 			break;
 		}

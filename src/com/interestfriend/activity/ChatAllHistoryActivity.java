@@ -6,12 +6,13 @@ import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,10 +22,11 @@ import com.easemob.chat.EMMessage;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
 
-public class ChatAllHistoryActivity extends Activity implements
+public class ChatAllHistoryActivity extends BaseActivity implements
 		OnItemClickListener {
 	private ListView listView;
 	private TextView txt_title;
+	private ImageView back;
 
 	private ChatAllHistoryAdapter adapter;
 
@@ -56,11 +58,19 @@ public class ChatAllHistoryActivity extends Activity implements
 	private void initView() {
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		listView = (ListView) findViewById(R.id.list);
+		back = (ImageView) findViewById(R.id.back);
 		setListener();
 	}
 
 	private void setListener() {
 		listView.setOnItemClickListener(this);
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				finishThisActivity();
+			}
+		});
 	}
 
 	private void setValue() {

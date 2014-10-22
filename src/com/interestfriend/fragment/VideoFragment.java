@@ -180,6 +180,9 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 					ToastUtil.showToast("ªÒ»° ß∞‹", Toast.LENGTH_SHORT);
 					return;
 				}
+				if (list.getVideos().size() == 0) {
+					return;
+				}
 				lists.clear();
 				lists.addAll(list.getVideos());
 				adapter.notifyDataSetChanged();

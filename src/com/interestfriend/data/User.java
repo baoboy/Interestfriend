@@ -11,8 +11,10 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class User {
 	private static final String VERIFY_CELLPHONE_API = "VerifyCellPhoneServlet";
@@ -146,19 +148,37 @@ public class User {
 
 	}
 
+	// public RetError getUserInfo() {
+	// String[] keys = { "user_name", "user_avatar" };
+	// IParser parser = new MapParser(keys);
+	// HashMap<String, Object> params = new HashMap<String, Object>();
+	// Result ret = ApiRequest.request(GET_USER_INFO, params, parser);
+	// if (ret.getStatus() == RetStatus.SUCC) {
+	// MapResult mret = (MapResult) ret;
+	// user_avatar = (String) (mret.getMaps().get("user_avatar"));
+	// user_name = (String) (mret.getMaps().get("user_name"));
+	// return RetError.NONE;
+	// } else {
+	// return ret.getErr();
+	// }
+	// }
 	public RetError getUserInfo() {
-		String[] keys = { "user_name", "user_avatar" };
-		IParser parser = new MapParser(keys);
+		IParser parser = new MemberSelfPaser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		Result ret = ApiRequest.request(GET_USER_INFO, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
-			MapResult mret = (MapResult) ret;
-			user_avatar = (String) (mret.getMaps().get("user_avatar"));
-			user_name = (String) (mret.getMaps().get("user_name"));
+			CircleMember member = (CircleMember) ret.getData();
+			user_avatar = member.getUser_avatar();
+			user_name = member.getUser_name();
+			SharedUtils.setAPPUserBirthday(member.getUser_birthday());
+			SharedUtils.setAPPUserDeclaration(member.getUser_declaration());
+			SharedUtils.setAPPUserDescription(member.getUser_description());
+			SharedUtils.setAPPUserGender(member.getUser_gender());
+			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
+			SharedUtils.setAPPUserSortKey(member.getSortkey());
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
 		}
 	}
-
 }

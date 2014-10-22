@@ -25,7 +25,6 @@ import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
 import com.interestfriend.activity.ChatActivity;
-import com.interestfriend.activity.MainActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;

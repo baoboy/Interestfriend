@@ -158,7 +158,7 @@ public class CircleMemberFragment extends Fragment implements
 				}
 				list.setLocalMembersLists(cirlceMemberLists);
 				list.sort(cirlceMemberLists);
-				// list.getMe(cirlceMemberLists);
+				list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 				getCircleMemberFormServer();
 			} else {
@@ -185,7 +185,7 @@ public class CircleMemberFragment extends Fragment implements
 				}
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
 				list.sort(cirlceMemberLists);
-				// list.getMe(cirlceMemberLists);
+				list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
 			}
 		});

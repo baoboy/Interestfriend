@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
@@ -47,7 +48,10 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 	private int mImageThumbSpacing;
 	private ImageAdapter mAdapter;
 	private ImageResizer mImageResizer;
-	List<VideoEntity> mList;
+	private List<VideoEntity> mList;
+
+	private ImageView back;
+	private TextView txt_title;
 
 	/**
 	 * Empty constructor as per the Fragment documentation
@@ -145,6 +149,26 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 				});
 		return v;
 
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		initView();
+	}
+
+	private void initView() {
+		back = (ImageView) getView().findViewById(R.id.back);
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				getActivity().finish();
+				com.interestfriend.utils.Utils.rightOut(getActivity());
+			}
+		});
+		txt_title = (TextView) getView().findViewById(R.id.title_txt);
+		txt_title.setText("±æµÿ ”∆µ");
 	}
 
 	@Override

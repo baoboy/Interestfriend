@@ -23,9 +23,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -64,6 +66,7 @@ public class BaiduMapActivity extends BaseActivity {
 
 	Button sendButton = null;
 
+	private ImageView back;
 	EditText indexText = null;
 	int index = 0;
 	// LocationData locData = null;
@@ -91,6 +94,14 @@ public class BaiduMapActivity extends BaseActivity {
 		mMapView = (MapView) findViewById(R.id.bmapView);
 		mMapController = mMapView.getController();
 		sendButton = (Button) findViewById(R.id.btn_location_send);
+		back = (ImageView) findViewById(R.id.back);
+		back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				finishThisActivity();
+			}
+		});
 		initMapView();
 		mMapView.getController().setZoom(17);
 		mMapView.getController().enableClick(true);

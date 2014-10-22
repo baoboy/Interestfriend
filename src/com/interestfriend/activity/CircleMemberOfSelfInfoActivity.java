@@ -27,6 +27,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
+import com.interestfriend.utils.PinYinUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -44,6 +45,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	private RelativeLayout layout_declaration;
 	private RelativeLayout layout_description;
 	private RelativeLayout layout_user_name;
+	private ImageView back;
 
 	private CircleMember member;
 
@@ -75,6 +77,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		layout_declaration = (RelativeLayout) findViewById(R.id.layout_declaration);
 		layout_description = (RelativeLayout) findViewById(R.id.layout_description);
 		layout_user_name = (RelativeLayout) findViewById(R.id.layout_user_name);
+		back = (ImageView) findViewById(R.id.back);
 		setListener();
 		setValue();
 	}
@@ -97,6 +100,8 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		txt_user_name.setOnClickListener(this);
 		layout_user_name.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
+		back.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -118,6 +123,9 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 			pop = new SelectPicPopwindow(this, v, "≈ƒ’’", "¥”œ‡≤·—°‘Ò");
 			pop.setmSelectOnclick(this);
 			pop.show();
+			break;
+		case R.id.back:
+			finishThisActivity();
 			break;
 		default:
 			break;
@@ -150,12 +158,16 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 			BroadCast
 					.sendBroadCast(CircleMemberOfSelfInfoActivity.this, intent);
 			SharedUtils.setAPPUserName(data.getStringExtra("value"));
+			SharedUtils.setAPPUserSortKey(PinYinUtil.converterToFirstSpell(data
+					.getStringExtra("value")));
 			break;
 		case 300:
 			txt_declaration.setText(data.getStringExtra("value"));
+			SharedUtils.setAPPUserDeclaration(data.getStringExtra("value"));
 			break;
 		case 400:
 			txt_description.setText(data.getStringExtra("value"));
+			SharedUtils.setAPPUserDescription(data.getStringExtra("value"));
 			break;
 		case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
 

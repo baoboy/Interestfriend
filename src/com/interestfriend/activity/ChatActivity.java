@@ -181,6 +181,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 	private String userName = "";
 	private TextView txt_title;
+	private ImageView back;
 	private Handler micImageHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -208,6 +209,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	 * initView
 	 */
 	protected void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		back.setOnClickListener(this);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		recordingContainer = findViewById(R.id.recording_container);
 		micImage = (ImageView) findViewById(R.id.mic_image);
@@ -631,6 +634,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 				startActivity(new Intent(ChatActivity.this,
 						VoiceCallActivity.class).putExtra("username",
 						toChatUsername).putExtra("isComingCall", false));
+		} else if (id == R.id.back) {
+			finishThisActivity();
 		}
 	}
 

@@ -30,6 +30,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private TextView txt_description;
 	private Button btn_join;
 	private TextView txt_title;
+	private ImageView back;
 
 	private String imgLogo = "";
 	private String description = "";
@@ -61,11 +62,15 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_description = (TextView) findViewById(R.id.circle_description);
 		btn_join = (Button) findViewById(R.id.btn_join);
 		txt_title = (TextView) findViewById(R.id.title_txt);
+		back = (ImageView) findViewById(R.id.back);
+
 		setListener();
 	}
 
 	private void setListener() {
 		btn_join.setOnClickListener(this);
+		back.setOnClickListener(this);
+
 	}
 
 	private void setValue() {
@@ -126,6 +131,9 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		switch (v.getId()) {
 		case R.id.btn_join:
 			joinDialog();
+			break;
+		case R.id.back:
+			finishThisActivity();
 			break;
 
 		default:

@@ -1,6 +1,7 @@
 package com.interestfriend.fragment;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -21,6 +22,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.baidu.location.ad;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
 import com.interestfriend.R;
 import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
@@ -47,6 +52,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	private CirclesList myCircleList;
 
 	private Dialog dialog;
+
+	private boolean hidden;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,6 +136,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					cursor.moveToNext();
 				}
 				adapter.notifyDataSetChanged();
+				refushCircleGroupChatHositiory();
 			} else {
 				dialog = DialogUtil.createLoadingDialog(getActivity(), "请稍候");
 				dialog.show();
@@ -178,6 +186,32 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		}
 	};
 
+	public void refushCircleGroupChatHositiory() {
+		// 获取所有会话，包括陌生人
+		Hashtable<String, EMConversation> conversations = EMChatManager
+				.getInstance().getAllConversations();
+		for (EMConversation conversation : conversations.values()) {
+
+			if (!conversation.getIsGroup()) {
+				continue;
+			}
+			EMMessage m = conversation.getLastMessage();
+			setUnread(m.getTo(), conversation.getUnreadMsgCount());
+			System.out.println("count::::::::::::"
+					+ conversation.getUnreadMsgCount() + "    " + m.getTo());
+		}
+		adapter.notifyDataSetChanged();
+	}
+
+	private void setUnread(String groupId, int unread) {
+		for (MyCircles c : lists) {
+			if (c.getGroup_id().equals(groupId)) {
+				c.setUnread(unread);
+				break;
+			}
+		}
+	}
+
 	private void getCircleList() {
 		GetCircleListTask task = new GetCircleListTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
@@ -200,12 +234,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// startActivity(new Intent(getActivity(), MainActivity.class));
-		// Intent intent = new Intent();
-		// intent.putExtra("groupId", lists.get(arg2).getGroup_id());
-		// intent.putExtra("chatType", 2);
-		// intent.setClass(getActivity(), ChatActivity.class);
-		// startActivity(intent);
+
 		MyApplation.setCircle_id(lists.get(arg2).getCircle_id());
 		MyApplation.setCircle_group_id(lists.get(arg2).getGroup_id());
 		MyApplation.setCircle_name(lists.get(arg2).getCircle_name());
@@ -214,4 +243,35 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		startActivity(intent);
 	};
 
+	@Override
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		this.hidden = hidden;
+		if (!hidden) {
+			refushCircleGroupChatHositiory();
+		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (!hidden) {
+			if (lists.size() > 0) {
+				refushCircleGroupChatHositiory();
+			}
+		}
+	}
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			// 相当于Fragment的onResume
+			if (lists.size() > 0) {
+				refushCircleGroupChatHositiory();
+			}
+		} else {
+			// 相当于Fragment的onPause
+		}
+	}
 }

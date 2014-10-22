@@ -36,6 +36,7 @@ public class CircleMemberActivity extends BaseActivity implements
 	private TextView txt_description;
 	private ListView circle_listView;
 	private Button btn_chat;
+	private ImageView back;
 
 	private CircleMember member;
 
@@ -67,6 +68,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_description = (TextView) findViewById(R.id.txt_description);
 		btn_chat = (Button) findViewById(R.id.btn_chat);
 		circle_listView = (ListView) findViewById(R.id.circle_listView);
+		back = (ImageView) findViewById(R.id.back);
 		setListener();
 		setValue();
 	}
@@ -89,6 +91,8 @@ public class CircleMemberActivity extends BaseActivity implements
 		btn_chat.setOnClickListener(this);
 		txt_user_name.setOnClickListener(this);
 		circle_listView.setOnItemClickListener(this);
+		back.setOnClickListener(this);
+
 	}
 
 	@Override
@@ -100,7 +104,9 @@ public class CircleMemberActivity extends BaseActivity implements
 			intent.setClass(this, ChatActivity.class);
 			startActivity(intent);
 			break;
-
+		case R.id.back:
+			finishThisActivity();
+			break;
 		default:
 			break;
 		}
