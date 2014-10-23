@@ -38,10 +38,19 @@ public class Growth extends AbstractData implements Serializable {
 	private String location = "";// 发布地点
 	private String published = ""; // 发布时间
 	private List<GrowthImage> images = new ArrayList<GrowthImage>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	private String tag = "";
-
+	private List<Comment> commentsListView = new ArrayList<Comment>();
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 正常 2 video
+
+	public List<Comment> getCommentsListView() {
+		return commentsListView;
+	}
+
+	public void setCommentsListView(List<Comment> commentsListView) {
+		this.commentsListView = commentsListView;
+	}
 
 	public int getDirect() {
 		return direct;
@@ -123,6 +132,14 @@ public class Growth extends AbstractData implements Serializable {
 		this.images = images;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	@Override
 	public String toString() {
 		return "gid:" + growth_id + "  content:" + this.content + "   images:"
@@ -178,6 +195,10 @@ public class Growth extends AbstractData implements Serializable {
 		db.insert(dbName, null, cv);
 		for (GrowthImage img : this.images) {
 			img.write(db);
+		}
+		System.out.println("comment:::::::::::::::::;" + this.comments);
+		for (Comment comment : this.comments) {
+			comment.write(db);
 		}
 	}
 }

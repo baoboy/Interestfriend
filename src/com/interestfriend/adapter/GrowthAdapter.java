@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.interestfriend.R;
@@ -93,6 +94,8 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.imgGridview);
 			holder.btn_comment = (TextView) contentView
 					.findViewById(R.id.btn_comment);
+			holder.mListView = (ListView) contentView
+					.findViewById(R.id.listView1);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
@@ -137,7 +140,8 @@ public class GrowthAdapter extends BaseAdapter {
 		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
 		holder.txt_user_name.setText(member.getUser_name());
-
+		holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
+				lists.get(position).getCommentsListView()));
 		return contentView;
 	}
 
@@ -149,6 +153,7 @@ public class GrowthAdapter extends BaseAdapter {
 		TextView btn_comment;
 		ImageView img;
 		ExpandGridView img_grid_view;
+		ListView mListView;
 
 	}
 

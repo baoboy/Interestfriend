@@ -2,16 +2,15 @@ package com.interestfriend.parser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.result.Result;
-import com.interestfriend.utils.DateUtils;
 
 public class GrowthListParser implements IParser {
 
@@ -26,7 +25,6 @@ public class GrowthListParser implements IParser {
 			return Result.defContentErrorResult();
 		}
 		List<Growth> growths = new ArrayList<Growth>();
-		long start = 0L, end = 0L;
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			// growth info
@@ -45,12 +43,30 @@ public class GrowthListParser implements IParser {
 				GrowthImage gimg = new GrowthImage(cid, growth_id, imgId, img);
 				images.add(gimg);
 			}
+			// comments
+			JSONArray commentsJson = obj.getJSONArray("comments");
+			List<Comment> comments = new ArrayList<Comment>();
+			for (int j = 0; j < commentsJson.length(); j++) {
+				JSONObject obj2 = (JSONObject) commentsJson.opt(j);
+				int comment_id = obj2.getInt("comment_id");
+				int publisher_id = obj2.getInt("publisher_id");
+				String comment_time = obj2.getString("comment_time");
+				String comment_content = obj2.getString("comment_content");
+				Comment comment = new Comment();
+				comment.setComment_content(comment_content);
+				comment.setComment_id(comment_id);
+				comment.setComment_time(comment_time);
+				comment.setPublisher_id(publisher_id);
+				comment.setGrowth_id(growth_id);
+				comments.add(comment);
 
+			}
 			Growth growth = new Growth();
 			growth.setCid(cid);
 			growth.setContent(content);
 			growth.setGrowth_id(growth_id);
 			growth.setImages(images);
+			growth.setComments(comments);
 			growth.setPublished(published);
 			growth.setPublisher_id(publisher);
 			growths.add(growth);

@@ -2,14 +2,18 @@ package com.interestfriend.data;
 
 import java.util.HashMap;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 
-public class Comment {
+public class Comment extends AbstractData {
 	private final String COMMENT_API = "CommentServlet";
 
 	private int comment_id;
@@ -58,6 +62,12 @@ public class Comment {
 		this.comment_time = comment_time;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "comment_content:" + this.comment_content;
+	}
+
 	public RetError sendComment() {
 		IParser parser = new SimpleParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -72,4 +82,16 @@ public class Comment {
 
 	}
 
+	@Override
+	public void write(SQLiteDatabase db) {
+		String dbName = Const.COMMENT_TABLE_NAME;
+		ContentValues cv = new ContentValues();
+		cv.put("growth_id", this.growth_id);
+		cv.put("comment_id", this.comment_id);
+		cv.put("publisher_id", this.publisher_id);
+		cv.put("comment_time", this.comment_time);
+		cv.put("comment_content", this.comment_content);
+		db.insert(dbName, null, cv);
+
+	}
 }

@@ -1,5 +1,8 @@
 package com.interestfriend.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +10,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.adapter.CommentAdapter;
 import com.interestfriend.adapter.GrowthImgAdapter;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
@@ -19,7 +24,9 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.SendCommentTask;
+import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.ExpandGridView;
@@ -35,10 +42,14 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 	private TextView txt_title;
 	private Button btn_comment;
 	private EditText edit_comment;
+	private ListView mListView;
 
 	private Growth growth;
 
 	private Dialog dialog;
+
+	private CommentAdapter adapter;
+	private List<Comment> comments = new ArrayList<Comment>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +71,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 		img_grid_view = (ExpandGridView) findViewById(R.id.imgGridview);
 		btn_comment = (Button) findViewById(R.id.btn_comment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
+		mListView = (ListView) findViewById(R.id.listView1);
 		setListener();
 	}
 
@@ -108,6 +120,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 		UniversalImageLoadTool.disPlay(member.getUser_avatar(), img_avatar,
 				R.drawable.default_avatar);
 		txt_user_name.setText(member.getUser_name());
+		comments = growth.getComments();
+		adapter = new CommentAdapter(this, comments);
+		mListView.setAdapter(adapter);
 	}
 
 	@Override
@@ -131,9 +146,11 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 	private void sendComment(String content) {
 		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();
-		Comment comment = new Comment();
+		final Comment comment = new Comment();
 		comment.setComment_content(content);
 		comment.setGrowth_id(growth.getGrowth_id());
+		comment.setComment_time(DateUtils.getGrowthShowTime());
+		comment.setPublisher_id(SharedUtils.getIntUid());
 		SendCommentTask task = new SendCommentTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
@@ -146,7 +163,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 					return;
 				}
 				ToastUtil.showToast("ªÿ∏¥≥…π¶", Toast.LENGTH_SHORT);
-
+				comments.add(0, comment);
+				adapter.notifyDataSetChanged();
 			}
 		});
 		task.execute(comment);

@@ -59,6 +59,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 		db.execSQL("create table IF NOT EXISTS " + Const.VIDEO_TABLE_NAME
 				+ "( " + Const.VIDEO_TABLE_STRUCTURE + " )");
+
+		db.execSQL("create table IF NOT EXISTS " + Const.COMMENT_TABLE_NAME
+				+ "( " + Const.COMMENT_TABLE_STRUCTURE + " )");
 	}
 
 	@Override

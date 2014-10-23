@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.R.array;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -157,10 +158,57 @@ public class GrowthList extends AbstractData {
 					growth.setImages(images);
 				}
 				cursor2.close();
+
+				// read comment
+
+				List<Comment> comments = new ArrayList<Comment>();
+
+				Cursor cursor3 = db.query(Const.COMMENT_TABLE_NAME,
+						new String[] { "comment_id", "comment_time",
+								"comment_content", "publisher_id" },
+						"growth_id=?", new String[] { growth_id + "" }, null,
+						null, null);
+				if (cursor3.getCount() > 0) {
+					cursor3.moveToFirst();
+					for (int i = 0; i < cursor3.getCount(); i++) {
+						int comment_id = cursor3.getInt(cursor3
+								.getColumnIndex("comment_id"));
+						String comment_time = cursor3.getString(cursor3
+								.getColumnIndex("comment_time"));
+						String comment_content = cursor3.getString(cursor3
+								.getColumnIndex("comment_content"));
+						int publisher_id = cursor3.getInt(cursor3
+								.getColumnIndex("publisher_id"));
+						Comment comment = new Comment();
+						comment.setComment_content(comment_content);
+						comment.setComment_id(comment_id);
+						comment.setComment_time(comment_time);
+						comment.setPublisher_id(publisher_id);
+						comments.add(comment);
+						cursor3.moveToNext();
+					}
+					sortComment(comments);
+					growth.setComments(comments);
+					int index = comments.size() > 2 ? 2 : comments.size();
+					for (int i = 0; i < index; i++) {
+						growth.getCommentsListView().add(comments.get(index));
+					}
+				}
+				cursor3.close();
 				growths.add(growth);
 				cursor.moveToNext();
 			}
 			cursor.close();
 		}
+	}
+
+	public void sortComment(List<Comment> comments) {
+		Collections.sort(comments, new Comparator<Comment>() {
+			@Override
+			public int compare(Comment lhs, Comment rhs) {
+				return rhs.getComment_time().compareTo(lhs.getComment_time());
+			}
+		});
+
 	}
 }
