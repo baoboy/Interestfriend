@@ -167,6 +167,7 @@ public class GrowthAdapter extends BaseAdapter {
 			case R.id.btn_comment:
 				Intent intent = new Intent();
 				intent.putExtra("growth", lists.get(position));
+				intent.putExtra("position", position);
 				intent.setClass(mContext, CommentActivity.class);
 				mContext.startActivity(intent);
 				Utils.leftOutRightIn(mContext);
