@@ -59,8 +59,8 @@
                 android:layout_below="@+id/txt_content"
                 android:layout_gravity="left"
                 android:adjustViewBounds="true"
-                android:maxHeight="300dip"
-                android:maxWidth="300dip"
+                android:maxHeight="200dip"
+                android:maxWidth="200dip"
                 android:scaleType="fitXY"
                 android:visibility="gone" />
 
