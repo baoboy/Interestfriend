@@ -32,7 +32,8 @@ public class GrowthListParser implements IParser {
 			int publisher = obj.getInt("publisher_id");
 			String content = obj.getString("content");
 			String published = obj.getString("time");
-
+			String publisher_name = obj.getString("publisher_name");
+			String publisher_avatar = obj.getString("publisher_avatar");
 			// growth images
 			JSONArray jsonImages = obj.getJSONArray("images");
 			List<GrowthImage> images = new ArrayList<GrowthImage>();
@@ -52,12 +53,16 @@ public class GrowthListParser implements IParser {
 				int publisher_id = obj2.getInt("publisher_id");
 				String comment_time = obj2.getString("comment_time");
 				String comment_content = obj2.getString("comment_content");
+				publisher_name = obj.getString("publisher_name");
+				publisher_avatar = obj.getString("publisher_avatar");
 				Comment comment = new Comment();
 				comment.setComment_content(comment_content);
 				comment.setComment_id(comment_id);
 				comment.setComment_time(comment_time);
 				comment.setPublisher_id(publisher_id);
 				comment.setGrowth_id(growth_id);
+				comment.setPublisher_avatar(publisher_avatar);
+				comment.setPublisher_name(publisher_name);
 				comments.add(comment);
 
 			}
@@ -69,10 +74,11 @@ public class GrowthListParser implements IParser {
 			growth.setComments(comments);
 			growth.setPublished(published);
 			growth.setPublisher_id(publisher);
+			growth.setPublisher_avatar(publisher_avatar);
+			growth.setPublisher_name(publisher_name);
 			growths.add(growth);
 
 		}
-
 		GrowthList gl = new GrowthList(cid);
 		gl.setGrowths(growths);
 		Result ret = new Result();

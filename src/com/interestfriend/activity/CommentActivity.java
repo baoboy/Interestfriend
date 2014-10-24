@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.SendCommentTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
@@ -51,11 +53,14 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 	private CommentAdapter adapter;
 	private List<Comment> comments = new ArrayList<Comment>();
 
+	private int position;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comment);
 		growth = (Growth) getIntent().getSerializableExtra("growth");
+		position = getIntent().getIntExtra("position", 0);
 		initView();
 		setValue();
 	}
@@ -151,6 +156,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 		comment.setGrowth_id(growth.getGrowth_id());
 		comment.setComment_time(DateUtils.getGrowthShowTime());
 		comment.setPublisher_id(SharedUtils.getIntUid());
+		comment.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
+		comment.setPublisher_name(SharedUtils.getAPPUserName());
 		SendCommentTask task = new SendCommentTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
@@ -165,6 +172,11 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);
 				comments.add(0, comment);
 				adapter.notifyDataSetChanged();
+				Intent intent = new Intent();
+				intent.putExtra("position", position);
+				intent.putExtra("comment", comment);
+				intent.setAction(Constants.COMMENT_GROWTH);
+				sendBroadcast(intent);
 			}
 		});
 		task.execute(comment);

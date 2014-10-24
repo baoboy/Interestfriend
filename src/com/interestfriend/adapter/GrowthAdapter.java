@@ -29,6 +29,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
+import com.interestfriend.view.ScrollOverListView;
 
 public class GrowthAdapter extends BaseAdapter {
 	private List<Growth> lists;
@@ -72,12 +73,8 @@ public class GrowthAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
+		Growth growth = lists.get(position);
 		int direct = lists.get(position).getDirect();
-		CircleMember member = new CircleMember();
-		member.setUser_id(lists.get(position).getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
-		System.out.println("id:::::::::::::::;"
-				+ lists.get(position).getPublisher_id());
 		if (contentView == null) {
 			holder = new ViewHolder();
 			contentView = createView(direct);
@@ -137,9 +134,9 @@ public class GrowthAdapter extends BaseAdapter {
 
 		}
 		holder.txt_time.setText(lists.get(position).getPublished());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
-		holder.txt_user_name.setText(member.getUser_name());
+		holder.txt_user_name.setText(growth.getPublisher_name());
 		holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
 				lists.get(position).getCommentsListView()));
 		return contentView;

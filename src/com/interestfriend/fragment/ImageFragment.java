@@ -5,6 +5,10 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,13 +22,16 @@ import android.widget.Toast;
 import com.interestfriend.R;
 import com.interestfriend.adapter.GrowthAdapter;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthList;
+import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetGrowthFormDBTask;
 import com.interestfriend.task.GetGrowthListTask;
 import com.interestfriend.task.UpLoadGrowthTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.view.PullDownView;
@@ -57,6 +64,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		setValue();
 		glist = new GrowthList(MyApplation.getCircle_id());
 		getGrowthFromDB();
+		registerBoradcastReceiver();
 	}
 
 	private void initView() {
@@ -90,6 +98,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 			@Override
 			public void taskFinish(RetError result) {
 				lists.addAll(glist.getGrowths());
+				adapter.notifyDataSetChanged();
 				if (lists.size() == 0) {
 					getGrowthFromServer();
 				} else {
@@ -103,7 +112,6 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 
 					}
 				}
-				adapter.notifyDataSetChanged();
 
 			}
 		});
@@ -144,6 +152,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		lists.add(0, growth);
 		glist.getGrowths().add(0, growth);
 		adapter.notifyDataSetChanged();
+		growth_listView.setSelection(0);
 		upLoadGrowth(growth);
 	}
 
@@ -180,4 +189,41 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		glist.setRefushTime(lists.get(lists.size() - 1).getPublished());
 		getGrowthFromServer();
 	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.COMMENT_GROWTH);
+
+		// 注册广播
+		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.COMMENT_GROWTH)) {
+				Comment coment = (Comment) intent
+						.getSerializableExtra("commeent");
+				int position = intent.getIntExtra("position", -1);
+				List<Comment> commentsListView = lists.get(position)
+						.getCommentsListView();
+				if (commentsListView.size() > 0) {
+					commentsListView.remove(0);
+				}
+				commentsListView.add(0, coment);
+
+			}
+		}
+	};
+
+	public void onDestroy() {
+		super.onDestroy();
+	};
 }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.interestfriend.R;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.view.ScrollOverListView;
 
 public class GrowthImgAdapter extends BaseAdapter {
 	private Context mContext;

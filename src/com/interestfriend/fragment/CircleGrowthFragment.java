@@ -173,6 +173,8 @@ public class CircleGrowthFragment extends Fragment implements
 			growth.setPublisher_id(SharedUtils.getIntUid());
 			growth.setCid(MyApplation.getCircle_id());
 			growth.setPublished(DateUtils.getGrowthShowTime());
+			growth.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
+			growth.setPublisher_name(SharedUtils.getAPPUserName());
 			imgFragment.refushAdapter(growth);
 		} else if (requestCode == ChatActivity.REQUEST_CODE_SELECT_VIDEO) {
 			int duration = data.getIntExtra("dur", 0);

@@ -524,14 +524,14 @@ public class GroupChatAdapter extends BaseAdapter {
 			// "it is receive msg";
 			if (message.status == EMMessage.Status.INPROGRESS) {
 				// "!!!! back receive";
-				holder.iv.setImageResource(R.drawable.default_image);
+				holder.iv.setImageResource(R.drawable.empty_photo);
 				showDownloadImageProgress(message, holder);
 				// downloadImage(message, holder);
 			} else {
 				// "!!!! not back receive, show image directly");
 				holder.pb.setVisibility(View.GONE);
 				holder.tv.setVisibility(View.GONE);
-				holder.iv.setImageResource(R.drawable.default_image);
+				holder.iv.setImageResource(R.drawable.empty_photo);
 				ImageMessageBody imgBody = (ImageMessageBody) message.getBody();
 				if (imgBody.getLocalUrl() != null) {
 					// String filePath = imgBody.getLocalUrl();
@@ -663,12 +663,12 @@ public class GroupChatAdapter extends BaseAdapter {
 			// System.err.println("it is receive msg");
 			if (message.status == EMMessage.Status.INPROGRESS) {
 				// System.err.println("!!!! back receive");
-				holder.iv.setImageResource(R.drawable.default_image);
+				holder.iv.setImageResource(R.drawable.empty_photo);
 				showDownloadImageProgress(message, holder);
 
 			} else {
 				// System.err.println("!!!! not back receive, show image directly");
-				holder.iv.setImageResource(R.drawable.default_image);
+				holder.iv.setImageResource(R.drawable.empty_photo);
 				if (localThumb != null) {
 					showVideoThumbView(localThumb, holder.iv,
 							videoBody.getThumbnailUrl(), message);

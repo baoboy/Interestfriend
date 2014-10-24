@@ -13,14 +13,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
-import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
-import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
-import com.interestfriend.parser.MapParser;
-import com.interestfriend.parser.SimpleParser;
-import com.interestfriend.parser.StringParser;
 import com.interestfriend.parser.UploadGrowthParser;
 import com.interestfriend.utils.BitmapUtils;
 
@@ -37,12 +32,30 @@ public class Growth extends AbstractData implements Serializable {
 	private String content = "";// 内容
 	private String location = "";// 发布地点
 	private String published = ""; // 发布时间
+	private String publisher_name = "";
+	private String publisher_avatar = "";
 	private List<GrowthImage> images = new ArrayList<GrowthImage>();
 	private List<Comment> comments = new ArrayList<Comment>();
 	private String tag = "";
 	private List<Comment> commentsListView = new ArrayList<Comment>();
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 正常 2 video
+
+	public String getPublisher_name() {
+		return publisher_name;
+	}
+
+	public void setPublisher_name(String publisher_name) {
+		this.publisher_name = publisher_name;
+	}
+
+	public String getPublisher_avatar() {
+		return publisher_avatar;
+	}
+
+	public void setPublisher_avatar(String publisher_avatar) {
+		this.publisher_avatar = publisher_avatar;
+	}
 
 	public List<Comment> getCommentsListView() {
 		return commentsListView;
@@ -192,6 +205,8 @@ public class Growth extends AbstractData implements Serializable {
 		cv.put("publisher_id", this.publisher_id);
 		cv.put("content", this.content);
 		cv.put("time", this.published);
+		cv.put("publisher_name", this.publisher_name);
+		cv.put("publisher_avatar", this.publisher_avatar);
 		db.insert(dbName, null, cv);
 		for (GrowthImage img : this.images) {
 			img.write(db);

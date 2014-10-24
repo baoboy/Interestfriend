@@ -21,6 +21,24 @@ public class Comment extends AbstractData {
 	private int publisher_id;
 	private String comment_content = "";
 	private String comment_time = "";
+	private String publisher_name = "";
+	private String publisher_avatar = "";
+
+	public String getPublisher_name() {
+		return publisher_name;
+	}
+
+	public void setPublisher_name(String publisher_name) {
+		this.publisher_name = publisher_name;
+	}
+
+	public String getPublisher_avatar() {
+		return publisher_avatar;
+	}
+
+	public void setPublisher_avatar(String publisher_avatar) {
+		this.publisher_avatar = publisher_avatar;
+	}
 
 	public int getPublisher_id() {
 		return publisher_id;
@@ -91,6 +109,8 @@ public class Comment extends AbstractData {
 		cv.put("publisher_id", this.publisher_id);
 		cv.put("comment_time", this.comment_time);
 		cv.put("comment_content", this.comment_content);
+		cv.put("publisher_name", this.publisher_name);
+		cv.put("publisher_avatar", this.publisher_avatar);
 		db.insert(dbName, null, cv);
 
 	}
