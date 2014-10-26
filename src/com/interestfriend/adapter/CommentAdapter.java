@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.interestfriend.R;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
-import com.interestfriend.db.DBUtils;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
 
@@ -44,6 +44,7 @@ public class CommentAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
+		Comment comment = list.get(position);
 		if (contentView == null) {
 			contentView = LayoutInflater.from(mContext).inflate(
 					R.layout.comment_item, null);
@@ -60,15 +61,19 @@ public class CommentAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
-		CircleMember member = new CircleMember();
-		member.setUser_id(list.get(position).getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
-		holder.txt_user_name.setText(member.getUser_name());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+
+		holder.txt_user_name.setText(list.get(position).getPublisher_name());
+		UniversalImageLoadTool.disPlay(
+				list.get(position).getPublisher_avatar(),
 				holder.img_user_avatar, R.drawable.picture_default_head);
 		holder.txt_comment_content.setText(list.get(position)
 				.getComment_content());
 		holder.txt_time.setText(list.get(position).getComment_time());
+		if (comment.getPublisher_id() == SharedUtils.getIntUid()) {
+			holder.txt_comment_content.setTextColor(Color.rgb(55, 182, 105));
+		} else {
+			holder.txt_comment_content.setTextColor(Color.BLACK);
+		}
 		return contentView;
 	}
 

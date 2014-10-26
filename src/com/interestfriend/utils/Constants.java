@@ -13,6 +13,8 @@ public class Constants {
 	public static final String UPDATE_USER_INFO = "com.interestfriend.update.uer_info";
 	public static final String UPDATE_USER_AVATAR = "com.interestfriend.update.uer_avatar";
 	public static final String UPDATE_USER_NAME = "com.interestfriend.update.uer_name";
+	public static final String COMMENT_GROWTH = "com.interestfriend.comment_growth";
+	public static final String COMMENT_VIDEO = "com.interestfriend.comment_video";
 
 	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;// —°‘ÒÕº∆¨
 	public static final int REQUEST_CODE_GETIMAGE_BYCAMERA = 1;// ≈ƒ’’

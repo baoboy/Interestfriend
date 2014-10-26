@@ -114,11 +114,23 @@
                 </FrameLayout>
             </LinearLayout>
 
+            <com.interestfriend.view.ScrollViewWithListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 android:layout_below="@+id/ll_click_area"
+                android:background="@color/white"
+                android:cacheColorHint="#00000000"
+                android:divider="#d5d5d5"
+                android:dividerHeight="0.5dip"
+                android:listSelector="#00000000"
+                android:scrollbars="none" />
+
             <View
                 android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dip"
-                android:layout_below="@+id/ll_click_area"
+                android:layout_below="@+id/listView1"
                 android:background="#EDEDED" />
 
             <LinearLayout
@@ -129,14 +141,15 @@
 
                 <com.interestfriend.view.DrawableCenterTextView
                     android:id="@+id/btn_comment"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/icon_comment"
                     android:drawablePadding="3dip"
                     android:padding="5dip"
                     android:text="回复"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
             </LinearLayout>
         </RelativeLayout>
 

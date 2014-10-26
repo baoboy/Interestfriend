@@ -199,6 +199,10 @@
             android:name="com.interestfriend.activity.CommentActivity"
             android:label="@string/title_activity_comment" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.VideoCommentActivity"
+            android:label="@string/title_activity_video_comment" >
+        </activity>
     </application>
 
 </manifest>

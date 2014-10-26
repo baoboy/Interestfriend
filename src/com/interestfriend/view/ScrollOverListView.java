@@ -18,13 +18,14 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.utils.DateUtils;
+import com.interestfriend.utils.UniversalImageLoadTool;
 
 public class ScrollOverListView extends ListView implements OnScrollListener {
 
 	private int mLastY;
 
 	private int mBottomPosition;
-
+	public static boolean isScroll = false;
 	private static final String TAG = "listview";
 
 	/** 松开更新 **/
@@ -109,7 +110,6 @@ public class ScrollOverListView extends ListView implements OnScrollListener {
 
 		/** 列表添加头部 **/
 		addHeaderView(headView, null, false);
-
 		setOnScrollListener(this);
 
 		animation = new RotateAnimation(0, -180,
@@ -436,7 +436,13 @@ public class ScrollOverListView extends ListView implements OnScrollListener {
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+		if (OnScrollListener.SCROLL_STATE_IDLE == scrollState) {
+			isScroll = false;
+			UniversalImageLoadTool.resume();
+		} else {
+			isScroll = true;
+			UniversalImageLoadTool.pause();
+		}
 	}
 
 	// 此方法直接照搬自网络上的一个下拉刷新的demo，此处是“估计”headView的width以及height

@@ -21,7 +21,6 @@ import com.easemob.chat.EMChatConfig;
 import com.easemob.chat.EMChatManager;
 import com.easemob.cloud.CloudOperationCallback;
 import com.easemob.cloud.HttpFileManager;
-import com.easemob.util.PathUtil;
 import com.interestfriend.R;
 import com.interestfriend.utils.FileUtils;
 

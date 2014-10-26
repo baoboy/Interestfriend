@@ -20,10 +20,8 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.CommentActivity;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -72,12 +70,8 @@ public class GrowthAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
+		Growth growth = lists.get(position);
 		int direct = lists.get(position).getDirect();
-		CircleMember member = new CircleMember();
-		member.setUser_id(lists.get(position).getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
-		System.out.println("id:::::::::::::::;"
-				+ lists.get(position).getPublisher_id());
 		if (contentView == null) {
 			holder = new ViewHolder();
 			contentView = createView(direct);
@@ -96,11 +90,18 @@ public class GrowthAdapter extends BaseAdapter {
 					.findViewById(R.id.btn_comment);
 			holder.mListView = (ListView) contentView
 					.findViewById(R.id.listView1);
+			holder.line2 = (View) contentView.findViewById(R.id.line2);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		holder.btn_comment.setOnClickListener(new Onclick(position));
+		if (growth.getComments().size() > 0) {
+			holder.btn_comment.setText("»Ø¸´(" + growth.getComments().size()
+					+ ")");
+		} else {
+			holder.btn_comment.setText("»Ø¸´");
+		}
 		int imageSize = lists.get(position).getImages().size();
 		if (imageSize > 1) {
 			if (imageSize > 2) {
@@ -137,11 +138,16 @@ public class GrowthAdapter extends BaseAdapter {
 
 		}
 		holder.txt_time.setText(lists.get(position).getPublished());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
-		holder.txt_user_name.setText(member.getUser_name());
+		holder.txt_user_name.setText(growth.getPublisher_name());
 		holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
 				lists.get(position).getCommentsListView()));
+		if (growth.getCommentsListView().size() > 0) {
+			holder.line2.setVisibility(View.VISIBLE);
+		} else {
+			holder.line2.setVisibility(View.GONE);
+		}
 		return contentView;
 	}
 
@@ -154,7 +160,7 @@ public class GrowthAdapter extends BaseAdapter {
 		ImageView img;
 		ExpandGridView img_grid_view;
 		ListView mListView;
-
+		View line2;
 	}
 
 	class Onclick implements OnClickListener {
@@ -170,6 +176,7 @@ public class GrowthAdapter extends BaseAdapter {
 			case R.id.btn_comment:
 				Intent intent = new Intent();
 				intent.putExtra("growth", lists.get(position));
+				intent.putExtra("position", position);
 				intent.setClass(mContext, CommentActivity.class);
 				mContext.startActivity(intent);
 				Utils.leftOutRightIn(mContext);

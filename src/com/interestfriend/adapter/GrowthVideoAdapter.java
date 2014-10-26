@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,10 +19,10 @@ import com.easemob.util.DateUtils;
 import com.easemob.util.TextFormater;
 import com.interestfriend.R;
 import com.interestfriend.activity.ShowVideoActivity;
-import com.interestfriend.data.CircleMember;
+import com.interestfriend.activity.VideoCommentActivity;
 import com.interestfriend.data.Video;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class GrowthVideoAdapter extends BaseAdapter {
 	private List<Video> lists;
@@ -66,10 +67,8 @@ public class GrowthVideoAdapter extends BaseAdapter {
 	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
 		int direct = lists.get(position).getDirect();
-		CircleMember member = new CircleMember();
-		member.setCircle_id(lists.get(position).getCid());
-		member.setUser_id(lists.get(position).getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
+		Video video = lists.get(position);
+
 		if (contentView == null) {
 			holder = new ViewHolder();
 			contentView = createView(direct);
@@ -92,11 +91,22 @@ public class GrowthVideoAdapter extends BaseAdapter {
 					.findViewById(R.id.img_avatar);
 			holder.txt_time = (TextView) contentView
 					.findViewById(R.id.txt_time);
+			holder.btn_comment = (TextView) contentView
+					.findViewById(R.id.btn_comment);
+			holder.mListView = (ListView) contentView
+					.findViewById(R.id.listView1);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+		holder.btn_comment.setOnClickListener(new Onclick(position));
+		if (video.getComments().size() > 0) {
+			holder.btn_comment
+					.setText("»Ø¸´(" + video.getComments().size() + ")");
+		} else {
+			holder.btn_comment.setText("»Ø¸´");
+		}
+		UniversalImageLoadTool.disPlay(video.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
 		String content = lists.get(position).getVideo_txt_content();
 		if ("".equals(content)) {
@@ -105,7 +115,7 @@ public class GrowthVideoAdapter extends BaseAdapter {
 			holder.txt_context.setVisibility(View.VISIBLE);
 			holder.txt_context.setText(content);
 		}
-		holder.txt_user_name.setText(member.getUser_name());
+		holder.txt_user_name.setText(video.getPublisher_name());
 		holder.video_timeLength.setText(DateUtils.toTime(lists.get(position)
 				.getVideo_duration()));
 		holder.video_size.setText(TextFormater.getDataSize(Long.valueOf(lists
@@ -128,7 +138,6 @@ public class GrowthVideoAdapter extends BaseAdapter {
 				if (path.startsWith("http")) {
 					intent.putExtra("remotepath", path);
 					intent.putExtra("localpath", "");
-
 				} else {
 					intent.putExtra("localpath", path);
 					intent.putExtra("remotepath", "");
@@ -137,7 +146,8 @@ public class GrowthVideoAdapter extends BaseAdapter {
 				mContext.startActivity(intent);
 			}
 		});
-
+		holder.mListView.setAdapter(new VideoListCommentAdapter(mContext, lists
+				.get(position).getCommentsListView()));
 		return contentView;
 	}
 
@@ -153,7 +163,34 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		LinearLayout ll_container;
 		ImageView iv;
 		ProgressBar pg;
+		TextView btn_comment;
+		ListView mListView;
 
 	}
 
+	class Onclick implements OnClickListener {
+		int position;
+
+		public Onclick(int position) {
+			this.position = position;
+		}
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.btn_comment:
+				Intent intent = new Intent();
+				intent.putExtra("video", lists.get(position));
+				intent.putExtra("position", position);
+				intent.setClass(mContext, VideoCommentActivity.class);
+				mContext.startActivity(intent);
+				Utils.leftOutRightIn(mContext);
+				break;
+			default:
+				break;
+			}
+
+		}
+
+	}
 }

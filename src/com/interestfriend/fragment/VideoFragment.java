@@ -8,8 +8,10 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.AsyncQueryHandler;
-import android.content.ContentResolver;
-import android.database.Cursor;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,13 +25,16 @@ import android.widget.Toast;
 import com.interestfriend.R;
 import com.interestfriend.adapter.GrowthVideoAdapter;
 import com.interestfriend.applation.MyApplation;
-import com.interestfriend.contentprovider.MyCircleVideoProvider;
 import com.interestfriend.data.Video;
+import com.interestfriend.data.VideoComment;
 import com.interestfriend.data.VideoList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.GetVideoFromDBTask;
 import com.interestfriend.task.GetVideoListTask;
 import com.interestfriend.task.UpLoadVideoTask;
+import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.view.PullDownView;
 import com.interestfriend.view.PullDownView.OnPullDownListener;
@@ -61,6 +66,7 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 		list = new VideoList(MyApplation.getCircle_id());
 		initView();
 		setValue();
+		registerBoradcastReceiver();
 		// getVideoFromServer();
 	}
 
@@ -77,7 +83,8 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 		adapter = new GrowthVideoAdapter(getActivity(), lists);
 		growth_listView.setAdapter(adapter);
 		mPullDownView.addFooterView();
-		initQuery();
+		getVideoFromDB();
+		// initQuery();
 	}
 
 	private void setListener() {
@@ -87,73 +94,105 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 
 	}
 
-	private void initQuery() {
-		asyncQuery = new MyAsyncQueryHandler(getActivity().getContentResolver());
-		String[] projection = { MyCircleVideoProvider.MyCircleVideoColumns.CID,
-				MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_ID,
-				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_DURATION,
-				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_ID,
-				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_IMG,
-				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_PATH,
-				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_SIZE,
-				MyCircleVideoProvider.MyCircleVideoColumns.TIME }; // 查询的列
-		asyncQuery.startQuery(0, null,
-				MyCircleVideoProvider.MyCircleVideoColumns.CONTENT_URI,
-				projection, MyCircleVideoProvider.MyCircleVideoColumns.CID
-						+ "=?",
-				new String[] { MyApplation.getCircle_id() + "" }, null);
+	private void getVideoFromDB() {
+		dialog = DialogUtil.createLoadingDialog(getActivity(), "请稍候");
+		dialog.show();
+		GetVideoFromDBTask task = new GetVideoFromDBTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				lists.addAll(list.getVideos());
+				adapter.notifyDataSetChanged();
+				if (lists.size() == 0) {
+					getVideoFromServer();
+				} else {
+					if (dialog != null) {
+						dialog.dismiss();
+					}
+					if (lists.size() > 19) {
+						mPullDownView.setFooterVisible(true);
+					} else {
+						mPullDownView.setFooterVisible(false);
+
+					}
+				}
+
+			}
+		});
+		task.execute(list);
 	}
+
+	// private void initQuery() {
+	// asyncQuery = new MyAsyncQueryHandler(getActivity().getContentResolver());
+	// String[] projection = { MyCircleVideoProvider.MyCircleVideoColumns.CID,
+	// MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_ID,
+	// MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_DURATION,
+	// MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_ID,
+	// MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_IMG,
+	// MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_PATH,
+	// MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_SIZE,
+	// MyCircleVideoProvider.MyCircleVideoColumns.TIME,
+	// MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_AVATAR,
+	// MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_NAME }; // 查询的列
+	// asyncQuery.startQuery(0, null,
+	// MyCircleVideoProvider.MyCircleVideoColumns.CONTENT_URI,
+	// projection, MyCircleVideoProvider.MyCircleVideoColumns.CID
+	// + "=?",
+	// new String[] { MyApplation.getCircle_id() + "" }, null);
+	// }
 
 	/**
 	 * 数据库异步查询类AsyncQueryHandler
 	 * 
 	 * 
 	 */
-	private class MyAsyncQueryHandler extends AsyncQueryHandler {
-		public MyAsyncQueryHandler(ContentResolver cr) {
-			super(cr);
-		}
-
-		/**
-		 * 查询结束的回调函数
-		 */
-		@Override
-		protected void onQueryComplete(int token, Object cookie,
-				final Cursor cursor) {
-			if (cursor == null) {
-				return;
-			}
-			if (cursor.getCount() > 0) {
-				cursor.moveToFirst();
-				for (int i = 0; i < cursor.getCount(); i++) {
-					Video video = new Video();
-					video.setCid(cursor.getInt(0));
-					video.setPublisher_id(cursor.getInt(1));
-					video.setVideo_duration(cursor.getInt(2));
-					video.setVideo_id(cursor.getInt(3));
-					video.setVideo_img(cursor.getString(4));
-					video.setVideo_path(cursor.getString(5));
-					video.setVideo_size(cursor.getInt(6));
-					video.setTime(cursor.getString(7));
-					lists.add(video);
-					cursor.moveToNext();
-				}
-				sort();
-				adapter.notifyDataSetChanged();
-				if (lists.size() > 19) {
-					mPullDownView.setFooterVisible(true);
-				} else {
-					mPullDownView.setFooterVisible(false);
-
-				}
-			} else {
-				// dialog = DialogUtil.createLoadingDialog(getActivity(),
-				// "请稍候");
-				// dialog.show();
-				getVideoFromServer();
-			}
-		}
-	}
+	// private class MyAsyncQueryHandler extends AsyncQueryHandler {
+	// public MyAsyncQueryHandler(ContentResolver cr) {
+	// super(cr);
+	// }
+	//
+	// /**
+	// * 查询结束的回调函数
+	// */
+	// @Override
+	// protected void onQueryComplete(int token, Object cookie,
+	// final Cursor cursor) {
+	// if (cursor == null) {
+	// return;
+	// }
+	// if (cursor.getCount() > 0) {
+	// cursor.moveToFirst();
+	// for (int i = 0; i < cursor.getCount(); i++) {
+	// Video video = new Video();
+	// video.setCid(cursor.getInt(0));
+	// video.setPublisher_id(cursor.getInt(1));
+	// video.setVideo_duration(cursor.getInt(2));
+	// video.setVideo_id(cursor.getInt(3));
+	// video.setVideo_img(cursor.getString(4));
+	// video.setVideo_path(cursor.getString(5));
+	// video.setVideo_size(cursor.getInt(6));
+	// video.setTime(cursor.getString(7));
+	// video.setPublisher_avatar(cursor.getString(8));
+	// video.setPublisher_name(cursor.getString(9));
+	// lists.add(video);
+	// cursor.moveToNext();
+	// }
+	// sort();
+	// adapter.notifyDataSetChanged();
+	// if (lists.size() > 19) {
+	// mPullDownView.setFooterVisible(true);
+	// } else {
+	// mPullDownView.setFooterVisible(false);
+	//
+	// }
+	// } else {
+	// // dialog = DialogUtil.createLoadingDialog(getActivity(),
+	// // "请稍候");
+	// // dialog.show();
+	// getVideoFromServer();
+	// }
+	// }
+	// }
 
 	private void sort() {
 		Collections.sort(lists, new Comparator<Video>() {
@@ -236,4 +275,42 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 		list.setRefushTime(lists.get(lists.size() - 1).getTime());
 		getVideoFromServer();
 	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.COMMENT_VIDEO);
+
+		// 注册广播
+		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.COMMENT_VIDEO)) {
+				VideoComment coment = (VideoComment) intent
+						.getSerializableExtra("comment");
+				int position = intent.getIntExtra("position", -1);
+				List<VideoComment> commentsListView = lists.get(position)
+						.getCommentsListView();
+				if (commentsListView.size() > 1) {
+					commentsListView.remove(0);
+				}
+				commentsListView.add(0, coment);
+				lists.get(position).getComments().add(0, coment);
+				adapter.notifyDataSetChanged();
+			}
+		}
+	};
+
+	public void onDestroy() {
+		super.onDestroy();
+	};
 }

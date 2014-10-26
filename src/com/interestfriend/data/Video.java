@@ -2,7 +2,9 @@ package com.interestfriend.data;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +32,42 @@ public class Video extends AbstractData implements Serializable {
 	int video_id;
 	private String video_txt_content = "";
 	private String time = "";
+	private String publisher_name = "";
+	private String publisher_avatar = "";
+	private List<VideoComment> comments = new ArrayList<VideoComment>();
+	private List<VideoComment> commentsListView = new ArrayList<VideoComment>();
+
+	public List<VideoComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<VideoComment> comments) {
+		this.comments = comments;
+	}
+
+	public List<VideoComment> getCommentsListView() {
+		return commentsListView;
+	}
+
+	public void setCommentsListView(List<VideoComment> commentsListView) {
+		this.commentsListView = commentsListView;
+	}
+
+	public String getPublisher_name() {
+		return publisher_name;
+	}
+
+	public void setPublisher_name(String publisher_name) {
+		this.publisher_name = publisher_name;
+	}
+
+	public String getPublisher_avatar() {
+		return publisher_avatar;
+	}
+
+	public void setPublisher_avatar(String publisher_avatar) {
+		this.publisher_avatar = publisher_avatar;
+	}
 
 	public String getTime() {
 		return time;
@@ -143,6 +181,8 @@ public class Video extends AbstractData implements Serializable {
 		cv.put("video_path", this.video_path);
 		cv.put("publisher_id", this.publisher_id);
 		cv.put("time", time);
+		cv.put("publisher_name", this.publisher_name);
+		cv.put("publisher_avatar", this.publisher_avatar);
 		db.insert(dbName, null, cv);
 	}
 }

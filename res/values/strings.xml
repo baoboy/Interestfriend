@@ -97,5 +97,6 @@
     <string name="title_activity_update_user_info">UpdateUserInfoActivity</string>
     <string name="title_activity_circle_member">CircleMemberActivity</string>
     <string name="title_activity_comment">CommentActivity</string>
+    <string name="title_activity_video_comment">VideoCommentActivity</string>
 
 </resources>

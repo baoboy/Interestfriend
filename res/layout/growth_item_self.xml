@@ -76,11 +76,18 @@
                 android:visibility="visible" >
             </com.interestfriend.view.ExpandGridView>
 
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:layout_below="@+id/imgGridview"
+                android:background="#d5d5d5" />
+
             <com.interestfriend.view.ScrollViewWithListView
                 android:id="@+id/listView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/imgGridview"
+                android:layout_below="@+id/line2"
                 android:background="@color/white"
                 android:cacheColorHint="#00000000"
                 android:divider="#d5d5d5"
@@ -110,7 +117,8 @@
                     android:drawablePadding="3dip"
                     android:padding="5dip"
                     android:text="分享"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
 
                 <View
                     android:layout_width="0.5dip"
@@ -126,7 +134,8 @@
                     android:drawablePadding="3dip"
                     android:padding="5dip"
                     android:text="回复"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
             </LinearLayout>
         </RelativeLayout>
 

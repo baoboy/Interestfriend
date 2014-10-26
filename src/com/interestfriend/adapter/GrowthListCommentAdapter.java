@@ -11,9 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.interestfriend.R;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
 
@@ -60,11 +58,10 @@ public class GrowthListCommentAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
-		CircleMember member = new CircleMember();
-		member.setUser_id(list.get(position).getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
-		holder.txt_user_name.setText(member.getUser_name());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(),
+
+		holder.txt_user_name.setText(list.get(position).getPublisher_name());
+		UniversalImageLoadTool.disPlay(
+				list.get(position).getPublisher_avatar(),
 				holder.img_user_avatar, R.drawable.picture_default_head);
 		holder.txt_comment_content.setText(list.get(position)
 				.getComment_content());

@@ -36,6 +36,8 @@ public class VideoListParser implements IParser {
 			int video_size = obj.getInt("video_size");
 			int video_duration = obj.getInt("video_duration");
 			String time = obj.getString("time");
+			String publisher_name = obj.getString("publisher_name");
+			String publisher_avatar = obj.getString("publisher_avatar");
 			Video vd = new Video();
 			vd.setCid(cid);
 			vd.setPublisher_id(publisher);
@@ -45,6 +47,8 @@ public class VideoListParser implements IParser {
 			vd.setVideo_id(video_id);
 			vd.setVideo_duration(video_duration);
 			vd.setTime(time);
+			vd.setPublisher_avatar(publisher_avatar);
+			vd.setPublisher_name(publisher_name);
 			videos.add(vd);
 
 		}

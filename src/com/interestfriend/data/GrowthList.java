@@ -118,8 +118,9 @@ public class GrowthList extends AbstractData {
 	public void read(SQLiteDatabase db) {
 		// read growth basic info
 		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME, new String[] {
-				"cid", "growth_id", "content", "publisher_id", "time", }, null,
-				null, null, null, null);
+				"cid", "growth_id", "content", "publisher_id", "time",
+				"publisher_name", "publisher_avatar", }, null, null, null,
+				null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			for (int j = 0; j < cursor.getCount(); j++) {
@@ -130,6 +131,10 @@ public class GrowthList extends AbstractData {
 						.getColumnIndex("publisher_id"));
 				String content = cursor.getString(cursor
 						.getColumnIndex("content"));
+				String publisher_name = cursor.getString(cursor
+						.getColumnIndex("publisher_name"));
+				String publisher_avatar = cursor.getString(cursor
+						.getColumnIndex("publisher_avatar"));
 				String time = cursor.getString(cursor.getColumnIndex("time"));
 				Growth growth = new Growth();
 				growth.setCid(cid);
@@ -137,7 +142,8 @@ public class GrowthList extends AbstractData {
 				growth.setGrowth_id(growth_id);
 				growth.setPublished(time);
 				growth.setPublisher_id(publisher);
-
+				growth.setPublisher_avatar(publisher_avatar);
+				growth.setPublisher_name(publisher_name);
 				// read growth images
 				List<GrowthImage> images = new ArrayList<GrowthImage>();
 				Cursor cursor2 = db.query(Const.GROWTH_IMAGE_TABLE_NAME,
@@ -165,7 +171,8 @@ public class GrowthList extends AbstractData {
 
 				Cursor cursor3 = db.query(Const.COMMENT_TABLE_NAME,
 						new String[] { "comment_id", "comment_time",
-								"comment_content", "publisher_id" },
+								"comment_content", "publisher_id",
+								"publisher_name", "publisher_avatar" },
 						"growth_id=?", new String[] { growth_id + "" }, null,
 						null, null);
 				if (cursor3.getCount() > 0) {
@@ -179,9 +186,15 @@ public class GrowthList extends AbstractData {
 								.getColumnIndex("comment_content"));
 						int publisher_id = cursor3.getInt(cursor3
 								.getColumnIndex("publisher_id"));
+						publisher_name = cursor.getString(cursor
+								.getColumnIndex("publisher_name"));
+						publisher_avatar = cursor.getString(cursor
+								.getColumnIndex("publisher_avatar"));
 						Comment comment = new Comment();
 						comment.setComment_content(comment_content);
 						comment.setComment_id(comment_id);
+						comment.setPublisher_name(publisher_name);
+						comment.setPublisher_avatar(publisher_avatar);
 						comment.setComment_time(comment_time);
 						comment.setPublisher_id(publisher_id);
 						comments.add(comment);
@@ -191,7 +204,7 @@ public class GrowthList extends AbstractData {
 					growth.setComments(comments);
 					int index = comments.size() > 2 ? 2 : comments.size();
 					for (int i = 0; i < index; i++) {
-						growth.getCommentsListView().add(comments.get(index));
+						growth.getCommentsListView().add(comments.get(i));
 					}
 				}
 				cursor3.close();

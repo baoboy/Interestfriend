@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.fourmob.datetimepicker.Utils;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
@@ -143,5 +144,6 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		default:
 			break;
 		}
+		com.interestfriend.utils.Utils.leftOutRightIn(mContext);
 	}
 }

@@ -9,6 +9,7 @@
         layout="@layout/title_bar" />
 
     <ScrollView
+        android:id="@+id/layout_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/line1"
