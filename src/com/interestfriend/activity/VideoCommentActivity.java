@@ -6,8 +6,11 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,7 +35,7 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 
 public class VideoCommentActivity extends BaseActivity implements
-		OnClickListener {
+		OnClickListener, OnItemClickListener {
 	private ImageView img_avatar;
 	private TextView txt_time;
 	private TextView txt_user_name;
@@ -90,6 +93,7 @@ public class VideoCommentActivity extends BaseActivity implements
 	private void setListener() {
 		back.setOnClickListener(this);
 		btn_comment.setOnClickListener(this);
+		mListView.setOnItemClickListener(this);
 	}
 
 	private void setValue() {
@@ -200,4 +204,12 @@ public class VideoCommentActivity extends BaseActivity implements
 		task.execute(comment);
 	}
 
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View view, int position,
+			long arg3) {
+		TextView txt = (TextView) view.findViewById(R.id.txt_user_name);
+		edit_comment.setText(Html.fromHtml("<font color=#F06617>@"
+				+ txt.getText().toString() + "</font> "));
+		edit_comment.setSelection(edit_comment.getText().toString().length());
+	}
 }

@@ -855,7 +855,7 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f0b0002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f060040;
+        public static final int abc_search_url_text_holo=0x7f060041;
         public static final int abc_search_url_text_normal=0x7f06000d;
         public static final int abc_search_url_text_pressed=0x7f06000f;
         public static final int abc_search_url_text_selected=0x7f06000e;
@@ -887,6 +887,7 @@ containing a value of this type.
         public static final int btn_white_pressed=0x7f060030;
         public static final int calendar_header=0x7f060008;
         public static final int circle_background=0x7f060001;
+        public static final int comment_color=0x7f060040;
         public static final int common_bg=0x7f060028;
         public static final int common_bottom_bar_normal_bg=0x7f060025;
         public static final int common_bottom_bar_selected_bg=0x7f060026;
@@ -895,12 +896,12 @@ containing a value of this type.
          */
         public static final int common_top_bar_blue=0x7f06001e;
         public static final int darker_blue=0x7f060006;
-        public static final int date_picker_selector=0x7f060041;
+        public static final int date_picker_selector=0x7f060042;
         public static final int date_picker_text_normal=0x7f060007;
         public static final int date_picker_view_animator=0x7f060009;
-        public static final int date_picker_year_selector=0x7f060042;
+        public static final int date_picker_year_selector=0x7f060043;
         public static final int divider_list=0x7f06002a;
-        public static final int done_text_color=0x7f060043;
+        public static final int done_text_color=0x7f060044;
         public static final int done_text_color_disabled=0x7f060004;
         public static final int done_text_color_normal=0x7f060003;
         public static final int editTextClolor=0x7f060011;
@@ -914,7 +915,7 @@ containing a value of this type.
         public static final int line_background=0x7f060002;
         public static final int numbers_text_color=0x7f06000b;
         public static final int orange=0x7f060038;
-        public static final int profile_bottom_text_color=0x7f060044;
+        public static final int profile_bottom_text_color=0x7f060045;
         public static final int reg_desc_text=0x7f060016;
         public static final int text_desc=0x7f060017;
         public static final int titleBarBackGround=0x7f06001a;
