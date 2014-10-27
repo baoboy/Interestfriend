@@ -199,7 +199,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			EMMessage m = conversation.getLastMessage();
 			setUnread(m.getTo(), conversation.getUnreadMsgCount());
 			if ("ceshi".equals(m.getFrom())) {
-				EMChatManager.getInstance().deleteConversation("ceshi", true);
+				conversation.removeMessage(m.getMsgId());
 			}
 			//
 			// System.out.println("count::::::::::::"
