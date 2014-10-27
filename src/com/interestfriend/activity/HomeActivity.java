@@ -1,7 +1,6 @@
 package com.interestfriend.activity;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -31,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.interestfriend.R;
@@ -252,7 +250,6 @@ public class HomeActivity extends FragmentActivity implements
 			if (message.getChatType() == ChatType.Chat) {
 				updateUnreadLabel();
 			} else {
-				System.out.println("message::::::::::::" + message);
 				myCircleFragment.refushCircleGroupChatHositiory();
 			}
 			abortBroadcast();

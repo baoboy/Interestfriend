@@ -24,7 +24,7 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <RadioButton
+        <com.interestfriend.view.MyRadioButton
             android:id="@+id/tab_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,13 +34,10 @@
             android:checked="true"
             android:drawableTop="@drawable/tab_member"
             android:gravity="center"
-            android:paddingTop="8dip"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="13sp" />
+            android:paddingTop="8dip" />
 
-        <RadioButton
-            android:id="@+id/tab_home"
+        <com.interestfriend.view.MyRadioButton
+            android:id="@+id/tab_square"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
@@ -51,8 +48,8 @@
             android:gravity="center"
             android:paddingTop="8dip" />
 
-        <RadioButton
-            android:id="@+id/tab_square"
+        <com.interestfriend.view.MyRadioButton
+            android:id="@+id/tab_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
@@ -61,10 +58,7 @@
             android:checked="false"
             android:drawableTop="@drawable/tab_dynamic"
             android:gravity="center"
-            android:paddingTop="8dip"
-            android:singleLine="true"
-            android:textColor="#000000"
-            android:textSize="13sp" />
+            android:paddingTop="8dip" />
 
         <!-- <RadioButton -->
         <!-- android:id="@+id/tab_selfinfo" -->

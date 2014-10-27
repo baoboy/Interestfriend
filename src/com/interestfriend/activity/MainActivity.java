@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.interestfriend.R;
@@ -18,6 +17,7 @@ import com.interestfriend.fragment.CircleGroupChatFragment;
 import com.interestfriend.fragment.CircleGrowthFragment;
 import com.interestfriend.fragment.CircleMemberFragment;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.MyRadioButton;
 
 public class MainActivity extends FragmentActivity implements
 		RadioGroup.OnCheckedChangeListener {
@@ -30,11 +30,16 @@ public class MainActivity extends FragmentActivity implements
 	private CircleGroupChatFragment chatFragment;
 	private CircleGrowthFragment growthFragment;
 
+	private int unread;
+	private int growth_unread;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		MyApplation.addActivity(this);
+		unread = getIntent().getIntExtra("unread", 0);
+		growth_unread = getIntent().getIntExtra("growth_unread", 0);
 		initFragment();
 	}
 
@@ -64,7 +69,7 @@ public class MainActivity extends FragmentActivity implements
 				.beginTransaction();
 		for (int i = 0; i < group.getChildCount(); i++) {
 			Fragment fg = fragmentList.get(i);
-			RadioButton tabItem = (RadioButton) group.getChildAt(i);
+			MyRadioButton tabItem = (MyRadioButton) group.getChildAt(i);
 			if (i == tabIndex) {
 				if (fg.isAdded()) {
 					fg.onResume();
@@ -77,10 +82,18 @@ public class MainActivity extends FragmentActivity implements
 				ft.hide(fg);
 				tabItem.setTextColor(Color.rgb(108, 79, 34));
 			}
+			if (i == 1) {
+				tabItem.setNum(unread - growth_unread);
+				unread = 0;
+			} else if (i == 2) {
+				tabItem.setNum(growth_unread);
+				growth_unread = 0;
+
+			}
 		}
 		ft.commit();
 		currentTabIndex = tabIndex;
-		RadioButton rb = (RadioButton) group.getChildAt(tabIndex);
+		MyRadioButton rb = (MyRadioButton) group.getChildAt(tabIndex);
 		if (!rb.isChecked())
 			rb.setChecked(true);
 	}

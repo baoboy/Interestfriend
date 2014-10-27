@@ -22,16 +22,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.baidu.location.ad;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
-import com.interestfriend.data.Circles;
 import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
@@ -39,6 +38,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
@@ -191,27 +191,40 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
+		int growthUnread = 0;
 		for (EMConversation conversation : conversations.values()) {
-
 			if (!conversation.getIsGroup()) {
 				continue;
 			}
-			EMMessage m = conversation.getLastMessage();
-			setUnread(m.getTo(), conversation.getUnreadMsgCount());
-			if ("ceshi".equals(m.getFrom())) {
-				conversation.removeMessage(m.getMsgId());
+
+			List<EMMessage> messages = conversation.getAllMessages();
+			for (EMMessage m : messages) {
+				if ("growth".equals(m.getFrom())) {
+					try {
+						System.out.println("id:::::::::::::::::;"
+								+ m.getStringAttribute("publisher_id"));
+						if (!m.getStringAttribute("publisher_id").equals(
+								SharedUtils.getUid())) {
+							growthUnread++;
+						}
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
+					conversation.removeMessage(m.getMsgId());
+
+				}
 			}
-			//
-			// System.out.println("count::::::::::::"
-			// + conversation.getUnreadMsgCount() + "    " + m.getFrom());
+			setUnread(conversation.getUserName(),
+					conversation.getUnreadMsgCount(), growthUnread);
 		}
 		adapter.notifyDataSetChanged();
 	}
 
-	private void setUnread(String groupId, int unread) {
+	private void setUnread(String groupId, int unread, int growthUnread) {
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
 				c.setUnread(unread);
+				c.setGrowth_unread(growthUnread);
 				break;
 			}
 		}
@@ -239,11 +252,13 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-		MyApplation.setCircle_id(lists.get(arg2).getCircle_id());
-		MyApplation.setCircle_group_id(lists.get(arg2).getGroup_id());
-		MyApplation.setCircle_name(lists.get(arg2).getCircle_name());
+		MyCircles circle = lists.get(arg2);
+		MyApplation.setCircle_id(circle.getCircle_id());
+		MyApplation.setCircle_group_id(circle.getGroup_id());
+		MyApplation.setCircle_name(circle.getCircle_name());
 		Intent intent = new Intent();
+		intent.putExtra("unread", circle.getUnread());
+		intent.putExtra("growth_unread", circle.getGrowth_unread());
 		intent.setClass(getActivity(), MainActivity.class);
 		startActivity(intent);
 		Utils.leftOutRightIn(getActivity());

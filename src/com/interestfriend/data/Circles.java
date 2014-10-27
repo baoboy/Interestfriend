@@ -16,6 +16,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class Circles extends AbstractData {
 	/**
@@ -31,14 +32,23 @@ public class Circles extends AbstractData {
 	private String group_id = "";
 	private int circle_category;
 	private int distance;
-	private int unread;
+	private int group_chat_unread;
+	private int growth_unread;
+
+	public int getGrowth_unread() {
+		return growth_unread;
+	}
+
+	public void setGrowth_unread(int growth_unread) {
+		this.growth_unread = growth_unread;
+	}
 
 	public int getUnread() {
-		return unread;
+		return group_chat_unread;
 	}
 
 	public void setUnread(int unread) {
-		this.unread = unread;
+		this.group_chat_unread = unread;
 	}
 
 	public int getDistance() {
@@ -118,6 +128,7 @@ public class Circles extends AbstractData {
 		params.put("category", circle_category);
 		params.put("longitude", MyApplation.getnLontitude());
 		params.put("latitude", MyApplation.getnLatitude());
+		params.put("huanxin_username", SharedUtils.getUserName());
 		Result ret = ApiRequest.requestWithFile(CREATE_CIRCLE_API, params,
 				new File(circle_logo), parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
