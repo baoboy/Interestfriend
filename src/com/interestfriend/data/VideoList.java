@@ -152,7 +152,8 @@ public class VideoList extends AbstractData {
 				Cursor cursor3 = db.query(Const.VIDEO_COMMENT_TABLE_NAME,
 						new String[] { "comment_id", "comment_time",
 								"comment_content", "publisher_id",
-								"publisher_name", "publisher_avatar" },
+								"publisher_name", "publisher_avatar",
+								"reply_someone_id", "reply_someone_name" },
 						"video_id=?", new String[] { video_id + "" }, null,
 						null, null);
 				if (cursor3.getCount() > 0) {
@@ -170,6 +171,10 @@ public class VideoList extends AbstractData {
 								.getColumnIndex("publisher_name"));
 						publisher_avatar = cursor3.getString(cursor3
 								.getColumnIndex("publisher_avatar"));
+						int reply_someone_id = cursor3.getInt(cursor3
+								.getColumnIndex("reply_someone_id"));
+						String reply_someone_name = cursor3.getString(cursor3
+								.getColumnIndex("reply_someone_name"));
 						VideoComment comment = new VideoComment();
 						comment.setComment_content(comment_content);
 						comment.setComment_id(comment_id);
@@ -177,6 +182,8 @@ public class VideoList extends AbstractData {
 						comment.setPublisher_avatar(publisher_avatar);
 						comment.setComment_time(comment_time);
 						comment.setPublisher_id(publisher_id);
+						comment.setReply_someone_name(reply_someone_name);
+						comment.setReply_someone_id(reply_someone_id);
 						comments.add(comment);
 						cursor3.moveToNext();
 					}
@@ -207,7 +214,7 @@ public class VideoList extends AbstractData {
 
 	@Override
 	public void write(SQLiteDatabase db) {
-		for (Video video : videos) {
+		for (Video video : writeVideos) {
 			video.write(db);
 		}
 		writeVideos.clear();

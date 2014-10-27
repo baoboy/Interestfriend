@@ -184,5 +184,8 @@ public class Video extends AbstractData implements Serializable {
 		cv.put("publisher_name", this.publisher_name);
 		cv.put("publisher_avatar", this.publisher_avatar);
 		db.insert(dbName, null, cv);
+		for (VideoComment comment : comments) {
+			comment.write(db);
+		}
 	}
 }

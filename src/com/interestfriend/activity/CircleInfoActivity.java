@@ -130,6 +130,12 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_join:
+			Circles circle = new Circles();
+			circle.setCircle_id(circle_id);
+			if (circle.findCircleByID(DBUtils.getDBsa(1)) > 0) {
+				ToastUtil.showToast("你已经加入该圈子", Toast.LENGTH_SHORT);
+				return;
+			}
 			joinDialog();
 			break;
 		case R.id.back:
@@ -140,4 +146,5 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			break;
 		}
 	}
+
 }

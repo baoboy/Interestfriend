@@ -23,6 +23,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetMemberCircleListTask;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class CircleMemberActivity extends BaseActivity implements
 		OnClickListener, OnItemClickListener {
@@ -132,5 +133,6 @@ public class CircleMemberActivity extends BaseActivity implements
 		intent.putExtra("circle", lists.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
+		Utils.showSoftInput(this);
 	}
 }

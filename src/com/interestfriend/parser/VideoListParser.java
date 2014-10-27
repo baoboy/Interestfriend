@@ -6,10 +6,12 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.Video;
+import com.interestfriend.data.VideoComment;
 import com.interestfriend.data.VideoList;
 import com.interestfriend.data.result.Result;
 
@@ -25,7 +27,6 @@ public class VideoListParser implements IParser {
 			return Result.defContentErrorResult();
 		}
 		List<Video> videos = new ArrayList<Video>();
-		long start = 0L, end = 0L;
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			// video info
@@ -49,6 +50,38 @@ public class VideoListParser implements IParser {
 			vd.setTime(time);
 			vd.setPublisher_avatar(publisher_avatar);
 			vd.setPublisher_name(publisher_name);
+
+			// comments
+			JSONArray commentsJson = obj.getJSONArray("comments");
+			List<VideoComment> comments = new ArrayList<VideoComment>();
+			for (int j = 0; j < commentsJson.length(); j++) {
+				JSONObject obj2 = (JSONObject) commentsJson.opt(j);
+				int comment_id = obj2.getInt("comment_id");
+				int publisher_id = obj2.getInt("publisher_id");
+				String comment_time = obj2.getString("comment_time");
+				String comment_content = obj2.getString("comment_content");
+				publisher_name = obj2.getString("publisher_name");
+				publisher_avatar = obj2.getString("publisher_avatar");
+				String reply_someone_name = obj2
+						.getString("reply_someone_name");
+				int reply_someone_id = obj2.getInt("reply_someone_id");
+				VideoComment comment = new VideoComment();
+				comment.setComment_content(comment_content);
+				comment.setComment_id(comment_id);
+				comment.setComment_time(comment_time);
+				comment.setPublisher_id(publisher_id);
+				comment.setVideo_id(video_id);
+				comment.setPublisher_avatar(publisher_avatar);
+				comment.setPublisher_name(publisher_name);
+				comment.setReply_someone_name(reply_someone_name);
+				comment.setReply_someone_id(reply_someone_id);
+				comments.add(comment);
+			}
+			vd.setComments(comments);
+			int index = comments.size() > 2 ? 2 : comments.size();
+			for (int k = 0; k < index; k++) {
+				vd.getCommentsListView().add(comments.get(k));
+			}
 			videos.add(vd);
 
 		}

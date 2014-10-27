@@ -39,6 +39,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
 public class MyCircleFragment extends Fragment implements OnItemClickListener {
@@ -197,8 +198,12 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			}
 			EMMessage m = conversation.getLastMessage();
 			setUnread(m.getTo(), conversation.getUnreadMsgCount());
-			System.out.println("count::::::::::::"
-					+ conversation.getUnreadMsgCount() + "    " + m.getTo());
+			if ("ceshi".equals(m.getFrom())) {
+				EMChatManager.getInstance().deleteConversation("ceshi", true);
+			}
+			//
+			// System.out.println("count::::::::::::"
+			// + conversation.getUnreadMsgCount() + "    " + m.getFrom());
 		}
 		adapter.notifyDataSetChanged();
 	}
@@ -241,6 +246,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), MainActivity.class);
 		startActivity(intent);
+		Utils.leftOutRightIn(getActivity());
 	};
 
 	@Override

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -16,6 +17,7 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.CircleGroupChatFragment;
 import com.interestfriend.fragment.CircleGrowthFragment;
 import com.interestfriend.fragment.CircleMemberFragment;
+import com.interestfriend.utils.Utils;
 
 public class MainActivity extends FragmentActivity implements
 		RadioGroup.OnCheckedChangeListener {
@@ -93,4 +95,12 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			finish();
+			Utils.rightOut(this);
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 }

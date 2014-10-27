@@ -53,8 +53,11 @@ public class GrowthListParser implements IParser {
 				int publisher_id = obj2.getInt("publisher_id");
 				String comment_time = obj2.getString("comment_time");
 				String comment_content = obj2.getString("comment_content");
-				publisher_name = obj.getString("publisher_name");
-				publisher_avatar = obj.getString("publisher_avatar");
+				publisher_name = obj2.getString("publisher_name");
+				publisher_avatar = obj2.getString("publisher_avatar");
+				String reply_someone_name = obj2
+						.getString("reply_someone_name");
+				int reply_someone_id = obj2.getInt("reply_someone_id");
 				Comment comment = new Comment();
 				comment.setComment_content(comment_content);
 				comment.setComment_id(comment_id);
@@ -63,6 +66,8 @@ public class GrowthListParser implements IParser {
 				comment.setGrowth_id(growth_id);
 				comment.setPublisher_avatar(publisher_avatar);
 				comment.setPublisher_name(publisher_name);
+				comment.setReply_someone_name(reply_someone_name);
+				comment.setReply_someone_id(reply_someone_id);
 				comments.add(comment);
 
 			}

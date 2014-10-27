@@ -6,8 +6,17 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,9 +41,11 @@ import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
 
-public class CommentActivity extends BaseActivity implements OnClickListener {
+public class CommentActivity extends BaseActivity implements OnClickListener,
+		OnItemClickListener, TextWatcher {
 	private ImageView img_avatar;
 	private TextView txt_user_name;
 	private TextView txt_time;
@@ -57,6 +68,11 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 	private int position;
 
 	private ScrollView layout_scroll;
+
+	private boolean isReplaySomeOne = false;
+
+	private int replaySomeOneID = 0;
+	private String replaySomeOneName = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +103,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 	private void setListener() {
 		back.setOnClickListener(this);
 		btn_comment.setOnClickListener(this);
+		edit_comment.addTextChangedListener(this);
+		mListView.setOnItemClickListener(this);
 	}
 
 	private void setValue() {
@@ -151,7 +169,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 			if (content.length() == 0) {
 				return;
 			}
-			sendComment(content);
+			sendComment(content.replace("@" + replaySomeOneName, ""));
 			break;
 		default:
 			break;
@@ -163,6 +181,10 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 		dialog.show();
 		final Comment comment = new Comment();
 		comment.setComment_content(content);
+		if (isReplaySomeOne) {
+			comment.setReply_someone_name(replaySomeOneName);
+			comment.setReply_someone_id(replaySomeOneID);
+		}
 		comment.setGrowth_id(growth.getGrowth_id());
 		comment.setComment_time(DateUtils.getGrowthShowTime());
 		comment.setPublisher_id(SharedUtils.getIntUid());
@@ -190,5 +212,45 @@ public class CommentActivity extends BaseActivity implements OnClickListener {
 			}
 		});
 		task.execute(comment);
+	}
+
+	private void delReplaySomeOne() {
+		isReplaySomeOne = false;
+		replaySomeOneID = 0;
+		replaySomeOneName = "";
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View view, int position,
+			long arg3) {
+		Comment comment = comments.get(position);
+		edit_comment.setText(Html.fromHtml("<font color=#F06617>@"
+				+ comment.getPublisher_name() + "</font> "));
+		edit_comment.setSelection(edit_comment.getText().toString().length());
+		Utils.getFocus(edit_comment);
+		isReplaySomeOne = true;
+		replaySomeOneID = comment.getPublisher_id();
+		replaySomeOneName = comment.getPublisher_name();
+	}
+
+	@Override
+	public void afterTextChanged(Editable str) {
+		if (isReplaySomeOne) {
+			if (replaySomeOneName.equals(str.toString().replace("@", ""))) {
+				edit_comment.setText("");
+				delReplaySomeOne();
+			}
+		}
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+
+	}
+
+	@Override
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
 	}
 }

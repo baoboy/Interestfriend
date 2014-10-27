@@ -6,7 +6,9 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,24 +36,24 @@ import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class VideoCommentActivity extends BaseActivity implements
-		OnClickListener, OnItemClickListener {
+		OnClickListener, OnItemClickListener, TextWatcher {
 	private ImageView img_avatar;
 	private TextView txt_time;
 	private TextView txt_user_name;
 	private TextView txt_context;
-	private ImageView playBtn;
 	private TextView video_timeLength;
 	private TextView video_size;
-	private ImageView iv;
 
 	private ImageView back;
 	private TextView txt_title;
 	private Button btn_comment;
 	private EditText edit_comment;
 	private ListView mListView;
-
+	private ImageView video_img;
+	private RelativeLayout videoClick;
 	private Video video;
 
 	private Dialog dialog;
@@ -61,6 +64,11 @@ public class VideoCommentActivity extends BaseActivity implements
 	private int position;
 
 	private ScrollView layout_scroll;
+
+	private boolean isReplaySomeOne = false;
+
+	private int replaySomeOneID = 0;
+	private String replaySomeOneName = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +89,8 @@ public class VideoCommentActivity extends BaseActivity implements
 		mListView = (ListView) findViewById(R.id.listView1);
 		video_size = (TextView) findViewById(R.id.chatting_size_iv);
 		video_timeLength = (TextView) findViewById(R.id.chatting_length_iv);
-		playBtn = (ImageView) findViewById(R.id.chatting_status_btn);
-		iv = (ImageView) findViewById(R.id.chatting_content_iv);
+		video_img = (ImageView) findViewById(R.id.video_img);
+		videoClick = (RelativeLayout) findViewById(R.id.ll_click_area);
 		txt_context = (TextView) findViewById(R.id.txt_content);
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
@@ -94,6 +102,7 @@ public class VideoCommentActivity extends BaseActivity implements
 		back.setOnClickListener(this);
 		btn_comment.setOnClickListener(this);
 		mListView.setOnItemClickListener(this);
+		edit_comment.addTextChangedListener(this);
 	}
 
 	private void setValue() {
@@ -117,11 +126,9 @@ public class VideoCommentActivity extends BaseActivity implements
 		if (!path.startsWith("http")) {
 			path = "file://" + path;
 		}
-		UniversalImageLoadTool.disPlay(path, iv, R.drawable.empty_photo);
-		playBtn.setImageResource(R.drawable.video_download_btn_nor);
+		UniversalImageLoadTool.disPlay(path, video_img, R.drawable.empty_photo);
 
-		iv.setClickable(true);
-		iv.setOnClickListener(new OnClickListener() {
+		videoClick.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -162,7 +169,7 @@ public class VideoCommentActivity extends BaseActivity implements
 			if (content.length() == 0) {
 				return;
 			}
-			sendComment(content);
+			sendComment(content.replace("@" + replaySomeOneName, ""));
 			break;
 		default:
 			break;
@@ -173,6 +180,10 @@ public class VideoCommentActivity extends BaseActivity implements
 		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();
 		final VideoComment comment = new VideoComment();
+		if (isReplaySomeOne) {
+			comment.setReply_someone_name(replaySomeOneName);
+			comment.setReply_someone_id(replaySomeOneID);
+		}
 		comment.setComment_content(content);
 		comment.setVideo_id(video.getVideo_id());
 		comment.setComment_time(com.interestfriend.utils.DateUtils
@@ -199,17 +210,50 @@ public class VideoCommentActivity extends BaseActivity implements
 				intent.putExtra("comment", comment);
 				intent.setAction(Constants.COMMENT_VIDEO);
 				sendBroadcast(intent);
+				edit_comment.setText("");
+				delReplaySomeOne();
 			}
 		});
 		task.execute(comment);
 	}
 
+	private void delReplaySomeOne() {
+		isReplaySomeOne = false;
+		replaySomeOneID = 0;
+		replaySomeOneName = "";
+	}
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
 			long arg3) {
-		TextView txt = (TextView) view.findViewById(R.id.txt_user_name);
+		VideoComment comment = comments.get(position);
 		edit_comment.setText(Html.fromHtml("<font color=#F06617>@"
-				+ txt.getText().toString() + "</font> "));
+				+ comment.getPublisher_name() + "</font> "));
 		edit_comment.setSelection(edit_comment.getText().toString().length());
+		Utils.getFocus(edit_comment);
+		isReplaySomeOne = true;
+		replaySomeOneID = comment.getPublisher_id();
+		replaySomeOneName = comment.getPublisher_name();
+	}
+
+	@Override
+	public void afterTextChanged(Editable str) {
+		if (isReplaySomeOne) {
+			if (replaySomeOneName.equals(str.toString().replace("@", ""))) {
+				edit_comment.setText("");
+				delReplaySomeOne();
+			}
+		}
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+
+	}
+
+	@Override
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
 	}
 }

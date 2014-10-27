@@ -25,10 +25,10 @@ public class Const {
 
 	public static final String COMMENT_TABLE_NAME = "comments";
 	public static final String COMMENT_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
-			+ " comment_id integer, publisher_id integer, growth_id integer, comment_content varchar, comment_time varchar , publisher_name varchar, publisher_avatar varcher";
+			+ " comment_id integer, publisher_id integer, growth_id integer, comment_content varchar, comment_time varchar , publisher_name varchar, publisher_avatar varcher,reply_someone_name varchar, reply_someone_id integer";
 
 	public static final String VIDEO_COMMENT_TABLE_NAME = "video_comments";
 	public static final String VIDEO_COMMENT_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
-			+ " comment_id integer, publisher_id integer, video_id integer, comment_content varchar, comment_time varchar , publisher_name varchar, publisher_avatar varcher";
+			+ " comment_id integer, publisher_id integer, video_id integer, comment_content varchar, comment_time varchar , publisher_name varchar, publisher_avatar varcher,reply_someone_name varchar, reply_someone_id integer";
 
 }

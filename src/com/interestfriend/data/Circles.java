@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.interestfriend.applation.MyApplation;
@@ -141,6 +142,13 @@ public class Circles extends AbstractData {
 		values.put("group_id", group_id);
 		values.put("circle_id", circle_id);
 		db.insert(tableName, null, values);
+	}
+
+	public int findCircleByID(SQLiteDatabase db) {
+		Cursor cursor = db.query(Const.MY_CIRCLE_TABLE_NAME,
+				new String[] { "circle_name", }, "circle_id=?",
+				new String[] { circle_id + "" }, null, null, null);
+		return cursor.getCount();
 	}
 
 	@Override

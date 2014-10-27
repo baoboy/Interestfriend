@@ -171,7 +171,6 @@ public class CircleMemberList extends AbstractData {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-
 		}
 		// insert newMembers
 		sqlBuffer = new StringBuilder();

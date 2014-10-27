@@ -38,6 +38,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
 public class CircleMemberFragment extends Fragment implements
@@ -209,6 +210,7 @@ public class CircleMemberFragment extends Fragment implements
 			intent.setClass(getActivity(), CircleMemberActivity.class);
 		}
 		startActivity(intent);
+		Utils.leftOutRightIn(getActivity());
 	}
 
 	/**

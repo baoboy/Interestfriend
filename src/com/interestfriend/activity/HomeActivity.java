@@ -252,6 +252,7 @@ public class HomeActivity extends FragmentActivity implements
 			if (message.getChatType() == ChatType.Chat) {
 				updateUnreadLabel();
 			} else {
+				System.out.println("message::::::::::::" + message);
 				myCircleFragment.refushCircleGroupChatHositiory();
 			}
 			abortBroadcast();

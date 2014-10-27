@@ -10,9 +10,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.easemob.util.DateUtils;
@@ -77,12 +77,6 @@ public class GrowthVideoAdapter extends BaseAdapter {
 					.findViewById(R.id.chatting_size_iv);
 			holder.video_timeLength = (TextView) contentView
 					.findViewById(R.id.chatting_length_iv);
-			holder.playBtn = (ImageView) contentView
-					.findViewById(R.id.chatting_status_btn);
-			holder.container_status_btn = (LinearLayout) contentView
-					.findViewById(R.id.container_status_btn);
-			holder.iv = ((ImageView) contentView
-					.findViewById(R.id.chatting_content_iv));
 			holder.txt_context = (TextView) contentView
 					.findViewById(R.id.txt_content);
 			holder.txt_user_name = (TextView) contentView
@@ -95,6 +89,10 @@ public class GrowthVideoAdapter extends BaseAdapter {
 					.findViewById(R.id.btn_comment);
 			holder.mListView = (ListView) contentView
 					.findViewById(R.id.listView1);
+			holder.video_img = (ImageView) contentView
+					.findViewById(R.id.video_img);
+			holder.videoClick = (RelativeLayout) contentView
+					.findViewById(R.id.ll_click_area);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
@@ -125,11 +123,10 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		if (!path.startsWith("http")) {
 			path = "file://" + path;
 		}
-		UniversalImageLoadTool.disPlay(path, holder.iv, R.drawable.empty_photo);
-		holder.playBtn.setImageResource(R.drawable.video_download_btn_nor);
+		UniversalImageLoadTool.disPlay(path, holder.video_img,
+				R.drawable.empty_photo);
 
-		holder.iv.setClickable(true);
-		holder.iv.setOnClickListener(new OnClickListener() {
+		holder.videoClick.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
@@ -156,16 +153,13 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		TextView txt_time;
 		TextView txt_user_name;
 		TextView txt_context;
-		ImageView playBtn;
 		TextView video_timeLength;
 		TextView video_size;
-		LinearLayout container_status_btn;
-		LinearLayout ll_container;
-		ImageView iv;
 		ProgressBar pg;
 		TextView btn_comment;
 		ListView mListView;
-
+		ImageView video_img;
+		RelativeLayout videoClick;
 	}
 
 	class Onclick implements OnClickListener {
