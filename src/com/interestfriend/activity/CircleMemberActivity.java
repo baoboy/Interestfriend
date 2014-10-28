@@ -38,6 +38,8 @@ public class CircleMemberActivity extends BaseActivity implements
 	private ListView circle_listView;
 	private Button btn_chat;
 	private ImageView back;
+	private ImageView right_img;
+	private Button btn_kick_out;
 
 	private CircleMember member;
 
@@ -59,6 +61,7 @@ public class CircleMemberActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		btn_kick_out = (Button) findViewById(R.id.btn_kick_out);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		txt_birthday = (TextView) findViewById(R.id.txt_birthday);
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
@@ -70,6 +73,10 @@ public class CircleMemberActivity extends BaseActivity implements
 		btn_chat = (Button) findViewById(R.id.btn_chat);
 		circle_listView = (ListView) findViewById(R.id.circle_listView);
 		back = (ImageView) findViewById(R.id.back);
+		right_img = (ImageView) findViewById(R.id.rightImg);
+		right_img.setVisibility(View.VISIBLE);
+		right_img.setImageResource(R.drawable.drag);
+		Utils.getFocus(txt_title);
 		setListener();
 		setValue();
 	}
@@ -86,6 +93,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_description.setText(member.getUser_description());
 		adapter = new MemberCirclesAdapter(this, lists);
 		circle_listView.setAdapter(adapter);
+		right_img.setOnClickListener(this);
 	}
 
 	private void setListener() {
@@ -93,7 +101,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_user_name.setOnClickListener(this);
 		circle_listView.setOnItemClickListener(this);
 		back.setOnClickListener(this);
-
+		btn_kick_out.setOnClickListener(this);
 	}
 
 	@Override
@@ -108,6 +116,9 @@ public class CircleMemberActivity extends BaseActivity implements
 		case R.id.back:
 			finishThisActivity();
 			break;
+		case R.id.btn_kick_out:
+			break;
+
 		default:
 			break;
 		}
@@ -121,6 +132,12 @@ public class CircleMemberActivity extends BaseActivity implements
 			public void taskFinish(RetError result) {
 				lists.addAll(circleList.getListCircles());
 				adapter.notifyDataSetChanged();
+				// layout_scroll.post(new Runnable() {
+				// @Override
+				// public void run() {
+				// layout_scroll.fullScroll(ScrollView.FOCUS_UP);
+				// }
+				// });
 			}
 		});
 		task.execute(circleList);
@@ -133,6 +150,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		intent.putExtra("circle", lists.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
-		Utils.showSoftInput(this);
+		Utils.leftOutRightIn(this);
 	}
+
 }

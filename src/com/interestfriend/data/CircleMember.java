@@ -23,6 +23,7 @@ public class CircleMember extends AbstractData {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
 	private static final String UPDATE_USER_INFO = "UpdateUserInfoServlet";
 	private static String UPDATE_MEMBER_AVATAR = "UpdateUserAvatarServlet";
+	private static String KICK_MEMBER_API = "KickOutMemberServlet";
 
 	private int user_id;
 	private int circle_id;
@@ -251,6 +252,19 @@ public class CircleMember extends AbstractData {
 		params.put("cloumn", cloumn);
 		params.put("value", value);
 		Result ret = ApiRequest.request(UPDATE_USER_INFO, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError kickOutMember() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_id", user_id);
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(KICK_MEMBER_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {

@@ -180,7 +180,6 @@ public class BaiduMapActivity extends BaseActivity {
 		mMapView.getOverlays().add(mAddrOverlay);
 
 		mMapListener = new MKMapViewListener() {
-
 			@Override
 			public void onMapMoveFinish() {
 				// TODO Auto-generated method stub
@@ -289,6 +288,9 @@ public class BaiduMapActivity extends BaseActivity {
 				if (lastLocation.getLatitude() == location.getLatitude()
 						&& lastLocation.getLongitude() == location
 								.getLongitude()) {
+					System.out.println("location:::::::::::::::==="
+							+ location.getAddrStr() + "      "
+							+ location.getLatitude());
 					Log.d("map", "same location, skip refresh");
 					// mMapView.refresh(); //need this refresh?
 					return;
@@ -341,6 +343,9 @@ public class BaiduMapActivity extends BaseActivity {
 		intent.putExtra("latitude", lastLocation.getLatitude());
 		intent.putExtra("longitude", lastLocation.getLongitude());
 		intent.putExtra("address", lastLocation.getAddrStr());
+		System.out.println("location:::::::::::::::"
+				+ lastLocation.getAddrStr() + "      "
+				+ lastLocation.getLatitude());
 		this.setResult(RESULT_OK, intent);
 		finish();
 		overridePendingTransition(R.anim.slide_in_from_left,

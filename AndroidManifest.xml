@@ -117,7 +117,9 @@
         </activity>
         <activity
             android:name="com.interestfriend.activity.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
             android:name="com.interestfriend.showbigpic.ImagePagerActivity"
@@ -168,7 +170,7 @@
         <!-- 注意这个地方的位置，是在application标签里面；android:authorities对应Provider.AUTHORITY -->
         <provider
             android:name="com.interestfriend.contentprovider.MyCirclesContentProvider"
-            android:authorities="com.changlianxi.circle.members" />
+            android:authorities="com.quyou.circle.circles" />
         <provider
             android:name="com.interestfriend.contentprovider.MyCircleGrowthsContentProvider"
             android:authorities="com.quyou.circle.growths" />

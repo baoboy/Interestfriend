@@ -201,8 +201,6 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			for (EMMessage m : messages) {
 				if ("growth".equals(m.getFrom())) {
 					try {
-						System.out.println("id:::::::::::::::::;"
-								+ m.getStringAttribute("publisher_id"));
 						if (!m.getStringAttribute("publisher_id").equals(
 								SharedUtils.getUid())) {
 							growthUnread++;
@@ -210,6 +208,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					} catch (EaseMobException e) {
 						e.printStackTrace();
 					}
+					m.isAcked = true;
 					conversation.removeMessage(m.getMsgId());
 
 				}

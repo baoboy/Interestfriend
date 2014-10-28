@@ -131,6 +131,7 @@ public class Comment extends AbstractData {
 		params.put("comment_id", comment_id);
 		Result ret = ApiRequest.request(DELETE_COMMENT_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

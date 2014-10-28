@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.data.AbstractData.Status;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -18,6 +19,7 @@ import com.interestfriend.parser.StringParser;
 public class VideoComment extends AbstractData {
 
 	private final String VIDEO_COMMENT_API = "VideoCommentServlet";
+	private final String DEL_COMMENT_PAI = "DelVideoCommentServlet";
 
 	private int comment_id;
 	private int video_id;
@@ -109,7 +111,7 @@ public class VideoComment extends AbstractData {
 		params.put("video_id", video_id);
 		params.put("reply_someone_name", reply_someone_name);
 		params.put("reply_someone_id", reply_someone_id);
- 		Result ret = ApiRequest.request(VIDEO_COMMENT_API, params, parser);
+		Result ret = ApiRequest.request(VIDEO_COMMENT_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
 			this.comment_id = Integer.valueOf(sr.getStr());
@@ -120,9 +122,26 @@ public class VideoComment extends AbstractData {
 
 	}
 
+	public RetError deleteComment() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("comment_id", comment_id);
+		Result ret = ApiRequest.request(DEL_COMMENT_PAI, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
 	@Override
 	public void write(SQLiteDatabase db) {
 		String dbName = Const.VIDEO_COMMENT_TABLE_NAME;
+		if (this.status == Status.DEL) {
+			db.delete(dbName, "comment_id=?", new String[] { comment_id + "" });
+			return;
+		}
 		ContentValues cv = new ContentValues();
 		cv.put("video_id", this.video_id);
 		cv.put("comment_id", this.comment_id);

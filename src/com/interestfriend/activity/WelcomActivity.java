@@ -7,6 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.register.RegisterActivity;
 import com.interestfriend.utils.SharedUtils;
 
@@ -18,6 +19,7 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcom);
+		MyApplation.addActivity(this);
 		if (SharedUtils.getIntUid() > 0) {
 			startActivity(new Intent(this, HomeActivity.class));
 			finish();

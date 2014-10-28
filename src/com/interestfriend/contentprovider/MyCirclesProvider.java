@@ -10,11 +10,11 @@ import android.provider.BaseColumns;
 public class MyCirclesProvider {
 
 	// 这个是每个Provider的标识，在Manifest中使用
-	public static final String AUTHORITY = "com.changlianxi.circle.members";
+	public static final String AUTHORITY = "com.quyou.circle.circles";
 
-	public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.changlianxi";
+	public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.quyou";
 
-	public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.changlianxi";
+	public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.quyou";
 
 	/**
 	 * 跟circle_members表相关的常量
@@ -23,7 +23,7 @@ public class MyCirclesProvider {
 	public static final class MyCirclesColumns implements BaseColumns {
 		// CONTENT_URI跟数据库的表关联，最后根据CONTENT_URI来查询对应的表
 		public static final Uri CONTENT_URI = Uri.parse("content://"
-				+ AUTHORITY + "/members");
+				+ AUTHORITY + "/circles");
 		public static final String TABLE_NAME = "my_circles";
 		public static final String CIRCLE_ID = "circle_id";
 		public static final String CIRCLE_NAME = "circle_name";

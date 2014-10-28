@@ -173,9 +173,9 @@ public class MyCirclesContentProvider extends ContentProvider {
 	static {
 		sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		// 这个地方的members要和CircleMemberColumns.CONTENT_URI中最后面的一个Segment一致
-		sUriMatcher.addURI(MyCirclesProvider.AUTHORITY, "members", CIRCLES);
+		sUriMatcher.addURI(MyCirclesProvider.AUTHORITY, "circles", CIRCLES);
 		sUriMatcher
-				.addURI(MyCirclesProvider.AUTHORITY, "members/#", CIRCLES_ID);
+				.addURI(MyCirclesProvider.AUTHORITY, "circles/#", CIRCLES_ID);
 
 		sMyCirclesProjectionMap = new HashMap<String, String>();
 		sMyCirclesProjectionMap.put(MyCirclesProvider.MyCirclesColumns._ID,

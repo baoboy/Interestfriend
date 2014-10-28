@@ -30,6 +30,9 @@ import com.interestfriend.data.Video;
 import com.interestfriend.data.VideoComment;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.popwindow.CommentPopwindow;
+import com.interestfriend.popwindow.CommentPopwindow.OnCommentOnClick;
+import com.interestfriend.task.DelVideoCommentTask;
 import com.interestfriend.task.SendVideoCommentTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
@@ -39,7 +42,7 @@ import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 
 public class VideoCommentActivity extends BaseActivity implements
-		OnClickListener, OnItemClickListener, TextWatcher {
+		OnClickListener, OnItemClickListener, TextWatcher, OnCommentOnClick {
 	private ImageView img_avatar;
 	private TextView txt_time;
 	private TextView txt_user_name;
@@ -69,6 +72,8 @@ public class VideoCommentActivity extends BaseActivity implements
 
 	private int replaySomeOneID = 0;
 	private String replaySomeOneName = "";
+
+	private CommentPopwindow pop;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -226,14 +231,11 @@ public class VideoCommentActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
 			long arg3) {
-		VideoComment comment = comments.get(position);
-		edit_comment.setText(Html.fromHtml("<font color=#F06617>@"
-				+ comment.getPublisher_name() + "</font> "));
-		edit_comment.setSelection(edit_comment.getText().toString().length());
-		Utils.getFocus(edit_comment);
-		isReplaySomeOne = true;
-		replaySomeOneID = comment.getPublisher_id();
-		replaySomeOneName = comment.getPublisher_name();
+
+		pop = new CommentPopwindow(this, view, position,
+				video.getPublisher_id());
+		pop.setmCallBack(this);
+		pop.show();
 	}
 
 	@Override
@@ -255,5 +257,52 @@ public class VideoCommentActivity extends BaseActivity implements
 	@Override
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 
+	}
+
+	@Override
+	public void onClick(int position, int id) {
+		switch (id) {
+		case R.id.txt_reply:
+			reply(position);
+			break;
+		case R.id.txt_del:
+			del(position);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void del(final int position) {
+		final Dialog dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
+		dialog.show();
+		VideoComment comment = comments.get(position);
+		DelVideoCommentTask task = new DelVideoCommentTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					ToastUtil.showToast("…æ≥˝ ß∞‹", Toast.LENGTH_SHORT);
+					return;
+				}
+				comments.remove(position);
+				adapter.notifyDataSetChanged();
+			}
+		});
+		task.execute(comment);
+	}
+
+	private void reply(int position) {
+		VideoComment comment = comments.get(position);
+		edit_comment.setText(Html.fromHtml("<font color=#F06617>@"
+				+ comment.getPublisher_name() + "</font> "));
+		edit_comment.setSelection(edit_comment.getText().toString().length());
+		Utils.getFocus(edit_comment);
+		isReplaySomeOne = true;
+		replaySomeOneID = comment.getPublisher_id();
+		replaySomeOneName = comment.getPublisher_name();
 	}
 }
