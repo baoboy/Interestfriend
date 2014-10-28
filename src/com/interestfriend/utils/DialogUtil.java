@@ -63,8 +63,8 @@ public class DialogUtil {
 		btnOk.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callBack.onOKClick();
 				dialog.dismiss();
+				callBack.onOKClick();
 
 			}
 		});

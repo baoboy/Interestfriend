@@ -34,6 +34,15 @@ public class Circles extends AbstractData {
 	private int distance;
 	private int group_chat_unread;
 	private int growth_unread;
+	private int creator_id;
+
+	public int getCreator_id() {
+		return creator_id;
+	}
+
+	public void setCreator_id(int creator_id) {
+		this.creator_id = creator_id;
+	}
 
 	public int getGrowth_unread() {
 		return growth_unread;
@@ -152,6 +161,7 @@ public class Circles extends AbstractData {
 		values.put("circle_description", circle_description);
 		values.put("group_id", group_id);
 		values.put("circle_id", circle_id);
+		values.put("creator_id", creator_id);
 		db.insert(tableName, null, values);
 	}
 
@@ -160,6 +170,17 @@ public class Circles extends AbstractData {
 				new String[] { "circle_name", }, "circle_id=?",
 				new String[] { circle_id + "" }, null, null, null);
 		return cursor.getCount();
+	}
+
+	public void findCircleCreatorByID(SQLiteDatabase db) {
+		Cursor cursor = db.query(Const.MY_CIRCLE_TABLE_NAME,
+				new String[] { "creator_id", }, "circle_id=?",
+				new String[] { circle_id + "" }, null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+			this.creator_id = cursor
+					.getInt(cursor.getColumnIndex("creator_id"));
+		}
 	}
 
 	@Override

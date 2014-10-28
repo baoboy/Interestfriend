@@ -262,10 +262,12 @@ public class CircleMember extends AbstractData {
 	public RetError kickOutMember() {
 		IParser parser = new SimpleParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("user_id", user_id);
+		params.put("kickout_user_id", user_id);
 		params.put("circle_id", circle_id);
 		Result ret = ApiRequest.request(KICK_MEMBER_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
+
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -275,6 +277,10 @@ public class CircleMember extends AbstractData {
 	@Override
 	public void write(SQLiteDatabase db) {
 		String dbName = Const.CIRCLE_MEMBER_TABLE_NAME;
+		if (this.status == Status.DEL) {
+			db.delete(dbName, "user_id=? and circle_id=?", new String[] {
+					this.user_id + "", this.circle_id + "" });
+		}
 		String conditionsKey = "circle_id=? and user_id=?";
 		String[] conditionsValue = { this.circle_id + "", this.user_id + "" };
 		ContentValues cv = new ContentValues();

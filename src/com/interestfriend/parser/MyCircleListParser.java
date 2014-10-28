@@ -25,6 +25,7 @@ public class MyCircleListParser implements IParser {
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			int id = obj.getInt("circle_id");
+			int creator_id = obj.getInt("creator_id");
 			String circle_name = obj.getString("circle_name");
 			String circle_description = obj.getString("circle_description");
 			String circle_avatar = obj.getString("circle_avatar");
@@ -35,6 +36,7 @@ public class MyCircleListParser implements IParser {
 			circle.setCircle_id(id);
 			circle.setCircle_logo(circle_avatar);
 			circle.setCircle_name(circle_name);
+			circle.setCreator_id(creator_id);
 			circle.setGroup_id(group_id);
 			circle.setDistance(diatance);
 			lists.add(circle);

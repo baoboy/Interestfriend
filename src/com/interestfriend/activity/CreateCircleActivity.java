@@ -33,6 +33,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
@@ -211,6 +212,7 @@ public class CreateCircleActivity extends BaseActivity implements
 			circle.setCircle_name(circleName);
 			circle.setCircle_logo(imgPath);
 			circle.setCircle_category(category_code);
+			circle.setCreator_id(SharedUtils.getIntUid());
 			createCircle();
 			break;
 		case R.id.back:
