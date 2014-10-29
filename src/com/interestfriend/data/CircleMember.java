@@ -171,7 +171,7 @@ public class CircleMember extends AbstractData {
 	public void getNameAndAvatar(SQLiteDatabase db) {
 		String conditionsKey = "user_id=?";
 		String[] conditionsValue = { this.user_id + "" };
-		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE_NAME, new String[] {
+		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE, new String[] {
 				"user_name", "user_avatar" }, conditionsKey, conditionsValue,
 				null, null, null);
 		if (cursor.getCount() > 0) {
@@ -189,7 +189,7 @@ public class CircleMember extends AbstractData {
 	public void getNameAndAvatarByUserChatId(SQLiteDatabase db) {
 		String conditionsKey = "user_chat_id=?";
 		String[] conditionsValue = { this.user_chat_id + "" };
-		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE_NAME, new String[] {
+		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE, new String[] {
 				"user_name", "user_avatar" }, conditionsKey, conditionsValue,
 				null, null, null);
 		if (cursor.getCount() > 0) {
@@ -210,7 +210,7 @@ public class CircleMember extends AbstractData {
 	 * @return
 	 */
 	public RetError joinOffcialCircle() {
-		IParser parser = new SimpleParser();
+		IParser parser = new StringParser("circle_last_request_time");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("user_id", user_id);
 		params.put("circle_id", circle_id);
@@ -219,6 +219,8 @@ public class CircleMember extends AbstractData {
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			SharedUtils.setCircleLastRequestTime(Long.valueOf(sr.getStr()));
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -260,14 +262,13 @@ public class CircleMember extends AbstractData {
 	}
 
 	public RetError kickOutMember() {
-		IParser parser = new SimpleParser();
+		IParser parser = new StringParser("lastReqTime");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("kickout_user_id", user_id);
 		params.put("circle_id", circle_id);
 		Result ret = ApiRequest.request(KICK_MEMBER_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			this.status = Status.DEL;
-
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -276,7 +277,7 @@ public class CircleMember extends AbstractData {
 
 	@Override
 	public void write(SQLiteDatabase db) {
-		String dbName = Const.CIRCLE_MEMBER_TABLE_NAME;
+		String dbName = Const.CIRCLE_MEMBER_TABLE;
 		if (this.status == Status.DEL) {
 			db.delete(dbName, "user_id=? and circle_id=?", new String[] {
 					this.user_id + "", this.circle_id + "" });

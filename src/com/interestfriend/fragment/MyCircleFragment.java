@@ -95,7 +95,10 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_DESCRIPTION,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_LOGO,
 				MyCirclesProvider.MyCirclesColumns.GROUP_ID,
-				MyCirclesProvider.MyCirclesColumns.CREATOR_ID }; // 查询的列
+				MyCirclesProvider.MyCirclesColumns.CREATOR_ID,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CATEGORY,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATE_TIME,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCirclesProvider.MyCirclesColumns.CONTENT_URI, projection,
 				null, null, null);
@@ -141,6 +144,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				}
 				adapter.notifyDataSetChanged();
 				refushCircleGroupChatHositiory();
+				myCircleList.setLocalCircles(lists);
+				getCircleList();
 			} else {
 				dialog = DialogUtil.createLoadingDialog(getActivity(), "请稍候");
 				dialog.show();
@@ -156,6 +161,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.CREATE_CIRCLS);
 		myIntentFilter.addAction(Constants.JOIN_CIRCLE);
+		myIntentFilter.addAction(Constants.QUIT_CIRCLE);
 
 		// 注册广播
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -186,6 +192,15 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						.getSerializableExtra("circle");
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
+			} else if (action.equals(Constants.QUIT_CIRCLE)) {
+				int circle_id = intent.getIntExtra("circle_id", 0);
+				for (MyCircles circle : lists) {
+					if (circle.getCircle_id() == circle_id) {
+						lists.remove(circle);
+						adapter.notifyDataSetChanged();
+						return;
+					}
+				}
 			}
 		}
 	};

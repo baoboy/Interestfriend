@@ -137,7 +137,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			break;
 		case R.id.txt_user_info:
 			intent = new Intent();
-			intent.putExtra("circle_ember", memberSelf);
+			intent.putExtra("circle_member", memberSelf);
 			intent.setClass(mContext, CircleMemberOfSelfInfoActivity.class);
 			mContext.startActivity(intent);
 			break;

@@ -31,6 +31,9 @@ public class MyCirclesProvider {
 		public static final String CIRCLE_LOGO = "circle_logo";
 		public static final String GROUP_ID = "group_id";
 		public static final String CREATOR_ID = "creator_id";
+		public static final String CIRCLE_CREATOR_NAME = "circle_creator_name";
+		public static final String CIRCLE_CREATE_TIME = "circle_create_time";
+		public static final String CIRCLE_CATEGORY = "circle_category";
 
 	}
 

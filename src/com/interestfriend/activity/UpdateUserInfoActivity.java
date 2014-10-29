@@ -1,6 +1,5 @@
 package com.interestfriend.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +20,8 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 
-public class UpdateUserInfoActivity extends Activity implements OnClickListener {
+public class UpdateUserInfoActivity extends BaseActivity implements
+		OnClickListener {
 	private String column = "";
 	private String content = "";
 
@@ -76,7 +76,7 @@ public class UpdateUserInfoActivity extends Activity implements OnClickListener 
 				}
 			}
 			if (value.equals(content)) {
-				finish();
+				finishThisActivity();
 			}
 			upDate(value);
 			break;
@@ -107,7 +107,7 @@ public class UpdateUserInfoActivity extends Activity implements OnClickListener 
 				intent.putExtra("member", member);
 				intent.setAction(Constants.UPDATE_USER_INFO);
 				BroadCast.sendBroadCast(UpdateUserInfoActivity.this, intent);
-				finish();
+				finishThisActivity();
 			}
 		});
 		task.execute(member);

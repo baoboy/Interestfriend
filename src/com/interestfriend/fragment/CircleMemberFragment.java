@@ -16,14 +16,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.CircleInfoActivity;
 import com.interestfriend.activity.CircleMemberActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.adapter.CircleMemberAdapter;
@@ -31,9 +34,16 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCircleMemberProvider;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CircleMemberList;
+import com.interestfriend.data.Circles;
 import com.interestfriend.data.enums.RetError;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.ConfirmDialog;
+import com.interestfriend.popwindow.CircleMemberFragmentRightPopwindow;
+import com.interestfriend.popwindow.CircleMemberFragmentRightPopwindow.OnMenuClick;
+import com.interestfriend.task.DissolveCircleTask;
 import com.interestfriend.task.GetCircleMemberTask;
+import com.interestfriend.task.QuitCircleTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
@@ -42,7 +52,7 @@ import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
 public class CircleMemberFragment extends Fragment implements
-		OnItemClickListener {
+		OnItemClickListener, OnClickListener, OnMenuClick {
 	private int circle_id = 0;
 
 	private CircleMemberList list;
@@ -55,8 +65,11 @@ public class CircleMemberFragment extends Fragment implements
 
 	private ListView circle_member_listView;
 	private TextView txt_title;
+	private ImageView right_image;
 
 	private AsyncQueryHandler asyncQuery;
+
+	CircleMemberFragmentRightPopwindow pop;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,11 +92,15 @@ public class CircleMemberFragment extends Fragment implements
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		circle_member_listView = (ListView) getView().findViewById(
 				R.id.circle_member_listview);
+		right_image = (ImageView) getView().findViewById(R.id.rightImg);
+		right_image.setVisibility(View.VISIBLE);
+		right_image.setImageResource(R.drawable.drag);
 		setListener();
 	}
 
 	private void setListener() {
 		circle_member_listView.setOnItemClickListener(this);
+		right_image.setOnClickListener(this);
 	}
 
 	private void setValue() {
@@ -252,5 +269,144 @@ public class CircleMemberFragment extends Fragment implements
 	public void onDestroy() {
 		super.onDestroy();
 		getActivity().unregisterReceiver(mBroadcastReceiver);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.rightImg:
+			Circles circle = new Circles();
+			circle.setCircle_id(circle_id);
+			circle.findCircleCreatorByID(DBUtils.getDBsa(1));
+			pop = new CircleMemberFragmentRightPopwindow(getActivity(), v,
+					circle.getCreator_id() == SharedUtils.getIntUid());
+			pop.setmCallBack(this);
+			pop.show();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void onClick(int id) {
+		switch (id) {
+		case R.id.txt_quit_circle:
+			quitPrompt();
+			break;
+		case R.id.txt_circle_info:
+			intentCircleInfo();
+			break;
+		case R.id.txt_dissolve_circle:
+			dissolvePrompt();
+			break;
+		default:
+			break;
+		}
+
 	};
+
+	private void dissolvePrompt() {
+		Dialog dialog = DialogUtil.confirmDialog(getActivity(), "确定要解散圈子吗?",
+				"确定", "取消", new ConfirmDialog() {
+
+					@Override
+					public void onOKClick() {
+						dissolveCircle();
+					}
+
+					@Override
+					public void onCancleClick() {
+
+					}
+				});
+		dialog.show();
+	}
+
+	private void dissolveCircle() {
+		final Dialog dialog = DialogUtil.createLoadingDialog(getActivity(),
+				"请稍候");
+		dialog.show();
+		DissolveCircleTask task = new DissolveCircleTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
+					return;
+				}
+				ToastUtil.showToast("解散成功", Toast.LENGTH_SHORT);
+				Intent intent = new Intent();
+				intent.setAction(Constants.QUIT_CIRCLE);
+				intent.putExtra("circle_id", circle_id);
+				getActivity().sendBroadcast(intent);
+				getActivity().finish();
+				Utils.rightOut(getActivity());
+			}
+		});
+		Circles circle = new Circles();
+		circle.setCircle_id(circle_id);
+		task.execute(circle);
+	}
+
+	private void quitPrompt() {
+		Dialog dialog = DialogUtil.confirmDialog(getActivity(), "确定要退出圈子吗?",
+				"确定", "取消", new ConfirmDialog() {
+
+					@Override
+					public void onOKClick() {
+						quitCircle();
+					}
+
+					@Override
+					public void onCancleClick() {
+
+					}
+				});
+		dialog.show();
+	}
+
+	private void quitCircle() {
+		final Dialog dialog = DialogUtil.createLoadingDialog(getActivity(),
+				"请稍候");
+		dialog.show();
+		QuitCircleTask task = new QuitCircleTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
+					return;
+				}
+				ToastUtil.showToast("退出成功", Toast.LENGTH_SHORT);
+				Intent intent = new Intent();
+				intent.setAction(Constants.QUIT_CIRCLE);
+				intent.putExtra("circle_id", circle_id);
+				getActivity().sendBroadcast(intent);
+				getActivity().finish();
+				Utils.rightOut(getActivity());
+			}
+		});
+		Circles circle = new Circles();
+		circle.setCircle_id(circle_id);
+		task.execute(circle);
+	}
+
+	private void intentCircleInfo() {
+		Circles circle = new Circles();
+		circle.setCircle_id(circle_id);
+		circle.read(DBUtils.getDBsa(1));
+		Intent intent = new Intent();
+		intent.putExtra("circle", circle);
+		intent.setClass(getActivity(), CircleInfoActivity.class);
+		startActivity(intent);
+		Utils.leftOutRightIn(getActivity());
+	}
 }

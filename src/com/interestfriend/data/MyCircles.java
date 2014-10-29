@@ -26,6 +26,21 @@ public class MyCircles extends Circles {
 		cv.put("circle_logo", getCircle_logo());
 		cv.put("group_id", getGroup_id());
 		cv.put("creator_id", getCreator_id());
+		cv.put("circle_creator_name", getCircle_creator_name());
+		cv.put("circle_create_time", getCircle_create_time());
+		cv.put("circle_category", getCircle_category_name());
 		db.insert(dbName, null, cv);
+	}
+
+	public String toDbUnionInsertString() {
+		return getCircle_id() + "," + getCreator_id() + ",'" + getGroup_id()
+				+ "','" + getCircle_name() + "','" + getCircle_description()
+				+ "','" + getCircle_logo() + "','" + getCircle_creator_name()
+				+ "','" + getCircle_create_time() + "','"
+				+ getCircle_category_name() + "'";
+	}
+
+	public static String getDbInsertKeyString() {
+		return " (circle_id, creator_id, group_id, circle_name, circle_description, circle_logo,circle_creator_name,circle_create_time,circle_category)";
 	}
 }

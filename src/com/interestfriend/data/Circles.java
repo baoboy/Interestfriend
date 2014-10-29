@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.enums.CircleState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -16,6 +17,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
 
 public class Circles extends AbstractData {
@@ -24,6 +26,8 @@ public class Circles extends AbstractData {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String CREATE_CIRCLE_API = "CreateCircleServlet";
+	private static String QUIT_CIRCLE_API = "QuitCircleServlet";
+	private static String DISSOLVE_CIRCLE_API = "DissolveCircleServlet";
 
 	private int circle_id = 0;
 	private String circle_name = "";
@@ -35,6 +39,42 @@ public class Circles extends AbstractData {
 	private int group_chat_unread;
 	private int growth_unread;
 	private int creator_id;
+	private CircleState circle_state;
+	private String circle_creator_name = "";
+	private String circle_create_time = "";
+	private String circle_category_name = "";
+
+	public String getCircle_category_name() {
+		return circle_category_name;
+	}
+
+	public void setCircle_category_name(String circle_category_name) {
+		this.circle_category_name = circle_category_name;
+	}
+
+	public String getCircle_creator_name() {
+		return circle_creator_name;
+	}
+
+	public void setCircle_creator_name(String circle_creator_name) {
+		this.circle_creator_name = circle_creator_name;
+	}
+
+	public String getCircle_create_time() {
+		return circle_create_time;
+	}
+
+	public void setCircle_create_time(String circle_create_time) {
+		this.circle_create_time = circle_create_time;
+	}
+
+	public CircleState getCircle_state() {
+		return circle_state;
+	}
+
+	public void setCircle_state(CircleState circle_state) {
+		this.circle_state = circle_state;
+	}
 
 	public int getCreator_id() {
 		return creator_id;
@@ -152,9 +192,44 @@ public class Circles extends AbstractData {
 		}
 	}
 
+	public RetError quitCircle() {
+		IParser parser = new StringParser("lastReqTime");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(QUIT_CIRCLE_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	/**
+	 * ½âÉ¢È¦×Ó
+	 * 
+	 * @return
+	 */
+	public RetError dissolveCircle() {
+		IParser parser = new StringParser("lastReqTime");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(DISSOLVE_CIRCLE_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
 	@Override
 	public void write(SQLiteDatabase db) {
 		String tableName = Const.MY_CIRCLE_TABLE_NAME;
+		if (this.status == Status.DEL) {
+			db.delete(tableName, "circle_id=?", new String[] { circle_id + "" });
+			return;
+		}
 		ContentValues values = new ContentValues();
 		values.put("circle_logo", circle_logo);
 		values.put("circle_name", circle_name);
@@ -162,6 +237,9 @@ public class Circles extends AbstractData {
 		values.put("group_id", group_id);
 		values.put("circle_id", circle_id);
 		values.put("creator_id", creator_id);
+		values.put("circle_creator_name", circle_creator_name);
+		values.put("circle_create_time", circle_create_time);
+		values.put("circle_category", circle_category_name);
 		db.insert(tableName, null, values);
 	}
 
@@ -185,6 +263,28 @@ public class Circles extends AbstractData {
 
 	@Override
 	public void read(SQLiteDatabase db) {
-
+		Cursor cursor = db.query(Const.MY_CIRCLE_TABLE_NAME, new String[] {
+				"circle_logo", "circle_name", "circle_description", "group_id",
+				"creator_id", "circle_creator_name", "circle_create_time",
+				"circle_category", }, "circle_id=?", new String[] { circle_id
+				+ "" }, null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+			this.creator_id = cursor
+					.getInt(cursor.getColumnIndex("creator_id"));
+			this.circle_logo = cursor.getString(cursor
+					.getColumnIndex("circle_logo"));
+			this.circle_name = cursor.getString(cursor
+					.getColumnIndex("circle_name"));
+			this.circle_description = cursor.getString(cursor
+					.getColumnIndex("circle_description"));
+			this.group_id = cursor.getString(cursor.getColumnIndex("group_id"));
+			this.circle_creator_name = cursor.getString(cursor
+					.getColumnIndex("circle_creator_name"));
+			this.circle_category_name = cursor.getString(cursor
+					.getColumnIndex("circle_category"));
+			this.circle_create_time = cursor.getString(cursor
+					.getColumnIndex("circle_create_time"));
+		}
 	}
 }

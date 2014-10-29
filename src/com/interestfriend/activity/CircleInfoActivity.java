@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,10 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private Button btn_join;
 	private TextView txt_title;
 	private ImageView back;
+	private RelativeLayout layout_circle_creator;
+	private TextView txt_circle_create_time;
+	private TextView txt_citcle_creator_name;
+	private TextView txt_circle_category;
 
 	private String imgLogo = "";
 	private String description = "";
@@ -48,9 +53,6 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void getIntentData() {
-		// imgLogo = getIntent().getStringExtra("imgLogo");
-		// description = getIntent().getStringExtra("description");
-		// circle_id = getIntent().getIntExtra("circle_id", 0);
 		circle = (Circles) getIntent().getSerializableExtra("circle");
 		imgLogo = circle.getCircle_logo();
 		circle_id = circle.getCircle_id();
@@ -63,6 +65,10 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		btn_join = (Button) findViewById(R.id.btn_join);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		back = (ImageView) findViewById(R.id.back);
+		layout_circle_creator = (RelativeLayout) findViewById(R.id.layout_circle_creator);
+		txt_circle_category = (TextView) findViewById(R.id.txt_circle_category);
+		txt_citcle_creator_name = (TextView) findViewById(R.id.txt_circle_creator);
+		txt_circle_create_time = (TextView) findViewById(R.id.txt_circle_create_time);
 
 		setListener();
 	}
@@ -70,7 +76,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private void setListener() {
 		btn_join.setOnClickListener(this);
 		back.setOnClickListener(this);
-
+		layout_circle_creator.setOnClickListener(this);
 	}
 
 	private void setValue() {
@@ -78,6 +84,10 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				R.drawable.picture_default_head);
 		txt_description.setText(description);
 		txt_title.setText(circle.getCircle_name());
+		txt_circle_category.setText(circle.getCircle_category_name());
+		txt_circle_create_time.setText(circle.getCircle_create_time());
+		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
+
 	}
 
 	private void joinDialog() {
@@ -119,8 +129,8 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				intent.putExtra("circle", circle);
 				intent.setAction(Constants.JOIN_CIRCLE);
 				BroadCast.sendBroadCast(CircleInfoActivity.this, intent);
-
 				circle.write(DBUtils.getDBsa(2));
+				finishThisActivity();
 			}
 		});
 		task.execute(member);
