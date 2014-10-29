@@ -94,7 +94,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_NAME,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_DESCRIPTION,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_LOGO,
-				MyCirclesProvider.MyCirclesColumns.GROUP_ID, }; // 查询的列
+				MyCirclesProvider.MyCirclesColumns.GROUP_ID,
+				MyCirclesProvider.MyCirclesColumns.CREATOR_ID }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCirclesProvider.MyCirclesColumns.CONTENT_URI, projection,
 				null, null, null);
@@ -127,12 +128,14 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					String circle_description = cursor.getString(2);
 					String circle_logo = cursor.getString(3);
 					String group_id = cursor.getString(4);
+					int creator_id = cursor.getInt(5);
 					MyCircles circles = new MyCircles();
 					circles.setCircle_id(circle_id);
 					circles.setCircle_description(circle_description);
 					circles.setCircle_name(circle_name);
 					circles.setCircle_logo(circle_logo);
 					circles.setGroup_id(group_id);
+					circles.setCreator_id(creator_id);
 					lists.add(circles);
 					cursor.moveToNext();
 				}

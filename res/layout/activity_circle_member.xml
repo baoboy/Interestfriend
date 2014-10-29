@@ -12,8 +12,8 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
         android:layout_above="@+id/bottom_line"
+        android:layout_below="@+id/title"
         android:fillViewport="true"
         android:scrollbars="none" >
 
@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="match_parent"
-                android:layout_height="300dip"
+                android:layout_height="230dip"
                 android:scaleType="centerCrop"
                 android:src="@drawable/chat_image_normal" />
 
@@ -285,7 +285,8 @@
             android:background="@drawable/btn_14c1c7"
             android:text="踢出圈子"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>

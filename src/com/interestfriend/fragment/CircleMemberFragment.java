@@ -203,10 +203,11 @@ public class CircleMemberFragment extends Fragment implements
 			long arg3) {
 		CircleMember m = cirlceMemberLists.get(position);
 		Intent intent = new Intent();
-		intent.putExtra("circle_ember", m);
+		intent.putExtra("circle_member", m);
 		if (m.getUser_id() == SharedUtils.getIntUid()) {
 			intent.setClass(getActivity(), CircleMemberOfSelfInfoActivity.class);
 		} else {
+			intent.putExtra("position", position);
 			intent.setClass(getActivity(), CircleMemberActivity.class);
 		}
 		startActivity(intent);
@@ -219,6 +220,7 @@ public class CircleMemberFragment extends Fragment implements
 	public void registerBoradcastReceiver() {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.UPDATE_USER_INFO);
+		myIntentFilter.addAction(Constants.KICK_OUT_MEMBER);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -238,6 +240,10 @@ public class CircleMemberFragment extends Fragment implements
 				cirlceMemberLists.add(0, member);
 				adapter.notifyDataSetChanged();
 
+			} else if (action.equals(Constants.KICK_OUT_MEMBER)) {
+				int position = intent.getIntExtra("position", 0);
+				cirlceMemberLists.remove(position);
+				adapter.notifyDataSetChanged();
 			}
 		}
 	};

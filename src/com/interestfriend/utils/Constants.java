@@ -15,6 +15,7 @@ public class Constants {
 	public static final String UPDATE_USER_NAME = "com.interestfriend.update.uer_name";
 	public static final String COMMENT_GROWTH = "com.interestfriend.comment_growth";
 	public static final String COMMENT_VIDEO = "com.interestfriend.comment_video";
+	public static final String KICK_OUT_MEMBER = "com.interestfriend.kick_out_member";
 
 	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;// —°‘ÒÕº∆¨
 	public static final int REQUEST_CODE_GETIMAGE_BYCAMERA = 1;// ≈ƒ’’

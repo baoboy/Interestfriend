@@ -60,8 +60,8 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_circle_member_info);
-		member = (CircleMember) getIntent()
-				.getSerializableExtra("circle_ember");
+		member = (CircleMember) getIntent().getSerializableExtra(
+				"circle_member");
 		initView();
 	}
 
