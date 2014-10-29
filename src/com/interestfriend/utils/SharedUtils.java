@@ -173,4 +173,14 @@ public class SharedUtils {
 				0l);
 
 	}
+
+	public static void setCircleLastRequestTime(long lastReqTime) {
+		editor.putLong("circle_last_request_time", lastReqTime);
+		editor.commit();
+	}
+
+	public static long getCircleLastRequestTime() {
+		return sharedPreferences.getLong("circle_last_request_time", 0l);
+
+	}
 }

@@ -16,9 +16,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,7 @@ import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CircleMemberList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.popwindow.CircleMemberFragmentRightPopwindow;
 import com.interestfriend.task.GetCircleMemberTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
@@ -42,7 +45,7 @@ import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
 public class CircleMemberFragment extends Fragment implements
-		OnItemClickListener {
+		OnItemClickListener, OnClickListener {
 	private int circle_id = 0;
 
 	private CircleMemberList list;
@@ -55,6 +58,7 @@ public class CircleMemberFragment extends Fragment implements
 
 	private ListView circle_member_listView;
 	private TextView txt_title;
+	private ImageView right_image;
 
 	private AsyncQueryHandler asyncQuery;
 
@@ -79,11 +83,15 @@ public class CircleMemberFragment extends Fragment implements
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		circle_member_listView = (ListView) getView().findViewById(
 				R.id.circle_member_listview);
+		right_image = (ImageView) getView().findViewById(R.id.rightImg);
+		right_image.setVisibility(View.VISIBLE);
+		right_image.setImageResource(R.drawable.drag);
 		setListener();
 	}
 
 	private void setListener() {
 		circle_member_listView.setOnItemClickListener(this);
+		right_image.setOnClickListener(this);
 	}
 
 	private void setValue() {
@@ -252,5 +260,17 @@ public class CircleMemberFragment extends Fragment implements
 	public void onDestroy() {
 		super.onDestroy();
 		getActivity().unregisterReceiver(mBroadcastReceiver);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.rightImg:
+			new CircleMemberFragmentRightPopwindow(getActivity(), v).show();
+			break;
+
+		default:
+			break;
+		}
 	};
 }

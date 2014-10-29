@@ -31,6 +31,7 @@ import com.interestfriend.utils.PinYinUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		OnClickListener, SelectOnclick {
@@ -141,6 +142,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		intent.putExtra("member", member);
 		intent.setClass(this, UpdateUserInfoActivity.class);
 		startActivityForResult(intent, requestCode);
+		Utils.leftOutRightIn(this);
 	}
 
 	@Override

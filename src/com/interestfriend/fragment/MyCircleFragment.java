@@ -95,7 +95,10 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_DESCRIPTION,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_LOGO,
 				MyCirclesProvider.MyCirclesColumns.GROUP_ID,
-				MyCirclesProvider.MyCirclesColumns.CREATOR_ID }; // 查询的列
+				MyCirclesProvider.MyCirclesColumns.CREATOR_ID,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CATEGORY,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATE_TIME,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCirclesProvider.MyCirclesColumns.CONTENT_URI, projection,
 				null, null, null);
@@ -141,6 +144,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				}
 				adapter.notifyDataSetChanged();
 				refushCircleGroupChatHositiory();
+				myCircleList.setLocalCircles(lists);
+				getCircleList();
 			} else {
 				dialog = DialogUtil.createLoadingDialog(getActivity(), "请稍候");
 				dialog.show();

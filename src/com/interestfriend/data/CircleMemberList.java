@@ -152,7 +152,7 @@ public class CircleMemberList extends AbstractData {
 		StringBuilder sqlBuffer = new StringBuilder();
 
 		// basic info: delete delMembers
-		sqlBuffer.append("delete from " + Const.CIRCLE_MEMBER_TABLE_NAME
+		sqlBuffer.append("delete from " + Const.CIRCLE_MEMBER_TABLE
 				+ " where user_id in (");
 		int cnt = 0;
 		for (CircleMember dm : delMembers) {
@@ -174,7 +174,7 @@ public class CircleMemberList extends AbstractData {
 		}
 		// insert newMembers
 		sqlBuffer = new StringBuilder();
-		sqlBuffer.append("insert into " + Const.CIRCLE_MEMBER_TABLE_NAME
+		sqlBuffer.append("insert into " + Const.CIRCLE_MEMBER_TABLE
 				+ CircleMember.getDbInsertKeyString() + " select ");
 		cnt = 0;
 		for (CircleMember nm : newMembers) {
@@ -187,8 +187,7 @@ public class CircleMemberList extends AbstractData {
 				db.execSQL(sqlBuffer.toString());
 				cnt = 0;
 				sqlBuffer = new StringBuilder();
-				sqlBuffer.append("insert into "
-						+ Const.CIRCLE_MEMBER_TABLE_NAME
+				sqlBuffer.append("insert into " + Const.MY_CIRCLE_TABLE_NAME
 						+ CircleMember.getDbInsertKeyString() + " select ");
 			}
 		}

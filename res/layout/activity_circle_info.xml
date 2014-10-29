@@ -13,7 +13,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_join"
+        android:layout_above="@+id/bottom_line"
         android:layout_below="@+id/title" >
 
         <LinearLayout
@@ -50,6 +50,92 @@
                 android:layout_height="0.2dip"
                 android:background="@color/bg_line" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="13dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="圈子创建时间" />
+
+                <TextView
+                    android:id="@+id/txt_circle_create_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="8dip"
+                    android:text="TextView"
+                    android:textColor="#adadad" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
+            <RelativeLayout
+                android:id="@+id/layout_circle_creator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="13dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="圈子创建者" />
+
+                <TextView
+                    android:id="@+id/txt_circle_creator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="8dip"
+                    android:drawableRight="@drawable/icon_friend_right_arrow"
+                    android:text="TextView"
+                    android:textColor="#adadad" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="13dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="圈子类别" />
+
+                <TextView
+                    android:id="@+id/txt_circle_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="8dip"
+                    android:text="TextView"
+                    android:textColor="#adadad" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
@@ -68,34 +154,38 @@
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
                 android:paddingTop="8dip"
-                android:text="趣友官方圈子，欢迎您的加入"
                 android:textColor="#adadad"
                 android:textSize="14sp" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.2dip"
-                android:background="@color/bg_line" />
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_join"
+    <View
+        android:id="@+id/bottom_line"
         android:layout_width="fill_parent"
-        android:layout_height="@dimen/dp98"
-        android:layout_above="@+id/bo"
-        android:layout_marginLeft="@dimen/dp76"
-        android:layout_marginRight="@dimen/dp76"
-        android:background="@drawable/btn_14c1c7"
-        android:text="加入圈子"
-        android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:layout_height="0.5dip"
+        android:layout_above="@+id/layout_bottom"
+        android:background="#d5d5d5" />
 
-    <Button
-        android:id="@+id/bo"
-        android:layout_width="fill_parent"
-        android:layout_height="10dip"
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="invisible" />
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="6dip"
+        android:paddingTop="6dip" >
+
+        <Button
+            android:id="@+id/btn_join"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp98"
+            android:layout_marginLeft="20dip"
+            android:layout_marginRight="20dip"
+            android:background="@drawable/btn_14c1c7"
+            android:text="加入圈子"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
 
 </RelativeLayout>

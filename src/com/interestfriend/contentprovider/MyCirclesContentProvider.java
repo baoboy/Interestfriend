@@ -198,5 +198,14 @@ public class MyCirclesContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap.put(
 				MyCirclesProvider.MyCirclesColumns.CREATOR_ID,
 				MyCirclesProvider.MyCirclesColumns.CREATOR_ID);
+		sMyCirclesProjectionMap.put(
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CATEGORY,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CATEGORY);
+		sMyCirclesProjectionMap.put(
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATE_TIME,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATE_TIME);
+		sMyCirclesProjectionMap.put(
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME);
 	}
 }
