@@ -57,6 +57,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -85,6 +86,7 @@ import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAdapter;
+import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.data.CircleMember;
@@ -183,6 +185,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private String userName = "";
 	private TextView txt_title;
 	private ImageView back;
+
+	private GridView mGridView;
 	private Handler micImageHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -210,6 +214,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	 * initView
 	 */
 	protected void initView() {
+		mGridView = (GridView) findViewById(R.id.m_gridview);
+		mGridView.setAdapter(new ChatGridViewAdapter(this));
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(this);
 		txt_title = (TextView) findViewById(R.id.title_txt);

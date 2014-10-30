@@ -206,6 +206,10 @@
             android:name="com.interestfriend.activity.VideoCommentActivity"
             android:label="@string/title_activity_video_comment" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
     </application>
 
 </manifest>

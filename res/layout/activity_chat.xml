@@ -154,8 +154,7 @@
                 android:id="@+id/ll_face_container"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:orientation="vertical"
-                android:visibility="gone" >
+                android:orientation="vertical" >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vPager"
@@ -171,6 +170,29 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <GridView
+                    android:id="@+id/m_gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#d5d5d5"
+                    android:horizontalSpacing="1.0px"
+                    android:listSelector="@null"
+                    android:numColumns="4"
+                    android:smoothScrollbar="true"
+                    android:soundEffectsEnabled="true"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="1.0px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

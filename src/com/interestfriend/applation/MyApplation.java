@@ -243,6 +243,15 @@ public class MyApplation extends Application {
 		});
 	}
 
+	/**
+	 * 退出登录,清空数据
+	 */
+	public static void logoutHuanXin() {
+		// 先调用sdk logout，在清理app中自己的数据
+		EMChatManager.getInstance().logout();
+
+	}
+
 	public static int getCircle_id() {
 		return circle_id;
 	}

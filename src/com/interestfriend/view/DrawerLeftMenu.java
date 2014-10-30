@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.fourmob.datetimepicker.Utils;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
+import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
@@ -32,6 +32,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private LinearLayout layotu_parent;
 	private TextView txt_message;
 	private TextView txt_user_info;
+	private TextView txt_setting;
 
 	private CircleMember memberSelf = new CircleMember();;
 
@@ -82,9 +83,11 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 				.findViewById(R.id.layout_parent);
 		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
 		txt_user_info = (TextView) rootView.findViewById(R.id.txt_user_info);
+		txt_setting = (TextView) rootView.findViewById(R.id.txt_seting);
 		layotu_parent.setOnClickListener(this);
 		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
+		txt_setting.setOnClickListener(this);
 		addView(rootView);
 	}
 
@@ -140,6 +143,9 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			intent.putExtra("circle_member", memberSelf);
 			intent.setClass(mContext, CircleMemberOfSelfInfoActivity.class);
 			mContext.startActivity(intent);
+			break;
+		case R.id.txt_seting:
+			mContext.startActivity(new Intent(mContext, SettingActivity.class));
 			break;
 		default:
 			break;
