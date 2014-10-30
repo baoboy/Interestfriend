@@ -60,7 +60,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 				mOnNextListener.next();
 			}
 		});
-		task.execute(re);
+		task.executeParallel(re);
 	}
 
 	@Override

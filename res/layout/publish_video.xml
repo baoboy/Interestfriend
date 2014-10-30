@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <include
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        layout="@layout/title_bar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_title"
+        android:orientation="vertical"
+        android:padding="13dip"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/ll_click_area"
+                android:layout_width="130dip"
+                android:layout_height="145dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dip"
+                android:layout_marginTop="10dip" >
+
+                <ImageView
+                    android:id="@+id/video_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/chat_video_mask_to" >
+
+                    <TextView
+                        android:id="@+id/chatting_size_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="啊啊啊啊啊啊啊啊"
+                        android:textColor="@android:color/white"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/chatting_length_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:gravity="right"
+                        android:text="aaaaaaaaaaaaaaaaaaaaa"
+                        android:textColor="@android:color/white"
+                        android:textSize="12.0sp" />
+
+                    <ImageView
+                        android:id="@+id/chatting_status_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/video_download_btn_nor" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/txt_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_bg"
+                android:gravity="top"
+                android:hint="说点什么吧"
+                android:minHeight="100dip"
+                android:padding="10dip"
+                android:textColor="#818181"
+                android:textSize="15sp" >
+            </EditText>
+
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_marginBottom="30dip"
+                android:layout_marginTop="20dip"
+                android:background="@drawable/btn_14c1c7"
+                android:text="发布"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

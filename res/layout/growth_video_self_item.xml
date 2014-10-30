@@ -24,6 +24,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="5dp"
+                android:singleLine="true"
                 android:text="舒淇"
                 android:textColor="#485355"
                 android:textSize="16sp" />
@@ -57,9 +58,10 @@
 
             <RelativeLayout
                 android:id="@+id/ll_click_area"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_below="@+id/txt_content" >
+                android:layout_width="130dp"
+                android:layout_height="145dp"
+                android:layout_below="@+id/txt_content"
+                android:layout_centerHorizontal="true" >
 
                 <ImageView
                     android:id="@+id/video_img"

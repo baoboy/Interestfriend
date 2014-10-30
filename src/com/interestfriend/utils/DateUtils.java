@@ -169,6 +169,11 @@ public class DateUtils {
 
 	}
 
+	public static String getCircleCreateTime() {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(new Date());
+	}
+
 	/**
 	 * 将string类型转换为date
 	 * 

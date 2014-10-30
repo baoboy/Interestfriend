@@ -23,6 +23,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="5dp"
+                android:singleLine="true"
                 android:text="舒淇"
                 android:textColor="#485355"
                 android:textSize="16sp" />
@@ -148,5 +149,28 @@
             android:scaleType="centerCrop"
             android:src="@drawable/default_avatar" />
     </RelativeLayout>
+    <!-- <ProgressBar -->
+    <!-- android:id="@+id/pbLoading" -->
+    <!-- android:layout_width="22dip" -->
+    <!-- android:layout_height="22dip" -->
+    <!-- android:layout_alignParentLeft="true" -->
+    <!-- android:layout_centerVertical="true" -->
+    <!-- android:layout_marginLeft="10dip" -->
+    <!-- android:layout_marginRight="8dip" -->
+    <!-- android:indeterminateDrawable="@drawable/iamge_progress" /> -->
+
+
+    <!-- <TextView -->
+    <!-- android:id="@+id/growthLoading_fail" -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_centerVertical="true" -->
+    <!-- android:layout_marginLeft="5dip" -->
+    <!-- android:layout_marginRight="8dip" -->
+    <!-- android:drawableLeft="@drawable/growth_fail" -->
+    <!-- android:drawablePadding="5dip" -->
+    <!-- android:text="失败" -->
+    <!-- android:textColor="#ff2400" -->
+    <!-- android:textSize="17sp" /> -->
 
 </RelativeLayout>

@@ -212,7 +212,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				sendBroadcast(intent);
 			}
 		});
-		task.execute(comment);
+		task.executeParallel(comment);
 	}
 
 	private void delReplaySomeOne() {
@@ -285,7 +285,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(comment);
+		task.executeParallel(comment);
 	}
 
 	private void reply(int position) {

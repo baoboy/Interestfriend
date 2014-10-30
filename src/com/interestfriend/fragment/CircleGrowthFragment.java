@@ -31,6 +31,7 @@ import com.interestfriend.R;
 import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.ImageGridActivity;
 import com.interestfriend.activity.PublicshGrowthActivity;
+import com.interestfriend.activity.PublishVideoActivity;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.Video;
@@ -38,6 +39,7 @@ import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class CircleGrowthFragment extends Fragment implements
 		RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
@@ -139,12 +141,14 @@ public class CircleGrowthFragment extends Fragment implements
 	public void menu1_select() {
 		startActivityForResult(new Intent(getActivity(),
 				PublicshGrowthActivity.class), 200);
+		Utils.leftOutRightIn(getActivity());
 	}
 
 	@Override
 	public void menu2_select() {
 		Intent intent = new Intent(getActivity(), ImageGridActivity.class);
 		startActivityForResult(intent, ChatActivity.REQUEST_CODE_SELECT_VIDEO);
+		Utils.leftOutRightIn(getActivity());
 	}
 
 	@Override
@@ -177,6 +181,12 @@ public class CircleGrowthFragment extends Fragment implements
 			growth.setPublisher_name(SharedUtils.getAPPUserName());
 			imgFragment.refushAdapter(growth);
 		} else if (requestCode == ChatActivity.REQUEST_CODE_SELECT_VIDEO) {
+			Intent intent = data;
+			data.setClass(getActivity(), PublishVideoActivity.class);
+			startActivityForResult(intent, 300);
+			Utils.leftOutRightIn(getActivity());
+
+		} else if (requestCode == 300) {
 			int duration = data.getIntExtra("dur", 0);
 			String videoPath = data.getStringExtra("path");
 			File file = new File(PathUtil.getInstance().getImagePath(),
@@ -229,7 +239,6 @@ public class CircleGrowthFragment extends Fragment implements
 			video.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
 			video.setPublisher_name(SharedUtils.getAPPUserName());
 			videoFragment.refushAdapter(video);
-
 		}
 	}
 

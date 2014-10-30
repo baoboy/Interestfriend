@@ -30,6 +30,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dip"
                 android:layout_marginTop="5dp"
+                android:singleLine="true"
                 android:text="舒淇"
                 android:textColor="#485355"
                 android:textSize="16sp" />
@@ -66,8 +67,8 @@
                 android:layout_below="@+id/txt_content"
                 android:layout_gravity="left"
                 android:adjustViewBounds="true"
-                android:maxHeight="300dip"
-                android:maxWidth="300dip"
+                android:maxHeight="200dip"
+                android:maxWidth="200dip"
                 android:scaleType="fitXY"
                 android:visibility="gone" />
 
@@ -84,11 +85,30 @@
             </com.interestfriend.view.ExpandGridView>
 
             <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:layout_below="@+id/imgGridview"
+                android:background="#d5d5d5" />
+
+            <com.interestfriend.view.ScrollViewWithListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/line2"
+                android:background="@color/white"
+                android:cacheColorHint="#00000000"
+                android:divider="#d5d5d5"
+                android:dividerHeight="0.5dip"
+                android:listSelector="#00000000"
+                android:scrollbars="none" />
+
+            <View
                 android:id="@+id/line"
                 android:layout_width="match_parent"
-                android:layout_height="0.1dip"
-                android:layout_below="@+id/imgGridview"
-                android:background="#EDEDED" />
+                android:layout_height="0.5dip"
+                android:layout_below="@+id/listView1"
+                android:background="#d5d5d5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,12 +125,13 @@
                     android:drawablePadding="3dip"
                     android:padding="5dip"
                     android:text="分享"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
 
                 <View
                     android:layout_width="0.5dip"
                     android:layout_height="match_parent"
-                    android:background="#EDEDED" />
+                    android:background="#d5d5d5" />
 
                 <com.interestfriend.view.DrawableCenterTextView
                     android:id="@+id/btn_comment"
@@ -121,7 +142,8 @@
                     android:drawablePadding="3dip"
                     android:padding="5dip"
                     android:text="回复"
-                    android:textColor="@color/gray" />
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

@@ -21,6 +21,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
+import com.interestfriend.utils.Utils;
 
 public class ChatAllHistoryActivity extends BaseActivity implements
 		OnItemClickListener {
@@ -143,6 +144,6 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 		Intent intent = new Intent(this, ChatActivity.class);
 		intent.putExtra("userId", username);
 		startActivity(intent);
-
+		Utils.leftOutRightIn(this);
 	}
 }

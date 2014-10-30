@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dip" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="50dip" >
+
+        <com.interestfriend.view.RoundAngleImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_marginLeft="5dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_avatar" />
+
+        <RelativeLayout
+            android:id="@+id/lay_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_avatar"
+            android:background="@drawable/growth_left_bg" >
+
+            <TextView
+                android:id="@+id/txt_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="5dp"
+                android:singleLine="true"
+                android:text="舒淇"
+                android:textColor="#485355"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="2014"
+                android:textColor="@color/gray"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txt_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_user_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingBottom="10dp"
+                android:text="无病呻吟"
+                android:textColor="#666666"
+                android:textSize="15sp" />
+            <!-- android:layout_width="130dp" -->
+            <!-- android:layout_height="145dp" -->
+
+            <RelativeLayout
+                android:id="@+id/ll_click_area"
+                android:layout_width="130dp"
+                android:layout_height="145dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/txt_content" >
+
+                <ImageView
+                    android:id="@+id/video_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/chat_video_mask_to" >
+
+                    <TextView
+                        android:id="@+id/chatting_size_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="啊啊啊啊啊啊啊啊"
+                        android:textColor="@android:color/white"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/chatting_length_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:gravity="right"
+                        android:text="aaaaaaaaaaaaaaaaaaaaa"
+                        android:textColor="@android:color/white"
+                        android:textSize="12.0sp" />
+
+                    <ImageView
+                        android:id="@+id/chatting_status_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/video_download_btn_nor" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <com.interestfriend.view.ScrollViewWithListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_click_area"
+                android:background="@color/white"
+                android:cacheColorHint="#00000000"
+                android:divider="#d5d5d5"
+                android:dividerHeight="0.5dip"
+                android:listSelector="#00000000"
+                android:scrollbars="none" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:layout_below="@+id/listView1"
+                android:background="#d5d5d5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line"
+                android:background="#f7f7f7" >
+
+                <com.interestfriend.view.DrawableCenterTextView
+                    android:id="@+id/btn_comment"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/icon_comment"
+                    android:drawablePadding="3dip"
+                    android:padding="5dip"
+                    android:text="回复"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

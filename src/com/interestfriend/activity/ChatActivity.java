@@ -56,6 +56,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -142,7 +143,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private ImageView micImage;
 	private TextView recordingHint;
 	private ListView listView;
-	private PasteEditText mEditTextContent;
+	private EditText mEditTextContent;
 	private View buttonSetModeKeyboard;
 	private View buttonSetModeVoice;
 	private View buttonSend;
@@ -216,7 +217,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		micImage = (ImageView) findViewById(R.id.mic_image);
 		recordingHint = (TextView) findViewById(R.id.recording_hint);
 		listView = (ListView) findViewById(R.id.list);
-		mEditTextContent = (PasteEditText) findViewById(R.id.et_sendmessage);
+		mEditTextContent = (EditText) findViewById(R.id.et_sendmessage);
 		buttonSetModeKeyboard = findViewById(R.id.btn_set_mode_keyboard);
 		edittext_layout = (RelativeLayout) findViewById(R.id.edittext_layout);
 		buttonSetModeVoice = findViewById(R.id.btn_set_mode_voice);
@@ -233,7 +234,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		iv_emoticons_normal.setVisibility(View.VISIBLE);
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
 		more = findViewById(R.id.more);
-		edittext_layout.setBackgroundResource(R.drawable.input_bar_bg_normal);
 
 		// 动画资源文件,用于录制语音时
 		micImages = new Drawable[] {
@@ -263,26 +263,12 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		edittext_layout.requestFocus();
 		voiceRecorder = new VoiceRecorder(micImageHandler);
 		buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
-		mEditTextContent.setOnFocusChangeListener(new OnFocusChangeListener() {
 
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus) {
-					edittext_layout
-							.setBackgroundResource(R.drawable.input_bar_bg_active);
-				} else {
-					edittext_layout
-							.setBackgroundResource(R.drawable.input_bar_bg_normal);
-				}
-
-			}
-		});
 		mEditTextContent.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				edittext_layout
-						.setBackgroundResource(R.drawable.input_bar_bg_active);
+
 				more.setVisibility(View.GONE);
 				iv_emoticons_normal.setVisibility(View.VISIBLE);
 				iv_emoticons_checked.setVisibility(View.INVISIBLE);
@@ -322,6 +308,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		activityInstance = this;
 		iv_emoticons_normal.setOnClickListener(this);
 		iv_emoticons_checked.setOnClickListener(this);
+		btnMore.setOnClickListener(this);
 		// position = getIntent().getIntExtra("position", -1);
 		clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 		manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -636,6 +623,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 						toChatUsername).putExtra("isComingCall", false));
 		} else if (id == R.id.back) {
 			finishThisActivity();
+		} else if (id == R.id.btn_more) {
+			more(more);
 		}
 	}
 

@@ -182,7 +182,7 @@ public class CircleMemberActivity extends BaseActivity implements
 				finishThisActivity();
 			}
 		});
-		task.execute(member);
+		task.executeParallel(member);
 	}
 
 	private void getCircleList() {
@@ -195,7 +195,7 @@ public class CircleMemberActivity extends BaseActivity implements
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(circleList);
+		task.executeParallel(circleList);
 	}
 
 	@Override

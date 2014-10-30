@@ -114,7 +114,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 
 			}
 		});
-		task.execute(glist);
+		task.executeParallel(glist);
 	}
 
 	private void getGrowthFromServer() {
@@ -144,7 +144,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 				}
 			}
 		});
-		task.execute(glist);
+		task.executeParallel(glist);
 	}
 
 	public void refushAdapter(Growth growth) {
@@ -168,7 +168,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(growth);
+		task.executeParallel(growth);
 	}
 
 	@Override

@@ -19,6 +19,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetNearCirclesTask;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
 public class FindCircleFragmen extends Fragment implements OnClickListener {
@@ -56,9 +57,12 @@ public class FindCircleFragmen extends Fragment implements OnClickListener {
 		case R.id.category_item:
 			startActivity(new Intent(getActivity(),
 					CategoryCircleActivity.class));
+			Utils.leftOutRightIn(getActivity());
+
 			break;
 		case R.id.near_item:
 			startActivity(new Intent(getActivity(), NearCirclesActivity.class));
+			Utils.leftOutRightIn(getActivity());
 			break;
 		default:
 			break;

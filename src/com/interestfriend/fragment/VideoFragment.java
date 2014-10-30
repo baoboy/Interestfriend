@@ -114,7 +114,7 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 
 			}
 		});
-		task.execute(list);
+		task.executeParallel(list);
 	}
 
 	private void sort() {
@@ -155,7 +155,7 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 				}
 			}
 		});
-		task.execute(list);
+		task.executeParallel(list);
 	}
 
 	public void refushAdapter(Video video) {
@@ -177,7 +177,7 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(video);
+		task.executeParallel(video);
 	}
 
 	@Override

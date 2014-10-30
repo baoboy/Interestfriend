@@ -211,7 +211,6 @@ public class Growth extends AbstractData implements Serializable {
 		for (GrowthImage img : this.images) {
 			img.write(db);
 		}
-		System.out.println("comment:::::::::::::::::;" + this.comments);
 		for (Comment comment : this.comments) {
 			comment.write(db);
 		}

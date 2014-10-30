@@ -161,6 +161,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.CREATE_CIRCLS);
 		myIntentFilter.addAction(Constants.JOIN_CIRCLE);
+		myIntentFilter.addAction(Constants.QUIT_CIRCLE);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -191,6 +192,15 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						.getSerializableExtra("circle");
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
+			} else if (action.equals(Constants.QUIT_CIRCLE)) {
+				int circle_id = intent.getIntExtra("circle_id", 0);
+				for (MyCircles circle : lists) {
+					if (circle.getCircle_id() == circle_id) {
+						lists.remove(circle);
+						adapter.notifyDataSetChanged();
+						return;
+					}
+				}
 			}
 		}
 	};

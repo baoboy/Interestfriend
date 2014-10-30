@@ -29,7 +29,9 @@ import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.task.CreateCircleTask;
 import com.interestfriend.utils.BroadCast;
+import com.interestfriend.utils.CategoryCircleUtils;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
@@ -184,7 +186,7 @@ public class CreateCircleActivity extends BaseActivity implements
 				}
 			}
 		});
-		task.execute(circle);
+		task.executeParallel(circle);
 	}
 
 	@Override
@@ -212,6 +214,10 @@ public class CreateCircleActivity extends BaseActivity implements
 			circle.setCircle_name(circleName);
 			circle.setCircle_logo(imgPath);
 			circle.setCircle_category(category_code);
+			circle.setCircle_category_name(CategoryCircleUtils
+					.getCateGoryNameByCode(category_code));
+			circle.setCircle_creator_name(SharedUtils.getAPPUserName());
+			circle.setCircle_create_time(DateUtils.getCircleCreateTime());
 			circle.setCreator_id(SharedUtils.getIntUid());
 			createCircle();
 			break;

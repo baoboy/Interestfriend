@@ -60,8 +60,9 @@ public class VideoListParser implements IParser {
 				int publisher_id = obj2.getInt("publisher_id");
 				String comment_time = obj2.getString("comment_time");
 				String comment_content = obj2.getString("comment_content");
-				publisher_name = obj2.getString("publisher_name");
-				publisher_avatar = obj2.getString("publisher_avatar");
+				String comm_publisher_name = obj2.getString("publisher_name");
+				String comm_publisher_avatar = obj2
+						.getString("publisher_avatar");
 				String reply_someone_name = obj2
 						.getString("reply_someone_name");
 				int reply_someone_id = obj2.getInt("reply_someone_id");
@@ -71,8 +72,8 @@ public class VideoListParser implements IParser {
 				comment.setComment_time(comment_time);
 				comment.setPublisher_id(publisher_id);
 				comment.setVideo_id(video_id);
-				comment.setPublisher_avatar(publisher_avatar);
-				comment.setPublisher_name(publisher_name);
+				comment.setPublisher_avatar(comm_publisher_avatar);
+				comment.setPublisher_name(comm_publisher_name);
 				comment.setReply_someone_name(reply_someone_name);
 				comment.setReply_someone_id(reply_someone_id);
 				comments.add(comment);

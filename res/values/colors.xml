@@ -55,5 +55,6 @@
     <color name="background_main_grey">#ffe2e2e4</color>
     <color name="comment_color">#ce6100</color>
     <color name="self_comment_color">#37b669</color>
-
-</resources>
+    <color name="qq_bg_chat_color">#ebeceb</color>
+    <color name="qq_bg_chat_bottom_color">#ebecee</color>
+</resources>

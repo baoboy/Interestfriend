@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class CircleInfoActivity extends BaseActivity implements OnClickListener {
 	private ImageView img_logo;
@@ -36,12 +38,16 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private TextView txt_circle_create_time;
 	private TextView txt_citcle_creator_name;
 	private TextView txt_circle_category;
+	private LinearLayout layout_bottom;
+	private View line_bottom;
 
 	private String imgLogo = "";
 	private String description = "";
 	private int circle_id = 0;
 
 	private Circles circle;
+
+	private boolean isLocalCircle = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void getIntentData() {
+		isLocalCircle = getIntent().getBooleanExtra("isLocalCircle", false);
 		circle = (Circles) getIntent().getSerializableExtra("circle");
 		imgLogo = circle.getCircle_logo();
 		circle_id = circle.getCircle_id();
@@ -69,8 +76,14 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_circle_category = (TextView) findViewById(R.id.txt_circle_category);
 		txt_citcle_creator_name = (TextView) findViewById(R.id.txt_circle_creator);
 		txt_circle_create_time = (TextView) findViewById(R.id.txt_circle_create_time);
-
+		layout_bottom = (LinearLayout) findViewById(R.id.layout_bottom);
+		line_bottom = (View) findViewById(R.id.bottom_line);
+		if (isLocalCircle) {
+			layout_bottom.setVisibility(View.GONE);
+			line_bottom.setVisibility(View.GONE);
+		}
 		setListener();
+
 	}
 
 	private void setListener() {
@@ -133,7 +146,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				finishThisActivity();
 			}
 		});
-		task.execute(member);
+		task.executeParallel(member);
 	}
 
 	@Override
@@ -151,10 +164,26 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		case R.id.back:
 			finishThisActivity();
 			break;
-
+		case R.id.layout_circle_creator:
+			intentMemberInfoActivity();
+			break;
 		default:
 			break;
 		}
 	}
 
+	private void intentMemberInfoActivity() {
+		CircleMember member = new CircleMember();
+		member.setUser_id(circle.getCreator_id());
+		member.read(DBUtils.getDBsa(1));
+		Intent intent = new Intent();
+		intent.putExtra("circle_member", member);
+		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
+			intent.setClass(this, CircleMemberOfSelfInfoActivity.class);
+		} else {
+			intent.setClass(this, CircleMemberActivity.class);
+		}
+		startActivity(intent);
+		Utils.leftOutRightIn(this);
+	}
 }

@@ -20,6 +20,11 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	private View view;
 	private TextView txt_quit_circle;
 	private TextView txt_circle_info;
+	private TextView txt_dissolve_circle;
+	private View line_dissolve;
+	private View line_quit;
+
+	private boolean isSelfCreateCircle;
 	private OnMenuClick mCallBack;
 
 	public OnMenuClick getmCallBack() {
@@ -30,9 +35,11 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 		this.mCallBack = mCallBack;
 	}
 
-	public CircleMemberFragmentRightPopwindow(Context context, View v) {
+	public CircleMemberFragmentRightPopwindow(Context context, View v,
+			boolean isSelfCreateCircle) {
 		this.mContext = context;
 		this.v = v;
+		this.isSelfCreateCircle = isSelfCreateCircle;
 
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		view = inflater.inflate(
@@ -43,13 +50,24 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	}
 
 	private void initView() {
+		line_dissolve = (View) view.findViewById(R.id.line_dissovle);
+		line_quit = (View) view.findViewById(R.id.line_quit);
 		layout_parent = (LinearLayout) view.findViewById(R.id.parent);
 		layout_parent.setOnClickListener(this);
 		txt_quit_circle = (TextView) view.findViewById(R.id.txt_quit_circle);
 		txt_circle_info = (TextView) view.findViewById(R.id.txt_circle_info);
+		txt_dissolve_circle = (TextView) view
+				.findViewById(R.id.txt_dissolve_circle);
 		txt_quit_circle.setOnClickListener(this);
 		txt_circle_info.setOnClickListener(this);
-
+		txt_dissolve_circle.setOnClickListener(this);
+		if (isSelfCreateCircle) {
+			txt_quit_circle.setVisibility(View.GONE);
+			line_quit.setVisibility(View.GONE);
+		} else {
+			txt_dissolve_circle.setVisibility(View.GONE);
+			line_dissolve.setVisibility(View.GONE);
+		}
 	}
 
 	/**
@@ -69,7 +87,7 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	public void show() {
 		// popupWindow.showAtLocation(v, Gravity.CENTER
 		// | Gravity.CENTER_HORIZONTAL, 0, 0);
-		popupWindow.showAsDropDown(v, 0, 5);
+		popupWindow.showAsDropDown(v, 0, 17);
 		// 使其聚集
 		popupWindow.setFocusable(true);
 		// 设置允许在外点击消失

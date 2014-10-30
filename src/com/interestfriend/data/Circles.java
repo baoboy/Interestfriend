@@ -17,6 +17,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
 
 public class Circles extends AbstractData {
@@ -25,6 +26,8 @@ public class Circles extends AbstractData {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String CREATE_CIRCLE_API = "CreateCircleServlet";
+	private static String QUIT_CIRCLE_API = "QuitCircleServlet";
+	private static String DISSOLVE_CIRCLE_API = "DissolveCircleServlet";
 
 	private int circle_id = 0;
 	private String circle_name = "";
@@ -166,7 +169,8 @@ public class Circles extends AbstractData {
 	 * @return
 	 */
 	public RetError createNewCircle() {
-		String[] keys = { "circle_logo", "group_id", "circle_id" };
+		String[] keys = { "circle_logo", "group_id", "circle_id",
+				"circle_last_request_time" };
 		IParser parser = new MapParser(keys);
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_name", circle_name);
@@ -183,6 +187,39 @@ public class Circles extends AbstractData {
 			group_id = (String) (mret.getMaps().get("group_id"));
 			circle_id = Integer.valueOf((String) mret.getMaps()
 					.get("circle_id"));
+			SharedUtils.setCircleLastRequestTime(Long.valueOf((String) (mret
+					.getMaps().get("circle_last_request_time"))));
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError quitCircle() {
+		IParser parser = new StringParser("lastReqTime");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(QUIT_CIRCLE_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	/**
+	 * ½âÉ¢È¦×Ó
+	 * 
+	 * @return
+	 */
+	public RetError dissolveCircle() {
+		IParser parser = new StringParser("lastReqTime");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(DISSOLVE_CIRCLE_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			this.status = Status.DEL;
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -192,6 +229,10 @@ public class Circles extends AbstractData {
 	@Override
 	public void write(SQLiteDatabase db) {
 		String tableName = Const.MY_CIRCLE_TABLE_NAME;
+		if (this.status == Status.DEL) {
+			db.delete(tableName, "circle_id=?", new String[] { circle_id + "" });
+			return;
+		}
 		ContentValues values = new ContentValues();
 		values.put("circle_logo", circle_logo);
 		values.put("circle_name", circle_name);
@@ -202,7 +243,6 @@ public class Circles extends AbstractData {
 		values.put("circle_creator_name", circle_creator_name);
 		values.put("circle_create_time", circle_create_time);
 		values.put("circle_category", circle_category_name);
-
 		db.insert(tableName, null, values);
 	}
 
@@ -246,6 +286,8 @@ public class Circles extends AbstractData {
 					.getColumnIndex("circle_creator_name"));
 			this.circle_category_name = cursor.getString(cursor
 					.getColumnIndex("circle_category"));
+			this.circle_create_time = cursor.getString(cursor
+					.getColumnIndex("circle_create_time"));
 		}
 	}
 }

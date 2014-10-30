@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dip"
         android:layout_marginRight="50dip"
-        android:background="@drawable/bg_dialog_shadow"
+        android:background="@drawable/circle_item_bg"
         android:orientation="vertical" >
 
         <TextView

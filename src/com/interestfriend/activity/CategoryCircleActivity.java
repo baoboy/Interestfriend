@@ -75,7 +75,7 @@ public class CategoryCircleActivity extends BaseActivity implements
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(list);
+		task.executeParallel(list);
 	}
 
 	@Override

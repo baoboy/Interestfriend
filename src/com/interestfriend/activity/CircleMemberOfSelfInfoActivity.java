@@ -269,7 +269,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 				SharedUtils.setAPPUserAvatar(member.getUser_avatar());
 			}
 		});
-		task.execute(member);
+		task.executeParallel(member);
 	}
 
 	@Override

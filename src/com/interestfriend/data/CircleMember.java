@@ -268,10 +268,6 @@ public class CircleMember extends AbstractData {
 		params.put("circle_id", circle_id);
 		Result ret = ApiRequest.request(KICK_MEMBER_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
-			// StringResult sr = (StringResult) ret;
-			// SharedUtils.setCircleMemberLastReqTime(circle_id,
-			// Long.valueOf(sr.getStr()));
-			// SharedUtils.setCircleLastRequestTime(Long.valueOf(sr.getStr()));
 			this.status = Status.DEL;
 			return RetError.NONE;
 		} else {
@@ -305,6 +301,35 @@ public class CircleMember extends AbstractData {
 
 		if (this.state == CircleMemberState.UPDATE) {
 			db.update(dbName, cv, conditionsKey, conditionsValue);
+		}
+	}
+
+	@Override
+	public void read(SQLiteDatabase db) {
+		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE, new String[] {
+				"circle_id", "user_name", "user_avatar", "user_birthday",
+				"user_gender", "user_chat_id", "user_register_time",
+				"user_declaration", "user_description" }, "user_id=?",
+				new String[] { user_id + "" }, null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+			this.circle_id = cursor.getInt(cursor.getColumnIndex("circle_id"));
+			this.user_name = cursor.getString(cursor
+					.getColumnIndex("user_name"));
+			this.user_avatar = cursor.getString(cursor
+					.getColumnIndex("user_avatar"));
+			this.user_birthday = cursor.getString(cursor
+					.getColumnIndex("user_birthday"));
+			this.user_gender = cursor.getString(cursor
+					.getColumnIndex("user_gender"));
+			this.user_chat_id = cursor.getString(cursor
+					.getColumnIndex("user_chat_id"));
+			this.user_register_time = cursor.getString(cursor
+					.getColumnIndex("user_register_time"));
+			this.user_declaration = cursor.getString(cursor
+					.getColumnIndex("user_declaration"));
+			this.user_description = cursor.getString(cursor
+					.getColumnIndex("user_description"));
 		}
 	}
 

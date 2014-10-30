@@ -112,7 +112,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 				}
 			}
 		});
-		task.execute(user);
+		task.executeParallel(user);
 	}
 
 	private void initMember() {

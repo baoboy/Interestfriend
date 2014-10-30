@@ -219,7 +219,7 @@ public class VideoCommentActivity extends BaseActivity implements
 				delReplaySomeOne();
 			}
 		});
-		task.execute(comment);
+		task.executeParallel(comment);
 	}
 
 	private void delReplaySomeOne() {
@@ -292,7 +292,7 @@ public class VideoCommentActivity extends BaseActivity implements
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(comment);
+		task.executeParallel(comment);
 	}
 
 	private void reply(int position) {

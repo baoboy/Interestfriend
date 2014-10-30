@@ -166,6 +166,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/decl"
                     android:layout_marginTop="3dip"
+                    android:lineSpacingExtra="4dip"
+                    android:paddingRight="8dip"
                     android:textColor="#adadad" />
 
                 <ImageView
@@ -202,6 +204,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/decr"
                     android:layout_marginTop="3dip"
+                    android:lineSpacingExtra="4dip"
+                    android:paddingRight="8dip"
                     android:textColor="#adadad" />
 
                 <ImageView

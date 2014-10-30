@@ -3,9 +3,26 @@
     android:id="@+id/parent"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_dialog_shadow"
+    android:background="@drawable/circle_item_bg"
     android:gravity="center"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txt_dissolve_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="8dip"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:paddingTop="8dip"
+        android:text="解散圈子" />
+
+    <View
+        android:id="@+id/line_dissovle"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:background="#d5d5d5" />
 
     <TextView
         android:id="@+id/txt_quit_circle"
@@ -19,6 +36,7 @@
         android:text="退出圈子" />
 
     <View
+        android:id="@+id/line_quit"
         android:layout_width="match_parent"
         android:layout_height="0.5dip"
         android:background="#d5d5d5" />

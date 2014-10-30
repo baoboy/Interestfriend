@@ -70,6 +70,6 @@ public class RegisterSetPassword extends RegisterStep implements
 				mContext.startActivity(new Intent(mContext, LoginActivity.class));
 			}
 		});
-		taks.execute(mActivity.getmRegister());
+		taks.executeParallel(mActivity.getmRegister());
 	}
 }

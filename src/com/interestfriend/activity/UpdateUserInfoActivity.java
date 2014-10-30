@@ -110,7 +110,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 				finishThisActivity();
 			}
 		});
-		task.execute(member);
+		task.executeParallel(member);
 
 	}
 }

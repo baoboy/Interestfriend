@@ -46,6 +46,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -127,7 +128,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private ImageView micImage;
 	private TextView recordingHint;
 	private ListView listView;
-	private PasteEditText mEditTextContent;
+	private EditText mEditTextContent;
 	private View buttonSetModeKeyboard;
 	private View buttonSetModeVoice;
 	private Button buttonSend;
@@ -199,7 +200,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		micImage = (ImageView) getView().findViewById(R.id.mic_image);
 		recordingHint = (TextView) getView().findViewById(R.id.recording_hint);
 		listView = (ListView) getView().findViewById(R.id.list);
-		mEditTextContent = (PasteEditText) getView().findViewById(
+		mEditTextContent = (EditText) getView().findViewById(
 				R.id.et_sendmessage);
 		buttonSetModeKeyboard = getView().findViewById(
 				R.id.btn_set_mode_keyboard);
@@ -223,7 +224,6 @@ public class CircleGroupChatFragment extends Fragment implements
 		iv_emoticons_normal.setVisibility(View.VISIBLE);
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
 		more = getView().findViewById(R.id.more);
-		edittext_layout.setBackgroundResource(R.drawable.input_bar_bg_normal);
 		img_pic = (ImageView) getView().findViewById(R.id.btn_picture);
 		img_take_pic = (ImageView) getView()
 				.findViewById(R.id.btn_take_picture);
@@ -272,23 +272,23 @@ public class CircleGroupChatFragment extends Fragment implements
 		img_file.setOnClickListener(this);
 		buttonSetModeKeyboard.setOnClickListener(this);
 		buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
-		mEditTextContent.setOnFocusChangeListener(new OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if (hasFocus) {
-					edittext_layout
-							.setBackgroundResource(R.drawable.input_bar_bg_active);
-				} else {
-					edittext_layout
-							.setBackgroundResource(R.drawable.input_bar_bg_normal);
-				}
-			}
-		});
+		// mEditTextContent.setOnFocusChangeListener(new OnFocusChangeListener()
+		// {
+		// @Override
+		// public void onFocusChange(View v, boolean hasFocus) {
+		// if (hasFocus) {
+		// edittext_layout
+		// .setBackgroundResource(R.drawable.input_bar_bg_active);
+		// } else {
+		// edittext_layout
+		// .setBackgroundResource(R.drawable.input_bar_bg_normal);
+		// }
+		// }
+		// });
 		mEditTextContent.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				edittext_layout
-						.setBackgroundResource(R.drawable.input_bar_bg_active);
+
 				more.setVisibility(View.GONE);
 				iv_emoticons_normal.setVisibility(View.VISIBLE);
 				iv_emoticons_checked.setVisibility(View.INVISIBLE);

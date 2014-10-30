@@ -11,7 +11,10 @@ public class GetGrowthFormDBTask extends
 	@Override
 	protected RetError doInBackground(GrowthList... params) {
 		list = params[0];
+		long time = System.currentTimeMillis();
 		list.read(DBUtils.getDBsa(1));
+		System.out.println("time:::::::::::::::read"
+				+ (System.currentTimeMillis() - time));
 		return RetError.NONE;
 	}
 

@@ -21,6 +21,7 @@ import com.interestfriend.R;
 import com.interestfriend.activity.ShowVideoActivity;
 import com.interestfriend.activity.VideoCommentActivity;
 import com.interestfriend.data.Video;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 
@@ -58,15 +59,16 @@ public class GrowthVideoAdapter extends BaseAdapter {
 	}
 
 	private View createView(int direct) {
-		return direct == 1 ? inflater.inflate(R.layout.growth_video_self_item,
-				null) : inflater.inflate(R.layout.growth_video_self_item, null);
+		return direct == SharedUtils.getIntUid() ? inflater.inflate(
+				R.layout.growth_video_self_item, null) : inflater.inflate(
+				R.layout.growth_video_item, null);
 
 	}
 
 	@Override
 	public View getView(final int position, View contentView, ViewGroup arg2) {
 		ViewHolder holder = null;
-		int direct = lists.get(position).getDirect();
+		int direct = lists.get(position).getPublisher_id();
 		Video video = lists.get(position);
 
 		if (contentView == null) {

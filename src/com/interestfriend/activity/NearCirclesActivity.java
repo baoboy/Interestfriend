@@ -22,6 +22,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetNearCirclesTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 
 public class NearCirclesActivity extends BaseActivity implements
 		OnItemClickListener {
@@ -72,6 +73,7 @@ public class NearCirclesActivity extends BaseActivity implements
 		intent.putExtra("circle", listCircles.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
+		Utils.leftOutRightIn(this);
 	}
 
 	private void getCircleList() {
@@ -95,7 +97,7 @@ public class NearCirclesActivity extends BaseActivity implements
 
 			};
 		});
-		task.execute(list);
+		task.executeParallel(list);
 	}
 
 }

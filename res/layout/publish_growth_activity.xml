@@ -34,10 +34,11 @@
             <EditText
                 android:id="@+id/txt_content"
                 android:layout_width="fill_parent"
-                android:layout_height="100dip"
+                android:layout_height="wrap_content"
                 android:background="@drawable/input_bg"
                 android:gravity="top"
                 android:hint="输入帖子内容"
+                android:minHeight="100dip"
                 android:padding="10dip"
                 android:textColor="#818181"
                 android:textSize="15sp" >

@@ -92,7 +92,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(lists);
+		task.executeParallel(lists);
 	}
 
 }
