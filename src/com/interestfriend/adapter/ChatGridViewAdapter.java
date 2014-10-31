@@ -34,33 +34,25 @@ public class ChatGridViewAdapter extends BaseAdapter {
 		map.put("pic_id", R.drawable.chat_takepic_normal);
 		list.add(map);
 		map = new HashMap<String, Object>();
+		map.put("name", "ÊÓÆµ");
+		map.put("pic_id", R.drawable.chat_video_normal);
+		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put("name", "ÎÄ¼þ");
+		map.put("pic_id", R.drawable.chat_file_normal);
+		list.add(map);
+		map = new HashMap<String, Object>();
 		map.put("name", "Î»ÖÃ");
 		map.put("pic_id", R.drawable.chat_location_noraml);
 		list.add(map);
-//		map = new HashMap<String, Object>();
-//		map.put("name", "ÊÓÆµ");
-//		map.put("pic_id", R.drawable.chat_video_normal);
-//		list.add(map);
-//		map = new HashMap<String, Object>();
-//		map.put("name", "ÎÄ¼þ");
-//		map.put("pic_id", R.drawable.chat_file_normal);
-//		list.add(map);
 		map = new HashMap<String, Object>();
-		map.put("name", "Í¼Æ¬");
-		map.put("pic_id", R.drawable.chat_image_normal);
+		map.put("name", "ÓïÒôµç»°");
+		map.put("pic_id", R.drawable.chat_voice_call_normal);
 		list.add(map);
 		map = new HashMap<String, Object>();
 		map.put("name", "Í¼Æ¬");
 		map.put("pic_id", R.drawable.chat_image_normal);
 		list.add(map);
-		map = new HashMap<String, Object>();
-		map.put("name", "Í¼Æ¬");
-		map.put("pic_id", R.drawable.chat_image_normal);
-		list.add(map);	map = new HashMap<String, Object>();
-		map.put("name", "Í¼Æ¬");
-		map.put("pic_id", R.drawable.chat_image_normal);
-		list.add(map);
-		map = new HashMap<String, Object>();
 		map.put("name", "Í¼Æ¬");
 		map.put("pic_id", R.drawable.chat_image_normal);
 		list.add(map);
@@ -97,7 +89,14 @@ public class ChatGridViewAdapter extends BaseAdapter {
 		}
 		holder.img.setImageResource(Integer.parseInt(list.get(position)
 				.get("pic_id").toString()));
-		 holder.txt_title.setText(list.get(position).get("name").toString());
+		holder.txt_title.setText(list.get(position).get("name").toString());
+		if (position == 6 || position == 7) {
+			holder.img.setVisibility(View.INVISIBLE);
+			holder.txt_title.setVisibility(View.INVISIBLE);
+		} else {
+			holder.img.setVisibility(View.VISIBLE);
+			holder.txt_title.setVisibility(View.VISIBLE);
+		}
 		return convertView;
 	}
 

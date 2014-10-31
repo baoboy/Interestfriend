@@ -198,6 +198,8 @@ public class CircleGrowthFragment extends Fragment implements
 					file.getParentFile().mkdirs();
 				}
 				bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, 3);
+				bitmap = ThumbnailUtils.extractThumbnail(bitmap, 480, 300,
+						ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
 				if (bitmap == null) {
 					EMLog.d("chatactivity",
 							"problem load video thumbnail bitmap,use default icon");

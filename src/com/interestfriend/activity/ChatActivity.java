@@ -103,7 +103,8 @@ import com.interestfriend.view.PasteEditText;
  * ¡ƒÃÏ“≥√Ê
  * 
  */
-public class ChatActivity extends BaseActivity implements OnClickListener {
+public class ChatActivity extends BaseActivity implements OnClickListener,
+		OnItemClickListener {
 
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
@@ -216,6 +217,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	protected void initView() {
 		mGridView = (GridView) findViewById(R.id.m_gridview);
 		mGridView.setAdapter(new ChatGridViewAdapter(this));
+		mGridView.setOnItemClickListener(this);
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(this);
 		txt_title = (TextView) findViewById(R.id.title_txt);
@@ -1522,6 +1524,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 	public String getToChatUsername() {
 		return toChatUsername;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
 	}
 
 }
