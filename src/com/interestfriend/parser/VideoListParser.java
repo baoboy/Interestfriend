@@ -39,6 +39,7 @@ public class VideoListParser implements IParser {
 			String time = obj.getString("time");
 			String publisher_name = obj.getString("publisher_name");
 			String publisher_avatar = obj.getString("publisher_avatar");
+			String video_content = obj.getString("video_content");
 			Video vd = new Video();
 			vd.setCid(cid);
 			vd.setPublisher_id(publisher);
@@ -50,7 +51,7 @@ public class VideoListParser implements IParser {
 			vd.setTime(time);
 			vd.setPublisher_avatar(publisher_avatar);
 			vd.setPublisher_name(publisher_name);
-
+			vd.setVideo_content(video_content);
 			// comments
 			JSONArray commentsJson = obj.getJSONArray("comments");
 			List<VideoComment> comments = new ArrayList<VideoComment>();

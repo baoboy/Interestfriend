@@ -62,7 +62,6 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		return direct == SharedUtils.getIntUid() ? inflater.inflate(
 				R.layout.growth_video_self_item, null) : inflater.inflate(
 				R.layout.growth_video_item, null);
-
 	}
 
 	@Override
@@ -108,7 +107,7 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		}
 		UniversalImageLoadTool.disPlay(video.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
-		String content = lists.get(position).getVideo_txt_content();
+		String content = lists.get(position).getVideo_content();
 		if ("".equals(content)) {
 			holder.txt_context.setVisibility(View.GONE);
 		} else {

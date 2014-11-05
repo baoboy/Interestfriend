@@ -112,7 +112,8 @@ public class VideoList extends AbstractData {
 		Cursor cursor = db.query(Const.VIDEO_TABLE_NAME, new String[] { "cid",
 				"video_id", "video_size", "publisher_id", "video_duration",
 				"publisher_name", "publisher_avatar", "video_img",
-				"video_path", "time" }, null, null, null, null, null);
+				"video_path", "time", "video_content" }, null, null, null,
+				null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			for (int j = 0; j < cursor.getCount(); j++) {
@@ -133,6 +134,9 @@ public class VideoList extends AbstractData {
 				String publisher_avatar = cursor.getString(cursor
 						.getColumnIndex("publisher_avatar"));
 				String time = cursor.getString(cursor.getColumnIndex("time"));
+				String video_content = cursor.getString(cursor
+						.getColumnIndex("video_content"));
+
 				Video video = new Video();
 				video.setCid(cid);
 				video.setVideo_id(video_id);
@@ -144,7 +148,7 @@ public class VideoList extends AbstractData {
 				video.setVideo_img(video_img);
 				video.setVideo_path(video_path);
 				video.setVideo_size(video_size);
-
+				video.setVideo_content(video_content);
 				// read comment
 
 				List<VideoComment> comments = new ArrayList<VideoComment>();

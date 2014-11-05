@@ -56,6 +56,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private Button btn_comment;
 	private EditText edit_comment;
 	private ListView mListView;
+	private View view_top;
+	private View view_bottom;
 
 	private Growth growth;
 
@@ -98,6 +100,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		btn_comment = (Button) findViewById(R.id.btn_comment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
 		mListView = (ListView) findViewById(R.id.listView1);
+		view_bottom = (View) findViewById(R.id.view_bottom);
+		view_top = (View) findViewById(R.id.view_top);
 		setListener();
 	}
 
@@ -157,6 +161,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				layout_scroll.fullScroll(ScrollView.FOCUS_UP);
 			}
 		});
+		viewLineVisible();
 	}
 
 	@Override
@@ -205,6 +210,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);
 				comments.add(0, comment);
 				adapter.notifyDataSetChanged();
+				viewLineVisible();
 				Intent intent = new Intent();
 				intent.putExtra("position", position);
 				intent.putExtra("comment", comment);
@@ -213,6 +219,16 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			}
 		});
 		task.executeParallel(comment);
+	}
+
+	private void viewLineVisible() {
+		if (comments.size() > 0) {
+			view_bottom.setVisibility(View.VISIBLE);
+			view_top.setVisibility(View.VISIBLE);
+		} else {
+			view_bottom.setVisibility(View.GONE);
+			view_top.setVisibility(View.GONE);
+		}
 	}
 
 	private void delReplaySomeOne() {
@@ -283,6 +299,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				}
 				comments.remove(position);
 				adapter.notifyDataSetChanged();
+				viewLineVisible();
+
 			}
 		});
 		task.executeParallel(comment);

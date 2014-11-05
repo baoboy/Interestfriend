@@ -99,5 +99,6 @@
     <string name="title_activity_comment">CommentActivity</string>
     <string name="title_activity_video_comment">VideoCommentActivity</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_find_password">FindPasswordActivity</string>
 
 </resources>

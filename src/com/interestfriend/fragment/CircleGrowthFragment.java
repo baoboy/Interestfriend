@@ -187,10 +187,11 @@ public class CircleGrowthFragment extends Fragment implements
 			Utils.leftOutRightIn(getActivity());
 
 		} else if (requestCode == 300) {
+			String content = data.getStringExtra("content");
 			int duration = data.getIntExtra("dur", 0);
 			String videoPath = data.getStringExtra("path");
 			File file = new File(PathUtil.getInstance().getImagePath(),
-					"thvideo" + System.currentTimeMillis());
+					"thvideo" + System.currentTimeMillis() + ".jpg");
 			Bitmap bitmap = null;
 			FileOutputStream fos = null;
 			try {
@@ -240,6 +241,7 @@ public class CircleGrowthFragment extends Fragment implements
 			video.setTime(DateUtils.getGrowthShowTime());
 			video.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
 			video.setPublisher_name(SharedUtils.getAPPUserName());
+			video.setVideo_content(content);
 			videoFragment.refushAdapter(video);
 		}
 	}

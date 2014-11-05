@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="backgroundcolor">#efeef3</color>
+    <!-- <color name="backgroundcolor">#efeef3</color> -->
+    <color name="backgroundcolor">#e8eef3 </color>
     <color name="editTextClolor">#c0c0c2</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
@@ -13,9 +14,10 @@
     <color name="bg_line">#c7c7c9</color>
     <color name="gray">#ff7f7f7f</color>
     <color name="titleBarBackGround">#58BCDD</color>
-    <color name="bg_color">#ebebeb</color>
+    <!-- <color name="bg_color">#ebebeb</color> -->
     <color name="transparent">#00000000</color>
     <color name="f6f">#6f6f6f</color>
+    <color name="bg_color">#e8eef3</color>
 
     <!-- 环信 -->
 
@@ -57,4 +59,5 @@
     <color name="self_comment_color">#37b669</color>
     <color name="qq_bg_chat_color">#ebeceb</color>
     <color name="qq_bg_chat_bottom_color">#ebecee</color>
-</resources>
+
+</resources>

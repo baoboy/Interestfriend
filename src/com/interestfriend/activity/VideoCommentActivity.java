@@ -57,6 +57,9 @@ public class VideoCommentActivity extends BaseActivity implements
 	private ListView mListView;
 	private ImageView video_img;
 	private RelativeLayout videoClick;
+	private View view_top;
+	private View view_bottom;
+
 	private Video video;
 
 	private Dialog dialog;
@@ -100,7 +103,19 @@ public class VideoCommentActivity extends BaseActivity implements
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		txt_time = (TextView) findViewById(R.id.txt_time);
+		view_bottom = (View) findViewById(R.id.view_bottom);
+		view_top = (View) findViewById(R.id.view_top);
 		setListener();
+	}
+
+	private void viewLineVisible() {
+		if (comments.size() > 0) {
+			view_bottom.setVisibility(View.VISIBLE);
+			view_top.setVisibility(View.VISIBLE);
+		} else {
+			view_bottom.setVisibility(View.GONE);
+			view_top.setVisibility(View.GONE);
+		}
 	}
 
 	private void setListener() {
@@ -161,6 +176,7 @@ public class VideoCommentActivity extends BaseActivity implements
 				layout_scroll.fullScroll(ScrollView.FOCUS_UP);
 			}
 		});
+		viewLineVisible();
 	}
 
 	@Override
@@ -210,6 +226,7 @@ public class VideoCommentActivity extends BaseActivity implements
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);
 				comments.add(0, comment);
 				adapter.notifyDataSetChanged();
+				viewLineVisible();
 				Intent intent = new Intent();
 				intent.putExtra("position", position);
 				intent.putExtra("comment", comment);
@@ -290,6 +307,7 @@ public class VideoCommentActivity extends BaseActivity implements
 				}
 				comments.remove(position);
 				adapter.notifyDataSetChanged();
+				viewLineVisible();
 			}
 		});
 		task.executeParallel(comment);

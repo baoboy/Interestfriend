@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class PublishVideoActivity extends BaseActivity implements
 	private ImageView back;
 	private TextView txt_title;
 	private Button btn_send;
+	private EditText edit_content;
 
 	private String video_path = "";
 
@@ -49,6 +51,7 @@ public class PublishVideoActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		edit_content = (EditText) findViewById(R.id.txt_content);
 		video_img = (ImageView) findViewById(R.id.video_img);
 		videoClick = (RelativeLayout) findViewById(R.id.ll_click_area);
 		video_size = (TextView) findViewById(R.id.chatting_size_iv);
@@ -112,7 +115,7 @@ public class PublishVideoActivity extends BaseActivity implements
 		UniversalImageLoadTool.disPlay("file://" + file.getAbsolutePath(),
 				video_img, R.drawable.empty_photo);
 		video_timeLength.setText(DateUtils.toTime(duration));
-		video_size.setText(TextFormater.getDataSize(Long
+ 		video_size.setText(TextFormater.getDataSize(Long
 				.valueOf((int) new File(videoPath).length())));
 	}
 
@@ -134,6 +137,8 @@ public class PublishVideoActivity extends BaseActivity implements
 			playVideo();
 			break;
 		case R.id.btnUpload:
+			Intent intent = getIntent();
+			intent.putExtra("content", edit_content.getText().toString());
 			setResult(300, getIntent());
 			finishThisActivity();
 			break;

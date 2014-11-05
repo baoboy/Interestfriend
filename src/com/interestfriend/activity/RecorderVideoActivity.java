@@ -64,6 +64,10 @@ public class RecorderVideoActivity extends BaseActivity implements
 			cameraSelection = 0;
 	int defaultVideoFrameRate = -1;
 
+	private ImageView img_chage;
+	private int cameraPosition = 1;// 0代表前置摄像头，1代表后置摄像头
+	public boolean isCameraBack = true;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,7 +81,8 @@ public class RecorderVideoActivity extends BaseActivity implements
 		mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK,
 				CLASS_LABEL);
 		mWakeLock.acquire();
-
+		img_chage = (ImageView) findViewById(R.id.img_change);
+		img_chage.setOnClickListener(this);
 		btnStart = (ImageView) findViewById(R.id.recorder_start);
 		btnStop = (ImageView) findViewById(R.id.recorder_stop);
 		btnStart.setOnClickListener(this);
@@ -269,7 +274,67 @@ public class RecorderVideoActivity extends BaseActivity implements
 							}).setNegativeButton(R.string.cancel, null).show();
 
 			break;
+		case R.id.img_change:
+			if (isCameraBack) {
+				isCameraBack = false;
+			} else {
+				isCameraBack = true;
+			}
+			// SurfaceHolder holder = surfaceview.getHolder();// 取得holder
+			// holder.addCallback(RecordActivity.this); // holder加入回调接口
+			// LogsUtil.i(TAG, "cameraCount="+cameraCount);
 
+			int cameraCount = 0;
+			CameraInfo cameraInfo = new CameraInfo();
+			cameraCount = Camera.getNumberOfCameras();// 得到摄像头的个数
+
+			for (int i = 0; i < cameraCount; i++) {
+
+				Camera.getCameraInfo(i, cameraInfo);// 得到每一个摄像头的信息
+				if (cameraPosition == 1) {
+					// 现在是后置，变更为前置
+					if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {// 代表摄像头的方位，CAMERA_FACING_FRONT前置
+																						// CAMERA_FACING_BACK后置
+
+						mCamera.stopPreview();// 停掉原来摄像头的预览
+						mCamera.release();// 释放资源
+						mCamera = null;// 取消原来摄像头
+						mCamera = Camera.open(i);// 打开当前选中的摄像头
+						try {
+
+							mCamera.setPreviewDisplay(surfaceHolder);// 通过surfaceview显示取景画面
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						mCamera.startPreview();// 开始预览
+						cameraPosition = 0;
+						break;
+					}
+				} else {
+					// 现在是前置， 变更为后置
+					if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {// 代表摄像头的方位，CAMERA_FACING_FRONT前置
+																					// CAMERA_FACING_BACK后置
+						mCamera.stopPreview();// 停掉原来摄像头的预览
+						mCamera.release();// 释放资源
+						mCamera = null;// 取消原来摄像头
+						mCamera = Camera.open(i);// 打开当前选中的摄像头
+						try {
+
+							mCamera.setPreviewDisplay(surfaceHolder);// 通过surfaceview显示取景画面
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						mCamera.startPreview();// 开始预览
+						cameraPosition = 1;
+						break;
+					}
+				}
+
+			}
+
+			break;
 		default:
 			break;
 		}

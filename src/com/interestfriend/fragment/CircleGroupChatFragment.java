@@ -36,7 +36,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -47,6 +46,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -73,6 +73,7 @@ import com.easemob.util.VoiceRecorder;
 import com.interestfriend.R;
 import com.interestfriend.activity.BaiduMapActivity;
 import com.interestfriend.activity.ImageGridActivity;
+import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.adapter.GroupChatAdapter;
@@ -83,11 +84,10 @@ import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.view.ExpandGridView;
-import com.interestfriend.view.PasteEditText;
 
 @SuppressLint("NewApi")
 public class CircleGroupChatFragment extends Fragment implements
-		OnClickListener {
+		OnClickListener, OnItemClickListener {
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
 	private static final int REQUEST_CODE_MAP = 4;
@@ -136,12 +136,10 @@ public class CircleGroupChatFragment extends Fragment implements
 	private ViewPager expressionViewpager;
 	private LinearLayout expressionContainer;
 	private LinearLayout btnContainer;
-	private ImageView locationImgview;
 	private View more;
 	private InputMethodManager manager;
 	private List<String> reslist;
 	private Drawable[] micImages;
-	private int chatType;
 	private EMConversation conversation;
 	private NewMessageBroadcastReceiver receiver;
 	// 给谁发送消息
@@ -160,13 +158,10 @@ public class CircleGroupChatFragment extends Fragment implements
 	private boolean haveMoreData = true;
 	private Button btnMore;
 
-	private ImageView img_take_pic;
-	private ImageView img_pic;
-	private ImageView img_file;
-	private ImageView img_video;
 	private TextView txt_title;
 
 	private PowerManager.WakeLock wakeLock;
+	private GridView mGridView;
 
 	private Handler micImageHandler = new Handler() {
 		@Override
@@ -194,6 +189,9 @@ public class CircleGroupChatFragment extends Fragment implements
 	 * initView
 	 */
 	protected void initView() {
+		mGridView = (GridView) getView().findViewById(R.id.m_gridview);
+		mGridView.setAdapter(new ChatGridViewAdapter(getActivity(), 1));
+		mGridView.setOnItemClickListener(this);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		txt_title.setText(MyApplation.getCircle_name());
 		recordingContainer = getView().findViewById(R.id.recording_container);
@@ -214,21 +212,16 @@ public class CircleGroupChatFragment extends Fragment implements
 				R.id.ll_face_container);
 		btnContainer = (LinearLayout) getView().findViewById(
 				R.id.ll_btn_container);
-		locationImgview = (ImageView) getView().findViewById(R.id.btn_location);
 		iv_emoticons_normal = (ImageView) getView().findViewById(
 				R.id.iv_emoticons_normal);
 		iv_emoticons_checked = (ImageView) getView().findViewById(
 				R.id.iv_emoticons_checked);
 		loadmorePB = (ProgressBar) getView().findViewById(R.id.pb_load_more);
 		btnMore = (Button) getView().findViewById(R.id.btn_more);
+		btnMore.setOnClickListener(this);
 		iv_emoticons_normal.setVisibility(View.VISIBLE);
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
 		more = getView().findViewById(R.id.more);
-		img_pic = (ImageView) getView().findViewById(R.id.btn_picture);
-		img_take_pic = (ImageView) getView()
-				.findViewById(R.id.btn_take_picture);
-		img_file = (ImageView) getView().findViewById(R.id.btn_file);
-		img_video = (ImageView) getView().findViewById(R.id.btn_video);
 		// 动画资源文件,用于录制语音时
 		micImages = new Drawable[] {
 				getResources().getDrawable(R.drawable.record_animate_01),
@@ -262,33 +255,13 @@ public class CircleGroupChatFragment extends Fragment implements
 	private void setListener() {
 		iv_emoticons_normal.setOnClickListener(this);
 		iv_emoticons_checked.setOnClickListener(this);
-		img_video.setOnClickListener(this);
-		img_take_pic.setOnClickListener(this);
-		img_pic.setOnClickListener(this);
-		btnMore.setOnClickListener(this);
-		locationImgview.setOnClickListener(this);
 		buttonSend.setOnClickListener(this);
 		buttonSetModeVoice.setOnClickListener(this);
-		img_file.setOnClickListener(this);
 		buttonSetModeKeyboard.setOnClickListener(this);
 		buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
-		// mEditTextContent.setOnFocusChangeListener(new OnFocusChangeListener()
-		// {
-		// @Override
-		// public void onFocusChange(View v, boolean hasFocus) {
-		// if (hasFocus) {
-		// edittext_layout
-		// .setBackgroundResource(R.drawable.input_bar_bg_active);
-		// } else {
-		// edittext_layout
-		// .setBackgroundResource(R.drawable.input_bar_bg_normal);
-		// }
-		// }
-		// });
 		mEditTextContent.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 				more.setVisibility(View.GONE);
 				iv_emoticons_normal.setVisibility(View.VISIBLE);
 				iv_emoticons_checked.setVisibility(View.INVISIBLE);
@@ -298,7 +271,6 @@ public class CircleGroupChatFragment extends Fragment implements
 		});
 		// 监听文字框
 		mEditTextContent.addTextChangedListener(new TextWatcher() {
-
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
@@ -346,14 +318,13 @@ public class CircleGroupChatFragment extends Fragment implements
 				Context.POWER_SERVICE)).newWakeLock(
 				PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
-		chatType = CHATTYPE_GROUP;
 		toChatUsername = MyApplation.getCircle_group_id();
-		group = EMGroupManager.getInstance().getGroup(toChatUsername);
+ 		group = EMGroupManager.getInstance().getGroup(toChatUsername);
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
-		adapter = new GroupChatAdapter(getActivity(), toChatUsername, chatType);
+		adapter = new GroupChatAdapter(getActivity(), toChatUsername);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());
@@ -534,13 +505,6 @@ public class CircleGroupChatFragment extends Fragment implements
 		if (id == R.id.btn_send) {// 点击发送按钮(发文字和表情)
 			String s = mEditTextContent.getText().toString();
 			sendText(s);
-		} else if (id == R.id.btn_take_picture) {
-			selectPicFromCamera();// 点击照相图标
-		} else if (id == R.id.btn_picture) {
-			selectPicFromLocal(); // 点击图片图标
-		} else if (id == R.id.btn_location) { // 位置
-			startActivityForResult(new Intent(getActivity(),
-					BaiduMapActivity.class), REQUEST_CODE_MAP);
 		} else if (id == R.id.iv_emoticons_normal) { // 点击显示表情框
 			more.setVisibility(View.VISIBLE);
 			iv_emoticons_normal.setVisibility(View.INVISIBLE);
@@ -554,13 +518,6 @@ public class CircleGroupChatFragment extends Fragment implements
 			btnContainer.setVisibility(View.VISIBLE);
 			expressionContainer.setVisibility(View.GONE);
 			more.setVisibility(View.GONE);
-
-		} else if (id == R.id.btn_video) {
-			// 点击摄像图标
-			Intent intent = new Intent(getActivity(), ImageGridActivity.class);
-			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
-		} else if (id == R.id.btn_file) { // 点击文件图标
-			selectFileFromLocal();
 		} else if (id == R.id.btn_more) {
 			more(more);
 		} else if (id == R.id.btn_set_mode_voice) {
@@ -635,9 +592,7 @@ public class CircleGroupChatFragment extends Fragment implements
 
 		if (content.length() > 0) {
 			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
-			// 如果是群聊，设置chattype,默认是单聊
-			if (chatType == CHATTYPE_GROUP)
-				message.setChatType(ChatType.GroupChat);
+			message.setChatType(ChatType.GroupChat);
 			TextMessageBody txtBody = new TextMessageBody(content);
 			// 设置消息body
 			message.addBody(txtBody);
@@ -672,8 +627,8 @@ public class CircleGroupChatFragment extends Fragment implements
 			final EMMessage message = EMMessage
 					.createSendMessage(EMMessage.Type.VOICE);
 			// 如果是群聊，设置chattype,默认是单聊
-			if (chatType == CHATTYPE_GROUP)
-				message.setChatType(ChatType.GroupChat);
+
+			message.setChatType(ChatType.GroupChat);
 			message.setReceipt(toChatUsername);
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
@@ -702,8 +657,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		final EMMessage message = EMMessage
 				.createSendMessage(EMMessage.Type.IMAGE);
 		// 如果是群聊，设置chattype,默认是单聊
-		if (chatType == CHATTYPE_GROUP)
-			message.setChatType(ChatType.GroupChat);
+		message.setChatType(ChatType.GroupChat);
 
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
@@ -732,8 +686,7 @@ public class CircleGroupChatFragment extends Fragment implements
 			EMMessage message = EMMessage
 					.createSendMessage(EMMessage.Type.VIDEO);
 			// 如果是群聊，设置chattype,默认是单聊
-			if (chatType == CHATTYPE_GROUP)
-				message.setChatType(ChatType.GroupChat);
+			message.setChatType(ChatType.GroupChat);
 			String to = toChatUsername;
 			message.setReceipt(to);
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
@@ -802,8 +755,8 @@ public class CircleGroupChatFragment extends Fragment implements
 		EMMessage message = EMMessage
 				.createSendMessage(EMMessage.Type.LOCATION);
 		// 如果是群聊，设置chattype,默认是单聊
-		if (chatType == CHATTYPE_GROUP)
-			message.setChatType(ChatType.GroupChat);
+
+		message.setChatType(ChatType.GroupChat);
 		LocationMessageBody locBody = new LocationMessageBody(locationAddress,
 				latitude, longitude);
 		message.addBody(locBody);
@@ -852,8 +805,8 @@ public class CircleGroupChatFragment extends Fragment implements
 		// 创建一个文件消息
 		EMMessage message = EMMessage.createSendMessage(EMMessage.Type.FILE);
 		// 如果是群聊，设置chattype,默认是单聊
-		if (chatType == CHATTYPE_GROUP)
-			message.setChatType(ChatType.GroupChat);
+
+		message.setChatType(ChatType.GroupChat);
 
 		message.setReceipt(toChatUsername);
 		// add message body
@@ -1296,12 +1249,9 @@ public class CircleGroupChatFragment extends Fragment implements
 					try {
 						// 获取更多messges，调用此方法的时候从db获取的messages
 						// sdk会自动存入到此conversation中
-						if (chatType == CHATTYPE_SINGLE)
-							messages = conversation.loadMoreMsgFromDB(adapter
-									.getItem(0).getMsgId(), pagesize);
-						else
-							messages = conversation.loadMoreGroupMsgFromDB(
-									adapter.getItem(0).getMsgId(), pagesize);
+
+						messages = conversation.loadMoreGroupMsgFromDB(adapter
+								.getItem(0).getMsgId(), pagesize);
 					} catch (Exception e1) {
 						loadmorePB.setVisibility(View.GONE);
 						return;
@@ -1338,4 +1288,36 @@ public class CircleGroupChatFragment extends Fragment implements
 	public String getToChatUsername() {
 		return toChatUsername;
 	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+			long arg3) {
+		switch (position) {
+		case 0:
+			selectPicFromLocal(); // 点击图片图标
+
+			break;
+		case 1:
+			selectPicFromCamera();// 点击照相图标
+
+			break;
+		case 2:
+			// 点击摄像图标
+			Intent intent = new Intent(getActivity(), ImageGridActivity.class);
+			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
+			break;
+		case 3:
+			selectFileFromLocal();
+
+			break;
+		case 4:
+			startActivityForResult(new Intent(getActivity(),
+					BaiduMapActivity.class), REQUEST_CODE_MAP);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 }

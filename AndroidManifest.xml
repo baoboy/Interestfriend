@@ -210,6 +210,10 @@
             android:name="com.interestfriend.activity.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>
+        <activity
+            android:name="com.interestfriend.findpassword.FindPasswordActivity"
+            android:label="@string/title_activity_find_password" >
+        </activity>
     </application>
 
 </manifest>

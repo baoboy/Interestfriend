@@ -35,6 +35,7 @@ public class MyCircleVideoProvider {
 		public static final String TIME = "time";
 		public static final String PUBLISHER_NAME = "publisher_name";
 		public static final String PUBLISHER_AVATAR = "publisher_avatar";
+		public static final String VIDEO_CONTENT = "video_content";
 
 	}
 

@@ -18,9 +18,11 @@ import com.interestfriend.R;
 public class ChatGridViewAdapter extends BaseAdapter {
 	private Context mContext;
 	private List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+	private int type = 0;
 
-	public ChatGridViewAdapter(Context context) {
+	public ChatGridViewAdapter(Context context, int type) {
 		mContext = context;
+		this.type = type;
 		initData();
 	}
 
@@ -93,10 +95,19 @@ public class ChatGridViewAdapter extends BaseAdapter {
 		if (position == 6 || position == 7) {
 			holder.img.setVisibility(View.INVISIBLE);
 			holder.txt_title.setVisibility(View.INVISIBLE);
+		} else if (position == 5) {
+			if (type == 1) {
+				holder.img.setVisibility(View.INVISIBLE);
+				holder.txt_title.setVisibility(View.INVISIBLE);
+			} else {
+				holder.img.setVisibility(View.VISIBLE);
+				holder.txt_title.setVisibility(View.VISIBLE);
+			}
 		} else {
 			holder.img.setVisibility(View.VISIBLE);
 			holder.txt_title.setVisibility(View.VISIBLE);
 		}
+		
 		return convertView;
 	}
 

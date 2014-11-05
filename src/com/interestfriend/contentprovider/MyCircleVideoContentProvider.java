@@ -219,5 +219,8 @@ public class MyCircleVideoContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap.put(
 				MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_NAME,
 				MyCircleVideoProvider.MyCircleVideoColumns.PUBLISHER_NAME);
+		sMyCirclesProjectionMap.put(
+				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_CONTENT,
+				MyCircleVideoProvider.MyCircleVideoColumns.VIDEO_CONTENT);
 	}
 }

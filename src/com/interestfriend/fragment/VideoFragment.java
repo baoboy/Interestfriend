@@ -160,6 +160,7 @@ public class VideoFragment extends Fragment implements OnPullDownListener {
 
 	public void refushAdapter(Video video) {
 		lists.add(0, video);
+		list.getVideos().add(0, video);
 		adapter.notifyDataSetChanged();
 		upLoadVideo(video);
 	}

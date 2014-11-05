@@ -15,12 +15,14 @@ import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
+import com.interestfriend.findpassword.FindPasswordActivity;
 import com.interestfriend.interfaces.MyEditTextWatcher;
 import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
 import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class LoginActivity extends BaseActivity implements OnClickListener,
@@ -28,6 +30,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	private MyEditTextDeleteImg edit_telphone;
 	private MyEditTextDeleteImg edit_password;
 	private Button btn_login;
+	private Button btn_find_password;
 
 	private Dialog dialog;
 
@@ -69,6 +72,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		edit_password = (MyEditTextDeleteImg) findViewById(R.id.edit_password);
 		edit_telphone = (MyEditTextDeleteImg) findViewById(R.id.edit_telphone);
 		btn_login = (Button) findViewById(R.id.btn_login);
+		btn_find_password = (Button) findViewById(R.id.btn_findPasswrod);
 		setListener();
 	}
 
@@ -82,6 +86,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		edit_password.setOnFocusChangeListener(new OnEditFocusChangeListener(
 				edit_password, this));
 		btn_login.setOnClickListener(this);
+		btn_find_password.setOnClickListener(this);
 	}
 
 	@Override
@@ -106,7 +111,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			String user_password = edit_password.getText().toString();
 			login(user_cellphone, user_password);
 			break;
-
+		case R.id.btn_findPasswrod:
+			startActivity(new Intent(this, FindPasswordActivity.class));
+			Utils.leftOutRightIn(this);
+			break;
 		default:
 			break;
 		}

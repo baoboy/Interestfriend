@@ -204,9 +204,9 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 						Toast.LENGTH_SHORT).show();
 				return;
 			}
-			Intent intent = getActivity().getIntent()
-					.putExtra("path", vEntty.filePath)
-					.putExtra("dur", vEntty.duration);
+			Intent intent = getActivity().getIntent();
+			intent.putExtra("path", vEntty.filePath);
+			intent.putExtra("dur", vEntty.duration);
 			getActivity().setResult(Activity.RESULT_OK, intent);
 			getActivity().finish();
 		}
@@ -386,7 +386,8 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 					duration = cursor
 							.getInt(cursor
 									.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
-					System.out.println("duration:" + duration);
+					System.out.println("duration:" + duration + "   "
+							+ filePath);
 				}
 				if (cursor != null) {
 					cursor.close();
@@ -398,6 +399,8 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 						getActivity().getIntent().putExtra("path", filePath)
 								.putExtra("dur", duration));
 				getActivity().finish();
+				System.out.println("dur::::::::::::;"
+						+ getActivity().getIntent().getIntExtra("dur", 22));
 
 			}
 		}

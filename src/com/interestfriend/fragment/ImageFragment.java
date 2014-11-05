@@ -62,7 +62,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		initView();
 		setValue();
 		glist = new GrowthList(MyApplation.getCircle_id());
-		getGrowthFromDB();
+		getGrowthFromDB(); 
 		registerBoradcastReceiver();
 	}
 

@@ -210,6 +210,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
 		int growthUnread = 0;
+		int chat_groth = 0;
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
@@ -222,6 +223,9 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						if (!m.getStringAttribute("publisher_id").equals(
 								SharedUtils.getUid())) {
 							growthUnread++;
+							chat_groth++;
+						} else {
+							chat_groth++;
 						}
 					} catch (EaseMobException e) {
 						e.printStackTrace();
@@ -232,7 +236,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				}
 			}
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount(), growthUnread);
+					conversation.getUnreadMsgCount() - chat_groth, growthUnread);
 		}
 		adapter.notifyDataSetChanged();
 	}

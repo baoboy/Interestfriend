@@ -143,13 +143,13 @@ public class GrowthAdapter extends BaseAdapter {
 		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
 		holder.txt_user_name.setText(growth.getPublisher_name());
-		holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
-				lists.get(position).getCommentsListView()));
-		if (growth.getCommentsListView().size() > 0) {
-			holder.line2.setVisibility(View.VISIBLE);
-		} else {
-			holder.line2.setVisibility(View.GONE);
-		}
+		// holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
+		// lists.get(position).getCommentsListView()));
+		// if (growth.getCommentsListView().size() > 0) {
+		// holder.line2.setVisibility(View.VISIBLE);
+		// } else {
+		// holder.line2.setVisibility(View.GONE);
+		// }
 		return contentView;
 	}
 

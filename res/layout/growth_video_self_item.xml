@@ -58,10 +58,10 @@
 
             <RelativeLayout
                 android:id="@+id/ll_click_area"
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
                 android:layout_height="145dp"
-                android:layout_below="@+id/txt_content"
-                android:layout_centerHorizontal="true" >
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/txt_content" >
 
                 <ImageView
                     android:id="@+id/video_img"

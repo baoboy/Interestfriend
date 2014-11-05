@@ -34,8 +34,17 @@ public class Video extends AbstractData implements Serializable {
 	private String time = "";
 	private String publisher_name = "";
 	private String publisher_avatar = "";
+	private String video_content = "";
 	private List<VideoComment> comments = new ArrayList<VideoComment>();
 	private List<VideoComment> commentsListView = new ArrayList<VideoComment>();
+
+	public String getVideo_content() {
+		return video_content;
+	}
+
+	public void setVideo_content(String video_content) {
+		this.video_content = video_content;
+	}
 
 	public List<VideoComment> getComments() {
 		return comments;
@@ -157,8 +166,12 @@ public class Video extends AbstractData implements Serializable {
 		params.put("video_size", video_size);
 		params.put("video_duration", video_duration);
 		params.put("time", time);
-		Result ret = ApiRequest.requestWithFile(UP_LOAD_VIDEO, params,
-				new File(video_path), parser);
+		params.put("video_content", video_content);
+		List<File> lists = new ArrayList<File>();
+		lists.add(new File(video_path));
+		lists.add(new File(video_img));
+		Result ret = ApiRequest.uploadFileArrayWithToken(UP_LOAD_VIDEO, params,
+				lists, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			MapResult mret = (MapResult) ret;
 			video_path = (String) (mret.getMaps().get("video_path"));
@@ -183,6 +196,8 @@ public class Video extends AbstractData implements Serializable {
 		cv.put("time", time);
 		cv.put("publisher_name", this.publisher_name);
 		cv.put("publisher_avatar", this.publisher_avatar);
+		cv.put("video_content", this.video_content);
+
 		db.insert(dbName, null, cv);
 		for (VideoComment comment : comments) {
 			comment.write(db);

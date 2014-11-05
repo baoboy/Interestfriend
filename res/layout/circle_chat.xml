@@ -3,7 +3,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/qq_bg_chat_color" >
+    android:background="@color/bg_color" >
 
     <include
         android:id="@+id/top_bar"
@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:paddingBottom="2dip"
         android:paddingTop="2dip" >
 
         <View
@@ -31,7 +30,7 @@
             android:background="@color/qq_bg_chat_bottom_color"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="4dp" >
+            android:paddingBottom="5dip" >
 
             <Button
                 android:id="@+id/btn_set_mode_voice"
@@ -54,7 +53,7 @@
                 android:id="@+id/btn_press_to_speak"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="3dip"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginTop="6dp"
@@ -80,7 +79,6 @@
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                android:paddingBottom="5dip"
                 android:paddingTop="5dip" >
 
                 <EditText
@@ -172,170 +170,23 @@
                 android:orientation="vertical"
                 android:visibility="gone" >
 
-                <LinearLayout
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <GridView
+                    android:id="@+id/m_gridview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="6dp"
-                    android:weightSum="4" >
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
-
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
-
-                            <ImageView
-                                android:id="@+id/btn_take_picture"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:background="@drawable/chat_takepic_selector"
-                                android:clickable="true"
-                                android:scaleType="fitCenter" />
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/attach_take_pic"
-                            android:textColor="#727171" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
-
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
-
-                            <ImageView
-                                android:id="@+id/btn_picture"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:background="@drawable/chat_image_selector"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter" />
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/attach_picture"
-                            android:textColor="#727171" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
-
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
-
-                            <ImageView
-                                android:id="@+id/btn_location"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/chat_location_selector" />
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/attach_location"
-                            android:textColor="#727171" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
-
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
-
-                            <ImageView
-                                android:id="@+id/btn_video"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/chat_video_selector" />
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="视频"
-                            android:textColor="#727171" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="6dp"
-                    android:weightSum="4" >
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
-
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
-
-                            <ImageView
-                                android:id="@+id/btn_file"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:background="@drawable/chat_file_selector"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter" />
-                        </RelativeLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/attach_file"
-                            android:textColor="#727171" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:background="#d5d5d5"
+                    android:horizontalSpacing="1.0px"
+                    android:listSelector="@null"
+                    android:numColumns="4"
+                    android:smoothScrollbar="true"
+                    android:soundEffectsEnabled="true"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="1.0px" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

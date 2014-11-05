@@ -47,7 +47,6 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -97,7 +96,6 @@ import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.view.ExpandGridView;
-import com.interestfriend.view.PasteEditText;
 
 /**
  * 聊天页面
@@ -154,7 +152,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private ViewPager expressionViewpager;
 	private LinearLayout expressionContainer;
 	private LinearLayout btnContainer;
-	private ImageView locationImgview;
 	private View more;
 	private int position;
 	private ClipboardManager clipboard;
@@ -216,7 +213,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	 */
 	protected void initView() {
 		mGridView = (GridView) findViewById(R.id.m_gridview);
-		mGridView.setAdapter(new ChatGridViewAdapter(this));
+		mGridView.setAdapter(new ChatGridViewAdapter(this, 0));
 		mGridView.setOnItemClickListener(this);
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(this);
@@ -234,7 +231,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		expressionViewpager = (ViewPager) findViewById(R.id.vPager);
 		expressionContainer = (LinearLayout) findViewById(R.id.ll_face_container);
 		btnContainer = (LinearLayout) findViewById(R.id.ll_btn_container);
-		locationImgview = (ImageView) findViewById(R.id.btn_location);
 		iv_emoticons_normal = (ImageView) findViewById(R.id.iv_emoticons_normal);
 		iv_emoticons_checked = (ImageView) findViewById(R.id.iv_emoticons_checked);
 		loadmorePB = (ProgressBar) findViewById(R.id.pb_load_more);
@@ -432,6 +428,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			finish();
 			return;
 		}
+
 		if (requestCode == REQUEST_CODE_CONTEXT_MENU) {
 			switch (resultCode) {
 			case RESULT_CODE_COPY: // 复制消息
@@ -472,7 +469,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				break;
 			}
 		}
+
 		if (resultCode == RESULT_OK) { // 清空消息
+
 			if (requestCode == REQUEST_CODE_EMPTY_HISTORY) {
 				// 清空会话
 				EMChatManager.getInstance().clearConversation(toChatUsername);
@@ -483,6 +482,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			} else if (requestCode == REQUEST_CODE_SELECT_VIDEO) { // 发送本地选择的视频
 
 				int duration = data.getIntExtra("dur", 0);
+				System.out.println("aaaaaaaaaaaaaaaaaaaaaaa" + duration);
+
 				String videoPath = data.getStringExtra("path");
 				File file = new File(PathUtil.getInstance().getImagePath(),
 						"thvideo" + System.currentTimeMillis());
@@ -594,13 +595,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		if (id == R.id.btn_send) {// 点击发送按钮(发文字和表情)
 			String s = mEditTextContent.getText().toString();
 			sendText(s);
-		} else if (id == R.id.btn_take_picture) {
-			selectPicFromCamera();// 点击照相图标
-		} else if (id == R.id.btn_picture) {
-			selectPicFromLocal(); // 点击图片图标
-		} else if (id == R.id.btn_location) { // 位置
-			startActivityForResult(new Intent(this, BaiduMapActivity.class),
-					REQUEST_CODE_MAP);
 		} else if (id == R.id.iv_emoticons_normal) { // 点击显示表情框
 			more.setVisibility(View.VISIBLE);
 			iv_emoticons_normal.setVisibility(View.INVISIBLE);
@@ -614,21 +608,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			btnContainer.setVisibility(View.VISIBLE);
 			expressionContainer.setVisibility(View.GONE);
 			more.setVisibility(View.GONE);
-
-		} else if (id == R.id.btn_video) {
-			// 点击摄像图标
-			Intent intent = new Intent(ChatActivity.this,
-					ImageGridActivity.class);
-			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
-		} else if (id == R.id.btn_file) { // 点击文件图标
-			selectFileFromLocal();
-		} else if (id == R.id.btn_voice_call) { // 点击语音电话图标
-			if (!EMChatManager.getInstance().isConnected())
-				Toast.makeText(this, "尚未连接至服务器，请稍后重试", 0).show();
-			else
-				startActivity(new Intent(ChatActivity.this,
-						VoiceCallActivity.class).putExtra("username",
-						toChatUsername).putExtra("isComingCall", false));
 		} else if (id == R.id.back) {
 			finishThisActivity();
 		} else if (id == R.id.btn_more) {
@@ -1527,8 +1506,42 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+			long arg3) {
+		switch (position) {
+		case 0:
+			selectPicFromLocal(); // 点击图片图标
 
+			break;
+		case 1:
+			selectPicFromCamera();// 点击照相图标
+
+			break;
+		case 2:
+			// 点击摄像图标
+			Intent intent = new Intent(ChatActivity.this,
+					ImageGridActivity.class);
+			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
+			break;
+		case 3:
+			selectFileFromLocal();
+
+			break;
+		case 4:
+			startActivityForResult(new Intent(this, BaiduMapActivity.class),
+					REQUEST_CODE_MAP);
+			break;
+		case 5:
+			if (!EMChatManager.getInstance().isConnected())
+				Toast.makeText(this, "尚未连接至服务器，请稍后重试", 0).show();
+			else
+				startActivity(new Intent(ChatActivity.this,
+						VoiceCallActivity.class).putExtra("username",
+						toChatUsername).putExtra("isComingCall", false));
+			break;
+		default:
+			break;
+		}
 	}
 
 }

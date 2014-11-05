@@ -110,7 +110,7 @@ public class GroupChatAdapter extends BaseAdapter {
 
 	private Context context;
 
-	public GroupChatAdapter(Context context, String username, int chatType) {
+	public GroupChatAdapter(Context context, String username) {
 		this.username = username;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
@@ -394,39 +394,39 @@ public class GroupChatAdapter extends BaseAdapter {
 					holder.head_iv, R.drawable.picture_default_head);
 			View statusView = convertView.findViewById(R.id.msg_status);
 			// 重发按钮点击事件
-//			statusView.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//
-//					// 显示重发消息的自定义alertdialog
-//					Intent intent = new Intent(activity, AlertDialog.class);
-//					intent.putExtra("msg",
-//							activity.getString(R.string.confirm_resend));
-//					intent.putExtra("title",
-//							activity.getString(R.string.resend));
-//					intent.putExtra("cancel", true);
-//					intent.putExtra("position", position);
-//					if (message.getType() == EMMessage.Type.TXT)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_TEXT);
-//					else if (message.getType() == EMMessage.Type.VOICE)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_VOICE);
-//					else if (message.getType() == EMMessage.Type.IMAGE)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_PICTURE);
-//					else if (message.getType() == EMMessage.Type.LOCATION)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_LOCATION);
-//					else if (message.getType() == EMMessage.Type.FILE)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_FILE);
-//					else if (message.getType() == EMMessage.Type.VIDEO)
-//						activity.startActivityForResult(intent,
-//								ChatActivity.REQUEST_CODE_VIDEO);
-//
-//				}
-//			});
+			// statusView.setOnClickListener(new OnClickListener() {
+			// @Override
+			// public void onClick(View v) {
+			//
+			// // 显示重发消息的自定义alertdialog
+			// Intent intent = new Intent(activity, AlertDialog.class);
+			// intent.putExtra("msg",
+			// activity.getString(R.string.confirm_resend));
+			// intent.putExtra("title",
+			// activity.getString(R.string.resend));
+			// intent.putExtra("cancel", true);
+			// intent.putExtra("position", position);
+			// if (message.getType() == EMMessage.Type.TXT)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_TEXT);
+			// else if (message.getType() == EMMessage.Type.VOICE)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_VOICE);
+			// else if (message.getType() == EMMessage.Type.IMAGE)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_PICTURE);
+			// else if (message.getType() == EMMessage.Type.LOCATION)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_LOCATION);
+			// else if (message.getType() == EMMessage.Type.FILE)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_FILE);
+			// else if (message.getType() == EMMessage.Type.VIDEO)
+			// activity.startActivityForResult(intent,
+			// ChatActivity.REQUEST_CODE_VIDEO);
+			//
+			// }
+			// });
 
 		} else {
 			CircleMember mbmer = new CircleMember();
@@ -995,6 +995,8 @@ public class GroupChatAdapter extends BaseAdapter {
 
 			@Override
 			public void onError(int code, String error) {
+				System.out.println("txt::::::::::::::::;" + error + "   "
+						+ code);
 				updateSendedView(message, holder);
 			}
 
