@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.interestfriend.FeedBackActivity;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class SettingActivity extends BaseActivity implements OnClickListener {
 	private TextView txt_message_prompt;
@@ -80,7 +82,10 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		case R.id.btn_quit:
 			quitPrompt();
 			break;
-
+		case R.id.txt_feedback:
+			startActivity(new Intent(this, FeedBackActivity.class));
+			Utils.leftOutRightIn(this);
+			break;
 		default:
 			break;
 		}
