@@ -80,7 +80,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_comment);
+		setContentView(R.layout.activity_comment_1);
 		growth = (Growth) getIntent().getSerializableExtra("growth");
 		position = getIntent().getIntExtra("position", 0);
 		initView();

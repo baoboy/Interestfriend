@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.interestfriend;
+package com.interestfriend.activity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -80,10 +80,11 @@ import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
-import com.interestfriend.activity.BaiduMapActivity;
-import com.interestfriend.activity.BaseActivity;
-import com.interestfriend.activity.ImageGridActivity;
-import com.interestfriend.activity.VoiceCallActivity;
+import com.interestfriend.R;
+import com.interestfriend.R.drawable;
+import com.interestfriend.R.id;
+import com.interestfriend.R.layout;
+import com.interestfriend.R.string;
 import com.interestfriend.adapter.ChatAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;

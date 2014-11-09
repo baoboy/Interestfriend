@@ -24,7 +24,6 @@ import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.utils.Constants;
-import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
@@ -63,9 +62,10 @@ public class GrowthAdapter extends BaseAdapter {
 	}
 
 	private View createView(int direct) {
-		return direct == SharedUtils.getIntUid() ? inflater.inflate(
-				R.layout.growth_item_self, null) : inflater.inflate(
-				R.layout.growth_item, null);
+		// return direct == SharedUtils.getIntUid() ? inflater.inflate(
+		// R.layout.growth_item_self_1, null) : inflater.inflate(
+		// R.layout.growth_item, null);
+		return inflater.inflate(R.layout.growth_item_self_1, null);
 
 	}
 

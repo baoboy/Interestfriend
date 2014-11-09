@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" >
+    android:background="@color/bg_color" >
 
     <include
         android:id="@+id/title"
@@ -27,23 +27,6 @@
                 android:layout_height="230dip"
                 android:scaleType="centerCrop"
                 android:src="@drawable/chat_image_normal" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.2dip"
-                android:background="@color/bg_line" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f1f2ec"
-                android:paddingBottom="5dip"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:paddingTop="5dip"
-                android:text="圈子资料"
-                android:textSize="15sp" />
 
             <View
                 android:layout_width="fill_parent"

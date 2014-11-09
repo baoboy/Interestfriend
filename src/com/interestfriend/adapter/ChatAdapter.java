@@ -481,7 +481,7 @@ public class ChatAdapter extends BaseAdapter {
 			mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
 			UniversalImageLoadTool.disPlay(mbmer.getUser_avatar(),
 					holder.head_iv, R.drawable.picture_default_head);
-			holder.tv_userId.setText(mbmer.getUser_name());
+			// holder.tv_userId.setText(mbmer.getUser_name());
 		}
 
 		TextView timestamp = (TextView) convertView

@@ -29,6 +29,7 @@ import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
+import com.interestfriend.utils.SharedUtils;
 
 public class MyApplation extends Application {
 	private static MyApplation instance;
@@ -101,11 +102,12 @@ public class MyApplation extends Application {
 		// 默认添加好友时，是不需要验证的，改成需要验证
 		options.setAcceptInvitationAlways(false);
 		// 设置收到消息是否有新消息通知，默认为true
-		options.setNotifyBySoundAndVibrate(true);
+		options.setNotifyBySoundAndVibrate(SharedUtils
+				.getSettingMsgNotification());
 		// 设置收到消息是否有声音提示，默认为true
-		options.setNoticeBySound(true);
+		options.setNoticeBySound(SharedUtils.getSettingMsgSound());
 		// 设置收到消息是否震动 默认为true
-		options.setNoticedByVibrate(true);
+		options.setNoticedByVibrate(SharedUtils.getSettingMsgVibrate());
 		// 设置语音消息播放是否设置为扬声器播放 默认为true
 		options.setUseSpeaker(true);
 		// 设置notification消息点击时，跳转的intent为自定义的intent
