@@ -18,6 +18,9 @@ public class SharedUtils {
 			.getInstance().getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
 	private static Editor editor = sharedPreferences.edit();
 	public static final String SP_UID = "uid";
+	private static String SHARED_KEY_SETTING_NOTIFICATION = "shared_key_setting_notification";
+	private static String SHARED_KEY_SETTING_SOUND = "shared_key_setting_sound";
+	private static String SHARED_KEY_SETTING_VIBRATE = "shared_key_setting_vibrate";
 
 	public static String getString(String key, String defaultValue) {
 		return sharedPreferences.getString(key, defaultValue);
@@ -71,6 +74,35 @@ public class SharedUtils {
 			return Integer.parseInt(uid);
 		}
 		return 0;
+	}
+
+	public static void setSettingMsgNotification(boolean paramBoolean) {
+		editor.putBoolean(SHARED_KEY_SETTING_NOTIFICATION, paramBoolean);
+		editor.commit();
+	}
+
+	public static boolean getSettingMsgNotification() {
+		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_NOTIFICATION,
+				true);
+	}
+
+	public static void setSettingMsgSound(boolean paramBoolean) {
+		editor.putBoolean(SHARED_KEY_SETTING_SOUND, paramBoolean);
+		editor.commit();
+	}
+
+	public static boolean getSettingMsgSound() {
+
+		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_SOUND, true);
+	}
+
+	public static void setSettingMsgVibrate(boolean paramBoolean) {
+		editor.putBoolean(SHARED_KEY_SETTING_VIBRATE, paramBoolean);
+		editor.commit();
+	}
+
+	public static boolean getSettingMsgVibrate() {
+		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_VIBRATE, true);
 	}
 
 	public static void setUserName(String value) {

@@ -12,6 +12,7 @@ public class DissolveCircleTask extends BaseAsyncTask<Circles, Void, RetError> {
 	@Override
 	protected RetError doInBackground(Circles... params) {
 		circle = params[0];
+		circle.findCircleGroupID(DBUtils.getDBsa(1));
 		RetError ret = circle.dissolveCircle();
 		if (ret == RetError.NONE) {
 			circle.write(DBUtils.getDBsa(2));

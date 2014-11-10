@@ -3,7 +3,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/qq_bg_chat_color" >
+    android:background="@color/bg_color" >
 
     <include
         android:id="@+id/top_bar"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-         android:paddingTop="2dip" >
+        android:paddingTop="2dip" >
 
         <View
             android:layout_width="match_parent"
@@ -188,8 +188,6 @@
                     android:soundEffectsEnabled="true"
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="1.0px" />
-
-        
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

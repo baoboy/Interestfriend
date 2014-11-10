@@ -215,8 +215,12 @@
             android:label="@string/title_activity_find_password" >
         </activity>
         <activity
-            android:name="com.interestfriend.FeedBackActivity"
+            android:name="com.interestfriend.activity.FeedBackActivity"
             android:label="@string/title_activity_feed_back" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.MessageWarnctivity"
+            android:label="@string/title_activity_message_warnctivity" >
         </activity>
     </application>
 

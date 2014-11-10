@@ -60,7 +60,7 @@ public class GrowthVideoAdapter extends BaseAdapter {
 
 	private View createView(int direct) {
 		return direct == SharedUtils.getIntUid() ? inflater.inflate(
-				R.layout.growth_video_self_item, null) : inflater.inflate(
+				R.layout.growth_video_self_item_1, null) : inflater.inflate(
 				R.layout.growth_video_item, null);
 	}
 
@@ -88,8 +88,6 @@ public class GrowthVideoAdapter extends BaseAdapter {
 					.findViewById(R.id.txt_time);
 			holder.btn_comment = (TextView) contentView
 					.findViewById(R.id.btn_comment);
-			holder.mListView = (ListView) contentView
-					.findViewById(R.id.listView1);
 			holder.video_img = (ImageView) contentView
 					.findViewById(R.id.video_img);
 			holder.videoClick = (RelativeLayout) contentView
@@ -144,8 +142,7 @@ public class GrowthVideoAdapter extends BaseAdapter {
 				mContext.startActivity(intent);
 			}
 		});
-		holder.mListView.setAdapter(new VideoListCommentAdapter(mContext, lists
-				.get(position).getCommentsListView()));
+
 		return contentView;
 	}
 
@@ -158,7 +155,6 @@ public class GrowthVideoAdapter extends BaseAdapter {
 		TextView video_size;
 		ProgressBar pg;
 		TextView btn_comment;
-		ListView mListView;
 		ImageView video_img;
 		RelativeLayout videoClick;
 	}

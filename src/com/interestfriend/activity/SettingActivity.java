@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.interestfriend.FeedBackActivity;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.ConfirmDialog;
@@ -84,6 +83,10 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.txt_feedback:
 			startActivity(new Intent(this, FeedBackActivity.class));
+			Utils.leftOutRightIn(this);
+			break;
+		case R.id.txt_message_prompt:
+			startActivity(new Intent(this, MessageWarnctivity.class));
 			Utils.leftOutRightIn(this);
 			break;
 		default:

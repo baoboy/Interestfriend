@@ -217,6 +217,7 @@ public class Circles extends AbstractData {
 		IParser parser = new StringParser("lastReqTime");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_id", circle_id);
+		params.put("group_id", group_id);
 		Result ret = ApiRequest.request(DISSOLVE_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			this.status = Status.DEL;
@@ -261,6 +262,17 @@ public class Circles extends AbstractData {
 			cursor.moveToFirst();
 			this.creator_id = cursor
 					.getInt(cursor.getColumnIndex("creator_id"));
+		}
+	}
+
+	public void findCircleGroupID(SQLiteDatabase db) {
+		Cursor cursor = db.query(Const.MY_CIRCLE_TABLE_NAME,
+				new String[] { "group_id", }, "circle_id=?",
+				new String[] { circle_id + "" }, null, null, null);
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst();
+			this.group_id = cursor.getString(cursor.getColumnIndex("group_id"));
+			System.out.println("group_id:::::::::::::;;" + group_id);
 		}
 	}
 

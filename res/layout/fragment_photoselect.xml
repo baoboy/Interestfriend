@@ -25,7 +25,7 @@
 
         <RelativeLayout
             android:id="@+id/btnSave"
-            android:layout_width="50dip"
+            android:layout_width="70dip"
             android:layout_height="fill_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
@@ -37,17 +37,16 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="确定"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txt_num_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dip"
-                android:layout_marginTop="10dip"
-                android:background="@drawable/icon_numbg"
+                android:layout_marginRight="8dip"
+                android:background="@drawable/red_circle"
                 android:gravity="center"
                 android:textColor="#ffffff"
                 android:textSize="11sp"

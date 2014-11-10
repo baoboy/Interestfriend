@@ -43,10 +43,10 @@ import com.interestfriend.utils.Logger.Level;
  */
 public class HttpUrlHelper {
 	// 10.6.7.158 公司
-	// 192.168.1.101 家
+	// 192.168.80.104家
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://192.168.1.101:8080/InterestFriend/servlet/"; // 服务器地址
+	public static final String DEFAULT_HOST = "http://192.168.80.104:8080/InterestFriend/servlet/"; // 服务器地址
 
 	/**
 	 * get 提交方式 // *

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.R.array;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -26,6 +25,7 @@ public class GrowthList extends AbstractData {
 	private static final long serialVersionUID = 1L;
 
 	private final String GROWTH_LIST_API = "GetGrowthListServlet";
+	private final int GROUTH_COUNT = 40;
 
 	private List<Growth> growths = new ArrayList<Growth>();
 	private List<Growth> writeGrowths = new ArrayList<Growth>();
@@ -112,19 +112,28 @@ public class GrowthList extends AbstractData {
 			growth.write(db);
 		}
 		writeGrowths.clear();
+		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME,
+				new String[] { "_id" }, "cid=?", new String[] { cid + "" },
+				null, null, null);
+		if (cursor.getCount() > GROUTH_COUNT) {
+			cursor.move(GROUTH_COUNT);
+			int id = cursor.getInt(cursor.getColumnIndex("_id"));
+			System.out.println("id:::::::::::::::" + id);
+			db.delete(Const.GROWTHS_TABLE_NAME, "_id> ? and cid=?",
+					new String[] { id + "", cid + "" });
+		}
 	}
 
 	@Override
 	public void read(SQLiteDatabase db) {
 		// read growth basic info
 		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME, new String[] {
-				"cid", "growth_id", "content", "publisher_id", "time",
-				"publisher_name", "publisher_avatar", }, null, null, null,
-				null, null);
+				"growth_id", "content", "publisher_id", "time",
+				"publisher_name", "publisher_avatar", }, "cid=?",
+				new String[] { cid + "" }, null, null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			for (int j = 0; j < cursor.getCount(); j++) {
-				int cid = cursor.getInt(cursor.getColumnIndex("cid"));
 				int growth_id = cursor.getInt(cursor
 						.getColumnIndex("growth_id"));
 				int publisher = cursor.getInt(cursor
