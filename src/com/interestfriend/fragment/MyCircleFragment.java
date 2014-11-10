@@ -24,8 +24,6 @@ import android.widget.ListView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
-import com.easemob.chat.EMMessage;
-import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
@@ -38,7 +36,6 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
-import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
@@ -209,43 +206,20 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
-		int growthUnread = 0;
-		int chat_groth = 0;
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
 			}
-
-			List<EMMessage> messages = conversation.getAllMessages();
-			for (EMMessage m : messages) {
-				if ("growth".equals(m.getFrom())) {
-					try {
-						if (!m.getStringAttribute("publisher_id").equals(
-								SharedUtils.getUid())) {
-							growthUnread++;
-							chat_groth++;
-						} else {
-							chat_groth++;
-						}
-					} catch (EaseMobException e) {
-						e.printStackTrace();
-					}
-					m.isAcked = true;
-					conversation.removeMessage(m.getMsgId());
-
-				}
-			}
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount() - chat_groth, growthUnread);
+					conversation.getUnreadMsgCount());
 		}
 		adapter.notifyDataSetChanged();
 	}
 
-	private void setUnread(String groupId, int unread, int growthUnread) {
+	private void setUnread(String groupId, int unread) {
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
 				c.setUnread(unread);
-				c.setGrowth_unread(growthUnread);
 				break;
 			}
 		}

@@ -24,6 +24,7 @@ public class CircleMember extends AbstractData {
 	private static final String UPDATE_USER_INFO = "UpdateUserInfoServlet";
 	private static String UPDATE_MEMBER_AVATAR = "UpdateUserAvatarServlet";
 	private static String KICK_MEMBER_API = "KickOutMemberServlet";
+	private static String RECEIVE_JOIN_CIRCL_EREQUEST = "ReceiveJoinCircleRequestServlet";
 
 	private int user_id;
 	private int circle_id;
@@ -205,12 +206,12 @@ public class CircleMember extends AbstractData {
 	}
 
 	/**
-	 * 加入官方圈子
+	 * 加入圈子
 	 * 
 	 * @return
 	 */
 	public RetError joinOffcialCircle(int circle_creator, String circle_name) {
-		IParser parser = new StringParser("circle_last_request_time");
+		IParser parser = new SimpleParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("user_id", user_id);
 		params.put("circle_id", circle_id);
@@ -221,6 +222,33 @@ public class CircleMember extends AbstractData {
 		params.put("circle_name", circle_name);
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	/**
+	 * 接受加入圈子请求
+	 * 
+	 * 
+	 * @return
+	 */
+	public RetError receiveJoinCircleRequest(
+			String request_join_circle_user_huanxin_username,
+			String join_circle_name) {
+		IParser parser = new StringParser("circle_last_request_time");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("request_join_circle_user_id", user_id);
+		params.put("join_circle_id", circle_id);
+		params.put("group_id", group_id);
+		params.put("request_join_circle_user_huanxin_username",
+				request_join_circle_user_huanxin_username);
+		params.put("join_circle_name", join_circle_name);
+
+		Result ret = ApiRequest.request(RECEIVE_JOIN_CIRCL_EREQUEST, params,
+				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
 			SharedUtils.setCircleLastRequestTime(Long.valueOf(sr.getStr()));

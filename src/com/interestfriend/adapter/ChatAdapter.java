@@ -362,7 +362,6 @@ public class ChatAdapter extends BaseAdapter {
 			System.out.println("otnulLLLLLLLLLLLLL");
 			holder = (ViewHolder) convertView.getTag();
 		}
-		holder.tv_userId.setVisibility(View.GONE);
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (message.direct == EMMessage.Direct.SEND
 				&& chatType != ChatType.GroupChat) {
@@ -389,6 +388,7 @@ public class ChatAdapter extends BaseAdapter {
 				}
 			}
 		} else {
+			holder.tv_userId.setVisibility(View.GONE);
 			// 如果是文本或者地图消息并且不是group messgae，显示的时候给对方发送已读回执
 			if ((message.getType() == Type.TXT || message.getType() == Type.LOCATION)
 					&& !message.isAcked && chatType != ChatType.GroupChat) {
@@ -476,11 +476,20 @@ public class ChatAdapter extends BaseAdapter {
 			});
 
 		} else {
-			CircleMember mbmer = new CircleMember();
-			mbmer.setUser_chat_id(message.getFrom());
-			mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
-			UniversalImageLoadTool.disPlay(mbmer.getUser_avatar(),
-					holder.head_iv, R.drawable.picture_default_head);
+			try {
+				// String user_name = message.getStringAttribute("user_name");
+				String user_avatar = message.getStringAttribute("user_avatar");
+				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
+						R.drawable.picture_default_head);
+			} catch (EaseMobException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// CircleMember mbmer = new CircleMember();
+			// mbmer.setUser_chat_id(message.getFrom());
+			// mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
+			// UniversalImageLoadTool.disPlay(mbmer.getUser_avatar(),
+			// holder.head_iv, R.drawable.picture_default_head);
 			// holder.tv_userId.setText(mbmer.getUser_name());
 		}
 

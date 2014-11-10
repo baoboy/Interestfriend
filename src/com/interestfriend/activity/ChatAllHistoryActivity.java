@@ -142,7 +142,9 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 		String username = conversation.getUserName();
 		Intent intent = null;
 		if (Constants.JOIN_CIRCLE_USER_ID.equals(username)) {
-			intent = new Intent(this, QuYouWainActivity.class);
+			intent = new Intent(this, JoinCircleActivity.class);
+		} else if (Constants.RECEIVE_JOIN_CIRCLE.equals(username)) {
+			intent = new Intent(this, ReceiveJoinCircleActivity.class);
 		} else {
 			intent = new Intent(this, ChatActivity.class);
 		}

@@ -20,7 +20,6 @@ import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,7 +29,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -60,13 +58,9 @@ import com.easemob.util.LatLng;
 import com.easemob.util.TextFormater;
 import com.interestfriend.R;
 import com.interestfriend.activity.BaiduMapActivity;
-import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.ShowBigImage;
 import com.interestfriend.activity.ShowNormalFileActivity;
 import com.interestfriend.activity.ShowVideoActivity;
-import com.interestfriend.applation.MyApplation;
-import com.interestfriend.data.CircleMember;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.task.LoadImageTask;
 import com.interestfriend.task.LoadVideoImageTask;
@@ -429,27 +423,15 @@ public class GroupChatAdapter extends BaseAdapter {
 			// });
 
 		} else {
-			CircleMember mbmer = new CircleMember();
-			mbmer.setUser_chat_id(message.getFrom());
-			mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
-			UniversalImageLoadTool.disPlay(mbmer.getUser_avatar(),
-					holder.head_iv, R.drawable.picture_default_head);
-			holder.tv_userId.setText(mbmer.getUser_name());
-
-			// 长按头像，移入黑名单
-			// holder.head_iv.setOnLongClickListener(new OnLongClickListener() {
-			//
-			// @Override
-			// public boolean onLongClick(View v) {
-			// Intent intent = new Intent(activity, AlertDialog.class);
-			// intent.putExtra("msg", "移入到黑名单？");
-			// intent.putExtra("cancel", true);
-			// intent.putExtra("position", position);
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_ADD_TO_BLACKLIST);
-			// return true;
-			// }
-			// });
+			try {
+				String user_name = message.getStringAttribute("user_name");
+				String user_avatar = message.getStringAttribute("user_avatar");
+				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
+						R.drawable.default_avatar);
+				holder.tv_userId.setText(user_name);
+			} catch (EaseMobException e) {
+				e.printStackTrace();
+			}
 		}
 
 		TextView timestamp = (TextView) convertView

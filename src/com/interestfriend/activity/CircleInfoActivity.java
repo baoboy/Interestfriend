@@ -141,12 +141,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				if (result != RetError.NONE) {
 					return;
 				}
-				ToastUtil.showToast("成功加入", Toast.LENGTH_SHORT);
-				Intent intent = new Intent();
-				intent.putExtra("circle", circle);
-				intent.setAction(Constants.JOIN_CIRCLE);
-				BroadCast.sendBroadCast(CircleInfoActivity.this, intent);
-				circle.write(DBUtils.getDBsa(2));
+				ToastUtil.showToast("已发送申请，请等待确认！", Toast.LENGTH_SHORT);
 				finishThisActivity();
 			}
 		});

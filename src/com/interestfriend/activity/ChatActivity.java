@@ -688,6 +688,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
 			message.setReceipt(toChatUsername);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
@@ -719,6 +721,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			if (chatType == CHATTYPE_GROUP)
 				message.setChatType(ChatType.GroupChat);
 			message.setReceipt(toChatUsername);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
 					len);
@@ -748,7 +752,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		// 如果是群聊，设置chattype,默认是单聊
 		if (chatType == CHATTYPE_GROUP)
 			message.setChatType(ChatType.GroupChat);
-
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
 		// 默认超过100k的图片会压缩后发给对方，可以设置成发送原图
@@ -780,6 +785,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				message.setChatType(ChatType.GroupChat);
 			String to = toChatUsername;
 			message.setReceipt(to);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
 					length, videoFile.length());
 			message.addBody(body);
@@ -850,6 +857,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				latitude, longitude);
 		message.addBody(locBody);
 		message.setReceipt(toChatUsername);
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -897,7 +906,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		// 如果是群聊，设置chattype,默认是单聊
 		if (chatType == CHATTYPE_GROUP)
 			message.setChatType(ChatType.GroupChat);
-
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setReceipt(toChatUsername);
 		// add message body
 		NormalFileMessageBody body = new NormalFileMessageBody(new File(

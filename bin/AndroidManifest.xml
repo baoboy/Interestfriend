@@ -225,8 +225,12 @@
             android:label="@string/title_activity_message_warnctivity" >
         </activity>
         <activity
-            android:name="com.interestfriend.activity.QuYouWainActivity"
+            android:name="com.interestfriend.activity.JoinCircleActivity"
             android:label="@string/title_activity_qu_you_wain" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.ReceiveJoinCircleActivity"
+            android:label="@string/title_activity_receive_join_circle" >
         </activity>
     </application>
 

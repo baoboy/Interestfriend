@@ -33,6 +33,7 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.ImageMessageBody;
 import com.easemob.chat.TextMessageBody;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DateUtils;
 import com.interestfriend.R;
 import com.interestfriend.data.CircleMember;
@@ -98,12 +99,10 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 			}
 		}
 
-		CircleMember mbmer = new CircleMember();
-		mbmer.setUser_chat_id(username);
-		mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
-		UniversalImageLoadTool.disPlay(mbmer.getUser_avatar(), holder.avatar,
-				R.drawable.default_avatar);
-		holder.name.setText(mbmer.getUser_name());  
+		// CircleMember mbmer = new CircleMember();
+		// mbmer.setUser_chat_id(username);
+		// mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
+
 		if (conversation.getUnreadMsgCount() > 0) {
 			// 显示与此用户的消息未读数
 			holder.unreadLabel.setText(String.valueOf(conversation
@@ -126,6 +125,18 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 
 			holder.time.setText(DateUtils.getTimestampString(new Date(
 					lastMessage.getMsgTime())));
+
+			try {
+				String user_name = lastMessage.getStringAttribute("user_name");
+				String user_avatar = lastMessage
+						.getStringAttribute("user_avatar");
+				UniversalImageLoadTool.disPlay(user_avatar, holder.avatar,
+						R.drawable.default_avatar);
+				holder.name.setText(user_name);
+			} catch (EaseMobException e) {
+				e.printStackTrace();
+			}
+
 			if (lastMessage.direct == EMMessage.Direct.SEND
 					&& lastMessage.status == EMMessage.Status.FAIL) {
 				holder.msgState.setVisibility(View.VISIBLE);

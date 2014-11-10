@@ -319,7 +319,7 @@ public class CircleGroupChatFragment extends Fragment implements
 				PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
 		toChatUsername = MyApplation.getCircle_group_id();
- 		group = EMGroupManager.getInstance().getGroup(toChatUsername);
+		group = EMGroupManager.getInstance().getGroup(toChatUsername);
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
@@ -598,6 +598,8 @@ public class CircleGroupChatFragment extends Fragment implements
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
 			message.setReceipt(toChatUsername);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
@@ -630,6 +632,8 @@ public class CircleGroupChatFragment extends Fragment implements
 
 			message.setChatType(ChatType.GroupChat);
 			message.setReceipt(toChatUsername);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
 					len);
@@ -658,7 +662,8 @@ public class CircleGroupChatFragment extends Fragment implements
 				.createSendMessage(EMMessage.Type.IMAGE);
 		// 如果是群聊，设置chattype,默认是单聊
 		message.setChatType(ChatType.GroupChat);
-
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
 		// 默认超过100k的图片会压缩后发给对方，可以设置成发送原图
@@ -688,6 +693,8 @@ public class CircleGroupChatFragment extends Fragment implements
 			// 如果是群聊，设置chattype,默认是单聊
 			message.setChatType(ChatType.GroupChat);
 			String to = toChatUsername;
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setReceipt(to);
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
 					length, videoFile.length());
@@ -761,6 +768,8 @@ public class CircleGroupChatFragment extends Fragment implements
 				latitude, longitude);
 		message.addBody(locBody);
 		message.setReceipt(toChatUsername);
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -813,7 +822,8 @@ public class CircleGroupChatFragment extends Fragment implements
 		NormalFileMessageBody body = new NormalFileMessageBody(new File(
 				filePath));
 		message.addBody(body);
-
+		message.setAttribute("user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
 		adapter.refresh();
