@@ -50,6 +50,8 @@ import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
+import fynn.app.PromptDialog;
+
 @SuppressLint("NewApi")
 public class CircleMemberFragment extends Fragment implements
 		OnItemClickListener, OnClickListener, OnMenuClick {
@@ -308,8 +310,8 @@ public class CircleMemberFragment extends Fragment implements
 	};
 
 	private void dissolvePrompt() {
-		Dialog dialog = DialogUtil.confirmDialog(getActivity(), "确定要解散圈子吗?",
-				"确定", "取消", new ConfirmDialog() {
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(getActivity(),
+				"确定要解散圈子吗?", "确定", "取消", new ConfirmDialog() {
 
 					@Override
 					public void onOKClick() {
@@ -354,8 +356,8 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void quitPrompt() {
-		Dialog dialog = DialogUtil.confirmDialog(getActivity(), "确定要退出圈子吗?",
-				"确定", "取消", new ConfirmDialog() {
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(getActivity(),
+				"确定要退出圈子吗?", "确定", "取消", new ConfirmDialog() {
 
 					@Override
 					public void onOKClick() {

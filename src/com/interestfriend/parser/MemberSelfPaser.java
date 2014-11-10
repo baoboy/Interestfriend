@@ -29,7 +29,7 @@ public class MemberSelfPaser implements IParser {
 		String sortKey = obj.getString("sortKey");
 		String user_declaration = obj.getString("userDeclaration");
 		String user_description = obj.getString("userDescription");
-
+		String user_chat_id = obj.getString("userChatId");
 		CircleMember member = new CircleMember();
 		member.setUser_id(userID);
 		member.setUser_name(userName);
@@ -42,6 +42,7 @@ public class MemberSelfPaser implements IParser {
 		member.setPinyinFir(pinyinFir);
 		member.setUser_declaration(user_declaration);
 		member.setUser_description(user_description);
+		member.setUser_chat_id(user_chat_id);
 		Result ret = new Result();
 		ret.setData(member);
 		return ret;

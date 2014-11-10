@@ -209,13 +209,16 @@ public class CircleMember extends AbstractData {
 	 * 
 	 * @return
 	 */
-	public RetError joinOffcialCircle() {
+	public RetError joinOffcialCircle(int circle_creator, String circle_name) {
 		IParser parser = new StringParser("circle_last_request_time");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("user_id", user_id);
 		params.put("circle_id", circle_id);
 		params.put("group_id", group_id);
+		params.put("circle_creator", circle_creator);
 		params.put("huanxin_username", SharedUtils.getUserName());
+		params.put("user_name", SharedUtils.getAPPUserName());
+		params.put("circle_name", circle_name);
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

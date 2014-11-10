@@ -21,6 +21,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.Utils;
 
 public class ChatAllHistoryActivity extends BaseActivity implements
@@ -139,9 +140,12 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			long arg3) {
 		EMConversation conversation = adapter.getItem(position);
 		String username = conversation.getUserName();
-
-		// 进入聊天页面
-		Intent intent = new Intent(this, ChatActivity.class);
+		Intent intent = null;
+		if (Constants.JOIN_CIRCLE_USER_ID.equals(username)) {
+			intent = new Intent(this, QuYouWainActivity.class);
+		} else {
+			intent = new Intent(this, ChatActivity.class);
+		}
 		intent.putExtra("userId", username);
 		startActivity(intent);
 		Utils.leftOutRightIn(this);

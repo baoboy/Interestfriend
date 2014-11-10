@@ -205,6 +205,7 @@ public class User {
 			SharedUtils.setAPPUserGender(member.getUser_gender());
 			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
 			SharedUtils.setAPPUserSortKey(member.getSortkey());
+			SharedUtils.setAPPUserChatID(member.getUser_chat_id());
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

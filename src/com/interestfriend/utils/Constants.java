@@ -1,7 +1,7 @@
 package com.interestfriend.utils;
 
 public class Constants {
-
+	public static final String JOIN_CIRCLE_USER_ID = "joincircle";
 	// »·ÐÅ
 
 	public static final String NEW_FRIENDS_USERNAME = "item_new_friends";

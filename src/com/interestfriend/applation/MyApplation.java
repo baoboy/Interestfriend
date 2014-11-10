@@ -25,6 +25,7 @@ import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
 import com.interestfriend.activity.ChatActivity;
+import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;
@@ -115,11 +116,16 @@ public class MyApplation extends Application {
 
 			@Override
 			public Intent onNotificationClick(EMMessage message) {
-				Intent intent = new Intent(instance, ChatActivity.class);
+				Intent intent = null;
 				ChatType chatType = message.getChatType();
 				if (chatType == ChatType.Chat) { // µ¥ÁÄÐÅÏ¢
+					intent = new Intent(instance, ChatActivity.class);
 					intent.putExtra("userId", message.getFrom());
 					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
+				} else {
+					intent = new Intent(instance, HomeActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				}
 				return intent;
 			}

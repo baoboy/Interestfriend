@@ -24,6 +24,8 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.view.HackyViewPager;
 
+import fynn.app.PromptDialog;
+
 public class PublishGrowthImagePagerActivity extends FragmentActivity implements
 		OnClickListener {
 	private static final String STATE_POSITION = "STATE_POSITION";
@@ -131,8 +133,8 @@ public class PublishGrowthImagePagerActivity extends FragmentActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnDel:
-			Dialog dialog = DialogUtil.confirmDialog(this, "是否删除这张图片?", "是",
-					"否", new ConfirmDialog() {
+			PromptDialog.Builder dialog = DialogUtil.confirmDialog(this,
+					"是否删除这张图片?", "是", "否", new ConfirmDialog() {
 
 						@Override
 						public void onOKClick() {

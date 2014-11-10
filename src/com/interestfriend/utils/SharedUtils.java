@@ -180,6 +180,16 @@ public class SharedUtils {
 
 	}
 
+	public static void setAPPUserChatID(String value) {
+		editor.putString("app_user_chat_id", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserChatID() {
+		return sharedPreferences.getString("app_user_chat_id", "");
+
+	}
+
 	public static void setAPPUserSortKey(String value) {
 		editor.putString("app_user_sortkey", value);
 		editor.commit();

@@ -35,6 +35,8 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 
+import fynn.app.PromptDialog;
+
 public class CircleMemberActivity extends BaseActivity implements
 		OnClickListener, OnItemClickListener {
 	private ImageView img_avatar;
@@ -143,8 +145,8 @@ public class CircleMemberActivity extends BaseActivity implements
 	}
 
 	private void kickOutDialog() {
-		Dialog dialog = DialogUtil.confirmDialog(this,
-				"确定要把 " + member.getUser_name() + " 提出圈子吗?", "确定", "取消",
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(this, "确定要把 "
+				+ member.getUser_name() + " 提出圈子吗?", "确定", "取消",
 				new ConfirmDialog() {
 
 					@Override

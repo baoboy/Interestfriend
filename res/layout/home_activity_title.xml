@@ -33,4 +33,12 @@
         android:paddingRight="18dip"
         android:src="@drawable/icon_add" />
 
+    <ImageView
+        android:id="@+id/img_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/back"
+        android:layout_alignTop="@+id/back"
+        android:src="@drawable/prompt" />
+
 </RelativeLayout>

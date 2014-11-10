@@ -155,7 +155,9 @@
         </activity>
         <activity
             android:name="com.interestfriend.activity.HomeActivity"
-            android:label="@string/title_activity_welcom" >
+            android:label="@string/title_activity_welcom"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.interestfriend.register.RegisterActivity" >
         </activity>
@@ -221,6 +223,10 @@
         <activity
             android:name="com.interestfriend.activity.MessageWarnctivity"
             android:label="@string/title_activity_message_warnctivity" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.QuYouWainActivity"
+            android:label="@string/title_activity_qu_you_wain" >
         </activity>
     </application>
 

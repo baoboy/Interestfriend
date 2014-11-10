@@ -20,6 +20,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.SearchCirclesByCategoryTask;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.Utils;
 
 public class SearchCirclsActivity extends BaseActivity implements
 		OnItemClickListener {
@@ -76,6 +77,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 		intent.putExtra("circle", listCircles.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
+		Utils.leftOutRightIn(this);
 	}
 
 	private void getCircleList() {

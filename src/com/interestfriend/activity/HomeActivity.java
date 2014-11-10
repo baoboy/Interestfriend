@@ -50,6 +50,7 @@ public class HomeActivity extends FragmentActivity implements
 	public DrawerLayout drawerLayout;// ²à±ßÀ¸²¼¾Ö
 	private ImageView img_add;
 	private ImageView img_back;
+	private ImageView img_prompt;
 
 	private FindCircleFragmen nearFragment;
 	private MyCircleFragment myCircleFragment;
@@ -78,6 +79,7 @@ public class HomeActivity extends FragmentActivity implements
 	}
 
 	private void initView() {
+		img_prompt = (ImageView) findViewById(R.id.img_prompt);
 		img_back = (ImageView) findViewById(R.id.back);
 		img_back.setOnClickListener(this);
 		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
@@ -219,6 +221,11 @@ public class HomeActivity extends FragmentActivity implements
 	}
 
 	@Override
+	public void onBackPressed() {
+		moveTaskToBack(true);
+	}
+
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(msgReceiver);
@@ -263,8 +270,11 @@ public class HomeActivity extends FragmentActivity implements
 		int count = getUnreadMsgCountTotal();
 		if (count > 0) {
 			lfetMenu.setMessagePrompt(true);
+			img_prompt.setVisibility(View.VISIBLE);
 		} else {
 			lfetMenu.setMessagePrompt(false);
+			img_prompt.setVisibility(View.GONE);
+
 		}
 	}
 

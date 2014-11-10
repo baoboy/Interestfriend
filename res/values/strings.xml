@@ -102,5 +102,6 @@
     <string name="title_activity_find_password">FindPasswordActivity</string>
     <string name="title_activity_feed_back">FeedBackActivity</string>
     <string name="title_activity_message_warnctivity">MessageWarnctivity</string>
+    <string name="title_activity_qu_you_wain">QuYouWainActivity</string>
 
 </resources>

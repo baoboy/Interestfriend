@@ -362,7 +362,7 @@ public class ChatAdapter extends BaseAdapter {
 			System.out.println("otnulLLLLLLLLLLLLL");
 			holder = (ViewHolder) convertView.getTag();
 		}
-
+		holder.tv_userId.setVisibility(View.GONE);
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
 		if (message.direct == EMMessage.Direct.SEND
 				&& chatType != ChatType.GroupChat) {

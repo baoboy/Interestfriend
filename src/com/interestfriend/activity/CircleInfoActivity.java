@@ -28,6 +28,8 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 
+import fynn.app.PromptDialog;
+
 public class CircleInfoActivity extends BaseActivity implements OnClickListener {
 	private ImageView img_logo;
 	private TextView txt_description;
@@ -104,8 +106,8 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void joinDialog() {
-		Dialog dialog = DialogUtil.confirmDialog(this, "确定要加入该圈子吗？", "确定",
-				"取消", new ConfirmDialog() {
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(this,
+				"确定要加入该圈子吗？", "确定", "取消", new ConfirmDialog() {
 
 					@Override
 					public void onOKClick() {
@@ -125,9 +127,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		member.setCircle_id(circle_id);
 		member.setGroup_id(circle.getGroup_id());
 		member.setUser_id(SharedUtils.getIntUid());
+		member.setUser_chat_id(SharedUtils.getAPPUserChatID());
 		final Dialog dialog = DialogUtil.createLoadingDialog(this, "请稍候");
 		dialog.show();
-		JoinCircleTask task = new JoinCircleTask();
+		JoinCircleTask task = new JoinCircleTask(circle.getCreator_id(),
+				circle.getCircle_name());
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {

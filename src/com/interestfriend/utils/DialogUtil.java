@@ -2,21 +2,18 @@ package com.interestfriend.utils;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.interfaces.ConfirmDialog;
+
+import fynn.app.PromptDialog;
 
 public class DialogUtil {
 	public static Dialog createLoadingDialog(Context context, String msg) {
@@ -51,45 +48,69 @@ public class DialogUtil {
 	 * @param title
 	 * @param content
 	 */
-	public static Dialog confirmDialog(Context context, String content,
-			String txtOk, String txtCancle, final ConfirmDialog callBack) {
-		View view = LayoutInflater.from(context).inflate(
-				R.layout.confirm_dialog, null);
-		final Dialog dialog = new Dialog(context, R.style.Dialog);
-		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(view);
-		Button btnOk = (Button) view.findViewById(R.id.btnOk);
-		Button btnCancle = (Button) view.findViewById(R.id.btnCancle);
-		btnOk.setOnClickListener(new OnClickListener() {
+	public static PromptDialog.Builder confirmDialog(Context context,
+			String content, String txtOk, String txtCancle,
+			final ConfirmDialog callBack) {
+
+		PromptDialog.Builder dialog = new PromptDialog.Builder(context);
+		dialog.setTitle("提示");
+		dialog.setViewStyle(PromptDialog.VIEW_STYLE_TITLEBAR);
+		dialog.setMessage(content);
+		dialog.setButton1(txtOk, new PromptDialog.OnClickListener() {
+
 			@Override
-			public void onClick(View v) {
+			public void onClick(Dialog dialog, int which) {
 				dialog.dismiss();
 				callBack.onOKClick();
 
 			}
 		});
-		btnCancle.setText(txtCancle);
-		btnOk.setText(txtOk);
-		btnCancle.setOnClickListener(new OnClickListener() {
+		dialog.setButton2(txtCancle, new PromptDialog.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-				callBack.onCancleClick();
+			public void onClick(Dialog dialog, int which) {
 				dialog.dismiss();
+				callBack.onCancleClick();
+
 			}
 		});
-		TextView txt = (TextView) view.findViewById(R.id.dialogContent);
-		txt.setText(content);
-		Window dialogWindow = dialog.getWindow();
-		dialogWindow.setGravity(Gravity.CENTER_VERTICAL);
-		/* * 将对话框的大小按屏幕大小的百分比设置 */
-
-		WindowManager.LayoutParams p = dialogWindow.getAttributes(); //
-		// 获取对话框当前的参数值//
-		p.width = (int) (Utils.getSecreenWidth(context) * 0.8); //
-		// 宽度设置为屏幕的0.8//
-		p.y = -70;
-		dialogWindow.setAttributes(p);
+		// View view = LayoutInflater.from(context).inflate(
+		// R.layout.confirm_dialog, null);
+		// final Dialog dialog = new Dialog(context, R.style.Dialog);
+		// dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// dialog.setContentView(view);
+		// Button btnOk = (Button) view.findViewById(R.id.btnOk);
+		// Button btnCancle = (Button) view.findViewById(R.id.btnCancle);
+		// btnOk.setOnClickListener(new OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// dialog.dismiss();
+		// callBack.onOKClick();
+		//
+		// }
+		// });
+		// btnCancle.setText(txtCancle);
+		// btnOk.setText(txtOk);
+		// btnCancle.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// callBack.onCancleClick();
+		// dialog.dismiss();
+		// }
+		// });
+		// TextView txt = (TextView) view.findViewById(R.id.dialogContent);
+		// txt.setText(content);
+		// Window dialogWindow = dialog.getWindow();
+		// dialogWindow.setGravity(Gravity.CENTER_VERTICAL);
+		// /* * 将对话框的大小按屏幕大小的百分比设置 */
+		//
+		// WindowManager.LayoutParams p = dialogWindow.getAttributes(); //
+		// // 获取对话框当前的参数值//
+		// p.width = (int) (Utils.getSecreenWidth(context) * 0.8); //
+		// // 宽度设置为屏幕的0.8//
+		// p.y = -70;
+		// dialogWindow.setAttributes(p);
 		return dialog;
 
 	}

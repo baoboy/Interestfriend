@@ -16,6 +16,8 @@ import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
+import fynn.app.PromptDialog;
+
 public class SettingActivity extends BaseActivity implements OnClickListener {
 	private TextView txt_message_prompt;
 	private TextView txt_feddback;
@@ -54,8 +56,8 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void quitPrompt() {
-		Dialog dialog = DialogUtil.confirmDialog(this, "确定要退出吗?", "确定", "取消",
-				new ConfirmDialog() {
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(this, "确定要退出吗?",
+				"确定", "取消", new ConfirmDialog() {
 					@Override
 					public void onOKClick() {
 						quit();
