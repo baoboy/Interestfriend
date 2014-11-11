@@ -1541,16 +1541,16 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 					REQUEST_CODE_MAP);
 			break;
 		case 5:
-			if (!EMChatManager.getInstance().isConnected())
+			if (!EMChatManager.getInstance().isConnected()) {
 				Toast.makeText(this, "尚未连接至服务器，请稍后重试", 0).show();
-			else
-				startActivity(new Intent(ChatActivity.this,
-						VoiceCallActivity.class).putExtra("username",
-						toChatUsername).putExtra("isComingCall", false));
+				return;
+			} 
+			startActivity(new Intent(ChatActivity.this, VoiceCallActivity.class)
+					.putExtra("username", toChatUsername).putExtra(
+							"isComingCall", false));
 			break;
 		default:
 			break;
 		}
 	}
-
 }

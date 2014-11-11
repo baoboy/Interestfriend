@@ -14,8 +14,10 @@ import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
+import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
 import com.easemob.chat.ConnectionListener;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
@@ -43,9 +45,13 @@ public class MyApplation extends Application {
 	private static String circle_group_id = "";
 	private static String circle_name = "";
 	private static List<Activity> activityList = new ArrayList<Activity>();
-	private static LocationClient locationClient = null;
 	private static double nLatitude = 0;// 维度
 	private static double nLontitude = 0;// 经度
+	private static String address = "";
+
+	public LocationClient mLocationClient;
+	public GeofenceClient mGeofenceClient;
+	public MyLocationListener mMyLocationListener;
 
 	@Override
 	public void onCreate() {
@@ -53,7 +59,6 @@ public class MyApplation extends Application {
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
 		initBaiduLocation();
-		locationClient.start();
 		initHuanxin();
 	}
 
@@ -78,10 +83,7 @@ public class MyApplation extends Application {
 		if (flag) {
 			System.exit(0);
 		}
-		if (locationClient != null && locationClient.isStarted()) {
-			locationClient.stop();
-			locationClient = null;
-		}
+
 	}
 
 	private void initHuanxin() {
@@ -250,32 +252,18 @@ public class MyApplation extends Application {
 	}
 
 	private void initBaiduLocation() {
-		locationClient = new LocationClient(this);
-		// 设置定位条件
+		mLocationClient = new LocationClient(this.getApplicationContext());
+		mMyLocationListener = new MyLocationListener();
+		mLocationClient.registerLocationListener(mMyLocationListener);
+		mGeofenceClient = new GeofenceClient(getApplicationContext());
 		LocationClientOption option = new LocationClientOption();
-		option.setOpenGps(true); // 是否打开GPS
-		option.setCoorType("bd09ll"); // 设置返回值的坐标类型。
-		option.setPriority(LocationClientOption.NetWorkFirst); // 设置定位优先级
-		option.setProdName("趣友"); // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
-		locationClient.setLocOption(option);
+		option.setLocationMode(LocationMode.Hight_Accuracy);// 设置定位模式
+		option.setCoorType("gcj02");// 返回的定位结果是百度经纬度，默认值gcj02
+		option.setScanSpan(1000);// 设置发起定位请求的间隔时间为5000ms
+		option.setIsNeedAddress(true);
+		mLocationClient.setLocOption(option);
+		mLocationClient.start();
 
-		// 注册位置监听器
-		locationClient.registerLocationListener(new BDLocationListener() {
-
-			@Override
-			public void onReceiveLocation(BDLocation location) {
-				if (location == null) {
-					return;
-				}
-				setnLontitude(location.getLongitude());
-				setnLatitude(location.getLatitude());
-			}
-
-			@Override
-			public void onReceivePoi(BDLocation location) {
-			}
-
-		});
 	}
 
 	/**
@@ -325,6 +313,29 @@ public class MyApplation extends Application {
 
 	public static void setnLontitude(double nLontitude) {
 		MyApplation.nLontitude = nLontitude;
+	}
+
+	public static String getAddress() {
+		return address;
+	}
+
+	public static void setAddress(String address) {
+		MyApplation.address = address;
+	}
+
+	/**
+	 * 实现实位回调监听
+	 */
+	public class MyLocationListener implements BDLocationListener {
+
+		@Override
+		public void onReceiveLocation(BDLocation location) {
+			// Receive Location
+			nLatitude = location.getLatitude();
+			nLontitude = location.getLongitude();
+			address = location.getAddrStr();
+		}
+
 	}
 
 }
