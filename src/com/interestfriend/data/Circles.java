@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.CircleState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
@@ -17,6 +18,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
 
@@ -28,6 +30,7 @@ public class Circles extends AbstractData {
 	private static final String CREATE_CIRCLE_API = "CreateCircleServlet";
 	private static String QUIT_CIRCLE_API = "QuitCircleServlet";
 	private static String DISSOLVE_CIRCLE_API = "DissolveCircleServlet";
+	private static final String UPDATE_CIRCLE_DESCRIPTION_API = "UpdateCircleDiscirptionServlet";
 
 	private int circle_id = 0;
 	private String circle_name = "";
@@ -218,9 +221,24 @@ public class Circles extends AbstractData {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_id", circle_id);
 		params.put("group_id", group_id);
+		params.put("circle_name", circle_name);
 		Result ret = ApiRequest.request(DISSOLVE_CIRCLE_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			this.status = Status.DEL;
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError upDateCircleDiscirption() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_description", circle_description);
+		params.put("circle_id", circle_id);
+		Result ret = ApiRequest.request(UPDATE_CIRCLE_DESCRIPTION_API, params,
+				parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -244,6 +262,11 @@ public class Circles extends AbstractData {
 		values.put("circle_creator_name", circle_creator_name);
 		values.put("circle_create_time", circle_create_time);
 		values.put("circle_category", circle_category_name);
+		if (this.status == Status.UPDATE) {
+			db.update(tableName, values, "circle_id=? ",
+					new String[] { this.circle_id + "" });
+			return;
+		}
 		db.insert(tableName, null, values);
 	}
 

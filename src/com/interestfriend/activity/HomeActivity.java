@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
+import com.easemob.chat.MessageBody;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.FindCircleFragmen;
@@ -213,7 +214,6 @@ public class HomeActivity extends FragmentActivity implements
 				return;
 			}
 			drawerLayout.openDrawer(Gravity.LEFT);
-
 			break;
 		default:
 			break;
@@ -257,7 +257,15 @@ public class HomeActivity extends FragmentActivity implements
 			if (message.getChatType() == ChatType.Chat) {
 				updateUnreadLabel();
 			} else {
-				myCircleFragment.refushCircleGroupChatHositiory();
+				if (Constants.DISSOLVE_CIRCLE_USER_ID.equals(message.getFrom())) {
+					intent = new Intent(HomeActivity.this,
+							DissolveCircleActivity.class);
+					intent.putExtra("userId", message.getTo());
+					startActivity(intent);
+					Utils.leftOutRightIn(HomeActivity.this);
+				} else {
+					myCircleFragment.refushCircleGroupChatHositiory();
+				}
 			}
 			abortBroadcast();
 		}

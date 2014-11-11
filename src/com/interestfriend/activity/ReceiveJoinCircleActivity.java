@@ -1,6 +1,7 @@
 package com.interestfriend.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,6 +13,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.interestfriend.R;
+import com.interestfriend.utils.Constants;
 
 import fynn.app.PromptDialog;
 
@@ -40,6 +42,7 @@ public class ReceiveJoinCircleActivity extends BaseActivity {
 		txtBody = (TextMessageBody) lastMessage.getBody();
 		initView();
 		joinCircleDialo();
+		sendBroadcast(new Intent(Constants.RECEIVE_JOIN_CIRCLE));
 	}
 
 	private void initView() {

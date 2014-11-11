@@ -25,6 +25,7 @@ public class CircleMember extends AbstractData {
 	private static String UPDATE_MEMBER_AVATAR = "UpdateUserAvatarServlet";
 	private static String KICK_MEMBER_API = "KickOutMemberServlet";
 	private static String RECEIVE_JOIN_CIRCL_EREQUEST = "ReceiveJoinCircleRequestServlet";
+	private static String REFUSE_JOIN_CIRCL_EREQUEST = "RefuseJoinCircleRequestServlet";
 
 	private int user_id;
 	private int circle_id;
@@ -252,6 +253,30 @@ public class CircleMember extends AbstractData {
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
 			SharedUtils.setCircleLastRequestTime(Long.valueOf(sr.getStr()));
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	/**
+	 * 拒绝加入圈子请求
+	 * 
+	 * 
+	 * @return
+	 */
+	public RetError refuseJoinCircleRequest(
+			String request_join_circle_user_huanxin_username,
+			String join_circle_name) {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("request_join_circle_user_huanxin_username",
+				request_join_circle_user_huanxin_username);
+		params.put("join_circle_name", join_circle_name);
+
+		Result ret = ApiRequest.request(REFUSE_JOIN_CIRCL_EREQUEST, params,
+				parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

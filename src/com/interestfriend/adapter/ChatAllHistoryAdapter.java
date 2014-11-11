@@ -13,12 +13,15 @@
  */
 package com.interestfriend.adapter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -26,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
+import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContact;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
@@ -36,8 +40,6 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DateUtils;
 import com.interestfriend.R;
-import com.interestfriend.data.CircleMember;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -51,8 +53,8 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 	private LayoutInflater inflater;
 
 	public ChatAllHistoryAdapter(Context context, int textViewResourceId,
-			List<EMConversation> objects) {
-		super(context, textViewResourceId, objects);
+			List<EMConversation> lists) {
+		super(context, textViewResourceId, lists);
 		inflater = LayoutInflater.from(context);
 	}
 
@@ -74,6 +76,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 			holder.msgState = convertView.findViewById(R.id.msg_state);
 			holder.list_item_layout = (RelativeLayout) convertView
 					.findViewById(R.id.list_item_layout);
+			holder.img_del = (ImageView) convertView.findViewById(R.id.img_del);
 			convertView.setTag(holder);
 		}
 		if (position % 2 == 0) {
@@ -85,7 +88,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		}
 
 		// 获取与此用户/群组的会话
-		EMConversation conversation = getItem(position);
+		final EMConversation conversation = getItem(position);
 		// 获取用户username或者群组groupid
 		String username = conversation.getUserName();
 		List<EMGroup> groups = EMGroupManager.getInstance().getAllGroups();
@@ -98,10 +101,6 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				break;
 			}
 		}
-
-		// CircleMember mbmer = new CircleMember();
-		// mbmer.setUser_chat_id(username);
-		// mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
 
 		if (conversation.getUnreadMsgCount() > 0) {
 			// 显示与此用户的消息未读数
@@ -143,8 +142,19 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 			} else {
 				holder.msgState.setVisibility(View.GONE);
 			}
-		}
 
+		}
+		holder.img_del.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				EMChatManager.getInstance().deleteConversation(
+						conversation.getUserName(), conversation.isGroup());
+				remove(conversation);
+				notifyDataSetChanged();
+
+			}
+		});
 		return convertView;
 	}
 
@@ -221,6 +231,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		/** 整个list中每一行总布局 */
 		RelativeLayout list_item_layout;
 
+		ImageView img_del;
 	}
 
 	String getStrng(Context context, int resId) {

@@ -18,6 +18,7 @@ import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.ReceiveJoinCircleTask;
+import com.interestfriend.task.RefuseJoinCircleTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
@@ -111,6 +112,30 @@ public class JoinCircleActivity extends BaseActivity {
 		task.executeParallel(member);
 	}
 
+	private void refuseJoinCircle() {
+		CircleMember member = new CircleMember();
+		final Dialog dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.show();
+		RefuseJoinCircleTask task = new RefuseJoinCircleTask(huanxin_userName,
+				join_circle_name);
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				conversation.removeMessage(lastMessage.getMsgId());
+				conversation.resetUnsetMsgCount();
+				ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
+				finishThisActivity();
+			}
+		});
+		task.executeParallel(member);
+	}
+
 	private void showJoinCircleDialo() {
 		dialog = new PromptDialog.Builder(this);
 		dialog.setTitle("加入圈子申请");
@@ -143,9 +168,10 @@ public class JoinCircleActivity extends BaseActivity {
 			@Override
 			public void onClick(Dialog dialog, int which) {
 				dialog.dismiss();
-				conversation.removeMessage(lastMessage.getMsgId());
-				conversation.resetUnsetMsgCount();
-				finishThisActivity();
+				refuseJoinCircle();
+				// conversation.removeMessage(lastMessage.getMsgId());
+				// conversation.resetUnsetMsgCount();
+				// finishThisActivity();
 			}
 		});
 		dialog.setButton2("取消", new PromptDialog.OnClickListener() {

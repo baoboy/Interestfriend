@@ -199,7 +199,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
 		toChatUsername = getIntent().getStringExtra("userId");
-		System.out.println("to:::::::::::::" + toChatUsername);
 		CircleMember mbmer = new CircleMember();
 		mbmer.setUser_chat_id(toChatUsername);
 		mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));

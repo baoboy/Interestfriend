@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum CircleState {
 
-	ADD, DEL;
+	ADD, DEL, UPDATE;
 
 	public static Map<String, CircleState> s2s = new HashMap<String, CircleState>();
 	static {

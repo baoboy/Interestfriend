@@ -60,7 +60,6 @@ public class CirclesList extends AbstractData {
 		if (ret.getStatus() == RetStatus.SUCC) {
 			if (ret.getData() instanceof CirclesList) {
 				CirclesList lists = (CirclesList) ret.getData();
-				// this.listCircles = lists.getListCircles();
 				updateCircles(lists.getListCircles());
 			}
 			return RetError.NONE;
@@ -70,13 +69,17 @@ public class CirclesList extends AbstractData {
 	}
 
 	private void updateCircles(List<MyCircles> listCircles) {
+		this.servserCircles.clear();
 		for (MyCircles circle : listCircles) {
 			if (circle.getCircle_state() == CircleState.DEL) {
+				delLocalCircleByID(circle.getCircle_id());
+			} else if (circle.getCircle_state() == CircleState.UPDATE) {
 				delLocalCircleByID(circle.getCircle_id());
 			}
 			this.servserCircles.add(circle);
 
 		}
+
 	}
 
 	private void delLocalCircleByID(int circle_id) {
@@ -102,6 +105,7 @@ public class CirclesList extends AbstractData {
 			if (ret.getData() instanceof CirclesList) {
 				CirclesList lists = (CirclesList) ret.getData();
 				this.servserCircles = lists.getListCircles();
+
 			}
 			return RetError.NONE;
 		} else {
@@ -119,6 +123,8 @@ public class CirclesList extends AbstractData {
 				delCircles.add(c);
 				it.remove();
 				continue;
+			} else if (c.getCircle_state() == CircleState.UPDATE) {
+				delCircles.add(c);
 			}
 			newCircles.add(c);
 		}

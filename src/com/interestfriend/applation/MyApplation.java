@@ -25,11 +25,16 @@ import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
 import com.interestfriend.activity.ChatActivity;
+import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
+import com.interestfriend.activity.JoinCircleActivity;
+import com.interestfriend.activity.ReceiveJoinCircleActivity;
+import com.interestfriend.activity.RefuseJoinCircleActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
 
 public class MyApplation extends Application {
@@ -118,14 +123,36 @@ public class MyApplation extends Application {
 			public Intent onNotificationClick(EMMessage message) {
 				Intent intent = null;
 				ChatType chatType = message.getChatType();
+				String username = message.getFrom();
 				if (chatType == ChatType.Chat) { // µ¥ÁÄÐÅÏ¢
-					intent = new Intent(instance, ChatActivity.class);
+					if (Constants.JOIN_CIRCLE_USER_ID.equals(username)) {
+						intent = new Intent(instance, JoinCircleActivity.class);
+					} else if (Constants.RECEIVE_JOIN_CIRCLE_USER_ID
+							.equals(username)) {
+						intent = new Intent(instance,
+								ReceiveJoinCircleActivity.class);
+					} else if (Constants.REFUSE_JON_CIRCLE_USER_ID
+							.equals(username)) {
+						intent = new Intent(instance,
+								RefuseJoinCircleActivity.class);
+					} else {
+						intent = new Intent(instance, ChatActivity.class);
+						intent.putExtra("chatType",
+								ChatActivity.CHATTYPE_SINGLE);
+					}
 					intent.putExtra("userId", message.getFrom());
-					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
+
 				} else {
-					intent = new Intent(instance, HomeActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					if (Constants.DISSOLVE_CIRCLE_USER_ID.equals(username)) {
+						intent = new Intent(instance,
+								DissolveCircleActivity.class);
+						intent.putExtra("userId", message.getTo());
+
+					} else {
+						intent = new Intent(instance, HomeActivity.class);
+						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					}
 				}
 				return intent;
 			}

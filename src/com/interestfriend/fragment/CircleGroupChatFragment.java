@@ -170,7 +170,6 @@ public class CircleGroupChatFragment extends Fragment implements
 			micImage.setImageDrawable(micImages[msg.what]);
 		}
 	};
-	private EMGroup group;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -319,7 +318,6 @@ public class CircleGroupChatFragment extends Fragment implements
 				PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
 		toChatUsername = MyApplation.getCircle_group_id();
-		group = EMGroupManager.getInstance().getGroup(toChatUsername);
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0

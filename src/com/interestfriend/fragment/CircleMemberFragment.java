@@ -352,6 +352,7 @@ public class CircleMemberFragment extends Fragment implements
 		});
 		Circles circle = new Circles();
 		circle.setCircle_id(circle_id);
+		circle.setCircle_name(MyApplation.getCircle_name());
 		task.executeParallel(circle);
 	}
 

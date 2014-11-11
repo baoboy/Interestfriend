@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
@@ -157,8 +158,9 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	public void registerBoradcastReceiver() {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.CREATE_CIRCLS);
-		myIntentFilter.addAction(Constants.JOIN_CIRCLE);
+		myIntentFilter.addAction(Constants.RECEIVE_JOIN_CIRCLE);
 		myIntentFilter.addAction(Constants.QUIT_CIRCLE);
+		myIntentFilter.addAction(Constants.DISSOLVE_CIRCLE);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -184,11 +186,6 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				circle.setCircle_id(circle_id);
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
-			} else if (action.equals(Constants.JOIN_CIRCLE)) {
-				MyCircles circle = (MyCircles) intent
-						.getSerializableExtra("circle");
-				lists.add(circle);
-				adapter.notifyDataSetChanged();
 			} else if (action.equals(Constants.QUIT_CIRCLE)) {
 				int circle_id = intent.getIntExtra("circle_id", 0);
 				for (MyCircles circle : lists) {
@@ -196,6 +193,17 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						lists.remove(circle);
 						adapter.notifyDataSetChanged();
 						return;
+					}
+				}
+			} else if (action.equals(Constants.RECEIVE_JOIN_CIRCLE)) {
+				getCircleList();
+			} else if (action.equals(Constants.DISSOLVE_CIRCLE)) {
+				int circle_id = intent.getIntExtra("circle_id", 0);
+				for (MyCircles c : lists) {
+					if (c.getCircle_id() == circle_id) {
+						lists.remove(c);
+						adapter.notifyDataSetChanged();
+						break;
 					}
 				}
 			}

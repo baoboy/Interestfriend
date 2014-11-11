@@ -2,6 +2,7 @@ package com.interestfriend.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,8 +21,6 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.task.JoinCircleTask;
-import com.interestfriend.utils.BroadCast;
-import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
@@ -84,6 +83,14 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			layout_bottom.setVisibility(View.GONE);
 			line_bottom.setVisibility(View.GONE);
 		}
+		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
+			Drawable drawable = getResources().getDrawable(
+					R.drawable.icon_friend_right_arrow);
+			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+					drawable.getMinimumHeight());
+			txt_description.setCompoundDrawables(null, null, drawable, null);
+			txt_description.setOnClickListener(this);
+		}
 		setListener();
 
 	}
@@ -91,7 +98,12 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private void setListener() {
 		btn_join.setOnClickListener(this);
 		back.setOnClickListener(this);
-		layout_circle_creator.setOnClickListener(this);
+		if (circle.getCreator_id() > 0) {
+			layout_circle_creator.setOnClickListener(this);
+		} else {
+			txt_citcle_creator_name
+					.setCompoundDrawables(null, null, null, null);
+		}
 	}
 
 	private void setValue() {
@@ -165,6 +177,8 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			break;
 		case R.id.layout_circle_creator:
 			intentMemberInfoActivity();
+			break;
+		case R.id.circle_description:
 			break;
 		default:
 			break;

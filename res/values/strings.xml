@@ -104,5 +104,7 @@
     <string name="title_activity_message_warnctivity">MessageWarnctivity</string>
     <string name="title_activity_qu_you_wain">QuYouWainActivity</string>
     <string name="title_activity_receive_join_circle">ReceiveJoinCircleActivity</string>
+    <string name="title_activity_refuse_join_circle">RefuseJoinCircleActivity</string>
+    <string name="title_activity_dissolve_circle">DissolveCircleActivity</string>
 
 </resources>
