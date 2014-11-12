@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,11 +94,14 @@ public class GrowthAdapter extends BaseAdapter {
 			holder.mListView = (ListView) contentView
 					.findViewById(R.id.listView1);
 			holder.line2 = (View) contentView.findViewById(R.id.line2);
+			holder.btn_praise = (TextView) contentView
+					.findViewById(R.id.btn_prise);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		holder.btn_comment.setOnClickListener(new Onclick(position));
+		holder.btn_praise.setOnClickListener(new Onclick(position));
 		if (growth.getComments().size() > 0) {
 			holder.btn_comment.setText("»Ø¸´(" + growth.getComments().size()
 					+ ")");
@@ -163,6 +167,7 @@ public class GrowthAdapter extends BaseAdapter {
 		ExpandGridView img_grid_view;
 		ListView mListView;
 		View line2;
+		TextView btn_praise;
 	}
 
 	class Onclick implements OnClickListener {
@@ -183,6 +188,9 @@ public class GrowthAdapter extends BaseAdapter {
 				mContext.startActivity(intent);
 				Utils.leftOutRightIn(mContext);
 				break;
+			case R.id.btn_prise:
+				praise(position, (TextView) v);
+				break;
 			default:
 				intentImagePager(position, 1);
 				break;
@@ -190,6 +198,20 @@ public class GrowthAdapter extends BaseAdapter {
 
 		}
 
+	}
+
+	private void praise(int position, TextView v) {
+		boolean isPraise = lists.get(position).isPraise();
+		Drawable drawable = mContext.getResources().getDrawable(
+				R.drawable.praise_img_nomal);
+		if (isPraise) {
+			drawable = mContext.getResources().getDrawable(
+					R.drawable.praise_img_focus);
+		}
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		v.setCompoundDrawables(drawable, null, null, null);
+		lists.get(position).setPraise(!isPraise);
 	}
 
 	class GridViewOnItemClick implements OnItemClickListener {

@@ -162,7 +162,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 	private NewMessageBroadcastReceiver receiver;
 	public static FeedBackActivity activityInstance = null;
 	// 给谁发送消息
-	private String toChatUsername = "18560133195";
+	private String toChatUsername = "feedback";
 	private VoiceRecorder voiceRecorder;
 	private ChatAdapter adapter;
 	private File cameraFile;
@@ -306,7 +306,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 				.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
 		chatType = CHATTYPE_SINGLE;
-		txt_title.setText(userName);
+		txt_title.setText("趣友");
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0

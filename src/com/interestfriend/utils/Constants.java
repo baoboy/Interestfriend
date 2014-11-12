@@ -5,6 +5,7 @@ public class Constants {
 	public static final String RECEIVE_JOIN_CIRCLE_USER_ID = "receivejoincircle";
 	public static final String REFUSE_JON_CIRCLE_USER_ID = "refusejoincircle";
 	public static final String DISSOLVE_CIRCLE_USER_ID = "dissolvecircle";
+	public static final String FEEDBACK_USER_ID = "feedback";
 
 	// »·ÐÅ
 

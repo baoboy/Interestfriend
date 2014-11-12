@@ -245,7 +245,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(myCircleList);
+		task.executeParallel(myCircleList);
 	}
 
 	public void onDestroy() {

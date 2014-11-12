@@ -41,6 +41,16 @@ public class Growth extends AbstractData implements Serializable {
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 Õý³£ 2 video
 
+	private boolean isPraise;
+
+	public boolean isPraise() {
+		return isPraise;
+	}
+
+	public void setPraise(boolean isPraise) {
+		this.isPraise = isPraise;
+	}
+
 	public String getPublisher_name() {
 		return publisher_name;
 	}
