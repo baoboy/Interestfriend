@@ -164,8 +164,6 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_join:
-			Circles circle = new Circles();
-			circle.setCircle_id(circle_id);
 			if (circle.findCircleByID(DBUtils.getDBsa(1)) > 0) {
 				ToastUtil.showToast("你已经加入该圈子", Toast.LENGTH_SHORT);
 				return;
@@ -179,9 +177,27 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			intentMemberInfoActivity();
 			break;
 		case R.id.circle_description:
+			Intent intent = new Intent();
+			intent.putExtra("circle", circle);
+			intent.setClass(this, UpdateCircleDiscriptionActivity.class);
+			startActivityForResult(intent, 300);
+			Utils.leftOutRightIn(this);
 			break;
 		default:
 			break;
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (data == null) {
+			return;
+		}
+		if (requestCode == 300) {
+			String description = data.getStringExtra("circle_description");
+			txt_description.setText(description);
+			circle.setCircle_description(description);
 		}
 	}
 

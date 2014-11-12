@@ -168,7 +168,6 @@ public class BaiduMapActivity extends BaseActivity {
 		// so need to conver to bd09 everytime when draw on baidu map
 		option.setCoorType("gcj02");
 		option.setScanSpan(30000);
-		option.setAddrType("all");
 		mLocClient.setLocOption(option);
 
 		Drawable marker = this.getResources()

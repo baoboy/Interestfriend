@@ -28,8 +28,6 @@
 
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
 
-    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
-
     <application
         android:name="com.interestfriend.applation.MyApplation"
         android:allowBackup="true"
@@ -136,7 +134,16 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" />
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="771eee919e7e1179a1c249b38367c0d3" />
 
         <activity
             android:name="com.interestfriend.activity.CategoryCircleActivity"
@@ -240,6 +247,10 @@
         <activity
             android:name="com.interestfriend.activity.DissolveCircleActivity"
             android:label="@string/title_activity_dissolve_circle" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.UpdateCircleDiscriptionActivity"
+            android:label="@string/title_activity_update_circle_discription" >
         </activity>
     </application>
 
