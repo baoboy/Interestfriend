@@ -129,8 +129,9 @@ public class GrowthList extends AbstractData {
 		// read growth basic info
 		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME, new String[] {
 				"growth_id", "content", "publisher_id", "time",
-				"publisher_name", "publisher_avatar", }, "cid=?",
-				new String[] { cid + "" }, null, null, null);
+				"publisher_name", "publisher_avatar", "isPraise",
+				"praise_count" }, "cid=?", new String[] { cid + "" }, null,
+				null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			for (int j = 0; j < cursor.getCount(); j++) {
@@ -145,6 +146,9 @@ public class GrowthList extends AbstractData {
 				String publisher_avatar = cursor.getString(cursor
 						.getColumnIndex("publisher_avatar"));
 				String time = cursor.getString(cursor.getColumnIndex("time"));
+				int isPraise = cursor.getInt(cursor.getColumnIndex("isPraise"));
+				int praise_count = cursor.getInt(cursor
+						.getColumnIndex("praise_count"));
 				Growth growth = new Growth();
 				growth.setCid(cid);
 				growth.setContent(content);
@@ -153,6 +157,8 @@ public class GrowthList extends AbstractData {
 				growth.setPublisher_id(publisher);
 				growth.setPublisher_avatar(publisher_avatar);
 				growth.setPublisher_name(publisher_name);
+				growth.setPraise(isPraise > 0);
+				growth.setPraise_count(praise_count);
 				// read growth images
 				List<GrowthImage> images = new ArrayList<GrowthImage>();
 				Cursor cursor2 = db.query(Const.GROWTH_IMAGE_TABLE_NAME,

@@ -23,7 +23,11 @@ import com.interestfriend.R;
 import com.interestfriend.activity.CommentActivity;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.showbigpic.ImagePagerActivity;
+import com.interestfriend.task.CancelPraiseGrowthTask;
+import com.interestfriend.task.PraiseGrowthTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
@@ -35,6 +39,7 @@ public class GrowthAdapter extends BaseAdapter {
 	private Context mContext;
 
 	private LayoutInflater inflater;
+	private boolean isTasking = false;
 
 	public GrowthAdapter(Context context, List<Growth> lists) {
 		this.mContext = context;
@@ -107,6 +112,20 @@ public class GrowthAdapter extends BaseAdapter {
 					+ ")");
 		} else {
 			holder.btn_comment.setText("»Ø¸´");
+		}
+		Drawable drawable = mContext.getResources().getDrawable(
+				R.drawable.praise_img_nomal);
+		if (growth.isPraise()) {
+			drawable = mContext.getResources().getDrawable(
+					R.drawable.praise_img_focus);
+		}
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		holder.btn_praise.setCompoundDrawables(drawable, null, null, null);
+		if (growth.getPraise_count() > 0) {
+			holder.btn_praise.setText("ÔÞ(" + growth.getPraise_count() + ")");
+		} else {
+			holder.btn_praise.setText("ÔÞ");
 		}
 		int imageSize = lists.get(position).getImages().size();
 		if (imageSize > 1) {
@@ -189,7 +208,15 @@ public class GrowthAdapter extends BaseAdapter {
 				Utils.leftOutRightIn(mContext);
 				break;
 			case R.id.btn_prise:
-				praise(position, (TextView) v);
+				if (isTasking) {
+					return;
+				}
+				Growth growth = lists.get(position);
+				if (!growth.isPraise()) {
+					praise(growth, (TextView) v);
+				} else {
+					cancelPraise(growth, (TextView) v);
+				}
 				break;
 			default:
 				intentImagePager(position, 1);
@@ -197,21 +224,43 @@ public class GrowthAdapter extends BaseAdapter {
 			}
 
 		}
-
 	}
 
-	private void praise(int position, TextView v) {
-		boolean isPraise = lists.get(position).isPraise();
+	private void cancelPraise(final Growth growth, final TextView v) {
+		isTasking = true;
 		Drawable drawable = mContext.getResources().getDrawable(
 				R.drawable.praise_img_nomal);
-		if (isPraise) {
-			drawable = mContext.getResources().getDrawable(
-					R.drawable.praise_img_focus);
-		}
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
 				drawable.getMinimumHeight());
 		v.setCompoundDrawables(drawable, null, null, null);
-		lists.get(position).setPraise(!isPraise);
+		v.setText("ÔÞ(" + (growth.getPraise_count() - 1) + ")");
+		CancelPraiseGrowthTask task = new CancelPraiseGrowthTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				isTasking = false;
+			}
+		});
+		task.executeParallel(growth);
+	}
+
+	private void praise(final Growth growth, TextView v) {
+		isTasking = true;
+		Drawable drawable = mContext.getResources().getDrawable(
+				R.drawable.praise_img_focus);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		v.setCompoundDrawables(drawable, null, null, null);
+		v.setText("ÔÞ(" + (growth.getPraise_count() + 1) + ")");
+		PraiseGrowthTask task = new PraiseGrowthTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				isTasking = false;
+
+			}
+		});
+		task.executeParallel(growth);
 	}
 
 	class GridViewOnItemClick implements OnItemClickListener {

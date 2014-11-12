@@ -34,6 +34,8 @@ public class GrowthListParser implements IParser {
 			String published = obj.getString("time");
 			String publisher_name = obj.getString("publisher_name");
 			String publisher_avatar = obj.getString("publisher_avatar");
+			int isPraise = obj.getInt("isPraise");
+			int praise_count = obj.getInt("praise_count");
 			// growth images
 			JSONArray jsonImages = obj.getJSONArray("images");
 			List<GrowthImage> images = new ArrayList<GrowthImage>();
@@ -82,6 +84,8 @@ public class GrowthListParser implements IParser {
 			growth.setPublisher_id(publisher);
 			growth.setPublisher_avatar(publisher_avatar);
 			growth.setPublisher_name(publisher_name);
+			growth.setPraise(isPraise > 0);
+			growth.setPraise_count(praise_count);
 			int index = comments.size() > 2 ? 2 : comments.size();
 			for (int k = 0; k < index; k++) {
 				growth.getCommentsListView().add(comments.get(k));

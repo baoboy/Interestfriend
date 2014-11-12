@@ -14,8 +14,10 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.StringParser;
 import com.interestfriend.parser.UploadGrowthParser;
 import com.interestfriend.utils.BitmapUtils;
 
@@ -25,6 +27,8 @@ public class Growth extends AbstractData implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private final String ADD_GROWTH_API = "AddGrowthServlet";
+	private static final String PRAISE_GROWTH_API = "GrowthPraiseServlet";
+	private static final String CANCEL_PRAISE_GROWTH_API = "CancelGrowthPraiseServlet";
 
 	private int growth_id = 0;// 成长id
 	private int cid = 0;// 所在圈子id
@@ -42,6 +46,16 @@ public class Growth extends AbstractData implements Serializable {
 	private int type = 1;// 1 正常 2 video
 
 	private boolean isPraise;
+
+	private int praise_count;
+
+	public int getPraise_count() {
+		return praise_count;
+	}
+
+	public void setPraise_count(int praise_count) {
+		this.praise_count = praise_count;
+	}
 
 	public boolean isPraise() {
 		return isPraise;
@@ -169,6 +183,36 @@ public class Growth extends AbstractData implements Serializable {
 				+ this.images;
 	}
 
+	public RetError praiseGrowth() {
+		IParser parser = new StringParser("praise_count");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("growth_id", growth_id);
+		Result ret = ApiRequest.request(PRAISE_GROWTH_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.praise_count = Integer.valueOf(sr.getStr());
+			System.out.println("count::::::::::::;" + this.praise_count);
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError cancelpraiseGrowth() {
+		IParser parser = new StringParser("praise_count");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("growth_id", growth_id);
+		Result ret = ApiRequest.request(CANCEL_PRAISE_GROWTH_API, params,
+				parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.praise_count = Integer.valueOf(sr.getStr());
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
 	public RetError uploadForAdd() {
 		List<File> bytesimg = new ArrayList<File>();
 		for (GrowthImage img : this.images) {
@@ -217,6 +261,13 @@ public class Growth extends AbstractData implements Serializable {
 		cv.put("time", this.published);
 		cv.put("publisher_name", this.publisher_name);
 		cv.put("publisher_avatar", this.publisher_avatar);
+		cv.put("isPraise", this.isPraise);
+		cv.put("praise_count", this.praise_count);
+		if (status == Status.UPDATE) {
+			db.update(dbName, cv, "growth_id=? ", new String[] { this.growth_id
+					+ "" });
+			return;
+		}
 		db.insert(dbName, null, cv);
 		for (GrowthImage img : this.images) {
 			img.write(db);
