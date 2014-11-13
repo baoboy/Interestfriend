@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.interestfriend.R;
 import com.interestfriend.adapter.CommentAdapter;
 import com.interestfriend.adapter.GrowthImgAdapter;
+import com.interestfriend.adapter.PraiseAdapter;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
@@ -42,6 +44,7 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
+import com.interestfriend.view.HorizontalListView;
 
 public class CommentActivity extends BaseActivity implements OnClickListener,
 		OnItemClickListener, TextWatcher, OnCommentOnClick {
@@ -77,6 +80,10 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 
 	private CommentPopwindow pop;
 
+	private LinearLayout parise_layout;
+	private HorizontalListView praise_listView;
+	private PraiseAdapter praiseAdapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -102,6 +109,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		mListView = (ListView) findViewById(R.id.listView1);
 		view_bottom = (View) findViewById(R.id.view_bottom);
 		view_top = (View) findViewById(R.id.view_top);
+		parise_layout = (LinearLayout) findViewById(R.id.layout_praise);
+		praise_listView = (HorizontalListView) findViewById(R.id.praise_listView);
 		setListener();
 	}
 
@@ -162,6 +171,14 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			}
 		});
 		viewLineVisible();
+		if (growth.getPraises().size() > 0) {
+			parise_layout.setVisibility(View.VISIBLE);
+			praiseAdapter = new PraiseAdapter(this, growth.getPraises());
+			praise_listView.setAdapter(praiseAdapter);
+		} else {
+			parise_layout.setVisibility(View.GONE);
+
+		}
 	}
 
 	@Override

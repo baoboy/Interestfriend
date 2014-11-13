@@ -28,6 +28,8 @@
                 android:layout_margin="10dip"
                 android:background="@drawable/growth_item" >
 
+                <!-- com.interestfriend.view.RoundAngleImageView -->
+
                 <com.interestfriend.view.RoundAngleImageView
                     android:id="@+id/img_avatar"
                     android:layout_width="35dip"
@@ -134,6 +136,31 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_praise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <com.interestfriend.view.HorizontalListView
+                    android:id="@+id/praise_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:cacheColorHint="#00000000"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/view_top"

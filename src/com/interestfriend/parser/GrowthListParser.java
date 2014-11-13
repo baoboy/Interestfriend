@@ -10,6 +10,7 @@ import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.GrowthList;
+import com.interestfriend.data.Praise;
 import com.interestfriend.data.result.Result;
 
 public class GrowthListParser implements IParser {
@@ -74,6 +75,17 @@ public class GrowthListParser implements IParser {
 				comments.add(comment);
 
 			}
+			JSONArray jsonPraise = obj.getJSONArray("praises");
+			List<Praise> praises = new ArrayList<Praise>();
+			for (int k = 0; k < jsonPraise.length(); k++) {
+				JSONObject obj2 = (JSONObject) jsonPraise.opt(k);
+				int user_id = obj2.getInt("user_id");
+				String user_avatar = obj2.getString("user_avatar");
+				Praise praise = new Praise();
+				praise.setUser_avatar(user_avatar);
+				praise.setUser_id(user_id);
+				praises.add(praise);
+			}
 			Growth growth = new Growth();
 			growth.setCid(cid);
 			growth.setContent(content);
@@ -86,6 +98,7 @@ public class GrowthListParser implements IParser {
 			growth.setPublisher_name(publisher_name);
 			growth.setPraise(isPraise > 0);
 			growth.setPraise_count(praise_count);
+			growth.setPraises(praises);
 			int index = comments.size() > 2 ? 2 : comments.size();
 			for (int k = 0; k < index; k++) {
 				growth.getCommentsListView().add(comments.get(k));
