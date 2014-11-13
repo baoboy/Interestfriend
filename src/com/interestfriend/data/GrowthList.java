@@ -230,6 +230,26 @@ public class GrowthList extends AbstractData {
 					}
 				}
 				cursor3.close();
+				List<Praise> praises = new ArrayList<Praise>();
+				Cursor cursor4 = db.query(Const.GROWTH_IMAGE_TABLE_NAME,
+						new String[] { "img_id", "img" }, "growth_id=?",
+						new String[] { growth_id + "" }, null, null, null);
+				if (cursor4.getCount() > 0) {
+					cursor4.moveToFirst();
+					for (int i = 0; i < cursor4.getCount(); i++) {
+						int user_id = cursor4.getInt(cursor4
+								.getColumnIndex("user_id"));
+						String user_avatar = cursor4.getString(cursor4
+								.getColumnIndex("user_avatar"));
+						Praise praise = new Praise();
+						praise.setUser_avatar(user_avatar);
+						praise.setUser_id(user_id);
+						praises.add(praise);
+						cursor4.moveToNext();
+					}
+					growth.setPraises(praises);
+				}
+				cursor4.close();
 				growths.add(growth);
 				cursor.moveToNext();
 			}

@@ -252,6 +252,10 @@
             android:name="com.interestfriend.activity.UpdateCircleDiscriptionActivity"
             android:label="@string/title_activity_update_circle_discription" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.PraiseAndCommentActivity"
+            android:label="@string/title_activity_praise_and_comment" >
+        </activity>
     </application>
 
 </manifest>

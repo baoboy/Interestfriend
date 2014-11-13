@@ -107,5 +107,6 @@
     <string name="title_activity_refuse_join_circle">RefuseJoinCircleActivity</string>
     <string name="title_activity_dissolve_circle">DissolveCircleActivity</string>
     <string name="title_activity_update_circle_discription">UpdateCircleDiscriptionActivity</string>
+    <string name="title_activity_praise_and_comment">PraiseAndCommentActivity</string>
 
 </resources>

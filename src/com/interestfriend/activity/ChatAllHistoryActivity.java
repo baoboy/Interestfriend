@@ -149,6 +149,8 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			intent = new Intent(this, RefuseJoinCircleActivity.class);
 		} else if (Constants.DISSOLVE_CIRCLE_USER_ID.equals(username)) {
 			intent = new Intent(this, DissolveCircleActivity.class);
+		} else if (Constants.PRAISE_USER_ID.equals(username)) {
+			intent = new Intent(this, PraiseAndCommentActivity.class);
 		} else {
 			intent = new Intent(this, ChatActivity.class);
 		}

@@ -16,10 +16,12 @@ import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
+import com.interestfriend.parser.GrowthListParser;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.parser.UploadGrowthParser;
 import com.interestfriend.utils.BitmapUtils;
+import com.interestfriend.utils.SharedUtils;
 
 public class Growth extends AbstractData implements Serializable {
 	/**
@@ -29,6 +31,7 @@ public class Growth extends AbstractData implements Serializable {
 	private final String ADD_GROWTH_API = "AddGrowthServlet";
 	private static final String PRAISE_GROWTH_API = "GrowthPraiseServlet";
 	private static final String CANCEL_PRAISE_GROWTH_API = "CancelGrowthPraiseServlet";
+	private static final String GET_GROWTH_API = "GetGrowthByGrowthIDServlet";
 
 	private int growth_id = 0;// 成长id
 	private int cid = 0;// 所在圈子id
@@ -197,11 +200,38 @@ public class Growth extends AbstractData implements Serializable {
 		IParser parser = new StringParser("praise_count");
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("growth_id", growth_id);
+		params.put("growth_publisher_id", publisher_id);
+		params.put("user_name", SharedUtils.getAPPUserName());
+		params.put("circle_id", cid);
 		Result ret = ApiRequest.request(PRAISE_GROWTH_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
 			this.praise_count = Integer.valueOf(sr.getStr());
-			System.out.println("count::::::::::::;" + this.praise_count);
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError getGrowthByGrwothID() {
+		IParser parser = new GrowthListParser();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", cid);
+		params.put("growth_id", growth_id);
+		Result ret = ApiRequest.request(GET_GROWTH_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			GrowthList lists = (GrowthList) ret.getData();
+			Growth g = lists.getGrowths().get(0);
+			publisher_id = g.getPublisher_id();
+			content = g.getContent();
+			location = g.getLocation();
+			published = g.getPublished();
+			publisher_name = g.getPublisher_name();
+			publisher_avatar = g.publisher_avatar;
+			images = g.images;
+			comments = g.getComments();
+
+			praises = g.getPraises();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -284,6 +314,9 @@ public class Growth extends AbstractData implements Serializable {
 		}
 		for (Comment comment : this.comments) {
 			comment.write(db);
+		}
+		for (Praise praise : this.praises) {
+			praise.write(db);
 		}
 	}
 }

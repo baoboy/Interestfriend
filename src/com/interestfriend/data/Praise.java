@@ -1,14 +1,26 @@
 package com.interestfriend.data;
 
-import java.io.Serializable;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
-public class Praise implements Serializable {
+import com.interestfriend.db.Const;
+
+public class Praise extends AbstractData {
 	private int user_id;
 	private String user_avatar = "";
+	private int growth_id;
 
 	@Override
 	public String toString() {
 		return "user_id:" + user_id;
+	}
+
+	public int getGrowth_id() {
+		return growth_id;
+	}
+
+	public void setGrowth_id(int growth_id) {
+		this.growth_id = growth_id;
 	}
 
 	public String getUser_avatar() {
@@ -27,4 +39,14 @@ public class Praise implements Serializable {
 		this.user_id = user_id;
 	}
 
+	@Override
+	public void write(SQLiteDatabase db) {
+		String dbName = Const.COMMENT_TABLE_NAME;
+		ContentValues cv = new ContentValues();
+		cv.put("growth_id", this.growth_id);
+		cv.put("user_id", this.user_id);
+		cv.put("user_avatar", this.user_avatar);
+		db.insert(dbName, null, cv);
+
+	}
 }
