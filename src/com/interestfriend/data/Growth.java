@@ -17,6 +17,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.GrowthListParser;
+import com.interestfriend.parser.GrowthPaser;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.parser.UploadGrowthParser;
@@ -214,7 +215,7 @@ public class Growth extends AbstractData implements Serializable {
 	}
 
 	public RetError getGrowthByGrwothID() {
-		IParser parser = new GrowthListParser();
+		IParser parser = new GrowthPaser();
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("circle_id", cid);
 		params.put("growth_id", growth_id);
@@ -230,8 +231,9 @@ public class Growth extends AbstractData implements Serializable {
 			publisher_avatar = g.publisher_avatar;
 			images = g.images;
 			comments = g.getComments();
-
 			praises = g.getPraises();
+			System.out
+					.println("pras:::::::::::" + comments + "     " + praises);
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

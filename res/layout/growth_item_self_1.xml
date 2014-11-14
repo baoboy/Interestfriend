@@ -8,8 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="30dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
         android:background="@drawable/growth_item" >
 
         <com.interestfriend.view.RoundAngleImageView

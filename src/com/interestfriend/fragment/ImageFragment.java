@@ -62,7 +62,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		initView();
 		setValue();
 		glist = new GrowthList(MyApplation.getCircle_id());
-		getGrowthFromDB(); 
+		getGrowthFromDB();
 		registerBoradcastReceiver();
 	}
 
@@ -70,6 +70,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		mPullDownView = (PullDownView) getView().findViewById(
 				R.id.PullDownlistView);
 		growth_listView = mPullDownView.getListView();
+		growth_listView.setVerticalScrollBarEnabled(false);
 		growth_listView.setCacheColorHint(0);
 		growth_listView.setSelector(new ColorDrawable(Color.TRANSPARENT));
 		setListener();

@@ -25,7 +25,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_marginTop="10dip"
                 android:background="@drawable/growth_item" >
 
                 <!-- com.interestfriend.view.RoundAngleImageView -->
@@ -141,20 +144,36 @@
                 android:id="@+id/layout_praise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dip"
                     android:background="#d5d5d5" />
 
-                <com.interestfriend.view.HorizontalListView
-                    android:id="@+id/praise_listView"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:cacheColorHint="#00000000"
-                    android:listSelector="#00000000"
-                    android:scrollbars="none" />
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dip"
+                        android:src="@drawable/praise_heade" />
+
+                    <com.interestfriend.view.HorizontalListView
+                        android:id="@+id/praise_listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip"
+                        android:layout_gravity="center_vertical"
+                        android:cacheColorHint="#00000000"
+                        android:focusable="false"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -162,28 +181,38 @@
                     android:background="#d5d5d5" />
             </LinearLayout>
 
-            <View
-                android:id="@+id/view_top"
+            <LinearLayout
+                android:id="@+id/layout_comment"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:background="#d5d5d5" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="vertical"
+                android:visibility="gone" >
 
-            <com.interestfriend.view.ScrollViewWithListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:cacheColorHint="#00000000"
-                android:divider="#d5d5d5"
-                android:dividerHeight="0.5dip"
-                android:listSelector="#00000000"
-                android:scrollbars="none" />
+                <View
+                    android:id="@+id/view_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
 
-            <View
-                android:id="@+id/view_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:background="#d5d5d5" />
+                <com.interestfriend.view.ScrollViewWithListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#d5d5d5"
+                    android:dividerHeight="0.5dip"
+                    android:focusable="false"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" />
+
+                <View
+                    android:id="@+id/view_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -231,9 +231,10 @@ public class GrowthList extends AbstractData {
 				}
 				cursor3.close();
 				List<Praise> praises = new ArrayList<Praise>();
-				Cursor cursor4 = db.query(Const.GROWTH_IMAGE_TABLE_NAME,
-						new String[] { "img_id", "img" }, "growth_id=?",
-						new String[] { growth_id + "" }, null, null, null);
+				Cursor cursor4 = db.query(Const.PRAISE_TABLE_NAME,
+						new String[] { "user_id", "user_avatar" },
+						"growth_id=?", new String[] { growth_id + "" }, null,
+						null, null);
 				if (cursor4.getCount() > 0) {
 					cursor4.moveToFirst();
 					for (int i = 0; i < cursor4.getCount(); i++) {
