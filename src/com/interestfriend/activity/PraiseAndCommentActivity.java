@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,8 +63,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	private Button btn_comment;
 	private EditText edit_comment;
 	private ListView mListView;
-	private View view_top;
-	private View view_bottom;
+	private ScrollView layout_scroll;
 
 	private Growth growth;
 
@@ -71,8 +71,6 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private CommentAdapter adapter;
 	private List<Comment> comments = new ArrayList<Comment>();
-
-	private ScrollView layout_scroll;
 
 	private boolean isReplaySomeOne = false;
 
@@ -91,6 +89,10 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	private EMConversation conversation;
 	private EMMessage lastMessage;
 
+	private LinearLayout comment_layout;
+
+	private RelativeLayout layout_title;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -98,7 +100,6 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		growth = new Growth();
 		getDataByMessage();
 		initView();
-		// setValue();
 		getGrowth();
 	}
 
@@ -107,10 +108,11 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		conversation = EMChatManager.getInstance().getConversation(user_id);
 		lastMessage = conversation.getLastMessage();
 		try {
-			String grwid = lastMessage.getStringAttribute("grwoth_id");
+			String grwid = lastMessage.getStringAttribute("growth_id");
 			growth_id = Integer.valueOf(grwid);
 			circle_id = Integer.valueOf(lastMessage
 					.getStringAttribute("circle_id"));
+
 		} catch (EaseMobException e) {
 			e.printStackTrace();
 		}
@@ -118,8 +120,10 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private void initView() {
 		layout_scroll = (ScrollView) findViewById(R.id.layout_scroll);
+		layout_title = (RelativeLayout) findViewById(R.id.layout_title);
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("评论");
 		img = (ImageView) findViewById(R.id.img);
 		txt_context = (TextView) findViewById(R.id.txt_content);
 		txt_time = (TextView) findViewById(R.id.txt_time);
@@ -129,10 +133,9 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		btn_comment = (Button) findViewById(R.id.btn_comment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
 		mListView = (ListView) findViewById(R.id.listView1);
-		view_bottom = (View) findViewById(R.id.view_bottom);
-		view_top = (View) findViewById(R.id.view_top);
 		parise_layout = (LinearLayout) findViewById(R.id.layout_praise);
 		praise_listView = (HorizontalListView) findViewById(R.id.praise_listView);
+		comment_layout = (LinearLayout) findViewById(R.id.layout_comment);
 		setListener();
 	}
 
@@ -141,6 +144,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		btn_comment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
+		Utils.getFocus(layout_title);
 	}
 
 	public void getGrowth() {
@@ -155,13 +159,20 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				if (result != RetError.NONE) {
+					ToastUtil.showToast("获取失败", Toast.LENGTH_SHORT);
+					return;
+				}
+				conversation.removeMessage(lastMessage.getMsgId());
+				conversation.resetUnsetMsgCount();
+				setValue();
 			}
 		});
 		task.executeParallel(growth);
 	}
 
 	private void setValue() {
-		txt_title.setText("评论");
+		layout_scroll.setVisibility(View.VISIBLE);
 		CircleMember member = new CircleMember();
 		member.setUser_id(growth.getPublisher_id());
 		member.getNameAndAvatar(DBUtils.getDBsa(1));
@@ -203,12 +214,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		comments = growth.getComments();
 		adapter = new CommentAdapter(this, comments);
 		mListView.setAdapter(adapter);
-		layout_scroll.post(new Runnable() {
-			@Override
-			public void run() {
-				layout_scroll.fullScroll(ScrollView.FOCUS_UP);
-			}
-		});
+
 		viewLineVisible();
 		if (growth.getPraises().size() > 0) {
 			parise_layout.setVisibility(View.VISIBLE);
@@ -275,11 +281,11 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private void viewLineVisible() {
 		if (comments.size() > 0) {
-			view_bottom.setVisibility(View.VISIBLE);
-			view_top.setVisibility(View.VISIBLE);
+			comment_layout.setVisibility(View.VISIBLE);
+
 		} else {
-			view_bottom.setVisibility(View.GONE);
-			view_top.setVisibility(View.GONE);
+			comment_layout.setVisibility(View.GONE);
+
 		}
 	}
 

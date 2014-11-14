@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,8 +61,6 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private Button btn_comment;
 	private EditText edit_comment;
 	private ListView mListView;
-	private View view_top;
-	private View view_bottom;
 
 	private Growth growth;
 
@@ -70,8 +70,6 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private List<Comment> comments = new ArrayList<Comment>();
 
 	private int position;
-
-	private ScrollView layout_scroll;
 
 	private boolean isReplaySomeOne = false;
 
@@ -83,6 +81,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private LinearLayout parise_layout;
 	private HorizontalListView praise_listView;
 	private PraiseAdapter praiseAdapter;
+	private LinearLayout comment_layout;
+
+	private RelativeLayout layout_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void initView() {
-		layout_scroll = (ScrollView) findViewById(R.id.layout_scroll);
+		layout_title = (RelativeLayout) findViewById(R.id.layout_title);
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		img = (ImageView) findViewById(R.id.img);
@@ -107,10 +108,10 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		btn_comment = (Button) findViewById(R.id.btn_comment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
 		mListView = (ListView) findViewById(R.id.listView1);
-		view_bottom = (View) findViewById(R.id.view_bottom);
-		view_top = (View) findViewById(R.id.view_top);
 		parise_layout = (LinearLayout) findViewById(R.id.layout_praise);
 		praise_listView = (HorizontalListView) findViewById(R.id.praise_listView);
+		comment_layout = (LinearLayout) findViewById(R.id.layout_comment);
+
 		setListener();
 	}
 
@@ -119,6 +120,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		btn_comment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
+		Utils.getFocus(layout_title);
 	}
 
 	private void setValue() {
@@ -164,12 +166,6 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		comments = growth.getComments();
 		adapter = new CommentAdapter(this, comments);
 		mListView.setAdapter(adapter);
-		layout_scroll.post(new Runnable() {
-			@Override
-			public void run() {
-				layout_scroll.fullScroll(ScrollView.FOCUS_UP);
-			}
-		});
 		viewLineVisible();
 		if (growth.getPraises().size() > 0) {
 			parise_layout.setVisibility(View.VISIBLE);
@@ -240,11 +236,11 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 
 	private void viewLineVisible() {
 		if (comments.size() > 0) {
-			view_bottom.setVisibility(View.VISIBLE);
-			view_top.setVisibility(View.VISIBLE);
+			comment_layout.setVisibility(View.VISIBLE);
+
 		} else {
-			view_bottom.setVisibility(View.GONE);
-			view_top.setVisibility(View.GONE);
+			comment_layout.setVisibility(View.GONE);
+
 		}
 	}
 

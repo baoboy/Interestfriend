@@ -41,7 +41,7 @@ public class Praise extends AbstractData {
 
 	@Override
 	public void write(SQLiteDatabase db) {
-		String dbName = Const.COMMENT_TABLE_NAME;
+		String dbName = Const.PRAISE_TABLE_NAME;
 		ContentValues cv = new ContentValues();
 		cv.put("growth_id", this.growth_id);
 		cv.put("user_id", this.user_id);

@@ -9,32 +9,32 @@ import org.json.JSONObject;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
+import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.Praise;
 import com.interestfriend.data.result.Result;
 
 public class GrowthPaser implements IParser {
+
 	@Override
 	public Result parse(JSONObject jsonObj) throws Exception {
 		if (jsonObj == null) {
 			return Result.defContentErrorResult();
 		}
-		int cid = jsonObj.getInt("circle_id");
-		JSONObject growthJson = jsonObj.getJSONObject("growth");
-		if (growthJson == null) {
-			return Result.defContentErrorResult();
-		}
+		int cid = jsonObj.getInt("cid");
+		JSONObject obj = jsonObj.getJSONObject("growths");
 
+		List<Growth> growths = new ArrayList<Growth>();
 		// growth info
-		int growth_id = growthJson.getInt("growth_id");
-		int publisher = growthJson.getInt("publisher_id");
-		String content = growthJson.getString("content");
-		String published = growthJson.getString("time");
-		String publisher_name = growthJson.getString("publisher_name");
-		String publisher_avatar = growthJson.getString("publisher_avatar");
-		int isPraise = growthJson.getInt("isPraise");
-		int praise_count = growthJson.getInt("praise_count");
+		int growth_id = obj.getInt("growth_id");
+		int publisher = obj.getInt("publisher_id");
+		String content = obj.getString("content");
+		String published = obj.getString("time");
+		String publisher_name = obj.getString("publisher_name");
+		String publisher_avatar = obj.getString("publisher_avatar");
+		int isPraise = obj.getInt("isPraise");
+		int praise_count = obj.getInt("praise_count");
 		// growth images
-		JSONArray jsonImages = growthJson.getJSONArray("images");
+		JSONArray jsonImages = obj.getJSONArray("images");
 		List<GrowthImage> images = new ArrayList<GrowthImage>();
 		for (int j = 0; j < jsonImages.length(); j++) {
 			JSONObject obj2 = (JSONObject) jsonImages.opt(j);
@@ -44,7 +44,7 @@ public class GrowthPaser implements IParser {
 			images.add(gimg);
 		}
 		// comments
-		JSONArray commentsJson = growthJson.getJSONArray("comments");
+		JSONArray commentsJson = obj.getJSONArray("comments");
 		List<Comment> comments = new ArrayList<Comment>();
 		for (int j = 0; j < commentsJson.length(); j++) {
 			JSONObject obj2 = (JSONObject) commentsJson.opt(j);
@@ -69,18 +69,18 @@ public class GrowthPaser implements IParser {
 			comments.add(comment);
 
 		}
-		// JSONArray jsonPraise = obj.getJSONArray("praises");
+		JSONArray jsonPraise = obj.getJSONArray("praises");
 		List<Praise> praises = new ArrayList<Praise>();
-		// for (int k = 0; k < jsonPraise.length(); k++) {
-		// JSONObject obj2 = (JSONObject) jsonPraise.opt(k);
-		// int user_id = obj2.getInt("user_id");
-		// String user_avatar = obj2.getString("user_avatar");
-		// Praise praise = new Praise();
-		// praise.setUser_avatar(user_avatar);
-		// praise.setUser_id(user_id);
-		// praise.setGrowth_id(growth_id);
-		// praises.add(praise);
-		// }
+		for (int k = 0; k < jsonPraise.length(); k++) {
+			JSONObject obj2 = (JSONObject) jsonPraise.opt(k);
+			int user_id = obj2.getInt("user_id");
+			String user_avatar = obj2.getString("user_avatar");
+			Praise praise = new Praise();
+			praise.setUser_avatar(user_avatar);
+			praise.setUser_id(user_id);
+			praise.setGrowth_id(growth_id);
+			praises.add(praise);
+		}
 		Growth growth = new Growth();
 		growth.setCid(cid);
 		growth.setContent(content);
@@ -94,7 +94,14 @@ public class GrowthPaser implements IParser {
 		growth.setPraise(isPraise > 0);
 		growth.setPraise_count(praise_count);
 		growth.setPraises(praises);
-		Growth gl = new Growth();
+		int index = comments.size() > 2 ? 2 : comments.size();
+		for (int k = 0; k < index; k++) {
+			growth.getCommentsListView().add(comments.get(k));
+		}
+		growths.add(growth);
+
+		GrowthList gl = new GrowthList(cid);
+		gl.setGrowths(growths);
 		Result ret = new Result();
 		ret.setData(gl);
 		return ret;

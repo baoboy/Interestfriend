@@ -75,18 +75,18 @@ public class GrowthListParser implements IParser {
 				comments.add(comment);
 
 			}
-			// JSONArray jsonPraise = obj.getJSONArray("praises");
+			JSONArray jsonPraise = obj.getJSONArray("praises");
 			List<Praise> praises = new ArrayList<Praise>();
-			// for (int k = 0; k < jsonPraise.length(); k++) {
-			// JSONObject obj2 = (JSONObject) jsonPraise.opt(k);
-			// int user_id = obj2.getInt("user_id");
-			// String user_avatar = obj2.getString("user_avatar");
-			// Praise praise = new Praise();
-			// praise.setUser_avatar(user_avatar);
-			// praise.setUser_id(user_id);
-			// praise.setGrowth_id(growth_id);
-			// praises.add(praise);
-			// }
+			for (int k = 0; k < jsonPraise.length(); k++) {
+				JSONObject obj2 = (JSONObject) jsonPraise.opt(k);
+				int user_id = obj2.getInt("user_id");
+				String user_avatar = obj2.getString("user_avatar");
+				Praise praise = new Praise();
+				praise.setUser_avatar(user_avatar);
+				praise.setUser_id(user_id);
+				praise.setGrowth_id(growth_id);
+				praises.add(praise);
+			}
 			Growth growth = new Growth();
 			growth.setCid(cid);
 			growth.setContent(content);
