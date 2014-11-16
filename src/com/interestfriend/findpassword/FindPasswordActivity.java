@@ -11,6 +11,8 @@ import com.interestfriend.findpassword.FindPasswordStep.onNextListener;
 public class FindPasswordActivity extends BaseActivity implements
 		onNextListener {
 	private TextView txt_title;
+	private TextView txt_page;
+
 	private ViewFlipper mVfFlipper;
 
 	private int mCurrentStepIndex = 1;
@@ -32,13 +34,15 @@ public class FindPasswordActivity extends BaseActivity implements
 	private void initView() {
 		mVfFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 		mVfFlipper.setDisplayedChild(0);
-		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title = (TextView) findViewById(R.id.txt_title);
 		txt_title.setText("’“ªÿ√‹¬Î");
+		txt_page = (TextView) findViewById(R.id.txt_page);
 		step = initStep();
 		setLitener();
 	}
 
 	private FindPasswordStep initStep() {
+		txt_page.setText(mCurrentStepIndex + "/3");
 		switch (mCurrentStepIndex) {
 		case 1:
 			if (getCode == null) {

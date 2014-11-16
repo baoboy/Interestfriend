@@ -25,135 +25,230 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dip" >
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="30dip"
+                android:layout_marginRight="30dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/growth_item" >
+
+                <!-- com.interestfriend.view.RoundAngleImageView -->
 
                 <com.interestfriend.view.RoundAngleImageView
                     android:id="@+id/img_avatar"
                     android:layout_width="35dip"
                     android:layout_height="35dip"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginTop="10dip"
+                    android:layout_marginLeft="7dip"
+                    android:layout_marginTop="7dip"
                     android:scaleType="centerCrop"
                     android:src="@drawable/default_avatar" />
 
-                <RelativeLayout
-                    android:id="@+id/relativeLayout1"
+                <TextView
+                    android:id="@+id/txt_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/img_avatar"
+                    android:singleLine="true"
+                    android:text="舒淇"
+                    android:textColor="#485355"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_user_name"
+                    android:layout_marginLeft="10dip"
+                    android:layout_toRightOf="@+id/img_avatar"
+                    android:gravity="center"
+                    android:paddingTop="2dip"
+                    android:text="2014"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_below="@+id/img_avatar"
+                    android:layout_marginTop="10dip"
+                    android:background="#d5d5d5" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dip"
-                    android:layout_marginTop="10dip"
-                    android:layout_toRightOf="@+id/img_avatar" >
+                    android:layout_below="@+id/line2"
+                    android:orientation="vertical" >
 
-                    <RelativeLayout
-                        android:id="@+id/lay_content"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/txt_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/growth_left_bg" >
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="8dip"
+                        android:text="无病呻吟"
+                        android:textColor="#666666"
+                        android:textSize="13sp" />
 
-                        <TextView
-                            android:id="@+id/txt_user_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="10dip"
-                            android:layout_marginTop="5dp"
-                            android:text="舒淇"
-                            android:textColor="#485355"
-                            android:textSize="16sp" />
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dip"
+                        android:adjustViewBounds="true"
+                        android:maxHeight="200dip"
+                        android:maxWidth="200dip"
+                        android:scaleType="fitXY"
+                        android:visibility="gone" />
 
-                        <TextView
-                            android:id="@+id/txt_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginLeft="10dip"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:text="2014"
-                            android:textColor="@color/gray"
-                            android:textSize="10sp" />
+                    <com.interestfriend.view.ExpandGridView
+                        android:id="@+id/imgGridview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:horizontalSpacing="2dip"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none"
+                        android:verticalSpacing="2dip"
+                        android:visibility="visible" >
+                    </com.interestfriend.view.ExpandGridView>
 
-                        <TextView
-                            android:id="@+id/txt_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/txt_user_name"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:paddingBottom="10dp"
-                            android:text="无病呻吟"
-                            android:textColor="#666666"
-                            android:textSize="15sp" />
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dip"
+                        android:background="#d5d5d5" />
 
-                        <ImageView
-                            android:id="@+id/img"
-                            android:layout_width="300dip"
-                            android:layout_height="300dip"
-                            android:layout_below="@+id/txt_content"
-                            android:layout_gravity="left"
-                            android:adjustViewBounds="true"
-                            android:maxHeight="300dip"
-                            android:maxWidth="300dip"
-                            android:scaleType="fitXY"
-                            android:visibility="gone" />
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-                        <com.interestfriend.view.ExpandGridView
-                            android:id="@+id/imgGridview"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/img"
-                            android:horizontalSpacing="2dip"
-                            android:listSelector="#00000000"
-                            android:scrollbars="none"
-                            android:verticalSpacing="2dip"
-                            android:visibility="visible" >
-                        </com.interestfriend.view.ExpandGridView>
+                <com.interestfriend.view.DrawableCenterTextView
+                    android:id="@+id/btn_prise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/praise_img_nomal"
+                    android:drawablePadding="3dip"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="8dip"
+                    android:paddingTop="8dip"
+                    android:text="赞(1)"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
 
-                        <View
-                            android:id="@+id/line"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.1dip"
-                            android:layout_below="@+id/imgGridview"
-                            android:background="#EDEDED" />
+                <View
+                    android:layout_width="0.5dip"
+                    android:layout_height="match_parent"
+                    android:background="#d5d5d5" />
 
-                        <com.interestfriend.view.DrawableCenterTextView
-                            android:id="@+id/btn_share"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/line"
-                            android:drawableLeft="@drawable/icon_share"
-                            android:drawablePadding="3dip"
-                            android:padding="5dip"
-                            android:text="分享"
-                            android:textColor="@color/gray" />
-                    </RelativeLayout>
-                </RelativeLayout>
+                <com.interestfriend.view.DrawableCenterTextView
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/icon_share"
+                    android:drawablePadding="3dip"
+                    android:paddingBottom="8dip"
+                    android:paddingTop="8dip"
+                    android:text="分享"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+                <View
+                    android:layout_width="0.5dip"
+                    android:layout_height="match_parent"
+                    android:background="#d5d5d5" />
+
+                <com.interestfriend.view.DrawableCenterTextView
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/icon_comment"
+                    android:drawablePadding="3dip"
+                    android:paddingBottom="8dip"
+                    android:paddingTop="8dip"
+                    android:text="回复"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
 
-            <View
-                android:id="@+id/view_top"
+            <LinearLayout
+                android:id="@+id/layout_praise"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:background="#d5d5d5" />
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
 
-            <com.interestfriend.view.ScrollViewWithListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:cacheColorHint="#00000000"
-                android:divider="#d5d5d5"
-                android:dividerHeight="0.5dip"
-                android:listSelector="#00000000"
-                android:scrollbars="none" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
 
-            <View
-                android:id="@+id/view_bottom"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dip"
+                        android:src="@drawable/praise_heade" />
+
+                    <com.interestfriend.view.HorizontalListView
+                        android:id="@+id/praise_listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip"
+                        android:layout_gravity="center_vertical"
+                        android:cacheColorHint="#00000000"
+                        android:focusable="false"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_comment"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dip"
-                android:background="#d5d5d5" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <View
+                    android:id="@+id/view_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <com.interestfriend.view.ScrollViewWithListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#d5d5d5"
+                    android:dividerHeight="0.5dip"
+                    android:focusable="false"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" />
+
+                <View
+                    android:id="@+id/view_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

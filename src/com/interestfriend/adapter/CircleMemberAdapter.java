@@ -48,15 +48,18 @@ public class CircleMemberAdapter extends BaseAdapter {
 					R.layout.circle_member_item, null);
 			holder = new ViewHolder();
 			holder.img_user_avatar = (RoundAngleImageView) contentView
-					.findViewById(R.id.img_circle_logo);
+					.findViewById(R.id.img_avatar);
 			holder.txt_user_name = (TextView) contentView
-					.findViewById(R.id.txt_circle_name);
+					.findViewById(R.id.txt_user_name);
+			holder.txt_user_desc = (TextView) contentView
+					.findViewById(R.id.txt_user_desc);
 			holder.alpha = (TextView) contentView.findViewById(R.id.alpha);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		holder.txt_user_name.setText(list.get(position).getUser_name());
+		holder.txt_user_desc.setText(list.get(position).getUser_declaration());
 		UniversalImageLoadTool.disPlay(list.get(position).getUser_avatar(),
 				holder.img_user_avatar, R.drawable.picture_default_head);
 		showAlpha(position, holder);
@@ -112,6 +115,8 @@ public class CircleMemberAdapter extends BaseAdapter {
 	static class ViewHolder {
 		private RoundAngleImageView img_user_avatar;
 		private TextView txt_user_name;
+		private TextView txt_user_desc;
+
 		TextView alpha;
 
 	}

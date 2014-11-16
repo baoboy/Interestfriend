@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.GrowthListParser;
 import com.interestfriend.parser.IParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class GrowthList extends AbstractData {
 	/**
@@ -99,7 +101,7 @@ public class GrowthList extends AbstractData {
 		Result ret = ApiRequest.request(GROWTH_LIST_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			GrowthList lists = (GrowthList) ret.getData();
-			this.growths.addAll(lists.getGrowths());
+			updateGrowth(lists.getGrowths());
 			writeGrowths.addAll(lists.getGrowths());
 			return RetError.NONE;
 		} else {
@@ -107,8 +109,41 @@ public class GrowthList extends AbstractData {
 		}
 	}
 
+	private void delById(int growth_id) {
+		for (Iterator<Growth> it = growths.iterator(); it.hasNext();) {
+			if (it.next().getGrowth_id() == growth_id) {
+				it.remove();
+				break;
+			}
+		}
+
+	}
+
+	private void updateGrowth(List<Growth> lists) {
+		for (Growth growth : lists) {
+			if (growth.getStatus() == Status.UPDATE) {
+				delById(growth.getGrowth_id());
+			}
+			this.growths.add(growth);
+		}
+	}
+
 	public void writeGrowth(SQLiteDatabase db) {
+		List<Growth> newGrowths = new ArrayList<Growth>();
 		for (Growth growth : writeGrowths) {
+			if (growth.getStatus() == Status.UPDATE) {
+				db.delete(Const.GROWTHS_TABLE_NAME, "growth_id=?",
+						new String[] { growth.getGrowth_id() + "" });
+				db.delete(Const.GROWTH_IMAGE_TABLE_NAME, "growth_id=?",
+						new String[] { growth.getGrowth_id() + "" });
+				db.delete(Const.COMMENT_TABLE_NAME, "growth_id=?",
+						new String[] { growth.getGrowth_id() + "" });
+				db.delete(Const.PRAISE_TABLE_NAME, "growth_id=?",
+						new String[] { growth.getGrowth_id() + "" });
+			}
+			newGrowths.add(growth);
+		}
+		for (Growth growth : newGrowths) {
 			growth.write(db);
 		}
 		writeGrowths.clear();
@@ -118,8 +153,13 @@ public class GrowthList extends AbstractData {
 		if (cursor.getCount() > GROUTH_COUNT) {
 			cursor.move(GROUTH_COUNT);
 			int id = cursor.getInt(cursor.getColumnIndex("_id"));
-			System.out.println("id:::::::::::::::" + id);
 			db.delete(Const.GROWTHS_TABLE_NAME, "_id> ? and cid=?",
+					new String[] { id + "", cid + "" });
+			db.delete(Const.GROWTH_IMAGE_TABLE_NAME, "_id> ? and cid=?",
+					new String[] { id + "", cid + "" });
+			db.delete(Const.PRAISE_TABLE_NAME, "_id> ? and cid=?",
+					new String[] { id + "", cid + "" });
+			db.delete(Const.COMMENT_TABLE_NAME, "_id> ? and cid=?",
 					new String[] { id + "", cid + "" });
 		}
 	}
@@ -130,8 +170,8 @@ public class GrowthList extends AbstractData {
 		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME, new String[] {
 				"growth_id", "content", "publisher_id", "time",
 				"publisher_name", "publisher_avatar", "isPraise",
-				"praise_count" }, "cid=?", new String[] { cid + "" }, null,
-				null, null);
+				"praise_count", "last_update_time" }, "cid=?",
+				new String[] { cid + "" }, null, null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			for (int j = 0; j < cursor.getCount(); j++) {
@@ -146,6 +186,8 @@ public class GrowthList extends AbstractData {
 				String publisher_avatar = cursor.getString(cursor
 						.getColumnIndex("publisher_avatar"));
 				String time = cursor.getString(cursor.getColumnIndex("time"));
+				String last_update_time = cursor.getString(cursor
+						.getColumnIndex("last_update_time"));
 				int isPraise = cursor.getInt(cursor.getColumnIndex("isPraise"));
 				int praise_count = cursor.getInt(cursor
 						.getColumnIndex("praise_count"));
@@ -159,6 +201,7 @@ public class GrowthList extends AbstractData {
 				growth.setPublisher_name(publisher_name);
 				growth.setPraise(isPraise > 0);
 				growth.setPraise_count(praise_count);
+				growth.setLast_update_time(last_update_time);
 				// read growth images
 				List<GrowthImage> images = new ArrayList<GrowthImage>();
 				Cursor cursor2 = db.query(Const.GROWTH_IMAGE_TABLE_NAME,

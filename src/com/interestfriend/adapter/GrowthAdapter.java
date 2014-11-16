@@ -23,12 +23,14 @@ import com.interestfriend.R;
 import com.interestfriend.activity.CommentActivity;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
+import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.CancelPraiseGrowthTask;
 import com.interestfriend.task.PraiseGrowthTask;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
@@ -239,6 +241,15 @@ public class GrowthAdapter extends BaseAdapter {
 			@Override
 			public void taskFinish(RetError result) {
 				isTasking = false;
+				if (result == RetError.NONE) {
+					growth.setPraise_count(growth.getPraise_count() - 1);
+					for (Praise pr : growth.getPraises()) {
+						if (pr.getUser_id() == SharedUtils.getIntUid()) {
+							growth.getPraises().remove(pr);
+							break;
+						}
+					}
+				}
 			}
 		});
 		task.executeParallel(growth);
@@ -257,6 +268,15 @@ public class GrowthAdapter extends BaseAdapter {
 			@Override
 			public void taskFinish(RetError result) {
 				isTasking = false;
+				if (result == RetError.NONE) {
+					Praise pr = new Praise();
+					pr.setGrowth_id(growth.getGrowth_id());
+					pr.setUser_avatar(SharedUtils.getAPPUserAvatar());
+					pr.setUser_id(SharedUtils.getIntUid());
+					growth.getPraises().add(pr);
+					growth.setPraise_count(growth.getPraise_count() + 1);
+
+				}
 
 			}
 		});

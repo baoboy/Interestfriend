@@ -1,10 +1,10 @@
 package com.interestfriend.utils;
 
-import com.interestfriend.applation.MyApplation;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.interestfriend.applation.MyApplation;
 
 /**
  * * SharedPreferences 的公具类
@@ -223,6 +223,16 @@ public class SharedUtils {
 
 	public static long getCircleLastRequestTime() {
 		return sharedPreferences.getLong("circle_last_request_time", 0l);
+
+	}
+
+	public static void setGrowthLastRequestTime(String lastReqTime) {
+		editor.putString("growth_last_request_time", lastReqTime);
+		editor.commit();
+	}
+
+	public static String getGrowthLastRequestTime() {
+		return sharedPreferences.getString("growth_last_request_time", "0");
 
 	}
 }

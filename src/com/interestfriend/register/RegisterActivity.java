@@ -1,6 +1,5 @@
 package com.interestfriend.register;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -8,19 +7,28 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.BaseActivity;
 import com.interestfriend.data.User;
 import com.interestfriend.register.RegisterStep.onNextListener;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.ToastUtil;
 
-public class RegisterActivity extends Activity implements onNextListener {
+public class RegisterActivity extends BaseActivity implements onNextListener,
+		OnClickListener {
 	private ViewFlipper mVfFlipper;
+	private ImageView back;
+	private TextView txt_title;
+	private TextView txt_page;
 
 	private RegisterStep reStep;
 	private RegisterUserName reUserName;
@@ -41,6 +49,10 @@ public class RegisterActivity extends Activity implements onNextListener {
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		txt_title = (TextView) findViewById(R.id.txt_title);
+		txt_title.setText("зЂВс");
+		txt_page = (TextView) findViewById(R.id.txt_page);
 		mVfFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 		mVfFlipper.setDisplayedChild(0);
 		reStep = initStep();
@@ -49,6 +61,7 @@ public class RegisterActivity extends Activity implements onNextListener {
 
 	private void setListener() {
 		reStep.setmOnNextListener(this);
+		back.setOnClickListener(this);
 	}
 
 	protected User getmRegister() {
@@ -60,6 +73,7 @@ public class RegisterActivity extends Activity implements onNextListener {
 	}
 
 	private RegisterStep initStep() {
+		txt_page.setText(mCurrentStepIndex + "/4");
 		switch (mCurrentStepIndex) {
 		case 1:
 			if (reUserName == null) {
@@ -159,6 +173,18 @@ public class RegisterActivity extends Activity implements onNextListener {
 					}
 				}
 			}
+			break;
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			finishThisActivity();
+			break;
+
+		default:
 			break;
 		}
 	}

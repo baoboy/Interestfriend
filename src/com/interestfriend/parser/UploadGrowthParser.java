@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.utils.SharedUtils;
 
 public class UploadGrowthParser implements IParser {
 
@@ -22,6 +23,8 @@ public class UploadGrowthParser implements IParser {
 		if (!jsonObj.has("gid")) {
 			return Result.defContentErrorResult();
 		}
+		String time = jsonObj.getString("time");
+		SharedUtils.setGrowthLastRequestTime(time);
 		Growth g = new Growth();
 		List<GrowthImage> imgs = new ArrayList<GrowthImage>();
 		int gid = jsonObj.getInt("gid");
@@ -35,6 +38,8 @@ public class UploadGrowthParser implements IParser {
 		}
 		g.setGrowth_id(gid);
 		g.setImages(imgs);
+		g.setPublished(time);
+		g.setLast_update_time(time);
 		Result ret = new Result();
 		ret.setData(g);
 		return ret;

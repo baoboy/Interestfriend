@@ -10,13 +10,13 @@ import java.util.Map;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.data.enums.GrowthState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
-import com.interestfriend.parser.GrowthListParser;
 import com.interestfriend.parser.GrowthPaser;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.StringParser;
@@ -48,8 +48,26 @@ public class Growth extends AbstractData implements Serializable {
 	private List<Comment> commentsListView = new ArrayList<Comment>();
 	private int direct = 1;// 1 send 2 receive
 	private int type = 1;// 1 Õý³£ 2 video
-
+	private String last_update_time = "";
 	private List<Praise> praises = new ArrayList<Praise>();
+
+	private GrowthState state;
+
+	public GrowthState getState() {
+		return state;
+	}
+
+	public void setState(GrowthState state) {
+		this.state = state;
+	}
+
+	public String getLast_update_time() {
+		return last_update_time;
+	}
+
+	public void setLast_update_time(String last_update_time) {
+		this.last_update_time = last_update_time;
+	}
 
 	public List<Praise> getPraises() {
 		return praises;
@@ -232,8 +250,6 @@ public class Growth extends AbstractData implements Serializable {
 			images = g.images;
 			comments = g.getComments();
 			praises = g.getPraises();
-			System.out
-					.println("pras:::::::::::" + comments + "     " + praises);
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -277,7 +293,8 @@ public class Growth extends AbstractData implements Serializable {
 			this.growth_id = g.getGrowth_id();
 			this.images.clear();
 			this.images = g.getImages();
-
+			this.published = g.getPublished();
+			this.last_update_time = g.getPublished();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -305,12 +322,14 @@ public class Growth extends AbstractData implements Serializable {
 		cv.put("publisher_avatar", this.publisher_avatar);
 		cv.put("isPraise", this.isPraise);
 		cv.put("praise_count", this.praise_count);
-		if (status == Status.UPDATE) {
+		cv.put("last_update_time", this.last_update_time);
+		if (state == GrowthState.UPDATE) {
 			db.update(dbName, cv, "growth_id=? ", new String[] { this.growth_id
 					+ "" });
 			return;
 		}
 		db.insert(dbName, null, cv);
+  
 		for (GrowthImage img : this.images) {
 			img.write(db);
 		}

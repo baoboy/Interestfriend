@@ -14,7 +14,7 @@
         android:textColor="#3e3a39"
         android:textSize="@dimen/sp_30" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
@@ -22,22 +22,42 @@
         android:layout_marginTop="10dip"
         android:background="@drawable/circle_item_bg" >
 
+        <!-- com.interestfriend.view.RoundAngleImageView -->
+
         <com.interestfriend.view.RoundAngleImageView
-            android:id="@+id/img_circle_logo"
+            android:id="@+id/img_avatar"
             android:layout_width="55dip"
             android:layout_height="55dip"
             android:layout_margin="7dip"
+            android:paddingBottom="7dip"
             android:src="@drawable/picture_default_head" />
 
         <TextView
-            android:id="@+id/txt_circle_name"
+            android:id="@+id/txt_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
+            android:layout_marginTop="9dip"
+            android:layout_toRightOf="@+id/img_avatar"
             android:singleLine="true"
             android:text="TextView"
             android:textSize="16sp" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_user_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_user_name"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="3dip"
+            android:layout_toRightOf="@+id/img_avatar"
+            android:paddingRight="10dip"
+            android:singleLine="true"
+            android:text="TextView"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
 
 </LinearLayout>

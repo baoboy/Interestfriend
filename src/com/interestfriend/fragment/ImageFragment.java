@@ -136,6 +136,9 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 				}
 
 				lists.clear();
+				System.out.println("siz::::::::::::::::;===="
+						+ glist.getGrowths().size());
+
 				lists.addAll(glist.getGrowths());
 				adapter.notifyDataSetChanged();
 				if (lists.size() > 19) {
@@ -179,7 +182,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 			return;
 		}
 		glist.setRefushState(1);
-		glist.setRefushTime(lists.get(0).getPublished());
+		glist.setRefushTime(lists.get(0).getLast_update_time());
 		getGrowthFromServer();
 	}
 

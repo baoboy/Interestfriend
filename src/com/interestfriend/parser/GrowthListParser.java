@@ -6,12 +6,14 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.interestfriend.data.AbstractData;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.Praise;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.utils.SharedUtils;
 
 public class GrowthListParser implements IParser {
 
@@ -22,6 +24,8 @@ public class GrowthListParser implements IParser {
 		}
 		int cid = jsonObj.getInt("cid");
 		JSONArray jsonArr = jsonObj.getJSONArray("growths");
+		String last_req_time = jsonObj.getString("lastReqTime");
+		SharedUtils.setGrowthLastRequestTime(last_req_time);
 		if (jsonArr == null) {
 			return Result.defContentErrorResult();
 		}
@@ -37,6 +41,9 @@ public class GrowthListParser implements IParser {
 			String publisher_avatar = obj.getString("publisher_avatar");
 			int isPraise = obj.getInt("isPraise");
 			int praise_count = obj.getInt("praise_count");
+			String state = obj.getString("state");
+			String last_update_time = obj.getString("last_update_time");
+
 			// growth images
 			JSONArray jsonImages = obj.getJSONArray("images");
 			List<GrowthImage> images = new ArrayList<GrowthImage>();
@@ -100,6 +107,8 @@ public class GrowthListParser implements IParser {
 			growth.setPraise(isPraise > 0);
 			growth.setPraise_count(praise_count);
 			growth.setPraises(praises);
+			growth.setStatus(AbstractData.convert(state));
+			growth.setLast_update_time(last_update_time);
 			int index = comments.size() > 2 ? 2 : comments.size();
 			for (int k = 0; k < index; k++) {
 				growth.getCommentsListView().add(comments.get(k));

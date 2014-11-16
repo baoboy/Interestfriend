@@ -1,6 +1,7 @@
 package com.interestfriend.activity;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -30,9 +31,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
-import com.easemob.chat.MessageBody;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.FindCircleFragmen;
@@ -293,7 +294,16 @@ public class HomeActivity extends FragmentActivity implements
 	 */
 	public int getUnreadMsgCountTotal() {
 		int unreadMsgCountTotal = 0;
-		unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
+		// unreadMsgCountTotal =
+		// EMChatManager.getInstance().getUnreadMsgsCount();
+		Hashtable<String, EMConversation> conversations = EMChatManager
+				.getInstance().getAllConversations();
+		for (EMConversation conversation : conversations.values()) {
+			if (conversation.getIsGroup()) {
+				continue;
+			}
+			unreadMsgCountTotal += conversation.getUnreadMsgCount();
+		}
 		return unreadMsgCountTotal;
 	}
 

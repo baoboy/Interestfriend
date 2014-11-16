@@ -3,10 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <include
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        layout="@layout/register_titlebar" />
+
     <ViewFlipper
         android:id="@+id/viewflipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_below="@+id/title_layout"
         android:flipInterval="1000"
         android:persistentDrawingCache="animation" >
 
