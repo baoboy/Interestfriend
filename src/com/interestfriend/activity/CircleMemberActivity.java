@@ -178,7 +178,7 @@ public class CircleMemberActivity extends BaseActivity implements
 				}
 				ToastUtil.showToast("Ìß³ö³É¹¦", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();
-				intent.putExtra("position", position);
+				intent.putExtra("user_id", member.getUser_id());
 				intent.setAction(Constants.KICK_OUT_MEMBER);
 				sendBroadcast(intent);
 				finishThisActivity();

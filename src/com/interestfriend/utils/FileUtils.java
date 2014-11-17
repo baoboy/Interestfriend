@@ -156,7 +156,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * 使用当前时间戳拼接一个唯�?��文件�?
+	 * 使用当前时间戳拼接一个文件名
 	 * 
 	 * @param format
 	 * @return

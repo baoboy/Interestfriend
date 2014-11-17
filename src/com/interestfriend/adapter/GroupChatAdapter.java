@@ -61,6 +61,7 @@ import com.interestfriend.activity.BaiduMapActivity;
 import com.interestfriend.activity.ShowBigImage;
 import com.interestfriend.activity.ShowNormalFileActivity;
 import com.interestfriend.activity.ShowVideoActivity;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.task.LoadImageTask;
 import com.interestfriend.task.LoadVideoImageTask;
@@ -386,49 +387,17 @@ public class GroupChatAdapter extends BaseAdapter {
 		if (message.direct == EMMessage.Direct.SEND) {
 			UniversalImageLoadTool.disPlay(SharedUtils.getAPPUserAvatar(),
 					holder.head_iv, R.drawable.picture_default_head);
-			View statusView = convertView.findViewById(R.id.msg_status);
-			// 重发按钮点击事件
-			// statusView.setOnClickListener(new OnClickListener() {
-			// @Override
-			// public void onClick(View v) {
-			//
-			// // 显示重发消息的自定义alertdialog
-			// Intent intent = new Intent(activity, AlertDialog.class);
-			// intent.putExtra("msg",
-			// activity.getString(R.string.confirm_resend));
-			// intent.putExtra("title",
-			// activity.getString(R.string.resend));
-			// intent.putExtra("cancel", true);
-			// intent.putExtra("position", position);
-			// if (message.getType() == EMMessage.Type.TXT)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_TEXT);
-			// else if (message.getType() == EMMessage.Type.VOICE)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_VOICE);
-			// else if (message.getType() == EMMessage.Type.IMAGE)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_PICTURE);
-			// else if (message.getType() == EMMessage.Type.LOCATION)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_LOCATION);
-			// else if (message.getType() == EMMessage.Type.FILE)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_FILE);
-			// else if (message.getType() == EMMessage.Type.VIDEO)
-			// activity.startActivityForResult(intent,
-			// ChatActivity.REQUEST_CODE_VIDEO);
-			//
-			// }
-			// });
 
 		} else {
 			try {
 				String user_name = message.getStringAttribute("user_name");
 				String user_avatar = message.getStringAttribute("user_avatar");
+				int user_id = message.getIntAttribute("user_id");
 				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
 						R.drawable.default_avatar);
 				holder.tv_userId.setText(user_name);
+				holder.head_iv.setOnClickListener(new OnAvatarClick(user_id,
+						context));
 			} catch (EaseMobException e) {
 				e.printStackTrace();
 			}

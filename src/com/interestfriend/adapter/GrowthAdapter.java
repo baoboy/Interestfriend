@@ -26,6 +26,7 @@ import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.CancelPraiseGrowthTask;
 import com.interestfriend.task.PraiseGrowthTask;
@@ -168,6 +169,8 @@ public class GrowthAdapter extends BaseAdapter {
 		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
 				holder.img_avatar, R.drawable.default_avatar);
 		holder.txt_user_name.setText(growth.getPublisher_name());
+		holder.img_avatar.setOnClickListener(new OnAvatarClick(lists.get(
+				position).getPublisher_id(), mContext));
 		// holder.mListView.setAdapter(new GrowthListCommentAdapter(mContext,
 		// lists.get(position).getCommentsListView()));
 		// if (growth.getCommentsListView().size() > 0) {

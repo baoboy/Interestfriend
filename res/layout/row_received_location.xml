@@ -17,18 +17,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_chat_activity" >
 
+        <!-- com.interestfriend.view.RoundAngleImageView -->
+
         <com.interestfriend.view.RoundAngleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="@dimen/size_avatar"
             android:layout_height="@dimen/size_avatar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="@dimen/margin_chat_activity" />
+            android:layout_marginLeft="@dimen/margin_chat_activity"
+            android:src="@drawable/default_avatar" />
 
         <LinearLayout
             android:id="@+id/row_rec_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_userid"
             android:layout_marginLeft="@dimen/margin_chat_activity"
             android:layout_toRightOf="@id/iv_userhead"
             android:background="@drawable/chatfrom_bg" >
@@ -49,9 +53,8 @@
             style="@style/chat_text_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/iv_userhead"
-            android:layout_toLeftOf="@id/row_rec_location" />
+            android:layout_alignLeft="@+id/row_rec_location"
+            android:text="aa" />
     </RelativeLayout>
 
 </LinearLayout>

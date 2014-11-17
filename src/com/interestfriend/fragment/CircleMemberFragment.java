@@ -238,7 +238,6 @@ public class CircleMemberFragment extends Fragment implements
 		if (m.getUser_id() == SharedUtils.getIntUid()) {
 			intent.setClass(getActivity(), CircleMemberOfSelfInfoActivity.class);
 		} else {
-			intent.putExtra("position", position);
 			intent.setClass(getActivity(), CircleMemberActivity.class);
 		}
 		startActivity(intent);
@@ -272,9 +271,15 @@ public class CircleMemberFragment extends Fragment implements
 				adapter.notifyDataSetChanged();
 
 			} else if (action.equals(Constants.KICK_OUT_MEMBER)) {
-				int position = intent.getIntExtra("position", 0);
-				cirlceMemberLists.remove(position);
+				int user_id = intent.getIntExtra("user_id", 0);
+				for (CircleMember m : cirlceMemberLists) {
+					if (m.getUser_id() == user_id) {
+						cirlceMemberLists.remove(m);
+						break;
+					}
+				}
 				adapter.notifyDataSetChanged();
+
 			}
 		}
 	};

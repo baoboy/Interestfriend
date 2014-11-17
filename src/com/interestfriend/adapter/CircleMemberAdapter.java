@@ -60,6 +60,16 @@ public class CircleMemberAdapter extends BaseAdapter {
 		}
 		holder.txt_user_name.setText(list.get(position).getUser_name());
 		holder.txt_user_desc.setText(list.get(position).getUser_declaration());
+		String decl = list.get(position).getUser_declaration();
+		String desc = list.get(position).getUser_description();
+		if (!"".equals(decl)) {
+			holder.txt_user_desc.setText(decl);
+		} else if (!"".equals(desc)) {
+			holder.txt_user_desc.setText(desc);
+		} else {
+			holder.txt_user_desc.setText("这家伙很懒，什么都没留下");
+		}
+
 		UniversalImageLoadTool.disPlay(list.get(position).getUser_avatar(),
 				holder.img_user_avatar, R.drawable.picture_default_head);
 		showAlpha(position, holder);
