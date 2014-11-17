@@ -37,10 +37,10 @@ public class MyCircles extends Circles {
 				+ "','" + getCircle_name() + "','" + getCircle_description()
 				+ "','" + getCircle_logo() + "','" + getCircle_creator_name()
 				+ "','" + getCircle_create_time() + "','"
-				+ getCircle_category_name() + "'";
+				+ getCircle_category_name() + "'," + getCircle_member_num();
 	}
 
 	public static String getDbInsertKeyString() {
-		return " (circle_id, creator_id, group_id, circle_name, circle_description, circle_logo,circle_creator_name,circle_create_time,circle_category)";
+		return " (circle_id, creator_id, group_id, circle_name, circle_description, circle_logo,circle_creator_name,circle_create_time,circle_category,circle_member_num)";
 	}
 }

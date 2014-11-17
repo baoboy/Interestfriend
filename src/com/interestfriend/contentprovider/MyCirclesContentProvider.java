@@ -207,5 +207,8 @@ public class MyCirclesContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap.put(
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME);
+		sMyCirclesProjectionMap.put(
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_MEMBER_NUM,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_MEMBER_NUM);
 	}
 }

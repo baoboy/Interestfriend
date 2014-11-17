@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
@@ -53,6 +54,9 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 
 	private View line1, line2;
 
+	private TextView txt_title;
+	private ImageView back;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,6 +65,9 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("消息通知");
 		rl_switch_notification = (RelativeLayout) findViewById(R.id.rl_switch_notification);
 		rl_switch_sound = (RelativeLayout) findViewById(R.id.rl_switch_sound);
 		rl_switch_vibrate = (RelativeLayout) findViewById(R.id.rl_switch_vibrate);
@@ -76,6 +83,7 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		rl_switch_notification.setOnClickListener(this);
 		rl_switch_sound.setOnClickListener(this);
 		rl_switch_vibrate.setOnClickListener(this);
@@ -159,6 +167,9 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 				EMChatManager.getInstance().setChatOptions(chatOptions);
 				SharedUtils.setSettingMsgVibrate(true);
 			}
+			break;
+		case R.id.back:
+			finishThisActivity();
 			break;
 		default:
 			break;

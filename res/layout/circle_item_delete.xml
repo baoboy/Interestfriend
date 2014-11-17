@@ -3,19 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/circle_item_bg" >
+        android:background="@drawable/circle_item_bg"
+        android:padding="7dip" >
+
+        <!-- com.interestfriend.view.RoundAngleImageView -->
 
         <com.interestfriend.view.RoundAngleImageView
             android:id="@+id/img_circle_logo"
             android:layout_width="55dip"
             android:layout_height="55dip"
-            android:layout_margin="7dip"
             android:src="@drawable/picture_default_head" />
 
         <TextView
@@ -24,23 +26,57 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
-            android:layout_weight="1"
+            android:layout_marginTop="6dip"
+            android:layout_toRightOf="@+id/img_circle_logo"
             android:singleLine="true"
             android:text="TextView"
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/txt_circle_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_circle_name"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="3dip"
+            android:layout_toRightOf="@+id/img_circle_logo"
+            android:singleLine="true"
+            android:text="TextView"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/unread_msg_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginRight="20dip"
+            android:layout_marginBottom="7dip"
+            android:layout_marginRight="10dip"
+            android:layout_toLeftOf="@+id/circle_member_num"
             android:background="@drawable/red_circle"
             android:gravity="center"
             android:text="-1"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:visibility="gone" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/circle_member_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dip"
+            android:drawablePadding="5dip"
+            android:drawableRight="@drawable/circle_member_num"
+            android:gravity="center"
+            android:paddingBottom="7dip"
+            android:text="1"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -46,6 +46,15 @@ public class Circles extends AbstractData {
 	private String circle_creator_name = "";
 	private String circle_create_time = "";
 	private String circle_category_name = "";
+	private int circle_member_num = 1;
+
+	public int getCircle_member_num() {
+		return circle_member_num;
+	}
+
+	public void setCircle_member_num(int circle_member_num) {
+		this.circle_member_num = circle_member_num;
+	}
 
 	public String getCircle_category_name() {
 		return circle_category_name;
@@ -304,7 +313,7 @@ public class Circles extends AbstractData {
 		Cursor cursor = db.query(Const.MY_CIRCLE_TABLE_NAME, new String[] {
 				"circle_logo", "circle_name", "circle_description", "group_id",
 				"creator_id", "circle_creator_name", "circle_create_time",
-				"circle_category", }, "circle_id=?", new String[] { circle_id
+				"circle_category" }, "circle_id=?", new String[] { circle_id
 				+ "" }, null, null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();

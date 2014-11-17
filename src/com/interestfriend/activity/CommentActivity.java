@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -29,12 +30,15 @@ import com.interestfriend.adapter.PraiseAdapter;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
+import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.popwindow.CommentPopwindow;
 import com.interestfriend.popwindow.CommentPopwindow.OnCommentOnClick;
+import com.interestfriend.task.CancelPraiseGrowthTask;
 import com.interestfriend.task.DeleteCommentTask;
+import com.interestfriend.task.PraiseGrowthTask;
 import com.interestfriend.task.SendCommentTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DateUtils;
@@ -56,7 +60,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private ExpandGridView img_grid_view;
 	private ImageView back;
 	private TextView txt_title;
-	private Button btn_comment;
+	private Button btnComment;
 	private EditText edit_comment;
 	private ListView mListView;
 
@@ -83,6 +87,11 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 
 	private RelativeLayout layout_title;
 
+	private TextView btn_praise;
+	private TextView btn_comment;
+
+	private boolean isTasking = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,6 +103,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void initView() {
+		btn_praise = (TextView) findViewById(R.id.btn_prise);
+		btn_comment = (TextView) findViewById(R.id.btn_comment);
 		layout_title = (RelativeLayout) findViewById(R.id.layout_title);
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
@@ -103,21 +114,21 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		img_grid_view = (ExpandGridView) findViewById(R.id.imgGridview);
-		btn_comment = (Button) findViewById(R.id.btn_comment);
+		btnComment = (Button) findViewById(R.id.btnComment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
 		mListView = (ListView) findViewById(R.id.listView1);
 		parise_layout = (LinearLayout) findViewById(R.id.layout_praise);
 		praise_listView = (HorizontalListView) findViewById(R.id.praise_listView);
 		comment_layout = (LinearLayout) findViewById(R.id.layout_comment);
-
 		setListener();
 	}
 
 	private void setListener() {
 		back.setOnClickListener(this);
-		btn_comment.setOnClickListener(this);
+		btnComment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
+		btn_praise.setOnClickListener(this);
 		Utils.getFocus(layout_title);
 	}
 
@@ -173,6 +184,86 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			parise_layout.setVisibility(View.GONE);
 
 		}
+		if (growth.getComments().size() > 0) {
+			btn_comment.setText("»Ø¸´(" + growth.getComments().size() + ")");
+		} else {
+			btn_comment.setText("»Ø¸´");
+		}
+		Drawable drawable = getResources().getDrawable(
+				R.drawable.praise_img_nomal);
+		if (growth.isPraise()) {
+			drawable = getResources().getDrawable(R.drawable.praise_img_focus);
+		}
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		btn_praise.setCompoundDrawables(drawable, null, null, null);
+		if (growth.getPraise_count() > 0) {
+			btn_praise.setText("ÔÞ(" + growth.getPraise_count() + ")");
+		} else {
+			btn_praise.setText("ÔÞ");
+		}
+	}
+
+	private void cancelPraise() {
+		isTasking = true;
+		Drawable drawable = getResources().getDrawable(
+				R.drawable.praise_img_nomal);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		btn_praise.setCompoundDrawables(drawable, null, null, null);
+		btn_praise.setText("ÔÞ(" + (growth.getPraise_count() - 1) + ")");
+		for (Praise prais : growth.getPraises()) {
+			if (prais.getUser_id() == SharedUtils.getIntUid()) {
+				growth.getPraises().remove(prais);
+				praiseAdapter.notifyDataSetChanged();
+				break;
+			}
+		}
+		CancelPraiseGrowthTask task = new CancelPraiseGrowthTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				isTasking = false;
+				if (result == RetError.NONE) {
+					Intent intent = new Intent();
+					intent.putExtra("growth_id", growth.getGrowth_id());
+					intent.setAction(Constants.COMMENT_CANCEL_PRAISE);
+					sendBroadcast(intent);
+				}
+			}
+		});
+		task.executeParallel(growth);
+	}
+
+	private void praise() {
+		isTasking = true;
+		Drawable drawable = getResources().getDrawable(
+				R.drawable.praise_img_focus);
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		btn_praise.setCompoundDrawables(drawable, null, null, null);
+		btn_praise.setText("ÔÞ(" + (growth.getPraise_count() + 1) + ")");
+		Praise praise = new Praise();
+		praise.setGrowth_id(growth.getGrowth_id());
+		praise.setUser_avatar(SharedUtils.getAPPUserAvatar());
+		praise.setUser_id(SharedUtils.getIntUid());
+		growth.getPraises().add(praise);
+		praiseAdapter.notifyDataSetChanged();
+		PraiseGrowthTask task = new PraiseGrowthTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				isTasking = false;
+				if (result == RetError.NONE) {
+					Intent intent = new Intent();
+					intent.putExtra("growth_id", growth.getGrowth_id());
+					intent.setAction(Constants.COMMENT_PRAISE);
+					sendBroadcast(intent);
+				}
+
+			}
+		});
+		task.executeParallel(growth);
 	}
 
 	@Override
@@ -187,6 +278,16 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				return;
 			}
 			sendComment(content.replace("@" + replaySomeOneName, ""));
+			break;
+		case R.id.btn_prise:
+			if (isTasking) {
+				return;
+			}
+			if (!growth.isPraise()) {
+				praise();
+			} else {
+				cancelPraise();
+			}
 			break;
 		default:
 			break;
