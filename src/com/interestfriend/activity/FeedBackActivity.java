@@ -214,6 +214,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 		listView = (ListView) findViewById(R.id.list);
 		mEditTextContent = (EditText) findViewById(R.id.et_sendmessage);
 		buttonSetModeKeyboard = findViewById(R.id.btn_set_mode_keyboard);
+		buttonSetModeKeyboard.setOnClickListener(this);
 		edittext_layout = (RelativeLayout) findViewById(R.id.edittext_layout);
 		buttonSetModeVoice = findViewById(R.id.btn_set_mode_voice);
 		buttonSend = findViewById(R.id.btn_send);
@@ -589,6 +590,8 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 			finishThisActivity();
 		} else if (id == R.id.btn_more) {
 			more(more);
+		} else if (id == R.id.btn_set_mode_keyboard) {
+			setModeKeyboard(view);
 		}
 	}
 

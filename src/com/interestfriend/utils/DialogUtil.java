@@ -35,7 +35,7 @@ public class DialogUtil {
 
 		// loadingDialog.setCancelable(false);// 不可以用“返回键”取消
 		loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
+				Utils.getSecreenWidth(context) - 100,
 				LinearLayout.LayoutParams.MATCH_PARENT));// 设置布局
 		return loadingDialog;
 

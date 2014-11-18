@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +40,7 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
 import com.interestfriend.view.HackyViewPager;

@@ -7,8 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * drawableLeft与文本一起居中显示
- * 
+  * 
  * 
  */
 public class DrawableCenterTextView extends TextView {
@@ -31,6 +30,7 @@ public class DrawableCenterTextView extends TextView {
 		Drawable[] drawables = getCompoundDrawables();
 		if (drawables != null) {
 			Drawable drawableLeft = drawables[0];
+
 			if (drawableLeft != null) {
 				float textWidth = getPaint().measureText(getText().toString());
 				int drawablePadding = getCompoundDrawablePadding();
@@ -39,6 +39,7 @@ public class DrawableCenterTextView extends TextView {
 				float bodyWidth = textWidth + drawableWidth + drawablePadding;
 				canvas.translate((getWidth() - bodyWidth) / 2, 0);
 			}
+
 		}
 		super.onDraw(canvas);
 	}

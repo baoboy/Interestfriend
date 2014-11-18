@@ -272,7 +272,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		case R.id.back:
 			finishThisActivity();
 			break;
-		case R.id.btn_comment:
+		case R.id.btnComment:
 			String content = edit_comment.getText().toString().trim();
 			if (content.length() == 0) {
 				return;

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:orientation="vertical" >
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/category_item"
@@ -11,7 +11,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/circle_item_bg" >
+        android:background="@drawable/item_bg" >
 
         <com.interestfriend.view.RoundAngleImageView
             android:layout_width="55dip"
@@ -36,7 +36,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/circle_item_bg" >
+        android:background="@drawable/item_bg" >
 
         <com.interestfriend.view.RoundAngleImageView
             android:layout_width="55dip"

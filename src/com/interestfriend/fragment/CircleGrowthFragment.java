@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,10 +20,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.baidu.location.f;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;
@@ -51,6 +50,7 @@ public class CircleGrowthFragment extends Fragment implements
 	private int currentTabIndex = -1;
 
 	private ImageView img_send;
+	private TextView txt_title;
 
 	private SelectPicPopwindow pop;
 
@@ -68,7 +68,11 @@ public class CircleGrowthFragment extends Fragment implements
 	}
 
 	private void initView() {
+		txt_title = (TextView) getView().findViewById(R.id.title_txt);
+		txt_title.setText("³É³¤");
 		img_send = (ImageView) getView().findViewById(R.id.rightImg);
+		img_send.setImageResource(R.drawable.growth_send_tie_main_img);
+		img_send.setVisibility(View.VISIBLE);
 		setListener();
 	}
 
@@ -80,61 +84,71 @@ public class CircleGrowthFragment extends Fragment implements
 		imgFragment = new ImageFragment();
 		videoFragment = new VideoFragment();
 		fragmentList.add(imgFragment);
-		fragmentList.add(videoFragment);
-		RadioGroup rg = (RadioGroup) getActivity().findViewById(R.id.tab_group);
-		rg.setOnCheckedChangeListener(this);
-		showTab(0, rg);
+		// fragmentList.add(videoFragment);
+		// RadioGroup rg = (RadioGroup)
+		// getActivity().findViewById(R.id.tab_group);
+		// rg.setOnCheckedChangeListener(this);
+		// showTab(0, rg);
+		showTab();
+	}
+
+	public void showTab() {
+
+		FragmentTransaction ft = this.getChildFragmentManager()
+				.beginTransaction();
+		ft.add(R.id.realtabcontent, fragmentList.get(0));
+
+		ft.commit();
 
 	}
 
 	@SuppressLint("ResourceAsColor")
-	public void showTab(int tabIndex, RadioGroup group) {
-		if (tabIndex < 0 || tabIndex >= group.getChildCount())
-			return;
-		if (currentTabIndex == tabIndex)
-			return;
-		if (currentTabIndex >= 0) {
-			fragmentList.get(currentTabIndex).onPause();
-		}
-		FragmentTransaction ft = this.getChildFragmentManager()
-				.beginTransaction();
-		for (int i = 0; i < group.getChildCount(); i++) {
-			Fragment fg = fragmentList.get(i);
-			RadioButton tabItem = (RadioButton) group.getChildAt(i);
-			if (i == tabIndex) {
-				if (fg.isAdded()) {
-					fg.onResume();
-				} else {
-					ft.add(R.id.realtabcontent, fg);
-				}
-				tabItem.setTextColor(R.color.blue);
-				ft.show(fg);
-			} else {
-				ft.hide(fg);
-				tabItem.setTextColor(Color.WHITE);
-
-			}
-		}
-		ft.commit();
-		currentTabIndex = tabIndex;
-		if (currentTabIndex == 0) {
-			group.setBackgroundResource(R.drawable.tab_bg1_growth);
-		} else {
-			group.setBackgroundResource(R.drawable.tab_bg_growth);
-		}
-		RadioButton rb = (RadioButton) group.getChildAt(tabIndex);
-		if (!rb.isChecked())
-			rb.setChecked(true);
-	}
-
+	// public void showTab(int tabIndex, RadioGroup group) {
+	// if (tabIndex < 0 || tabIndex >= group.getChildCount())
+	// return;
+	// if (currentTabIndex == tabIndex)
+	// return;
+	// if (currentTabIndex >= 0) {
+	// fragmentList.get(currentTabIndex).onPause();
+	// }
+	// FragmentTransaction ft = this.getChildFragmentManager()
+	// .beginTransaction();
+	// for (int i = 0; i < group.getChildCount(); i++) {
+	// Fragment fg = fragmentList.get(i);
+	// RadioButton tabItem = (RadioButton) group.getChildAt(i);
+	// if (i == tabIndex) {
+	// if (fg.isAdded()) {
+	// fg.onResume();
+	// } else {
+	// ft.add(R.id.realtabcontent, fg);
+	// }
+	// tabItem.setTextColor(R.color.blue);
+	// ft.show(fg);
+	// } else {
+	// ft.hide(fg);
+	// tabItem.setTextColor(Color.WHITE);
+	//
+	// }
+	// }
+	// ft.commit();
+	// currentTabIndex = tabIndex;
+	// if (currentTabIndex == 0) {
+	// group.setBackgroundResource(R.drawable.tab_bg1_growth);
+	// } else {
+	// group.setBackgroundResource(R.drawable.tab_bg_growth);
+	// }
+	// RadioButton rb = (RadioButton) group.getChildAt(tabIndex);
+	// if (!rb.isChecked())
+	// rb.setChecked(true);
+	// }
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		for (int i = 0; i < group.getChildCount(); i++) {
-			if (group.getChildAt(i).getId() == checkedId) {
-				showTab(i, group);
-				break;
-			}
-		}
+		// for (int i = 0; i < group.getChildCount(); i++) {
+		// if (group.getChildAt(i).getId() == checkedId) {
+		// showTab(i, group);
+		// break;
+		// }
+		// }
 	}
 
 	@Override
