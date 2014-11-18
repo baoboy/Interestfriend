@@ -18,6 +18,7 @@
     <color name="transparent">#00000000</color>
     <color name="f6f">#6f6f6f</color>
     <color name="bg_color">#e8eef3</color>
+    <color name="transparent_half">#e0000000</color>
 
     <!-- 环信 -->
 

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
 import com.interestfriend.utils.Constants;
@@ -153,6 +154,15 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			intent = new Intent(this, PraiseAndCommentActivity.class);
 		} else {
 			intent = new Intent(this, ChatActivity.class);
+			try {
+				EMMessage message = conversation.getLastMessage();
+				String user_name = message.getStringAttribute("user_name");
+				String user_avatar = message.getStringAttribute("user_avatar");
+				intent.putExtra("user_name", user_name);
+				intent.putExtra("user_avatar", user_avatar);
+			} catch (EaseMobException e) {
+				e.printStackTrace();
+			}
 		}
 		intent.putExtra("userId", username);
 		startActivity(intent);

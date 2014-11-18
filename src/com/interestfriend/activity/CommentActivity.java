@@ -176,9 +176,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		adapter = new CommentAdapter(this, comments);
 		mListView.setAdapter(adapter);
 		viewLineVisible();
+		praiseAdapter = new PraiseAdapter(this, growth.getPraises());
 		if (growth.getPraises().size() > 0) {
 			parise_layout.setVisibility(View.VISIBLE);
-			praiseAdapter = new PraiseAdapter(this, growth.getPraises());
 			praise_listView.setAdapter(praiseAdapter);
 		} else {
 			parise_layout.setVisibility(View.GONE);
@@ -308,7 +308,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		comment.setPublisher_id(SharedUtils.getIntUid());
 		comment.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
 		comment.setPublisher_name(SharedUtils.getAPPUserName());
-		SendCommentTask task = new SendCommentTask();
+		SendCommentTask task = new SendCommentTask(growth.getPublisher_id());
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
@@ -319,6 +319,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 					ToastUtil.showToast("回复失败", Toast.LENGTH_SHORT);
 					return;
 				}
+				edit_comment.setText("");
 				ToastUtil.showToast("回复成功", Toast.LENGTH_SHORT);
 				comments.add(0, comment);
 				adapter.notifyDataSetChanged();

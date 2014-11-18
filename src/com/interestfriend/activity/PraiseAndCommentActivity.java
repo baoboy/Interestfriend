@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -60,7 +61,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	private ExpandGridView img_grid_view;
 	private ImageView back;
 	private TextView txt_title;
-	private Button btn_comment;
+	private Button btnComment;
 	private EditText edit_comment;
 	private ListView mListView;
 	private ScrollView layout_scroll;
@@ -93,6 +94,11 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private RelativeLayout layout_title;
 
+	private TextView btn_praise;
+	private TextView btn_comment;
+
+	private boolean isTasking = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -119,6 +125,8 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		btn_praise = (TextView) findViewById(R.id.btn_prise);
+		btn_comment = (TextView) findViewById(R.id.btn_comment);
 		layout_scroll = (ScrollView) findViewById(R.id.layout_scroll);
 		layout_title = (RelativeLayout) findViewById(R.id.layout_title);
 		back = (ImageView) findViewById(R.id.back);
@@ -130,7 +138,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		img_grid_view = (ExpandGridView) findViewById(R.id.imgGridview);
-		btn_comment = (Button) findViewById(R.id.btn_comment);
+		btnComment = (Button) findViewById(R.id.btnComment);
 		edit_comment = (EditText) findViewById(R.id.edit_content);
 		mListView = (ListView) findViewById(R.id.listView1);
 		parise_layout = (LinearLayout) findViewById(R.id.layout_praise);
@@ -141,7 +149,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private void setListener() {
 		back.setOnClickListener(this);
-		btn_comment.setOnClickListener(this);
+		btnComment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
 		Utils.getFocus(layout_title);
@@ -224,6 +232,24 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 			parise_layout.setVisibility(View.GONE);
 
 		}
+		if (growth.getComments().size() > 0) {
+			btn_comment.setText("回复(" + growth.getComments().size() + ")");
+		} else {
+			btn_comment.setText("回复");
+		}
+		Drawable drawable = getResources().getDrawable(
+				R.drawable.praise_img_nomal);
+		if (growth.isPraise()) {
+			drawable = getResources().getDrawable(R.drawable.praise_img_focus);
+		}
+		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+				drawable.getMinimumHeight());
+		btn_praise.setCompoundDrawables(drawable, null, null, null);
+		if (growth.getPraise_count() > 0) {
+			btn_praise.setText("赞(" + growth.getPraise_count() + ")");
+		} else {
+			btn_praise.setText("赞");
+		}
 	}
 
 	@Override
@@ -232,7 +258,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		case R.id.back:
 			finishThisActivity();
 			break;
-		case R.id.btn_comment:
+		case R.id.btnComment:
 			String content = edit_comment.getText().toString().trim();
 			if (content.length() == 0) {
 				return;
@@ -258,7 +284,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		comment.setPublisher_id(SharedUtils.getIntUid());
 		comment.setPublisher_avatar(SharedUtils.getAPPUserAvatar());
 		comment.setPublisher_name(SharedUtils.getAPPUserName());
-		SendCommentTask task = new SendCommentTask();
+		SendCommentTask task = new SendCommentTask(growth.getPublisher_id());
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
@@ -269,6 +295,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 					ToastUtil.showToast("回复失败", Toast.LENGTH_SHORT);
 					return;
 				}
+				edit_comment.setText("");
 				ToastUtil.showToast("回复成功", Toast.LENGTH_SHORT);
 				comments.add(0, comment);
 				adapter.notifyDataSetChanged();
