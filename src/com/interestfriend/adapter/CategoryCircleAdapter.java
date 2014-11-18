@@ -43,7 +43,7 @@ public class CategoryCircleAdapter extends BaseAdapter {
 		ViewHolder holder = null;
 		if (contentView == null) {
 			contentView = LayoutInflater.from(mContext).inflate(
-					R.layout.circle_item_delete, null);
+					R.layout.circle_category_item, null);
 			holder = new ViewHolder();
 			holder.img_circle_logo = (RoundAngleImageView) contentView
 					.findViewById(R.id.img_circle_logo);

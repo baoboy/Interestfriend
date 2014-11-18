@@ -72,7 +72,7 @@ public class CircleMemberFragment extends Fragment implements
 
 	private AsyncQueryHandler asyncQuery;
 
-	CircleMemberFragmentRightPopwindow pop;
+	private CircleMemberFragmentRightPopwindow pop;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

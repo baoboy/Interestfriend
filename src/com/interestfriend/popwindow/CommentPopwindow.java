@@ -25,6 +25,7 @@ public class CommentPopwindow implements OnClickListener {
 	private int position;
 	private int publisher_id;
 	private OnCommentOnClick mCallBack;
+	private View line;
 
 	public OnCommentOnClick getmCallBack() {
 		return mCallBack;
@@ -48,6 +49,7 @@ public class CommentPopwindow implements OnClickListener {
 	}
 
 	private void initView() {
+		line = (View) view.findViewById(R.id.line);
 		layout_parent = (LinearLayout) view.findViewById(R.id.parent);
 		layout_parent.setOnClickListener(this);
 		txt_del = (TextView) view.findViewById(R.id.txt_del);
@@ -56,6 +58,7 @@ public class CommentPopwindow implements OnClickListener {
 		txt_reply.setOnClickListener(this);
 		if (publisher_id != SharedUtils.getIntUid()) {
 			txt_del.setVisibility(View.GONE);
+			line.setVisibility(View.GONE);
 		}
 	}
 

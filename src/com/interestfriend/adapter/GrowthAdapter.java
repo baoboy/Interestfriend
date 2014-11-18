@@ -245,7 +245,6 @@ public class GrowthAdapter extends BaseAdapter {
 			public void taskFinish(RetError result) {
 				isTasking = false;
 				if (result == RetError.NONE) {
-					growth.setPraise_count(growth.getPraise_count() - 1);
 					for (Praise pr : growth.getPraises()) {
 						if (pr.getUser_id() == SharedUtils.getIntUid()) {
 							growth.getPraises().remove(pr);
@@ -277,7 +276,6 @@ public class GrowthAdapter extends BaseAdapter {
 					pr.setUser_avatar(SharedUtils.getAPPUserAvatar());
 					pr.setUser_id(SharedUtils.getIntUid());
 					growth.getPraises().add(pr);
-					growth.setPraise_count(growth.getPraise_count() + 1);
 
 				}
 

@@ -43,6 +43,7 @@ public class MyCircleListParser implements IParser {
 			String circle_creator_name = obj.getString("circle_creator_name");
 			String circle_create_time = obj.getString("circle_create_time");
 			String circle_category = obj.getString("circle_category");
+			int circle_member_num = obj.getInt("circle_member_num");
 			MyCircles circle = new MyCircles();
 			circle.setCircle_description(circle_description);
 			circle.setCircle_id(id);
@@ -50,6 +51,7 @@ public class MyCircleListParser implements IParser {
 			circle.setCircle_name(circle_name);
 			circle.setCreator_id(creator_id);
 			circle.setGroup_id(group_id);
+			circle.setCircle_member_num(circle_member_num);
 			circle.setDistance(diatance);
 			circle.setCircle_state(CircleState.convert(circle_state));
 			circle.setCircle_category_name(circle_category);

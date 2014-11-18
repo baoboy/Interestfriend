@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
@@ -96,7 +95,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				MyCirclesProvider.MyCirclesColumns.CREATOR_ID,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_CATEGORY,
 				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATE_TIME,
-				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME }; // 查询的列
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_CREATOR_NAME,
+				MyCirclesProvider.MyCirclesColumns.CIRCLE_MEMBER_NUM }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCirclesProvider.MyCirclesColumns.CONTENT_URI, projection,
 				null, null, null);
@@ -130,6 +130,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					String circle_logo = cursor.getString(3);
 					String group_id = cursor.getString(4);
 					int creator_id = cursor.getInt(5);
+					int circle_membet_num = cursor.getInt(9);
 					MyCircles circles = new MyCircles();
 					circles.setCircle_id(circle_id);
 					circles.setCircle_description(circle_description);
@@ -137,6 +138,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					circles.setCircle_logo(circle_logo);
 					circles.setGroup_id(group_id);
 					circles.setCreator_id(creator_id);
+					circles.setCircle_member_num(circle_membet_num);
 					lists.add(circles);
 					cursor.moveToNext();
 				}

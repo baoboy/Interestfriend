@@ -25,6 +25,7 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthList;
+import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetGrowthFormDBTask;
@@ -32,6 +33,7 @@ import com.interestfriend.task.GetGrowthListTask;
 import com.interestfriend.task.UpLoadGrowthTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.view.PullDownView;
 import com.interestfriend.view.PullDownView.OnPullDownListener;
@@ -199,6 +201,8 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 	public void registerBoradcastReceiver() {
 		IntentFilter myIntentFilter = new IntentFilter();
 		myIntentFilter.addAction(Constants.COMMENT_GROWTH);
+		myIntentFilter.addAction(Constants.COMMENT_PRAISE);
+		myIntentFilter.addAction(Constants.COMMENT_CANCEL_PRAISE);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -223,6 +227,40 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 				commentsListView.add(0, coment);
 				lists.get(position).getComments().add(0, coment);
 				adapter.notifyDataSetChanged();
+			} else if (action.equals(Constants.COMMENT_PRAISE)) {
+				int growth_id = intent.getIntExtra("growth_id", 0);
+
+				for (Growth growth : lists) {
+					if (growth.getGrowth_id() == growth_id) {
+						Praise pr = new Praise();
+						pr.setGrowth_id(growth.getGrowth_id());
+						pr.setUser_avatar(SharedUtils.getAPPUserAvatar());
+						pr.setUser_id(SharedUtils.getIntUid());
+						growth.getPraises().add(pr);
+						growth.setPraise_count(growth.getPraise_count() + 1);
+						growth.setPraise(!growth.isPraise());
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+
+			} else if (action.equals(Constants.COMMENT_CANCEL_PRAISE)) {
+				int growth_id = intent.getIntExtra("growth_id", 0);
+				for (Growth growth : lists) {
+					if (growth.getGrowth_id() == growth_id) {
+						for (Praise pr : growth.getPraises()) {
+							if (pr.getUser_id() == SharedUtils.getIntUid()) {
+								growth.getPraises().remove(pr);
+								break;
+							}
+						}
+						growth.setPraise_count(growth.getPraise_count() - 1);
+						growth.setPraise(!growth.isPraise());
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+
 			}
 		}
 	};
