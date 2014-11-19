@@ -15,7 +15,7 @@ public class WelcomLoadingActivity extends Activity {
 		new Thread() {
 			public void run() {
 				try {
-					sleep(3000);
+					sleep(5000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

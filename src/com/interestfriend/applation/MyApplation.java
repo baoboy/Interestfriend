@@ -110,8 +110,7 @@ public class MyApplation extends Application {
 		// 默认添加好友时，是不需要验证的，改成需要验证
 		options.setAcceptInvitationAlways(false);
 		// 设置收到消息是否有新消息通知，默认为true
-		options.setNotifyBySoundAndVibrate(SharedUtils
-				.getSettingMsgNotification());
+		options.setNotifyBySoundAndVibrate(false);
 		// 设置收到消息是否有声音提示，默认为true
 		options.setNoticeBySound(SharedUtils.getSettingMsgSound());
 		// 设置收到消息是否震动 默认为true

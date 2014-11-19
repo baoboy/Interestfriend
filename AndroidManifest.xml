@@ -56,6 +56,7 @@
         <activity
             android:name="com.interestfriend.activity.CreateCircleActivity"
             android:label="@string/title_activity_create_circle"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 聊天页面 -->

@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +26,8 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
+import com.interestfriend.popwindow.RightMenuPopwindow;
+import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
 import com.interestfriend.task.GetMemberCircleListTask;
 import com.interestfriend.task.KickOutMemberTask;
 import com.interestfriend.utils.Constants;
@@ -48,9 +50,8 @@ public class CircleMemberActivity extends BaseActivity implements
 	private TextView txt_declaration;
 	private TextView txt_description;
 	private ListView circle_listView;
-	private Button btn_chat;
 	private ImageView back;
-	private Button btn_kick_out;
+	private ImageView right_image;
 
 	private CircleMember member;
 
@@ -60,7 +61,11 @@ public class CircleMemberActivity extends BaseActivity implements
 
 	private MemberCirclesAdapter adapter;
 
-	private int position;
+	private RelativeLayout title_layout;
+
+	private RightMenuPopwindow pop;
+
+	private String[] menuStr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +73,16 @@ public class CircleMemberActivity extends BaseActivity implements
 		setContentView(R.layout.activity_circle_member);
 		member = (CircleMember) getIntent().getSerializableExtra(
 				"circle_member");
-		position = getIntent().getIntExtra("position", 0);
 		circleList = new CirclesList();
 		initView();
 		getCircleList();
 	}
 
 	private void initView() {
+		title_layout = (RelativeLayout) findViewById(R.id.title);
+		right_image = (ImageView) findViewById(R.id.rightImg);
+		right_image.setVisibility(View.VISIBLE);
+		right_image.setImageResource(R.drawable.right_menu_selector);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		txt_birthday = (TextView) findViewById(R.id.txt_birthday);
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
@@ -83,7 +91,6 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		txt_declaration = (TextView) findViewById(R.id.txt_declaration);
 		txt_description = (TextView) findViewById(R.id.txt_description);
-		btn_chat = (Button) findViewById(R.id.btn_chat);
 		circle_listView = (ListView) findViewById(R.id.circle_listView);
 		back = (ImageView) findViewById(R.id.back);
 		Utils.getFocus(txt_title);
@@ -108,39 +115,56 @@ public class CircleMemberActivity extends BaseActivity implements
 		circlr.findCircleCreatorByID(DBUtils.getDBsa(1));
 		int creator = circlr.getCreator_id();
 		if (creator == SharedUtils.getIntUid()) {
-			btn_kick_out = (Button) findViewById(R.id.btn_kick_out);
-			btn_kick_out.setOnClickListener(this);
-			btn_kick_out.setVisibility(View.VISIBLE);
+
+			menuStr = new String[] { "Ë½ÁÄ", "Ìß³öÈ¦×Ó" };
+		} else {
+			menuStr = new String[] { "Ë½ÁÄ" };
 
 		}
 	}
 
 	private void setListener() {
-		btn_chat.setOnClickListener(this);
 		txt_user_name.setOnClickListener(this);
 		circle_listView.setOnItemClickListener(this);
 		back.setOnClickListener(this);
+		right_image.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_chat:
-			Intent intent = new Intent();
-			intent.putExtra("userId", member.getUser_chat_id());
-			intent.putExtra("user_name", member.getUser_name());
-			intent.putExtra("user_avatar", member.getUser_avatar());
-			intent.setClass(this, ChatActivity.class);
-			startActivity(intent);
-			Utils.leftOutRightIn(this);
-			break;
+
 		case R.id.back:
 			finishThisActivity();
 			break;
-		case R.id.btn_kick_out:
-			kickOutDialog();
-			break;
 
+		case R.id.rightImg:
+
+			pop = new RightMenuPopwindow(this, title_layout, menuStr);
+			pop.setOnlistOnclick(new OnlistOnclick() {
+				@Override
+				public void onclick(int position) {
+					switch (position) {
+					case 0:
+						Intent intent = new Intent();
+						intent.putExtra("userId", member.getUser_chat_id());
+						intent.putExtra("user_name", member.getUser_name());
+						intent.putExtra("user_avatar", member.getUser_avatar());
+						intent.setClass(CircleMemberActivity.this,
+								ChatActivity.class);
+						startActivity(intent);
+						Utils.leftOutRightIn(CircleMemberActivity.this);
+						break;
+					case 1:
+						kickOutDialog();
+						break;
+					default:
+						break;
+					}
+				}
+			});
+			pop.show();
+			break;
 		default:
 			break;
 		}

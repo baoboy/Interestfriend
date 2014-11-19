@@ -13,7 +13,6 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottom_line"
         android:layout_below="@+id/title"
         android:scrollbars="none" >
 
@@ -165,34 +164,5 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-
-    <View
-        android:id="@+id/bottom_line"
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
-        android:layout_above="@+id/layout_bottom"
-        android:background="#d5d5d5" />
-
-    <LinearLayout
-        android:id="@+id/layout_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:paddingBottom="6dip"
-        android:paddingTop="6dip" >
-
-        <Button
-            android:id="@+id/btn_join"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp98"
-            android:layout_marginLeft="20dip"
-            android:layout_marginRight="20dip"
-            android:background="@drawable/btn_14c1c7"
-            android:text="加入圈子"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-    </LinearLayout>
 
 </RelativeLayout>

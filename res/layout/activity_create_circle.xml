@@ -89,6 +89,8 @@
                 android:id="@+id/layout_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dip"
+                android:paddingBottom="10dip"
                 android:layout_below="@+id/txt_circle_category"
                 android:layout_marginTop="20dip"
                 android:background="@drawable/input_new"
