@@ -128,6 +128,8 @@ public class CircleMemberActivity extends BaseActivity implements
 		case R.id.btn_chat:
 			Intent intent = new Intent();
 			intent.putExtra("userId", member.getUser_chat_id());
+			intent.putExtra("user_name", member.getUser_name());
+			intent.putExtra("user_avatar", member.getUser_avatar());
 			intent.setClass(this, ChatActivity.class);
 			startActivity(intent);
 			Utils.leftOutRightIn(this);

@@ -45,6 +45,9 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.exceptions.EMServiceNotReadyException;
 import com.interestfriend.R;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.view.RoundAngleImageView;
 
 /**
  * 语音通话页面
@@ -81,12 +84,13 @@ public class VoiceCallActivity extends BaseActivity implements OnClickListener {
 	String msgid;
 	private boolean isAnswered;
 	private LinearLayout voiceContronlLayout;
+	private RoundAngleImageView user_avatar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_voice_call);
-
+		user_avatar = (RoundAngleImageView) findViewById(R.id.user_avatar);
 		comingBtnContainer = (LinearLayout) findViewById(R.id.ll_coming_call);
 		refuseBtn = (Button) findViewById(R.id.btn_refuse_call);
 		answerBtn = (Button) findViewById(R.id.btn_answer_call);
@@ -98,7 +102,11 @@ public class VoiceCallActivity extends BaseActivity implements OnClickListener {
 		durationTextView = (TextView) findViewById(R.id.tv_calling_duration);
 		chronometer = (Chronometer) findViewById(R.id.chronometer);
 		voiceContronlLayout = (LinearLayout) findViewById(R.id.ll_voice_control);
-
+		nickTextView.setText(getIntent().getStringExtra("user_name"));
+		UniversalImageLoadTool.disPlay(getIntent()
+				.getStringExtra("user_avatar"), user_avatar,
+				R.drawable.picture_default_head);
+		;
 		refuseBtn.setOnClickListener(this);
 		answerBtn.setOnClickListener(this);
 		hangupBtn.setOnClickListener(this);
@@ -479,9 +487,15 @@ public class VoiceCallActivity extends BaseActivity implements OnClickListener {
 		if (!isInComingCall) { // 打出去的通话
 			message = EMMessage.createSendMessage(EMMessage.Type.TXT);
 			message.setReceipt(username);
+			message.setAttribute("user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		} else {
 			message = EMMessage.createReceiveMessage(EMMessage.Type.TXT);
 			message.setFrom(username);
+			message.setAttribute("user_name",
+					getIntent().getStringExtra("user_name"));
+			message.setAttribute("user_avatar",
+					getIntent().getStringExtra("user_avatar"));
 		}
 
 		switch (callingState) {

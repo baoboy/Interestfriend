@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.baidu.location.f;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;
@@ -169,9 +168,10 @@ public class CircleGrowthFragment extends Fragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rightImg:
-			pop = new SelectPicPopwindow(getActivity(), v, "发布图片", "发布视频");
-			pop.setmSelectOnclick(this);
-			pop.show();
+			// pop = new SelectPicPopwindow(getActivity(), v, "发布图片", "发布视频");
+			// pop.setmSelectOnclick(this);
+			// pop.show();
+			menu1_select();
 			break;
 
 		default:

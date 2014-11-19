@@ -158,13 +158,13 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 
 	@Override
 	public void menu1_select() {
-		PhotoUtils.selectPhoto(mActivity);
+		mTakePicturePath = PhotoUtils.takePicture(mActivity);
 
 	}
 
 	@Override
 	public void menu2_select() {
-		mTakePicturePath = PhotoUtils.takePicture(mActivity);
+		PhotoUtils.selectPhoto(mActivity);
 
 	}
 

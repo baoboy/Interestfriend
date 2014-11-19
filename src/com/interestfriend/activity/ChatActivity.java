@@ -180,9 +180,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private boolean haveMoreData = true;
 	private Button btnMore;
 
-	private String userName = "";
 	private TextView txt_title;
 	private ImageView back;
+	private String user_name = "";
+	private String user_avatar = "";
 
 	private GridView mGridView;
 	private Handler micImageHandler = new Handler() {
@@ -199,10 +200,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
 		toChatUsername = getIntent().getStringExtra("userId");
-		CircleMember mbmer = new CircleMember();
-		mbmer.setUser_chat_id(toChatUsername);
-		mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
-		userName = mbmer.getUser_name();
+		user_avatar = getIntent().getStringExtra("user_avatar");
+		user_name = getIntent().getStringExtra("user_name");
+
 		initView();
 		setUpView();
 	}
@@ -322,7 +322,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "demo");
 		// 判断单聊还是群聊
 		chatType = getIntent().getIntExtra("chatType", CHATTYPE_SINGLE);
-		txt_title.setText(userName);
+		txt_title.setText(user_name);
 		conversation = EMChatManager.getInstance().getConversation(
 				toChatUsername);
 		// 把此会话的未读数置为0
@@ -1549,8 +1549,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				return;
 			}
 			startActivity(new Intent(ChatActivity.this, VoiceCallActivity.class)
-					.putExtra("username", toChatUsername).putExtra(
-							"isComingCall", false));
+					.putExtra("username", toChatUsername)
+					.putExtra("isComingCall", false)
+					.putExtra("user_name", user_name)
+					.putExtra("user_avatar", user_avatar));
 			break;
 		default:
 			break;

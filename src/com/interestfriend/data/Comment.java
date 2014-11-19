@@ -5,6 +5,7 @@ import java.util.HashMap;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -14,6 +15,7 @@ import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class Comment extends AbstractData {
 	private final String COMMENT_API = "CommentServlet";
@@ -107,13 +109,16 @@ public class Comment extends AbstractData {
 		return "comment_content:" + this.comment_content;
 	}
 
-	public RetError sendComment() {
+	public RetError sendComment(int growth_publisher_id) {
 		IParser parser = new StringParser("comment_id");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("comment_content", comment_content);
 		params.put("growth_id", growth_id);
 		params.put("reply_someone_name", reply_someone_name);
 		params.put("reply_someone_id", reply_someone_id);
+		params.put("growth_publisher_id", growth_publisher_id);
+		params.put("user_name", SharedUtils.getAPPUserName());
+		params.put("circle_id", MyApplation.getCircle_id());
 		Result ret = ApiRequest.request(COMMENT_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
