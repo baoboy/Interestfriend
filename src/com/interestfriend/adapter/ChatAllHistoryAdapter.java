@@ -13,10 +13,8 @@
  */
 package com.interestfriend.adapter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import android.content.Context;
 import android.view.LayoutInflater;

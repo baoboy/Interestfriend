@@ -183,6 +183,10 @@ public class CircleMemberActivity extends BaseActivity implements
 				intent.putExtra("user_id", member.getUser_id());
 				intent.setAction(Constants.KICK_OUT_MEMBER);
 				sendBroadcast(intent);
+
+				intent = new Intent(Constants.REFUSE_JOIN_CIRCLE_REQUEST);
+				intent.putExtra("circle_id", member.getCircle_id());
+				sendBroadcast(intent);
 				finishThisActivity();
 			}
 		});

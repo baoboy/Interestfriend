@@ -26,6 +26,7 @@
             android:layout_marginLeft="5dip"
             android:singleLine="true"
             android:text="分类查找"
+            android:textColor="@color/txt_color"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -51,6 +52,7 @@
             android:layout_marginLeft="5dip"
             android:singleLine="true"
             android:text="附近圈子"
+            android:textColor="@color/txt_color"
             android:textSize="16sp" />
     </LinearLayout>
 

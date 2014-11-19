@@ -41,6 +41,8 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private TextView txt_circle_category;
 	private LinearLayout layout_bottom;
 	private View line_bottom;
+	private RelativeLayout layout_desc;
+	private ImageView img_desc_arrow;
 
 	private String imgLogo = "";
 	private String description = "";
@@ -68,6 +70,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void initView() {
+		img_desc_arrow = (ImageView) findViewById(R.id.img_arrow_desc);
 		img_logo = (ImageView) findViewById(R.id.img_logo);
 		txt_description = (TextView) findViewById(R.id.circle_description);
 		btn_join = (Button) findViewById(R.id.btn_join);
@@ -84,12 +87,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			line_bottom.setVisibility(View.GONE);
 		}
 		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
-			Drawable drawable = getResources().getDrawable(
-					R.drawable.icon_friend_right_arrow);
-			drawable.setBounds(0, 0, drawable.getMinimumWidth(),
-					drawable.getMinimumHeight());
-			txt_description.setCompoundDrawables(null, null, drawable, null);
-			txt_description.setOnClickListener(this);
+			layout_desc = (RelativeLayout) findViewById(R.id.layout_circle_desc);
+			layout_desc.setBackgroundResource(R.drawable.left_menu);
+			img_desc_arrow.setVisibility(View.VISIBLE);
+			layout_desc.setOnClickListener(this);
+
 		}
 		setListener();
 
@@ -176,7 +178,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		case R.id.layout_circle_creator:
 			intentMemberInfoActivity();
 			break;
-		case R.id.circle_description:
+		case R.id.layout_circle_desc:
 			Intent intent = new Intent();
 			intent.putExtra("circle", circle);
 			intent.setClass(this, UpdateCircleDiscriptionActivity.class);

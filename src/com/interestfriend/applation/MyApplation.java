@@ -233,10 +233,10 @@ public class MyApplation extends Application {
 		@Override
 		public void onDisConnected(String errorString) {
 			if (errorString != null && errorString.contains("conflict")) {
-				// Intent intent = new Intent(instance, MainActivity.class);
-				// intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				// intent.putExtra("conflict", true);
-				// startActivity(intent);
+				Intent intent = new Intent(instance, HomeActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.putExtra("conflict", true);
+				startActivity(intent);
 			}
 
 		}

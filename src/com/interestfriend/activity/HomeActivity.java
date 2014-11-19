@@ -31,19 +31,26 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.easemob.chat.ConnectionListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.db.DBUtils;
+import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
+import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
 import com.interestfriend.view.HackyViewPager;
+
+import fynn.app.PromptDialog;
 
 public class HomeActivity extends FragmentActivity implements
 		OnPageChangeListener, OnClickListener, DrawerListener {
@@ -74,6 +81,9 @@ public class HomeActivity extends FragmentActivity implements
 		initFragment();
 		initView();
 		registerReceive();
+		EMChatManager.getInstance().addConnectionListener(
+				new MyConnectionListener());
+
 	}
 
 	@Override
@@ -329,5 +339,78 @@ public class HomeActivity extends FragmentActivity implements
 	@Override
 	public void onDrawerStateChanged(int arg0) {
 
+	}
+
+	/**
+	 * 连接监听listener
+	 * 
+	 */
+	private class MyConnectionListener implements ConnectionListener {
+
+		@Override
+		public void onConnected() {
+		}
+
+		@Override
+		public void onDisConnected(String errorString) {
+			if (errorString != null && errorString.contains("conflict")) {
+				// 显示帐号在其他设备登陆dialog
+				showConflictDialog();
+			}
+		}
+
+		@Override
+		public void onReConnected() {
+		}
+
+		@Override
+		public void onReConnecting() {
+		}
+
+		@Override
+		public void onConnecting(String progress) {
+		}
+
+	}
+
+	private boolean isConflictDialogShow;
+
+	/**
+	 * 显示帐号在别处登录dialog
+	 */
+	private void showConflictDialog() {
+		isConflictDialogShow = true;
+		MyApplation.logoutHuanXin();
+
+		if (!HomeActivity.this.isFinishing()) {
+			PromptDialog.Builder dialog = new PromptDialog.Builder(this);
+			dialog.setTitle("下线通知");
+			dialog.setViewStyle(PromptDialog.VIEW_STYLE_TITLEBAR);
+			dialog.setMessage("您的账号已在其他设备登录");
+			dialog.setButton1("确定", new PromptDialog.OnClickListener() {
+
+				@Override
+				public void onClick(Dialog dialog, int which) {
+					dialog.dismiss();
+					MyApplation.exit(false);
+					SharedUtils.setUid(0 + "");
+					DataBaseHelper.setIinstanceNull();
+					DBUtils.dbase = null;
+					DBUtils.close();
+					startActivity(new Intent(HomeActivity.this,
+							LoginActivity.class));
+				}
+			}).show();
+
+		}
+
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		if (getIntent().getBooleanExtra("conflict", false)
+				&& !isConflictDialogShow)
+			showConflictDialog();
 	}
 }

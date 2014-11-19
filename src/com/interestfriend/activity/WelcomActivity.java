@@ -21,7 +21,7 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.activity_welcom);
 		MyApplation.addActivity(this);
 		if (SharedUtils.getIntUid() > 0) {
-			startActivity(new Intent(this, HomeActivity.class));
+			startActivity(new Intent(this, WelcomLoadingActivity.class));
 			finish();
 		}
 		initView();

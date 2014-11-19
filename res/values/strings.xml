@@ -108,5 +108,6 @@
     <string name="title_activity_dissolve_circle">DissolveCircleActivity</string>
     <string name="title_activity_update_circle_discription">UpdateCircleDiscriptionActivity</string>
     <string name="title_activity_praise_and_comment">PraiseAndCommentActivity</string>
+    <string name="title_activity_welcom_loading">WelcomLoadingActivity</string>
 
 </resources>

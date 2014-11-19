@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.interestfriend.R;
+import com.interestfriend.activity.CommentActivity;
 import com.interestfriend.data.Praise;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
 
@@ -52,6 +54,8 @@ public class PraiseAdapter extends BaseAdapter {
 		}
 		UniversalImageLoadTool.disPlay(praises.get(position).getUser_avatar(),
 				holder.user_avatar, R.drawable.picture_default_head);
+		holder.user_avatar.setOnClickListener(new OnAvatarClick(praises.get(
+				position).getUser_id(), mContext));
 		return convertView;
 	}
 

@@ -18,6 +18,9 @@ public class Constants {
 	public static final String JOIN_CIRCLE = "com.interestfriend.join_circle";
 	public static final String RECEIVE_JOIN_CIRCLE = "com.interestfriend.receive_join_circle";
 	public static final String DISSOLVE_CIRCLE = "com.interestfriend.dissolve_circle";
+	public static final String RECEIVE_JOIN_CIRCLE_REQUEST = "com.interestfriend.receive_join_circle_request";
+	public static final String REFUSE_JOIN_CIRCLE_REQUEST = "com.interestfriend.refuse_join_circle_request";
+	public static final String UPDATE_CIRCLE_MEMBER_NUM = "com.interestfriend.update_circle_member_num";
 
 	public static final String UPDATE_USER_INFO = "com.interestfriend.update.uer_info";
 	public static final String UPDATE_USER_AVATAR = "com.interestfriend.update.uer_avatar";

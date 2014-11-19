@@ -30,6 +30,7 @@
             android:layout_toRightOf="@+id/img_circle_logo"
             android:singleLine="true"
             android:text="TextView"
+            android:textColor="@color/txt_color"
             android:textSize="16sp" />
 
         <TextView
@@ -43,7 +44,7 @@
             android:layout_toRightOf="@+id/img_circle_logo"
             android:singleLine="true"
             android:text="TextView"
-            android:textColor="#666666"
+            android:textColor="@color/txt_desc_color"
             android:textSize="14sp" />
 
         <TextView

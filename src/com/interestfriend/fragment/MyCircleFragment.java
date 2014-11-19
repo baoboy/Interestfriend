@@ -29,9 +29,11 @@ import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
+import com.interestfriend.data.AbstractData.Status;
 import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
@@ -163,6 +165,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		myIntentFilter.addAction(Constants.RECEIVE_JOIN_CIRCLE);
 		myIntentFilter.addAction(Constants.QUIT_CIRCLE);
 		myIntentFilter.addAction(Constants.DISSOLVE_CIRCLE);
+		myIntentFilter.addAction(Constants.UPDATE_CIRCLE_MEMBER_NUM);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -204,6 +207,29 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				for (MyCircles c : lists) {
 					if (c.getCircle_id() == circle_id) {
 						lists.remove(c);
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+			} else if (action.equals(Constants.UPDATE_CIRCLE_MEMBER_NUM)) {
+				int circle_id = intent.getIntExtra("circle_id", 0);
+				int num = intent.getIntExtra("num", 0);
+				for (MyCircles c : lists) {
+					if (c.getCircle_id() == circle_id) {
+						c.setCircle_member_num(num);
+						c.setStatus(Status.UPDATE);
+						c.write(DBUtils.getDBsa(2));
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+			} else if (action.equals(Constants.REFUSE_JOIN_CIRCLE_REQUEST)) {
+				int circle_id = intent.getIntExtra("circle_id", 0);
+				for (MyCircles c : lists) {
+					if (c.getCircle_id() == circle_id) {
+						c.setCircle_member_num(c.getCircle_member_num() - 1);
+						c.setStatus(Status.UPDATE);
+						c.write(DBUtils.getDBsa(2));
 						adapter.notifyDataSetChanged();
 						break;
 					}

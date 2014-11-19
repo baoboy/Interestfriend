@@ -47,6 +47,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="个人信息"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View
@@ -64,6 +65,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="私信"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View
@@ -81,6 +83,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="设置"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View

@@ -1,5 +1,6 @@
 package com.interestfriend.data;
 
+import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.db.Const;
 
 import android.content.ContentValues;
@@ -29,6 +30,14 @@ public class MyCircles extends Circles {
 		cv.put("circle_creator_name", getCircle_creator_name());
 		cv.put("circle_create_time", getCircle_create_time());
 		cv.put("circle_category", getCircle_category_name());
+		cv.put("circle_member_num", getCircle_member_num());
+		if (status == Status.UPDATE) {
+			String conditionsKey = "circle_id=? ";
+			String[] conditionsValue = { getCircle_id() + "", };
+			db.update(dbName, cv, conditionsKey, conditionsValue);
+			return;
+
+		}
 		db.insert(dbName, null, cv);
 	}
 

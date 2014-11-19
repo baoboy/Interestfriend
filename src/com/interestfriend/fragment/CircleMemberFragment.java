@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,7 @@ public class CircleMemberFragment extends Fragment implements
 	private ListView circle_member_listView;
 	private TextView txt_title;
 	private ImageView right_image;
+	private RelativeLayout title_layout;
 
 	private AsyncQueryHandler asyncQuery;
 
@@ -92,6 +94,8 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void initView() {
+		title_layout = (RelativeLayout) getView().findViewById(
+				R.id.title_layout);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		circle_member_listView = (ListView) getView().findViewById(
 				R.id.circle_member_listview);
@@ -215,10 +219,19 @@ public class CircleMemberFragment extends Fragment implements
 					ToastUtil.showToast("ªÒ»° ß∞‹", Toast.LENGTH_LONG);
 					return;
 				}
+				int size = cirlceMemberLists.size();
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
 				list.sort(cirlceMemberLists);
 				list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
+				int newSize = cirlceMemberLists.size();
+				if (newSize != size) {
+					Intent intent = new Intent(
+							Constants.UPDATE_CIRCLE_MEMBER_NUM);
+					intent.putExtra("circle_id", circle_id);
+					intent.putExtra("num", newSize);
+					getActivity().sendBroadcast(intent);
+				}
 			}
 		});
 		task.executeParallel(list);
@@ -297,7 +310,8 @@ public class CircleMemberFragment extends Fragment implements
 			Circles circle = new Circles();
 			circle.setCircle_id(circle_id);
 			circle.findCircleCreatorByID(DBUtils.getDBsa(1));
-			pop = new CircleMemberFragmentRightPopwindow(getActivity(), v,
+			pop = new CircleMemberFragmentRightPopwindow(getActivity(),
+					title_layout,
 					circle.getCreator_id() == SharedUtils.getIntUid());
 			pop.setmCallBack(this);
 			pop.show();

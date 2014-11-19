@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_line"
-        android:layout_below="@+id/title" >
+        android:layout_below="@+id/title"
+        android:scrollbars="none" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="圈子创建时间" />
+                    android:text="圈子创建时间"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_circle_create_time"
@@ -53,7 +55,7 @@
                     android:layout_alignParentRight="true"
                     android:drawablePadding="8dip"
                     android:text="TextView"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -65,6 +67,7 @@
                 android:id="@+id/layout_circle_creator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/left_menu"
                 android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
@@ -73,7 +76,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="圈子创建者" />
+                    android:text="圈子创建者"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_circle_creator"
@@ -83,7 +87,7 @@
                     android:drawablePadding="8dip"
                     android:drawableRight="@drawable/icon_friend_right_arrow"
                     android:text="TextView"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -102,7 +106,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="圈子类别" />
+                    android:text="圈子类别"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_circle_category"
@@ -111,7 +116,7 @@
                     android:layout_alignParentRight="true"
                     android:drawablePadding="8dip"
                     android:text="TextView"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -119,27 +124,45 @@
                 android:layout_height="0.2dip"
                 android:background="@color/bg_line" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dip"
-                android:paddingRight="10dip"
-                android:paddingTop="8dip"
-                android:text="圈子介绍"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/circle_description"
+            <RelativeLayout
+                android:id="@+id/layout_circle_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="8dip"
-                android:paddingBottom="5dip"
+                android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
-                android:paddingTop="8dip"
-                android:textColor="#adadad"
-                android:textSize="14sp" />
+                android:paddingTop="13dip" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="圈子介绍"
+                    android:textColor="@color/txt_color"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/circle_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView2"
+                    android:drawablePadding="8dip"
+                    android:paddingBottom="5dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="8dip"
+                    android:textColor="@color/txt_desc_color"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/img_arrow_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dip"
+                    android:src="@drawable/icon_friend_right_arrow"
+                    android:visibility="gone" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

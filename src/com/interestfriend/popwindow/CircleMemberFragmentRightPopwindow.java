@@ -1,7 +1,9 @@
 package com.interestfriend.popwindow;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +13,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.interestfriend.R;
+import com.interestfriend.utils.Utils;
+import com.interestfriend.utils.WigdtContorl;
 
 public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	private PopupWindow popupWindow;
@@ -84,10 +88,12 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	/**
 	 * popwindow的显示
 	 */
+	@SuppressLint("NewApi")
 	public void show() {
-		// popupWindow.showAtLocation(v, Gravity.CENTER
-		// | Gravity.CENTER_HORIZONTAL, 0, 0);
-		popupWindow.showAsDropDown(v, 0, 17);
+		int[] location = new int[2];
+		v.getLocationOnScreen(location);
+		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY,
+				location[0] + v.getWidth(), location[1] + v.getHeight());
 		// 使其聚集
 		popupWindow.setFocusable(true);
 		// 设置允许在外点击消失

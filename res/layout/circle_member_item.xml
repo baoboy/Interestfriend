@@ -41,6 +41,7 @@
             android:layout_toRightOf="@+id/img_avatar"
             android:singleLine="true"
             android:text="TextView"
+            android:textColor="@color/txt_color"
             android:textSize="16sp" />
 
         <TextView
@@ -54,7 +55,7 @@
             android:paddingRight="10dip"
             android:singleLine="true"
             android:text="TextView"
-            android:textColor="#666666"
+            android:textColor="@color/txt_desc_color"
             android:textSize="14sp" />
     </RelativeLayout>
 

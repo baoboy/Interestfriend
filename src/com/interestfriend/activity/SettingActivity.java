@@ -1,6 +1,5 @@
 package com.interestfriend.activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.db.DBUtils;
+import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
@@ -74,6 +75,9 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		MyApplation.logoutHuanXin();
 		MyApplation.exit(false);
 		SharedUtils.setUid(0 + "");
+		DataBaseHelper.setIinstanceNull();
+		DBUtils.dbase = null;
+		DBUtils.close();
 		startActivity(new Intent(this, LoginActivity.class));
 	}
 

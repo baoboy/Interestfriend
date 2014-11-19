@@ -1,6 +1,7 @@
 package com.interestfriend.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -106,6 +107,11 @@ public class JoinCircleActivity extends BaseActivity {
 				conversation.removeMessage(lastMessage.getMsgId());
 				conversation.resetUnsetMsgCount();
 				ToastUtil.showToast("²Ù×÷³É¹¦", Toast.LENGTH_SHORT);
+				// Intent intent = new Intent(
+				// Constants.RECEIVE_JOIN_CIRCLE_REQUEST);
+				// intent.putExtra("circle_id",
+				// Integer.valueOf(join_circle_id));
+				// sendBroadcast(intent);
 				finishThisActivity();
 			}
 		});

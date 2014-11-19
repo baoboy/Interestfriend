@@ -164,7 +164,7 @@
         <activity
             android:name="com.interestfriend.activity.HomeActivity"
             android:label="@string/title_activity_welcom"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name="com.interestfriend.register.RegisterActivity" >
@@ -255,6 +255,10 @@
         <activity
             android:name="com.interestfriend.activity.PraiseAndCommentActivity"
             android:label="@string/title_activity_praise_and_comment" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.WelcomLoadingActivity"
+            android:label="@string/title_activity_welcom_loading" >
         </activity>
     </application>
 

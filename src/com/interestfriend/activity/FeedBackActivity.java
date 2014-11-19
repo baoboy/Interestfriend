@@ -668,6 +668,8 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
 			message.setReceipt(toChatUsername);
+			message.setAttribute("user_name", "趣友");
+			message.setAttribute("user_avatar", "");
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法

@@ -7,7 +7,6 @@ import android.view.View.OnClickListener;
 
 import com.interestfriend.activity.CircleMemberActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
-import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.utils.SharedUtils;

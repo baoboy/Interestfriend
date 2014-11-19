@@ -44,7 +44,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="注册时间" />
+                    android:text="注册时间"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_register_time"
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="TextView"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -64,6 +65,7 @@
                 android:id="@+id/layout_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/left_menu"
                 android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
@@ -72,7 +74,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称" />
+                    android:text="昵称"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_user_name"
@@ -82,7 +85,7 @@
                     android:drawablePadding="8dip"
                     android:drawableRight="@drawable/icon_friend_right_arrow"
                     android:text="TextView"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -101,7 +104,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="性别" />
+                    android:text="性别"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_gender"
@@ -109,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="男"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -128,7 +132,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="生日" />
+                    android:text="生日"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_birthday"
@@ -136,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="1990-05-14"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -148,6 +153,7 @@
                 android:id="@+id/layout_declaration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/left_menu"
                 android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
@@ -157,7 +163,8 @@
                     android:id="@+id/decl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="交友宣言" />
+                    android:text="交友宣言"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_declaration"
@@ -167,7 +174,7 @@
                     android:layout_marginTop="3dip"
                     android:lineSpacingExtra="4dip"
                     android:paddingRight="8dip"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -187,6 +194,7 @@
                 android:id="@+id/layout_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/left_menu"
                 android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
@@ -196,7 +204,8 @@
                     android:id="@+id/decr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="个人介绍" />
+                    android:text="个人介绍"
+                    android:textColor="@color/txt_color" />
 
                 <TextView
                     android:id="@+id/txt_description"
@@ -206,7 +215,7 @@
                     android:layout_marginTop="3dip"
                     android:lineSpacingExtra="4dip"
                     android:paddingRight="8dip"
-                    android:textColor="#adadad" />
+                    android:textColor="@color/txt_desc_color" />
 
                 <ImageView
                     android:id="@+id/imageView1"
