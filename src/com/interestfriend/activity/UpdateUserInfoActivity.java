@@ -97,8 +97,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

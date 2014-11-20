@@ -1,6 +1,10 @@
 package com.interestfriend.findpassword;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -9,10 +13,10 @@ import com.interestfriend.activity.BaseActivity;
 import com.interestfriend.findpassword.FindPasswordStep.onNextListener;
 
 public class FindPasswordActivity extends BaseActivity implements
-		onNextListener {
+		onNextListener, OnClickListener {
 	private TextView txt_title;
 	private TextView txt_page;
-
+	private ImageView back;
 	private ViewFlipper mVfFlipper;
 
 	private int mCurrentStepIndex = 1;
@@ -32,6 +36,7 @@ public class FindPasswordActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
 		mVfFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 		mVfFlipper.setDisplayedChild(0);
 		txt_title = (TextView) findViewById(R.id.txt_title);
@@ -76,8 +81,16 @@ public class FindPasswordActivity extends BaseActivity implements
 		mVfFlipper.showNext();
 	}
 
+	private void pre() {
+		mCurrentStepIndex--;
+		step = initStep();
+		step.setmOnNextListener(this);
+		mVfFlipper.showPrevious();
+	}
+
 	private void setLitener() {
 		step.setmOnNextListener(this);
+		back.setOnClickListener(this);
 	}
 
 	public String getCell_phone() {
@@ -88,4 +101,31 @@ public class FindPasswordActivity extends BaseActivity implements
 		this.cell_phone = cell_phone;
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			back();
+		}
+		return false;
+	}
+
+	private void back() {
+		if (mCurrentStepIndex == 1) {
+			finishThisActivity();
+		} else {
+			pre();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			back();
+			break;
+
+		default:
+			break;
+		}
+	}
 }

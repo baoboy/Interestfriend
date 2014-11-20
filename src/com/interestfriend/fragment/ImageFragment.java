@@ -133,8 +133,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("获取失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 
 				lists.clear();
@@ -167,8 +166,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 			@Override
 			public void taskFinish(RetError result) {
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("发布失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				ToastUtil.showToast("发布成功", Toast.LENGTH_SHORT);
 				adapter.notifyDataSetChanged();

@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.sf.json.JSONObject;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -35,6 +33,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.utils.Logger.Level;
@@ -50,7 +49,7 @@ public class HttpUrlHelper {
 	// 192.168.20.104家
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://10.6.7.158:8080/InterestFriend/servlet/"; // 服务器地址
+	public static final String DEFAULT_HOST = "http://192.168.20.104:8080/InterestFriend/servlet/"; // 服务器地址
 
 	/**
 	 * get 提交方式 // *
@@ -93,7 +92,7 @@ public class HttpUrlHelper {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("rt", 0);
 		params.put("err", error.name());
-		JSONObject jsonObjectFromMap = JSONObject.fromObject(params);
+		JSONObject jsonObjectFromMap = new JSONObject(params);
 		return jsonObjectFromMap.toString();
 
 	}
@@ -135,8 +134,10 @@ public class HttpUrlHelper {
 			}
 		} catch (Exception e) {
 			Logger.out("HttpUrlHelper.postUrlData", e, Level.WARN);
+			return httpError(RetError.NETWORK_ERROR);
+
 		}
-		return "";
+		return httpError(RetError.INVALID);
 	}
 
 	/**
@@ -251,6 +252,8 @@ public class HttpUrlHelper {
 			}
 		} catch (Exception e) {
 			Logger.out("HttpUrlHelper.upLoadPic", e, Level.WARN);
+			return httpError(RetError.NETWORK_ERROR);
+
 		} finally {
 			if (mpEntity != null) {
 				try {
@@ -262,7 +265,7 @@ public class HttpUrlHelper {
 			client.getConnectionManager().shutdown();
 		}
 
-		return null;
+		return httpError(RetError.INVALID);
 	}
 
 	/**
@@ -305,6 +308,8 @@ public class HttpUrlHelper {
 			}
 		} catch (Exception e) {
 			Logger.out("HttpUrlHelper.upLoadPic", e, Level.WARN);
+			return httpError(RetError.NETWORK_ERROR);
+
 		} finally {
 			if (mpEntity != null) {
 				try {
@@ -316,7 +321,7 @@ public class HttpUrlHelper {
 			client.getConnectionManager().shutdown();
 		}
 
-		return "";
+		return httpError(RetError.INVALID);
 	}
 
 	public static String uploadArray(String urls, Map<String, Object> map,

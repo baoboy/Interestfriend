@@ -86,8 +86,7 @@ public class NearCirclesActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("ªÒ»° ß∞‹", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				listCircles.addAll(list.getListCircles());
 				adapter.notifyDataSetChanged();

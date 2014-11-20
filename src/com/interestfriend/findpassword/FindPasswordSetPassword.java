@@ -10,6 +10,9 @@ import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.MyEditTextWatcher;
+import com.interestfriend.interfaces.OnEditFocusChangeListener;
+import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
 import com.interestfriend.task.UpdateLoginPassword;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
@@ -17,7 +20,7 @@ import com.interestfriend.utils.Utils;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class FindPasswordSetPassword extends FindPasswordStep implements
-		OnClickListener {
+		OnClickListener, OnTextLengthChange {
 	private MyEditTextDeleteImg edit_password;
 	private MyEditTextDeleteImg edit_agin_password;
 	private Button btn_finish;
@@ -37,6 +40,15 @@ public class FindPasswordSetPassword extends FindPasswordStep implements
 	@Override
 	public void setListener() {
 		btn_finish.setOnClickListener(this);
+		edit_agin_password
+				.setOnFocusChangeListener(new OnEditFocusChangeListener(
+						edit_agin_password, mContext));
+		edit_agin_password.addTextChangedListener(new MyEditTextWatcher(
+				edit_agin_password, mContext, this));
+		edit_password.addTextChangedListener(new MyEditTextWatcher(
+				edit_password, mContext, this));
+		edit_password.setOnFocusChangeListener(new OnEditFocusChangeListener(
+				edit_password, mContext));
 	}
 
 	@Override
@@ -82,5 +94,19 @@ public class FindPasswordSetPassword extends FindPasswordStep implements
 		user.setUser_password(password);
 		user.setUser_cellphone(mActivity.getCell_phone());
 		task.execute(user);
+	}
+
+	@Override
+	public void onTextLengthChanged(boolean isBlank) {
+		if (!isBlank) {
+			if (edit_password.getText().toString().length() != 0
+					&& edit_agin_password.getText().toString().length() != 0) {
+				btn_finish.setEnabled(true);
+				btn_finish.setBackgroundResource(R.drawable.btn_selector);
+				return;
+			}
+		}
+		btn_finish.setEnabled(false);
+		btn_finish.setBackgroundResource(R.drawable.btn_disenable_bg);
 	}
 }

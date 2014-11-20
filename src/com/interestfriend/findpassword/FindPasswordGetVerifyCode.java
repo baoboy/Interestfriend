@@ -55,12 +55,8 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 			public void taskFinish(RetError result) {
 				dialog.dismiss();
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("ÊÖ»úºÅ»¹Î´×¢²á£¬¸Ï¿ì×¢²á°É", Toast.LENGTH_SHORT);
 					return;
 				}
-				// mActivity.getmRegister().setUser_cellphone(
-				// edit_telephone.getText().toString());
-
 				mOnNextListener.next();
 				mActivity.setCell_phone(edit_phone.getText().toString());
 			}

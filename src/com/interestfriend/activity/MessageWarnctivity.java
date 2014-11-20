@@ -126,6 +126,8 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 				chatOptions.setNotificationEnable(false);
 				EMChatManager.getInstance().setChatOptions(chatOptions);
 				SharedUtils.setSettingMsgNotification(false);
+				System.out.println("msg:::::::::::::;;"
+						+ chatOptions.getNotifyBySoundAndVibrate());
 			} else {
 				iv_switch_open_notification.setVisibility(View.VISIBLE);
 				iv_switch_close_notification.setVisibility(View.INVISIBLE);

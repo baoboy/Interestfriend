@@ -1,7 +1,6 @@
 package com.interestfriend.register;
 
 import android.app.Dialog;
-import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +12,11 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.MyEditTextWatcher;
 import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
+import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.task.VerifyCellPhoneTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class RegisterPhone extends RegisterStep implements OnClickListener,
@@ -38,6 +39,8 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 	@Override
 	public void setListener() {
 		btn_next.setOnClickListener(this);
+		edit_telephone.setOnFocusChangeListener(new OnEditFocusChangeListener(
+				edit_telephone, mContext));
 		edit_telephone.addTextChangedListener(new MyEditTextWatcher(
 				edit_telephone, mContext, this));
 	}
@@ -51,8 +54,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 			public void taskFinish(RetError result) {
 				dialog.dismiss();
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("手机号已经注册", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				mActivity.getmRegister().setUser_cellphone(
 						edit_telephone.getText().toString());
@@ -67,6 +69,11 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnNext:
+			String phone = edit_telephone.getText().toString();
+			if (!Utils.isPhoneNum(phone)) {
+				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
+				return;
+			}
 			dialog = DialogUtil.createLoadingDialog(mContext, "请稍候");
 			dialog.show();
 			verifyCellPhone();
@@ -83,7 +90,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 		if (!isBlank) {
 			if (edit_telephone.getText().toString().length() != 0) {
 				btn_next.setEnabled(true);
-				btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
+				btn_next.setBackgroundResource(R.drawable.btn_selector);
 				return;
 			}
 		}

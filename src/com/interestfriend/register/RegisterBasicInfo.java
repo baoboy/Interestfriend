@@ -91,10 +91,10 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	}
 
 	private void setNextEnbale() {
-		if ((!"".equals(photoPath) && !"".equals(txtBirthday))
-				&& (rFemale.isChecked() || rMale.isChecked())) {
+		if ((!"".equals(photoPath) && !"".equals(txtBirthday.getText()
+				.toString())) && (rFemale.isChecked() || rMale.isChecked())) {
 			btn_next.setEnabled(true);
-			btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
+			btn_next.setBackgroundResource(R.drawable.btn_selector);
 		} else {
 			btn_next.setEnabled(false);
 			btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);

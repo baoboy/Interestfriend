@@ -180,10 +180,7 @@ public class CreateCircleActivity extends BaseActivity implements
 					BroadCast.sendBroadCast(CreateCircleActivity.this, intent);
 					finish();
 					Utils.rightOut(CreateCircleActivity.this);
-				} else {
-					ToastUtil.showToast("È¦×Ó´´½¨Ê§°Ü", Toast.LENGTH_SHORT);
-
-				}
+				}  
 			}
 		});
 		task.executeParallel(circle);

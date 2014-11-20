@@ -199,8 +199,7 @@ public class CircleMemberActivity extends BaseActivity implements
 					dialogLoad.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("踢出失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				ToastUtil.showToast("踢出成功", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

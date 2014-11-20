@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -178,10 +179,33 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 	}
 
 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			back();
+		}
+		return false;
+	}
+
+	private void pre() {
+		mCurrentStepIndex--;
+		reStep = initStep();
+		reStep.setmOnNextListener(this);
+		mVfFlipper.showPrevious();
+	}
+
+	private void back() {
+		if (mCurrentStepIndex == 1) {
+			finishThisActivity();
+		} else {
+			pre();
+		}
+	}
+
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.back:
-			finishThisActivity();
+			back();
 			break;
 
 		default:

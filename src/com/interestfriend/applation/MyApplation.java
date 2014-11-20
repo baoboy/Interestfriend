@@ -30,6 +30,7 @@ import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.JoinCircleActivity;
+import com.interestfriend.activity.PraiseAndCommentActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
 import com.interestfriend.data.CircleMember;
@@ -110,7 +111,8 @@ public class MyApplation extends Application {
 		// 默认添加好友时，是不需要验证的，改成需要验证
 		options.setAcceptInvitationAlways(false);
 		// 设置收到消息是否有新消息通知，默认为true
-		options.setNotifyBySoundAndVibrate(false);
+		options.setNotifyBySoundAndVibrate(SharedUtils
+				.getSettingMsgNotification());
 		// 设置收到消息是否有声音提示，默认为true
 		options.setNoticeBySound(SharedUtils.getSettingMsgSound());
 		// 设置收到消息是否震动 默认为true
@@ -136,6 +138,8 @@ public class MyApplation extends Application {
 							.equals(username)) {
 						intent = new Intent(instance,
 								RefuseJoinCircleActivity.class);
+					} else if (Constants.PRAISE_USER_ID.equals(username)) {
+						intent = new Intent(instance, HomeActivity.class);
 					} else {
 						intent = new Intent(instance, ChatActivity.class);
 						intent.putExtra("chatType",

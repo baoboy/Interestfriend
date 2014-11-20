@@ -252,8 +252,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("上传失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				ToastUtil.showToast("上传成功", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

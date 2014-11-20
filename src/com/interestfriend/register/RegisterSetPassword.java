@@ -11,13 +11,16 @@ import com.interestfriend.R;
 import com.interestfriend.activity.LoginActivity;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.MyEditTextWatcher;
+import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
+import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.task.UserRegisterTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class RegisterSetPassword extends RegisterStep implements
-		OnClickListener {
+		OnClickListener, OnTextLengthChange {
 	private MyEditTextDeleteImg edit_password;
 	private MyEditTextDeleteImg edit_agagin_passwrod;
 	private Button btn_finish;
@@ -38,6 +41,15 @@ public class RegisterSetPassword extends RegisterStep implements
 	@Override
 	public void setListener() {
 		btn_finish.setOnClickListener(this);
+		edit_agagin_passwrod
+				.setOnFocusChangeListener(new OnEditFocusChangeListener(
+						edit_agagin_passwrod, mContext));
+		edit_agagin_passwrod.addTextChangedListener(new MyEditTextWatcher(
+				edit_agagin_passwrod, mContext, this));
+		edit_password.addTextChangedListener(new MyEditTextWatcher(
+				edit_password, mContext, this));
+		edit_password.setOnFocusChangeListener(new OnEditFocusChangeListener(
+				edit_password, mContext));
 	}
 
 	@Override
@@ -62,14 +74,24 @@ public class RegisterSetPassword extends RegisterStep implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
-				if (result != RetError.NONE) {
-					ToastUtil.showToast("×¢²áÊ§°Ü", Toast.LENGTH_SHORT);
-					return;
-				}
 				ToastUtil.showToast("×¢²á³É¹¦", Toast.LENGTH_SHORT);
 				mContext.startActivity(new Intent(mContext, LoginActivity.class));
 			}
 		});
 		taks.executeParallel(mActivity.getmRegister());
+	}
+
+	@Override
+	public void onTextLengthChanged(boolean isBlank) {
+		if (!isBlank) {
+			if (edit_password.getText().toString().length() != 0
+					&& edit_agagin_passwrod.getText().toString().length() != 0) {
+				btn_finish.setEnabled(true);
+				btn_finish.setBackgroundResource(R.drawable.btn_selector);
+				return;
+			}
+		}
+		btn_finish.setEnabled(false);
+		btn_finish.setBackgroundResource(R.drawable.btn_disenable_bg);
 	}
 }

@@ -216,7 +216,6 @@ public class CircleMemberFragment extends Fragment implements
 						getActivity().sendBroadcast(intent);
 						return;
 					}
-					ToastUtil.showToast("获取失败", Toast.LENGTH_LONG);
 					return;
 				}
 				int size = cirlceMemberLists.size();
@@ -369,7 +368,6 @@ public class CircleMemberFragment extends Fragment implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
 					return;
 				}
 				ToastUtil.showToast("解散成功", Toast.LENGTH_SHORT);
@@ -416,8 +414,7 @@ public class CircleMemberFragment extends Fragment implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				ToastUtil.showToast("退出成功", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

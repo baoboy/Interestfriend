@@ -316,8 +316,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("»Ø¸´Ê§°Ü", Toast.LENGTH_SHORT);
-					return;
+ 					return;
 				}
 				edit_comment.setText("");
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);
@@ -407,7 +406,6 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					ToastUtil.showToast("É¾³ýÊ§°Ü", Toast.LENGTH_SHORT);
 					return;
 				}
 				comments.remove(position);
