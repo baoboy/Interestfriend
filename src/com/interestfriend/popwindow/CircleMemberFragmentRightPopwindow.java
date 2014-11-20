@@ -13,8 +13,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.interestfriend.R;
-import com.interestfriend.utils.Utils;
-import com.interestfriend.utils.WigdtContorl;
 
 public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 	private PopupWindow popupWindow;

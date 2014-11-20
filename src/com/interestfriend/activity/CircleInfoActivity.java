@@ -2,7 +2,6 @@ package com.interestfriend.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +19,8 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
+import com.interestfriend.popwindow.RightMenuPopwindow;
+import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
 import com.interestfriend.task.JoinCircleTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
@@ -32,15 +33,12 @@ import fynn.app.PromptDialog;
 public class CircleInfoActivity extends BaseActivity implements OnClickListener {
 	private ImageView img_logo;
 	private TextView txt_description;
-	private Button btn_join;
 	private TextView txt_title;
 	private ImageView back;
 	private RelativeLayout layout_circle_creator;
 	private TextView txt_circle_create_time;
 	private TextView txt_citcle_creator_name;
 	private TextView txt_circle_category;
-	private LinearLayout layout_bottom;
-	private View line_bottom;
 	private RelativeLayout layout_desc;
 	private ImageView img_desc_arrow;
 
@@ -51,6 +49,10 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private Circles circle;
 
 	private boolean isLocalCircle = false;
+	private RightMenuPopwindow pop;
+
+	private RelativeLayout title_layout;
+	private ImageView right_image;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,21 +72,24 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void initView() {
+		title_layout = (RelativeLayout) findViewById(R.id.title);
 		img_desc_arrow = (ImageView) findViewById(R.id.img_arrow_desc);
 		img_logo = (ImageView) findViewById(R.id.img_logo);
 		txt_description = (TextView) findViewById(R.id.circle_description);
-		btn_join = (Button) findViewById(R.id.btn_join);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		back = (ImageView) findViewById(R.id.back);
 		layout_circle_creator = (RelativeLayout) findViewById(R.id.layout_circle_creator);
 		txt_circle_category = (TextView) findViewById(R.id.txt_circle_category);
 		txt_citcle_creator_name = (TextView) findViewById(R.id.txt_circle_creator);
 		txt_circle_create_time = (TextView) findViewById(R.id.txt_circle_create_time);
-		layout_bottom = (LinearLayout) findViewById(R.id.layout_bottom);
-		line_bottom = (View) findViewById(R.id.bottom_line);
-		if (isLocalCircle) {
-			layout_bottom.setVisibility(View.GONE);
-			line_bottom.setVisibility(View.GONE);
+		if (!isLocalCircle) {
+			if (circle.findCircleByID(DBUtils.getDBsa(1)) > 0) {
+ 				return;
+			}
+			right_image = (ImageView) findViewById(R.id.rightImg);
+			right_image.setVisibility(View.VISIBLE);
+			right_image.setImageResource(R.drawable.right_menu_selector);
+			right_image.setOnClickListener(this);
 		}
 		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
 			layout_desc = (RelativeLayout) findViewById(R.id.layout_circle_desc);
@@ -98,7 +103,6 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void setListener() {
-		btn_join.setOnClickListener(this);
 		back.setOnClickListener(this);
 		if (circle.getCreator_id() > 0) {
 			layout_circle_creator.setOnClickListener(this);
@@ -165,13 +169,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_join:
-			if (circle.findCircleByID(DBUtils.getDBsa(1)) > 0) {
-				ToastUtil.showToast("你已经加入该圈子", Toast.LENGTH_SHORT);
-				return;
-			}
-			joinDialog();
-			break;
+
 		case R.id.back:
 			finishThisActivity();
 			break;
@@ -184,6 +182,23 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			intent.setClass(this, UpdateCircleDiscriptionActivity.class);
 			startActivityForResult(intent, 300);
 			Utils.leftOutRightIn(this);
+			break;
+		case R.id.rightImg:
+			pop = new RightMenuPopwindow(this, title_layout,
+					new String[] { "加入圈子" });
+			pop.setOnlistOnclick(new OnlistOnclick() {
+				@Override
+				public void onclick(int position) {
+					switch (position) {
+					case 0:
+ 						joinDialog();
+						break;
+					default:
+						break;
+					}
+				}
+			});
+			pop.show();
 			break;
 		default:
 			break;

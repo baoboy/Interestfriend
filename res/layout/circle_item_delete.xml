@@ -41,6 +41,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
             android:layout_marginTop="3dip"
+            android:layout_toLeftOf="@+id/unread_msg_number"
             android:layout_toRightOf="@+id/img_circle_logo"
             android:singleLine="true"
             android:text="TextView"

@@ -101,7 +101,7 @@ public class CircleMemberFragment extends Fragment implements
 				R.id.circle_member_listview);
 		right_image = (ImageView) getView().findViewById(R.id.rightImg);
 		right_image.setVisibility(View.VISIBLE);
-		right_image.setImageResource(R.drawable.drag);
+		right_image.setImageResource(R.drawable.right_menu_selector);
 		setListener();
 	}
 
