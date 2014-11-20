@@ -1,6 +1,8 @@
 package com.interestfriend.utils;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +16,33 @@ import android.view.inputmethod.InputMethodManager;
 import com.interestfriend.R;
 
 public class Utils {
+	/**
+	 * 手机号码验证
+	 * 
+	 * @param
+	 * @return
+	 */
+	public static boolean isPhoneNum(String strPhoneNum) {
+		// Pattern p = Pattern
+		// .compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+		// Matcher m = p.matcher(strPhoneNum);
+		// return m.matches();
+		return strPhoneNum.startsWith("1") && strPhoneNum.length() == 11;
+	}
+
+	/**
+	 * 验证邮箱地址是否正确
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public static boolean isEmail(String email) {
+		String strPattern = "^[a-zA-Z0-9]*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+		Pattern p = Pattern.compile(strPattern);
+		Matcher m = p.matcher(email);
+		return m.matches();
+	}
+
 	/**
 	 * 隐藏软键盘
 	 */

@@ -10,13 +10,17 @@ import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.MyEditTextWatcher;
+import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
+import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.task.GetFindPasswordVerifyCodeTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class FindPasswordGetVerifyCode extends FindPasswordStep implements
-		OnClickListener {
+		OnClickListener, OnTextLengthChange {
 	private MyEditTextDeleteImg edit_phone;
 	private Button btn_next;
 
@@ -36,6 +40,10 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 	@Override
 	public void setListener() {
 		btn_next.setOnClickListener(this);
+		edit_phone.setOnFocusChangeListener(new OnEditFocusChangeListener(
+				edit_phone, mContext));
+		edit_phone.addTextChangedListener(new MyEditTextWatcher(edit_phone,
+				mContext, this));
 	}
 
 	private void getVerifyCode() {
@@ -62,9 +70,26 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 
 	@Override
 	public void onClick(View v) {
+		String phone = edit_phone.getText().toString();
+		if (!Utils.isPhoneNum(phone)) {
+			ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
+			return;
+		}
 		dialog = DialogUtil.createLoadingDialog(mContext, "请稍候");
 		dialog.show();
 		getVerifyCode();
 	}
 
+	@Override
+	public void onTextLengthChanged(boolean isBlank) {
+		if (!isBlank) {
+			if (edit_phone.getText().toString().length() != 0) {
+				btn_next.setEnabled(true);
+				btn_next.setBackgroundResource(R.drawable.btn_selector);
+				return;
+			}
+		}
+		btn_next.setEnabled(false);
+		btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
+	}
 }

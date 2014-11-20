@@ -30,7 +30,7 @@
         android:layout_height="@dimen/dp98"
         android:layout_below="@+id/edit_content"
         android:layout_margin="15dip"
-        android:background="@drawable/btn_14c1c7"
+        android:background="@drawable/btn_selector"
         android:text="保存"
         android:textColor="@color/white"
         android:textSize="17sp" />

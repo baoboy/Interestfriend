@@ -51,12 +51,12 @@ public class RegisterUserName extends RegisterStep implements OnClickListener,
 		if (!isBlank) {
 			if (edit_user_name.getText().toString().length() != 0) {
 				btn_next.setEnabled(true);
-				btn_next.setBackgroundResource(R.drawable.button_new);
+				btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
 				return;
 			}
 		}
 		btn_next.setEnabled(false);
-		btn_next.setBackgroundResource(R.drawable.button_hui_new);
+		btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
 	}
 
 }

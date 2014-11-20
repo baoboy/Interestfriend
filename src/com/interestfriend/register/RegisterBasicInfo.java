@@ -94,10 +94,10 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 		if ((!"".equals(photoPath) && !"".equals(txtBirthday))
 				&& (rFemale.isChecked() || rMale.isChecked())) {
 			btn_next.setEnabled(true);
-			btn_next.setBackgroundResource(R.drawable.button_new);
+			btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
 		} else {
 			btn_next.setEnabled(false);
-			btn_next.setBackgroundResource(R.drawable.button_hui_new);
+			btn_next.setBackgroundResource(R.drawable.btn_disenable_bg);
 		}
 	}
 

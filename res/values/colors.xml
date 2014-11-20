@@ -15,6 +15,7 @@
     <color name="gray">#ff7f7f7f</color>
     <!-- <color name="titleBarBackGround">#58BCDD</color> -->
     <color name="titleBarBackGround">#2ac5c6</color>
+    <color name="btn_color">#23cdde</color>
 
     <!-- <color name="bg_color">#ebebeb</color> -->
     <color name="transparent">#00000000</color>

@@ -95,12 +95,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			if (edit_password.getText().toString().length() != 0
 					&& edit_telphone.getText().toString().length() != 0) {
 				btn_login.setEnabled(true);
-				btn_login.setBackgroundResource(R.drawable.button_new);
+				btn_login.setBackgroundResource(R.drawable.btn_selector);
 				return;
 			}
 		}
 		btn_login.setEnabled(false);
-		btn_login.setBackgroundResource(R.drawable.button_hui_new);
+		btn_login.setBackgroundResource(R.drawable.btn_disenable_bg);
 	}
 
 	@Override
@@ -109,6 +109,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		case R.id.btn_login:
 			String user_cellphone = edit_telphone.getText().toString();
 			String user_password = edit_password.getText().toString();
+			if (!Utils.isPhoneNum(user_cellphone)) {
+				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
+				return;
+			}
 			login(user_cellphone, user_password);
 			break;
 		case R.id.btn_findPasswrod:
