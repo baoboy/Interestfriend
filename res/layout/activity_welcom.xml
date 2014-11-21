@@ -2,36 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/pic_index_background"
-    android:orientation="vertical" >
+    android:background="@drawable/login_bg"
+    android:orientation="vertical"
+    android:paddingBottom="30dip" >
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dip"
+        android:layout_above="@+id/btn_register"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/login_btn_bg"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_48" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dip" >
-
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp94"
-            android:layout_marginRight="10dip"
-            android:layout_weight="1"
-            android:background="@drawable/btn_selector"
-            android:text="注册"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_48" />
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp94"
-            android:layout_marginLeft="10dip"
-            android:layout_weight="1"
-            android:background="@drawable/btn_disenable_bg"
-            android:text="登录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_48" />
-    </LinearLayout>
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/register_btn_bg"
+        android:text="注册"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_48" />
 
 </RelativeLayout>
