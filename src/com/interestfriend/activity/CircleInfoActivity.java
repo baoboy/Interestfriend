@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +67,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		imgLogo = circle.getCircle_logo();
 		circle_id = circle.getCircle_id();
 		description = circle.getCircle_description();
+
 	}
 
 	private void initView() {
@@ -83,13 +82,13 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_citcle_creator_name = (TextView) findViewById(R.id.txt_circle_creator);
 		txt_circle_create_time = (TextView) findViewById(R.id.txt_circle_create_time);
 		if (!isLocalCircle) {
-			if (circle.findCircleByID(DBUtils.getDBsa(1)) > 0) {
- 				return;
+			if (circle.findCircleByID(DBUtils.getDBsa(1)) == 0) {
+				right_image = (ImageView) findViewById(R.id.rightImg);
+				right_image.setVisibility(View.VISIBLE);
+				right_image.setImageResource(R.drawable.right_menu_selector);
+				right_image.setOnClickListener(this);
 			}
-			right_image = (ImageView) findViewById(R.id.rightImg);
-			right_image.setVisibility(View.VISIBLE);
-			right_image.setImageResource(R.drawable.right_menu_selector);
-			right_image.setOnClickListener(this);
+
 		}
 		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
 			layout_desc = (RelativeLayout) findViewById(R.id.layout_circle_desc);
@@ -120,7 +119,6 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_circle_category.setText(circle.getCircle_category_name());
 		txt_circle_create_time.setText(circle.getCircle_create_time());
 		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
-
 	}
 
 	private void joinDialog() {
@@ -191,7 +189,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				public void onclick(int position) {
 					switch (position) {
 					case 0:
- 						joinDialog();
+						joinDialog();
 						break;
 					default:
 						break;

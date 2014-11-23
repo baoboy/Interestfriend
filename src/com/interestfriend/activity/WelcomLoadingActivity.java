@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.interestfriend.R;
+import com.interestfriend.utils.SharedUtils;
 
 public class WelcomLoadingActivity extends Activity {
 
@@ -19,11 +20,18 @@ public class WelcomLoadingActivity extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				startActivity(new Intent(WelcomLoadingActivity.this,
-						HomeActivity.class));
+				if (SharedUtils.getIntUid() > 0) {
+					startActivity(new Intent(WelcomLoadingActivity.this,
+							HomeActivity.class));
+				} else {
+					startActivity(new Intent(WelcomLoadingActivity.this,
+							WelcomActivity.class));
+				}
+
 				finish();
 			}
 		}.start();
+
 	}
 
 }

@@ -186,11 +186,20 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private String user_avatar = "";
 
 	private GridView mGridView;
+
+	private List<View> views = new ArrayList<View>();
+
 	private Handler micImageHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
 			// 切换msg切换图片
 			micImage.setImageDrawable(micImages[msg.what]);
+		}
+	};
+	private Handler mEmjoiHandler = new Handler() {
+		@Override
+		public void handleMessage(android.os.Message msg) {
+			expressionViewpager.setAdapter(new ExpressionPagerAdapter(views));
 		}
 	};
 	private EMGroup group;
@@ -256,14 +265,16 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				getResources().getDrawable(R.drawable.record_animate_13),
 				getResources().getDrawable(R.drawable.record_animate_14), };
 		// 表情list
-		reslist = getExpressionRes(35);
-		// 初始化表情viewpager
-		List<View> views = new ArrayList<View>();
-		View gv1 = getGridChildView(1);
-		View gv2 = getGridChildView(2);
-		views.add(gv1);
-		views.add(gv2);
-		expressionViewpager.setAdapter(new ExpressionPagerAdapter(views));
+		reslist = getExpressionRes(160);
+
+		new Thread() {
+			public void run() { // 初始化表情viewpager
+				for (int i = 1; i < 7; i++) {
+					views.add(getGridChildView(i));
+				}
+				mEmjoiHandler.sendEmptyMessage(0);
+			}
+		}.start();
 		edittext_layout.requestFocus();
 		voiceRecorder = new VoiceRecorder(micImageHandler);
 		buttonPressToSpeak.setOnTouchListener(new PressToSpeakListen());
@@ -1228,11 +1239,31 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		View view = View.inflate(this, R.layout.expression_gridview, null);
 		ExpandGridView gv = (ExpandGridView) view.findViewById(R.id.gridview);
 		List<String> list = new ArrayList<String>();
+		List<String> list1 = null;
 		if (i == 1) {
-			List<String> list1 = reslist.subList(0, 20);
+			list1 = reslist.subList(0, 20);
 			list.addAll(list1);
 		} else if (i == 2) {
-			list.addAll(reslist.subList(20, reslist.size()));
+			list1 = reslist.subList(21, 41);
+			list.addAll(list1);
+		} else if (i == 3) {
+			list1 = reslist.subList(41, 61);
+			list.addAll(list1);
+		} else if (i == 4) {
+			list1 = reslist.subList(61, 81);
+			list.addAll(list1);
+		} else if (i == 5) {
+			list1 = reslist.subList(81, 101);
+			list.addAll(list1);
+		} else if (i == 6) {
+			list1 = reslist.subList(101, 121);
+			list.addAll(list1);
+		} else if (i == 7) {
+			list1 = reslist.subList(121, 141);
+			list.addAll(list1);
+		} else if (i == 8) {
+			list1 = reslist.subList(141, 160);
+			list.addAll(list1);
 		}
 		list.add("delete_expression");
 		final ExpressionAdapter expressionAdapter = new ExpressionAdapter(this,

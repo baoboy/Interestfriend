@@ -35,7 +35,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
-            android:name="com.interestfriend.activity.WelcomActivity"
+            android:name="com.interestfriend.activity.WelcomLoadingActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
             <intent-filter>
@@ -258,7 +258,7 @@
             android:label="@string/title_activity_praise_and_comment" >
         </activity>
         <activity
-            android:name="com.interestfriend.activity.WelcomLoadingActivity"
+            android:name="com.interestfriend.activity.WelcomActivity"
             android:label="@string/title_activity_welcom_loading" >
         </activity>
     </application>

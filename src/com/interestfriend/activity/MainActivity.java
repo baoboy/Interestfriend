@@ -29,7 +29,7 @@ public class MainActivity extends FragmentActivity implements
 	private CircleMemberFragment memberFragment;
 	private CircleGroupChatFragment chatFragment;
 	private CircleGrowthFragment growthFragment;
-
+	private RadioGroup rg;
 	private int unread;
 	private int growth_unread;
 
@@ -50,15 +50,15 @@ public class MainActivity extends FragmentActivity implements
 		fragmentList.add(memberFragment);
 		fragmentList.add(chatFragment);
 		fragmentList.add(growthFragment);
-		RadioGroup rg = (RadioGroup) this.findViewById(R.id.tabs_rg);
+		rg = (RadioGroup) this.findViewById(R.id.tabs_rg);
 		rg.setOnCheckedChangeListener(this);
+		rg.setEnabled(false);
 		showTab(0);
 
 	}
 
 	public void showTab(int tabIndex) {
-		RadioGroup group = (RadioGroup) this.findViewById(R.id.tabs_rg);
-		if (tabIndex < 0 || tabIndex >= group.getChildCount())
+		if (tabIndex < 0 || tabIndex >= rg.getChildCount())
 			return;
 		if (currentTabIndex == tabIndex)
 			return;
@@ -67,9 +67,9 @@ public class MainActivity extends FragmentActivity implements
 		}
 		FragmentTransaction ft = this.getSupportFragmentManager()
 				.beginTransaction();
-		for (int i = 0; i < group.getChildCount(); i++) {
+		for (int i = 0; i < rg.getChildCount(); i++) {
 			Fragment fg = fragmentList.get(i);
-			MyRadioButton tabItem = (MyRadioButton) group.getChildAt(i);
+			MyRadioButton tabItem = (MyRadioButton) rg.getChildAt(i);
 			if (i == tabIndex) {
 				if (fg.isAdded()) {
 					fg.onResume();
@@ -93,13 +93,21 @@ public class MainActivity extends FragmentActivity implements
 		}
 		ft.commit();
 		currentTabIndex = tabIndex;
-		MyRadioButton rb = (MyRadioButton) group.getChildAt(tabIndex);
+		MyRadioButton rb = (MyRadioButton) rg.getChildAt(tabIndex);
 		if (!rb.isChecked())
 			rb.setChecked(true);
 	}
 
+	public void setVisible(boolean visible) {
+		for (int i = 0; i < rg.getChildCount(); i++) {
+			MyRadioButton tabItem = (MyRadioButton) rg.getChildAt(i);
+			tabItem.setEnabled(visible);
+		}
+	}
+
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaa");
 		for (int i = 0; i < group.getChildCount(); i++) {
 			if (group.getChildAt(i).getId() == checkedId) {
 				showTab(i);
