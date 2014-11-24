@@ -13,6 +13,7 @@
         android:layout_marginTop="6dp"
         android:fadingEdge="none"
         android:gravity="center"
+        android:listSelector="@drawable/emoji_selector"
         android:numColumns="7"
         android:scrollbars="none"
         android:verticalSpacing="5dp" />
