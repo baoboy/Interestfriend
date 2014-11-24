@@ -21,6 +21,7 @@ public class User {
 	private static final String GET_USER_INFO = "GetUserInfoServlet";
 	private static final String FIND_PASSWORD_VERIFY_CODE = "FindPasswordGetVerifyCode";
 	private static final String UPDATE_USER_LOGIN_PASSWORD = "UpdateUserLoginPassword";
+	private static final String CHECK_VERIFY_CODE = "CheckVerifyCodeServlet";
 
 	private String user_cellphone = "";// 用户注册电话
 	private String user_name = "";// 用户注册姓名
@@ -204,6 +205,24 @@ public class User {
 			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
 			SharedUtils.setAPPUserSortKey(member.getSortkey());
 			SharedUtils.setAPPUserChatID(member.getUser_chat_id());
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	/**
+	 * 验证验证码是否正确
+	 * 
+	 * @param code
+	 */
+	public RetError checkVerifyCode(String code) {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_cellphone", user_cellphone);
+		params.put("sms_code", code);
+		Result ret = ApiRequest.request(CHECK_VERIFY_CODE, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

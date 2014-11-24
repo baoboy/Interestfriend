@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/circle_item_bg" >
+        android:background="@drawable/circle_item_bg"
+        android:padding="7dip" >
 
         <!-- com.interestfriend.view.RoundAngleImageView -->
 
@@ -17,13 +18,15 @@
             android:id="@+id/img_circle_logo"
             android:layout_width="55dip"
             android:layout_height="55dip"
-            android:layout_margin="7dip"
             android:src="@drawable/picture_default_head" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dip"
+            android:layout_toLeftOf="@+id/circle_member_num"
+            android:layout_toRightOf="@+id/img_circle_logo"
             android:orientation="vertical" >
 
             <TextView
@@ -46,6 +49,22 @@
                 android:textColor="#7f737373"
                 android:textSize="14sp" />
         </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/circle_member_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dip"
+            android:drawablePadding="5dip"
+            android:drawableRight="@drawable/circle_member_num"
+            android:gravity="center"
+            android:paddingBottom="7dip"
+            android:text="1"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

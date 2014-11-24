@@ -1,6 +1,9 @@
 package com.interestfriend.findpassword;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +30,30 @@ public class FindPasswordActivity extends BaseActivity implements
 	private FindPasswordSetPassword setPassword;
 
 	private String cell_phone = "";
+
+	public Dialog dialog;
+
+	private int second = 60;// 用于重新获取验证码时间倒计时
+
+	private Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				second--;
+				if (second < 0) {
+					second = 60;
+					removeCallbacksAndMessages(null);
+					return;
+				}
+				checkCode.setText(second);
+				this.sendEmptyMessageDelayed(0, 1000);
+				break;
+			default:
+				break;
+			}
+
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +87,7 @@ public class FindPasswordActivity extends BaseActivity implements
 				checkCode = new FindPasswordCheckVerifyCode(this,
 						mVfFlipper.getChildAt(1));
 			}
+			mHandler.sendEmptyMessage(0);
 			return checkCode;
 		case 3:
 			if (setPassword == null) {
@@ -113,6 +141,8 @@ public class FindPasswordActivity extends BaseActivity implements
 		if (mCurrentStepIndex == 1) {
 			finishThisActivity();
 		} else {
+			mHandler.removeCallbacksAndMessages(null);
+			second = 60;
 			pre();
 		}
 	}
@@ -127,5 +157,16 @@ public class FindPasswordActivity extends BaseActivity implements
 		default:
 			break;
 		}
+	}
+
+	protected void postHandler() {
+		second = 60;
+		mHandler.sendEmptyMessage(0);
+	}
+
+	protected void removeHandlerMessage() {
+		mHandler.removeCallbacksAndMessages(null);
+		second = 60;
+		checkCode.setEnable();
 	}
 }
