@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 	private Button btn_register;
 	private Button btn_login;
 
+	@SuppressLint("InlinedApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 			startActivity(new Intent(this, WelcomLoadingActivity.class));
 			finish();
 		}
+
 		initView();
 	}
 
