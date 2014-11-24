@@ -656,31 +656,38 @@ containing a value of this type.
         public static final int settings_selected=0x7f020183;
         public static final int show_head_toast_bg=0x7f020184;
         public static final int signin_local_gallry=0x7f020185;
-        public static final int slidetab_bg_press=0x7f020186;
-        public static final int smiley_add_btn_nor=0x7f020187;
-        public static final int smiley_add_btn_pressed=0x7f020188;
-        public static final int smiley_minus_btn_nor=0x7f020189;
-        public static final int smiley_minus_btn_pressed=0x7f02018a;
-        public static final int splash_image2=0x7f02018b;
-        public static final int star=0x7f02018c;
-        public static final int tab_bg1_growth=0x7f02018d;
-        public static final int tab_bg_growth=0x7f02018e;
-        public static final int tab_dynamic=0x7f02018f;
-        public static final int tab_growth=0x7f020190;
-        public static final int tab_member=0x7f020191;
-        public static final int tab_unread_bg=0x7f020192;
-        public static final int to_group_details_normal=0x7f020193;
-        public static final int trash=0x7f020194;
-        public static final int type_select_btn=0x7f020195;
-        public static final int type_select_btn_nor=0x7f020196;
-        public static final int type_select_btn_pressed=0x7f020197;
-        public static final int video_download_btn_nor=0x7f020198;
-        public static final int video_play_btn_small_nor=0x7f020199;
-        public static final int video_recorder_start_btn=0x7f02019a;
-        public static final int video_recorder_stop_btn=0x7f02019b;
-        public static final int video_switchcamera_normal=0x7f02019c;
-        public static final int voice_call_hangup_bg=0x7f02019d;
-        public static final int voice_unread=0x7f02019e;
+        public static final int skin_tab_icon_contact_normal=0x7f020186;
+        public static final int skin_tab_icon_contact_selected=0x7f020187;
+        public static final int skin_tab_icon_conversation_normal=0x7f020188;
+        public static final int skin_tab_icon_conversation_selected=0x7f020189;
+        public static final int skin_tab_icon_plugin_normal=0x7f02018a;
+        public static final int skin_tab_icon_plugin_selected=0x7f02018b;
+        public static final int slidetab_bg_press=0x7f02018c;
+        public static final int smiley_add_btn_nor=0x7f02018d;
+        public static final int smiley_add_btn_pressed=0x7f02018e;
+        public static final int smiley_minus_btn_nor=0x7f02018f;
+        public static final int smiley_minus_btn_pressed=0x7f020190;
+        public static final int splash_image2=0x7f020191;
+        public static final int star=0x7f020192;
+        public static final int tab_bg1_growth=0x7f020193;
+        public static final int tab_bg_growth=0x7f020194;
+        public static final int tab_dynamic=0x7f020195;
+        public static final int tab_growth=0x7f020196;
+        public static final int tab_member=0x7f020197;
+        public static final int tab_message=0x7f020198;
+        public static final int tab_unread_bg=0x7f020199;
+        public static final int to_group_details_normal=0x7f02019a;
+        public static final int trash=0x7f02019b;
+        public static final int type_select_btn=0x7f02019c;
+        public static final int type_select_btn_nor=0x7f02019d;
+        public static final int type_select_btn_pressed=0x7f02019e;
+        public static final int video_download_btn_nor=0x7f02019f;
+        public static final int video_play_btn_small_nor=0x7f0201a0;
+        public static final int video_recorder_start_btn=0x7f0201a1;
+        public static final int video_recorder_stop_btn=0x7f0201a2;
+        public static final int video_switchcamera_normal=0x7f0201a3;
+        public static final int voice_call_hangup_bg=0x7f0201a4;
+        public static final int voice_unread=0x7f0201a5;
     }
     public static final class id {
         public static final int Layparent=0x7f0900f1;
@@ -1326,6 +1333,10 @@ containing a value of this type.
 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
 
 
 

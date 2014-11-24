@@ -33,8 +33,7 @@
             android:button="@null"
             android:checked="true"
             android:drawableTop="@drawable/tab_member"
-            android:gravity="center"
-            android:paddingTop="8dip" />
+            android:gravity="center" />
 
         <com.interestfriend.view.MyRadioButton
             android:id="@+id/tab_square"
@@ -44,9 +43,8 @@
             android:background="#00ffffff"
             android:button="@null"
             android:checked="false"
-            android:drawableTop="@drawable/tab_growth"
-            android:gravity="center"
-            android:paddingTop="8dip" />
+            android:drawableTop="@drawable/tab_message"
+            android:gravity="center" />
 
         <com.interestfriend.view.MyRadioButton
             android:id="@+id/tab_home"
@@ -57,8 +55,7 @@
             android:button="@null"
             android:checked="false"
             android:drawableTop="@drawable/tab_dynamic"
-            android:gravity="center"
-            android:paddingTop="8dip" />
+            android:gravity="center" />
 
         <!-- <RadioButton -->
         <!-- android:id="@+id/tab_selfinfo" -->

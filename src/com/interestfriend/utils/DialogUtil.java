@@ -37,6 +37,7 @@ public class DialogUtil {
 		loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
 				Utils.getSecreenWidth(context) -130,
 				LinearLayout.LayoutParams.MATCH_PARENT));// …Ë÷√≤ºæ÷
+
 		return loadingDialog;
 
 	}
