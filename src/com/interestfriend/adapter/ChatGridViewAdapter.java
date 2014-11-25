@@ -86,14 +86,14 @@ public class ChatGridViewAdapter extends BaseAdapter {
 				.get("pic_id").toString()));
 		holder.txt_title.setText(list.get(position).get("name").toString());
 
-		if (position == 5) {
-			if (type == 1) {
-				holder.img.setVisibility(View.INVISIBLE);
-				holder.txt_title.setVisibility(View.INVISIBLE);
-			} else {
-				holder.img.setVisibility(View.VISIBLE);
-				holder.txt_title.setVisibility(View.VISIBLE);
-			}
+		if (position == list.size() - 1) {
+			// if (type == 1) {
+			holder.img.setVisibility(View.INVISIBLE);
+			holder.txt_title.setVisibility(View.INVISIBLE);
+			// } else {
+			// holder.img.setVisibility(View.VISIBLE);
+			// holder.txt_title.setVisibility(View.VISIBLE);
+			// }
 		} else {
 			holder.img.setVisibility(View.VISIBLE);
 			holder.txt_title.setVisibility(View.VISIBLE);

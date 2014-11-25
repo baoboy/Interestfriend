@@ -193,8 +193,7 @@ public class ChatAdapter extends BaseAdapter {
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater
 					.inflate(R.layout.row_received_picture, null) : inflater
 					.inflate(R.layout.row_sent_picture, null);
-
-		case VOICE:
+ 		case VOICE:
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater
 					.inflate(R.layout.row_received_voice, null) : inflater
 					.inflate(R.layout.row_sent_voice, null);

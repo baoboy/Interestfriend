@@ -35,6 +35,7 @@
             android:layout_toRightOf="@id/iv_userhead"
             android:background="@drawable/chatfrom_bg"
             android:clickable="true"
+            android:paddingRight="10dip"
             android:src="@drawable/chatfrom_voice_playing" />
 
         <TextView

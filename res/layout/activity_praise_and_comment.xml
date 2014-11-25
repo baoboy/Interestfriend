@@ -136,7 +136,7 @@
                             android:paddingTop="8dip"
                             android:text="赞(1)"
                             android:textColor="@color/gray"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <View
                             android:layout_width="0.5dip"
@@ -172,7 +172,7 @@
                             android:paddingTop="8dip"
                             android:text="回复"
                             android:textColor="@color/gray"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
