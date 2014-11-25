@@ -6,12 +6,12 @@
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="5dip"
-    android:paddingTop="5dip" >
+    android:paddingTop="7dip" >
 
     <ImageView
         android:id="@+id/img_icon"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/chat_image_normal" />
 
     <TextView
@@ -19,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
-        android:text="图片" />
+        android:text="图片"
+        android:textColor="@color/txt_desc_color"
+        android:textSize="12sp" />
 
 </LinearLayout>

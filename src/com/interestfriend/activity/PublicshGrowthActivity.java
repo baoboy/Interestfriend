@@ -159,7 +159,7 @@ public class PublicshGrowthActivity extends BaseActivity implements
 		RoundAngleImageView img;
 	}
 
-	private void getGrowth() {
+	private void getGrowth(String   content ) {
 		growth = new Growth();
 		List<GrowthImage> imglists = new ArrayList<GrowthImage>();
 		for (String imgPath : photoPathLists) {
@@ -170,14 +170,18 @@ public class PublicshGrowthActivity extends BaseActivity implements
 			}
 		}
 		growth.setImages(imglists);
-		growth.setContent(content.getText().toString().trim());
+		growth.setContent(content);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnUpload:
-			getGrowth();
+			String str_content = content.getText().toString().trim();
+			if (photoPathLists.size() == 1 && str_content.length() == 0) {
+				return;
+			}
+			getGrowth(str_content);
 			Intent intent = new Intent();
 			intent.putExtra("growth", growth);
 			setResult(200, intent);

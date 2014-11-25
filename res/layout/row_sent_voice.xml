@@ -32,7 +32,8 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/iv_userhead"
             android:background="@drawable/chatto_bg"
-            android:src="@drawable/chatto_voice_playing" />
+            android:paddingLeft="10dip"
+            android:src="@drawable/send_voice_3" />
 
         <TextView
             android:id="@+id/tv_length"

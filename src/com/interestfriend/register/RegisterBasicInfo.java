@@ -83,7 +83,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 			return;
 		}
 		ToastUtil.showToast("Œ¥ªÒ»°µΩÕº∆¨", Toast.LENGTH_SHORT);
-		imgAvater.setImageResource(R.drawable.ic_common_def_header);
+		imgAvater.setImageResource(R.drawable.picture_default_head);
 	}
 
 	public String getTakePicturePath() {

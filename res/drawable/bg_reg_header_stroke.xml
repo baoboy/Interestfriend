@@ -8,7 +8,7 @@
         android:dashGap="3.0dip"
         android:dashWidth="8.0dip"
         android:width="1.0dip"
-        android:color="@color/unberlineview_dividingline" />
+        android:color="@color/color_d5" />
 
     <corners android:radius="10.0dip" />
 

@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import com.interestfriend.R;
 
@@ -29,6 +30,8 @@ public class SelectPicPopwindow implements OnClickListener {
 	private String fileName = "";
 	private SelectOnclick mSelectOnclick;
 
+	private RelativeLayout layout_parent;
+
 	public void setmSelectOnclick(SelectOnclick mSelectOnclick) {
 		this.mSelectOnclick = mSelectOnclick;
 	}
@@ -38,7 +41,7 @@ public class SelectPicPopwindow implements OnClickListener {
 		this.mContext = context;
 		this.v = v;
 		LayoutInflater inflater = LayoutInflater.from(mContext);
-		view = inflater.inflate(R.layout.select_image_layout, null);
+		view = inflater.inflate(R.layout.select_pic_popowinow_layout, null);
 		initView();
 		initPopwindow();
 		btn_menu_1.setText(txt_menu_1);
@@ -47,12 +50,15 @@ public class SelectPicPopwindow implements OnClickListener {
 	}
 
 	private void initView() {
+		layout_parent = (RelativeLayout) view.findViewById(R.id.layout_parent);
+		layout_parent.getBackground().setAlpha(150);
 		btnCancle = (Button) view.findViewById(R.id.btn_cancel);
 		btn_menu_1 = (Button) view.findViewById(R.id.btn_menu_1);
 		btn_menu_2 = (Button) view.findViewById(R.id.btn_menu_2);
 		btnCancle.setOnClickListener(this);
 		btn_menu_1.setOnClickListener(this);
 		btn_menu_2.setOnClickListener(this);
+		layout_parent.setOnClickListener(this);
 
 	}
 
@@ -65,7 +71,7 @@ public class SelectPicPopwindow implements OnClickListener {
 				LayoutParams.WRAP_CONTENT);
 		// 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景（很神奇的）
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
-		popupWindow.setAnimationStyle(R.style.AnimBottom);
+		// popupWindow.setAnimationStyle(R.style.AnimBottom);
 	}
 
 	/**
@@ -105,6 +111,9 @@ public class SelectPicPopwindow implements OnClickListener {
 			break;
 		case R.id.btn_menu_2:
 			mSelectOnclick.menu2_select();
+			break;
+		case R.id.layout_parent:
+			dismiss();
 			break;
 		default:
 			break;
