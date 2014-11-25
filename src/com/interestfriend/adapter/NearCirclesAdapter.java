@@ -52,10 +52,14 @@ public class NearCirclesAdapter extends BaseAdapter {
 					.findViewById(R.id.txt_circle_name);
 			holder.txt_diatance = (TextView) contentView
 					.findViewById(R.id.txt_distance);
+			holder.txt_circle_member_num = (TextView) contentView
+					.findViewById(R.id.circle_member_num);
 			contentView.setTag(holder);
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
+		holder.txt_circle_member_num.setText(list.get(position)
+				.getCircle_member_num() + "");
 		holder.txt_circle_name.setText(list.get(position).getCircle_name());
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 				holder.img_circle_logo, R.drawable.picture_default_head);
@@ -70,6 +74,7 @@ public class NearCirclesAdapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
+		private TextView txt_circle_member_num;
 		private RoundAngleImageView img_circle_logo;
 		private TextView txt_circle_name;
 		private TextView txt_diatance;
