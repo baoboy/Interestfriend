@@ -39,6 +39,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.ClipboardManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -150,7 +151,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private View buttonSend;
 	private View buttonPressToSpeak;
 	private ViewPager expressionViewpager;
-	private LinearLayout expressionContainer;
+	private RelativeLayout expressionContainer;
 	private LinearLayout btnContainer;
 	private View more;
 	private int position;
@@ -188,6 +189,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private GridView mGridView;
 
 	private List<View> views = new ArrayList<View>();
+	private List<View> dots = new ArrayList<View>();
 
 	private Handler micImageHandler = new Handler() {
 		@Override
@@ -238,7 +240,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		buttonSend = findViewById(R.id.btn_send);
 		buttonPressToSpeak = findViewById(R.id.btn_press_to_speak);
 		expressionViewpager = (ViewPager) findViewById(R.id.vPager);
-		expressionContainer = (LinearLayout) findViewById(R.id.ll_face_container);
+		expressionContainer = (RelativeLayout) findViewById(R.id.ll_face_container);
 		btnContainer = (LinearLayout) findViewById(R.id.ll_btn_container);
 		iv_emoticons_normal = (ImageView) findViewById(R.id.iv_emoticons_normal);
 		iv_emoticons_checked = (ImageView) findViewById(R.id.iv_emoticons_checked);
@@ -247,7 +249,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		iv_emoticons_normal.setVisibility(View.VISIBLE);
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
 		more = findViewById(R.id.more);
-
+		initDots();
 		// 动画资源文件,用于录制语音时
 		micImages = new Drawable[] {
 				getResources().getDrawable(R.drawable.record_animate_01),
@@ -316,7 +318,43 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 
 			}
 		});
+		expressionViewpager.setOnPageChangeListener(new OnPageChangeListener() {
 
+			@Override
+			public void onPageSelected(int index) {
+				for (View view : dots) {
+					view.setBackgroundResource(R.drawable.viewpager_normal_circle);
+				}
+				dots.get(index).setBackgroundResource(
+						R.drawable.viewpager_select_circle);
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+		});
+	}
+
+	private void initDots() {
+		View view = (View) findViewById(R.id.dot1);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot2);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot3);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot4);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot5);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot6);
+		dots.add(view);
 	}
 
 	private void setUpView() {

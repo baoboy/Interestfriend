@@ -135,4 +135,8 @@ public class Utils {
 		v.requestFocus();
 		v.requestFocusFromTouch();
 	}
+
+	public static void print(String str) {
+		System.out.println(str);
+	}
 }

@@ -1,9 +1,11 @@
 package com.interestfriend.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,14 +36,17 @@ import com.interestfriend.adapter.PraiseAdapter;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
+import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.popwindow.CommentPopwindow;
 import com.interestfriend.popwindow.CommentPopwindow.OnCommentOnClick;
+import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.DeleteCommentTask;
 import com.interestfriend.task.GetGrowthTask;
 import com.interestfriend.task.SendCommentTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
@@ -152,7 +157,31 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 		btnComment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
+		img_grid_view.setOnItemClickListener(new GridViewOnItemClick());
 		Utils.getFocus(layout_title);
+	}
+
+	class GridViewOnItemClick implements OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View v, int posit,
+				long arg3) {
+			intentImagePager(posit);
+		}
+	}
+
+	private void intentImagePager(int index) {
+		List<String> imgUrl = new ArrayList<String>();
+		for (GrowthImage img : growth.getImages()) {
+			imgUrl.add(img.getImg());
+		}
+		Intent intent = new Intent(this, ImagePagerActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+				(Serializable) imgUrl);
+		intent.putExtras(bundle);
+		intent.putExtra(Constants.EXTRA_IMAGE_INDEX, index);
+		startActivity(intent);
 	}
 
 	public void getGrowth() {
@@ -168,7 +197,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				conversation.removeMessage(lastMessage.getMsgId());
 				conversation.resetUnsetMsgCount();
@@ -291,7 +320,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				edit_comment.setText("");
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);

@@ -196,7 +196,7 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void getCircleMemberFormServer() {
-		GetCircleMemberTask task = new GetCircleMemberTask();
+ 		GetCircleMemberTask task = new GetCircleMemberTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 
 			@Override
@@ -231,7 +231,7 @@ public class CircleMemberFragment extends Fragment implements
 					intent.putExtra("num", newSize);
 					getActivity().sendBroadcast(intent);
 				}
-			}
+  			}
 		});
 		task.executeParallel(list);
 	}
@@ -414,7 +414,7 @@ public class CircleMemberFragment extends Fragment implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				ToastUtil.showToast("ÍË³ö³É¹¦", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

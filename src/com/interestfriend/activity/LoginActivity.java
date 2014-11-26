@@ -8,6 +8,8 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.easemob.EMCallBack;
@@ -31,6 +33,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	private MyEditTextDeleteImg edit_password;
 	private Button btn_login;
 	private Button btn_find_password;
+	private ImageView back;
+	private TextView txt_title;
 
 	private Dialog dialog;
 
@@ -69,8 +73,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("登录");
 		edit_password = (MyEditTextDeleteImg) findViewById(R.id.edit_password);
 		edit_telphone = (MyEditTextDeleteImg) findViewById(R.id.edit_telphone);
+		edit_telphone.setTag("phone_num");
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_find_password = (Button) findViewById(R.id.btn_findPasswrod);
 		setListener();
@@ -87,6 +95,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				edit_password, this));
 		btn_login.setOnClickListener(this);
 		btn_find_password.setOnClickListener(this);
+		back.setOnClickListener(this);
 	}
 
 	@Override
@@ -107,7 +116,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_login:
-			String user_cellphone = edit_telphone.getText().toString();
+			String user_cellphone = edit_telphone.getText().toString()
+					.replaceAll(" ", "");
 			String user_password = edit_password.getText().toString();
 			if (!Utils.isPhoneNum(user_cellphone)) {
 				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
@@ -119,6 +129,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			startActivity(new Intent(this, FindPasswordActivity.class));
 			Utils.leftOutRightIn(this);
 			break;
+		case R.id.back:
+			finishThisActivity();
 		default:
 			break;
 		}

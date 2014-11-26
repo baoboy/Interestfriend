@@ -150,17 +150,68 @@
 
             <!-- 表情图片 -->
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_face_container"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="gone" >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vPager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <View
+                        android:id="@+id/dot1"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_select_circle" />
+
+                    <View
+                        android:id="@+id/dot2"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot3"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot4"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot5"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot6"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <!-- 图片，表情，名片等按钮 -->
 

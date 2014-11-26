@@ -28,6 +28,7 @@ import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -132,7 +133,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private Button buttonSend;
 	private View buttonPressToSpeak;
 	private ViewPager expressionViewpager;
-	private LinearLayout expressionContainer;
+	private RelativeLayout expressionContainer;
 	private LinearLayout btnContainer;
 	private View more;
 	private InputMethodManager manager;
@@ -162,6 +163,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private GridView mGridView;
 
 	private List<View> views = new ArrayList<View>();
+	private List<View> dots = new ArrayList<View>();
 
 	private Handler micImageHandler = new Handler() {
 		@Override
@@ -213,7 +215,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		buttonSend = (Button) getView().findViewById(R.id.btn_send);
 		buttonPressToSpeak = getView().findViewById(R.id.btn_press_to_speak);
 		expressionViewpager = (ViewPager) getView().findViewById(R.id.vPager);
-		expressionContainer = (LinearLayout) getView().findViewById(
+		expressionContainer = (RelativeLayout) getView().findViewById(
 				R.id.ll_face_container);
 		btnContainer = (LinearLayout) getView().findViewById(
 				R.id.ll_btn_container);
@@ -255,7 +257,23 @@ public class CircleGroupChatFragment extends Fragment implements
 		}.start();
 		edittext_layout.requestFocus();
 		voiceRecorder = new VoiceRecorder(micImageHandler);
+		initDots();
 		setListener();
+	}
+
+	private void initDots() {
+		View view = (View) getView().findViewById(R.id.dot1);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot2);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot3);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot4);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot5);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot6);
+		dots.add(view);
 	}
 
 	private void setListener() {
@@ -310,6 +328,28 @@ public class CircleGroupChatFragment extends Fragment implements
 				expressionContainer.setVisibility(View.GONE);
 				btnContainer.setVisibility(View.GONE);
 				return false;
+			}
+		});
+		expressionViewpager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int index) {
+				for (View view : dots) {
+					view.setBackgroundResource(R.drawable.viewpager_normal_circle);
+				}
+				dots.get(index).setBackgroundResource(
+						R.drawable.viewpager_select_circle);
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
 			}
 		});
 	}

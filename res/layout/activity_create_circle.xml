@@ -154,6 +154,7 @@
                 android:layout_marginRight="@dimen/dp76"
                 android:layout_marginTop="@dimen/dp38"
                 android:background="@drawable/btn_disenable_bg"
+                android:enabled="false"
                 android:text="创建"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_48" />

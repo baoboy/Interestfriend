@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,7 +42,7 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class CreateCircleActivity extends BaseActivity implements
-		OnClickListener, SelectOnclick {
+		OnClickListener, SelectOnclick, TextWatcher {
 	private ImageView img_circle_avatar;
 	private EditText edit_circle_name;
 	private EditText edit_circle_description;
@@ -86,6 +88,8 @@ public class CreateCircleActivity extends BaseActivity implements
 		img_circle_avatar.setOnClickListener(this);
 		btn_create.setOnClickListener(this);
 		img_back.setOnClickListener(this);
+		edit_circle_description.addTextChangedListener(this);
+		edit_circle_name.addTextChangedListener(this);
 	}
 
 	private void setAvatar(Bitmap bitmap, String path) {
@@ -93,6 +97,7 @@ public class CreateCircleActivity extends BaseActivity implements
 			img_circle_avatar.setImageBitmap(PhotoUtils.toRoundCorner(bitmap,
 					30));
 			imgPath = path;
+			setBtnVisible();
 		}
 	}
 
@@ -180,7 +185,7 @@ public class CreateCircleActivity extends BaseActivity implements
 					BroadCast.sendBroadCast(CreateCircleActivity.this, intent);
 					finish();
 					Utils.rightOut(CreateCircleActivity.this);
-				}  
+				}
 			}
 		});
 		task.executeParallel(circle);
@@ -230,6 +235,7 @@ public class CreateCircleActivity extends BaseActivity implements
 				public void getSelectKey(CategoryCircle category) {
 					category_code = category.getCode();
 					txt_category.setText(category.getName());
+					setBtnVisible();
 				}
 			});
 			pop.show();
@@ -260,4 +266,33 @@ public class CreateCircleActivity extends BaseActivity implements
 
 	}
 
+	private void setBtnVisible() {
+		String circleName = edit_circle_name.getText().toString();
+		String circleDes = edit_circle_description.getText().toString();
+		String circleCategory = txt_category.getText().toString();
+		if (!"".equals(imgPath) && circleCategory.length() != 0
+				&& circleDes.length() != 0 && circleName.length() != 0) {
+			btn_create.setEnabled(true);
+			btn_create.setBackgroundResource(R.drawable.btn_selector);
+		} else {
+			btn_create.setEnabled(false);
+			btn_create.setBackgroundResource(R.drawable.btn_disenable_bg);
+		}
+	}
+
+	@Override
+	public void afterTextChanged(Editable arg0) {
+		setBtnVisible();
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			int arg3) {
+
+	}
+
+	@Override
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
+	}
 }

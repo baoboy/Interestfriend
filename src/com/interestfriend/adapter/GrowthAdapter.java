@@ -21,10 +21,12 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.CommentActivity;
+import com.interestfriend.data.AbstractData.Status;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
+import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
@@ -247,6 +249,9 @@ public class GrowthAdapter extends BaseAdapter {
 				if (result == RetError.NONE) {
 					for (Praise pr : growth.getPraises()) {
 						if (pr.getUser_id() == SharedUtils.getIntUid()) {
+							pr.setStatus(Status.DEL);
+							pr.write(DBUtils.getDBsa(2));
+							System.out.println("res:::::::::::::====" + pr);
 							growth.getPraises().remove(pr);
 							break;
 						}
@@ -275,6 +280,7 @@ public class GrowthAdapter extends BaseAdapter {
 					pr.setGrowth_id(growth.getGrowth_id());
 					pr.setUser_avatar(SharedUtils.getAPPUserAvatar());
 					pr.setUser_id(SharedUtils.getIntUid());
+					pr.write(DBUtils.getDBsa(2));
 					growth.getPraises().add(pr);
 
 				}

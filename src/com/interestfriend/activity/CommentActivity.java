@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +28,18 @@ import com.interestfriend.R;
 import com.interestfriend.adapter.CommentAdapter;
 import com.interestfriend.adapter.GrowthImgAdapter;
 import com.interestfriend.adapter.PraiseAdapter;
+import com.interestfriend.data.AbstractData.Status;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
+import com.interestfriend.data.GrowthImage;
 import com.interestfriend.data.Praise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.popwindow.CommentPopwindow;
 import com.interestfriend.popwindow.CommentPopwindow.OnCommentOnClick;
+import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.CancelPraiseGrowthTask;
 import com.interestfriend.task.DeleteCommentTask;
 import com.interestfriend.task.PraiseGrowthTask;
@@ -129,6 +133,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		edit_comment.addTextChangedListener(this);
 		mListView.setOnItemClickListener(this);
 		btn_praise.setOnClickListener(this);
+		img_grid_view.setOnItemClickListener(new GridViewOnItemClick());
 		Utils.getFocus(layout_title);
 	}
 
@@ -214,6 +219,8 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		btn_praise.setText("ÔÞ(" + (growth.getPraise_count() - 1) + ")");
 		for (Praise prais : growth.getPraises()) {
 			if (prais.getUser_id() == SharedUtils.getIntUid()) {
+				prais.setStatus(Status.DEL);
+				prais.write(DBUtils.getDBsa(2));
 				growth.getPraises().remove(prais);
 				praiseAdapter.notifyDataSetChanged();
 				break;
@@ -247,6 +254,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		praise.setGrowth_id(growth.getGrowth_id());
 		praise.setUser_avatar(SharedUtils.getAPPUserAvatar());
 		praise.setUser_id(SharedUtils.getIntUid());
+		praise.write(DBUtils.getDBsa(2));
 		growth.getPraises().add(praise);
 		praiseAdapter.notifyDataSetChanged();
 		PraiseGrowthTask task = new PraiseGrowthTask();
@@ -264,6 +272,29 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			}
 		});
 		task.executeParallel(growth);
+	}
+
+	class GridViewOnItemClick implements OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View v, int posit,
+				long arg3) {
+			intentImagePager(posit);
+		}
+	}
+
+	private void intentImagePager(int index) {
+		List<String> imgUrl = new ArrayList<String>();
+		for (GrowthImage img : growth.getImages()) {
+			imgUrl.add(img.getImg());
+		}
+		Intent intent = new Intent(this, ImagePagerActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+				(Serializable) imgUrl);
+		intent.putExtras(bundle);
+		intent.putExtra(Constants.EXTRA_IMAGE_INDEX, index);
+		startActivity(intent);
 	}
 
 	@Override
@@ -316,7 +347,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				edit_comment.setText("");
 				ToastUtil.showToast("»Ø¸´³É¹¦", Toast.LENGTH_SHORT);
