@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 	private Button btn_login;
 	private List<ImageView> views = new ArrayList<ImageView>();
 	private ViewPager mViewpager;
+	private List<View> dos = new ArrayList<View>();
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -50,13 +52,55 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 		img.setImageResource(R.drawable.login_bg);
 		img.setScaleType(ScaleType.FIT_XY);
 		views.add(img);
+		img = new ImageView(this);
+		img.setImageResource(R.drawable.splash_image3);
+		img.setScaleType(ScaleType.FIT_XY);
+		views.add(img);
+		img = new ImageView(this);
+		img.setImageResource(R.drawable.splash_image4);
+		img.setScaleType(ScaleType.FIT_XY);
+		views.add(img);
 		mViewpager.setAdapter(new MyPagerAdapter());
 		setListener();
+		initDos();
 	}
 
 	private void setListener() {
 		btn_login.setOnClickListener(this);
 		btn_register.setOnClickListener(this);
+		mViewpager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int index) {
+				for (View dot : dos) {
+					dot.setBackgroundResource(R.drawable.viewpager_normal_circle);
+				}
+				dos.get(index).setBackgroundResource(
+						R.drawable.viewpager_select_circle);
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+
+			}
+		});
+	}
+
+	private void initDos() {
+		View dot = (View) findViewById(R.id.dot1);
+		dos.add(dot);
+		dot = (View) findViewById(R.id.dot2);
+		dos.add(dot);
+		dot = (View) findViewById(R.id.dot3);
+		dos.add(dot);
+		dot = (View) findViewById(R.id.dot4);
+		dos.add(dot);
 	}
 
 	@Override

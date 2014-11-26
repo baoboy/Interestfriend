@@ -34,6 +34,7 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 	@Override
 	public void initView() {
 		edit_phone = (MyEditTextDeleteImg) findViewById(R.id.edit_telephone);
+		edit_phone.setTag("phone_num");
 		btn_next = (Button) findViewById(R.id.btnNext);
 	}
 
@@ -66,7 +67,7 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 
 	@Override
 	public void onClick(View v) {
-		String phone = edit_phone.getText().toString();
+		String phone = edit_phone.getText().toString().replaceAll(" ", "");
 		if (!Utils.isPhoneNum(phone)) {
 			ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
 			return;

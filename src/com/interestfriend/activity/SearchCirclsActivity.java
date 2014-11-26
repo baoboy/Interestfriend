@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.MyCircleAdapter;
@@ -20,6 +21,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.SearchCirclesByCategoryTask;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class SearchCirclsActivity extends BaseActivity implements
@@ -89,6 +91,10 @@ public class SearchCirclsActivity extends BaseActivity implements
 			public void taskFinish(RetError result) {
 				if (dialog != null) {
 					dialog.dismiss();
+				}
+				if (lists.getListCircles().size() == 0) {
+					ToastUtil.showToast("还没有圈子哦,赶快创建一个吧", Toast.LENGTH_SHORT);
+					return;
 				}
 				listCircles.addAll(lists.getListCircles());
 				adapter.notifyDataSetChanged();

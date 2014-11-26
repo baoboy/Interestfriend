@@ -33,6 +33,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 	@Override
 	public void initView() {
 		edit_telephone = (MyEditTextDeleteImg) findViewById(R.id.edit_telephone);
+		edit_telephone.setTag("phone_num");
 		btn_next = (Button) findViewById(R.id.btnNext);
 	}
 
@@ -54,7 +55,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 			public void taskFinish(RetError result) {
 				dialog.dismiss();
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				mActivity.getmRegister().setUser_cellphone(
 						edit_telephone.getText().toString());
@@ -69,7 +70,8 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnNext:
-			String phone = edit_telephone.getText().toString();
+			String phone = edit_telephone.getText().toString()
+					.replaceAll(" ", "");
 			if (!Utils.isPhoneNum(phone)) {
 				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
 				return;
