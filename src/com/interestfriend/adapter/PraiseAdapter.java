@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.interestfriend.R;
-import com.interestfriend.activity.CommentActivity;
 import com.interestfriend.data.Praise;
 import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.utils.UniversalImageLoadTool;

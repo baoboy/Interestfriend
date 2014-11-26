@@ -26,6 +26,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="消息提醒"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View
@@ -60,6 +61,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="版本更新"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View
@@ -77,6 +79,7 @@
         android:paddingRight="10dip"
         android:paddingTop="15dip"
         android:text="关于趣友"
+        android:textColor="@color/txt_color"
         android:textSize="15sp" />
 
     <View

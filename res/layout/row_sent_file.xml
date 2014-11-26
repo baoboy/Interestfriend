@@ -123,6 +123,7 @@
             android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/iamge_progress"
             android:visibility="visible" />
     </RelativeLayout>
 
