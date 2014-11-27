@@ -56,8 +56,8 @@
         <activity
             android:name="com.interestfriend.activity.CreateCircleActivity"
             android:label="@string/title_activity_create_circle"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <!-- 聊天页面 -->
         <activity
@@ -110,7 +110,8 @@
         <!-- 发布成长界面 -->
         <activity
             android:name="com.interestfriend.activity.PublicshGrowthActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.PublishGrowthImagePagerActivity"

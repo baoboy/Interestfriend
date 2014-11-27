@@ -68,7 +68,12 @@ public class MyCircleAdapter extends BaseAdapter {
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 				holder.img_circle_logo, R.drawable.picture_default_head);
 		if (list.get(position).getUnread() > 0) {
-			holder.txt_unread.setText(list.get(position).getUnread() + "");
+			if (list.get(position).getUnread() > 10) {
+				holder.txt_unread.setText("99+");
+
+			} else {
+				holder.txt_unread.setText(list.get(position).getUnread() + "");
+			}
 			holder.txt_unread.setVisibility(View.VISIBLE);
 		} else {
 			holder.txt_unread.setVisibility(View.GONE);
