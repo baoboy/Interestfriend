@@ -2,6 +2,7 @@ package com.interestfriend.fragment;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -24,12 +25,14 @@ import android.widget.ListView;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
 import com.interestfriend.R;
 import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
 import com.interestfriend.data.AbstractData.Status;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
@@ -246,6 +249,20 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			if (!conversation.getIsGroup()) {
 				continue;
 			}
+			for (EMMessage message : conversation.getAllMessages()) {
+				if (message.getFrom().equals("admin")) {
+					conversation.removeMessage(message.getMsgId());
+				}
+
+			}
+			for (Iterator<EMMessage> it = localMembersLists.iterator(); it
+					.hasNext();) {
+				if (it.next().getUser_id() == uid) {
+					it.remove();
+				}
+			}
+			System.out.println("user:::::::::::::" + conversation.getUserName()
+					+ "   " + conversation.getUnreadMsgCount());
 			setUnread(conversation.getUserName(),
 					conversation.getUnreadMsgCount());
 		}

@@ -67,14 +67,21 @@ public class MyCircleAdapter extends BaseAdapter {
 				.getCircle_member_num() + "");
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 				holder.img_circle_logo, R.drawable.picture_default_head);
-		if (list.get(position).getUnread() > 0) {
-			if (list.get(position).getUnread() > 10) {
-				holder.txt_unread.setText("99+");
-
+		int num = list.get(position).getUnread();
+		if (num > 0) {
+			if (num > 9) {
+				holder.txt_unread.setBackgroundResource(R.drawable.un_read2);
+				if (num > 100) {
+					holder.txt_unread.setText("99+");
+				} else {
+					holder.txt_unread.setText(num + "");
+				}
 			} else {
-				holder.txt_unread.setText(list.get(position).getUnread() + "");
+				holder.txt_unread.setText(num + "");
+				holder.txt_unread.setBackgroundResource(R.drawable.un_read_1);
 			}
 			holder.txt_unread.setVisibility(View.VISIBLE);
+
 		} else {
 			holder.txt_unread.setVisibility(View.GONE);
 		}
