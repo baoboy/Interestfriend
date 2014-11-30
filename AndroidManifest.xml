@@ -125,7 +125,8 @@
         </activity>
         <activity
             android:name="com.interestfriend.showbigpic.ImagePagerActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
         </activity>
         <!-- 设置应用的 appkey -->
         <meta-data
@@ -149,19 +150,23 @@
 
         <activity
             android:name="com.interestfriend.activity.CategoryCircleActivity"
-            android:label="@string/title_activity_category_circle" >
+            android:label="@string/title_activity_category_circle"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.SearchCirclsActivity"
-            android:label="@string/title_activity_search_circls" >
+            android:label="@string/title_activity_search_circls"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.CircleInfoActivity"
-            android:label="@string/title_activity_circle_info" >
+            android:label="@string/title_activity_circle_info"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.CircleMemberOfSelfInfoActivity"
-            android:label="@string/title_activity_circle_member_info" >
+            android:label="@string/title_activity_circle_member_info"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.HomeActivity"
@@ -169,15 +174,19 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.interestfriend.register.RegisterActivity" >
+        <activity
+            android:name="com.interestfriend.register.RegisterActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.PublishVideoActivity"
-            android:label="@string/title_activity_publish_video" >
+            android:label="@string/title_activity_publish_video"
+            android:screenOrientation="portrait" >
         </activity>
 
         <!-- 注意这个地方的位置，是在application标签里面；android:authorities对应Provider.AUTHORITY -->
@@ -196,72 +205,100 @@
 
         <activity
             android:name="com.interestfriend.activity.NearCirclesActivity"
-            android:label="@string/title_activity_near_circles" >
+            android:label="@string/title_activity_near_circles"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.ChatAllHistoryActivity"
-            android:label="@string/title_activity_chat_all_history" >
+            android:label="@string/title_activity_chat_all_history"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.UpdateUserInfoActivity"
-            android:label="@string/title_activity_update_user_info" >
+            android:label="@string/title_activity_update_user_info"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.CircleMemberActivity"
-            android:label="@string/title_activity_circle_member" >
+            android:label="@string/title_activity_circle_member"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.CommentActivity"
-            android:label="@string/title_activity_comment" >
+            android:label="@string/title_activity_comment"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.VideoCommentActivity"
-            android:label="@string/title_activity_video_comment" >
+            android:label="@string/title_activity_video_comment"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.SettingActivity"
-            android:label="@string/title_activity_setting" >
+            android:label="@string/title_activity_setting"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.findpassword.FindPasswordActivity"
-            android:label="@string/title_activity_find_password" >
+            android:label="@string/title_activity_find_password"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.FeedBackActivity"
-            android:label="@string/title_activity_feed_back" >
+            android:label="@string/title_activity_feed_back"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.MessageWarnctivity"
-            android:label="@string/title_activity_message_warnctivity" >
+            android:label="@string/title_activity_message_warnctivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.JoinCircleActivity"
-            android:label="@string/title_activity_qu_you_wain" >
+            android:label="@string/title_activity_qu_you_wain"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.ReceiveJoinCircleActivity"
-            android:label="@string/title_activity_receive_join_circle" >
+            android:label="@string/title_activity_receive_join_circle"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.RefuseJoinCircleActivity"
-            android:label="@string/title_activity_refuse_join_circle" >
+            android:label="@string/title_activity_refuse_join_circle"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.DissolveCircleActivity"
-            android:label="@string/title_activity_dissolve_circle" >
+            android:label="@string/title_activity_dissolve_circle"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.UpdateCircleDiscriptionActivity"
-            android:label="@string/title_activity_update_circle_discription" >
+            android:label="@string/title_activity_update_circle_discription"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.PraiseAndCommentActivity"
-            android:label="@string/title_activity_praise_and_comment" >
+            android:label="@string/title_activity_praise_and_comment"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.WelcomActivity"
-            android:label="@string/title_activity_welcom_loading" >
+            android:label="@string/title_activity_welcom_loading"
+            android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.AboutActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.UserAgreement"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service android:name="com.interestfriend.service.UpdateService" >
+        </service>
     </application>
 
 </manifest>

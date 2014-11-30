@@ -42,9 +42,7 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
-import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.utils.Constants;
-import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
@@ -89,6 +87,7 @@ public class HomeActivity extends FragmentActivity implements
 	@Override
 	protected void onResume() {
 		updateUnreadLabel();
+		EMChatManager.getInstance().activityResumed();
 		super.onResume();
 	}
 

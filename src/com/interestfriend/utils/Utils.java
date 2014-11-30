@@ -7,6 +7,10 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.DisplayMetrics;
@@ -14,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 
 public class Utils {
 	/**
@@ -139,4 +144,48 @@ public class Utils {
 	public static void print(String str) {
 		System.out.println(str);
 	}
+
+	/**
+	 * 获取应用的当前版本号
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public static String getVersionName(Context context) {
+		String version = "";
+		try {
+
+			// 获取packagemanager的实例
+			PackageManager packageManager = context.getPackageManager();
+			// getPackageName()是你当前类的包名，0代表是获取版本信息
+			PackageInfo packInfo;
+			packInfo = packageManager.getPackageInfo(context.getPackageName(),
+					0);
+			version = packInfo.versionName;
+
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return version;
+	}
+
+	/**
+	 * 
+	 * @Description 检查网络状态
+	 * @param context
+	 * @return boolean
+	 */
+	public static boolean isNetworkAvailable() {
+		ConnectivityManager cm = (ConnectivityManager) MyApplation
+				.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (cm.getActiveNetworkInfo() != null
+				&& cm.getActiveNetworkInfo().isAvailable()
+				&& cm.getActiveNetworkInfo().isConnected()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

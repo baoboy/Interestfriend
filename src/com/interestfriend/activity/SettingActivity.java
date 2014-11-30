@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,14 +8,19 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.interfaces.ConfirmDialog;
+import com.interestfriend.service.UpdateService;
+import com.interestfriend.task.UpDateNewVersionTask;
+import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 import fynn.app.PromptDialog;
@@ -95,8 +101,67 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			startActivity(new Intent(this, MessageWarnctivity.class));
 			Utils.leftOutRightIn(this);
 			break;
+		case R.id.txt_new_version:
+			if (!Utils.isNetworkAvailable()) {
+				ToastUtil.showToast("Õ¯¬Á¥ÌŒÛ,«ÎºÏ≤ÈÕ¯¬Á", Toast.LENGTH_SHORT);
+				return;
+			}
+			getNewVersion();
+
+			break;
+		case R.id.txt_about:
+			startActivity(new Intent(this, AboutActivity.class));
+			Utils.leftOutRightIn(this);
+			break;
 		default:
 			break;
 		}
 	}
+
+	private void getNewVersion() {
+		final Dialog dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
+		dialog.show();
+		UpDateNewVersionTask task = new UpDateNewVersionTask(this);
+		task.setCallBack(new UpDateVersion() {
+			@Override
+			public void getNewVersion(int rt, String versionCode, String link) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (rt == 0) {
+					return;
+				}
+				newVewsionDialog(versionCode, link);
+			}
+		});
+		task.execute();
+	}
+
+	private void newVewsionDialog(String versionCode, final String link) {
+		PromptDialog.Builder dialog = new PromptDialog.Builder(this);
+		dialog.setTitle("–¬∞Ê±æÃ· æ");
+		dialog.setViewStyle(PromptDialog.VIEW_STYLE_TITLEBAR);
+		dialog.setMessage(versionCode);
+		dialog.setMessageGravityIsCenter(true);
+		dialog.setButton1("¡¢º¥œ¬‘ÿ", new PromptDialog.OnClickListener() {
+
+			@Override
+			public void onClick(Dialog dialog, int which) {
+				dialog.dismiss();
+				Intent intent = new Intent();
+				intent.setClass(SettingActivity.this, UpdateService.class);
+				intent.putExtra("url", link);
+				startService(intent);
+			}
+		});
+		dialog.setButton2("‘›≤ªœ¬‘ÿ", new PromptDialog.OnClickListener() {
+
+			@Override
+			public void onClick(Dialog dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+	}
+
 }

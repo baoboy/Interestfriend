@@ -1,9 +1,13 @@
 eclipse.preferences.version=1
+encoding//src/com/interestfriend/activity/AboutActivity.java=UTF-8
+encoding//src/com/interestfriend/activity/UserAgreement.java=UTF-8
 encoding//src/com/interestfriend/adapter/ChatAllHistoryAdapter.java=UTF-8
 encoding//src/com/interestfriend/chooseimage=UTF-8
 encoding//src/com/interestfriend/popwindow/SelectCircleCategoryPopWindow.java=UTF-8
+encoding//src/com/interestfriend/service/UpdateService.java=UTF-8
 encoding//src/com/interestfriend/showbigpic/ImageDetailFragment.java=UTF-8
 encoding//src/com/interestfriend/showbigpic/ImagePagerActivity.java=UTF-8
+encoding//src/com/interestfriend/task/UpDateNewVersionTask.java=UTF-8
 encoding//src/com/interestfriend/utils/BitmapUtils.java=UTF-8
 encoding//src/com/interestfriend/utils/FileUtils.java=UTF-8
 encoding//src/com/interestfriend/utils/PhotoUtils.java=UTF-8

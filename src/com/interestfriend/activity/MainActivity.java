@@ -29,8 +29,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private CircleMemberFragment memberFragment;
 	private CircleGroupChatFragment chatFragment;
 	private CircleGrowthFragment growthFragment;
-	private int unread;
+	private int unread, unread_growth;
 	private TextView unread_msg_number;
+	private TextView unread_msg_number_growth;
+
 	private List<RadioButton> buttonLists = new ArrayList<RadioButton>();
 
 	@Override
@@ -39,14 +41,43 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		MyApplation.addActivity(this);
 		unread = getIntent().getIntExtra("unread", 0);
+		unread_growth = getIntent().getIntExtra("growth_unread", 0);
+		System.out.println("unread_growthunread_growth::");
 		initFragment();
 	}
 
 	private void initFragment() {
 		unread_msg_number = (TextView) findViewById(R.id.unread_msg_number);
+		unread_msg_number_growth = (TextView) findViewById(R.id.unread_msg_number_growth);
 		if (unread > 0) {
-			unread_msg_number.setText(unread + "");
 			unread_msg_number.setVisibility(View.VISIBLE);
+			if (unread > 9) {
+				unread_msg_number.setBackgroundResource(R.drawable.un_read2);
+				if (unread > 100) {
+					unread_msg_number.setText("99+");
+				} else {
+					unread_msg_number.setText(unread + "");
+				}
+			} else {
+				unread_msg_number.setText(unread + "");
+				unread_msg_number.setBackgroundResource(R.drawable.un_read_1);
+			}
+		}
+		if (unread_growth > 0) {
+			unread_msg_number_growth.setVisibility(View.VISIBLE);
+			if (unread_growth > 9) {
+				unread_msg_number_growth
+						.setBackgroundResource(R.drawable.un_read2);
+				if (unread_growth > 100) {
+					unread_msg_number_growth.setText("99+");
+				} else {
+					unread_msg_number_growth.setText(unread_growth + "");
+				}
+			} else {
+				unread_msg_number_growth.setText(unread_growth + "");
+				unread_msg_number_growth
+						.setBackgroundResource(R.drawable.un_read_1);
+			}
 		}
 		RadioButton btn = (RadioButton) findViewById(R.id.tab_member);
 		btn.setOnClickListener(this);
@@ -117,9 +148,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.tab_messsage) {
+		switch (v.getId()) {
+		case R.id.tab_messsage:
 			unread_msg_number.setVisibility(View.GONE);
+			break;
+		case R.id.tab_growth:
+			unread_msg_number_growth.setVisibility(View.GONE);
+			break;
+		default:
+			break;
 		}
+
 		for (int i = 0; i < buttonLists.size(); i++) {
 			if (buttonLists.get(i).getId() == v.getId()) {
 				showTab(i);

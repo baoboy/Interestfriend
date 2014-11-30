@@ -67,7 +67,8 @@ public class MyCircleAdapter extends BaseAdapter {
 				.getCircle_member_num() + "");
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 				holder.img_circle_logo, R.drawable.picture_default_head);
-		int num = list.get(position).getUnread();
+		int num = list.get(position).getUnread()
+				+ list.get(position).getGrowth_unread();
 		if (num > 0) {
 			if (num > 9) {
 				holder.txt_unread.setBackgroundResource(R.drawable.un_read2);

@@ -32,7 +32,6 @@ import com.interestfriend.adapter.MyCircleAdapter;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.contentprovider.MyCirclesProvider;
 import com.interestfriend.data.AbstractData.Status;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.CirclesList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
@@ -245,34 +244,38 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
+		System.out.println("message:::::::::::::;");
+
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
 			}
-			for (EMMessage message : conversation.getAllMessages()) {
-				if (message.getFrom().equals("admin")) {
-					conversation.removeMessage(message.getMsgId());
-				}
+			int growth_unread = 0;
+			for (Iterator<EMMessage> it = conversation.getAllMessages()
+					.iterator(); it.hasNext();) {
+				EMMessage message = it.next();
 
-			}
-			for (Iterator<EMMessage> it = localMembersLists.iterator(); it
-					.hasNext();) {
-				if (it.next().getUser_id() == uid) {
-					it.remove();
+				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
+					conversation.removeMessage(message.getMsgId());
+					growth_unread++;
+					System.out.println("message:::::::::::::;=="
+							+ growth_unread);
+
 				}
 			}
-			System.out.println("user:::::::::::::" + conversation.getUserName()
-					+ "   " + conversation.getUnreadMsgCount());
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount());
+					conversation.getUnreadMsgCount(), growth_unread);
+			System.out.println("message:::::::::::::;-----------"
+					+ growth_unread);
 		}
 		adapter.notifyDataSetChanged();
 	}
 
-	private void setUnread(String groupId, int unread) {
+	private void setUnread(String groupId, int unread, int growth_unread) {
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
-				c.setUnread(unread);
+				c.setUnread(unread - growth_unread);
+				c.setGrowth_unread(growth_unread);
 				break;
 			}
 		}
@@ -310,6 +313,10 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		intent.setClass(getActivity(), MainActivity.class);
 		startActivity(intent);
 		Utils.leftOutRightIn(getActivity());
+		EMConversation conversation = EMChatManager.getInstance()
+				.getConversation(circle.getGroup_id());
+		// 把此会话的未读数置为0
+		conversation.resetUnsetMsgCount();
 	};
 
 	@Override

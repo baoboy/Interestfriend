@@ -52,8 +52,8 @@
 
             <TextView
                 android:id="@+id/unread_msg_number"
-                android:layout_width="17dip"
-                android:layout_height="17dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/tab_messsage"
                 android:layout_marginTop="5dip"
@@ -65,16 +65,36 @@
                 android:visibility="gone" />
         </RelativeLayout>
 
-        <RadioButton
-            android:id="@+id/tab_growth"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00ffffff"
-            android:button="@null"
-            android:checked="false"
-            android:drawableTop="@drawable/tab_dynamic"
-            android:gravity="center" />
+            android:layout_weight="1.0"
+            android:background="@null" >
+
+            <RadioButton
+                android:id="@+id/tab_growth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ffffff"
+                android:button="@null"
+                android:checked="false"
+                android:drawableTop="@drawable/tab_dynamic"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/unread_msg_number_growth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/tab_growth"
+                android:layout_marginTop="5dip"
+                android:background="@drawable/unread_num_bg"
+                android:gravity="center"
+                android:text="-1"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>
