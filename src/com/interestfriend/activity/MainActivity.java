@@ -42,7 +42,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		MyApplation.addActivity(this);
 		unread = getIntent().getIntExtra("unread", 0);
 		unread_growth = getIntent().getIntExtra("growth_unread", 0);
-		System.out.println("unread_growthunread_growth::");
 		initFragment();
 	}
 
@@ -148,12 +147,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+
 		switch (v.getId()) {
 		case R.id.tab_messsage:
 			unread_msg_number.setVisibility(View.GONE);
 			break;
 		case R.id.tab_growth:
 			unread_msg_number_growth.setVisibility(View.GONE);
+			break;
+		case R.id.back:
+			finish();
+			Utils.rightOut(this);
 			break;
 		default:
 			break;

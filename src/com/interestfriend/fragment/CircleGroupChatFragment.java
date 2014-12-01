@@ -82,6 +82,7 @@ import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
 
 @SuppressLint("NewApi")
@@ -161,6 +162,7 @@ public class CircleGroupChatFragment extends Fragment implements
 
 	private PowerManager.WakeLock wakeLock;
 	private GridView mGridView;
+	private ImageView back;
 
 	private List<View> views = new ArrayList<View>();
 	private List<View> dots = new ArrayList<View>();
@@ -196,6 +198,8 @@ public class CircleGroupChatFragment extends Fragment implements
 	 * initView
 	 */
 	protected void initView() {
+		back = (ImageView) getView().findViewById(R.id.back);
+		back.setOnClickListener(this);
 		mGridView = (GridView) getView().findViewById(R.id.m_gridview);
 		mGridView.setAdapter(new ChatGridViewAdapter(getActivity(), 1));
 		mGridView.setOnItemClickListener(this);
@@ -569,6 +573,10 @@ public class CircleGroupChatFragment extends Fragment implements
 			setModeVoice(view);
 		} else if (id == R.id.btn_set_mode_keyboard) {
 			setModeKeyboard(view);
+		} else if (id == R.id.back) {
+			getActivity().finish();
+			Utils.rightOut(getActivity());
+
 		}
 	}
 

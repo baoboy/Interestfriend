@@ -271,7 +271,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 
 		new Thread() {
 			public void run() { // 初始化表情viewpager
-				for (int i = 1; i < 7; i++) {
+				for (int i = 1; i < 9; i++) {
 					views.add(getGridChildView(i));
 				}
 				mEmjoiHandler.sendEmptyMessage(0);
@@ -354,6 +354,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		view = (View) findViewById(R.id.dot5);
 		dots.add(view);
 		view = (View) findViewById(R.id.dot6);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot7);
+		dots.add(view);
+		view = (View) findViewById(R.id.dot8);
 		dots.add(view);
 	}
 

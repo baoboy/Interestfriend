@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 	private TextView txt_title;
 	private EditText edit_content;
 	private Button btn_save;
+	private ImageView back;
 
 	private Dialog dialog;
 
@@ -46,6 +48,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		edit_content = (EditText) findViewById(R.id.txt_content);
 		btn_save = (Button) findViewById(R.id.btn_save);
@@ -53,6 +56,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		btn_save.setOnClickListener(this);
 	}
 
@@ -80,7 +84,9 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 			}
 			upDate(value);
 			break;
-
+		case R.id.back:
+			finishThisActivity();
+			break;
 		default:
 			break;
 		}
@@ -97,7 +103,7 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				ToastUtil.showToast("²Ù×÷³É¹¦", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

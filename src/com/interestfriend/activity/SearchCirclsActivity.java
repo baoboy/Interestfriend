@@ -7,8 +7,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,11 +27,12 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class SearchCirclsActivity extends BaseActivity implements
-		OnItemClickListener {
+		OnItemClickListener, OnClickListener {
 	private int category = 0;
 
 	private ListView mlistView;
 	private TextView txt_title;
+	private ImageView back;
 
 	private Dialog dialog;
 
@@ -54,6 +57,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
 		mlistView = (ListView) findViewById(R.id.listview);
 		mlistView.setCacheColorHint(0);
 		txt_title = (TextView) findViewById(R.id.title_txt);
@@ -62,6 +66,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		mlistView.setOnItemClickListener(this);
 	}
 
@@ -103,4 +108,15 @@ public class SearchCirclsActivity extends BaseActivity implements
 		task.executeParallel(lists);
 	}
 
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			finishThisActivity();
+			break;
+
+		default:
+			break;
+		}
+	}
 }

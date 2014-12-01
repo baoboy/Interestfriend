@@ -113,6 +113,9 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			startActivity(new Intent(this, AboutActivity.class));
 			Utils.leftOutRightIn(this);
 			break;
+		case R.id.back:
+			finishThisActivity();
+			break;
 		default:
 			break;
 		}

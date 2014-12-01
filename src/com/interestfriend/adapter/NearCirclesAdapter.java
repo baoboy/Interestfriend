@@ -65,7 +65,7 @@ public class NearCirclesAdapter extends BaseAdapter {
 				holder.img_circle_logo, R.drawable.picture_default_head);
 		int distance = list.get(position).getDistance();
 		if (distance < 1000) {
-			holder.txt_diatance.setText(distance + " 米");
+			holder.txt_diatance.setText(distance + " 米以内");
 		} else {
 			holder.txt_diatance.setText((distance / 1000) * 2 + " 公里");
 

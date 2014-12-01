@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.baidu.location.f;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;
@@ -50,6 +51,7 @@ public class CircleGrowthFragment extends Fragment implements
 
 	private ImageView img_send;
 	private TextView txt_title;
+	private ImageView back;
 
 	private SelectPicPopwindow pop;
 
@@ -67,6 +69,7 @@ public class CircleGrowthFragment extends Fragment implements
 	}
 
 	private void initView() {
+		back = (ImageView) getView().findViewById(R.id.back);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
 		txt_title.setText("成长");
 		img_send = (ImageView) getView().findViewById(R.id.rightImg);
@@ -76,6 +79,7 @@ public class CircleGrowthFragment extends Fragment implements
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		img_send.setOnClickListener(this);
 	}
 
@@ -168,12 +172,11 @@ public class CircleGrowthFragment extends Fragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rightImg:
-			// pop = new SelectPicPopwindow(getActivity(), v, "发布图片", "发布视频");
-			// pop.setmSelectOnclick(this);
-			// pop.show();
 			menu1_select();
 			break;
-
+		case R.id.back:
+			getActivity().finish();
+			Utils.rightOut(getActivity());
 		default:
 			break;
 		}

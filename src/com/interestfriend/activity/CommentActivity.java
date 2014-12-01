@@ -216,7 +216,12 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
 				drawable.getMinimumHeight());
 		btn_praise.setCompoundDrawables(drawable, null, null, null);
-		btn_praise.setText("до(" + (growth.getPraise_count() - 1) + ")");
+		int count = growth.getPraise_count() - 1;
+		if (count > 0) {
+			btn_praise.setText("до(" + (growth.getPraise_count() - 1) + ")");
+		} else {
+			btn_praise.setText("до ");
+		}
 		for (Praise prais : growth.getPraises()) {
 			if (prais.getUser_id() == SharedUtils.getIntUid()) {
 				prais.setStatus(Status.DEL);

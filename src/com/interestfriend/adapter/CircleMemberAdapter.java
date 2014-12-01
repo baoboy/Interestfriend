@@ -71,7 +71,7 @@ public class CircleMemberAdapter extends BaseAdapter {
 		}
 
 		UniversalImageLoadTool.disPlay(list.get(position).getUser_avatar(),
-				holder.img_user_avatar, R.drawable.picture_default_head);
+				holder.img_user_avatar, R.drawable.default_avatar);
 		showAlpha(position, holder);
 		return contentView;
 	}

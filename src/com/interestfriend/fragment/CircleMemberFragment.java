@@ -71,6 +71,7 @@ public class CircleMemberFragment extends Fragment implements
 	private TextView txt_title;
 	private ImageView right_image;
 	private RelativeLayout title_layout;
+	private ImageView back;
 
 	private AsyncQueryHandler asyncQuery;
 
@@ -94,6 +95,7 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void initView() {
+		back = (ImageView) getView().findViewById(R.id.back);
 		title_layout = (RelativeLayout) getView().findViewById(
 				R.id.title_layout);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
@@ -101,13 +103,14 @@ public class CircleMemberFragment extends Fragment implements
 				R.id.circle_member_listview);
 		right_image = (ImageView) getView().findViewById(R.id.rightImg);
 		right_image.setVisibility(View.VISIBLE);
-		right_image.setImageResource(R.drawable.right_menu_selector);
+		right_image.setImageResource(R.drawable.right_menu);
 		setListener();
 	}
 
 	private void setListener() {
 		circle_member_listView.setOnItemClickListener(this);
 		right_image.setOnClickListener(this);
+		back.setOnClickListener(this);
 	}
 
 	private void setValue() {
@@ -321,7 +324,11 @@ public class CircleMemberFragment extends Fragment implements
 			pop.setmCallBack(this);
 			pop.show();
 			break;
+		case R.id.back:
+			getActivity().finish();
+			Utils.rightOut(getActivity());
 
+			break;
 		default:
 			break;
 		}

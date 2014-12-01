@@ -386,7 +386,7 @@ public class GroupChatAdapter extends BaseAdapter {
 
 		if (message.direct == EMMessage.Direct.SEND) {
 			UniversalImageLoadTool.disPlay(SharedUtils.getAPPUserAvatar(),
-					holder.head_iv, R.drawable.picture_default_head);
+					holder.head_iv, R.drawable.default_avatar);
 
 		} else {
 			try {

@@ -95,7 +95,8 @@ public class HomeActivity extends FragmentActivity implements
 		img_prompt = (ImageView) findViewById(R.id.img_prompt);
 		img_back = (ImageView) findViewById(R.id.back);
 		img_back.setOnClickListener(this);
-		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
+		img_back.setImageResource(R.drawable.menu_nomal);
+ 		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
 		btn_tab_my_circle = (Button) findViewById(R.id.btn_tab_my_circle);
 		btn_tab_neay_circle = (Button) findViewById(R.id.btn_tab_near_circle);
 		img_add = (ImageView) findViewById(R.id.img_add);
@@ -323,11 +324,14 @@ public class HomeActivity extends FragmentActivity implements
 		if (mPager.getCurrentItem() == 0) {
 			img_add.setVisibility(View.VISIBLE);
 		}
+		img_back.setImageResource(R.drawable.menu_nomal);
+
 	}
 
 	@Override
 	public void onDrawerOpened(View arg0) {
 		img_add.setVisibility(View.GONE);
+		img_back.setImageResource(R.drawable.menu_select);
 	}
 
 	@Override

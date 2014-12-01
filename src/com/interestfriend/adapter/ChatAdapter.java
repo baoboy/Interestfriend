@@ -193,7 +193,7 @@ public class ChatAdapter extends BaseAdapter {
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater
 					.inflate(R.layout.row_received_picture, null) : inflater
 					.inflate(R.layout.row_sent_picture, null);
- 		case VOICE:
+		case VOICE:
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater
 					.inflate(R.layout.row_received_voice, null) : inflater
 					.inflate(R.layout.row_sent_voice, null);
@@ -479,7 +479,7 @@ public class ChatAdapter extends BaseAdapter {
 				// String user_name = message.getStringAttribute("user_name");
 				String user_avatar = message.getStringAttribute("user_avatar");
 				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
-						R.drawable.picture_default_head);
+						R.drawable.default_avatar);
 			} catch (EaseMobException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

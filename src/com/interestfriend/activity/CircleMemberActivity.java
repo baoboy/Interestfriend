@@ -82,7 +82,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		title_layout = (RelativeLayout) findViewById(R.id.title);
 		right_image = (ImageView) findViewById(R.id.rightImg);
 		right_image.setVisibility(View.VISIBLE);
-		right_image.setImageResource(R.drawable.right_menu_selector);
+		right_image.setImageResource(R.drawable.right_menu);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		txt_birthday = (TextView) findViewById(R.id.txt_birthday);
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
@@ -199,7 +199,7 @@ public class CircleMemberActivity extends BaseActivity implements
 					dialogLoad.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				ToastUtil.showToast("Ìß³ö³É¹¦", Toast.LENGTH_SHORT);
 				Intent intent = new Intent();

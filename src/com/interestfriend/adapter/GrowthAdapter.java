@@ -240,7 +240,13 @@ public class GrowthAdapter extends BaseAdapter {
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(),
 				drawable.getMinimumHeight());
 		v.setCompoundDrawables(drawable, null, null, null);
-		v.setText("до(" + (growth.getPraise_count() - 1) + ")");
+		int count = growth.getPraise_count() - 1;
+		if (count > 0) {
+			v.setText("до(" + (growth.getPraise_count() - 1) + ")");
+		} else {
+			v.setText("до ");
+
+		}
 		CancelPraiseGrowthTask task = new CancelPraiseGrowthTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override

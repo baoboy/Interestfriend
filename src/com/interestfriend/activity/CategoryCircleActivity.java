@@ -7,8 +7,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +27,10 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class CategoryCircleActivity extends BaseActivity implements
-		OnItemClickListener {
+		OnItemClickListener, OnClickListener {
 	private ListView listView;
 	private TextView txt_title;
+	private ImageView back;
 
 	private List<CategoryCircle> lists = new ArrayList<CategoryCircle>();
 
@@ -48,12 +51,14 @@ public class CategoryCircleActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
 		listView = (ListView) findViewById(R.id.Listview);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		listView.setOnItemClickListener(this);
 	}
 
@@ -102,6 +107,18 @@ public class CategoryCircleActivity extends BaseActivity implements
 
 		if (dialog != null) {
 			dialog.dismiss();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.back:
+			finishThisActivity();
+			break;
+
+		default:
+			break;
 		}
 	}
 }
