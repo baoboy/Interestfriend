@@ -75,11 +75,11 @@
 
         <ProgressBar
             android:id="@+id/pb_sending"
-            style="@drawable/img_loder"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/tv_chatcontent"
+            android:indeterminateDrawable="@drawable/iamge_progress"
             android:visibility="visible" />
     </RelativeLayout>
 

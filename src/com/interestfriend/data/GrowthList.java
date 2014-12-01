@@ -27,7 +27,7 @@ public class GrowthList extends AbstractData {
 	private static final long serialVersionUID = 1L;
 
 	private final String GROWTH_LIST_API = "GetGrowthListServlet";
-	private final int GROUTH_COUNT = 40;
+	private final int GROUTH_COUNT = 20;
 
 	private List<Growth> growths = new ArrayList<Growth>();
 	private List<Growth> writeGrowths = new ArrayList<Growth>();
@@ -147,20 +147,22 @@ public class GrowthList extends AbstractData {
 			growth.write(db);
 		}
 		writeGrowths.clear();
-		Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME,
-				new String[] { "_id" }, "cid=?", new String[] { cid + "" },
-				null, null, null);
-		if (cursor.getCount() > GROUTH_COUNT) {
-			cursor.move(GROUTH_COUNT);
-			int id = cursor.getInt(cursor.getColumnIndex("_id"));
-			db.delete(Const.GROWTHS_TABLE_NAME, "_id> ? and cid=?",
-					new String[] { id + "", cid + "" });
-			db.delete(Const.GROWTH_IMAGE_TABLE_NAME, "_id> ? and cid=?",
-					new String[] { id + "", cid + "" });
-			db.delete(Const.PRAISE_TABLE_NAME, "_id> ? and cid=?",
-					new String[] { id + "", cid + "" });
-			db.delete(Const.COMMENT_TABLE_NAME, "_id> ? and cid=?",
-					new String[] { id + "", cid + "" });
+		if (refushState == 1) {
+			Cursor cursor = db.query(Const.GROWTHS_TABLE_NAME,
+					new String[] { "_id" }, "cid=?", new String[] { cid + "" },
+					null, null, null);
+			if (cursor.getCount() > GROUTH_COUNT) {
+				cursor.move(GROUTH_COUNT);
+				int id = cursor.getInt(cursor.getColumnIndex("_id"));
+				db.delete(Const.GROWTHS_TABLE_NAME, "_id> ? and cid=?",
+						new String[] { id + "", cid + "" });
+				db.delete(Const.GROWTH_IMAGE_TABLE_NAME, "_id> ? and cid=?",
+						new String[] { id + "", cid + "" });
+				db.delete(Const.PRAISE_TABLE_NAME, "_id> ?", new String[] { id
+						+ "" });
+				db.delete(Const.COMMENT_TABLE_NAME, "_id> ? ",
+						new String[] { id + "" });
+			}
 		}
 	}
 

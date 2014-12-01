@@ -185,7 +185,13 @@ public class CircleMemberFragment extends Fragment implements
 				list.sort(cirlceMemberLists);
 				list.getMe(cirlceMemberLists);
 				adapter.notifyDataSetChanged();
-				getCircleMemberFormServer();
+				if (System.currentTimeMillis()
+						- SharedUtils
+								.getCircleMemberLocalLastReqTime(circle_id) > 10000) {
+					getCircleMemberFormServer();
+					SharedUtils.setCircleMemberLocalLastReqTime(circle_id,
+							System.currentTimeMillis());
+				}
 			} else {
 				dialog = DialogUtil.createLoadingDialog(getActivity(), "«Î…‘∫Ú");
 				dialog.show();
@@ -196,7 +202,7 @@ public class CircleMemberFragment extends Fragment implements
 	}
 
 	private void getCircleMemberFormServer() {
- 		GetCircleMemberTask task = new GetCircleMemberTask();
+		GetCircleMemberTask task = new GetCircleMemberTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 
 			@Override
@@ -231,7 +237,7 @@ public class CircleMemberFragment extends Fragment implements
 					intent.putExtra("num", newSize);
 					getActivity().sendBroadcast(intent);
 				}
-  			}
+			}
 		});
 		task.executeParallel(list);
 	}

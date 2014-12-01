@@ -216,6 +216,17 @@ public class SharedUtils {
 
 	}
 
+	public static void setCircleMemberLocalLastReqTime(int cid, long lastReqTime) {
+		editor.putLong("circle_member_local_last_req_time" + cid, lastReqTime);
+		editor.commit();
+	}
+
+	public static long getCircleMemberLocalLastReqTime(int cid) {
+		return sharedPreferences.getLong("circle_member_local_last_req_time"
+				+ cid, 0l);
+
+	}
+
 	public static void setCircleLastRequestTime(long lastReqTime) {
 		editor.putLong("circle_last_request_time", lastReqTime);
 		editor.commit();

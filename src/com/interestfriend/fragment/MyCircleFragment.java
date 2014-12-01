@@ -26,6 +26,7 @@ import android.widget.ListView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.activity.MainActivity;
 import com.interestfriend.adapter.MyCircleAdapter;
@@ -40,6 +41,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetCircleListTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")
@@ -244,29 +246,41 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
-		System.out.println("message:::::::::::::;");
-
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
 			}
 			int growth_unread = 0;
+			int self_publish = 0;
 			for (Iterator<EMMessage> it = conversation.getAllMessages()
 					.iterator(); it.hasNext();) {
 				EMMessage message = it.next();
 
 				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
 					conversation.removeMessage(message.getMsgId());
-					growth_unread++;
-					System.out.println("message:::::::::::::;=="
-							+ growth_unread);
+					int publicsher_id = 0;
+					try {
+						publicsher_id = Integer.valueOf(message
+								.getStringAttribute("publisher_id"));
+						Utils.print("pulish:::::::::::" + publicsher_id + "   "
+								+ SharedUtils.getUid());
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
+					if (publicsher_id == SharedUtils.getIntUid()) {
+						self_publish++;
+					} else {
+						growth_unread++;
+
+					}
 
 				}
 			}
+			Utils.print("pulish:::::::::::===" + self_publish + "      "
+					+ conversation.getUnreadMsgCount());
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount(), growth_unread);
-			System.out.println("message:::::::::::::;-----------"
-					+ growth_unread);
+					conversation.getUnreadMsgCount()
+							- (growth_unread + self_publish), growth_unread);
 		}
 		adapter.notifyDataSetChanged();
 	}
@@ -274,7 +288,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	private void setUnread(String groupId, int unread, int growth_unread) {
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
-				c.setUnread(unread - growth_unread);
+				c.setUnread(unread);
 				c.setGrowth_unread(growth_unread);
 				break;
 			}
