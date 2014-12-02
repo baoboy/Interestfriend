@@ -100,7 +100,7 @@ public class CircleMemberActivity extends BaseActivity implements
 
 	private void setValue() {
 		UniversalImageLoadTool.disPlay(member.getUser_avatar(), img_avatar,
-				R.drawable.picture_default_head);
+				R.drawable.default_avatar_big);
 		txt_birthday.setText(member.getUser_birthday());
 		txt_gender.setText(member.getUser_gender());
 		txt_register_time.setText(member.getUser_register_time());

@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
@@ -321,7 +322,10 @@ public class CircleMember extends AbstractData {
 		IParser parser = new StringParser("lastReqTime");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("kickout_user_id", user_id);
+		params.put("kickout_user_chat_id", user_chat_id);
+		params.put("group_id", group_id);
 		params.put("circle_id", circle_id);
+		params.put("circle_name", MyApplation.getCircle_name());
 		Result ret = ApiRequest.request(KICK_MEMBER_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			this.status = Status.DEL;

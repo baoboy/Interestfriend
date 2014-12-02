@@ -214,7 +214,8 @@ public class CircleMemberFragment extends Fragment implements
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
-					if (result == RetError.CIRCLE_ALERADY_DISSOLVE) {
+					if (result == RetError.CIRCLE_ALERADY_DISSOLVE
+							|| result == RetError.KICKOUT_CIRCLE) {
 						Circles circle = new Circles();
 						circle.setCircle_id(circle_id);
 						circle.setStatus(Status.DEL);
@@ -222,6 +223,8 @@ public class CircleMemberFragment extends Fragment implements
 						Intent intent = new Intent(Constants.DISSOLVE_CIRCLE);
 						intent.putExtra("circle_id", circle_id);
 						getActivity().sendBroadcast(intent);
+						getActivity().finish();
+						Utils.rightOut(getActivity());
 						return;
 					}
 					return;

@@ -299,6 +299,12 @@
 
         <service android:name="com.interestfriend.service.UpdateService" >
         </service>
+
+        <activity
+            android:name="com.interestfriend.activity.KickOutActivity"
+            android:label="@string/title_activity_kick_out"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
