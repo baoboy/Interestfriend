@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.data.CategoryCircle;
+import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
 
 public class CategoryCircleAdapter extends BaseAdapter {
@@ -54,8 +55,8 @@ public class CategoryCircleAdapter extends BaseAdapter {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		holder.txt_circle_name.setText(list.get(position).getName());
-		// UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
-		// holder.img_circle_logo, R.drawable.picture_default_head);
+		UniversalImageLoadTool.disPlay(list.get(position).getLogo(),
+				holder.img_circle_logo, R.drawable.picture_default_head);
 		return contentView;
 	}
 

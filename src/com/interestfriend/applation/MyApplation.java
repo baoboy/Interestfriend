@@ -30,7 +30,6 @@ import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.JoinCircleActivity;
-import com.interestfriend.activity.PraiseAndCommentActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
 import com.interestfriend.data.CircleMember;
@@ -38,6 +37,7 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.receive.VoiceCallReceiver;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.CrashHandler;
 import com.interestfriend.utils.SharedUtils;
 
 public class MyApplation extends Application {
@@ -59,6 +59,8 @@ public class MyApplation extends Application {
 		super.onCreate();
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
+		CrashHandler catchHandler = CrashHandler.getInstance();
+		catchHandler.init(this);
 		initBaiduLocation();
 		initHuanxin();
 	}

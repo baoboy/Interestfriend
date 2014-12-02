@@ -20,6 +20,7 @@ import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
 import com.interestfriend.task.JoinCircleTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
@@ -85,7 +86,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			if (circle.findCircleByID(DBUtils.getDBsa(1)) == 0) {
 				right_image = (ImageView) findViewById(R.id.rightImg);
 				right_image.setVisibility(View.VISIBLE);
-				right_image.setImageResource(R.drawable.right_menu_selector);
+				right_image.setImageResource(R.drawable.right_menu);
 				right_image.setOnClickListener(this);
 			}
 
@@ -157,7 +158,13 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 				if (result != RetError.NONE) {
 					return;
 				}
-				ToastUtil.showToast("已发送申请，请等待确认！", Toast.LENGTH_SHORT);
+				if (circle_id < 0) {
+					sendBroadcast(new Intent(Constants.RECEIVE_JOIN_CIRCLE));
+					ToastUtil.showToast("操作成功！", Toast.LENGTH_SHORT);
+
+				} else {
+					ToastUtil.showToast("已发送申请，请等待确认！", Toast.LENGTH_SHORT);
+				}
 				finishThisActivity();
 			}
 		});

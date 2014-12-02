@@ -36,6 +36,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.db.DBUtils;
@@ -96,7 +97,7 @@ public class HomeActivity extends FragmentActivity implements
 		img_back = (ImageView) findViewById(R.id.back);
 		img_back.setOnClickListener(this);
 		img_back.setImageResource(R.drawable.menu_nomal);
- 		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
+		lfetMenu = (DrawerLeftMenu) findViewById(R.id.left_menu);
 		btn_tab_my_circle = (Button) findViewById(R.id.btn_tab_my_circle);
 		btn_tab_neay_circle = (Button) findViewById(R.id.btn_tab_near_circle);
 		img_add = (ImageView) findViewById(R.id.img_add);
@@ -271,13 +272,20 @@ public class HomeActivity extends FragmentActivity implements
 				updateUnreadLabel();
 			} else {
 				if (Constants.DISSOLVE_CIRCLE_USER_ID.equals(message.getFrom())) {
-					intent = new Intent(HomeActivity.this,
-							DissolveCircleActivity.class);
-					intent.putExtra("userId", message.getTo());
-					startActivity(intent);
-					Utils.leftOutRightIn(HomeActivity.this);
+					try {
+						String user_id = message.getStringAttribute("user_id");
+						if (!user_id.equals(SharedUtils.getUid())) {
+							intent = new Intent(HomeActivity.this,
+									DissolveCircleActivity.class);
+							intent.putExtra("userId", message.getTo());
+							startActivity(intent);
+							Utils.leftOutRightIn(HomeActivity.this);
+						}
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
 				} else {
-					myCircleFragment.refushCircleGroupChatHositiory();
+					// myCircleFragment.refushCircleGroupChatHositiory();
 				}
 			}
 			abortBroadcast();

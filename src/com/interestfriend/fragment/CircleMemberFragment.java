@@ -219,7 +219,6 @@ public class CircleMemberFragment extends Fragment implements
 						circle.setCircle_id(circle_id);
 						circle.setStatus(Status.DEL);
 						circle.write(DBUtils.getDBsa(2));
-						ToastUtil.showToast("该圈子应经被解散", Toast.LENGTH_LONG);
 						Intent intent = new Intent(Constants.DISSOLVE_CIRCLE);
 						intent.putExtra("circle_id", circle_id);
 						getActivity().sendBroadcast(intent);

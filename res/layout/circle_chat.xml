@@ -208,6 +208,20 @@
                         android:layout_height="6dip"
                         android:layout_margin="5dip"
                         android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot7"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
+
+                    <View
+                        android:id="@+id/dot8"
+                        android:layout_width="6dip"
+                        android:layout_height="6dip"
+                        android:layout_margin="5dip"
+                        android:background="@drawable/viewpager_normal_circle" />
                 </LinearLayout>
             </RelativeLayout>
 

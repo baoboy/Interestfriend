@@ -253,7 +253,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		reslist = getExpressionRes(160);
 		new Thread() {
 			public void run() { // 初始化表情viewpager
-				for (int i = 1; i < 7; i++) {
+				for (int i = 1; i < 9; i++) {
 					views.add(getGridChildView(i));
 				}
 				mEmjoiHandler.sendEmptyMessage(0);
@@ -277,6 +277,10 @@ public class CircleGroupChatFragment extends Fragment implements
 		view = (View) getView().findViewById(R.id.dot5);
 		dots.add(view);
 		view = (View) getView().findViewById(R.id.dot6);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot7);
+		dots.add(view);
+		view = (View) getView().findViewById(R.id.dot8);
 		dots.add(view);
 	}
 

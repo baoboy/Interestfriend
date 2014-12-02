@@ -188,10 +188,12 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						.getStringExtra("circle_description");
 				String circle_logo = intent.getStringExtra("circle_logo");
 				int circle_id = intent.getIntExtra("circle_id", 0);
+				int circle_creator = intent.getIntExtra("circle_creator", 0);
 				MyCircles circle = new MyCircles();
 				circle.setCircle_description(circle_description);
 				circle.setCircle_name(circle_name);
 				circle.setCircle_logo(circle_logo);
+				circle.setCreator_id(circle_creator);
 				circle.setCircle_id(circle_id);
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
@@ -243,9 +245,12 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 	};
 
 	public void refushCircleGroupChatHositiory() {
+
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
+		Utils.print("pulish:::::::::::===......" + conversations.size());
+
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
@@ -262,33 +267,35 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					try {
 						publicsher_id = Integer.valueOf(message
 								.getStringAttribute("publisher_id"));
-						Utils.print("pulish:::::::::::" + publicsher_id + "   "
-								+ SharedUtils.getUid());
 					} catch (EaseMobException e) {
 						e.printStackTrace();
 					}
 					if (publicsher_id == SharedUtils.getIntUid()) {
 						self_publish++;
+						Utils.print("pulish:::::::::::===");
 					} else {
 						growth_unread++;
+						Utils.print("pulish:::::::::::===---");
 
 					}
 
 				}
 			}
-			Utils.print("pulish:::::::::::===" + self_publish + "      "
-					+ conversation.getUnreadMsgCount());
+
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount()
-							- (growth_unread + self_publish), growth_unread);
+					conversation.getUnreadMsgCount(), growth_unread,
+					self_publish);
 		}
 		adapter.notifyDataSetChanged();
 	}
 
-	private void setUnread(String groupId, int unread, int growth_unread) {
+	private void setUnread(String groupId, int unread, int growth_unread,
+			int self_unread) {
+		Utils.print("pulish:::::::::::===+++++" + unread + "      "
+				+ self_unread + "   " + growth_unread);
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
-				c.setUnread(unread);
+				c.setUnread(unread - (self_unread + growth_unread));
 				c.setGrowth_unread(growth_unread);
 				break;
 			}
@@ -333,14 +340,14 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		conversation.resetUnsetMsgCount();
 	};
 
-	@Override
-	public void onHiddenChanged(boolean hidden) {
-		super.onHiddenChanged(hidden);
-		this.hidden = hidden;
-		if (!hidden) {
-			refushCircleGroupChatHositiory();
-		}
-	}
+	// @Override
+	// public void onHiddenChanged(boolean hidden) {
+	// super.onHiddenChanged(hidden);
+	// this.hidden = hidden;
+	// if (!hidden) {
+	// refushCircleGroupChatHositiory();
+	// }
+	// }
 
 	@Override
 	public void onResume() {
@@ -352,16 +359,16 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		}
 	}
 
-	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
-			// 相当于Fragment的onResume
-			if (lists.size() > 0) {
-				refushCircleGroupChatHositiory();
-			}
-		} else {
-			// 相当于Fragment的onPause
-		}
-	}
+	// @Override
+	// public void setUserVisibleHint(boolean isVisibleToUser) {
+	// super.setUserVisibleHint(isVisibleToUser);
+	// if (isVisibleToUser) {
+	// // 相当于Fragment的onResume
+	// if (lists.size() > 0) {
+	// refushCircleGroupChatHositiory();
+	// }
+	// } else {
+	// // 相当于Fragment的onPause
+	// }
+	// }
 }

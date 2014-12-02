@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/back"
         android:layout_alignTop="@+id/back"
-        android:src="@drawable/prompt" />
+        android:src="@drawable/prompt"
+        android:visibility="gone" />
 
 </RelativeLayout>

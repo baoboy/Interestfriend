@@ -113,8 +113,10 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 						mPullDownView.setFooterVisible(false);
 
 					}
+					glist.setRefushState(1);
+					glist.setRefushTime(lists.get(0).getLast_update_time());
+					getGrowthFromServer();
 				}
-
 			}
 		});
 		task.executeParallel(glist);
@@ -133,7 +135,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 					dialog.dismiss();
 				}
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 
 				lists.clear();
@@ -166,7 +168,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 			@Override
 			public void taskFinish(RetError result) {
 				if (result != RetError.NONE) {
- 					return;
+					return;
 				}
 				ToastUtil.showToast("发布成功", Toast.LENGTH_SHORT);
 				adapter.notifyDataSetChanged();

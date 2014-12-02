@@ -182,6 +182,9 @@ public class CreateCircleActivity extends BaseActivity implements
 					intent.putExtra("circle_name", circle.getCircle_name());
 					intent.putExtra("circle_logo", circle.getCircle_logo());
 					intent.putExtra("circle_id", circle.getCircle_id());
+					intent.putExtra("circle_creator", SharedUtils.getIntUid());
+					intent.putExtra("circle_description",
+							circle.getCircle_description());
 					BroadCast.sendBroadCast(CreateCircleActivity.this, intent);
 					finish();
 					Utils.rightOut(CreateCircleActivity.this);

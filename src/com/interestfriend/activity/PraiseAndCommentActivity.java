@@ -101,8 +101,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 	private TextView btn_praise;
 	private TextView btn_comment;
-
-	private boolean isTasking = false;
+	private RelativeLayout layout_parent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +129,8 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		layout_parent = (RelativeLayout) findViewById(R.id.layout_parent);
+		layout_parent.setVisibility(View.GONE);
 		btn_praise = (TextView) findViewById(R.id.btn_prise);
 		btn_comment = (TextView) findViewById(R.id.btn_comment);
 		layout_scroll = (ScrollView) findViewById(R.id.layout_scroll);
@@ -199,6 +200,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 				if (result != RetError.NONE) {
 					return;
 				}
+				layout_parent.setVisibility(View.VISIBLE);
 				conversation.removeMessage(lastMessage.getMsgId());
 				conversation.resetUnsetMsgCount();
 				setValue();
