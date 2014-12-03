@@ -71,7 +71,7 @@ public class CircleGrowthFragment extends Fragment implements
 	private void initView() {
 		back = (ImageView) getView().findViewById(R.id.back);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);
-		txt_title.setText("³É³¤");
+		txt_title.setText(MyApplation.getCircle_name());
 		img_send = (ImageView) getView().findViewById(R.id.rightImg);
 		img_send.setImageResource(R.drawable.growth_send_tie_main_img);
 		img_send.setVisibility(View.VISIBLE);

@@ -26,7 +26,6 @@ import com.interestfriend.task.SaveImageTask;
 import com.interestfriend.task.SaveImageTask.SaveImge;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.ToastUtil;
-import com.interestfriend.utils.Utils;
 import com.interestfriend.view.HackyViewPager;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

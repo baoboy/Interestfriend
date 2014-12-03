@@ -100,7 +100,7 @@ public class FindPasswordCheckVerifyCode extends FindPasswordStep implements
 		});
 		User user = new User();
 		user.setUser_cellphone(mActivity.getCell_phone());
-		task.execute(user);
+		task.executeParallel(user);
 	}
 
 	@Override

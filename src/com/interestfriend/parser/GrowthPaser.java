@@ -1,6 +1,8 @@
 package com.interestfriend.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -69,6 +71,7 @@ public class GrowthPaser implements IParser {
 			comments.add(comment);
 
 		}
+		sortComment(comments);
 		JSONArray jsonPraise = obj.getJSONArray("praises");
 		List<Praise> praises = new ArrayList<Praise>();
 		for (int k = 0; k < jsonPraise.length(); k++) {
@@ -107,4 +110,13 @@ public class GrowthPaser implements IParser {
 		return ret;
 	}
 
+	private void sortComment(List<Comment> comments) {
+		Collections.sort(comments, new Comparator<Comment>() {
+			@Override
+			public int compare(Comment lhs, Comment rhs) {
+				return rhs.getComment_time().compareTo(lhs.getComment_time());
+			}
+		});
+
+	}
 }

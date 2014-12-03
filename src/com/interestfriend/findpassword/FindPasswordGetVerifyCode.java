@@ -62,7 +62,7 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 				mActivity.setCell_phone(edit_phone.getText().toString());
 			}
 		});
-		task.execute(re);
+		task.executeParallel(re);
 	}
 
 	@Override

@@ -41,6 +41,7 @@ import com.interestfriend.R;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 /**
  * 显示所有聊天记录adpater
@@ -127,9 +128,16 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				String user_name = lastMessage.getStringAttribute("user_name");
 				String user_avatar = lastMessage
 						.getStringAttribute("user_avatar");
+				if (Utils.isSystemUser(lastMessage.getFrom())) {
+					holder.name.setText(user_name);
+				} else {
+					String circle_name = lastMessage
+							.getStringAttribute("circle_name");
+					holder.name.setText(user_name + "   ('" + circle_name
+							+ "' 圈子)");
+				}
 				UniversalImageLoadTool.disPlay(user_avatar, holder.avatar,
 						R.drawable.default_avatar);
-				holder.name.setText(user_name);
 			} catch (EaseMobException e) {
 				e.printStackTrace();
 			}

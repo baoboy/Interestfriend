@@ -89,6 +89,7 @@ import com.interestfriend.adapter.ChatAdapter;
 import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.VoicePlayClickListener;
@@ -204,7 +205,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			expressionViewpager.setAdapter(new ExpressionPagerAdapter(views));
 		}
 	};
-	private EMGroup group;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -213,7 +213,13 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		toChatUsername = getIntent().getStringExtra("userId");
 		user_avatar = getIntent().getStringExtra("user_avatar");
 		user_name = getIntent().getStringExtra("user_name");
-
+		if (user_name == null || "".equals(user_name)) {
+			CircleMember memmber = new CircleMember();
+			memmber.setUser_chat_id(toChatUsername);
+			memmber.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
+			user_name = memmber.getUser_name();
+			user_avatar = memmber.getUser_avatar();
+		}
 		initView();
 		setUpView();
 	}
@@ -745,6 +751,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setReceipt(toChatUsername);
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
@@ -778,6 +786,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setReceipt(toChatUsername);
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
 					len);
@@ -809,6 +819,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setChatType(ChatType.GroupChat);
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
 		// 默认超过100k的图片会压缩后发给对方，可以设置成发送原图
@@ -842,6 +854,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setReceipt(to);
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
 					length, videoFile.length());
 			message.addBody(body);
@@ -914,6 +928,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		message.setReceipt(toChatUsername);
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
 		adapter.notifyDataSetChanged();
@@ -963,6 +979,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setChatType(ChatType.GroupChat);
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 		message.setReceipt(toChatUsername);
 		// add message body
 		NormalFileMessageBody body = new NormalFileMessageBody(new File(

@@ -26,10 +26,12 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.JoinCircleActivity;
+import com.interestfriend.activity.KickOutActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
 import com.interestfriend.data.CircleMember;
@@ -39,6 +41,7 @@ import com.interestfriend.utils.CheckImageLoaderConfiguration;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.CrashHandler;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class MyApplation extends Application {
 	private static MyApplation instance;
@@ -143,7 +146,7 @@ public class MyApplation extends Application {
 					} else if (Constants.PRAISE_USER_ID.equals(username)) {
 						intent = new Intent(instance, HomeActivity.class);
 					} else if (Constants.KICK_OUT_USER_ID.equals(username)) {
-						intent = new Intent(instance, HomeActivity.class);
+						intent = new Intent(instance, KickOutActivity.class);
 					} else {
 						intent = new Intent(instance, ChatActivity.class);
 						intent.putExtra("chatType",
@@ -171,19 +174,38 @@ public class MyApplation extends Application {
 				new MyConnectionListener());
 		// // 取消注释，app在后台，有新消息来时，状态栏的消息提示换成自己写的
 		options.setNotifyText(new OnMessageNotifyListener() {
-
 			@Override
 			public String onNewMessageNotify(EMMessage message) {
-				CircleMember mbmer = new CircleMember();
-				mbmer.setUser_chat_id(message.getFrom());
-				mbmer.getNameAndAvatarByUserChatId(DBUtils.getDBsa(1));
-				return "你的趣友 " + mbmer.getUser_name() + " 发来了一条消息";
+
+				if (Utils.isSystemUser(message.getFrom())) {
+					return "系统通知";
+				}
+				String user_name = "";
+				try {
+					user_name = message.getStringAttribute("user_name");
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+				}
+				return "你的趣友 " + user_name + " 发来了一条消息";
 			}
 
 			@Override
 			public String onLatestMessageNotify(EMMessage message,
 					int fromUsersNum, int messageNum) {
-				return fromUsersNum + "个趣友，发来了" + messageNum + "条消息";
+				if (Utils.isSystemUser(message.getFrom())) {
+					return "系统通知";
+				}
+				String user_name = "";
+				String circle_name = "";
+				try {
+					user_name = message.getStringAttribute("user_name");
+					circle_name = message.getStringAttribute("circle_name");
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+				}
+				return "'" + user_name + "' 发来了" + messageNum + "条消息。"
+						+ " 来自 '" + circle_name + "' 圈子";
+
 			}
 
 			@Override

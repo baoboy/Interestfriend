@@ -15,6 +15,7 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.data.AbstractData.Status;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Circles;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.utils.Constants;
@@ -37,6 +38,7 @@ public class KickOutActivity extends BaseActivity {
 	private TextMessageBody txtBody;
 
 	private int circle_id;
+	private int kickout_user_id;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class KickOutActivity extends BaseActivity {
 		lastMessage = conversation.getLastMessage();
 		txtBody = (TextMessageBody) lastMessage.getBody();
 		try {
+			kickout_user_id = Integer.valueOf(lastMessage
+					.getStringAttribute("kickout_user_id"));
 			circle_id = Integer.valueOf(lastMessage
 					.getStringAttribute("circle_id"));
 		} catch (EaseMobException e) {
@@ -54,13 +58,26 @@ public class KickOutActivity extends BaseActivity {
 		}
 		initView();
 		kickOutPrompt();
-		Circles circle = new Circles();
-		circle.setCircle_id(circle_id);
-		circle.setStatus(Status.DEL);
-		circle.write(DBUtils.getDBsa(2));
 		Intent intent = new Intent(Constants.DISSOLVE_CIRCLE);
 		intent.putExtra("circle_id", circle_id);
 		sendBroadcast(intent);
+		delDB();
+	}
+
+	private void delDB() {
+		new Thread() {
+			public void run() {
+				Circles circle = new Circles();
+				circle.setCircle_id(circle_id);
+				circle.setStatus(Status.DEL);
+				circle.write(DBUtils.getDBsa(2));
+				CircleMember member = new CircleMember();
+				member.setCircle_id(circle_id);
+				member.setUser_id(kickout_user_id);
+				member.setStatus(Status.DEL);
+				member.write(DBUtils.getDBsa(2));
+			}
+		}.start();
 	}
 
 	private void initView() {

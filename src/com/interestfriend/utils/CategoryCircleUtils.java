@@ -43,7 +43,7 @@ public class CategoryCircleUtils {
 		lists.add(c);
 		c = new CategoryCircle();
 		c.setCode(9);
-		c.setName("其他圈子");
+		c.setName("旅游摄影");
 		lists.add(c);
 	}
 

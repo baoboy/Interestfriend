@@ -86,7 +86,7 @@ public class SelectCircleCategoryPopWindow implements OnClickListener,
 		lists.add(c);
 		c = new CategoryCircle();
 		c.setCode(9);
-		c.setName("其他圈子");
+		c.setName("旅游摄影");
 		lists.add(c);
 	}
 
