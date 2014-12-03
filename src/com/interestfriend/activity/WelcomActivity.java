@@ -45,19 +45,19 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 		btn_login = (Button) findViewById(R.id.btn_login);
 		btn_register = (Button) findViewById(R.id.btn_register);
 		ImageView img = new ImageView(this);
-		img.setImageResource(R.drawable.splash_image2);
+		img.setImageResource(R.drawable.welcome1);
 		img.setScaleType(ScaleType.FIT_XY);
 		views.add(img);
 		img = new ImageView(this);
-		img.setImageResource(R.drawable.login_bg);
+		img.setImageResource(R.drawable.welcome2);
 		img.setScaleType(ScaleType.FIT_XY);
 		views.add(img);
 		img = new ImageView(this);
-		img.setImageResource(R.drawable.splash_image3);
+		img.setImageResource(R.drawable.welcome3);
 		img.setScaleType(ScaleType.FIT_XY);
 		views.add(img);
 		img = new ImageView(this);
-		img.setImageResource(R.drawable.splash_image4);
+		img.setImageResource(R.drawable.welcome4);
 		img.setScaleType(ScaleType.FIT_XY);
 		views.add(img);
 		mViewpager.setAdapter(new MyPagerAdapter());
@@ -77,7 +77,13 @@ public class WelcomActivity extends BaseActivity implements OnClickListener {
 				}
 				dos.get(index).setBackgroundResource(
 						R.drawable.viewpager_select_circle);
-
+				if (index == 3) {
+					btn_login.setVisibility(View.VISIBLE);
+					btn_register.setVisibility(View.VISIBLE);
+				} else {
+					btn_login.setVisibility(View.GONE);
+					btn_register.setVisibility(View.GONE);
+				}
 			}
 
 			@Override
