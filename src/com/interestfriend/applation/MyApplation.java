@@ -142,6 +142,8 @@ public class MyApplation extends Application {
 								RefuseJoinCircleActivity.class);
 					} else if (Constants.PRAISE_USER_ID.equals(username)) {
 						intent = new Intent(instance, HomeActivity.class);
+					} else if (Constants.KICK_OUT_USER_ID.equals(username)) {
+						intent = new Intent(instance, HomeActivity.class);
 					} else {
 						intent = new Intent(instance, ChatActivity.class);
 						intent.putExtra("chatType",

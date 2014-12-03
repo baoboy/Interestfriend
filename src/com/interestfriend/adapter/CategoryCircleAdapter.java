@@ -56,7 +56,7 @@ public class CategoryCircleAdapter extends BaseAdapter {
 		}
 		holder.txt_circle_name.setText(list.get(position).getName());
 		UniversalImageLoadTool.disPlay(list.get(position).getLogo(),
-				holder.img_circle_logo, R.drawable.picture_default_head);
+				holder.img_circle_logo, R.drawable.default_avatar);
 		return contentView;
 	}
 

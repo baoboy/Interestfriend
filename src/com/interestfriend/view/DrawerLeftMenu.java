@@ -55,7 +55,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		String user_avatar = SharedUtils.getAPPUserAvatar();
 		if (!"".equals(user_avatar)) {
 			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
-					R.drawable.picture_default_head);
+					R.drawable.default_avatar);
 			setName(SharedUtils.getAPPUserName());
 			initMember();
 			return;

@@ -62,7 +62,7 @@ public class NearCirclesAdapter extends BaseAdapter {
 				.getCircle_member_num() + "");
 		holder.txt_circle_name.setText(list.get(position).getCircle_name());
 		UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
-				holder.img_circle_logo, R.drawable.picture_default_head);
+				holder.img_circle_logo, R.drawable.default_avatar);
 		int distance = list.get(position).getDistance();
 		if (distance < 1000) {
 			holder.txt_diatance.setText(distance + " Ã×ÒÔÄÚ");
