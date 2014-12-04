@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.interestfriend.R;
+import com.interestfriend.utils.Utils;
 
 public class ExpressionAdapter extends ArrayAdapter<String> {
 
@@ -43,7 +44,7 @@ public class ExpressionAdapter extends ArrayAdapter<String> {
 		String filename = getItem(position);
 		int resId = getContext().getResources().getIdentifier(filename,
 				"drawable", getContext().getPackageName());
-		System.out.println("drable:::::::::::::;;" + filename);
+		Utils.print("drable:::::::::::::;;" + filename);
 		imageView.setImageResource(resId);
 
 		return convertView;

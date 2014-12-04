@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.f;
 import com.easemob.util.EMLog;
@@ -38,6 +39,7 @@ import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.utils.DateUtils;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class CircleGrowthFragment extends Fragment implements
@@ -172,6 +174,10 @@ public class CircleGrowthFragment extends Fragment implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rightImg:
+			if (imgFragment.isUpLoading()) {
+				ToastUtil.showToast("有动态正在上传,请稍候在发布新动态", Toast.LENGTH_SHORT);
+				return;
+			}
 			menu1_select();
 			break;
 		case R.id.back:

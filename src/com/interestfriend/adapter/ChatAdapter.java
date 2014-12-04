@@ -76,6 +76,7 @@ import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.RoundAngleImageView;
 
 public class ChatAdapter extends BaseAdapter {
@@ -358,7 +359,7 @@ public class ChatAdapter extends BaseAdapter {
 
 			convertView.setTag(holder);
 		} else {
-			System.out.println("otnulLLLLLLLLLLLLL");
+			Utils.print("otnulLLLLLLLLLLLLL");
 			holder = (ViewHolder) convertView.getTag();
 		}
 		// 如果是发送的消息并且不是群聊消息，显示已读textview
@@ -682,13 +683,12 @@ public class ChatAdapter extends BaseAdapter {
 		// final File image=new File(PathUtil.getInstance().getVideoPath(),
 		// videoBody.getFileName());
 		String localThumb = videoBody.getLocalThumb();
-		System.out.println("path::::::::::::::" + localThumb);
+		Utils.print("path::::::::::::::" + localThumb);
 		if (localThumb != null) {
 
 			showVideoThumbView(localThumb, holder.iv,
 					videoBody.getThumbnailUrl(), message);
-			System.out.println("path::::::::::::::"
-					+ videoBody.getThumbnailUrl());
+			Utils.print("path::::::::::::::" + videoBody.getThumbnailUrl());
 
 		}
 		if (videoBody.getLength() > 0) {

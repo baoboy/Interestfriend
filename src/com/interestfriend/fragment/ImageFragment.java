@@ -51,6 +51,11 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 	private GrowthList glist;
 
 	private Dialog dialog;
+	private boolean isUpLoading = false;
+
+	public boolean isUpLoading() {
+		return isUpLoading;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -155,6 +160,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 	}
 
 	public void refushAdapter(Growth growth) {
+		growth.setUploading(true);
 		lists.add(0, growth);
 		glist.getGrowths().add(0, growth);
 		adapter.notifyDataSetChanged();
@@ -163,15 +169,23 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 	}
 
 	private void upLoadGrowth(final Growth growth) {
+		isUpLoading = true;
 		UpLoadGrowthTask task = new UpLoadGrowthTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
+				isUpLoading = false;
 				if (result != RetError.NONE) {
 					return;
 				}
 				ToastUtil.showToast("发布成功", Toast.LENGTH_SHORT);
 				adapter.notifyDataSetChanged();
+				for (Growth g : lists) {
+					if (g.isUploading()) {
+						g.setUploading(false);
+						break;
+					}
+				}
 			}
 		});
 		task.executeParallel(growth);

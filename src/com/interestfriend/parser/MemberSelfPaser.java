@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.utils.Utils;
 
 public class MemberSelfPaser implements IParser {
 
@@ -12,7 +13,7 @@ public class MemberSelfPaser implements IParser {
 		if (jsonObj == null) {
 			return Result.defContentErrorResult();
 		}
-		System.out.println("josn:::::::::::::;;" + jsonObj);
+		Utils.print("josn:::::::::::::;;" + jsonObj);
 
 		String jsonArr = jsonObj.getString("user");
 		if (jsonArr == null) {

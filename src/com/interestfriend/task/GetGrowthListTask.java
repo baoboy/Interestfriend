@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.utils.Utils;
 
 public class GetGrowthListTask extends
 		BaseAsyncTask<GrowthList, Void, RetError> {
@@ -15,7 +16,6 @@ public class GetGrowthListTask extends
 		list = params[0];
 		RetError ret = list.refushGrowth();
 		long time = System.currentTimeMillis();
-		System.out.println("");
 		if (ret == RetError.NONE) {
 			SQLiteDatabase db = DBUtils.getDBsa(2);
 			db.beginTransaction();
@@ -23,8 +23,7 @@ public class GetGrowthListTask extends
 			db.setTransactionSuccessful();
 			db.endTransaction();
 		}
-		System.out.println("time:::::::::::::::"
-				+ (System.currentTimeMillis() - time));
+		Utils.print("time:::::::::::::::" + (System.currentTimeMillis() - time));
 		return ret;
 	}
 

@@ -71,7 +71,7 @@ public class PinYinUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(converterToFirstSpell("欢迎来到最棒的Java中文社区"));
-		System.out.println(converterToSpell("欢迎来到最棒的Java中文社区"));
+		Utils.print(converterToFirstSpell("欢迎来到最棒的Java中文社区"));
+		Utils.print(converterToSpell("欢迎来到最棒的Java中文社区"));
 	}
 }

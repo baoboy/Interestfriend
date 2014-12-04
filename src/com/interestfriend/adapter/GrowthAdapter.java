@@ -18,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.CommentActivity;
@@ -34,6 +35,7 @@ import com.interestfriend.task.CancelPraiseGrowthTask;
 import com.interestfriend.task.PraiseGrowthTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
@@ -205,6 +207,10 @@ public class GrowthAdapter extends BaseAdapter {
 
 		@Override
 		public void onClick(View v) {
+			if (lists.get(position).isUploading()) {
+				ToastUtil.showToast("动态正在发布中,请稍候...", Toast.LENGTH_SHORT);
+				return;
+			}
 			switch (v.getId()) {
 			case R.id.btn_comment:
 				Intent intent = new Intent();
@@ -257,7 +263,7 @@ public class GrowthAdapter extends BaseAdapter {
 						if (pr.getUser_id() == SharedUtils.getIntUid()) {
 							pr.setStatus(Status.DEL);
 							pr.write(DBUtils.getDBsa(2));
-							System.out.println("res:::::::::::::====" + pr);
+							Utils.print("res:::::::::::::====" + pr);
 							growth.getPraises().remove(pr);
 							break;
 						}

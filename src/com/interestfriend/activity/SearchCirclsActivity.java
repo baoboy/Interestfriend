@@ -61,7 +61,6 @@ public class SearchCirclsActivity extends BaseActivity implements
 		mlistView = (ListView) findViewById(R.id.listview);
 		mlistView.setCacheColorHint(0);
 		txt_title = (TextView) findViewById(R.id.title_txt);
-
 		setListener();
 	}
 

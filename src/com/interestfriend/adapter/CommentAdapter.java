@@ -16,6 +16,7 @@ import com.interestfriend.R;
 import com.interestfriend.data.Comment;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.RoundAngleImageView;
 
 public class CommentAdapter extends BaseAdapter {
@@ -91,7 +92,7 @@ public class CommentAdapter extends BaseAdapter {
 			if (comment.getPublisher_id() == SharedUtils.getIntUid()) {
 				holder.txt_comment_content.setTextColor(mContext.getResources()
 						.getColor(R.color.self_comment_color));
-				System.out.println("aaaaaaaaaaaaaaaaaaaaaaa");
+				Utils.print("aaaaaaaaaaaaaaaaaaaaaaa");
 			} else {
 				holder.txt_comment_content.setTextColor(Color.BLACK);
 			}

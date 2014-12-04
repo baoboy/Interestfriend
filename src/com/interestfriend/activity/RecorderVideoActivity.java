@@ -151,9 +151,6 @@ public class RecorderVideoActivity extends BaseActivity implements
 
 		}
 
-		System.out.println("supportedPreviewFrameRates"
-				+ supportedPreviewFrameRates);
-
 		// 获取摄像头的所有支持的分辨率
 		List<Camera.Size> resolutionList = Utils.getResolutionList(mCamera);
 		if (resolutionList != null && resolutionList.size() > 0) {
@@ -452,7 +449,6 @@ public class RecorderVideoActivity extends BaseActivity implements
 
 					@Override
 					public void onScanCompleted(String path, Uri uri) {
-						System.out.println("scanner completed");
 						msc.disconnect();
 						setResult(RESULT_OK, getIntent().putExtra("uri", uri));
 						finish();

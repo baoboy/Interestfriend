@@ -386,8 +386,6 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 					duration = cursor
 							.getInt(cursor
 									.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
-					System.out.println("duration:" + duration + "   "
-							+ filePath);
 				}
 				if (cursor != null) {
 					cursor.close();
@@ -399,8 +397,6 @@ public class ImageGridFragment extends Fragment implements OnItemClickListener {
 						getActivity().getIntent().putExtra("path", filePath)
 								.putExtra("dur", duration));
 				getActivity().finish();
-				System.out.println("dur::::::::::::;"
-						+ getActivity().getIntent().getIntExtra("dur", 22));
 
 			}
 		}

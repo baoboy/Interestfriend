@@ -50,8 +50,17 @@ public class Growth extends AbstractData implements Serializable {
 	private int type = 1;// 1 Õý³£ 2 video
 	private String last_update_time = "";
 	private List<Praise> praises = new ArrayList<Praise>();
+	private boolean isUploading = false;
 
 	private GrowthState state;
+
+	public boolean isUploading() {
+		return isUploading;
+	}
+
+	public void setUploading(boolean isUploading) {
+		this.isUploading = isUploading;
+	}
 
 	public GrowthState getState() {
 		return state;

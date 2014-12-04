@@ -55,7 +55,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		String user_avatar = SharedUtils.getAPPUserAvatar();
 		if (!"".equals(user_avatar)) {
 			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
-					R.drawable.default_avatar);
+					R.drawable.picture_default_head);
 			setName(SharedUtils.getAPPUserName());
 			initMember();
 			return;
@@ -96,14 +96,12 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
 			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
 					prompt.getMinimumHeight());
-			Drawable message = getResources().getDrawable(
-					R.drawable.menu_message);
+			Drawable message = getResources().getDrawable(R.drawable.message);
 			message.setBounds(0, 0, message.getMinimumWidth(),
 					message.getMinimumHeight());
 			txt_message.setCompoundDrawables(message, null, prompt, null);
 		} else {
-			Drawable message = getResources().getDrawable(
-					R.drawable.menu_message);
+			Drawable message = getResources().getDrawable(R.drawable.message);
 			message.setBounds(0, 0, message.getMinimumWidth(),
 					message.getMinimumHeight());
 			txt_message.setCompoundDrawables(message, null, null, null);

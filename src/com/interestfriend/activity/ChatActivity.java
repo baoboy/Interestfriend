@@ -97,6 +97,7 @@ import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
 
 /**
@@ -541,8 +542,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			} else if (requestCode == REQUEST_CODE_SELECT_VIDEO) { // 发送本地选择的视频
 
 				int duration = data.getIntExtra("dur", 0);
-				System.out.println("aaaaaaaaaaaaaaaaaaaaaaa" + duration);
-
+				Utils.print("aaaaaaaaaaaaaaaaaaaaaaa" + duration);
 				String videoPath = data.getStringExtra("path");
 				File file = new File(PathUtil.getInstance().getImagePath(),
 						"thvideo" + System.currentTimeMillis());
@@ -1092,7 +1092,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	 */
 	public void more(View view) {
 		if (more.getVisibility() == View.GONE) {
-			System.out.println("more gone");
+			Utils.print("more gone");
 			hideKeyboard();
 			more.setVisibility(View.VISIBLE);
 			btnContainer.setVisibility(View.VISIBLE);
@@ -1138,11 +1138,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			// 收到这个广播的时候，message已经在db和内存里了，可以通过id获取mesage对象
 			EMMessage message = EMChatManager.getInstance().getMessage(msgid);
 			// 如果是群聊消息，获取到group id
-			System.out.println("id:::::::::::::::" + message.getChatType());
+			Utils.print("id:::::::::::::::" + message.getChatType());
 			if (message.getChatType() == ChatType.GroupChat) {
 				username = message.getTo();
 			}
-			System.out.println("chat:::::::::::::::" + toChatUsername);
+			Utils.print("chat:::::::::::::::" + toChatUsername);
 			if (!username.equals(toChatUsername)) {
 				// 消息不是发给当前会话，return
 				return;

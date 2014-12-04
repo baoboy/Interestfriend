@@ -71,6 +71,7 @@ import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.RoundAngleImageView;
 
 public class GroupChatAdapter extends BaseAdapter {
@@ -579,13 +580,12 @@ public class GroupChatAdapter extends BaseAdapter {
 		// final File image=new File(PathUtil.getInstance().getVideoPath(),
 		// videoBody.getFileName());
 		String localThumb = videoBody.getLocalThumb();
-		System.out.println("path::::::::::::::" + localThumb);
+		Utils.print("path::::::::::::::" + localThumb);
 		if (localThumb != null) {
 
 			showVideoThumbView(localThumb, holder.iv,
 					videoBody.getThumbnailUrl(), message);
-			System.out.println("path::::::::::::::"
-					+ videoBody.getThumbnailUrl());
+			Utils.print("path::::::::::::::" + videoBody.getThumbnailUrl());
 
 		}
 		if (videoBody.getLength() > 0) {
@@ -946,8 +946,7 @@ public class GroupChatAdapter extends BaseAdapter {
 
 			@Override
 			public void onError(int code, String error) {
-				System.out.println("txt::::::::::::::::;" + error + "   "
-						+ code);
+				Utils.print("txt::::::::::::::::;" + error + "   " + code);
 				updateSendedView(message, holder);
 			}
 

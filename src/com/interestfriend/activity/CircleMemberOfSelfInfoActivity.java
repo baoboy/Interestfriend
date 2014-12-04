@@ -85,7 +85,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 
 	private void setValue() {
 		UniversalImageLoadTool.disPlay(member.getUser_avatar(), img_avatar,
-				R.drawable.default_avatar_big);
+				R.drawable.picture_default_head);
 		txt_birthday.setText(member.getUser_birthday());
 		txt_gender.setText(member.getUser_gender());
 		txt_register_time.setText(member.getUser_register_time());
@@ -222,7 +222,6 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
 					if (bitmap != null) {
 						setAvatar(bitmap, path);
-						System.out.println("aaaaaaaaaaaaaaaa");
 					}
 				}
 			}

@@ -3,6 +3,7 @@ package com.interestfriend.task;
 import com.interestfriend.data.GrowthList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.utils.Utils;
 
 public class GetGrowthFormDBTask extends
 		BaseAsyncTask<GrowthList, Void, RetError> {
@@ -13,7 +14,7 @@ public class GetGrowthFormDBTask extends
 		list = params[0];
 		long time = System.currentTimeMillis();
 		list.read(DBUtils.getDBsa(1));
-		System.out.println("time:::::::::::::::read"
+		Utils.print("time:::::::::::::::read"
 				+ (System.currentTimeMillis() - time));
 		return RetError.NONE;
 	}

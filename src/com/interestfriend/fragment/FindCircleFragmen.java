@@ -9,16 +9,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.CategoryCircleActivity;
 import com.interestfriend.activity.NearCirclesActivity;
-import com.interestfriend.data.NearCircleList;
-import com.interestfriend.data.enums.RetError;
-import com.interestfriend.interfaces.AbstractTaskPostCallBack;
-import com.interestfriend.task.GetNearCirclesTask;
-import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 @SuppressLint("NewApi")

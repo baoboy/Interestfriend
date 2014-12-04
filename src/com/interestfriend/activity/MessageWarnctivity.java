@@ -11,6 +11,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
 import com.interestfriend.R;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class MessageWarnctivity extends BaseActivity implements OnClickListener {
 	private EMChatOptions chatOptions;
@@ -126,7 +127,7 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 				chatOptions.setNotificationEnable(false);
 				EMChatManager.getInstance().setChatOptions(chatOptions);
 				SharedUtils.setSettingMsgNotification(false);
-				System.out.println("msg:::::::::::::;;"
+				Utils.print("msg:::::::::::::;;"
 						+ chatOptions.getNotifyBySoundAndVibrate());
 			} else {
 				iv_switch_open_notification.setVisibility(View.VISIBLE);

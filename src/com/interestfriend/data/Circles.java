@@ -21,6 +21,7 @@ import com.interestfriend.parser.MapParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class Circles extends AbstractData {
 	/**
@@ -304,7 +305,7 @@ public class Circles extends AbstractData {
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();
 			this.group_id = cursor.getString(cursor.getColumnIndex("group_id"));
-			System.out.println("group_id:::::::::::::;;" + group_id);
+			Utils.print("group_id:::::::::::::;;" + group_id);
 		}
 	}
 

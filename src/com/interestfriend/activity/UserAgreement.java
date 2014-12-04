@@ -37,7 +37,7 @@ public class UserAgreement extends BaseActivity {
 		titleTxt.setText("隐私条款");
 		wb = (WebView) findViewById(R.id.webView1);
 		wb.setWebChromeClient(new WebViewClient());
-		wb.loadUrl("http://192.168.20.103:8080/InterestFriend/app/user_agreement.html");
+		wb.loadUrl("http://10.6.7.219:8080/InterestFriend/app/user_agreement.html");
 		dialog = DialogUtil.createLoadingDialog(this, "加载中");
 		dialog.show();
 	}

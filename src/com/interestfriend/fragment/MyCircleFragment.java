@@ -249,8 +249,6 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
-		Utils.print("pulish:::::::::::===......" + conversations.size());
-
 		for (EMConversation conversation : conversations.values()) {
 			if (!conversation.getIsGroup()) {
 				continue;
@@ -260,9 +258,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			for (Iterator<EMMessage> it = conversation.getAllMessages()
 					.iterator(); it.hasNext();) {
 				EMMessage message = it.next();
-
 				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
-					conversation.removeMessage(message.getMsgId());
 					int publicsher_id = 0;
 					try {
 						publicsher_id = Integer.valueOf(message
@@ -278,7 +274,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						Utils.print("pulish:::::::::::===---");
 
 					}
-
+					conversation.removeMessage(message.getMsgId());
 				}
 			}
 

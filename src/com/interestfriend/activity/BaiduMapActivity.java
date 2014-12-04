@@ -48,6 +48,7 @@ import com.baidu.mapapi.utils.CoordinateConvert;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.easemob.util.EMLog;
 import com.interestfriend.R;
+import com.interestfriend.utils.Utils;
 
 public class BaiduMapActivity extends BaseActivity {
 
@@ -276,8 +277,7 @@ public class BaiduMapActivity extends BaseActivity {
 			if (location == null) {
 				return;
 			}
-			Log.d("map", "On location change received:" + location);
-			Log.d("map", "addr:" + location.getAddrStr());
+
 			sendButton.setEnabled(true);
 			if (progressDialog != null) {
 				progressDialog.dismiss();
@@ -287,11 +287,9 @@ public class BaiduMapActivity extends BaseActivity {
 				if (lastLocation.getLatitude() == location.getLatitude()
 						&& lastLocation.getLongitude() == location
 								.getLongitude()) {
-					System.out.println("location:::::::::::::::==="
+					Utils.print("location:::::::::::::::==="
 							+ location.getAddrStr() + "      "
 							+ location.getLatitude());
-					Log.d("map", "same location, skip refresh");
-					// mMapView.refresh(); //need this refresh?
 					return;
 				}
 			}
@@ -342,9 +340,8 @@ public class BaiduMapActivity extends BaseActivity {
 		intent.putExtra("latitude", lastLocation.getLatitude());
 		intent.putExtra("longitude", lastLocation.getLongitude());
 		intent.putExtra("address", lastLocation.getAddrStr());
-		System.out.println("location:::::::::::::::"
-				+ lastLocation.getAddrStr() + "      "
-				+ lastLocation.getLatitude());
+		Utils.print("location:::::::::::::::" + lastLocation.getAddrStr()
+				+ "      " + lastLocation.getLatitude());
 		this.setResult(RESULT_OK, intent);
 		finish();
 		overridePendingTransition(R.anim.slide_in_from_left,

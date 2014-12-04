@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
+import com.interestfriend.data.IData;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.findpassword.FindPasswordActivity;
@@ -138,6 +139,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 
 	private void login(final String user_cellphone, final String user_password) {
 		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.setCancelable(false);
 		dialog.show();
 		new Thread() {
 			public void run() {
@@ -171,21 +173,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
 			@Override
 			public void onSuccess() {
-				System.out.println("huanxin success ");
 				SharedUtils.setUid(user_id + "");
 				// 登陆成功，保存用户名密码
 				SharedUtils.setUserName(username);
-				// try {
-				// // 获取群聊列表(群聊里只有groupid和groupname的简单信息),sdk会把群组存入到内存和db中
-				// EMGroupManager.getInstance().getGroupsFromServer();
-				// } catch (EaseMobException e) {
-				// e.printStackTrace();
-				//
-				// }
-				// List<EMGroup> grouplist = EMGroupManager.getInstance()
-				// .getAllGroups();
-				// System.out.println("grou::::::::::::quyou--login"
-				// + grouplist.toString());
 				mHandler.sendEmptyMessage(2);
 				mHandler.sendEmptyMessage(1);
 			}

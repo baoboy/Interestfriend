@@ -49,7 +49,7 @@ public class HttpUrlHelper {
 	// 192.168.20.103家
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://192.168.20.103:8080/InterestFriend/servlet/"; // 服务器地址
+	public static final String DEFAULT_HOST = "http://10.6.7.219:8080/InterestFriend/servlet/"; // 服务器地址
 
 	/**
 	 * get 提交方式 // *
@@ -350,15 +350,15 @@ public class HttpUrlHelper {
 			// name参数
 			StringBuffer params = new StringBuffer();
 			for (Entry<String, Object> entry : map.entrySet()) {
-				System.out.println("uploadArrayuploadArray:" + entry.getKey()
-						+ "=" + entry.getValue());
+				Utils.print("uploadArrayuploadArray:" + entry.getKey() + "="
+						+ entry.getValue());
 				params.append("--" + BOUNDARY + "\r\n");
 				params.append("Content-Disposition: form-data; name=\""
 						+ entry.getKey() + "\"" + "\r\n\r\n");
 				params.append(entry.getValue());
 				params.append("\r\n");
 			}
-			System.out.println("up::::::::::::::::::--" + params.toString());
+			Utils.print("up::::::::::::::::::--" + params.toString());
 			out.write(params.toString().getBytes());
 			for (int i = 0; i < files.size(); i++) {
 				File file = files.get(i);
@@ -391,14 +391,13 @@ public class HttpUrlHelper {
 					conn.getInputStream()));
 			String line = "";
 			while ((line = reader.readLine()) != null) {
-				System.out.println("up::::::::::::::::::" + line);
+				Utils.print("up::::::::::::::::::" + line);
 				result = line;
 			}
-			System.out.println("up::::::::::::::::::code"
-					+ conn.getResponseCode());
+			Utils.print("up::::::::::::::::::code" + conn.getResponseCode());
 
 		} catch (Exception e) {
-			System.out.println("发送POST请求出现异常！" + e);
+			Utils.print("发送POST请求出现异常！" + e);
 			e.printStackTrace();
 		}
 		return result;

@@ -443,6 +443,6 @@ public class Logger {
 		outMsg += level.getLevelDescn() + "] ";
 		outMsg += logTag + ": ";
 		outMsg += msg + "\n";
-		System.out.println(outMsg);
+		Utils.print(outMsg);
 	}
 }

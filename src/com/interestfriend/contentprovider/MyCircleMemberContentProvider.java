@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.utils.Utils;
 
 /**
  * 操作数据库CircleMember表的ContentProvider
@@ -114,7 +115,7 @@ public class MyCircleMemberContentProvider extends ContentProvider {
 			getContext().getContentResolver().notifyChange(noteUri, null);
 			return noteUri;
 		}
-		System.out.println("error::::::::::::::::::::" + uri);
+		Utils.print("error::::::::::::::::::::" + uri);
 		throw new SQLException("Failed to insert row into " + uri);
 	}
 

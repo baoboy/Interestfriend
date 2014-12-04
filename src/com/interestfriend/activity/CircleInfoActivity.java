@@ -114,7 +114,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 
 	private void setValue() {
 		UniversalImageLoadTool.disPlay(imgLogo, img_logo,
-				R.drawable.default_avatar_big);
+				R.drawable.picture_default_head);
 		txt_description.setText(description);
 		txt_title.setText(circle.getCircle_name());
 		txt_circle_category.setText(circle.getCircle_category_name());

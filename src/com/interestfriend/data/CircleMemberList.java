@@ -18,6 +18,7 @@ import com.interestfriend.db.Const;
 import com.interestfriend.parser.CircleMemberListParser;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class CircleMemberList extends AbstractData {
 	private static final String CIRCLE_MEMBER_LIST_API = "GetMembersByCircleIDServlet";
@@ -109,9 +110,9 @@ public class CircleMemberList extends AbstractData {
 	}
 
 	private void updateMembers(List<CircleMember> circleMemberLists) {
-		System.out.println("size:::::::::::::::" + circleMemberLists.size());
+		Utils.print("size:::::::::::::::" + circleMemberLists.size());
 		for (CircleMember m : circleMemberLists) {
-			System.out.println("state::::::::::::" + m.getState().name());
+			Utils.print("state::::::::::::" + m.getState().name());
 
 			if (m.getState() == CircleMemberState.ADD) {
 				this.circleMemberLists.add(m);
@@ -121,13 +122,13 @@ public class CircleMemberList extends AbstractData {
 				continue;
 			}
 			if (m.getState() == CircleMemberState.UPDATE) {
-				System.out.println("size:::::::::::::::======"
+				Utils.print("size:::::::::::::::======"
 						+ circleMemberLists.size());
 				delById(m.getUser_id());
 				this.circleMemberLists.add(m);
 			}
 		}
-		System.out.println("size:::::::::::::::==" + circleMemberLists.size());
+		Utils.print("size:::::::::::::::==" + circleMemberLists.size());
 
 	}
 

@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:cacheColorHint="#00000000"
         android:divider="@null"
+        android:layoutAnimation="@anim/list_anim_layout"
         android:listSelector="#00000000"
         android:scrollbars="none" >
     </ListView>
