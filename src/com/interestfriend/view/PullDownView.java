@@ -40,6 +40,11 @@ public class PullDownView extends LinearLayout implements OnScrollOverListener {
 	private boolean mIsPullUpDone; // 是否回推完成
 	private boolean mEnableAutoFetchMore; // 是否允许自动获取更多
 	private String footerTextStr = "";
+	public boolean showRefresh = true;
+
+	public void setShowRefresh(boolean showRefresh) {
+		mListView.setShowRefresh(showRefresh);
+	}
 
 	public PullDownView(Context context, AttributeSet attrs) {
 		super(context, attrs);

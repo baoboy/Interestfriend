@@ -9,14 +9,22 @@
         android:layout_width="match_parent"
         layout="@layout/title_bar" />
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:layoutAnimation="@anim/list_anim_layout"
-        android:listSelector="#00000000"
+    <!-- <ListView -->
+    <!-- android:id="@+id/listview" -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="match_parent" -->
+    <!-- android:divider="@null" -->
+    <!-- android:layoutAnimation="@anim/list_anim_layout" -->
+    <!-- android:listSelector="#00000000" -->
+    <!-- android:scrollbars="none" > -->
+    <!-- </ListView> -->
+
+    <com.interestfriend.view.PullDownView
+        android:id="@+id/PullDownlistView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="@android:color/transparent"
         android:scrollbars="none" >
-    </ListView>
+    </com.interestfriend.view.PullDownView>
 
 </LinearLayout>

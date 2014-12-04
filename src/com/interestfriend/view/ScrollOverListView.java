@@ -73,6 +73,10 @@ public class ScrollOverListView extends ListView implements OnScrollListener {
 	private boolean showLastTime = true;
 	public static boolean canRefleash = false;
 
+	public void setShowRefresh(boolean showRefresh) {
+		this.showRefresh = showRefresh;
+	}
+
 	public ScrollOverListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context);

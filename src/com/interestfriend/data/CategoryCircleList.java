@@ -20,7 +20,7 @@ public class CategoryCircleList {
 
 	private int category = 0;
 
-	private List<MyCircles> listCircles;
+	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
 
 	public List<MyCircles> getListCircles() {
 		return listCircles;
@@ -61,10 +61,11 @@ public class CategoryCircleList {
 		}
 	}
 
-	public RetError searchCirclesByCategory() {
+	public RetError searchCirclesByCategory(int page) {
 		IParser parser = new MyCircleListParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("category", category);
+		params.put("page", page);
 		Result<?> ret = ApiRequest.request(GET_CIRCLES_BY_CATEGORY, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

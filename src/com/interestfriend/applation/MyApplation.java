@@ -62,8 +62,8 @@ public class MyApplation extends Application {
 		super.onCreate();
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
-		CrashHandler catchHandler = CrashHandler.getInstance();
-		catchHandler.init(this);
+		// CrashHandler catchHandler = CrashHandler.getInstance();
+		// catchHandler.init(this);
 		initBaiduLocation();
 		initHuanxin();
 	}

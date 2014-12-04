@@ -5,9 +5,14 @@ import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -25,11 +30,12 @@ import com.interestfriend.task.SearchCirclesByCategoryTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.PullDownView;
+import com.interestfriend.view.PullDownView.OnPullDownListener;
 
 public class SearchCirclsActivity extends BaseActivity implements
-		OnItemClickListener, OnClickListener {
+		OnItemClickListener, OnClickListener, OnPullDownListener {
 	private int category = 0;
-
 	private ListView mlistView;
 	private TextView txt_title;
 	private ImageView back;
@@ -43,6 +49,9 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
 	private String category_name = "";
 
+	private PullDownView mPullDownView;
+	private int page = 1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,13 +62,30 @@ public class SearchCirclsActivity extends BaseActivity implements
 		lists.setCategory(category);
 		initView();
 		setValue();
+		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.show();
 		getCircleList();
 	}
 
 	private void initView() {
-		back = (ImageView) findViewById(R.id.back);
-		mlistView = (ListView) findViewById(R.id.listview);
+		Animation animation = AnimationUtils.loadAnimation(this,
+				R.anim.list_anim_slide_right);
+		// 得到一个LayoutAnimationController对象；
+		LayoutAnimationController lac = new LayoutAnimationController(animation);
+		// 设置控件显示的顺序；
+		lac.setOrder(LayoutAnimationController.ORDER_REVERSE);
+		// 设置控件显示间隔httpclient.execute时间；
+		lac.setDelay(1);
+		mPullDownView = (PullDownView) findViewById(R.id.PullDownlistView);
+		mlistView = mPullDownView.getListView();
+		mlistView.setVerticalScrollBarEnabled(false);
 		mlistView.setCacheColorHint(0);
+		mlistView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+		mPullDownView.setShowRefresh(false);
+		mPullDownView.addFooterView();
+		mPullDownView.setFooterVisible(false);
+		mlistView.setLayoutAnimation(lac);
+		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
 	}
@@ -67,6 +93,8 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private void setListener() {
 		back.setOnClickListener(this);
 		mlistView.setOnItemClickListener(this);
+		mPullDownView.setOnPullDownListener(this);
+
 	}
 
 	private void setValue() {
@@ -87,21 +115,29 @@ public class SearchCirclsActivity extends BaseActivity implements
 	}
 
 	private void getCircleList() {
-		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
-		dialog.show();
-		SearchCirclesByCategoryTask task = new SearchCirclesByCategoryTask();
+
+		SearchCirclesByCategoryTask task = new SearchCirclesByCategoryTask(page);
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
+				mPullDownView.notifyDidMore();
 				if (dialog != null) {
 					dialog.dismiss();
 				}
-				if (lists.getListCircles().size() == 0) {
+
+				listCircles.addAll(lists.getListCircles());
+				if (listCircles.size() == 0) {
 					ToastUtil.showToast("还没有圈子哦,赶快创建一个吧", Toast.LENGTH_SHORT);
 					return;
 				}
-				listCircles.addAll(lists.getListCircles());
 				adapter.notifyDataSetChanged();
+				if (lists.getListCircles().size() >= 19) {
+					mPullDownView.setFooterVisible(true);
+					page++;
+				} else {
+					mPullDownView.setFooterVisible(false);
+				}
+				lists.getListCircles().clear();
 			}
 		});
 		task.executeParallel(lists);
@@ -117,5 +153,15 @@ public class SearchCirclsActivity extends BaseActivity implements
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void onRefresh() {
+
+	}
+
+	@Override
+	public void onMore() {
+		getCircleList();
 	}
 }

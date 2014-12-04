@@ -26,11 +26,13 @@ public class NearCircleList {
 		this.listCircles = listCircles;
 	}
 
-	public RetError searchCirclesByLongitudey() {
+	public RetError searchCirclesByLongitudey(double longitude,
+			double latitude, int page) {
 		IParser parser = new MyCircleListParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("longitude", MyApplation.getnLontitude());
-		params.put("latitude", MyApplation.getnLatitude());
+		params.put("longitude", longitude);
+		params.put("latitude", latitude);
+		params.put("page", page);
 		Result<?> ret = ApiRequest.request(SEARCH_NEAR_CIRCLES_API, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
