@@ -134,37 +134,11 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				if (rt == 0) {
 					return;
 				}
-				newVewsionDialog(versionCode, link);
+				DialogUtil.newVewsionDialog(SettingActivity.this, versionCode,
+						link);
 			}
 		});
 		task.execute();
-	}
-
-	private void newVewsionDialog(String versionCode, final String link) {
-		PromptDialog.Builder dialog = new PromptDialog.Builder(this);
-		dialog.setTitle("新版本提示");
-		dialog.setViewStyle(PromptDialog.VIEW_STYLE_TITLEBAR);
-		dialog.setMessage(versionCode);
-		dialog.setMessageGravityIsCenter(true);
-		dialog.setButton1("立即下载", new PromptDialog.OnClickListener() {
-
-			@Override
-			public void onClick(Dialog dialog, int which) {
-				dialog.dismiss();
-				Intent intent = new Intent();
-				intent.setClass(SettingActivity.this, UpdateService.class);
-				intent.putExtra("url", link);
-				startService(intent);
-			}
-		});
-		dialog.setButton2("暂不下载", new PromptDialog.OnClickListener() {
-
-			@Override
-			public void onClick(Dialog dialog, int which) {
-				dialog.dismiss();
-			}
-		});
-		dialog.show();
 	}
 
 }

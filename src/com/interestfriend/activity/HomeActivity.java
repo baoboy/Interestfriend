@@ -43,7 +43,10 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
+import com.interestfriend.task.UpDateNewVersionTask;
+import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
@@ -82,7 +85,7 @@ public class HomeActivity extends FragmentActivity implements
 		registerReceive();
 		EMChatManager.getInstance().addConnectionListener(
 				new MyConnectionListener());
-
+		checkVersion();
 	}
 
 	@Override
@@ -122,6 +125,24 @@ public class HomeActivity extends FragmentActivity implements
 		myCircleFragment = new MyCircleFragment();
 		listFragments.add(myCircleFragment);
 		listFragments.add(nearFragment);
+	}
+
+	private void checkVersion() {
+		if (!Utils.isNetworkAvailable()) {
+			return;
+		}
+		UpDateNewVersionTask task = new UpDateNewVersionTask(this);
+		task.setCallBack(new UpDateVersion() {
+			@Override
+			public void getNewVersion(int rt, String versionCode, String link) {
+				if (rt == 0) {
+					return;
+				}
+				DialogUtil.newVewsionDialog(HomeActivity.this, versionCode,
+						link);
+			}
+		});
+		task.execute();
 	}
 
 	private void registerReceive() {

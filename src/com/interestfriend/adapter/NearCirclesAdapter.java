@@ -58,6 +58,7 @@ public class NearCirclesAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
+
 		holder.txt_circle_member_num.setText(list.get(position)
 				.getCircle_member_num() + "");
 		holder.txt_circle_name.setText(list.get(position).getCircle_name());
@@ -67,7 +68,7 @@ public class NearCirclesAdapter extends BaseAdapter {
 		if (distance < 1000) {
 			holder.txt_diatance.setText(distance + " 米以内");
 		} else {
-			holder.txt_diatance.setText((distance / 1000) * 2 + " 公里");
+			holder.txt_diatance.setText((distance / 1000) * 2 + " 公里以内");
 
 		}
 		return contentView;
