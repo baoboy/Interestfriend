@@ -134,8 +134,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/input_new"
                 android:gravity="top"
-                android:hint="输入一些关于圈子的描述，让更多的小伙们能非常容易的找到你的圈子\n
-         比如：喜欢刘德华的小伙们都进来吧，一起聊聊华仔的点滴。"
+                android:hint="简单介绍一下圈子吧"
                 android:paddingBottom="10dip"
                 android:paddingLeft="20dip"
                 android:paddingRight="10dip"

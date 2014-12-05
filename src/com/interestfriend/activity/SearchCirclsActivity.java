@@ -10,9 +10,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -68,14 +65,6 @@ public class SearchCirclsActivity extends BaseActivity implements
 	}
 
 	private void initView() {
-		Animation animation = AnimationUtils.loadAnimation(this,
-				R.anim.list_anim_slide_right);
-		// 得到一个LayoutAnimationController对象；
-		LayoutAnimationController lac = new LayoutAnimationController(animation);
-		// 设置控件显示的顺序；
-		lac.setOrder(LayoutAnimationController.ORDER_REVERSE);
-		// 设置控件显示间隔httpclient.execute时间；
-		lac.setDelay(1);
 		mPullDownView = (PullDownView) findViewById(R.id.PullDownlistView);
 		mlistView = mPullDownView.getListView();
 		mlistView.setVerticalScrollBarEnabled(false);
@@ -84,7 +73,6 @@ public class SearchCirclsActivity extends BaseActivity implements
 		mPullDownView.setShowRefresh(false);
 		mPullDownView.addFooterView();
 		mPullDownView.setFooterVisible(false);
-		mlistView.setLayoutAnimation(lac);
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
@@ -108,7 +96,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
 		Intent intent = new Intent();
-		intent.putExtra("circle", listCircles.get(position));
+		intent.putExtra("circle", listCircles.get(position - 1));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
 		Utils.leftOutRightIn(this);

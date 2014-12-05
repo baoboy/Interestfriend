@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -45,4 +44,5 @@ public class NearCircleList {
 			return ret.getErr();
 		}
 	}
+
 }
