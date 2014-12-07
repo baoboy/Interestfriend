@@ -1,6 +1,8 @@
 package com.interestfriend.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class NearCircleList {
 	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
 
 	public List<MyCircles> getListCircles() {
+		sort();
 		return listCircles;
 	}
 
@@ -45,4 +48,20 @@ public class NearCircleList {
 		}
 	}
 
+	private void sort() {
+		Collections.sort(listCircles, new Comparator<MyCircles>() {
+			@Override
+			public int compare(MyCircles lhs, MyCircles rhs) {
+				if (lhs.getDistance() > rhs.getDistance()) {
+					return 1;
+				} else if (lhs.getDistance() < rhs.getDistance()) {
+					return -1;
+				} else {
+					return 0;
+				}
+
+			}
+		});
+
+	}
 }

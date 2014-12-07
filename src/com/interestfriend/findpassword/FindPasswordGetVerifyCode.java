@@ -47,9 +47,9 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 				mContext, this));
 	}
 
-	private void getVerifyCode() {
+	private void getVerifyCode(final String phone) {
 		User re = new User();
-		re.setUser_cellphone(edit_phone.getText().toString());
+		re.setUser_cellphone(phone);
 		GetFindPasswordVerifyCodeTask task = new GetFindPasswordVerifyCodeTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
@@ -59,7 +59,7 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 					return;
 				}
 				mOnNextListener.next();
-				mActivity.setCell_phone(edit_phone.getText().toString());
+				mActivity.setCell_phone(phone);
 			}
 		});
 		task.executeParallel(re);
@@ -74,7 +74,7 @@ public class FindPasswordGetVerifyCode extends FindPasswordStep implements
 		}
 		dialog = DialogUtil.createLoadingDialog(mContext, "«Î…‘∫Ú");
 		dialog.show();
-		getVerifyCode();
+		getVerifyCode(phone);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
+import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.GetMemberCircleListTask;
 import com.interestfriend.task.KickOutMemberTask;
 import com.interestfriend.utils.Constants;
@@ -128,6 +130,19 @@ public class CircleMemberActivity extends BaseActivity implements
 		circle_listView.setOnItemClickListener(this);
 		back.setOnClickListener(this);
 		right_image.setOnClickListener(this);
+		img_avatar.setOnClickListener(this);
+	}
+
+	private void showAvatar() {
+		List<String> imgUrl = new ArrayList<String>();
+		imgUrl.add(member.getUser_avatar());
+		Intent intent = new Intent(this, ImagePagerActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+				(Serializable) imgUrl);
+		intent.putExtras(bundle);
+		intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
+		startActivity(intent);
 	}
 
 	@Override
@@ -137,9 +152,10 @@ public class CircleMemberActivity extends BaseActivity implements
 		case R.id.back:
 			finishThisActivity();
 			break;
-
+		case R.id.img_avatar:
+			showAvatar();
+			break;
 		case R.id.rightImg:
-
 			pop = new RightMenuPopwindow(this, title_layout, menuStr);
 			pop.setOnlistOnclick(new OnlistOnclick() {
 				@Override

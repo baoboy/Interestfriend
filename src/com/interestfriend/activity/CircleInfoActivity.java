@@ -1,5 +1,9 @@
 package com.interestfriend.activity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +23,7 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
+import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.JoinCircleTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
@@ -103,6 +108,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void setListener() {
+		img_logo.setOnClickListener(this);
 		back.setOnClickListener(this);
 		if (circle.getCreator_id() > 0) {
 			layout_circle_creator.setOnClickListener(this);
@@ -120,6 +126,18 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_circle_category.setText(circle.getCircle_category_name());
 		txt_circle_create_time.setText(circle.getCircle_create_time());
 		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
+	}
+
+	private void showLogo() {
+		List<String> imgUrl = new ArrayList<String>();
+		imgUrl.add(imgLogo);
+		Intent intent = new Intent(this, ImagePagerActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+				(Serializable) imgUrl);
+		intent.putExtras(bundle);
+		intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
+		startActivity(intent);
 	}
 
 	private void joinDialog() {
@@ -177,6 +195,9 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 
 		case R.id.back:
 			finishThisActivity();
+			break;
+		case R.id.img_logo:
+			showLogo();
 			break;
 		case R.id.layout_circle_creator:
 			intentMemberInfoActivity();

@@ -81,6 +81,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		MyApplation.logoutHuanXin();
 		MyApplation.exit(false);
 		SharedUtils.setUid(0 + "");
+		SharedUtils.setAPPUserAvatar("");
 		DataBaseHelper.setIinstanceNull();
 		DBUtils.dbase = null;
 		DBUtils.close();
@@ -89,7 +90,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
+		switch (v.getId()) { 
 		case R.id.btn_quit:
 			quitPrompt();
 			break;

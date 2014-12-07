@@ -46,9 +46,9 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 				edit_telephone, mContext, this));
 	}
 
-	private void verifyCellPhone() {
+	private void verifyCellPhone(final String phone) {
 		User re = new User();
-		re.setUser_cellphone(edit_telephone.getText().toString());
+		re.setUser_cellphone(phone);
 		VerifyCellPhoneTask task = new VerifyCellPhoneTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
@@ -57,9 +57,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 				if (result != RetError.NONE) {
 					return;
 				}
-				mActivity.getmRegister().setUser_cellphone(
-						edit_telephone.getText().toString());
-
+				mActivity.getmRegister().setUser_cellphone(phone);
 				mOnNextListener.next();
 			}
 		});
@@ -78,7 +76,7 @@ public class RegisterPhone extends RegisterStep implements OnClickListener,
 			}
 			dialog = DialogUtil.createLoadingDialog(mContext, "«Î…‘∫Ú");
 			dialog.show();
-			verifyCellPhone();
+			verifyCellPhone(phone);
 			break;
 
 		default:

@@ -17,6 +17,7 @@ import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.task.UserRegisterTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.MyEditTextDeleteImg;
 
 public class RegisterSetPassword extends RegisterStep implements
@@ -74,8 +75,12 @@ public class RegisterSetPassword extends RegisterStep implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				if (result != RetError.NONE) {
+					return;
+				}
 				ToastUtil.showToast("×¢²á³É¹¦", Toast.LENGTH_SHORT);
 				mContext.startActivity(new Intent(mContext, LoginActivity.class));
+				Utils.rightOut(mActivity);
 			}
 		});
 		taks.executeParallel(mActivity.getmRegister());

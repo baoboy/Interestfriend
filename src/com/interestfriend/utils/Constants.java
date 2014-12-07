@@ -33,6 +33,7 @@ public class Constants {
 	public static final String QUIT_CIRCLE = "com.interestfriend.quit_circle";
 	public static final String COMMENT_PRAISE = "com.interestfreiend.comment_praise";
 	public static final String COMMENT_CANCEL_PRAISE = "com.interestfriend.comment_cancel_praise";
+	public static final String DEL_COMMENT = "com.interestfriend.delcomment";
 
 	public static final int REQUEST_CODE_GETIMAGE_BYSDCARD = 0;// —°‘ÒÕº∆¨
 	public static final int REQUEST_CODE_GETIMAGE_BYCAMERA = 1;// ≈ƒ’’

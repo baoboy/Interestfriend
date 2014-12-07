@@ -338,10 +338,10 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	private void viewLineVisible() {
 		if (comments.size() > 0) {
 			comment_layout.setVisibility(View.VISIBLE);
-
+			btn_comment.setText("»Ø¸´(" + growth.getComments().size() + ")");
 		} else {
 			comment_layout.setVisibility(View.GONE);
-
+			btn_comment.setText("»Ø¸´");
 		}
 	}
 
