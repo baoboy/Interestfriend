@@ -217,7 +217,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		myIntentFilter.addAction(Constants.COMMENT_GROWTH);
 		myIntentFilter.addAction(Constants.COMMENT_PRAISE);
 		myIntentFilter.addAction(Constants.COMMENT_CANCEL_PRAISE);
-
+		myIntentFilter.addAction(Constants.DEL_COMMENT);
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
 	}
@@ -270,6 +270,22 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 						}
 						growth.setPraise_count(growth.getPraise_count() - 1);
 						growth.setPraise(!growth.isPraise());
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+
+			} else if (action.equals(Constants.DEL_COMMENT)) {
+				int growth_id = intent.getIntExtra("growth_id", 0);
+				int comment_id = intent.getIntExtra("comment_id", 0);
+				for (Growth growth : lists) {
+					if (growth.getGrowth_id() == growth_id) {
+						for (Comment pr : growth.getComments()) {
+							if (pr.getComment_id() == comment_id) {
+								growth.getComments().remove(pr);
+								break;
+							}
+						}
 						adapter.notifyDataSetChanged();
 						break;
 					}

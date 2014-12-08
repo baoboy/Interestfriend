@@ -189,7 +189,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			parise_layout.setVisibility(View.GONE);
 
 		}
-		if (growth.getComments().size() > 0) {
+		if (comments.size() > 0) {
 			btn_comment.setText("ªÿ∏¥(" + growth.getComments().size() + ")");
 		} else {
 			btn_comment.setText("ªÿ∏¥");
@@ -372,11 +372,12 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private void viewLineVisible() {
 		if (comments.size() > 0) {
 			comment_layout.setVisibility(View.VISIBLE);
-
+			btn_comment.setText("ªÿ∏¥(" + growth.getComments().size() + ")");
 		} else {
 			comment_layout.setVisibility(View.GONE);
-
+			btn_comment.setText("ªÿ∏¥");
 		}
+
 	}
 
 	private void delReplaySomeOne() {
@@ -433,7 +434,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	private void del(final int position) {
 		final Dialog dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();
-		Comment comment = comments.get(position);
+		final Comment comment = comments.get(position);
 		DeleteCommentTask task = new DeleteCommentTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
@@ -444,6 +445,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 				if (result != RetError.NONE) {
 					return;
 				}
+				sendBroadcast(new Intent(Constants.DEL_COMMENT).putExtra(
+						"growth_id", growth.getGrowth_id()).putExtra(
+						"comment_id", comment.getComment_id()));
 				comments.remove(position);
 				adapter.notifyDataSetChanged();
 				viewLineVisible();

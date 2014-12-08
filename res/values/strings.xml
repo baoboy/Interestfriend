@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="input_phone_num">请输入手机号</string>
     <string name="next_step">下一步</string>
-    <string name="inupt_user_name">请输入用户名</string>
+    <string name="inupt_user_name">请输入昵称</string>
     <string name="inupt_telephone">请输入手机号码</string>
     <string name="inupt_password">请输入密码</string>
     <string name="inupt_again_password">请再一次输入密码</string>
