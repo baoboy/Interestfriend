@@ -231,12 +231,15 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				}
 			} else if (action.equals(Constants.REFUSE_JOIN_CIRCLE_REQUEST)) {
 				int circle_id = intent.getIntExtra("circle_id", 0);
+				Utils.print("count:::::::::::==" + circle_id);
 				for (MyCircles c : lists) {
 					if (c.getCircle_id() == circle_id) {
 						c.setCircle_member_num(c.getCircle_member_num() - 1);
 						c.setStatus(Status.UPDATE);
 						c.write(DBUtils.getDBsa(2));
 						adapter.notifyDataSetChanged();
+						Utils.print("count:::::::::::"
+								+ c.getCircle_member_num());
 						break;
 					}
 				}

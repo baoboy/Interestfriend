@@ -192,6 +192,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 					public void run() {
 						Toast.makeText(getApplicationContext(),
 								"µÇÂ¼Ê§°Ü: " + message, 0).show();
+						Utils.print("logion:::::::::::::" + message);
+						if (dialog != null) {
+							dialog.dismiss();
+						}
 
 					}
 				});
