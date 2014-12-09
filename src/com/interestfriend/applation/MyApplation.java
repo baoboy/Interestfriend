@@ -214,6 +214,11 @@ public class MyApplation extends Application {
 				return "趣友";
 			}
 
+			@Override
+			public int onSetSmallIcon(EMMessage arg0) {
+				return 0;
+			}
+
 		});
 
 		// // 注册一个语言电话的广播接收者

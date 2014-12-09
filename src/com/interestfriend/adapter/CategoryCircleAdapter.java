@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.data.CategoryCircle;
-import com.interestfriend.data.GrowthImage;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.UniversalImageLoadTool;
