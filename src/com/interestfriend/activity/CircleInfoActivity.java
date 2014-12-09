@@ -31,6 +31,7 @@ import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.DampView;
 
 import fynn.app.PromptDialog;
 
@@ -58,6 +59,8 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private RelativeLayout title_layout;
 	private ImageView right_image;
 
+	private DampView view;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,9 +80,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void initView() {
+		view = (DampView) findViewById(R.id.scrollView1);
 		title_layout = (RelativeLayout) findViewById(R.id.title);
 		img_desc_arrow = (ImageView) findViewById(R.id.img_arrow_desc);
 		img_logo = (ImageView) findViewById(R.id.img_logo);
+		view.setImageView(img_logo);
 		txt_description = (TextView) findViewById(R.id.circle_description);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		back = (ImageView) findViewById(R.id.back);

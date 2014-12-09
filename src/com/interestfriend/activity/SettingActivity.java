@@ -2,6 +2,7 @@ package com.interestfriend.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,6 +51,12 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		txt_title.setText("…Ë÷√");
+		if (SharedUtils.getNewVersion()) {
+			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
+			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
+					prompt.getMinimumHeight());
+			txt_new_version.setCompoundDrawables(null, null, prompt, null);
+		}
 		setListener();
 	}
 
@@ -90,7 +97,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) { 
+		switch (v.getId()) {
 		case R.id.btn_quit:
 			quitPrompt();
 			break;

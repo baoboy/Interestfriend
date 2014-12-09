@@ -18,7 +18,6 @@ import com.interestfriend.db.Const;
 import com.interestfriend.parser.CircleMemberListParser;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.utils.SharedUtils;
-import com.interestfriend.utils.Utils;
 
 public class CircleMemberList extends AbstractData {
 	private static final String CIRCLE_MEMBER_LIST_API = "GetMembersByCircleIDServlet";
@@ -29,6 +28,8 @@ public class CircleMemberList extends AbstractData {
 	private List<CircleMember> circleMemberLists = new ArrayList<CircleMember>();
 
 	private List<CircleMember> localMembersLists = new ArrayList<CircleMember>();
+	private List<CircleMember> newMembers = new ArrayList<CircleMember>();
+	private List<CircleMember> delMembers = new ArrayList<CircleMember>();
 
 	public int getCircle_id() {
 		return circle_id;
@@ -110,46 +111,30 @@ public class CircleMemberList extends AbstractData {
 	}
 
 	private void updateMembers(List<CircleMember> circleMemberLists) {
-		Utils.print("size:::::::::::::::" + circleMemberLists.size());
 		for (CircleMember m : circleMemberLists) {
-			Utils.print("state::::::::::::" + m.getState().name());
-
 			if (m.getState() == CircleMemberState.ADD) {
 				this.circleMemberLists.add(m);
+				this.newMembers.add(m);
+
 			}
 			if (m.getState() == CircleMemberState.DEL) {
 				delById(m.getUser_id());
+				delMembers.add(m);
 				continue;
 			}
 			if (m.getState() == CircleMemberState.UPDATE) {
-				Utils.print("size:::::::::::::::======"
-						+ circleMemberLists.size());
 				delById(m.getUser_id());
 				this.circleMemberLists.add(m);
+				delMembers.add(m);
+				this.newMembers.add(m);
+
 			}
 		}
-		Utils.print("size:::::::::::::::==" + circleMemberLists.size());
 
 	}
 
 	@Override
 	public void write(SQLiteDatabase db) {
-		List<CircleMember> newMembers = new ArrayList<CircleMember>();
-		List<CircleMember> delMembers = new ArrayList<CircleMember>();
-		for (CircleMember m : circleMemberLists) {
-			if (m.getState() == CircleMemberState.ADD) {
-				newMembers.add(m);
-			}
-			if (m.getState() == CircleMemberState.DEL) {
-				delMembers.add(m);
-				continue;
-			}
-			if (m.getState() == CircleMemberState.UPDATE) {
-				delMembers.add(m);
-				newMembers.add(m);
-			}
-		}
-		System.out.println("del:::::::::::::" + delMembers.size());
 		StringBuilder sqlBuffer = new StringBuilder();
 
 		// basic info: delete delMembers
@@ -168,9 +153,7 @@ public class CircleMemberList extends AbstractData {
 			sqlBuffer.append(") and circle_id=" + circle_id);
 			try {
 				db.execSQL(sqlBuffer.toString());
-
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 		// insert newMembers
@@ -195,5 +178,7 @@ public class CircleMemberList extends AbstractData {
 		if (cnt > 0) {
 			db.execSQL(sqlBuffer.toString());
 		}
+		this.newMembers.clear();
+		this.delMembers.clear();
 	}
 }

@@ -27,6 +27,7 @@ import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.chat.OnMessageNotifyListener;
 import com.easemob.chat.OnNotificationClickListener;
 import com.easemob.exceptions.EaseMobException;
+import com.interestfriend.R;
 import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
@@ -62,8 +63,8 @@ public class MyApplation extends Application {
 		super.onCreate();
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
-		// CrashHandler catchHandler = CrashHandler.getInstance();
-		// catchHandler.init(this);
+		CrashHandler catchHandler = CrashHandler.getInstance();
+		catchHandler.init(this);
 		initBaiduLocation();
 		initHuanxin();
 	}
@@ -216,7 +217,7 @@ public class MyApplation extends Application {
 
 			@Override
 			public int onSetSmallIcon(EMMessage arg0) {
-				return 0;
+				return R.drawable.app_icon_small;
 			}
 
 		});

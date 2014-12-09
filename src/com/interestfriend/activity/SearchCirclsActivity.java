@@ -29,6 +29,7 @@ import com.interestfriend.data.CategoryCircleList;
 import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.ShowBigAvatariListener;
 import com.interestfriend.task.SearchCirclesByCategoryTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
@@ -160,6 +161,10 @@ public class SearchCirclsActivity extends BaseActivity implements
 					.getCircle_member_num() + "");
 			UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 					holder.img_circle_logo, R.drawable.default_avatar);
+			holder.img_circle_logo
+					.setOnClickListener(new ShowBigAvatariListener(
+							SearchCirclsActivity.this, list.get(position)
+									.getCircle_logo()));
 			int num = list.get(position).getUnread()
 					+ list.get(position).getGrowth_unread();
 			if (num > 0) {

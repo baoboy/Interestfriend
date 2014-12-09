@@ -105,6 +105,16 @@ public class SharedUtils {
 		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_VIBRATE, true);
 	}
 
+	public static void settingNewVersion(boolean isNewVersion) {
+		editor.putBoolean("new_version", isNewVersion);
+		editor.commit();
+	}
+
+	public static boolean getNewVersion() {
+		return sharedPreferences.getBoolean("new_version", false);
+
+	}
+
 	public static void setUserName(String value) {
 		editor.putString("username", value);
 		editor.commit();

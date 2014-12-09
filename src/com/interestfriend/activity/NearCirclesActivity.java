@@ -30,6 +30,7 @@ import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.NearCircleList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.ShowBigAvatariListener;
 import com.interestfriend.task.GetNearCirclesTask;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
@@ -158,6 +159,10 @@ public class NearCirclesActivity extends BaseActivity implements
 			holder.txt_circle_name.setText(list.get(position).getCircle_name());
 			UniversalImageLoadTool.disPlay(list.get(position).getCircle_logo(),
 					holder.img_circle_logo, R.drawable.default_avatar);
+			holder.img_circle_logo
+					.setOnClickListener(new ShowBigAvatariListener(
+							NearCirclesActivity.this, list.get(position)
+									.getCircle_logo()));
 			int distance = list.get(position).getDistance();
 			if (distance < 1000) {
 				holder.txt_diatance.setText(distance + " Ã×ÒÔÄÚ");

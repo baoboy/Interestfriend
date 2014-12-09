@@ -12,32 +12,41 @@
         android:gravity="center_vertical" >
 
         <TextView
-            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/recording_video"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/img_change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:paddingRight="8dip"
-            android:src="@drawable/video_switchcamera_normal" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_height="fill_parent" >
 
-        <SurfaceView
-            android:id="@+id/surfaceview"
+        <VideoView
+            android:id="@+id/mVideoView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
+
+        <Button
+            android:id="@+id/switch_btn"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/camera_switch_selector"
+            android:visibility="invisible" />
+
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/btn_gray_normal"
+            android:gravity="center_horizontal"
+            android:textColor="#FFF" />
 
         <ImageView
             android:id="@+id/recorder_start"

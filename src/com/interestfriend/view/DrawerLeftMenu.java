@@ -1,8 +1,10 @@
 package com.interestfriend.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +17,20 @@ import android.widget.TextView;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
+import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.ShowBigAvatariListener;
 import com.interestfriend.task.GetUserInfoTask;
+import com.interestfriend.task.UpDateNewVersionTask;
+import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
+import com.interestfriend.utils.Utils;
 
 public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private Context mContext;
@@ -52,6 +60,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	}
 
 	private void setValue() {
+		checkVersion();
 		String user_avatar = SharedUtils.getAPPUserAvatar();
 		if (!"".equals(user_avatar)) {
 			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
@@ -88,7 +97,18 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
 		txt_setting.setOnClickListener(this);
+		img_avatar.setOnClickListener(new ShowBigAvatariListener(mContext,
+				SharedUtils.getAPPUserAvatar()));
 		addView(rootView);
+	}
+
+	private void setNewVersionPrompt() {
+		if (SharedUtils.getNewVersion()) {
+			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
+			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
+					prompt.getMinimumHeight());
+			txt_setting.setCompoundDrawables(null, null, prompt, null);
+		}
 	}
 
 	public void setMessagePrompt(boolean visible) {
@@ -109,6 +129,9 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	}
 
 	private void getUserInfo() {
+		if (!Utils.isNetworkAvailable()) {
+			return;
+		}
 		final User user = new User();
 		GetUserInfoTask task = new GetUserInfoTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
@@ -122,6 +145,31 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			}
 		});
 		task.executeParallel(user);
+	}
+
+	@SuppressLint("NewApi")
+	private void checkVersion() {
+		if (!Utils.isNetworkAvailable()) {
+			return;
+		}
+		UpDateNewVersionTask task = new UpDateNewVersionTask(mContext);
+		task.setCallBack(new UpDateVersion() {
+			@Override
+			public void getNewVersion(int rt, String versionCode, String link) {
+				if (rt == 0) {
+					SharedUtils.settingNewVersion(false);
+					return;
+				}
+				SharedUtils.settingNewVersion(true);
+				setNewVersionPrompt();
+			}
+		});
+		int sdk = android.os.Build.VERSION.SDK_INT;
+		if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
+			task.execute();
+		} else {
+			task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		}
 	}
 
 	private void initMember() {
@@ -145,6 +193,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 					ChatAllHistoryActivity.class));
 			break;
 		case R.id.txt_user_info:
+			initMember();
 			intent = new Intent();
 			intent.putExtra("circle_member", memberSelf);
 			intent.setClass(mContext, CircleMemberOfSelfInfoActivity.class);

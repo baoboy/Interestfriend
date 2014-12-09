@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 
 public abstract class BaseAsyncTask<Params, Progress, Result> extends
 		AsyncTask<Params, Progress, Result> {

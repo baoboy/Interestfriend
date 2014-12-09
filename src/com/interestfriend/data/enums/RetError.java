@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RetError {
-	NONE, INVALID, UNKOWN, NOT_EXIST_USER, USER_ALREADY_EXIST, WRONG_PASSWORD, NETWORK_ERROR, CIRCLE_ALERADY_DISSOLVE, SMS_CODE_ERR, KICKOUT_CIRCLE;
+	NONE, INVALID, UNKOWN, NOT_EXIST_USER, USER_ALREADY_EXIST, WRONG_PASSWORD, NETWORK_ERROR, CIRCLE_ALERADY_DISSOLVE, SMS_CODE_ERR, KICKOUT_CIRCLE, ALERADY_IN_CIRCLE;
 
 	public static Map<String, RetError> str2Error = new HashMap<String, RetError>();
 	static {
@@ -21,6 +21,7 @@ public enum RetError {
 		s2t.put("CIRCLE_ALERADY_DISSOLVE", "该圈子已经解散");
 		s2t.put("SMS_CODE_ERR", "验证码错误");
 		s2t.put("KICKOUT_CIRCLE", "您已经被踢出该圈子");
+		s2t.put("ALERADY_IN_CIRCLE", "您已经在该圈子中,请勿重复加入");
 
 	}
 

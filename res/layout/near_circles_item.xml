@@ -9,7 +9,7 @@
         android:layout_marginLeft="10dip"
         android:layout_marginRight="10dip"
         android:layout_marginTop="10dip"
-        android:background="@drawable/circle_item_bg"
+        android:background="@drawable/item_bg"
         android:padding="7dip" >
 
         <!-- com.interestfriend.view.RoundAngleImageView -->

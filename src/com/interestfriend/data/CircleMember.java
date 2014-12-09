@@ -19,6 +19,7 @@ import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class CircleMember extends AbstractData {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
@@ -224,6 +225,7 @@ public class CircleMember extends AbstractData {
 		params.put("circle_name", circle_name);
 		Result ret = ApiRequest
 				.request(JOIN_OFFCIAL_CIRCLE_API, params, parser);
+
 		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {

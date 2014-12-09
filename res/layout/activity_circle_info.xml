@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         layout="@layout/title_bar" />
 
-    <ScrollView
+    <com.interestfriend.view.DampView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -163,6 +163,6 @@
                     android:visibility="gone" />
             </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+    </com.interestfriend.view.DampView>
 
 </RelativeLayout>

@@ -170,6 +170,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		myIntentFilter.addAction(Constants.QUIT_CIRCLE);
 		myIntentFilter.addAction(Constants.DISSOLVE_CIRCLE);
 		myIntentFilter.addAction(Constants.UPDATE_CIRCLE_MEMBER_NUM);
+		myIntentFilter.addAction(Constants.REMOVE_CIRCLE_MEMBER_COUNT);
 
 		// ×¢²á¹ã²¥
 		getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);
@@ -229,17 +230,14 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						break;
 					}
 				}
-			} else if (action.equals(Constants.REFUSE_JOIN_CIRCLE_REQUEST)) {
+			} else if (action.equals(Constants.REMOVE_CIRCLE_MEMBER_COUNT)) {
 				int circle_id = intent.getIntExtra("circle_id", 0);
-				Utils.print("count:::::::::::==" + circle_id);
 				for (MyCircles c : lists) {
 					if (c.getCircle_id() == circle_id) {
 						c.setCircle_member_num(c.getCircle_member_num() - 1);
 						c.setStatus(Status.UPDATE);
 						c.write(DBUtils.getDBsa(2));
 						adapter.notifyDataSetChanged();
-						Utils.print("count:::::::::::"
-								+ c.getCircle_member_num());
 						break;
 					}
 				}

@@ -38,6 +38,7 @@ import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.DampView;
 
 import fynn.app.PromptDialog;
 
@@ -69,6 +70,8 @@ public class CircleMemberActivity extends BaseActivity implements
 
 	private String[] menuStr;
 
+	private DampView view;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,11 +84,13 @@ public class CircleMemberActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		view = (DampView) findViewById(R.id.scrollView1);
 		title_layout = (RelativeLayout) findViewById(R.id.title);
 		right_image = (ImageView) findViewById(R.id.rightImg);
 		right_image.setVisibility(View.VISIBLE);
 		right_image.setImageResource(R.drawable.right_menu);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
+		view.setImageView(img_avatar);
 		txt_birthday = (TextView) findViewById(R.id.txt_birthday);
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
 		txt_register_time = (TextView) findViewById(R.id.txt_register_time);
@@ -223,7 +228,7 @@ public class CircleMemberActivity extends BaseActivity implements
 				intent.setAction(Constants.KICK_OUT_MEMBER);
 				sendBroadcast(intent);
 
-				intent = new Intent(Constants.REFUSE_JOIN_CIRCLE_REQUEST);
+				intent = new Intent(Constants.REMOVE_CIRCLE_MEMBER_COUNT);
 				intent.putExtra("circle_id", member.getCircle_id());
 				sendBroadcast(intent);
 				finishThisActivity();

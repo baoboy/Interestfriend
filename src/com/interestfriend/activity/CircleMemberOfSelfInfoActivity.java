@@ -32,6 +32,7 @@ import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.DampView;
 
 public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		OnClickListener, SelectOnclick {
@@ -56,6 +57,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	private String imgPath = "";
 
 	private Dialog dialog;
+	private DampView view;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,9 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		view = (DampView) findViewById(R.id.scrollView1);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
+		view.setImageView(img_avatar);
 		txt_birthday = (TextView) findViewById(R.id.txt_birthday);
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
 		txt_register_time = (TextView) findViewById(R.id.txt_register_time);

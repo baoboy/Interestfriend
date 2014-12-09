@@ -56,7 +56,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				break;
 			case 2:
 				if (dialog != null) {
-					mHandler.sendEmptyMessage(2);
 					dialog.dismiss();
 				}
 				break;
@@ -124,6 +123,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
 				return;
 			}
+			dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+			dialog.setCancelable(false);
+			dialog.show();
 			login(user_cellphone, user_password);
 			break;
 		case R.id.btn_findPasswrod:
@@ -138,9 +140,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void login(final String user_cellphone, final String user_password) {
-		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
-		dialog.setCancelable(false);
-		dialog.show();
 		new Thread() {
 			public void run() {
 				User user = new User();
@@ -149,13 +148,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				RetError ret = user.userLogin();
 				if (ret == RetError.NONE) {
 					user_id = user.getUser_id();
-					new Thread() {
-						public void run() {
-							// loginHuanXin(MD5.Md5_16(user_cellphone),
-							// MD5.Md5_16(user_password));
-							loginHuanXin(user_cellphone, user_password);
-						}
-					}.start();
+
+					// loginHuanXin(MD5.Md5_16(user_cellphone),
+					// MD5.Md5_16(user_password));
+					loginHuanXin(user_cellphone, user_password);
 				} else if (ret == RetError.NOT_EXIST_USER) {
 					mHandler.sendEmptyMessage(2);
 					mHandler.sendEmptyMessage(-1);
