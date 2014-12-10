@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.data.Comment;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
@@ -68,6 +69,8 @@ public class CommentAdapter extends BaseAdapter {
 		UniversalImageLoadTool.disPlay(
 				list.get(position).getPublisher_avatar(),
 				holder.img_user_avatar, R.drawable.picture_default_head);
+		holder.img_user_avatar.setOnClickListener(new OnAvatarClick(list.get(
+				position).getPublisher_id(), mContext));
 		String content = comment.getComment_content();
 		if (!"".equals(comment.getReply_someone_name())
 				&& comment.getReply_someone_id() != 0) {
