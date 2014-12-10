@@ -276,6 +276,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 						Utils.print("pulish:::::::::::===---");
 
 					}
+					message.setUnread(true);
 					conversation.removeMessage(message.getMsgId());
 				}
 			}
