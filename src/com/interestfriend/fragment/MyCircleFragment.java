@@ -256,9 +256,10 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 			}
 			int growth_unread = 0;
 			int self_publish = 0;
-			for (Iterator<EMMessage> it = conversation.getAllMessages()
-					.iterator(); it.hasNext();) {
-				EMMessage message = it.next();
+			Iterator<EMMessage> messageLists = conversation.getAllMessages()
+					.iterator();
+			while (messageLists.hasNext()) {
+				EMMessage message = messageLists.next();
 				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
 					int publicsher_id = 0;
 					try {
@@ -278,7 +279,6 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					conversation.removeMessage(message.getMsgId());
 				}
 			}
-
 			setUnread(conversation.getUserName(),
 					conversation.getUnreadMsgCount(), growth_unread,
 					self_publish);

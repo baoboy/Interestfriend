@@ -2,6 +2,7 @@ package com.interestfriend.data;
 
 import java.io.Serializable;
 
+import com.interestfriend.data.enums.GrowthState;
 import com.interestfriend.db.Const;
 
 import android.content.ContentValues;
@@ -76,6 +77,12 @@ public class GrowthImage extends AbstractData implements Serializable {
 	@Override
 	public void write(SQLiteDatabase db) {
 		String dbName = Const.GROWTH_IMAGE_TABLE_NAME;
+		if (status == Status.DEL) {
+			db.delete(dbName, "growth_id=? and cid=? ", new String[] {
+					this.gid + "", this.cid + "" });
+			return;
+		}
+
 		ContentValues cv = new ContentValues();
 		cv.put("cid", cid);
 		cv.put("growth_id", gid);

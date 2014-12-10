@@ -259,6 +259,7 @@ public class Growth extends AbstractData implements Serializable {
 			images = g.images;
 			comments = g.getComments();
 			praises = g.getPraises();
+			this.last_update_time = g.getLast_update_time();
 			this.praise_count = g.getPraise_count();
 			return RetError.NONE;
 		} else {
@@ -336,6 +337,18 @@ public class Growth extends AbstractData implements Serializable {
 		if (state == GrowthState.DEL) {
 			db.delete(dbName, "growth_id=? ", new String[] { this.growth_id
 					+ "" });
+			for (GrowthImage img : this.images) {
+				img.setStatus(Status.DEL);
+				img.write(db);
+			}
+			for (Comment comment : this.comments) {
+				comment.setStatus(Status.DEL);
+				comment.write(db);
+			}
+			for (Praise praise : this.praises) {
+				praise.setStatus(Status.DEL);
+				praise.write(db);
+			}
 			return;
 		}
 		if (state == GrowthState.UPDATE) {
@@ -344,7 +357,6 @@ public class Growth extends AbstractData implements Serializable {
 			return;
 		}
 		db.insert(dbName, null, cv);
-
 		for (GrowthImage img : this.images) {
 			img.write(db);
 		}

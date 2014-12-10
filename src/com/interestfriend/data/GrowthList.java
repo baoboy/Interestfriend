@@ -144,6 +144,7 @@ public class GrowthList extends AbstractData {
 			newGrowths.add(growth);
 		}
 		for (Growth growth : newGrowths) {
+
 			growth.write(db);
 		}
 		writeGrowths.clear();
