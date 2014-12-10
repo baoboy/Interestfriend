@@ -115,7 +115,6 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				return;
 			}
 			getNewVersion();
-
 			break;
 		case R.id.txt_about:
 			startActivity(new Intent(this, AboutActivity.class));

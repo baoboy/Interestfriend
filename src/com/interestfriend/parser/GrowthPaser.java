@@ -35,6 +35,8 @@ public class GrowthPaser implements IParser {
 		String publisher_avatar = obj.getString("publisher_avatar");
 		int isPraise = obj.getInt("isPraise");
 		int praise_count = obj.getInt("praise_count");
+		String last_update_time = obj.getString("last_update_time");
+
 		// growth images
 		JSONArray jsonImages = obj.getJSONArray("images");
 		List<GrowthImage> images = new ArrayList<GrowthImage>();
@@ -97,6 +99,7 @@ public class GrowthPaser implements IParser {
 		growth.setPraise(isPraise > 0);
 		growth.setPraise_count(praise_count);
 		growth.setPraises(praises);
+		growth.setLast_update_time(last_update_time);
 		int index = comments.size() > 2 ? 2 : comments.size();
 		for (int k = 0; k < index; k++) {
 			growth.getCommentsListView().add(comments.get(k));
