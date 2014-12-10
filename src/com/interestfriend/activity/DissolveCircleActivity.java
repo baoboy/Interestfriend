@@ -1,5 +1,7 @@
 package com.interestfriend.activity;
 
+import java.util.List;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,7 +97,12 @@ public class DissolveCircleActivity extends BaseActivity {
 
 	@Override
 	protected void onDestroy() {
-		conversation.removeMessage(lastMessage.getMsgId());
+		// conversation.removeMessage(lastMessage.getMsgId());
+		// conversation.resetUnsetMsgCount();
+		List<EMMessage> messages = conversation.getAllMessages();
+		for (int i = messages.size() - 1; i >= 0; i--) {
+			conversation.removeMessage(messages.get(i).getMsgId());
+		}
 		conversation.resetUnsetMsgCount();
 		super.onDestroy();
 	}

@@ -2,11 +2,10 @@ package com.interestfriend.data;
 
 import java.io.Serializable;
 
-import com.interestfriend.data.enums.GrowthState;
-import com.interestfriend.db.Const;
-
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.interestfriend.db.Const;
 
 /**
  * Image in growth.

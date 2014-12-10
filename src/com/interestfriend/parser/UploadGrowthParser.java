@@ -28,12 +28,13 @@ public class UploadGrowthParser implements IParser {
 		Growth g = new Growth();
 		List<GrowthImage> imgs = new ArrayList<GrowthImage>();
 		int gid = jsonObj.getInt("gid");
+		int cid = jsonObj.getInt("cid");
 		JSONArray jsonArr = jsonObj.getJSONArray("images");
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			int id = obj.getInt("img_id");
 			String img = obj.getString("img_url");
-			GrowthImage gImage = new GrowthImage(0, gid, id, img);
+			GrowthImage gImage = new GrowthImage(cid, gid, id, img);
 			imgs.add(gImage);
 		}
 		g.setGrowth_id(gid);

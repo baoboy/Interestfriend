@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
-import com.interestfriend.data.IData;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.findpassword.FindPasswordActivity;

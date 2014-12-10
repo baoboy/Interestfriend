@@ -220,8 +220,8 @@ public class Growth extends AbstractData implements Serializable {
 
 	@Override
 	public String toString() {
-		return "gid:" + growth_id + "  content:" + this.content + "   images:"
-				+ this.images;
+		return "cid:" + cid + " gid:" + growth_id + "  content:" + this.content
+				+ "   images:" + this.images;
 	}
 
 	public RetError praiseGrowth() {
@@ -254,9 +254,10 @@ public class Growth extends AbstractData implements Serializable {
 			content = g.getContent();
 			location = g.getLocation();
 			published = g.getPublished();
+			this.cid = g.getCid();
 			publisher_name = g.getPublisher_name();
-			publisher_avatar = g.publisher_avatar;
-			images = g.images;
+			publisher_avatar = g.getPublisher_avatar();
+			images = g.getImages();
 			comments = g.getComments();
 			praises = g.getPraises();
 			this.last_update_time = g.getLast_update_time();
