@@ -100,6 +100,11 @@ public class JoinCircleActivity extends BaseActivity {
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				if (result == RetError.ALERADY_IN_CIRCLE) {
+					conversation.removeMessage(lastMessage.getMsgId());
+					conversation.resetUnsetMsgCount();
+					return;
+				}
 				if (result != RetError.NONE) {
 					return;
 				}
