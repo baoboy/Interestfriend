@@ -167,7 +167,7 @@ public class MyApplation extends Application {
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					}
 				}
-				return intent;
+ 				return intent;
 			}
 		});
 		// 设置一个connectionlistener监听账户重复登陆
