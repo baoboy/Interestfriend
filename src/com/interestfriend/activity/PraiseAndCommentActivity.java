@@ -2,6 +2,7 @@ package com.interestfriend.activity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import android.app.Dialog;
@@ -201,9 +202,15 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 					return;
 				}
 				layout_parent.setVisibility(View.VISIBLE);
-				conversation.removeMessage(lastMessage.getMsgId());
-				conversation.resetUnsetMsgCount();
 				setValue();
+				Iterator<EMMessage> messageLists = conversation
+						.getAllMessages().iterator();
+				while (messageLists.hasNext()) {
+					EMMessage message = messageLists.next();
+					message.setUnread(true);
+					conversation.removeMessage(message.getMsgId());
+				}
+				conversation.resetUnsetMsgCount();
 			}
 		});
 		task.executeParallel(growth);
