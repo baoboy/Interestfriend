@@ -213,6 +213,9 @@ public class CircleMemberFragment extends Fragment implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				if (getActivity().isFinishing()) {
+					return;
+				}
 				if (result != RetError.NONE) {
 					if (result == RetError.CIRCLE_ALERADY_DISSOLVE
 							|| result == RetError.KICKOUT_CIRCLE) {

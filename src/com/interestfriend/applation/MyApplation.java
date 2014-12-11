@@ -117,7 +117,7 @@ public class MyApplation extends Application {
 		// 默认添加好友时，是不需要验证的，改成需要验证
 		options.setAcceptInvitationAlways(false);
 		// 设置收到消息是否有新消息通知，默认为true
-		options.setNotifyBySoundAndVibrate(SharedUtils
+		options.setShowNotificationInBackgroud(SharedUtils
 				.getSettingMsgNotification());
 		// 设置收到消息是否有声音提示，默认为true
 		options.setNoticeBySound(SharedUtils.getSettingMsgSound());
@@ -177,7 +177,10 @@ public class MyApplation extends Application {
 		options.setNotifyText(new OnMessageNotifyListener() {
 			@Override
 			public String onNewMessageNotify(EMMessage message) {
+				if (Constants.GROWTH_USER_ID.equals(message.getFrom())) {
+					return "有人更新了动态快去看看吧";
 
+				}
 				if (Utils.isSystemUser(message.getFrom())) {
 					return "系统通知";
 				}
@@ -193,6 +196,10 @@ public class MyApplation extends Application {
 			@Override
 			public String onLatestMessageNotify(EMMessage message,
 					int fromUsersNum, int messageNum) {
+				if (Constants.GROWTH_USER_ID.equals(message.getFrom())) {
+					return "有人更新了动态快去看看吧";
+
+				}
 				if (Utils.isSystemUser(message.getFrom())) {
 					return "系统通知";
 				}

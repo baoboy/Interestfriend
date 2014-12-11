@@ -18,6 +18,7 @@ import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
@@ -312,6 +313,8 @@ public class CircleMember extends AbstractData {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("cloumn", cloumn);
 		params.put("value", value);
+		params.put("user_pinyin", pinyinFir);
+		params.put("user_sort_key", sortkey);
 		Result ret = ApiRequest.request(UPDATE_USER_INFO, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;

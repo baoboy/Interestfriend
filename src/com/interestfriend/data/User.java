@@ -12,6 +12,7 @@ import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
 
 public class User {
@@ -131,6 +132,9 @@ public class User {
 		params.put("user_password", user_password);
 		params.put("user_gender", user_gender);
 		params.put("user_birthday", user_birthday);
+		params.put("user_pinyin", PinYinUtils.getPinYin(user_name));
+		params.put("user_sort_key", PinYinUtils.getFirstPinYin(user_name));
+
 		Result ret = ApiRequest.requestWithFile(USER_REGISTER_API, params,
 				new File(user_avatar), parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

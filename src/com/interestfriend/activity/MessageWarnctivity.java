@@ -124,7 +124,7 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 				rl_switch_vibrate.setVisibility(View.GONE);
 				line1.setVisibility(View.GONE);
 				line2.setVisibility(View.GONE);
-				chatOptions.setNotificationEnable(false);
+				chatOptions.setShowNotificationInBackgroud(false);
 				EMChatManager.getInstance().setChatOptions(chatOptions);
 				SharedUtils.setSettingMsgNotification(false);
 				Utils.print("msg:::::::::::::;;"
@@ -136,7 +136,7 @@ public class MessageWarnctivity extends BaseActivity implements OnClickListener 
 				rl_switch_vibrate.setVisibility(View.VISIBLE);
 				line1.setVisibility(View.VISIBLE);
 				line2.setVisibility(View.VISIBLE);
-				chatOptions.setNotificationEnable(true);
+				chatOptions.setShowNotificationInBackgroud(true);
 				EMChatManager.getInstance().setChatOptions(chatOptions);
 				SharedUtils.setSettingMsgNotification(true);
 			}

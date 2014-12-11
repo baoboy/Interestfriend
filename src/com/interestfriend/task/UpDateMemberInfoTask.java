@@ -4,6 +4,7 @@ import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.utils.PinYinUtils;
 
 public class UpDateMemberInfoTask extends
 		BaseAsyncTask<CircleMember, Void, RetError> {

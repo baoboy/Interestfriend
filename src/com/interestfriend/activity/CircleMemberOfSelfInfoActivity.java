@@ -27,7 +27,7 @@ import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
-import com.interestfriend.utils.PinYinUtil;
+import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -164,7 +164,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 			BroadCast
 					.sendBroadCast(CircleMemberOfSelfInfoActivity.this, intent);
 			SharedUtils.setAPPUserName(data.getStringExtra("value"));
-			SharedUtils.setAPPUserSortKey(PinYinUtil.converterToFirstSpell(data
+			SharedUtils.setAPPUserSortKey(PinYinUtils.getFirstPinYin(data
 					.getStringExtra("value")));
 			break;
 		case 300:

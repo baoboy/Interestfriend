@@ -658,6 +658,8 @@ public class CircleGroupChatFragment extends Fragment implements
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
+
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
@@ -693,6 +695,7 @@ public class CircleGroupChatFragment extends Fragment implements
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
 
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
@@ -725,6 +728,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
 
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
@@ -758,6 +762,7 @@ public class CircleGroupChatFragment extends Fragment implements
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("circle_name", MyApplation.getCircle_name());
 
 			message.setReceipt(to);
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
@@ -835,6 +840,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
 
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
@@ -891,6 +897,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
 
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);

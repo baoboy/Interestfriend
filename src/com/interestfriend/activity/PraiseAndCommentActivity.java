@@ -203,22 +203,12 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 				}
 				layout_parent.setVisibility(View.VISIBLE);
 				setValue();
-<<<<<<< HEAD
-				Iterator<EMMessage> messageLists = conversation
-						.getAllMessages().iterator();
-				while (messageLists.hasNext()) {
-					EMMessage message = messageLists.next();
-					message.setUnread(true);
-					conversation.removeMessage(message.getMsgId());
-				}
-				conversation.resetUnsetMsgCount();
-=======
+
 				List<EMMessage> messages = conversation.getAllMessages();
 				for (int i = messages.size() - 1; i >= 0; i--) {
 					conversation.removeMessage(messages.get(i).getMsgId());
-				}			
-				 conversation.resetUnsetMsgCount();
->>>>>>> 58a14421685d5494ca97f7cfe7f8ace4a2056398
+				}
+				conversation.resetUnsetMsgCount();
 			}
 		});
 		task.executeParallel(growth);

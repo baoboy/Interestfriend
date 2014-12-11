@@ -2,7 +2,6 @@ package com.interestfriend.fragment;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -245,7 +244,7 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		}
 	};
 
-	public void refushCircleGroupChatHositiory() {
+	private void refushCircleGroupChatHositiory() {
 
 		// 获取所有会话，包括陌生人
 		Hashtable<String, EMConversation> conversations = EMChatManager
@@ -255,45 +254,41 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				continue;
 			}
 			int growth_unread = 0;
-			int self_publish = 0;
-			Iterator<EMMessage> messageLists = conversation.getAllMessages()
-					.iterator();
-			while (messageLists.hasNext()) {
-				EMMessage message = messageLists.next();
-				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
-					int publicsher_id = 0;
-					try {
-						publicsher_id = Integer.valueOf(message
-								.getStringAttribute("publisher_id"));
-					} catch (EaseMobException e) {
-						e.printStackTrace();
-					}
-					if (publicsher_id == SharedUtils.getIntUid()) {
-						self_publish++;
-						Utils.print("pulish:::::::::::===");
-					} else {
-						growth_unread++;
-						Utils.print("pulish:::::::::::===---");
-
-					}
-					message.setUnread(true);
-					conversation.removeMessage(message.getMsgId());
+			EMConversation growhConversation = EMChatManager.getInstance()
+					.getConversation(Constants.GROWTH_USER_ID);
+			growth_unread = growhConversation.getUnreadMsgCount();
+			Utils.print("pulish:::::::::::===" + growth_unread);
+			List<EMMessage> messages = growhConversation.getAllMessages();
+			for (int i = messages.size() - 1; i >= 0; i--) {
+				EMMessage message = messages.get(i);
+				int publicsher_id = 0;
+				try {
+					publicsher_id = Integer.valueOf(message
+							.getStringAttribute("publisher_id"));
+				} catch (EaseMobException e) {
+					e.printStackTrace();
 				}
+				if (publicsher_id == SharedUtils.getIntUid()) {
+					growth_unread--;
+				}
+				growhConversation.resetUnsetMsgCount();
+				growhConversation.removeMessage(message.getMsgId());
+			}
+			if (conversation.getUnreadMsgCount() == 0) {
+				continue;
 			}
 			setUnread(conversation.getUserName(),
-					conversation.getUnreadMsgCount(), growth_unread,
-					self_publish);
+					conversation.getUnreadMsgCount(), growth_unread);
 		}
 		adapter.notifyDataSetChanged();
 	}
 
-	private void setUnread(String groupId, int unread, int growth_unread,
-			int self_unread) {
-		Utils.print("pulish:::::::::::===+++++" + unread + "      "
-				+ self_unread + "   " + growth_unread);
+	private void setUnread(String groupId, int unread, int growth_unread) {
+		Utils.print("pulish:::::::::::===+++++" + unread + "      " + "   "
+				+ growth_unread);
 		for (MyCircles c : lists) {
 			if (c.getGroup_id().equals(groupId)) {
-				c.setUnread(unread - (self_unread + growth_unread));
+				c.setUnread(unread - (growth_unread));
 				c.setGrowth_unread(growth_unread);
 				break;
 			}

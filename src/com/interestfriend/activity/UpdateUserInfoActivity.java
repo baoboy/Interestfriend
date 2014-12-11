@@ -19,6 +19,7 @@ import com.interestfriend.task.UpDateMemberInfoTask;
 import com.interestfriend.utils.BroadCast;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.ToastUtil;
 
 public class UpdateUserInfoActivity extends BaseActivity implements
@@ -78,6 +79,8 @@ public class UpdateUserInfoActivity extends BaseActivity implements
 					ToastUtil.showToast("êÇ³Æ²»ÄÜÎª¿Õ", Toast.LENGTH_SHORT);
 					return;
 				}
+				member.setPinyinFir(PinYinUtils.getPinYin(value));
+				member.setSortkey(PinYinUtils.getFirstPinYin(value));
 			}
 			if (value.equals(content)) {
 				finishThisActivity();
