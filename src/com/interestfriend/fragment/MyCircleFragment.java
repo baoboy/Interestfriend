@@ -250,10 +250,14 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 		Hashtable<String, EMConversation> conversations = EMChatManager
 				.getInstance().getAllConversations();
 		for (EMConversation conversation : conversations.values()) {
-			if (!conversation.getIsGroup()) {
+			if (!conversation.isGroup()) {
+				continue;
+			}
+			if (conversation.getUnreadMsgCount() == 0) {
 				continue;
 			}
 			int growth_unread = 0;
+			Utils.print("pulish:::::::::::===" + conversation.getUserName());
 			EMConversation growhConversation = EMChatManager.getInstance()
 					.getConversation(Constants.GROWTH_USER_ID);
 			growth_unread = growhConversation.getUnreadMsgCount();
@@ -271,12 +275,9 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				if (publicsher_id == SharedUtils.getIntUid()) {
 					growth_unread--;
 				}
-				growhConversation.resetUnsetMsgCount();
 				growhConversation.removeMessage(message.getMsgId());
 			}
-			if (conversation.getUnreadMsgCount() == 0) {
-				continue;
-			}
+
 			setUnread(conversation.getUserName(),
 					conversation.getUnreadMsgCount(), growth_unread);
 		}
