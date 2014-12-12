@@ -93,7 +93,7 @@ public class SharedUtils {
 
 	public static boolean getSettingMsgSound() {
 
-		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_SOUND, true);
+		return sharedPreferences.getBoolean(SHARED_KEY_SETTING_SOUND, false);
 	}
 
 	public static void setSettingMsgVibrate(boolean paramBoolean) {

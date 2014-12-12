@@ -79,6 +79,9 @@ public class CategoryCircleActivity extends BaseActivity implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				if (result != RetError.NONE) {
+					return;
+				}
 				if (list.getCateLists().size() == 0) {
 					ToastUtil.showToast("还没有圈子哦,赶快创建一个吧", Toast.LENGTH_SHORT);
 					return;

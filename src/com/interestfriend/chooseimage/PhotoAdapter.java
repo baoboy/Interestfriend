@@ -96,7 +96,7 @@ public class PhotoAdapter extends BaseAdapter {
 					photoInfo.getPath_file(),
 					new RotateImageViewAware(viewHolder.image, photoInfo
 							.getPath_absolute()),
-					R.drawable.friends_sends_pictures_no);
+					R.drawable.choose_image_delault);
 
 		}
 		return convertView;
