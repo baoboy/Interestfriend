@@ -257,27 +257,39 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				continue;
 			}
 			int growth_unread = 0;
+<<<<<<< HEAD
 			Utils.print("pulish:::::::::::===" + conversation.getUserName());
 			EMConversation growhConversation = EMChatManager.getInstance()
 					.getConversation(Constants.GROWTH_USER_ID);
 			growth_unread = growhConversation.getUnreadMsgCount();
 			Utils.print("pulish:::::::::::===" + growth_unread);
 			List<EMMessage> messages = growhConversation.getAllMessages();
+=======
+			List<EMMessage> messages = conversation.getAllMessages();
+>>>>>>> 17c69b25e5c5e662d6f358708800e29f03be74a9
 			for (int i = messages.size() - 1; i >= 0; i--) {
 				EMMessage message = messages.get(i);
-				int publicsher_id = 0;
-				try {
-					publicsher_id = Integer.valueOf(message
-							.getStringAttribute("publisher_id"));
-				} catch (EaseMobException e) {
-					e.printStackTrace();
+				if (message.getFrom().equals(Constants.GROWTH_USER_ID)) {
+					growth_unread++;
+					int publicsher_id = 0;
+					try {
+						publicsher_id = Integer.valueOf(message
+								.getStringAttribute("publisher_id"));
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
+					if (publicsher_id == SharedUtils.getIntUid()) {
+						growth_unread--;
+					}
+					conversation.removeMessage(message.getMsgId());
 				}
-				if (publicsher_id == SharedUtils.getIntUid()) {
-					growth_unread--;
-				}
+<<<<<<< HEAD
 				growhConversation.removeMessage(message.getMsgId());
 			}
 
+=======
+			}
+>>>>>>> 17c69b25e5c5e662d6f358708800e29f03be74a9
 			setUnread(conversation.getUserName(),
 					conversation.getUnreadMsgCount(), growth_unread);
 		}

@@ -133,7 +133,7 @@ public class ImageFragment extends Fragment implements OnPullDownListener {
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
-				if (getActivity().isFinishing()) {
+				if (getActivity() == null) {
 					return;
 				}
 				mPullDownView.RefreshComplete();

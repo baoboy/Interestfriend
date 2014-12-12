@@ -213,7 +213,7 @@ public class CircleMemberFragment extends Fragment implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
-				if (getActivity().isFinishing()) {
+				if (getActivity() == null) {
 					return;
 				}
 				if (result != RetError.NONE) {
