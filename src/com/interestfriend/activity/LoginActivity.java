@@ -53,6 +53,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			case -2:
 				ToastUtil.showToast("ÃÜÂë´íÎó", Toast.LENGTH_SHORT);
 				break;
+			case -3:
+				ToastUtil.showToast("µÇÂ¼Ê§°Ü", Toast.LENGTH_SHORT);
+				break;
 			case 2:
 				if (dialog != null) {
 					dialog.dismiss();
@@ -156,8 +159,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 					mHandler.sendEmptyMessage(-1);
 				} else if (ret == RetError.WRONG_PASSWORD) {
 					mHandler.sendEmptyMessage(2);
-
 					mHandler.sendEmptyMessage(-2);
+				} else {
+					mHandler.sendEmptyMessage(2);
+					mHandler.sendEmptyMessage(-3);
 				}
 			}
 		}.start();

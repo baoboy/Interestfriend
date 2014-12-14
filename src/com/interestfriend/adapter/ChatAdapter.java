@@ -1044,12 +1044,14 @@ public class ChatAdapter extends BaseAdapter {
 
 			@Override
 			public void onSuccess() {
+				Utils.print("err_code::::::::::::==");
 				updateSendedView(message, holder);
 			}
 
 			@Override
 			public void onError(int code, String error) {
 				updateSendedView(message, holder);
+				Utils.print("err_code::::::::::::" + error + "   " + code);
 			}
 
 			@Override

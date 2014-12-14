@@ -41,6 +41,7 @@
                 android:background="@drawable/comment_edit"
                 android:gravity="top"
                 android:hint="说点什么吧"
+                android:maxLength="999"
                 android:minHeight="100dip"
                 android:padding="10dip"
                 android:textColor="#818181"

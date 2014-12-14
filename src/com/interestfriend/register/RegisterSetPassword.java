@@ -80,7 +80,9 @@ public class RegisterSetPassword extends RegisterStep implements
 				}
 				ToastUtil.showToast("×¢²á³É¹¦", Toast.LENGTH_SHORT);
 				mContext.startActivity(new Intent(mContext, LoginActivity.class));
+				mActivity.finish();
 				Utils.rightOut(mActivity);
+
 			}
 		});
 		taks.executeParallel(mActivity.getmRegister());
