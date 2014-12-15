@@ -21,6 +21,8 @@ public class SharedUtils {
 	private static String SHARED_KEY_SETTING_NOTIFICATION = "shared_key_setting_notification";
 	private static String SHARED_KEY_SETTING_SOUND = "shared_key_setting_sound";
 	private static String SHARED_KEY_SETTING_VIBRATE = "shared_key_setting_vibrate";
+	private static final String HUANXIN_USERNAME = "huanxin_username";
+	private static final String HUANXIN_PWD = "huanxin_pwd";
 
 	public static String getString(String key, String defaultValue) {
 		return sharedPreferences.getString(key, defaultValue);
@@ -120,7 +122,7 @@ public class SharedUtils {
 		editor.commit();
 	}
 
-	public static String getUserName() {
+	public String getUserName() {
 		return sharedPreferences.getString("username", "");
 
 	}
@@ -255,5 +257,23 @@ public class SharedUtils {
 	public static String getGrowthLastRequestTime() {
 		return sharedPreferences.getString("growth_last_request_time", "0");
 
+	}
+
+	public static void saveHXId(String hxId) {
+		editor.putString(HUANXIN_USERNAME, hxId);
+		editor.commit();
+	}
+
+	public static String getHXId() {
+		return sharedPreferences.getString(HUANXIN_USERNAME, null);
+	}
+
+	public static void saveHuanXinPassword(String pwd) {
+		editor.putString(HUANXIN_PWD, pwd);
+		editor.commit();
+	}
+
+	public static String getHuanXinPwd() {
+		return sharedPreferences.getString(HUANXIN_PWD, null);
 	}
 }

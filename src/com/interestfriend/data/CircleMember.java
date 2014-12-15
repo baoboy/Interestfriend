@@ -221,7 +221,7 @@ public class CircleMember extends AbstractData {
 		params.put("circle_id", circle_id);
 		params.put("group_id", group_id);
 		params.put("circle_creator", circle_creator);
-		params.put("huanxin_username", SharedUtils.getUserName());
+		params.put("huanxin_username", SharedUtils.getHXId());
 		params.put("user_name", SharedUtils.getAPPUserName());
 		params.put("circle_name", circle_name);
 		Result ret = ApiRequest

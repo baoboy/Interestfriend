@@ -13,6 +13,7 @@
  */
 package com.interestfriend.activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -48,6 +49,7 @@ import com.baidu.mapapi.utils.CoordinateConvert;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.easemob.util.EMLog;
 import com.interestfriend.R;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.Utils;
 
 public class BaiduMapActivity extends BaseActivity {
@@ -74,9 +76,7 @@ public class BaiduMapActivity extends BaseActivity {
 	static BDLocation lastLocation = null;
 
 	public static BaiduMapActivity instance = null;
-
-	ProgressDialog progressDialog;
-
+	private Dialog dialog;
 	ItemizedOverlay<OverlayItem> mAddrOverlay = null;
 
 	// for baidu map
@@ -141,23 +141,8 @@ public class BaiduMapActivity extends BaseActivity {
 	}
 
 	private void showMapWithLocationClient() {
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setCanceledOnTouchOutside(false);
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setMessage("正在确定你的位置...");
-
-		progressDialog.setOnCancelListener(new OnCancelListener() {
-
-			public void onCancel(DialogInterface arg0) {
-				if (progressDialog.isShowing()) {
-					progressDialog.dismiss();
-				}
-				Log.d("map", "cancel retrieve location");
-				finish();
-			}
-		});
-
-		progressDialog.show();
+		dialog = DialogUtil.createLoadingDialog(this, "正在确定你的位置...");
+		dialog.show();
 
 		mLocClient = new LocationClient(this);
 		mLocClient.registerLocationListener(myListener);
@@ -279,8 +264,8 @@ public class BaiduMapActivity extends BaseActivity {
 			}
 
 			sendButton.setEnabled(true);
-			if (progressDialog != null) {
-				progressDialog.dismiss();
+			if (dialog != null) {
+				dialog.dismiss();
 			}
 
 			if (lastLocation != null) {

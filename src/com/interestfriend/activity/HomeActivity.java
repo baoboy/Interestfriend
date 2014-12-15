@@ -43,10 +43,7 @@ import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.fragment.FindCircleFragmen;
 import com.interestfriend.fragment.MyCircleFragment;
-import com.interestfriend.task.UpDateNewVersionTask;
-import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
 import com.interestfriend.utils.Constants;
-import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.DrawerLeftMenu;
@@ -393,8 +390,7 @@ public class HomeActivity extends FragmentActivity implements
 	 */
 	private void showConflictDialog() {
 		isConflictDialogShow = true;
-		MyApplation.logoutHuanXin();
-
+		MyApplation.logoutHuanXin(null);
 		if (!HomeActivity.this.isFinishing()) {
 			PromptDialog.Builder dialog = new PromptDialog.Builder(this);
 			dialog.setTitle("下线通知");

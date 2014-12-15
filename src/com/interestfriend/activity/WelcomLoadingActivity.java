@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.huanxin.helper.QuYouHXSDKHelper;
 import com.interestfriend.R;
 import com.interestfriend.utils.SharedUtils;
 
@@ -25,7 +26,7 @@ public class WelcomLoadingActivity extends Activity {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				if (SharedUtils.getIntUid() > 0) {
+				if (QuYouHXSDKHelper.getInstance().isLogined()) {
 					startActivity(new Intent(WelcomLoadingActivity.this,
 							HomeActivity.class));
 				} else {

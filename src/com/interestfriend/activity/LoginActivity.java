@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroupManager;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
@@ -22,6 +24,7 @@ import com.interestfriend.interfaces.MyEditTextWatcher;
 import com.interestfriend.interfaces.MyEditTextWatcher.OnTextLengthChange;
 import com.interestfriend.interfaces.OnEditFocusChangeListener;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.MD5;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
@@ -150,10 +153,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				RetError ret = user.userLogin();
 				if (ret == RetError.NONE) {
 					user_id = user.getUser_id();
-
-					// loginHuanXin(MD5.Md5_16(user_cellphone),
-					// MD5.Md5_16(user_password));
-					loginHuanXin(user_cellphone, user_password);
+					//
+					loginHuanXin(MD5.Md5_16(user_cellphone),
+							MD5.Md5_16(user_password));
+					// loginHuanXin(user_cellphone, user_password);
 				} else if (ret == RetError.NOT_EXIST_USER) {
 					mHandler.sendEmptyMessage(2);
 					mHandler.sendEmptyMessage(-1);
@@ -169,15 +172,25 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void loginHuanXin(final String username, final String password) {
+		Utils.print("logion:::::::::::::===" + username + "    " + password);
 		// 调用sdk登陆方法登陆聊天服务器
 		EMChatManager.getInstance().login(username, password, new EMCallBack() {
+
 			@Override
 			public void onSuccess() {
 				SharedUtils.setUid(user_id + "");
 				// 登陆成功，保存用户名密码
 				SharedUtils.setUserName(username);
+				SharedUtils.saveHuanXinPassword(password);
+				SharedUtils.saveHXId(username);
 				mHandler.sendEmptyMessage(2);
 				mHandler.sendEmptyMessage(1);
+				try {
+					EMGroupManager.getInstance().getGroupsFromServer();
+				} catch (EaseMobException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 			@Override

@@ -191,7 +191,7 @@ public class Circles extends AbstractData {
 		params.put("category", circle_category);
 		params.put("longitude", MyApplation.getnLontitude());
 		params.put("latitude", MyApplation.getnLatitude());
-		params.put("huanxin_username", SharedUtils.getUserName());
+		params.put("huanxin_username", SharedUtils.getHXId());
 		Result ret = ApiRequest.requestWithFile(CREATE_CIRCLE_API, params,
 				new File(circle_logo), parser);
 		if (ret.getStatus() == RetStatus.SUCC) {

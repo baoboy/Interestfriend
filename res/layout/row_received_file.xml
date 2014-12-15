@@ -89,11 +89,11 @@
 
         <ProgressBar
             android:id="@+id/pb_sending"
-            style="?android:attr/progressBarStyleSmall"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/iamge_progress"
             android:visibility="invisible" />
 
         <TextView

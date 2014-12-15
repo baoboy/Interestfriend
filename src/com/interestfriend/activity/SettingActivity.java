@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easemob.EMCallBack;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.interfaces.ConfirmDialog;
-import com.interestfriend.service.UpdateService;
 import com.interestfriend.task.UpDateNewVersionTask;
 import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
 import com.interestfriend.utils.DialogUtil;
@@ -34,6 +34,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	private ImageView back;
 	private TextView txt_title;
 	private Button btn_quit;
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,14 +86,34 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void quit() {
-		MyApplation.logoutHuanXin();
-		MyApplation.exit(false);
-		SharedUtils.setUid(0 + "");
-		SharedUtils.setAPPUserAvatar("");
-		DataBaseHelper.setIinstanceNull();
-		DBUtils.dbase = null;
-		DBUtils.close();
-		startActivity(new Intent(this, LoginActivity.class));
+		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
+		dialog.show();
+		MyApplation.logoutHuanXin(new EMCallBack() {
+
+			@Override
+			public void onSuccess() {
+				dialog.dismiss();
+				MyApplation.exit(false);
+				SharedUtils.setUid(0 + "");
+				SharedUtils.setAPPUserAvatar("");
+				DataBaseHelper.setIinstanceNull();
+				DBUtils.dbase = null;
+				DBUtils.close();
+				startActivity(new Intent(SettingActivity.this,
+						LoginActivity.class));
+			}
+
+			@Override
+			public void onProgress(int arg0, String arg1) {
+
+			}
+
+			@Override
+			public void onError(int arg0, String arg1) {
+
+			}
+		});
+
 	}
 
 	@Override

@@ -218,7 +218,9 @@ public class SearchCirclsActivity extends BaseActivity implements
 				if (dialog != null) {
 					dialog.dismiss();
 				}
-
+				if (result != RetError.NONE) {
+					return;
+				}
 				listCircles.addAll(lists.getListCircles());
 				if (listCircles.size() == 0) {
 					ToastUtil.showToast("还没有圈子哦,赶快创建一个吧", Toast.LENGTH_SHORT);

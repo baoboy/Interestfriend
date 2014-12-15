@@ -1,10 +1,15 @@
 package com.interestfriend.view;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,17 +22,17 @@ import android.widget.TextView;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
-import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ShowBigAvatariListener;
+import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.GetUserInfoTask;
 import com.interestfriend.task.UpDateNewVersionTask;
 import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
-import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
@@ -97,8 +102,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
 		txt_setting.setOnClickListener(this);
-		img_avatar.setOnClickListener(new ShowBigAvatariListener(mContext,
-				SharedUtils.getAPPUserAvatar()));
+		img_avatar.setOnClickListener(this);
 		addView(rootView);
 	}
 
@@ -201,6 +205,17 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			break;
 		case R.id.txt_seting:
 			mContext.startActivity(new Intent(mContext, SettingActivity.class));
+			break;
+		case R.id.img_avatar:
+			List<String> imgUrl = new ArrayList<String>();
+			imgUrl.add(SharedUtils.getAPPUserAvatar());
+			intent = new Intent(mContext, ImagePagerActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable(Constants.EXTRA_IMAGE_URLS,
+					(Serializable) imgUrl);
+			intent.putExtras(bundle);
+			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
+			mContext.startActivity(intent);
 			break;
 		default:
 			break;

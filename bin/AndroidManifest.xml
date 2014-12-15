@@ -37,6 +37,7 @@
         <activity
             android:name="com.interestfriend.activity.WelcomLoadingActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

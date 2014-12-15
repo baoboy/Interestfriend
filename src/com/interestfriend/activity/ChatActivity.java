@@ -686,7 +686,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		}
 
 		cameraFile = new File(PathUtil.getInstance().getImagePath(),
-				SharedUtils.getUserName() + System.currentTimeMillis() + ".jpg");
+				SharedUtils.getHXId() + System.currentTimeMillis() + ".jpg");
 		cameraFile.getParentFile().mkdirs();
 		startActivityForResult(
 				new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(

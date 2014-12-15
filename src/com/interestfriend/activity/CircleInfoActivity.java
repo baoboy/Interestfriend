@@ -55,7 +55,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 
 	private boolean isLocalCircle = false;
 	private RightMenuPopwindow pop;
-
+ 
 	private RelativeLayout title_layout;
 	private ImageView right_image;
 
