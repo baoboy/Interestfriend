@@ -128,6 +128,16 @@
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 开机自启动服务 -->
+        <receiver android:name="com.easemob.chat.StartServiceReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver>
+
         <!-- 设置应用的 appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
