@@ -9,6 +9,7 @@ import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
@@ -60,6 +61,7 @@ public class CircleMemberList extends AbstractData {
 				break;
 			}
 		}
+		circleMemberLists.add(0, MyApplation.getMemberSelf());
 	}
 
 	public void setCircleMemberLists(List<CircleMember> circleMemberLists) {

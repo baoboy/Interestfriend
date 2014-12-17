@@ -24,19 +24,19 @@ public final class R {
 		public static final int fynn_prompt_dialog_title_bar_bg_skyblue = 0x7f020170;
 	}
 	public static final class id {
-		public static final int btn_divider1 = 0x7f0a0125;
-		public static final int btn_divider2 = 0x7f0a0127;
-		public static final int btn_view = 0x7f0a0123;
-		public static final int button_center = 0x7f0a0126;
-		public static final int button_left = 0x7f0a0124;
-		public static final int button_right = 0x7f0a0128;
-		public static final int dialog = 0x7f0a0017;
-		public static final int layout_addview = 0x7f0a0120;
-		public static final int message = 0x7f0a0121;
-		public static final int msg_btn_divider = 0x7f0a0122;
-		public static final int title = 0x7f0a003a;
-		public static final int title_msg_divider = 0x7f0a011f;
-		public static final int titlebar = 0x7f0a004b;
+		public static final int btn_divider1 = 0x7f060127;
+		public static final int btn_divider2 = 0x7f060129;
+		public static final int btn_view = 0x7f060125;
+		public static final int button_center = 0x7f060128;
+		public static final int button_left = 0x7f060126;
+		public static final int button_right = 0x7f06012a;
+		public static final int dialog = 0x7f06000e;
+		public static final int layout_addview = 0x7f060122;
+		public static final int message = 0x7f060123;
+		public static final int msg_btn_divider = 0x7f060124;
+		public static final int title = 0x7f06003a;
+		public static final int title_msg_divider = 0x7f060121;
+		public static final int titlebar = 0x7f06004b;
 	}
 	public static final class layout {
 		public static final int fynn_prompt_dialog_normal = 0x7f030059;
@@ -44,8 +44,8 @@ public final class R {
 		public static final int fynn_prompt_dialog_titlebar_skyblue = 0x7f03005b;
 	}
 	public static final class style {
-		public static final int AppBaseTheme = 0x7f060000;
-		public static final int AppTheme = 0x7f060001;
-		public static final int PromptDialogStyle = 0x7f060002;
+		public static final int AppBaseTheme = 0x7f0c0083;
+		public static final int AppTheme = 0x7f0c0084;
+		public static final int PromptDialogStyle = 0x7f0c0085;
 	}
 }

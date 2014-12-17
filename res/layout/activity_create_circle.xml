@@ -66,6 +66,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/input_new"
                 android:hint="给圈子起个让人容易加入的名字"
+                android:maxLength="20"
                 android:paddingBottom="10dip"
                 android:paddingLeft="20dip"
                 android:paddingRight="10dip"

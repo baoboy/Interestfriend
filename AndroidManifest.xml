@@ -309,6 +309,8 @@
 
         <service android:name="com.interestfriend.service.UpdateService" >
         </service>
+        <service android:name="com.interestfriend.service.UpLoadErrorLogService" >
+        </service>
 
         <activity
             android:name="com.interestfriend.activity.KickOutActivity"

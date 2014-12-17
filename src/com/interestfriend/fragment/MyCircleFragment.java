@@ -190,13 +190,24 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 				int circle_id = intent.getIntExtra("circle_id", 0);
 				int circle_creator = intent.getIntExtra("circle_creator", 0);
 				String group_id = intent.getStringExtra("group_id");
+				String circle_create_name = intent
+						.getStringExtra("circle_create_name");
+				String circle_create_time = intent
+						.getStringExtra("circle_create_time");
+				int circle_catrgory = intent.getIntExtra("circle_category", 0);
+				String circle_catrgory_name = intent
+						.getStringExtra("circle_category_name");
 				MyCircles circle = new MyCircles();
 				circle.setCircle_description(circle_description);
 				circle.setCircle_name(circle_name);
 				circle.setCircle_logo(circle_logo);
 				circle.setCreator_id(circle_creator);
 				circle.setCircle_id(circle_id);
+				circle.setCircle_creator_name(circle_create_name);
+				circle.setCircle_create_time(circle_create_time);
 				circle.setGroup_id(group_id);
+				circle.setCircle_category(circle_catrgory);
+				circle.setCircle_category_name(circle_catrgory_name);
 				lists.add(circle);
 				adapter.notifyDataSetChanged();
 			} else if (action.equals(Constants.QUIT_CIRCLE)) {

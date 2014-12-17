@@ -66,7 +66,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		setContentView(R.layout.activity_circle_member_info);
 		member = (CircleMember) getIntent().getSerializableExtra(
 				"circle_member");
-		initView();
+		initView(); 
 	}
 
 	private void initView() {

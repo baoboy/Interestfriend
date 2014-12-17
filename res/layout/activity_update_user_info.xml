@@ -18,6 +18,7 @@
         android:background="@drawable/comment_edit"
         android:gravity="top"
         android:lineSpacingExtra="4dip"
+        android:maxLength="254"
         android:minHeight="100dip"
         android:padding="10dip"
         android:textColor="#818181"

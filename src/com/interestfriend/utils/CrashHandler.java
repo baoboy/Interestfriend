@@ -1,12 +1,7 @@
 package com.interestfriend.utils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -18,9 +13,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.interestfriend.applation.MyApplation;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -29,6 +23,9 @@ import android.os.Environment;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.interestfriend.applation.MyApplation;
+import com.interestfriend.service.UpLoadErrorLogService;
 
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
@@ -113,7 +110,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				Looper.prepare();
 				Toast.makeText(mContext, "很抱歉,程序出现异常,即将退出.", Toast.LENGTH_SHORT)
 						.show();
-				MyApplation.exit(true);
+				// MyApplation.exit(true);
 				Looper.loop();
 			}
 		}.start();
@@ -195,11 +192,11 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				fos.write(sb.toString().getBytes());
 				// 发送给开发人员
 				sendCrashLog2PM(path + fileName);
+
 				fos.close();
 			}
 			return fileName;
 		} catch (Exception e) {
-			Log.e(TAG, "an error occured while writing file...", e);
 		}
 		return null;
 	}
@@ -214,30 +211,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			Toast.makeText(mContext, "日志文件不存在！", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		FileInputStream fis = null;
-		BufferedReader reader = null;
-		String s = null;
-		try {
-			fis = new FileInputStream(fileName);
-			reader = new BufferedReader(new InputStreamReader(fis, "GBK"));
-			while (true) {
-				s = reader.readLine();
-				if (s == null)
-					break;
-				// 由于目前尚未确定以何种方式发送，所以先打出log日志。
-				Log.i("info", s.toString());
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally { // 关闭流
-			try {
-				reader.close();
-				fis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		mContext.startService(new Intent(mContext, UpLoadErrorLogService.class)
+				.putExtra("file_path", fileName));
+		MyApplation.exit(true);
 	}
 }

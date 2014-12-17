@@ -44,6 +44,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private TextView txt_circle_create_time;
 	private TextView txt_citcle_creator_name;
 	private TextView txt_circle_category;
+	private TextView txt_circle_name;
 	private RelativeLayout layout_desc;
 	private ImageView img_desc_arrow;
 
@@ -55,7 +56,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 
 	private boolean isLocalCircle = false;
 	private RightMenuPopwindow pop;
- 
+
 	private RelativeLayout title_layout;
 	private ImageView right_image;
 
@@ -80,6 +81,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void initView() {
+		txt_circle_name = (TextView) findViewById(R.id.txt_circle_name);
 		view = (DampView) findViewById(R.id.scrollView1);
 		title_layout = (RelativeLayout) findViewById(R.id.title);
 		img_desc_arrow = (ImageView) findViewById(R.id.img_arrow_desc);
@@ -127,10 +129,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		UniversalImageLoadTool.disPlay(imgLogo, img_logo,
 				R.drawable.picture_default_head);
 		txt_description.setText(description);
-		txt_title.setText(circle.getCircle_name());
+		txt_title.setText("х╕вспео╒");
 		txt_circle_category.setText(circle.getCircle_category_name());
 		txt_circle_create_time.setText(circle.getCircle_create_time());
 		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
+		txt_circle_name.setText(circle.getCircle_name());
 	}
 
 	private void showLogo() {

@@ -187,7 +187,6 @@ public class CircleMemberFragment extends Fragment implements
 				list.setLocalMembersLists(cirlceMemberLists);
 				list.sort(cirlceMemberLists);
 				list.getMe(cirlceMemberLists);
-				cirlceMemberLists.add(0, MyApplation.getMemberSelf());
 				adapter.notifyDataSetChanged();
 				if (System.currentTimeMillis()
 						- SharedUtils
@@ -237,7 +236,6 @@ public class CircleMemberFragment extends Fragment implements
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
 				list.sort(cirlceMemberLists);
 				list.getMe(cirlceMemberLists);
-				cirlceMemberLists.add(0, MyApplation.getMemberSelf());
 				adapter.notifyDataSetChanged();
 				int newSize = cirlceMemberLists.size();
 				if (newSize != size) {

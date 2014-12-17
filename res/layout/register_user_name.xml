@@ -11,6 +11,7 @@
         android:layout_marginTop="@dimen/dp80"
         android:background="@drawable/input_new"
         android:hint="@string/inupt_user_name"
+        android:maxLength="20"
         android:paddingLeft="@dimen/dp54"
         android:paddingRight="15dip"
         android:textColor="@color/black"
