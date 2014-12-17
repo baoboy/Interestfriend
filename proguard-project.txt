@@ -18,3 +18,141 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontpreverify
+-verbose
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+
+-keepattributes *Annotation*
+-keepattributes Signature
+
+-libraryjars libs/android-support-v7-recyclerview.jar
+-libraryjars libs/BaiduLBS_Android.jar
+-libraryjars libs/baidumapapi_v2_1_1.jar
+-libraryjars libs/easemobchat_2.1.3.jar
+-libraryjars libs/httpmime-4.2.1.jar
+-libraryjars libs/universalimageloaderlibrary1.9.0.jar
+  
+
+-keep class com.baidu.** { *; } 
+-keep class vi.com.gdi.bgl.android.**{*;}
+
+-keep public class * extends android.app.Fragment  
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.support.v4.**
+-keep public class com.android.vending.licensing.ILicensingService
+
+-keep class com.google.gson.stream.** { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+-keep class com.uuhelper.Application.** { *; }
+-keep class net.sourceforge.zbar.** { *; }
+-keep class com.google.android.gms.** { *; } 
+
+-keep class com.bank.pingan.model.** { *; }
+
+-keep public class * extends com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
+-keep public class * extends com.j256.ormlite.android.apptools.OpenHelperManager
+ 
+-keep class com.android.vending.licensing.ILicensingService
+-keep class android.support.v4.** { *; }  
+-keep class org.apache.commons.net.** { *; }  
+-keep class com.tencent.** { *; }  
+ 
+-keep class com.easemob.** { *; }  
+ 
+ 
+-keep class com.j256.ormlite.** { *; }  
+ 
+
+-dontwarn android.support.v4.**  
+-dontwarn org.apache.commons.net.** 
+-dontwarn com.tencent.**  
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context);
+}
+
+-dontshrink
+-dontoptimize
+-dontwarn com.google.android.maps.**
+-dontwarn android.webkit.WebView
+-dontwarn com.umeng.**
+-dontwarn com.tencent.weibo.sdk.**
+-dontwarn com.facebook.**
+
+-keep enum com.facebook.**
+-keepattributes Exceptions,InnerClasses,Signature
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+
+-keep public interface com.facebook.**
+-keep public interface com.tencent.**
+-keep public interface com.umeng.socialize.**
+-keep public interface com.umeng.socialize.sensor.**
+-keep public interface com.umeng.scrshot.**
+
+-keep public class com.umeng.socialize.* {*;}
+-keep public class javax.**
+-keep public class android.webkit.**
+
+-keep class com.facebook.**
+-keep class com.umeng.scrshot.**
+-keep public class com.tencent.** {*;}
+-keep class com.umeng.socialize.sensor.**
+
+-keep class com.tencent.mm.sdk.openapi.WXMediaMessage {*;}
+
+-keep class com.tencent.mm.sdk.openapi.** implements com.tencent.mm.sdk.openapi.WXMediaMessage$IMediaObject {*;}
+
+-keep class im.yixin.sdk.api.YXMessage {*;}
+-keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+
+-dontwarn org.apache.commons.**
+-keep class org.apache.commons.** { *;}
+
+-dontwarn org.slf4j.impl.**
+-keep class org.slf4j.impl.** { *;}
+
+-dontwarn a.a.**
+-keep class a.a.** { *;}
+
+-dontwarn com.fourmob.datetimepicker.**
+-keep class com.fourmob.datetimepicker.** { *;}
+
+
+-dontwarn  org.a.a.**
+-keep class  org.a.a.** { *;}
+
+-keep public class [your_pkg].R$*{
+    public static final int *;
+}
+

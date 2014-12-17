@@ -65,7 +65,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
