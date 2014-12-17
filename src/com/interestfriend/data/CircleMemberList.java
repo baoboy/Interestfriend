@@ -57,7 +57,6 @@ public class CircleMemberList extends AbstractData {
 		for (CircleMember m : circleMemberLists) {
 			if (m.getUser_id() == SharedUtils.getIntUid()) {
 				circleMemberLists.remove(m);
-				circleMemberLists.add(0, m);
 				break;
 			}
 		}

@@ -14,8 +14,10 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.LocationClientOption.LocationMode;
 import com.easemob.EMCallBack;
 import com.huanxin.helper.QuYouHXSDKHelper;
+import com.interestfriend.data.CircleMember;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
-import com.interestfriend.utils.Utils;
+import com.interestfriend.utils.CrashHandler;
+import com.interestfriend.utils.SharedUtils;
 
 public class MyApplation extends Application {
 	private static MyApplation instance;
@@ -27,6 +29,7 @@ public class MyApplation extends Application {
 	private static double nLontitude = 0;// ¾­¶È
 	private static String address = "";
 	public static QuYouHXSDKHelper hxSDKHelper = new QuYouHXSDKHelper();
+	private static CircleMember memberSelf = new CircleMember();;
 
 	public LocationClient mLocationClient;
 	public GeofenceClient mGeofenceClient;
@@ -37,11 +40,32 @@ public class MyApplation extends Application {
 		super.onCreate();
 		CheckImageLoaderConfiguration.checkImageLoaderConfiguration(this);
 		instance = this;
-		// CrashHandler catchHandler = CrashHandler.getInstance();
-		// catchHandler.init(this);
+		CrashHandler catchHandler = CrashHandler.getInstance();
+		catchHandler.init(this);
 		initBaiduLocation();
 		initHuanxin();
 		boolean res = hxSDKHelper.onInit(this);
+		initMemberSelf();
+	}
+
+	public static void initMemberSelf() {
+		memberSelf.setUser_avatar(SharedUtils.getAPPUserAvatar());
+		memberSelf.setUser_birthday(SharedUtils.getAPPUserBirthday());
+		memberSelf.setUser_declaration(SharedUtils.getAPPUserDeclaration());
+		memberSelf.setUser_description(SharedUtils.getAPPUserDescription());
+		memberSelf.setUser_gender(SharedUtils.getAPPUserGender());
+		memberSelf.setUser_id(SharedUtils.getIntUid());
+		memberSelf.setUser_name(SharedUtils.getAPPUserName());
+		memberSelf.setUser_register_time(SharedUtils.getAPPUserRegisterTime());
+		memberSelf.setSortkey(SharedUtils.getAPPUserSortKey());
+	}
+
+	public static CircleMember getMemberSelf() {
+		return memberSelf;
+	}
+
+	public void setMemberSelf(CircleMember memberSelf) {
+		this.memberSelf = memberSelf;
 	}
 
 	public static MyApplation getInstance() {

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
@@ -166,14 +167,20 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 			SharedUtils.setAPPUserName(data.getStringExtra("value"));
 			SharedUtils.setAPPUserSortKey(PinYinUtils.getFirstPinYin(data
 					.getStringExtra("value")));
+			MyApplation.getMemberSelf().setUser_name(
+					data.getStringExtra("value"));
 			break;
 		case 300:
 			txt_declaration.setText(data.getStringExtra("value"));
 			SharedUtils.setAPPUserDeclaration(data.getStringExtra("value"));
+			MyApplation.getMemberSelf().setUser_declaration(
+					data.getStringExtra("value"));
 			break;
 		case 400:
 			txt_description.setText(data.getStringExtra("value"));
 			SharedUtils.setAPPUserDescription(data.getStringExtra("value"));
+			MyApplation.getMemberSelf().setUser_description(
+					data.getStringExtra("value"));
 			break;
 		case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
 
@@ -269,6 +276,8 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 				BroadCast.sendBroadCast(CircleMemberOfSelfInfoActivity.this,
 						intent);
 				SharedUtils.setAPPUserAvatar(member.getUser_avatar());
+				MyApplation.getMemberSelf().setUser_avatar(
+						member.getUser_avatar());
 			}
 		});
 		task.executeParallel(member);

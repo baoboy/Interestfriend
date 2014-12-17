@@ -23,11 +23,11 @@ import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.activity.SettingActivity;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
-import com.interestfriend.interfaces.ShowBigAvatariListener;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.GetUserInfoTask;
 import com.interestfriend.task.UpDateNewVersionTask;
@@ -71,7 +71,6 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
 					R.drawable.picture_default_head);
 			setName(SharedUtils.getAPPUserName());
-			initMember();
 			return;
 		}
 		getUserInfo();
@@ -144,7 +143,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 				if (result == RetError.NONE) {
 					setAvatar(user.getUser_avatar());
 					setName(user.getUser_name());
-					initMember();
+					MyApplation.initMemberSelf();
 				}
 			}
 		});
@@ -176,18 +175,6 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		}
 	}
 
-	private void initMember() {
-		memberSelf.setUser_avatar(SharedUtils.getAPPUserAvatar());
-		memberSelf.setUser_birthday(SharedUtils.getAPPUserBirthday());
-		memberSelf.setUser_declaration(SharedUtils.getAPPUserDeclaration());
-		memberSelf.setUser_description(SharedUtils.getAPPUserDescription());
-		memberSelf.setUser_gender(SharedUtils.getAPPUserGender());
-		memberSelf.setUser_id(SharedUtils.getIntUid());
-		memberSelf.setUser_name(SharedUtils.getAPPUserName());
-		memberSelf.setUser_register_time(SharedUtils.getAPPUserRegisterTime());
-		memberSelf.setSortkey(SharedUtils.getAPPUserSortKey());
-	}
-
 	@Override
 	public void onClick(View v) {
 		Intent intent;
@@ -197,9 +184,8 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 					ChatAllHistoryActivity.class));
 			break;
 		case R.id.txt_user_info:
-			initMember();
 			intent = new Intent();
-			intent.putExtra("circle_member", memberSelf);
+			intent.putExtra("circle_member", MyApplation.getMemberSelf());
 			intent.setClass(mContext, CircleMemberOfSelfInfoActivity.class);
 			mContext.startActivity(intent);
 			break;
