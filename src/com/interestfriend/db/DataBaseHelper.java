@@ -9,7 +9,7 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.utils.SharedUtils;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "tf";
+	public static final String DATABASE_NAME = "tf";
 	private static DataBaseHelper instance;
 	private static final int DATABASE_VERSION = 1;
 

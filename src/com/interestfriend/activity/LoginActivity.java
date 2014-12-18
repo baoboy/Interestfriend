@@ -185,6 +185,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 			@Override
 			public void onSuccess() {
 				SharedUtils.setUid(user_id + "");
+				Utils.print("uit::::::::::::::::" + user_id);
 				// 登陆成功，保存用户名密码
 				SharedUtils.setUserName(username);
 				SharedUtils.saveHuanXinPassword(password);

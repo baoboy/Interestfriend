@@ -94,9 +94,12 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			public void onSuccess() {
 				dialog.dismiss();
 				MyApplation.exit(false);
+				Utils.cleanDatabaseByName(SettingActivity.this);
 				SharedUtils.setUid(0 + "");
 				SharedUtils.setAPPUserAvatar("");
 				DataBaseHelper.setIinstanceNull();
+				SharedUtils.setCircleLastRequestTime(0);
+				SharedUtils.clearData();
 				DBUtils.dbase = null;
 				DBUtils.close();
 				startActivity(new Intent(SettingActivity.this,
@@ -152,7 +155,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 	private void getNewVersion() {
 		final Dialog dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
 		dialog.show();
-		UpDateNewVersionTask task = new UpDateNewVersionTask(this);
+		UpDateNewVersionTask task = new UpDateNewVersionTask(this, true);
 		task.setCallBack(new UpDateVersion() {
 			@Override
 			public void getNewVersion(int rt, String versionCode, String link) {

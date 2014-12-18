@@ -61,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/txt_name"
+                    android:clickable="false"
                     android:drawablePadding="8dip"
                     android:drawableRight="@drawable/icon_friend_right_arrow"
                     android:gravity="right"

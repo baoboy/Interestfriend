@@ -66,7 +66,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		setContentView(R.layout.activity_circle_member_info);
 		member = (CircleMember) getIntent().getSerializableExtra(
 				"circle_member");
-		initView(); 
+		initView();
 	}
 
 	private void initView() {
@@ -107,21 +107,27 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		layout_user_name.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
 		back.setOnClickListener(this);
+		txt_declaration.setOnClickListener(this);
+		txt_description.setOnClickListener(this);
+		txt_user_name.setOnClickListener(this);
 
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.txt_declaration:
 
 		case R.id.layout_declaration:
 			intentUpdateActivity("Ωª”—–˚—‘", txt_declaration.getText().toString(),
 					300);
 			break;
+		case R.id.txt_description:
 		case R.id.layout_description:
 			intentUpdateActivity("∏ˆ»ÀΩÈ…‹", txt_description.getText().toString(),
 					400);
 			break;
+		case R.id.txt_user_name:
 		case R.id.layout_user_name:
 			intentUpdateActivity("Í«≥∆", txt_user_name.getText().toString(), 200);
 			break;

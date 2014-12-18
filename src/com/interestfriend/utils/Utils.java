@@ -19,6 +19,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.db.DBUtils;
+import com.interestfriend.db.DataBaseHelper;
 
 public class Utils {
 	public static boolean isSystemUser(String user_id) {
@@ -156,7 +158,7 @@ public class Utils {
 	}
 
 	public static void print(String str) {
-		System.out.println(str);
+		// System.out.println(str);
 	}
 
 	/**
@@ -202,4 +204,9 @@ public class Utils {
 		}
 	}
 
+	/** * 按名字清除本应用数据库 * * @param context * @param dbName */
+	public static void cleanDatabaseByName(Context context) {
+		context.deleteDatabase(DataBaseHelper.DATABASE_NAME
+				+ SharedUtils.getUid());
+	}
 }

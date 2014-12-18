@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Circles;
 import com.interestfriend.data.enums.RetError;
@@ -257,10 +258,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		member.setUser_id(circle.getCreator_id());
 		member.read(DBUtils.getDBsa(1));
 		Intent intent = new Intent();
-		intent.putExtra("circle_member", member);
 		if (circle.getCreator_id() == SharedUtils.getIntUid()) {
+			intent.putExtra("circle_member", MyApplation.getMemberSelf());
 			intent.setClass(this, CircleMemberOfSelfInfoActivity.class);
 		} else {
+			intent.putExtra("circle_member", member);
 			intent.setClass(this, CircleMemberActivity.class);
 		}
 		startActivity(intent);

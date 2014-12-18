@@ -18,6 +18,7 @@ import com.interestfriend.data.CircleMember;
 import com.interestfriend.utils.CheckImageLoaderConfiguration;
 import com.interestfriend.utils.CrashHandler;
 import com.interestfriend.utils.SharedUtils;
+import com.interestfriend.utils.Utils;
 
 public class MyApplation extends Application {
 	private static MyApplation instance;
@@ -46,6 +47,8 @@ public class MyApplation extends Application {
 		initHuanxin();
 		boolean res = hxSDKHelper.onInit(this);
 		initMemberSelf();
+		Utils.print("uit::::::::::::::::===" + memberSelf.getUser_id());
+
 	}
 
 	public static void initMemberSelf() {

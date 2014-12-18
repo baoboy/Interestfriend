@@ -276,4 +276,9 @@ public class SharedUtils {
 	public static String getHuanXinPwd() {
 		return sharedPreferences.getString(HUANXIN_PWD, null);
 	}
+
+	public static void clearData() {
+		editor.clear();
+		editor.commit();
+	}
 }

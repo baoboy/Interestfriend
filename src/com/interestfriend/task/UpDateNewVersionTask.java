@@ -19,9 +19,11 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 	private String serverVersion = "";
 	private String versionLink = "";
 	private UpDateVersion callBack;
+	private boolean isShowToast;
 
-	public UpDateNewVersionTask(Context mContext) {
+	public UpDateNewVersionTask(Context mContext, boolean isShowToast) {
 		version = Utils.getVersionName(mContext);
+		this.isShowToast = isShowToast;
 	}
 
 	@Override
@@ -48,13 +50,18 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 	protected void onPostExecute(Integer result) {
 		super.onPostExecute(result);
 		if (result == 0) {
-			ToastUtil.showToast("操作失败,请稍候再试", Toast.LENGTH_SHORT);
+			if (isShowToast) {
+				ToastUtil.showToast("操作失败,请稍候再试", Toast.LENGTH_SHORT);
+			}
 			this.callBack.getNewVersion(0, "", "");
 			return;
 		}
 		if (serverVersion.compareTo(version) <= 0) {
+			if (isShowToast) {
+				ToastUtil.showToast("您现在用的已经是最新版，最最新版值得您期待！",
+						Toast.LENGTH_SHORT);
 
-			ToastUtil.showToast("您现在用的已经是最新版，最最新版值得您期待！", Toast.LENGTH_SHORT);
+			}
 			this.callBack.getNewVersion(0, "", "");
 			return;
 		}

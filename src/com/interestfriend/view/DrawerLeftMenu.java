@@ -25,11 +25,7 @@ import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
-import com.interestfriend.data.User;
-import com.interestfriend.data.enums.RetError;
-import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.showbigpic.ImagePagerActivity;
-import com.interestfriend.task.GetUserInfoTask;
 import com.interestfriend.task.UpDateNewVersionTask;
 import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
 import com.interestfriend.utils.Constants;
@@ -131,31 +127,12 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		}
 	}
 
-	private void getUserInfo() {
-		if (!Utils.isNetworkAvailable()) {
-			return;
-		}
-		final User user = new User();
-		GetUserInfoTask task = new GetUserInfoTask();
-		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
-			@Override
-			public void taskFinish(RetError result) {
-				if (result == RetError.NONE) {
-					setAvatar(user.getUser_avatar());
-					setName(user.getUser_name());
-					MyApplation.initMemberSelf();
-				}
-			}
-		});
-		task.executeParallel(user);
-	}
-
 	@SuppressLint("NewApi")
 	private void checkVersion() {
 		if (!Utils.isNetworkAvailable()) {
 			return;
 		}
-		UpDateNewVersionTask task = new UpDateNewVersionTask(mContext);
+		UpDateNewVersionTask task = new UpDateNewVersionTask(mContext, false);
 		task.setCallBack(new UpDateVersion() {
 			@Override
 			public void getNewVersion(int rt, String versionCode, String link) {

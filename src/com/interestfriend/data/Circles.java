@@ -20,6 +20,7 @@ import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.BitmapUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
@@ -192,8 +193,9 @@ public class Circles extends AbstractData {
 		params.put("longitude", MyApplation.getnLontitude());
 		params.put("latitude", MyApplation.getnLatitude());
 		params.put("huanxin_username", SharedUtils.getHXId());
+		File file = BitmapUtils.getImageFile(circle_logo);
 		Result ret = ApiRequest.requestWithFile(CREATE_CIRCLE_API, params,
-				new File(circle_logo), parser);
+				file, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			MapResult mret = (MapResult) ret;
 			circle_logo = (String) (mret.getMaps().get("circle_logo"));

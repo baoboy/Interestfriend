@@ -12,6 +12,7 @@ import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.BitmapUtils;
 import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
 
@@ -134,9 +135,9 @@ public class User {
 		params.put("user_birthday", user_birthday);
 		params.put("user_pinyin", PinYinUtils.getPinYin(user_name));
 		params.put("user_sort_key", PinYinUtils.getFirstPinYin(user_name));
-
+		File file = BitmapUtils.getImageFile(user_avatar);
 		Result ret = ApiRequest.requestWithFile(USER_REGISTER_API, params,
-				new File(user_avatar), parser);
+				file, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {
@@ -181,6 +182,7 @@ public class User {
 			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
 			SharedUtils.setAPPUserSortKey(member.getSortkey());
 			SharedUtils.setAPPUserChatID(member.getUser_chat_id());
+			SharedUtils.setUid(member.getUser_id() + "");
 			this.user_id = member.getUser_id();
 			return RetError.NONE;
 		} else {

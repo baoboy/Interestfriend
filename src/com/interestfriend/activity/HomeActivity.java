@@ -402,8 +402,10 @@ public class HomeActivity extends FragmentActivity implements
 				public void onClick(Dialog dialog, int which) {
 					dialog.dismiss();
 					MyApplation.exit(false);
+					Utils.cleanDatabaseByName(HomeActivity.this);
 					SharedUtils.setUid(0 + "");
 					DataBaseHelper.setIinstanceNull();
+					SharedUtils.clearData();
 					DBUtils.dbase = null;
 					DBUtils.close();
 					startActivity(new Intent(HomeActivity.this,

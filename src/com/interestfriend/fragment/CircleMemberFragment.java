@@ -186,13 +186,16 @@ public class CircleMemberFragment extends Fragment implements
 				}
 				list.setLocalMembersLists(cirlceMemberLists);
 				list.sort(cirlceMemberLists);
-				// list.getMe(cirlceMemberLists);
-
 			}
 			cirlceMemberLists.add(0, MyApplation.getMemberSelf());
 			adapter.notifyDataSetChanged();
 			if (System.currentTimeMillis()
 					- SharedUtils.getCircleMemberLocalLastReqTime(circle_id) > 10000) {
+				if (cirlceMemberLists.size() == 1) {
+					dialog = DialogUtil.createLoadingDialog(getActivity(),
+							"«Î…‘∫Ú");
+					dialog.show();
+				}
 				getCircleMemberFormServer();
 				SharedUtils.setCircleMemberLocalLastReqTime(circle_id,
 						System.currentTimeMillis());
@@ -229,10 +232,10 @@ public class CircleMemberFragment extends Fragment implements
 					return;
 				}
 				int size = cirlceMemberLists.size();
+				cirlceMemberLists.remove(0);
 				cirlceMemberLists.addAll(list.getCircleMemberLists());
 				list.sort(cirlceMemberLists);
-				// cirlceMemberLists.add(0, MyApplation.getMemberSelf());
-				// list.getMe(cirlceMemberLists);
+				cirlceMemberLists.add(0, MyApplation.getMemberSelf());
 				adapter.notifyDataSetChanged();
 				int newSize = cirlceMemberLists.size();
 				if (newSize != size) {
@@ -258,6 +261,7 @@ public class CircleMemberFragment extends Fragment implements
 		CircleMember m = cirlceMemberLists.get(position);
 		Intent intent = new Intent();
 		intent.putExtra("circle_member", m);
+		Utils.print("membe_id::::::::::::"+m.getUser_id());
 		if (m.getUser_id() == SharedUtils.getIntUid()) {
 			intent.setClass(getActivity(), CircleMemberOfSelfInfoActivity.class);
 		} else {
