@@ -17,6 +17,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.User;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.findpassword.FindPasswordActivity;
@@ -128,6 +129,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				ToastUtil.showToast("手机号格式不正确", Toast.LENGTH_SHORT);
 				return;
 			}
+			if (!Utils.isNetworkAvailable()) {
+				ToastUtil.showToast("网络错误,请检查网络", Toast.LENGTH_SHORT);
+
+				return;
+			}
 			dialog = DialogUtil.createLoadingDialog(this, "请稍候");
 			dialog.setCancelable(false);
 			dialog.show();
@@ -152,8 +158,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 				user.setUser_password(user_password);
 				RetError ret = user.userLogin();
 				if (ret == RetError.NONE) {
+					MyApplation.initMemberSelf();
 					user_id = user.getUser_id();
-					//
 					loginHuanXin(MD5.Md5_16(user_cellphone),
 							MD5.Md5_16(user_password));
 					// loginHuanXin(user_cellphone, user_password);

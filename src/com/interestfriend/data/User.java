@@ -165,14 +165,23 @@ public class User {
 	 * @return
 	 */
 	public RetError userLogin() {
-		IParser parser = new StringParser("user_id");
+		IParser parser = new MemberSelfPaser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("user_cellphone", user_cellphone);
 		params.put("user_password", user_password);
 		Result ret = ApiRequest.request(USER_LOGIN_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
-			StringResult sr = (StringResult) ret;
-			this.user_id = Integer.valueOf(sr.getStr());
+			CircleMember member = (CircleMember) ret.getData();
+			SharedUtils.setAPPUserName(member.getUser_name());
+			SharedUtils.setAPPUserAvatar(member.getUser_avatar());
+			SharedUtils.setAPPUserBirthday(member.getUser_birthday());
+			SharedUtils.setAPPUserDeclaration(member.getUser_declaration());
+			SharedUtils.setAPPUserDescription(member.getUser_description());
+			SharedUtils.setAPPUserGender(member.getUser_gender());
+			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
+			SharedUtils.setAPPUserSortKey(member.getSortkey());
+			SharedUtils.setAPPUserChatID(member.getUser_chat_id());
+			this.user_id = member.getUser_id();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
@@ -180,19 +189,21 @@ public class User {
 
 	}
 
-	// public RetError getUserInfo() {
-	// String[] keys = { "user_name", "user_avatar" };
-	// IParser parser = new MapParser(keys);
+	//
+	// public RetError userLogin() {
+	// IParser parser = new MemberSelfPaser();
 	// HashMap<String, Object> params = new HashMap<String, Object>();
-	// Result ret = ApiRequest.request(GET_USER_INFO, params, parser);
+	// params.put("user_cellphone", user_cellphone);
+	// params.put("user_password", user_password);
+	// Result ret = ApiRequest.request(USER_LOGIN_API, params, parser);
 	// if (ret.getStatus() == RetStatus.SUCC) {
-	// MapResult mret = (MapResult) ret;
-	// user_avatar = (String) (mret.getMaps().get("user_avatar"));
-	// user_name = (String) (mret.getMaps().get("user_name"));
+	// StringResult sr = (StringResult) ret;
+	// this.user_id = Integer.valueOf(sr.getStr());
 	// return RetError.NONE;
 	// } else {
 	// return ret.getErr();
 	// }
+
 	// }
 	public RetError getUserInfo() {
 		IParser parser = new MemberSelfPaser();

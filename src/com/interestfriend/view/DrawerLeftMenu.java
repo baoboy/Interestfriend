@@ -73,7 +73,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			setName(SharedUtils.getAPPUserName());
 			return;
 		}
-		getUserInfo();
+		// getUserInfo();
 	}
 
 	public void setAvatar(String user_avatar) {

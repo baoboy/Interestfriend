@@ -30,6 +30,9 @@ public class CircleMemberListParser implements IParser {
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject obj = (JSONObject) jsonArr.opt(i);
 			int userID = obj.getInt("userID");
+			if (userID == SharedUtils.getIntUid()) {
+				continue;
+			}
 			String userName = obj.getString("userName");
 			String userAvatar = obj.getString("userAvatar");
 			String userGender = obj.getString("userGender");
@@ -41,7 +44,6 @@ public class CircleMemberListParser implements IParser {
 			String user_state = obj.getString("userState");
 			String user_declaration = obj.getString("userDeclaration");
 			String user_description = obj.getString("userDescription");
-
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
 			member.setUser_name(userName);
@@ -59,7 +61,7 @@ public class CircleMemberListParser implements IParser {
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();
-		list.setCircleMemberLists(lists);
+		list.setServerLists(lists);
 		Result ret = new Result();
 		ret.setData(list);
 		return ret;

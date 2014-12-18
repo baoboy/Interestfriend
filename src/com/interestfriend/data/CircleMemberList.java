@@ -27,10 +27,19 @@ public class CircleMemberList extends AbstractData {
 	private int circle_id = 0;
 
 	private List<CircleMember> circleMemberLists = new ArrayList<CircleMember>();
+	private List<CircleMember> serverLists = new ArrayList<CircleMember>();
 
 	private List<CircleMember> localMembersLists = new ArrayList<CircleMember>();
 	private List<CircleMember> newMembers = new ArrayList<CircleMember>();
 	private List<CircleMember> delMembers = new ArrayList<CircleMember>();
+
+	public List<CircleMember> getServerLists() {
+		return serverLists;
+	}
+
+	public void setServerLists(List<CircleMember> serverLists) {
+		this.serverLists = serverLists;
+	}
 
 	public int getCircle_id() {
 		return circle_id;
@@ -49,8 +58,8 @@ public class CircleMemberList extends AbstractData {
 	}
 
 	public List<CircleMember> getCircleMemberLists() {
-		sort(circleMemberLists);
-		getMe(circleMemberLists);
+		// sort(circleMemberLists);
+		// getMe(circleMemberLists);
 		return circleMemberLists;
 	}
 
@@ -94,7 +103,7 @@ public class CircleMemberList extends AbstractData {
 			if (ret.getData() instanceof CircleMemberList) {
 				CircleMemberList lists = (CircleMemberList) ret.getData();
 				// this.circleMemberLists.addAll(lists.getCircleMemberLists());
-				updateMembers(lists.getCircleMemberLists());
+				updateMembers(lists.getServerLists());
 			}
 			return RetError.NONE;
 		} else {

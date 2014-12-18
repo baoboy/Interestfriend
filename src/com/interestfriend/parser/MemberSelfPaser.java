@@ -13,7 +13,6 @@ public class MemberSelfPaser implements IParser {
 		if (jsonObj == null) {
 			return Result.defContentErrorResult();
 		}
-		Utils.print("josn:::::::::::::;;" + jsonObj);
 
 		String jsonArr = jsonObj.getString("user");
 		if (jsonArr == null) {
@@ -31,6 +30,8 @@ public class MemberSelfPaser implements IParser {
 		String user_declaration = obj.getString("userDeclaration");
 		String user_description = obj.getString("userDescription");
 		String user_chat_id = obj.getString("userChatId");
+		System.out.println("user::::::::::::" + user_declaration + "    "
+				+ userName);
 		CircleMember member = new CircleMember();
 		member.setUser_id(userID);
 		member.setUser_name(userName);
