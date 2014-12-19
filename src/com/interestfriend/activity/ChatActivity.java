@@ -1631,6 +1631,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			Intent intent = new Intent(ChatActivity.this,
 					ImageGridActivity.class);
 			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
+			Utils.leftOutRightIn(this);
 			break;
 		case 3:
 			selectFileFromLocal();

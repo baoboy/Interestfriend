@@ -1413,6 +1413,8 @@ public class CircleGroupChatFragment extends Fragment implements
 			// µã»÷ÉãÏñÍ¼±ê
 			Intent intent = new Intent(getActivity(), ImageGridActivity.class);
 			startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
+			Utils.leftOutRightIn(getActivity());
+
 			break;
 		case 3:
 			selectFileFromLocal();
