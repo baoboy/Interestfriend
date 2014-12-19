@@ -191,7 +191,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 
 	private List<View> views = new ArrayList<View>();
 	private List<View> dots = new ArrayList<View>();
-
+	private int user_id;
 	private Handler micImageHandler = new Handler() {
 		@Override
 		public void handleMessage(android.os.Message msg) {
@@ -213,6 +213,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		toChatUsername = getIntent().getStringExtra("userId");
 		user_avatar = getIntent().getStringExtra("user_avatar");
 		user_name = getIntent().getStringExtra("user_name");
+		user_id = getIntent().getIntExtra("user_id", -1);
 		if (user_name == null || "".equals(user_name)) {
 			CircleMember memmber = new CircleMember();
 			memmber.setUser_chat_id(toChatUsername);
@@ -386,7 +387,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				toChatUsername);
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
-		adapter = new ChatAdapter(this, toChatUsername, chatType);
+		adapter = new ChatAdapter(this, toChatUsername, chatType, user_id);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());
@@ -751,6 +752,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("circle_name", MyApplation.getCircle_name());
+			message.setAttribute("user_id", SharedUtils.getIntUid());
 
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
@@ -786,6 +788,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("circle_name", MyApplation.getCircle_name());
+			message.setAttribute("user_id", SharedUtils.getIntUid());
 
 			int len = Integer.parseInt(length);
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
@@ -819,6 +822,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("circle_name", MyApplation.getCircle_name());
+		message.setAttribute("user_id", SharedUtils.getIntUid());
 
 		message.setReceipt(to);
 		ImageMessageBody body = new ImageMessageBody(new File(filePath));
@@ -854,6 +858,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.setAttribute("user_name", SharedUtils.getAPPUserName());
 			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 			message.setAttribute("circle_name", MyApplation.getCircle_name());
+			message.setAttribute("user_id", SharedUtils.getIntUid());
 
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
 					length, videoFile.length());
@@ -928,6 +933,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("circle_name", MyApplation.getCircle_name());
+		message.setAttribute("user_id", SharedUtils.getIntUid());
 
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
@@ -979,6 +985,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		message.setAttribute("user_name", SharedUtils.getAPPUserName());
 		message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
 		message.setAttribute("circle_name", MyApplation.getCircle_name());
+		message.setAttribute("user_id", SharedUtils.getIntUid());
 
 		message.setReceipt(toChatUsername);
 		// add message body

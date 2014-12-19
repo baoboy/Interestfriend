@@ -160,8 +160,11 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 				EMMessage message = conversation.getLastMessage();
 				String user_name = message.getStringAttribute("user_name");
 				String user_avatar = message.getStringAttribute("user_avatar");
+				int user_id = message.getIntAttribute("user_id");
 				intent.putExtra("user_name", user_name);
 				intent.putExtra("user_avatar", user_avatar);
+				intent.putExtra("user_id", user_id);
+
 			} catch (EaseMobException e) {
 				e.printStackTrace();
 			}

@@ -168,6 +168,7 @@ public class CircleMemberActivity extends BaseActivity implements
 					switch (position) {
 					case 0:
 						Intent intent = new Intent();
+						intent.putExtra("user_id", member.getUser_id());
 						intent.putExtra("userId", member.getUser_chat_id());
 						intent.putExtra("user_name", member.getUser_name());
 						intent.putExtra("user_avatar", member.getUser_avatar());

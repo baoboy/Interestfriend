@@ -313,7 +313,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 				toChatUsername);
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
-		adapter = new ChatAdapter(this, toChatUsername, chatType);
+		adapter = new ChatAdapter(this, toChatUsername, chatType, -1);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());

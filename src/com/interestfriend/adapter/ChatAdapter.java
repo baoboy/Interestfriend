@@ -67,6 +67,7 @@ import com.interestfriend.activity.ShowNormalFileActivity;
 import com.interestfriend.activity.ShowVideoActivity;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.task.LoadImageTask;
 import com.interestfriend.task.LoadVideoImageTask;
@@ -111,13 +112,17 @@ public class ChatAdapter extends BaseAdapter {
 
 	private Context context;
 
-	public ChatAdapter(Context context, String username, int chatType) {
+	private int user_id;
+
+	public ChatAdapter(Context context, String username, int chatType,
+			int user_id) {
 		this.username = username;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 		activity = (Activity) context;
 		this.conversation = EMChatManager.getInstance().getConversation(
 				username);
+		this.user_id = user_id;
 	}
 
 	/**
@@ -481,6 +486,8 @@ public class ChatAdapter extends BaseAdapter {
 				String user_avatar = message.getStringAttribute("user_avatar");
 				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
 						R.drawable.default_avatar);
+				holder.head_iv.setOnClickListener(new OnAvatarClick(user_id,
+						context));
 			} catch (EaseMobException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
