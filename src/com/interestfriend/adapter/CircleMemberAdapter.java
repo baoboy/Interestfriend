@@ -118,7 +118,13 @@ public class CircleMemberAdapter extends BaseAdapter {
 			holder.alpha.setVisibility(View.VISIBLE);
 			holder.alpha.setText(currentStr);
 		} else {
-			holder.alpha.setVisibility(View.GONE);
+			if (position == 1) {
+				holder.alpha.setVisibility(View.VISIBLE);
+				holder.alpha.setText(currentStr);
+
+			} else {
+				holder.alpha.setVisibility(View.GONE);
+			}
 		}
 		if (position == 0) {
 			holder.alpha.setVisibility(View.GONE);

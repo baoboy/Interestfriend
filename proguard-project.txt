@@ -124,12 +124,14 @@
 -keep class com.tencent.** { *; }  
  
 -keep class com.easemob.** { *; }  
+
+-keep class com.interestfriend.utils.SmileUtils { *; }
  
+-keep class com.interestfriend.activity.ChatActivity { *; }
  
 -keep class com.j256.ormlite.** { *; }  
  
--keep public class com.interestfriend.utils.SmileUtils
-
+ 
 -dontwarn android.support.v4.**  
 -dontwarn org.apache.commons.net.** 
 -dontwarn com.tencent.**  

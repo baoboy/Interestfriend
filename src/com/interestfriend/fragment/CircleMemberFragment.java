@@ -261,7 +261,7 @@ public class CircleMemberFragment extends Fragment implements
 		CircleMember m = cirlceMemberLists.get(position);
 		Intent intent = new Intent();
 		intent.putExtra("circle_member", m);
-		Utils.print("membe_id::::::::::::"+m.getUser_id());
+		Utils.print("membe_id::::::::::::" + m.getUser_id());
 		if (m.getUser_id() == SharedUtils.getIntUid()) {
 			intent.setClass(getActivity(), CircleMemberOfSelfInfoActivity.class);
 		} else {
