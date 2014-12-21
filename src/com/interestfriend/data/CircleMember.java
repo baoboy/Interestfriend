@@ -18,6 +18,7 @@ import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.BitmapUtils;
 import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
@@ -290,8 +291,9 @@ public class CircleMember extends AbstractData {
 	public RetError updateAvatar() {
 		IParser parser = new StringParser("user_avatar");
 		HashMap<String, Object> params = new HashMap<String, Object>();
+		File file = BitmapUtils.getImageFile(user_avatar);
 		Result ret = ApiRequest.requestWithFile(UPDATE_MEMBER_AVATAR, params,
-				new File(user_avatar), parser);
+				file, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			StringResult sr = (StringResult) ret;
 			this.user_avatar = sr.getStr();

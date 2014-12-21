@@ -8,13 +8,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.interestfriend.applation.MyApplation;
-import com.interestfriend.data.enums.CircleMemberState;
 import com.interestfriend.data.enums.CircleState;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
@@ -33,7 +33,7 @@ public class Circles extends AbstractData {
 	private static String QUIT_CIRCLE_API = "QuitCircleServlet";
 	private static String DISSOLVE_CIRCLE_API = "DissolveCircleServlet";
 	private static final String UPDATE_CIRCLE_DESCRIPTION_API = "UpdateCircleDiscirptionServlet";
-
+	private static final String UPDATE_CIRCLE_LOGO = "UpdateCircleLogoServlet";
 	private int circle_id = 0;
 	private String circle_name = "";
 	private String circle_description = "";
@@ -251,6 +251,22 @@ public class Circles extends AbstractData {
 		Result ret = ApiRequest.request(UPDATE_CIRCLE_DESCRIPTION_API, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError updateCircleLogo() {
+		IParser parser = new StringParser("circle_logo");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_id", circle_id);
+		File file = BitmapUtils.getImageFile(circle_logo);
+		Result ret = ApiRequest.requestWithFile(UPDATE_CIRCLE_LOGO, params,
+				file, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.circle_logo = sr.getStr();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

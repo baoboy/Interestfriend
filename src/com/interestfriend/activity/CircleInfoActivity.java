@@ -6,7 +6,12 @@ import java.util.List;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -24,10 +29,16 @@ import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
+import com.interestfriend.popwindow.SelectPicPopwindow;
+import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.JoinCircleTask;
+import com.interestfriend.task.UpdateCircleLogoTask;
+import com.interestfriend.utils.BroadCast;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.FileUtils;
+import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -36,7 +47,8 @@ import com.interestfriend.view.DampView;
 
 import fynn.app.PromptDialog;
 
-public class CircleInfoActivity extends BaseActivity implements OnClickListener {
+public class CircleInfoActivity extends BaseActivity implements
+		OnClickListener, SelectOnclick {
 	private ImageView img_logo;
 	private TextView txt_description;
 	private TextView txt_title;
@@ -62,6 +74,12 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	private ImageView right_image;
 
 	private DampView view;
+
+	private SelectPicPopwindow pic_pop;
+	private String mTakePicturePath = "";
+	private String imgPath = "";
+
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +127,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			layout_desc.setBackgroundResource(R.drawable.left_menu);
 			img_desc_arrow.setVisibility(View.VISIBLE);
 			layout_desc.setOnClickListener(this);
+			img_logo.setOnClickListener(this);
 
 		}
 		setListener();
@@ -116,7 +135,6 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 	}
 
 	private void setListener() {
-		img_logo.setOnClickListener(this);
 		back.setOnClickListener(this);
 		if (circle.getCreator_id() > 0) {
 			layout_circle_creator.setOnClickListener(this);
@@ -135,6 +153,40 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		txt_circle_create_time.setText(circle.getCircle_create_time());
 		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
 		txt_circle_name.setText(circle.getCircle_name());
+	}
+
+	private void setCircleLogo(Bitmap bitmap, String path) {
+		if (bitmap != null) {
+			img_logo.setImageBitmap(bitmap);
+			imgPath = path;
+			upDateLogo();
+		}
+	}
+
+	private void upDateLogo() {
+		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.show();
+		circle.setCircle_logo(imgPath);
+		UpdateCircleLogoTask task = new UpdateCircleLogoTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("上传成功", Toast.LENGTH_SHORT);
+				Intent intent = new Intent();
+				intent.putExtra("circle_id", circle.getCircle_id());
+				intent.putExtra("circle_logo", circle.getCircle_logo());
+				intent.setAction(Constants.UPDATE_CIRCLE_LOGO);
+				BroadCast.sendBroadCast(CircleInfoActivity.this, intent);
+
+			}
+		});
+		task.executeParallel(circle);
 	}
 
 	private void showLogo() {
@@ -205,9 +257,7 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		case R.id.back:
 			finishThisActivity();
 			break;
-		case R.id.img_logo:
-			showLogo();
-			break;
+
 		case R.id.layout_circle_creator:
 			intentMemberInfoActivity();
 			break;
@@ -235,6 +285,11 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			});
 			pop.show();
 			break;
+		case R.id.img_logo:
+			pic_pop = new SelectPicPopwindow(this, v, "拍照", "从相册选择");
+			pic_pop.setmSelectOnclick(this);
+			pic_pop.show();
+			break;
 		default:
 			break;
 		}
@@ -250,6 +305,60 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 			String description = data.getStringExtra("circle_description");
 			txt_description.setText(description);
 			circle.setCircle_description(description);
+		}
+		if (requestCode == PhotoUtils.INTENT_REQUEST_CODE_ALBUM) {
+
+			if (resultCode == RESULT_OK) {
+				if (data.getData() == null) {
+					return;
+				}
+				if (!FileUtils.isSdcardExist()) {
+					ToastUtil.showToast("SD卡不可用,请检查", Toast.LENGTH_SHORT);
+					return;
+				}
+				Uri uri = data.getData();
+				String[] proj = { MediaStore.Images.Media.DATA };
+				Cursor cursor = managedQuery(uri, proj, null, null, null);
+				if (cursor != null) {
+					int column_index = cursor
+							.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+					if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+						String path = cursor.getString(column_index);
+						Bitmap bitmap = BitmapFactory.decodeFile(path);
+						if (PhotoUtils.bitmapIsLarge(bitmap)) {
+							PhotoUtils.cropPhoto(this, this, path);
+						} else {
+							setCircleLogo(bitmap, path);
+						}
+					}
+				}
+			}
+		}
+
+		if (requestCode == PhotoUtils.INTENT_REQUEST_CODE_CAMERA) {
+
+			if (resultCode == RESULT_OK) {
+
+				String path = mTakePicturePath;
+				Bitmap bitmap = BitmapFactory.decodeFile(path);
+				if (PhotoUtils.bitmapIsLarge(bitmap)) {
+					PhotoUtils.cropPhoto(this, this, path);
+				} else {
+					setCircleLogo(bitmap, path);
+
+				}
+			}
+		}
+		if (requestCode == PhotoUtils.INTENT_REQUEST_CODE_CROP) {
+			if (resultCode == RESULT_OK) {
+				String path = data.getStringExtra("path");
+				if (path != null) {
+					Bitmap bitmap = BitmapFactory.decodeFile(path);
+					if (bitmap != null) {
+						setCircleLogo(bitmap, path);
+					}
+				}
+			}
 		}
 	}
 
@@ -267,5 +376,17 @@ public class CircleInfoActivity extends BaseActivity implements OnClickListener 
 		}
 		startActivity(intent);
 		Utils.leftOutRightIn(this);
+	}
+
+	@Override
+	public void menu1_select() {
+		mTakePicturePath = PhotoUtils.takePicture(this);
+
+	}
+
+	@Override
+	public void menu2_select() {
+		PhotoUtils.selectPhoto(this);
+
 	}
 }
