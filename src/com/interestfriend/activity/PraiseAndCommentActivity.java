@@ -2,7 +2,6 @@ package com.interestfriend.activity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import android.app.Dialog;
@@ -251,9 +250,10 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 
 		}
 		txt_time.setText(growth.getPublished());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(), img_avatar,
-				R.drawable.default_avatar);
-		txt_user_name.setText(member.getUser_name());
+		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
+				img_avatar, R.drawable.default_avatar);
+		txt_user_name.setText(growth.getPublisher_name());
+		System.out.println();
 		comments = growth.getComments();
 		adapter = new CommentAdapter(this, comments);
 		mListView.setAdapter(adapter);

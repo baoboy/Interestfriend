@@ -701,6 +701,7 @@ public class ChatAdapter extends BaseAdapter {
 		if (videoBody.getLength() > 0) {
 			String time = DateUtils.toTimeBySecond(videoBody.getLength());
 			holder.timeLength.setText(time);
+			Utils.print("time:::::::" + time);
 		}
 		holder.playBtn.setImageResource(R.drawable.video_download_btn_nor);
 

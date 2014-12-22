@@ -139,9 +139,6 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 
 	private void setValue() {
 		txt_title.setText("ÆÀÂÛ");
-		CircleMember member = new CircleMember();
-		member.setUser_id(growth.getPublisher_id());
-		member.getNameAndAvatar(DBUtils.getDBsa(1));
 		int imageSize = growth.getImages().size();
 		if (imageSize > 1) {
 			if (imageSize > 2) {
@@ -174,9 +171,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 
 		}
 		txt_time.setText(growth.getPublished());
-		UniversalImageLoadTool.disPlay(member.getUser_avatar(), img_avatar,
-				R.drawable.default_avatar);
-		txt_user_name.setText(member.getUser_name());
+		UniversalImageLoadTool.disPlay(growth.getPublisher_avatar(),
+				img_avatar, R.drawable.default_avatar);
+		txt_user_name.setText(growth.getPublisher_name());
 		comments = growth.getComments();
 		adapter = new CommentAdapter(this, comments);
 		mListView.setAdapter(adapter);
