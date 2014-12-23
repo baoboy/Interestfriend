@@ -35,6 +35,11 @@
         <include
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            layout="@layout/find_password_input_verify_code" />
+
+        <include
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             layout="@layout/register_setpasword" />
     </ViewFlipper>
 

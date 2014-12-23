@@ -16,6 +16,7 @@ import com.interestfriend.data.result.Result;
 import com.interestfriend.data.result.StringResult;
 import com.interestfriend.db.Const;
 import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.BitmapUtils;
@@ -30,6 +31,7 @@ public class CircleMember extends AbstractData {
 	private static String KICK_MEMBER_API = "KickOutMemberServlet";
 	private static String RECEIVE_JOIN_CIRCL_EREQUEST = "ReceiveJoinCircleRequestServlet";
 	private static String REFUSE_JOIN_CIRCL_EREQUEST = "RefuseJoinCircleRequestServlet";
+	private static final String GET_USER_INFO = "GetUserInfoServlet";
 
 	private int user_id;
 	private int circle_id;
@@ -282,6 +284,26 @@ public class CircleMember extends AbstractData {
 		Result ret = ApiRequest.request(REFUSE_JOIN_CIRCL_EREQUEST, params,
 				parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError getMemberInfo() {
+		IParser parser = new MemberSelfPaser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("circle_member_id", user_id);
+		Result ret = ApiRequest.request(GET_USER_INFO, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			CircleMember member = (CircleMember) ret.getData();
+			this.user_avatar = member.getUser_avatar();
+			this.user_name = member.getUser_name();
+			this.user_birthday = member.getUser_birthday();
+			this.user_declaration = member.getUser_declaration();
+			this.user_description = member.getUser_description();
+			this.user_register_time = member.getUser_register_time();
+			this.user_gender = member.getUser_gender();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

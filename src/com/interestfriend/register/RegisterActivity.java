@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
@@ -36,9 +38,33 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 	private RegisterBasicInfo reBasicInfo;
 	private RegisterPhone rePhone;
 	private RegisterSetPassword reSetPasswd;
+	private RegisterCheckVerifyCode checkCode;
+
 	private User mRegister;
 
 	private int mCurrentStepIndex = 1;
+
+	private int second = 60;// 用于重新获取验证码时间倒计时
+
+	private Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 0:
+				second--;
+				if (second < 0) {
+					second = 60;
+					removeCallbacksAndMessages(null);
+					return;
+				}
+				checkCode.setText(second);
+				this.sendEmptyMessageDelayed(0, 1000);
+				break;
+			default:
+				break;
+			}
+
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +100,7 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 	}
 
 	private RegisterStep initStep() {
-		txt_page.setText(mCurrentStepIndex + "/4");
+		txt_page.setText(mCurrentStepIndex + "/5");
 		switch (mCurrentStepIndex) {
 		case 1:
 			if (reUserName == null) {
@@ -94,9 +120,16 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 			}
 			return rePhone;
 		case 4:
+			if (checkCode == null) {
+				checkCode = new RegisterCheckVerifyCode(this,
+						mVfFlipper.getChildAt(3));
+			}
+			mHandler.sendEmptyMessage(0);
+			return checkCode;
+		case 5:
 			if (reSetPasswd == null) {
 				reSetPasswd = new RegisterSetPassword(this,
-						mVfFlipper.getChildAt(3));
+						mVfFlipper.getChildAt(4));
 			}
 			return reSetPasswd;
 		default:
@@ -197,6 +230,8 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 		if (mCurrentStepIndex == 1) {
 			finishThisActivity();
 		} else {
+			mHandler.removeCallbacksAndMessages(null);
+			second = 60;
 			pre();
 		}
 	}
@@ -211,5 +246,16 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 		default:
 			break;
 		}
+	}
+
+	protected void postHandler() {
+		second = 60;
+		mHandler.sendEmptyMessage(0);
+	}
+
+	protected void removeHandlerMessage() {
+		mHandler.removeCallbacksAndMessages(null);
+		second = 60;
+		checkCode.setEnable();
 	}
 }

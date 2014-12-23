@@ -31,6 +31,7 @@ import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.GetMemberCircleListTask;
+import com.interestfriend.task.GetUserInfoTask;
 import com.interestfriend.task.KickOutMemberTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
@@ -72,6 +73,8 @@ public class CircleMemberActivity extends BaseActivity implements
 
 	private DampView view;
 
+	private Dialog dialog;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,7 +83,6 @@ public class CircleMemberActivity extends BaseActivity implements
 				"circle_member");
 		circleList = new CirclesList();
 		initView();
-		getCircleList();
 	}
 
 	private void initView() {
@@ -102,7 +104,13 @@ public class CircleMemberActivity extends BaseActivity implements
 		back = (ImageView) findViewById(R.id.back);
 		Utils.getFocus(txt_title);
 		setListener();
-		setValue();
+		if ("".equals(member.getUser_name())) {
+			dialog = DialogUtil.createLoadingDialog(this, "ÇëÉÔºò");
+			dialog.show();
+			getUserInfo();
+		} else {
+			setValue();
+		}
 	}
 
 	private void setValue() {
@@ -122,12 +130,11 @@ public class CircleMemberActivity extends BaseActivity implements
 		circlr.findCircleCreatorByID(DBUtils.getDBsa(1));
 		int creator = circlr.getCreator_id();
 		if (creator == SharedUtils.getIntUid()) {
-
 			menuStr = new String[] { "Ë½ÁÄ", "Ìß³öÈ¦×Ó" };
 		} else {
 			menuStr = new String[] { "Ë½ÁÄ" };
-
 		}
+		getCircleList();
 	}
 
 	private void setListener() {
@@ -136,6 +143,23 @@ public class CircleMemberActivity extends BaseActivity implements
 		back.setOnClickListener(this);
 		right_image.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
+	}
+
+	private void getUserInfo() {
+		GetUserInfoTask task = new GetUserInfoTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				setValue();
+			}
+		});
+		task.executeParallel(member);
 	}
 
 	private void showAvatar() {

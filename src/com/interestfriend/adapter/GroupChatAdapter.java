@@ -406,6 +406,9 @@ public class GroupChatAdapter extends BaseAdapter {
 
 		TextView timestamp = (TextView) convertView
 				.findViewById(R.id.timestamp);
+		// Utils.print("timke:::::::::::::" + message.getMsgTime());
+		// Utils.print("timke:::::::::::::===" + new
+		// Date(message.getMsgTime()));
 
 		if (position == 0) {
 			timestamp.setText(DateUtils.getTimestampString(new Date(message

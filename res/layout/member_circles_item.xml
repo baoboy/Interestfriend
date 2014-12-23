@@ -15,6 +15,7 @@
             android:id="@+id/img_circle_logo"
             android:layout_width="35dip"
             android:layout_height="35dip"
+            android:scaleType="centerCrop"
             android:src="@drawable/picture_default_head" />
 
         <TextView

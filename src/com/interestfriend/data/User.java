@@ -31,7 +31,6 @@ public class User {
 	private String user_gender = "";// 用户注册性别
 	private String user_birthday = "";// 用户注册生日
 	private String user_password = "";// 用户注册密码
-
 	private int user_id = 0;
 
 	public int getUser_id() {

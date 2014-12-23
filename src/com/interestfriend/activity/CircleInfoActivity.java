@@ -237,13 +237,12 @@ public class CircleInfoActivity extends BaseActivity implements
 				if (result != RetError.NONE) {
 					return;
 				}
-				if (circle_id < 0) {
-					sendBroadcast(new Intent(Constants.RECEIVE_JOIN_CIRCLE));
-					ToastUtil.showToast("操作成功！", Toast.LENGTH_SHORT);
-
-				} else {
-					ToastUtil.showToast("已发送申请，请等待确认！", Toast.LENGTH_SHORT);
-				}
+				// if (circle_id < 0) {
+				sendBroadcast(new Intent(Constants.RECEIVE_JOIN_CIRCLE));
+				ToastUtil.showToast("操作成功！", Toast.LENGTH_SHORT);
+				// } else {
+				// ToastUtil.showToast("已发送申请，请等待确认！", Toast.LENGTH_SHORT);
+				// }
 				finishThisActivity();
 			}
 		});

@@ -46,6 +46,7 @@ import com.interestfriend.utils.Logger.Level;
  */
 public class HttpUrlHelper {
 	// 10.6.7.219 公司
+	// 123.56.46.254线上
 	// 192.168.20.103家
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;

@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="230dip"
                 android:scaleType="centerCrop"
-                android:src="@drawable/chat_image_normal" />
+                android:src="@drawable/picture_default_head" />
 
             <View
                 android:layout_width="fill_parent"
@@ -86,8 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="男"
-                    android:textColor="@color/txt_desc_color" />
+                     android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -114,8 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="1990-05-14"
-                    android:textColor="@color/txt_desc_color" />
+                     android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -142,8 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="TextView"
-                    android:textColor="@color/txt_desc_color" />
+                     android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
