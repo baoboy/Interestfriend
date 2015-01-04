@@ -21,7 +21,6 @@ public class ImageFactoryActivity extends BaseActivity {
 	private String mNewPath;
 	private int mIndex = 0;
 	private String mType;
-
 	public static final String TYPE = "type";
 	public static final String CROP = "crop";
 	public static final String FLITER = "fliter";

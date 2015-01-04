@@ -32,17 +32,17 @@ import android.util.TypedValue;
 import com.interestfriend.activity.imagefactory.ImageFactoryActivity;
 
 /**
- * * @description 图片工具�?
+ * * @description 图片工具�?
  * 
  * @author songbinbin
  * 
  */
 public class PhotoUtils {
-	// 图片在SD卡中的缓存路�?
+	// 图片在SD卡中的缓存路�?
 	private static final String IMAGE_PATH = Environment
 			.getExternalStorageDirectory().toString()
 			+ File.separator
-			+ "interestfriend" + File.separator + "Images" + File.separator;
+			+ "quyou" + File.separator + "Images" + File.separator;
 	// 相册的RequestCode
 	public static final int INTENT_REQUEST_CODE_ALBUM = 0;
 	// 照相的RequestCode
@@ -88,7 +88,7 @@ public class PhotoUtils {
 	 * @param context
 	 * @param activity
 	 * @param path
-	 *            �?��裁剪的图片路�?
+	 *            �?��裁剪的图片路�?
 	 */
 	public static void cropPhoto(Context context, Activity activity, String path) {
 		Intent intent = new Intent(context, ImageFactoryActivity.class);
@@ -106,7 +106,7 @@ public class PhotoUtils {
 	 * @param context
 	 * @param activity
 	 * @param path
-	 *            �?��滤镜的图片路�?
+	 *            �?��滤镜的图片路�?
 	 */
 	public static void fliterPhoto(Context context, Activity activity,
 			String path) {
@@ -133,7 +133,7 @@ public class PhotoUtils {
 	 * 从文件中获取图片
 	 * 
 	 * @param path
-	 *            图片的路�?
+	 *            图片的路�?
 	 * @return
 	 */
 	public static Bitmap getBitmapFromFile(String path) {
@@ -141,7 +141,7 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 从Uri中获取图�?
+	 * 从Uri中获取图�?
 	 * 
 	 * @param cr
 	 *            ContentResolver对象
@@ -159,10 +159,10 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 根据宽度和长度进行缩放图�?
+	 * 根据宽度和长度进行缩放图�?
 	 * 
 	 * @param path
-	 *            图片的路�?
+	 *            图片的路�?
 	 * @param w
 	 *            宽度
 	 * @param h
@@ -173,19 +173,19 @@ public class PhotoUtils {
 		try {
 			BitmapFactory.Options opts = new BitmapFactory.Options();
 			opts.inJustDecodeBounds = true;
-			// 这里是整个方法的关键，inJustDecodeBounds设为true时将不为图片分配内存�?
+			// 这里是整个方法的关键，inJustDecodeBounds设为true时将不为图片分配内存�?
 			BitmapFactory.decodeFile(path, opts);
-			int srcWidth = opts.outWidth;// 获取图片的原始宽�?
+			int srcWidth = opts.outWidth;// 获取图片的原始宽�?
 			int srcHeight = opts.outHeight;// 获取图片原始高度
 			int destWidth = 0;
 			int destHeight = 0;
-			// 缩放的比�?
+			// 缩放的比�?
 			double ratio = 0.0;
 			if (srcWidth < w || srcHeight < h) {
 				ratio = 0.0;
 				destWidth = srcWidth;
 				destHeight = srcHeight;
-			} else if (srcWidth > srcHeight) {// 按比例计算缩放后的图片大小，maxLength是长或宽允许的最大长�?
+			} else if (srcWidth > srcHeight) {// 按比例计算缩放后的图片大小，maxLength是长或宽允许的最大长�?
 				ratio = (double) srcWidth / w;
 				destWidth = w;
 				destHeight = (int) (srcHeight / ratio);
@@ -195,14 +195,14 @@ public class PhotoUtils {
 				destWidth = (int) (srcWidth / ratio);
 			}
 			BitmapFactory.Options newOpts = new BitmapFactory.Options();
-			// 缩放的比例，缩放是很难按准备的比例进行缩放的，目前我只发现只能�?过inSampleSize来进行缩放，其�?表明缩放的�?数，SDK中建议其值是2的指数�?
+			// 缩放的比例，缩放是很难按准备的比例进行缩放的，目前我只发现只能�?过inSampleSize来进行缩放，其�?表明缩放的�?数，SDK中建议其值是2的指数�?
 			newOpts.inSampleSize = (int) ratio + 1;
 			// inJustDecodeBounds设为false表示把图片读进内存中
 			newOpts.inJustDecodeBounds = false;
 			// 设置大小，这个一般是不准确的，是以inSampleSize的为准，但是如果不设置却不能缩放
 			newOpts.outHeight = destHeight;
 			newOpts.outWidth = destWidth;
-			// 获取缩放后图�?
+			// 获取缩放后图�?
 			return BitmapFactory.decodeFile(path, newOpts);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -229,7 +229,7 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 判断图片高度和宽度是否过�?
+	 * 判断图片高度和宽度是否过�?
 	 * 
 	 * @param bitmap
 	 *            图片bitmap对象
@@ -253,9 +253,9 @@ public class PhotoUtils {
 	 * 根据比例缩放图片
 	 * 
 	 * @param screenWidth
-	 *            手机屏幕的宽�?
+	 *            手机屏幕的宽�?
 	 * @param filePath
-	 *            图片的路�?
+	 *            图片的路�?
 	 * @param ratio
 	 *            缩放比例
 	 * @return
@@ -278,7 +278,7 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * 保存图片到SD�?
+	 * 保存图片到SD�?
 	 * 
 	 * @param bitmap
 	 *            图片的bitmap对象
@@ -415,7 +415,7 @@ public class PhotoUtils {
 	}
 
 	/**
-	 * @return 返回指定笔离文字顶部的基准距�?
+	 * @return 返回指定笔离文字顶部的基准距�?
 	 */
 	public static float getFontLeading(Paint paint) {
 		FontMetrics fm = paint.getFontMetrics();

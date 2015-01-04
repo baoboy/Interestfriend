@@ -151,7 +151,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	@Override
 	public void onDateSet(DatePickerDialog datePickerDialog, int year,
 			int month, int day) {
-		txtBirthday.setText(year + "-" + month + "-" + day);
+		txtBirthday.setText(year + "-" + (month + 1) + "-" + day);
 		setNextEnbale();
 
 	}
