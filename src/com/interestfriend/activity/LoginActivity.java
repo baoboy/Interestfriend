@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,
 					MyApplation.initMemberSelf();
 					user_id = user.getUser_id();
 					loginHuanXin(MD5.Md5_16(user_cellphone),
-							MD5.Md5_16(user_password));
+							MD5.Md5_16(user_cellphone));
 					// loginHuanXin(user_cellphone, user_password);
 				} else if (ret == RetError.NOT_EXIST_USER) {
 					mHandler.sendEmptyMessage(2);
