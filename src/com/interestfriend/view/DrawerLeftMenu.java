@@ -24,7 +24,6 @@ import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.applation.MyApplation;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.UpDateNewVersionTask;
 import com.interestfriend.task.UpDateNewVersionTask.UpDateVersion;
@@ -42,8 +41,6 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private TextView txt_message;
 	private TextView txt_user_info;
 	private TextView txt_setting;
-
-	private CircleMember memberSelf = new CircleMember();;
 
 	public DrawerLeftMenu(Context context) {
 		super(context);
@@ -63,13 +60,9 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private void setValue() {
 		checkVersion();
 		String user_avatar = SharedUtils.getAPPUserAvatar();
-		if (!"".equals(user_avatar)) {
-			UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
-					R.drawable.picture_default_head);
-			setName(SharedUtils.getAPPUserName());
-			return;
-		}
-		// getUserInfo();
+		setName(SharedUtils.getAPPUserName());
+		UniversalImageLoadTool.disPlay(user_avatar, img_avatar,
+				R.drawable.picture_default_head);
 	}
 
 	public void setAvatar(String user_avatar) {
