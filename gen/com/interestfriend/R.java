@@ -2457,28 +2457,7 @@ containing a value of this type.
 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
     
 
         Base application theme for API 11+. This theme completely replaces
