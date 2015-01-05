@@ -24,24 +24,24 @@ public final class R {
 		public static final int fynn_prompt_dialog_title_bar_bg_skyblue = 0x7f020170;
 	}
 	public static final class id {
-		public static final int btn_divider1 = 0x7f070127;
-		public static final int btn_divider2 = 0x7f070129;
-		public static final int btn_view = 0x7f070125;
-		public static final int button_center = 0x7f070128;
-		public static final int button_left = 0x7f070126;
-		public static final int button_right = 0x7f07012a;
+		public static final int btn_divider1 = 0x7f07011e;
+		public static final int btn_divider2 = 0x7f070120;
+		public static final int btn_view = 0x7f07011c;
+		public static final int button_center = 0x7f07011f;
+		public static final int button_left = 0x7f07011d;
+		public static final int button_right = 0x7f070121;
 		public static final int dialog = 0x7f07000e;
-		public static final int layout_addview = 0x7f070122;
-		public static final int message = 0x7f070123;
-		public static final int msg_btn_divider = 0x7f070124;
-		public static final int title = 0x7f07003a;
-		public static final int title_msg_divider = 0x7f070121;
-		public static final int titlebar = 0x7f07004b;
+		public static final int layout_addview = 0x7f070119;
+		public static final int message = 0x7f07011a;
+		public static final int msg_btn_divider = 0x7f07011b;
+		public static final int title = 0x7f070031;
+		public static final int title_msg_divider = 0x7f070118;
+		public static final int titlebar = 0x7f070042;
 	}
 	public static final class layout {
-		public static final int fynn_prompt_dialog_normal = 0x7f030059;
-		public static final int fynn_prompt_dialog_titlebar = 0x7f03005a;
-		public static final int fynn_prompt_dialog_titlebar_skyblue = 0x7f03005b;
+		public static final int fynn_prompt_dialog_normal = 0x7f030054;
+		public static final int fynn_prompt_dialog_titlebar = 0x7f030055;
+		public static final int fynn_prompt_dialog_titlebar_skyblue = 0x7f030056;
 	}
 	public static final class style {
 		public static final int AppBaseTheme = 0x7f060000;
