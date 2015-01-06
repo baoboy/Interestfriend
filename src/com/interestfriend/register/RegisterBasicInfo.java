@@ -13,9 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 import com.interestfriend.R;
-import com.interestfriend.datepicker.DatePickerDialog;
-import com.interestfriend.datepicker.DatePickerDialog.OnDateSetListener;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.utils.PhotoUtils;
@@ -39,8 +39,6 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	private DatePickerDialog datePickerDialog;
 	private SelectPicPopwindow pop;
 	private String photoPath = "";
-
-	// private static final String TIMEPICKER_TAG = "timepicker";
 
 	public RegisterBasicInfo(RegisterActivity activity, View contentRootView) {
 		super(activity, contentRootView);

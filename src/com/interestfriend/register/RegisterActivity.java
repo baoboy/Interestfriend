@@ -20,15 +20,12 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.interestfriend.R;
-import com.interestfriend.activity.BaseActivity;
 import com.interestfriend.data.User;
 import com.interestfriend.register.RegisterStep.onNextListener;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
-
-import fynn.util.Util;
 
 public class RegisterActivity extends FragmentActivity implements
 		onNextListener, OnClickListener {
