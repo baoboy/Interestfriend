@@ -10,7 +10,7 @@ public class StringUtils {
 	public static String StringFilter(String str) throws PatternSyntaxException {
 		// 只允许字母和数字
 		String regEx = "[^0-9]";
-		// 清除掉所有特殊字�?
+		// 清除掉所有特殊字�?
 		// String regEx = "[ (+]";
 		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(str);
@@ -18,7 +18,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * 判断给定字符串是否空白串�?br> 空白串是指由空格、制表符、回车符、换行符组成的字符串<br>
+	 * 判断给定字符串是否空白串�?br> 空白串是指由空格、制表符、回车符、换行符组成的字符串<br>
 	 * 若输入字符串为null或空字符串，返回true
 	 * 
 	 * @param input
@@ -48,7 +48,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * 字符串拼�?
+	 * 字符串拼�?
 	 * 
 	 * @param str
 	 * @return
@@ -63,7 +63,7 @@ public class StringUtils {
 
 	/**
 	 * 返回str中最后一个separator子串后面的字符串 当str == null || str == "" || separator == ""
-	 * 时返回str�?当separator==null || 在str中不存在子串separator 时返�?""
+	 * 时返回str�?当separator==null || 在str中不存在子串separator 时返�?""
 	 * 
 	 * @param str
 	 *            源串
@@ -88,7 +88,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * 去除字符串头部字�?比如 +86
+	 * 去除字符串头部字�?比如 +86
 	 * 
 	 * @param srcStr
 	 * @param head
@@ -104,7 +104,7 @@ public class StringUtils {
 
 	/**
 	 * 返回str中separator子串后面的字符串 当str == null || str == "" || separator == ""
-	 * 时返回str�?当separator==null || 在str中不存在子串separator 时返�?""
+	 * 时返回str�?当separator==null || 在str中不存在子串separator 时返�?""
 	 * 
 	 * @param str
 	 *            源串
@@ -129,7 +129,7 @@ public class StringUtils {
 	}
 
 	/***
-	 * 全角转半�?
+	 * 全角转半�?
 	 * 
 	 * @param input
 	 * @return
@@ -148,7 +148,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * 倒叙输出�?��字符�?
+	 * 倒叙输出�?��字符�?
 	 * 
 	 * @param str
 	 * @return
@@ -163,7 +163,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * 表情删除时使�?获取标签"�?的位�?
+	 * 表情删除时使�?获取标签"�?的位�?
 	 * 
 	 * @param str
 	 * @return
@@ -180,7 +180,7 @@ public class StringUtils {
 	}
 
 	/**
-	 * �?***替换手机号的中间四位
+	 * �?***替换手机号的中间四位
 	 * 
 	 * @param num
 	 * @return
@@ -202,16 +202,16 @@ public class StringUtils {
 	public static double calculatePlaces(String s) {
 		double valueLength = 0;
 		String chinese = "[\u4e00-\u9fa5]";
-		// 获取字段值的长度，如果含中文字符，则每个中文字符长度�?，否则为1
+		// 获取字段值的长度，如果含中文字符，则每个中文字符长度�?，否则为1
 		for (int i = 0; i < s.length(); i++) {
-			// 获取�?��字符
+			// 获取�?��字符
 			String temp = s.substring(i, i + 1);
-			// 判断是否为中文字�?
+			// 判断是否为中文字�?
 			if (temp.matches(chinese)) {
-				// 中文字符长度�?
+				// 中文字符长度�?
 				valueLength += 1;
 			} else {
-				// 其他字符长度�?.5
+				// 其他字符长度�?.5
 				valueLength += 0.5;
 			}
 		}
@@ -247,4 +247,20 @@ public class StringUtils {
 		return s;
 	}
 
+	/**
+	 * is null or its length is 0
+	 * 
+	 * <pre>
+	 * isEmpty(null) = true;
+	 * isEmpty(&quot;&quot;) = true;
+	 * isEmpty(&quot;  &quot;) = false;
+	 * </pre>
+	 * 
+	 * @param str
+	 * @return if string is null or its size is 0, return true, else return
+	 *         false.
+	 */
+	public static boolean isEmpty(CharSequence str) {
+		return (str == null || str.length() == 0);
+	}
 }

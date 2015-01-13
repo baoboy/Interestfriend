@@ -749,8 +749,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
 			message.setReceipt(toChatUsername);
-			message.setAttribute("user_name", SharedUtils.getAPPUserName());
-			message.setAttribute("user_avatar", SharedUtils.getAPPUserAvatar());
+			message.setAttribute("to_user_name", user_name);
+			message.setAttribute("to_user_avatar", user_avatar);
+			message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("from_user_avatar",
+					SharedUtils.getAPPUserAvatar());
 			message.setAttribute("circle_name", MyApplation.getCircle_name());
 			message.setAttribute("user_id", SharedUtils.getIntUid());
 

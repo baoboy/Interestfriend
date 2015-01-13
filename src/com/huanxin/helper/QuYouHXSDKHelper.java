@@ -69,7 +69,7 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 				}
 				String user_name = "";
 				try {
-					user_name = message.getStringAttribute("user_name");
+					user_name = message.getStringAttribute("from_user_name");
 				} catch (EaseMobException e) {
 					e.printStackTrace();
 				}
@@ -89,7 +89,7 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 				String user_name = "";
 				String circle_name = "";
 				try {
-					user_name = message.getStringAttribute("user_name");
+					user_name = message.getStringAttribute("from_user_name");
 					circle_name = message.getStringAttribute("circle_name");
 				} catch (EaseMobException e) {
 					e.printStackTrace();
@@ -142,6 +142,20 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 						intent = new Intent(appContext, ChatActivity.class);
 						intent.putExtra("chatType",
 								ChatActivity.CHATTYPE_SINGLE);
+						try {
+							String user_name = "";
+							String user_avatar = "";
+							int user_id = message.getIntAttribute("user_id");
+							user_name = message
+									.getStringAttribute("from_user_name");
+							user_avatar = message
+									.getStringAttribute("from_user_avatar");
+							intent.putExtra("user_name", user_name);
+							intent.putExtra("user_avatar", user_avatar);
+							intent.putExtra("user_id", user_id);
+						} catch (EaseMobException e) {
+							e.printStackTrace();
+						}
 					}
 					intent.putExtra("userId", message.getFrom());
 

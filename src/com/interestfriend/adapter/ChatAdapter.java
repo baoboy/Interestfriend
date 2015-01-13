@@ -136,6 +136,8 @@ public class ChatAdapter extends BaseAdapter {
 	 * Ë¢ÐÂÒ³Ãæ
 	 */
 	public void refresh() {
+		this.conversation = EMChatManager.getInstance().getConversation(
+				username);
 		notifyDataSetChanged();
 	}
 
