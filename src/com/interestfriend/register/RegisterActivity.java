@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,15 +20,15 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.interestfriend.R;
-import com.interestfriend.activity.BaseActivity;
 import com.interestfriend.data.User;
 import com.interestfriend.register.RegisterStep.onNextListener;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 
-public class RegisterActivity extends BaseActivity implements onNextListener,
-		OnClickListener {
+public class RegisterActivity extends FragmentActivity implements
+		onNextListener, OnClickListener {
 	private ViewFlipper mVfFlipper;
 	private ImageView back;
 	private TextView txt_title;
@@ -228,7 +229,9 @@ public class RegisterActivity extends BaseActivity implements onNextListener,
 
 	private void back() {
 		if (mCurrentStepIndex == 1) {
-			finishThisActivity();
+			// finishThisActivity();
+			finish();
+			Utils.rightOut(this);
 		} else {
 			mHandler.removeCallbacksAndMessages(null);
 			second = 60;

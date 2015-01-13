@@ -21,11 +21,9 @@ import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
-import com.sleepbot.datetimepicker.time.RadialPickerLayout;
-import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
 public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
-		OnDateSetListener, TimePickerDialog.OnTimeSetListener, SelectOnclick {
+		OnDateSetListener, SelectOnclick {
 
 	private static final String DATEPICKER_TAG = "datepicker";
 	private String mTakePicturePath;
@@ -41,8 +39,6 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	private DatePickerDialog datePickerDialog;
 	private SelectPicPopwindow pop;
 	private String photoPath = "";
-
-	// private static final String TIMEPICKER_TAG = "timepicker";
 
 	public RegisterBasicInfo(RegisterActivity activity, View contentRootView) {
 		super(activity, contentRootView);
@@ -120,7 +116,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 		case R.id.txt_birthday:
 			datePickerDialog.setVibrate(true);
 			datePickerDialog.setYearRange(1985, 2028);
-			datePickerDialog.show(mActivity.getFragmentManager(),
+			datePickerDialog.show(mActivity.getSupportFragmentManager(),
 					DATEPICKER_TAG);
 			break;
 		case R.id.img_avatar:
@@ -142,10 +138,6 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 		default:
 			break;
 		}
-	}
-
-	@Override
-	public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
 	}
 
 	@Override
