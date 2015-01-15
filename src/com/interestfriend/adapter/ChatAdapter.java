@@ -485,7 +485,8 @@ public class ChatAdapter extends BaseAdapter {
 		} else {
 			try {
 				// String user_name = message.getStringAttribute("user_name");
-				String user_avatar = message.getStringAttribute("user_avatar");
+				String user_avatar = message
+						.getStringAttribute("from_user_avatar");
 				UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
 						R.drawable.default_avatar);
 				holder.head_iv.setOnClickListener(new OnAvatarClick(user_id,
