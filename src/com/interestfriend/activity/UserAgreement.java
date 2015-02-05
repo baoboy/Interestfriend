@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,13 +37,13 @@ public class UserAgreement extends BaseActivity {
 		titleTxt = (TextView) findViewById(R.id.title_txt);
 		titleTxt.setText("隐私条款");
 		wb = (WebView) findViewById(R.id.webView1);
-		wb.setWebChromeClient(new WebViewClient());
+		wb.setWebChromeClient(new WebViewClienta());
 		wb.loadUrl("http://123.56.46.254:8080/InterestFriend/app/user_agreement.html");
 		dialog = DialogUtil.createLoadingDialog(this, "加载中");
 		dialog.show();
 	}
 
-	private class WebViewClient extends WebChromeClient {
+	private class WebViewClienta extends WebChromeClient {
 		@Override
 		public void onProgressChanged(WebView view, int newProgress) {
 			if (newProgress == 100) {
