@@ -30,7 +30,6 @@ import com.interestfriend.activity.DissolveCircleActivity;
 import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.JoinCircleActivity;
 import com.interestfriend.activity.KickOutActivity;
-import com.interestfriend.activity.MainActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
 import com.interestfriend.receive.VoiceCallReceiver;
@@ -71,6 +70,11 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 				try {
 					user_name = message.getStringAttribute("from_user_name");
 				} catch (EaseMobException e) {
+					try {
+						user_name = message.getStringAttribute("user_name");
+					} catch (EaseMobException e1) {
+						e1.printStackTrace();
+					}
 					e.printStackTrace();
 				}
 				return "你的趣友 " + user_name + " 发来了一条消息";
@@ -93,6 +97,12 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 					circle_name = message.getStringAttribute("circle_name");
 				} catch (EaseMobException e) {
 					e.printStackTrace();
+					try {
+						user_name = message.getStringAttribute("user_name");
+						circle_name = message.getStringAttribute("circle_name");
+					} catch (EaseMobException e1) {
+						e1.printStackTrace();
+					}
 				}
 				return "'" + user_name + "' 发来了" + messageNum + "条消息。"
 						+ " 来自 '" + circle_name + "' 圈子";

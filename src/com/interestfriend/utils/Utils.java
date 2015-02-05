@@ -19,7 +19,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 
 public class Utils {

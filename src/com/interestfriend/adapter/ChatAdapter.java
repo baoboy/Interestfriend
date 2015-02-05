@@ -30,7 +30,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -65,8 +64,6 @@ import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.ShowBigImage;
 import com.interestfriend.activity.ShowNormalFileActivity;
 import com.interestfriend.activity.ShowVideoActivity;
-import com.interestfriend.data.CircleMember;
-import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.interfaces.VoicePlayClickListener;
 import com.interestfriend.task.LoadImageTask;
@@ -492,8 +489,19 @@ public class ChatAdapter extends BaseAdapter {
 				holder.head_iv.setOnClickListener(new OnAvatarClick(user_id,
 						context));
 			} catch (EaseMobException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				String user_avatar;
+				try {
+					user_avatar = message.getStringAttribute("user_avatar");
+					UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
+							R.drawable.default_avatar);
+					holder.head_iv.setOnClickListener(new OnAvatarClick(
+							user_id, context));
+				} catch (EaseMobException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 			// CircleMember mbmer = new CircleMember();
 			// mbmer.setUser_chat_id(message.getFrom());

@@ -24,7 +24,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.f;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;
@@ -43,7 +42,7 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class CircleGrowthFragment extends Fragment implements
-			RadioGroup.OnCheckedChangeListener, 	RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
+		RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
 	private ImageFragment imgFragment;
 	private VideoFragment videoFragment;
 
