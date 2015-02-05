@@ -43,7 +43,7 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class CircleGrowthFragment extends Fragment implements
-		RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
+			RadioGroup.OnCheckedChangeListener, 	RadioGroup.OnCheckedChangeListener, OnClickListener, SelectOnclick {
 	private ImageFragment imgFragment;
 	private VideoFragment videoFragment;
 

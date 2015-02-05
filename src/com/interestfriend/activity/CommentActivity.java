@@ -29,7 +29,6 @@ import com.interestfriend.adapter.CommentAdapter;
 import com.interestfriend.adapter.GrowthImgAdapter;
 import com.interestfriend.adapter.PraiseAdapter;
 import com.interestfriend.data.AbstractData.Status;
-import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Comment;
 import com.interestfriend.data.Growth;
 import com.interestfriend.data.GrowthImage;
