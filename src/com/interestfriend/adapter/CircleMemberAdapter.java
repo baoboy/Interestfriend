@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,21 @@ public class CircleMemberAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) contentView.getTag();
 		}
-		holder.txt_user_name.setText(list.get(position).getUser_name());
+		if ("Ů".equals(list.get(position).getUser_gender())) {
+			// holder.txt_user_name.setText(Html
+			// .fromHtml("<font color=#FF9a9a>[MM] </font>"
+			// + list.get(position).getUser_name()));
+			holder.txt_user_name.setText(Html
+					.fromHtml("<font color=#FF9a9a>[MM] "
+							+ list.get(position).getUser_name() + "</font>"));
+		} else {
+			// holder.txt_user_name.setText(Html
+			// .fromHtml("<font color=#19b5ee>[GG] </font>"
+			// + list.get(position).getUser_name()));
+			holder.txt_user_name.setText(Html
+					.fromHtml("<font color=#19b5ee>[GG] "
+							+ list.get(position).getUser_name() + "</font>"));
+		}
 		holder.txt_user_desc.setText(list.get(position).getUser_declaration());
 		String decl = list.get(position).getUser_declaration();
 		String desc = list.get(position).getUser_description();

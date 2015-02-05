@@ -23,6 +23,7 @@ import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
 
 public class ChatAllHistoryActivity extends BaseActivity implements
@@ -158,9 +159,18 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			intent = new Intent(this, ChatActivity.class);
 			try {
 				EMMessage message = conversation.getLastMessage();
-				String user_name = message.getStringAttribute("user_name");
-				String user_avatar = message.getStringAttribute("user_avatar");
+				String user_name = "";
+				String user_avatar = "";
 				int user_id = message.getIntAttribute("user_id");
+
+				if (user_id == SharedUtils.getIntUid()) {
+					user_name = message.getStringAttribute("to_user_name");
+					user_avatar = message.getStringAttribute("to_user_avatar");
+				} else {
+					user_name = message.getStringAttribute("from_user_name");
+					user_avatar = message
+							.getStringAttribute("from_user_avatar");
+				}
 				intent.putExtra("user_name", user_name);
 				intent.putExtra("user_avatar", user_avatar);
 				intent.putExtra("user_id", user_id);

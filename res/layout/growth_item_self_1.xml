@@ -80,7 +80,7 @@
                 android:adjustViewBounds="true"
                 android:maxHeight="200dip"
                 android:maxWidth="200dip"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:visibility="gone" />
 
             <com.interestfriend.view.ExpandGridView

@@ -39,6 +39,7 @@ import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DateUtils;
 import com.interestfriend.R;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
@@ -125,9 +126,21 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 					lastMessage.getMsgTime())));
 
 			try {
-				String user_name = lastMessage.getStringAttribute("user_name");
-				String user_avatar = lastMessage
-						.getStringAttribute("user_avatar");
+				String user_name = "";
+				String user_avatar = "";
+				int user_id = lastMessage.getIntAttribute("user_id");
+
+				if (user_id == SharedUtils.getIntUid()) {
+					user_name = lastMessage.getStringAttribute("to_user_name");
+					user_avatar = lastMessage
+							.getStringAttribute("to_user_avatar");
+				} else {
+					user_name = lastMessage
+							.getStringAttribute("from_user_name");
+					user_avatar = lastMessage
+							.getStringAttribute("from_user_avatar");
+				}
+
 				if (Utils.isSystemUser(lastMessage.getFrom())) {
 					holder.name.setText(user_name);
 				} else {
