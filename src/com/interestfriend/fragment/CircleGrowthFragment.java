@@ -24,7 +24,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.location.f;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.interestfriend.R;

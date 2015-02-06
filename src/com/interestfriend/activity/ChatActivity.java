@@ -756,6 +756,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 					SharedUtils.getAPPUserAvatar());
 			message.setAttribute("circle_name", MyApplation.getCircle_name());
 			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("to_user_id", user_id);
 
 			// 把messgage加到conversation中
 			conversation.addMessage(message);

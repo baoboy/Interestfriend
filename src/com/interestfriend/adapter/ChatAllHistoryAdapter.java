@@ -51,11 +51,13 @@ import com.interestfriend.utils.Utils;
 public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 
 	private LayoutInflater inflater;
+	private Context mContext;
 
 	public ChatAllHistoryAdapter(Context context, int textViewResourceId,
 			List<EMConversation> lists) {
 		super(context, textViewResourceId, lists);
 		inflater = LayoutInflater.from(context);
+		this.mContext = context;
 	}
 
 	@Override
@@ -124,6 +126,8 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 
 			holder.time.setText(DateUtils.getTimestampString(new Date(
 					lastMessage.getMsgTime())));
+			System.out.println("vsersion::::::::::::::;"
+					+ Utils.getVersionName(mContext));
 
 			try {
 				String user_name = "";
@@ -140,7 +144,6 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 					user_avatar = lastMessage
 							.getStringAttribute("from_user_avatar");
 				}
-
 				if (Utils.isSystemUser(lastMessage.getFrom())) {
 					holder.name.setText(user_name);
 				} else {
@@ -153,6 +156,24 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 						R.drawable.default_avatar);
 			} catch (EaseMobException e) {
 				e.printStackTrace();
+				try {
+					String user_name = "";
+					String user_avatar = "";
+					user_name = lastMessage.getStringAttribute("user_name");
+					user_avatar = lastMessage.getStringAttribute("user_avatar");
+					if (Utils.isSystemUser(lastMessage.getFrom())) {
+						holder.name.setText(user_name);
+					} else {
+						String circle_name = lastMessage
+								.getStringAttribute("circle_name");
+						holder.name.setText(user_name + "   ('" + circle_name
+								+ "' 圈子)");
+					}
+					UniversalImageLoadTool.disPlay(user_avatar, holder.avatar,
+							R.drawable.default_avatar);
+				} catch (EaseMobException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			if (lastMessage.direct == EMMessage.Direct.SEND

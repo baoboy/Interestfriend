@@ -22,6 +22,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAllHistoryAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
@@ -142,6 +143,7 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			long arg3) {
 		EMConversation conversation = adapter.getItem(position);
 		String username = conversation.getUserName();
+		String circle_name = "";
 		Intent intent = null;
 		if (Constants.JOIN_CIRCLE_USER_ID.equals(username)) {
 			intent = new Intent(this, JoinCircleActivity.class);
@@ -157,15 +159,17 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			intent = new Intent(this, KickOutActivity.class);
 		} else {
 			intent = new Intent(this, ChatActivity.class);
+			EMMessage message = conversation.getLastMessage();
+			String user_name = "";
+			String user_avatar = "";
+			int user_id;
 			try {
-				EMMessage message = conversation.getLastMessage();
-				String user_name = "";
-				String user_avatar = "";
-				int user_id = message.getIntAttribute("user_id");
-
+				user_id = message.getIntAttribute("user_id");
+				circle_name = message.getStringAttribute("circle_name");
 				if (user_id == SharedUtils.getIntUid()) {
 					user_name = message.getStringAttribute("to_user_name");
 					user_avatar = message.getStringAttribute("to_user_avatar");
+					user_id = message.getIntAttribute("to_user_id");
 				} else {
 					user_name = message.getStringAttribute("from_user_name");
 					user_avatar = message
@@ -177,8 +181,20 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 
 			} catch (EaseMobException e) {
 				e.printStackTrace();
+				try {
+					circle_name = message.getStringAttribute("circle_name");
+					user_name = message.getStringAttribute("user_name");
+					user_avatar = message.getStringAttribute("user_avatar");
+					user_id = message.getIntAttribute("user_id");
+					intent.putExtra("user_name", user_name);
+					intent.putExtra("user_avatar", user_avatar);
+					intent.putExtra("user_id", user_id);
+				} catch (EaseMobException e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
+		MyApplation.setCircle_name(circle_name);
 		intent.putExtra("userId", username);
 		startActivity(intent);
 		Utils.leftOutRightIn(this);

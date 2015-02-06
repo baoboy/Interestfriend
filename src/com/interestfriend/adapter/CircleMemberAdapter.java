@@ -85,13 +85,12 @@ public class CircleMemberAdapter extends BaseAdapter {
 		} else {
 			holder.txt_user_desc.setText("这家伙很懒，什么都没留下");
 		}
-
 		UniversalImageLoadTool.disPlay(list.get(position).getUser_avatar(),
 				holder.img_user_avatar, R.drawable.default_avatar);
 		holder.img_user_avatar.setOnClickListener(new ShowBigAvatariListener(
 				mContext, list.get(position).getUser_avatar()));
-		// showAlpha(position, holder);
-		return contentView;
+ 		 showAlpha(position, holder);
+ 		return contentView;
 	}
 
 	/**
