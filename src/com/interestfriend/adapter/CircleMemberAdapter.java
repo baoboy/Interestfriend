@@ -90,7 +90,7 @@ public class CircleMemberAdapter extends BaseAdapter {
 				holder.img_user_avatar, R.drawable.default_avatar);
 		holder.img_user_avatar.setOnClickListener(new ShowBigAvatariListener(
 				mContext, list.get(position).getUser_avatar()));
-		showAlpha(position, holder);
+		// showAlpha(position, holder);
 		return contentView;
 	}
 

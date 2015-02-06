@@ -12,7 +12,8 @@
         android:gravity="center_vertical"
         android:paddingLeft="13dip"
         android:textColor="#3e3a39"
-        android:textSize="@dimen/sp_30" />
+        android:textSize="@dimen/sp_30"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="fill_parent"
