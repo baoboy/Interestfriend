@@ -127,6 +127,7 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 	}
 
 	private void setListener() {
+		img.setOnClickListener(this);
 		back.setOnClickListener(this);
 		btnComment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
@@ -320,6 +321,9 @@ public class CommentActivity extends BaseActivity implements OnClickListener,
 			} else {
 				cancelPraise();
 			}
+			break;
+		case R.id.img:
+			intentImagePager(1);
 			break;
 		default:
 			break;

@@ -154,6 +154,7 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
+		img.setOnClickListener(this);
 		back.setOnClickListener(this);
 		btnComment.setOnClickListener(this);
 		edit_comment.addTextChangedListener(this);
@@ -299,6 +300,9 @@ public class PraiseAndCommentActivity extends BaseActivity implements
 				return;
 			}
 			sendComment(content.replace("@" + replaySomeOneName, ""));
+			break;
+		case R.id.img:
+			intentImagePager(1);
 			break;
 		default:
 			break;
