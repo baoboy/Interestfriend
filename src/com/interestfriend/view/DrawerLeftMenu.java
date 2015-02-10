@@ -99,7 +99,10 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
 			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
 					prompt.getMinimumHeight());
-			txt_setting.setCompoundDrawables(null, null, prompt, null);
+			Drawable setting = getResources().getDrawable(R.drawable.setting);
+			setting.setBounds(0, 0, setting.getMinimumWidth(),
+					setting.getMinimumHeight());
+			txt_setting.setCompoundDrawables(setting, null, prompt, null);
 		}
 	}
 
@@ -128,7 +131,8 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		UpDateNewVersionTask task = new UpDateNewVersionTask(mContext, false);
 		task.setCallBack(new UpDateVersion() {
 			@Override
-			public void getNewVersion(int rt, String versionCode, String link) {
+			public void getNewVersion(int rt, String versionCode, String link,
+					String version_info) {
 				if (rt == 0) {
 					SharedUtils.settingNewVersion(false);
 					return;

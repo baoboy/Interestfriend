@@ -460,6 +460,19 @@ public class GroupChatAdapter extends BaseAdapter {
 				// ·¢ËÍÏûÏ¢
 				sendMsgInBackground(message, holder);
 			}
+		} else {
+			String uid = "0";
+			if (message.getFrom().equals(Constants.JONI_NOTIFY_USER_ID)) {
+				try {
+					uid = message.getStringAttribute("join_circle_user_id");
+
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+				}
+				holder.tv.setOnClickListener(new OnAvatarClick(Integer
+						.valueOf(uid), context));
+			}
+
 		}
 	}
 

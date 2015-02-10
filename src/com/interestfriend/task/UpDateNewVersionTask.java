@@ -18,6 +18,7 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 	private String version = "";
 	private String serverVersion = "";
 	private String versionLink = "";
+	private String version_info = "";
 	private UpDateVersion callBack;
 	private boolean isShowToast;
 
@@ -39,6 +40,7 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 			int ret = json.getInt("rt");
 			serverVersion = json.getString("app_version");
 			versionLink = json.getString("app_link");
+			version_info = json.getString("version_info");
 			return ret;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -53,7 +55,7 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 			if (isShowToast) {
 				ToastUtil.showToast("操作失败,请稍候再试", Toast.LENGTH_SHORT);
 			}
-			this.callBack.getNewVersion(0, "", "");
+			this.callBack.getNewVersion(0, "", "", "");
 			return;
 		}
 		if (serverVersion.compareTo(version) <= 0) {
@@ -62,11 +64,11 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 						Toast.LENGTH_SHORT);
 
 			}
-			this.callBack.getNewVersion(0, "", "");
+			this.callBack.getNewVersion(0, "", "", "");
 			return;
 		}
 		this.callBack.getNewVersion(result, "检测到新版本\n\n" + serverVersion,
-				versionLink);
+				versionLink, version_info);
 	}
 
 	public UpDateVersion getCallBack() {
@@ -78,6 +80,7 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 	}
 
 	public interface UpDateVersion {
-		void getNewVersion(int rt, String versionCode, String link);
+		void getNewVersion(int rt, String versionCode, String link,
+				String version_info);
 	}
 }
