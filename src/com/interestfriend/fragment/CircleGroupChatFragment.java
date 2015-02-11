@@ -29,7 +29,9 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.ClipboardManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -66,6 +68,7 @@ import com.easemob.chat.NormalFileMessageBody;
 import com.easemob.chat.TextMessageBody;
 import com.easemob.chat.VideoMessageBody;
 import com.easemob.chat.VoiceMessageBody;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
@@ -76,18 +79,22 @@ import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
 import com.interestfriend.adapter.GroupChatAdapter;
+import com.interestfriend.adapter.GroupChatAdapter.MessageOnLongClick;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.interfaces.VoicePlayClickListener;
+import com.interestfriend.popwindow.MessageCopyPopWindow;
+import com.interestfriend.popwindow.MessageCopyPopWindow.OnlistOnclick;
 import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.ExpandGridView;
 
 @SuppressLint("NewApi")
 public class CircleGroupChatFragment extends Fragment implements
-		OnClickListener, OnItemClickListener {
+		OnClickListener, OnItemClickListener, MessageOnLongClick {
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
 	private static final int REQUEST_CODE_MAP = 4;
@@ -157,6 +164,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private final int pagesize = 20;
 	private boolean haveMoreData = true;
 	private Button btnMore;
+	private ClipboardManager clipboard;
 
 	private TextView txt_title;
 
@@ -363,7 +371,8 @@ public class CircleGroupChatFragment extends Fragment implements
 	}
 
 	private void setUpView() {
-
+		clipboard = (ClipboardManager) getActivity().getSystemService(
+				Context.CLIPBOARD_SERVICE);
 		manager = (InputMethodManager) getActivity().getSystemService(
 				Context.INPUT_METHOD_SERVICE);
 		getActivity().getWindow().setSoftInputMode(
@@ -379,6 +388,7 @@ public class CircleGroupChatFragment extends Fragment implements
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
 		adapter = new GroupChatAdapter(getActivity(), toChatUsername);
+		adapter.setmCallBack(this);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());
@@ -1430,4 +1440,43 @@ public class CircleGroupChatFragment extends Fragment implements
 		}
 	}
 
+	private MessageCopyPopWindow pop;
+
+	@Override
+	public void onLongClick(final int position_message, View v) {
+		pop = new MessageCopyPopWindow(getActivity(), v, new String[] { "复制消息",
+				"@TA" });
+		pop.setOnlistOnclick(new OnlistOnclick() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onclick(int position) {
+				EMMessage copyMsg = ((EMMessage) adapter
+						.getItem(position_message));
+				switch (position) {
+				case 0:
+					clipboard.setText(((TextMessageBody) copyMsg.getBody())
+							.getMessage());
+
+					break;
+				case 1:
+					String user_name;
+					try {
+						user_name = copyMsg.getStringAttribute("user_name");
+						mEditTextContent.setText(Html
+								.fromHtml("<font color=#37b669>@" + user_name
+										+ "</font> "));
+						mEditTextContent.setSelection(mEditTextContent
+								.getText().toString().length());
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		pop.show();
+	}
 }

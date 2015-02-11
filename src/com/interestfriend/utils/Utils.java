@@ -160,6 +160,19 @@ public class Utils {
 		System.out.println(str);
 	}
 
+	public static int getVersionCode(Context context) {
+		try {
+			PackageManager manager = context.getPackageManager();
+			PackageInfo info = manager.getPackageInfo(context.getPackageName(),
+					0);
+			String version = String.format("%d", info.versionCode);
+			return Integer.valueOf(version);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
 	/**
 	 * 获取应用的当前版本号
 	 * 

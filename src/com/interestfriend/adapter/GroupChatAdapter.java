@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -442,7 +443,16 @@ public class GroupChatAdapter extends BaseAdapter {
 				.getSmiledText(context, txtBody.getMessage());
 		// 设置内容
 		holder.tv.setText(span, BufferType.SPANNABLE);
-
+		// 设置长按事件监听
+		holder.tv.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				if (mCallBack != null) {
+					mCallBack.onLongClick(position, v);
+				}
+				return true;
+			}
+		});
 		if (message.direct == EMMessage.Direct.SEND) {
 			switch (message.status) {
 			case SUCCESS: // 发送成功
@@ -1300,4 +1310,13 @@ public class GroupChatAdapter extends BaseAdapter {
 
 	}
 
+	private MessageOnLongClick mCallBack;
+
+	public void setmCallBack(MessageOnLongClick mCallBack) {
+		this.mCallBack = mCallBack;
+	}
+
+	public interface MessageOnLongClick {
+		void onLongClick(int position, View v);
+	}
 }

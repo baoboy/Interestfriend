@@ -52,11 +52,11 @@ public class SelectCircleCategoryPopWindow implements OnClickListener,
 	}
 
 	private void initData() {
-		CategoryCircle c = new CategoryCircle();
-		c.setCode(1);
-		c.setName("官方圈子");
-		lists.add(c);
-		c = new CategoryCircle();
+//		CategoryCircle c = new CategoryCircle();
+//		c.setCode(1);
+//		c.setName("官方圈子");
+//		lists.add(c);
+		CategoryCircle	c = new CategoryCircle();
 		c.setCode(2);
 		c.setName("游戏世界");
 		lists.add(c);
