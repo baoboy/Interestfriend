@@ -127,7 +127,6 @@ public class CircleInfoActivity extends BaseActivity implements
 			layout_desc.setBackgroundResource(R.drawable.left_menu);
 			img_desc_arrow.setVisibility(View.VISIBLE);
 			layout_desc.setOnClickListener(this);
-			img_logo.setOnClickListener(this);
 
 		}
 		setListener();
@@ -135,6 +134,8 @@ public class CircleInfoActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
+		img_logo.setOnClickListener(this);
+
 		back.setOnClickListener(this);
 		if (circle.getCreator_id() > 0) {
 			layout_circle_creator.setOnClickListener(this);
@@ -285,9 +286,13 @@ public class CircleInfoActivity extends BaseActivity implements
 			pop.show();
 			break;
 		case R.id.img_logo:
-			pic_pop = new SelectPicPopwindow(this, v, "拍照", "从相册选择");
-			pic_pop.setmSelectOnclick(this);
-			pic_pop.show();
+			if (circle.getCreator_id() == SharedUtils.getIntUid()) {
+				pic_pop = new SelectPicPopwindow(this, v, "拍照", "从相册选择");
+				pic_pop.setmSelectOnclick(this);
+				pic_pop.show();
+				return;
+			}
+			showLogo();
 			break;
 		default:
 			break;

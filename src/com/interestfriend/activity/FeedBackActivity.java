@@ -88,6 +88,7 @@ import com.interestfriend.R.string;
 import com.interestfriend.adapter.ChatAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.VoicePlayClickListener;
@@ -163,7 +164,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 	private NewMessageBroadcastReceiver receiver;
 	public static FeedBackActivity activityInstance = null;
 	// 给谁发送消息
-	private String toChatUsername = "feedback";
+	private String toChatUsername = "ed3afde007785ceaea990c35477ed35f";
 	private VoiceRecorder voiceRecorder;
 	private ChatAdapter adapter;
 	private File cameraFile;
@@ -668,8 +669,16 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
 			message.setReceipt(toChatUsername);
-			message.setAttribute("user_name", "趣友");
-			message.setAttribute("user_avatar", "");
+			message.setAttribute("to_user_name", "趣友");
+			message.setAttribute("to_user_avatar",
+					"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+			message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("from_user_avatar",
+					SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", "意见反馈");
+			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("to_user_id", -1);
+
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
@@ -705,7 +714,15 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 			VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
 					len);
 			message.addBody(body);
-
+			message.setAttribute("to_user_name", "趣友");
+			message.setAttribute("to_user_avatar",
+					"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+			message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("from_user_avatar",
+					SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", "意见反馈");
+			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("to_user_id", -1);
 			conversation.addMessage(message);
 			adapter.refresh();
 			listView.setSelection(listView.getCount() - 1);
@@ -736,6 +753,14 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 		// 默认超过100k的图片会压缩后发给对方，可以设置成发送原图
 		// body.setSendOriginalImage(true);
 		message.addBody(body);
+		message.setAttribute("to_user_name", "趣友");
+		message.setAttribute("to_user_avatar",
+				"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+		message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("from_user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", "意见反馈");
+		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("to_user_id", -1);
 		conversation.addMessage(message);
 
 		listView.setAdapter(adapter);
@@ -765,6 +790,15 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 			VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
 					length, videoFile.length());
 			message.addBody(body);
+			message.setAttribute("to_user_name", "趣友");
+			message.setAttribute("to_user_avatar",
+					"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+			message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+			message.setAttribute("from_user_avatar",
+					SharedUtils.getAPPUserAvatar());
+			message.setAttribute("circle_name", "意见反馈");
+			message.setAttribute("user_id", SharedUtils.getIntUid());
+			message.setAttribute("to_user_id", -1);
 			conversation.addMessage(message);
 			listView.setAdapter(adapter);
 			adapter.refresh();
@@ -831,6 +865,14 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 		LocationMessageBody locBody = new LocationMessageBody(locationAddress,
 				latitude, longitude);
 		message.addBody(locBody);
+		message.setAttribute("to_user_name", "趣友");
+		message.setAttribute("to_user_avatar",
+				"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+		message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("from_user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", "意见反馈");
+		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("to_user_id", -1);
 		message.setReceipt(toChatUsername);
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
@@ -885,7 +927,14 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 		NormalFileMessageBody body = new NormalFileMessageBody(new File(
 				filePath));
 		message.addBody(body);
-
+		message.setAttribute("to_user_name", "趣友");
+		message.setAttribute("to_user_avatar",
+				"http://123.56.46.254:8080/InterestFriend/images/app_icon.png");
+		message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("from_user_avatar", SharedUtils.getAPPUserAvatar());
+		message.setAttribute("circle_name", "意见反馈");
+		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("to_user_id", -1);
 		conversation.addMessage(message);
 		listView.setAdapter(adapter);
 		adapter.refresh();

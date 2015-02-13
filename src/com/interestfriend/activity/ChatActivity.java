@@ -1669,8 +1669,10 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private MessageCopyPopWindow pop;
 
 	@Override
-	public void onLongClick(final int position_message, View v) {
-		pop = new MessageCopyPopWindow(this, v, new String[] { "复制消息" });
+	public void onLongClick(final int position_message, View v,
+			View v_layoutparent) {
+		pop = new MessageCopyPopWindow(this, v, v_layoutparent,
+				new String[] { "复制消息" });
 		pop.setOnlistOnclick(new OnlistOnclick() {
 
 			@SuppressWarnings("deprecation")

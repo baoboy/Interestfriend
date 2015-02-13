@@ -1443,9 +1443,10 @@ public class CircleGroupChatFragment extends Fragment implements
 	private MessageCopyPopWindow pop;
 
 	@Override
-	public void onLongClick(final int position_message, View v) {
-		pop = new MessageCopyPopWindow(getActivity(), v, new String[] { "复制消息",
-				"@TA" });
+	public void onLongClick(final int position_message, View v,
+			View v_layoutparent) {
+		pop = new MessageCopyPopWindow(getActivity(), v, v_layoutparent,
+				new String[] { "复制消息", "@TA" });
 		pop.setOnlistOnclick(new OnlistOnclick() {
 
 			@SuppressWarnings("deprecation")

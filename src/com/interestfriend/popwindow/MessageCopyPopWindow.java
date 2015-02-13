@@ -21,15 +21,18 @@ public class MessageCopyPopWindow implements OnItemClickListener {
 	private PopupWindow popupWindow;
 	private Context mContext;
 	private View v;
+	private View v_parent;
 	private View view;
 	private ListView listview;
 	private MyAdapter adapter;
 	private OnlistOnclick callback;
 	private String[] listdata;
 
-	public MessageCopyPopWindow(Context context, View v, String[] listdata) {
+	public MessageCopyPopWindow(Context context, View v, View v_parent,
+			String[] listdata) {
 		this.mContext = context;
 		this.v = v;
+		this.v_parent = v_parent;
 		LayoutInflater inflater = LayoutInflater.from(mContext);
 		view = inflater.inflate(R.layout.message_prompt, null);
 		this.listdata = listdata;
@@ -60,9 +63,11 @@ public class MessageCopyPopWindow implements OnItemClickListener {
 	 */
 	public void show() {
 		int[] location = new int[2];
-		v.getLocationOnScreen(location);
-		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY,
-				location[0] + v.getWidth(), location[1] + v.getHeight()); // 使其聚集
+		int[] location1 = new int[2];
+		v.getLocationOnScreen(location1);
+		v_parent.getLocationOnScreen(location);
+		popupWindow.showAtLocation(v, Gravity.NO_GRAVITY, location1[0],
+				location[1] - v_parent.getHeight()); // 使其聚集
 		popupWindow.setFocusable(true);
 		// 设置允许在外点击消失
 		popupWindow.setOutsideTouchable(true);

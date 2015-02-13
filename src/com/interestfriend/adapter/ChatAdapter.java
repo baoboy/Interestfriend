@@ -36,6 +36,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
@@ -254,6 +255,8 @@ public class ChatAdapter extends BaseAdapter {
 			} else if (message.getType() == EMMessage.Type.TXT) {
 
 				try {
+					holder.layout_parent = (RelativeLayout) convertView
+							.findViewById(R.id.layout_parent);
 					holder.pb = (ProgressBar) convertView
 							.findViewById(R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView
@@ -547,7 +550,7 @@ public class ChatAdapter extends BaseAdapter {
 	 * @param holder
 	 * @param position
 	 */
-	private void handleTextMessage(EMMessage message, ViewHolder holder,
+	private void handleTextMessage(EMMessage message, final ViewHolder holder,
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		Spannable span = SmileUtils
@@ -559,7 +562,7 @@ public class ChatAdapter extends BaseAdapter {
 			@Override
 			public boolean onLongClick(View v) {
 				if (mCallBack != null) {
-					mCallBack.onLongClick(position, v);
+					mCallBack.onLongClick(position, v, holder.layout_parent);
 				}
 				return true;
 			}
@@ -1376,6 +1379,7 @@ public class ChatAdapter extends BaseAdapter {
 	}
 
 	public static class ViewHolder {
+		RelativeLayout layout_parent;
 		ImageView iv;
 		TextView tv;
 		ProgressBar pb;

@@ -13,10 +13,11 @@
         android:layout_height="wrap_content" />
 
     <RelativeLayout
+        android:id="@+id/layout_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_chat_activity" >
-
+<!-- com.interestfriend.view.RoundAngleImageView -->
         <com.interestfriend.view.RoundAngleImageView
             android:id="@+id/iv_userhead"
             android:layout_width="@dimen/size_avatar"
