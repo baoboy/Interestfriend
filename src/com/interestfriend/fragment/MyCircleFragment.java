@@ -286,8 +286,10 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					growth_unread++;
 					int publicsher_id = 0;
 					try {
-						publicsher_id = Integer.valueOf(message
-								.getStringAttribute("publisher_id"));
+						String p_id = message
+								.getStringAttribute("publisher_id");
+						publicsher_id = Integer.valueOf(p_id.equals("") ? "0"
+								: p_id);
 					} catch (EaseMobException e) {
 						e.printStackTrace();
 					}

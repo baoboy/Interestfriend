@@ -158,7 +158,8 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 		UpDateNewVersionTask task = new UpDateNewVersionTask(this, true);
 		task.setCallBack(new UpDateVersion() {
 			@Override
-			public void getNewVersion(int rt, String versionCode, String link) {
+			public void getNewVersion(int rt, String versionCode, String link,
+					String version_info) {
 				if (dialog != null) {
 					dialog.dismiss();
 				}
@@ -166,7 +167,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 					return;
 				}
 				DialogUtil.newVewsionDialog(SettingActivity.this, versionCode,
-						link);
+						link, version_info);
 			}
 		});
 		task.execute();

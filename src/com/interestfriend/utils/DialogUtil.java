@@ -90,11 +90,11 @@ public class DialogUtil {
 	 * @param link
 	 */
 	public static void newVewsionDialog(final Context context,
-			String versionCode, final String link) {
+			String versionCode, final String link, String version_info) {
 		PromptDialog.Builder dialog = new PromptDialog.Builder(context);
 		dialog.setTitle("新版本提示");
 		dialog.setViewStyle(PromptDialog.VIEW_STYLE_TITLEBAR);
-		dialog.setMessage(versionCode);
+		dialog.setMessage(versionCode + "\n" + version_info);
 		dialog.setMessageGravityIsCenter(true);
 		dialog.setButton1("立即下载", new PromptDialog.OnClickListener() {
 

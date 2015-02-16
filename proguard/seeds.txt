@@ -14407,6 +14407,7 @@ com.interestfriend.R$drawable: int chat_image_selector
 com.interestfriend.R$drawable: int chat_item_file
 com.interestfriend.R$drawable: int chat_location_noraml
 com.interestfriend.R$drawable: int chat_location_selector
+com.interestfriend.R$drawable: int chat_message_prompt
 com.interestfriend.R$drawable: int chat_press_speak_btn
 com.interestfriend.R$drawable: int chat_press_speak_btn_normal
 com.interestfriend.R$drawable: int chat_press_speak_btn_pressed
@@ -15213,6 +15214,7 @@ com.interestfriend.R$layout: int item_photofolder
 com.interestfriend.R$layout: int item_selectphoto
 com.interestfriend.R$layout: int loading_dialog
 com.interestfriend.R$layout: int member_circles_item
+com.interestfriend.R$layout: int message_prompt
 com.interestfriend.R$layout: int my_circle_fragment_layouto
 com.interestfriend.R$layout: int near_circle_fragment_layout
 com.interestfriend.R$layout: int near_circles_item
@@ -15535,6 +15537,7 @@ com.interestfriend.activity.ChatActivity: android.os.Handler mEmjoiHandler
 com.interestfriend.activity.ChatActivity: android.content.BroadcastReceiver ackMessageReceiver
 com.interestfriend.activity.ChatActivity: android.content.BroadcastReceiver deliveryAckMessageReceiver
 com.interestfriend.activity.ChatActivity: android.os.PowerManager$WakeLock wakeLock
+com.interestfriend.activity.ChatActivity: com.interestfriend.popwindow.MessageCopyPopWindow pop
 com.interestfriend.activity.ChatActivity: int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type
 com.interestfriend.activity.ChatActivity: void <clinit>()
 com.interestfriend.activity.ChatActivity: ChatActivity()
@@ -15574,6 +15577,7 @@ com.interestfriend.activity.ChatActivity: void onBackPressed()
 com.interestfriend.activity.ChatActivity: void onNewIntent(android.content.Intent)
 com.interestfriend.activity.ChatActivity: java.lang.String getToChatUsername()
 com.interestfriend.activity.ChatActivity: void onItemClick(android.widget.AdapterView,android.view.View,int,long)
+com.interestfriend.activity.ChatActivity: void onLongClick(int,android.view.View)
 com.interestfriend.activity.ChatActivity: android.widget.ImageView access$0(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity: android.graphics.drawable.Drawable[] access$1(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity: android.support.v4.view.ViewPager access$2(com.interestfriend.activity.ChatActivity)
@@ -15607,6 +15611,7 @@ com.interestfriend.activity.ChatActivity: void access$29(com.interestfriend.acti
 com.interestfriend.activity.ChatActivity: int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type()
 com.interestfriend.activity.ChatActivity: android.view.View access$31(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity: android.widget.EditText access$32(com.interestfriend.activity.ChatActivity)
+com.interestfriend.activity.ChatActivity: android.text.ClipboardManager access$33(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity$6
 com.interestfriend.activity.ChatActivity$6: void onClick(android.view.View)
 com.interestfriend.activity.ChatAllHistoryActivity
@@ -15773,23 +15778,23 @@ com.interestfriend.adapter.CategoryCircleAdapter$AvatarClick
 com.interestfriend.adapter.CategoryCircleAdapter$AvatarClick: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$1
 com.interestfriend.adapter.ChatAdapter$1: void onClick(android.view.View)
-com.interestfriend.adapter.ChatAdapter$11
-com.interestfriend.adapter.ChatAdapter$11: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$12
 com.interestfriend.adapter.ChatAdapter$12: void onClick(android.view.View)
-com.interestfriend.adapter.ChatAdapter$5
-com.interestfriend.adapter.ChatAdapter$5: void onClick(android.view.View)
+com.interestfriend.adapter.ChatAdapter$13
+com.interestfriend.adapter.ChatAdapter$13: void onClick(android.view.View)
+com.interestfriend.adapter.ChatAdapter$6
+com.interestfriend.adapter.ChatAdapter$6: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$MapClickListener
 com.interestfriend.adapter.ChatAdapter$MapClickListener: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAllHistoryAdapter$1
 com.interestfriend.adapter.ChatAllHistoryAdapter$1: void onClick(android.view.View)
 com.interestfriend.adapter.ExpressionPagerAdapter
-com.interestfriend.adapter.GroupChatAdapter$10
-com.interestfriend.adapter.GroupChatAdapter$10: void onClick(android.view.View)
 com.interestfriend.adapter.GroupChatAdapter$11
 com.interestfriend.adapter.GroupChatAdapter$11: void onClick(android.view.View)
-com.interestfriend.adapter.GroupChatAdapter$4
-com.interestfriend.adapter.GroupChatAdapter$4: void onClick(android.view.View)
+com.interestfriend.adapter.GroupChatAdapter$12
+com.interestfriend.adapter.GroupChatAdapter$12: void onClick(android.view.View)
+com.interestfriend.adapter.GroupChatAdapter$5
+com.interestfriend.adapter.GroupChatAdapter$5: void onClick(android.view.View)
 com.interestfriend.adapter.GroupChatAdapter$MapClickListener
 com.interestfriend.adapter.GroupChatAdapter$MapClickListener: void onClick(android.view.View)
 com.interestfriend.adapter.GrowthAdapter$Onclick

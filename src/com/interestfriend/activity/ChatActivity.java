@@ -42,6 +42,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.ClipboardManager;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -88,10 +89,13 @@ import com.interestfriend.adapter.ChatAdapter;
 import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
+import com.interestfriend.adapter.GroupChatAdapter.MessageOnLongClick;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.VoicePlayClickListener;
+import com.interestfriend.popwindow.MessageCopyPopWindow;
+import com.interestfriend.popwindow.MessageCopyPopWindow.OnlistOnclick;
 import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
@@ -104,7 +108,7 @@ import com.interestfriend.view.ExpandGridView;
  * 
  */
 public class ChatActivity extends BaseActivity implements OnClickListener,
-		OnItemClickListener {
+		OnItemClickListener, MessageOnLongClick {
 
 	private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
 	public static final int REQUEST_CODE_CONTEXT_MENU = 3;
@@ -388,6 +392,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
 		adapter = new ChatAdapter(this, toChatUsername, chatType, user_id);
+		adapter.setmCallBack(this);
 		// 显示消息
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());
@@ -1659,5 +1664,46 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		default:
 			break;
 		}
+	}
+
+	private MessageCopyPopWindow pop;
+
+	@Override
+	public void onLongClick(final int position_message, View v,
+			View v_layoutparent) {
+		pop = new MessageCopyPopWindow(this, v, v_layoutparent,
+				new String[] { "复制消息" });
+		pop.setOnlistOnclick(new OnlistOnclick() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onclick(int position) {
+				EMMessage copyMsg = ((EMMessage) adapter
+						.getItem(position_message));
+				switch (position) {
+				case 0:
+					clipboard.setText(((TextMessageBody) copyMsg.getBody())
+							.getMessage());
+
+					break;
+				case 1:
+					String user_name;
+					try {
+						user_name = copyMsg.getStringAttribute("user_name");
+						mEditTextContent.setText(Html
+								.fromHtml("<font color=#37b669>@" + user_name
+										+ "</font> "));
+						mEditTextContent.setSelection(mEditTextContent
+								.getText().toString().length());
+					} catch (EaseMobException e) {
+						e.printStackTrace();
+					}
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		pop.show();
 	}
 }

@@ -9,6 +9,7 @@ public class Constants {
 	public static final String PRAISE_USER_ID = "praise";
 	public static final String GROWTH_USER_ID = "growth";
 	public static final String KICK_OUT_USER_ID = "kickout";
+	public static final String JONI_NOTIFY_USER_ID = "joinnotify";
 
 	// »·ÐÅ
 

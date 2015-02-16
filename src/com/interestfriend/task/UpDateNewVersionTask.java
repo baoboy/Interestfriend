@@ -15,15 +15,19 @@ import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
 
 public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
-	private String version = "";
+	// private String version = "";
 	private String serverVersion = "";
 	private String versionLink = "";
+	private String version_info = "";
 	private UpDateVersion callBack;
 	private boolean isShowToast;
+	private int version_code;
+	private Context mContext;
 
 	public UpDateNewVersionTask(Context mContext, boolean isShowToast) {
-		version = Utils.getVersionName(mContext);
+		// version = Utils.getVersionName(mContext);
 		this.isShowToast = isShowToast;
+		this.mContext = mContext;
 	}
 
 	@Override
@@ -39,6 +43,11 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 			int ret = json.getInt("rt");
 			serverVersion = json.getString("app_version");
 			versionLink = json.getString("app_link");
+			version_info = json.getString("version_info");
+			if (json.has("app_version_code")) {
+				serverVersion = json.getString("app_version_name");
+				version_code = json.getInt("app_version_code");
+			}
 			return ret;
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -53,20 +62,29 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 			if (isShowToast) {
 				ToastUtil.showToast("操作失败,请稍候再试", Toast.LENGTH_SHORT);
 			}
-			this.callBack.getNewVersion(0, "", "");
+			this.callBack.getNewVersion(0, "", "", "");
 			return;
 		}
-		if (serverVersion.compareTo(version) <= 0) {
+		if (version_code <= Utils.getVersionCode(mContext)) {
 			if (isShowToast) {
 				ToastUtil.showToast("您现在用的已经是最新版，最最新版值得您期待！",
 						Toast.LENGTH_SHORT);
 
 			}
-			this.callBack.getNewVersion(0, "", "");
+			this.callBack.getNewVersion(0, "", "", "");
 			return;
 		}
+		// if (serverVersion.compareTo(version) <= 0) {
+		// if (isShowToast) {
+		// ToastUtil.showToast("您现在用的已经是最新版，最最新版值得您期待！",
+		// Toast.LENGTH_SHORT);
+		//
+		// }
+		// this.callBack.getNewVersion(0, "", "", "");
+		// return;
+		// }
 		this.callBack.getNewVersion(result, "检测到新版本\n\n" + serverVersion,
-				versionLink);
+				versionLink, version_info);
 	}
 
 	public UpDateVersion getCallBack() {
@@ -78,6 +96,7 @@ public class UpDateNewVersionTask extends AsyncTask<String, Integer, Integer> {
 	}
 
 	public interface UpDateVersion {
-		void getNewVersion(int rt, String versionCode, String link);
+		void getNewVersion(int rt, String versionCode, String link,
+				String version_info);
 	}
 }

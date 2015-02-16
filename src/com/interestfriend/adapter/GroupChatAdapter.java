@@ -29,11 +29,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
@@ -244,6 +246,8 @@ public class GroupChatAdapter extends BaseAdapter {
 			} else if (message.getType() == EMMessage.Type.TXT) {
 
 				try {
+					holder.layout_parent = (RelativeLayout) convertView
+							.findViewById(R.id.layout_parent);
 					holder.pb = (ProgressBar) convertView
 							.findViewById(R.id.pb_sending);
 					holder.staus_iv = (ImageView) convertView
@@ -435,14 +439,23 @@ public class GroupChatAdapter extends BaseAdapter {
 	 * @param holder
 	 * @param position
 	 */
-	private void handleTextMessage(EMMessage message, ViewHolder holder,
+	private void handleTextMessage(EMMessage message, final ViewHolder holder,
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		Spannable span = SmileUtils
 				.getSmiledText(context, txtBody.getMessage());
 		// 设置内容
 		holder.tv.setText(span, BufferType.SPANNABLE);
-
+		// 设置长按事件监听
+		holder.tv.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				if (mCallBack != null) {
+					mCallBack.onLongClick(position, v,holder.layout_parent);
+				}
+				return true;
+			}
+		});
 		if (message.direct == EMMessage.Direct.SEND) {
 			switch (message.status) {
 			case SUCCESS: // 发送成功
@@ -460,6 +473,19 @@ public class GroupChatAdapter extends BaseAdapter {
 				// 发送消息
 				sendMsgInBackground(message, holder);
 			}
+		} else {
+			String uid = "0";
+			if (message.getFrom().equals(Constants.JONI_NOTIFY_USER_ID)) {
+				try {
+					uid = message.getStringAttribute("join_circle_user_id");
+
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+				}
+				holder.tv.setOnClickListener(new OnAvatarClick(Integer
+						.valueOf(uid), context));
+			}
+
 		}
 	}
 
@@ -1239,6 +1265,7 @@ public class GroupChatAdapter extends BaseAdapter {
 	}
 
 	public static class ViewHolder {
+		RelativeLayout layout_parent;
 		ImageView iv;
 		TextView tv;
 		ProgressBar pb;
@@ -1287,4 +1314,13 @@ public class GroupChatAdapter extends BaseAdapter {
 
 	}
 
+	private MessageOnLongClick mCallBack;
+
+	public void setmCallBack(MessageOnLongClick mCallBack) {
+		this.mCallBack = mCallBack;
+	}
+
+	public interface MessageOnLongClick {
+		void onLongClick(int position, View v, View v_parent);
+	}
 }
