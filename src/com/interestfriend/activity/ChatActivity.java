@@ -86,10 +86,10 @@ import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.interestfriend.R;
 import com.interestfriend.adapter.ChatAdapter;
+import com.interestfriend.adapter.ChatAdapter.MessageOnLongClick;
 import com.interestfriend.adapter.ChatGridViewAdapter;
 import com.interestfriend.adapter.ExpressionAdapter;
 import com.interestfriend.adapter.ExpressionPagerAdapter;
-import com.interestfriend.adapter.GroupChatAdapter.MessageOnLongClick;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.db.DBUtils;
@@ -393,6 +393,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		conversation.resetUnsetMsgCount();
 		adapter = new ChatAdapter(this, toChatUsername, chatType, user_id);
 		adapter.setmCallBack(this);
+		;
 		// œ‘ æœ˚œ¢
 		listView.setAdapter(adapter);
 		listView.setOnScrollListener(new ListScrollListener());

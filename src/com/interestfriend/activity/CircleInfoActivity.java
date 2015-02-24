@@ -154,7 +154,7 @@ public class CircleInfoActivity extends BaseActivity implements
 		txt_circle_create_time.setText(circle.getCircle_create_time());
 		txt_citcle_creator_name.setText(circle.getCircle_creator_name());
 		txt_circle_name.setText(circle.getCircle_name());
-	}
+ 	}
 
 	private void setCircleLogo(Bitmap bitmap, String path) {
 		if (bitmap != null) {

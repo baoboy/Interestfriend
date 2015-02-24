@@ -6,8 +6,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -35,7 +35,6 @@ import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
-import com.interestfriend.view.PullDownView;
 import com.interestfriend.view.PullDownView.OnPullDownListener;
 import com.interestfriend.view.RoundAngleImageView;
 
@@ -55,8 +54,12 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private List<MyCircles> listCircles = new ArrayList<MyCircles>();
 	private String category_name = "";
 
-	private PullDownView mPullDownView;
+	// private PullDownView mPullDownView;
 	private int page = 1;
+
+	private View view_foot;
+
+	// private LinearLayout layout_more;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +77,11 @@ public class SearchCirclsActivity extends BaseActivity implements
 	}
 
 	private void initView() {
-		mPullDownView = (PullDownView) findViewById(R.id.PullDownlistView);
-		mlistView = mPullDownView.getListView();
-		mlistView.setVerticalScrollBarEnabled(false);
-		mlistView.setCacheColorHint(0);
-		mlistView.setSelector(new ColorDrawable(Color.TRANSPARENT));
-		mPullDownView.setShowRefresh(false);
-		mPullDownView.addFooterView();
-		mPullDownView.setFooterVisible(false);
+		view_foot = LayoutInflater.from(this).inflate(R.layout.pulldown_footer,
+				null);
+		view_foot.setVisibility(View.GONE);
+		mlistView = (ListView) findViewById(R.id.listview);
+		mlistView.addFooterView(view_foot);
 		back = (ImageView) findViewById(R.id.back);
 		txt_title = (TextView) findViewById(R.id.title_txt);
 		setListener();
@@ -100,7 +100,30 @@ public class SearchCirclsActivity extends BaseActivity implements
 	private void setListener() {
 		back.setOnClickListener(this);
 		mlistView.setOnItemClickListener(this);
-		mPullDownView.setOnPullDownListener(this);
+		mlistView.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				// 当不滚动时
+				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+					// 判断是否滚动到底部
+					if (view.getLastVisiblePosition() == view.getCount() - 1) {
+						if (listCircles.size() < 10) {
+							return;
+						}
+						view_foot.setVisibility(View.VISIBLE);
+						getCircleList();
+					}
+				}
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+
+			}
+		});
 
 	}
 
@@ -214,10 +237,11 @@ public class SearchCirclsActivity extends BaseActivity implements
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
-				mPullDownView.notifyDidMore();
+				// mPullDownView.notifyDidMore();
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				view_foot.setVisibility(View.GONE);
 				if (result != RetError.NONE) {
 					return;
 				}
@@ -233,11 +257,11 @@ public class SearchCirclsActivity extends BaseActivity implements
 				} else {
 					adapter.notifyDataSetChanged();
 				}
-				if (lists.getListCircles().size() >= 19) {
-					mPullDownView.setFooterVisible(true);
+				if (lists.getListCircles().size() > 0) {
+					// mPullDownView.setFooterVisible(true);
 					page++;
 				} else {
-					mPullDownView.setFooterVisible(false);
+					// mPullDownView.setFooterVisible(false);
 				}
 				lists.getListCircles().clear();
 			}

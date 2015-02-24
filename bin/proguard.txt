@@ -245,7 +245,6 @@
 -keep class com.interestfriend.view.PasteEditText { <init>(...); }
 
 # view res/layout/activity_near_circles.xml #generated:23
-# view res/layout/activity_search_circls.xml #generated:23
 # view res/layout/circle_growth.xml #generated:20
 -keep class com.interestfriend.view.PullDownView { <init>(...); }
 

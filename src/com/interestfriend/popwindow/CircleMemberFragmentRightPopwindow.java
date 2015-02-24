@@ -63,13 +63,13 @@ public class CircleMemberFragmentRightPopwindow implements OnClickListener {
 		txt_quit_circle.setOnClickListener(this);
 		txt_circle_info.setOnClickListener(this);
 		txt_dissolve_circle.setOnClickListener(this);
-		if (isSelfCreateCircle) {
-			txt_quit_circle.setVisibility(View.GONE);
-			line_quit.setVisibility(View.GONE);
-		} else {
-			txt_dissolve_circle.setVisibility(View.GONE);
-			line_dissolve.setVisibility(View.GONE);
-		}
+		// if (isSelfCreateCircle) {
+		// txt_quit_circle.setVisibility(View.GONE);
+		// line_quit.setVisibility(View.GONE);
+		// } else {
+		txt_dissolve_circle.setVisibility(View.GONE);
+		line_dissolve.setVisibility(View.GONE);
+		// }
 	}
 
 	/**
