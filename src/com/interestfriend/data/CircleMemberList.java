@@ -108,7 +108,7 @@ public class CircleMemberList extends AbstractData {
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
-		}
+		} 
 	}
 
 	private void delById(int uid) {

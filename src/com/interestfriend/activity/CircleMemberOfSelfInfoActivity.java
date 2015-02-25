@@ -20,6 +20,8 @@ import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.popwindow.CityListPopWindow;
+import com.interestfriend.popwindow.CityListPopWindow.SelectCity;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.task.UpdateUserAvatarTask;
@@ -49,10 +51,12 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	private RelativeLayout layout_description;
 	private RelativeLayout layout_user_name;
 	private ImageView back;
+	private TextView txt_address;
 
 	private CircleMember member;
 
 	private SelectPicPopwindow pop;
+	private CityListPopWindow city_pop;
 
 	private String mTakePicturePath = "";
 	private String imgPath = "";
@@ -70,6 +74,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 	}
 
 	private void initView() {
+		txt_address = (TextView) findViewById(R.id.txt_address);
 		view = (DampView) findViewById(R.id.scrollView1);
 		img_avatar = (ImageView) findViewById(R.id.img_avatar);
 		view.setImageView(img_avatar);
@@ -110,7 +115,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		txt_declaration.setOnClickListener(this);
 		txt_description.setOnClickListener(this);
 		txt_user_name.setOnClickListener(this);
-
+		txt_address.setOnClickListener(this);
 	}
 
 	@Override
@@ -138,6 +143,18 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 			break;
 		case R.id.back:
 			finishThisActivity();
+			break;
+		case R.id.txt_address:
+			city_pop = new CityListPopWindow(this, v);
+			city_pop.setmCallBack(new SelectCity() {
+
+				@Override
+				public void selectCity(String province, String province_key,
+						String city) {
+					txt_address.setText(province + " " + city);
+				}
+			});
+			city_pop.show();
 			break;
 		default:
 			break;

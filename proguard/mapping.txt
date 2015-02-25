@@ -13787,6 +13787,7 @@ com.interestfriend.R$id -> com.interestfriend.R$id:
     int listView -> listView
     int listView1 -> listView1
     int list_item_layout -> list_item_layout
+    int listview -> listview
     int ll_btn_container -> ll_btn_container
     int ll_click_area -> ll_click_area
     int ll_coming_call -> ll_coming_call
@@ -14414,40 +14415,40 @@ com.interestfriend.activity.ChatActivity -> com.interestfriend.activity.ChatActi
     215:230:void onCreate(android.os.Bundle) -> onCreate
     236:354:void initView() -> initView
     357:373:void initDots() -> initDots
-    376:450:void setUpView() -> setUpView
-    458:484:void forwardMessage(java.lang.String) -> forwardMessage
-    490:648:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    658:682:void onClick(android.view.View) -> onClick
-    688:700:void selectPicFromCamera() -> selectPicFromCamera
-    706:718:void selectFileFromLocal() -> selectFileFromLocal
-    725:735:void selectPicFromLocal() -> selectPicFromLocal
-    747:775:void sendText(java.lang.String) -> sendText
-    787:816:void sendVoice(java.lang.String,java.lang.String,java.lang.String,boolean) -> sendVoice
-    824:848:void sendPicture(java.lang.String) -> sendPicture
-    855:884:void sendVideo(java.lang.String,java.lang.String,int) -> sendVideo
-    893:921:void sendPicByUri(android.net.Uri) -> sendPicByUri
-    934:953:void sendLocationMsg(double,double,java.lang.String,java.lang.String) -> sendLocationMsg
-    961:1010:void sendFile(android.net.Uri) -> sendFile
-    1016:1023:void resendMessage() -> resendMessage
-    1031:1044:void setModeVoice(android.view.View) -> setModeVoice
-    1061:1077:void setModeKeyboard(android.view.View) -> setModeKeyboard
-    1085:1090:void emptyHistory(android.view.View) -> emptyHistory
-    1101:1101:void toGroupDetails(android.view.View) -> toGroupDetails
-    1109:1127:void more(android.view.View) -> more
-    1135:1142:void editClick(android.view.View) -> editClick
-    1314:1402:android.view.View getGridChildView(int) -> getGridChildView
-    1406:1413:java.util.List getExpressionRes(int) -> getExpressionRes
-    1419:1435:void onDestroy() -> onDestroy
-    1439:1441:void onResume() -> onResume
-    1445:1462:void onPause() -> onPause
-    1468:1473:void hideKeyboard() -> hideKeyboard
-    1482:1488:void addUserToBlacklist(java.lang.String) -> addUserToBlacklist
-    1496:1497:void back(android.view.View) -> back
-    1504:1511:void onBackPressed() -> onBackPressed
-    1573:1581:void onNewIntent(android.content.Intent) -> onNewIntent
-    1623:1623:java.lang.String getToChatUsername() -> getToChatUsername
-    1629:1667:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    1673:1706:void onLongClick(int,android.view.View) -> onLongClick
+    376:451:void setUpView() -> setUpView
+    459:485:void forwardMessage(java.lang.String) -> forwardMessage
+    491:649:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    659:683:void onClick(android.view.View) -> onClick
+    689:701:void selectPicFromCamera() -> selectPicFromCamera
+    707:719:void selectFileFromLocal() -> selectFileFromLocal
+    726:736:void selectPicFromLocal() -> selectPicFromLocal
+    748:776:void sendText(java.lang.String) -> sendText
+    788:817:void sendVoice(java.lang.String,java.lang.String,java.lang.String,boolean) -> sendVoice
+    825:849:void sendPicture(java.lang.String) -> sendPicture
+    856:885:void sendVideo(java.lang.String,java.lang.String,int) -> sendVideo
+    894:922:void sendPicByUri(android.net.Uri) -> sendPicByUri
+    935:954:void sendLocationMsg(double,double,java.lang.String,java.lang.String) -> sendLocationMsg
+    962:1011:void sendFile(android.net.Uri) -> sendFile
+    1017:1024:void resendMessage() -> resendMessage
+    1032:1045:void setModeVoice(android.view.View) -> setModeVoice
+    1062:1078:void setModeKeyboard(android.view.View) -> setModeKeyboard
+    1086:1091:void emptyHistory(android.view.View) -> emptyHistory
+    1102:1102:void toGroupDetails(android.view.View) -> toGroupDetails
+    1110:1128:void more(android.view.View) -> more
+    1136:1143:void editClick(android.view.View) -> editClick
+    1315:1403:android.view.View getGridChildView(int) -> getGridChildView
+    1407:1414:java.util.List getExpressionRes(int) -> getExpressionRes
+    1420:1436:void onDestroy() -> onDestroy
+    1440:1442:void onResume() -> onResume
+    1446:1463:void onPause() -> onPause
+    1469:1474:void hideKeyboard() -> hideKeyboard
+    1483:1489:void addUserToBlacklist(java.lang.String) -> addUserToBlacklist
+    1497:1498:void back(android.view.View) -> back
+    1505:1512:void onBackPressed() -> onBackPressed
+    1574:1582:void onNewIntent(android.content.Intent) -> onNewIntent
+    1624:1624:java.lang.String getToChatUsername() -> getToChatUsername
+    1630:1668:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    1675:1709:void onLongClick(int,android.view.View,android.view.View) -> onLongClick
     150:150:android.widget.ImageView access$0(com.interestfriend.activity.ChatActivity) -> access$0
     166:166:android.graphics.drawable.Drawable[] access$1(com.interestfriend.activity.ChatActivity) -> access$1
     158:158:android.support.v4.view.ViewPager access$2(com.interestfriend.activity.ChatActivity) -> access$2
@@ -14455,11 +14456,11 @@ com.interestfriend.activity.ChatActivity -> com.interestfriend.activity.ChatActi
     174:174:com.interestfriend.adapter.ChatAdapter access$4(com.interestfriend.activity.ChatActivity) -> access$4
     172:172:java.lang.String access$5(com.interestfriend.activity.ChatActivity) -> access$5
     152:152:android.widget.ListView access$6(com.interestfriend.activity.ChatActivity) -> access$6
-    1218:1218:android.os.PowerManager$WakeLock access$7(com.interestfriend.activity.ChatActivity) -> access$7
+    1219:1219:android.os.PowerManager$WakeLock access$7(com.interestfriend.activity.ChatActivity) -> access$7
     149:149:android.view.View access$8(com.interestfriend.activity.ChatActivity) -> access$8
     151:151:android.widget.TextView access$9(com.interestfriend.activity.ChatActivity) -> access$9
     173:173:com.easemob.util.VoiceRecorder access$10(com.interestfriend.activity.ChatActivity) -> access$10
-    785:785:void access$11(com.interestfriend.activity.ChatActivity,java.lang.String,java.lang.String,java.lang.String,boolean) -> access$11
+    786:786:void access$11(com.interestfriend.activity.ChatActivity,java.lang.String,java.lang.String,java.lang.String,boolean) -> access$11
     184:184:boolean access$12(com.interestfriend.activity.ChatActivity) -> access$12
     186:186:boolean access$13(com.interestfriend.activity.ChatActivity) -> access$13
     183:183:android.widget.ProgressBar access$14(com.interestfriend.activity.ChatActivity) -> access$14
@@ -14467,7 +14468,7 @@ com.interestfriend.activity.ChatActivity -> com.interestfriend.activity.ChatActi
     168:168:com.easemob.chat.EMConversation access$16(com.interestfriend.activity.ChatActivity) -> access$16
     186:186:void access$17(com.interestfriend.activity.ChatActivity,boolean) -> access$17
     184:184:void access$18(com.interestfriend.activity.ChatActivity,boolean) -> access$18
-    1313:1313:android.view.View access$19(com.interestfriend.activity.ChatActivity,int) -> access$19
+    1314:1314:android.view.View access$19(com.interestfriend.activity.ChatActivity,int) -> access$19
     206:206:android.os.Handler access$20(com.interestfriend.activity.ChatActivity) -> access$20
     161:161:android.view.View access$21(com.interestfriend.activity.ChatActivity) -> access$21
     180:180:android.widget.ImageView access$22(com.interestfriend.activity.ChatActivity) -> access$22
@@ -14477,7 +14478,7 @@ com.interestfriend.activity.ChatActivity -> com.interestfriend.activity.ChatActi
     187:187:android.widget.Button access$26(com.interestfriend.activity.ChatActivity) -> access$26
     156:156:android.view.View access$27(com.interestfriend.activity.ChatActivity) -> access$27
     197:197:java.util.List access$28(com.interestfriend.activity.ChatActivity) -> access$28
-    1467:1467:void access$29(com.interestfriend.activity.ChatActivity) -> access$29
+    1468:1468:void access$29(com.interestfriend.activity.ChatActivity) -> access$29
     110:110:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type() -> $SWITCH_TABLE$com$easemob$chat$EMMessage$Type
     154:154:android.view.View access$31(com.interestfriend.activity.ChatActivity) -> access$31
     153:153:android.widget.EditText access$32(com.interestfriend.activity.ChatActivity) -> access$32
@@ -14488,20 +14489,20 @@ com.interestfriend.activity.ChatActivity$1 -> com.interestfriend.activity.b:
 com.interestfriend.activity.ChatActivity$10 -> com.interestfriend.activity.c:
     com.interestfriend.activity.ChatActivity this$0 -> a
     com.interestfriend.adapter.ExpressionAdapter val$expressionAdapter -> b
-    1352:1400:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    1353:1401:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.interestfriend.activity.ChatActivity$11 -> com.interestfriend.activity.d:
     com.interestfriend.activity.ChatActivity this$0 -> a
     int val$position_message -> b
-    1679:1703:void onclick(int) -> a
+    1682:1706:void onclick(int) -> a
 com.interestfriend.activity.ChatActivity$2 -> com.interestfriend.activity.e:
     com.interestfriend.activity.ChatActivity this$0 -> a
     209:210:void handleMessage(android.os.Message) -> handleMessage
 com.interestfriend.activity.ChatActivity$3 -> com.interestfriend.activity.f:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1181:1194:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    1182:1195:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.interestfriend.activity.ChatActivity$4 -> com.interestfriend.activity.g:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1203:1216:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    1204:1217:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.interestfriend.activity.ChatActivity$5 -> com.interestfriend.activity.h:
     com.interestfriend.activity.ChatActivity this$0 -> a
     285:289:void run() -> run
@@ -14520,30 +14521,30 @@ com.interestfriend.activity.ChatActivity$8 -> com.interestfriend.activity.j:
     352:352:void onPageScrollStateChanged(int) -> onPageScrollStateChanged
 com.interestfriend.activity.ChatActivity$9 -> com.interestfriend.activity.k:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    408:414:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    409:415:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.interestfriend.activity.ChatActivity$GroupListener -> com.interestfriend.activity.ChatActivity$a:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1591:1602:void onUserRemoved(java.lang.String,java.lang.String) -> onUserRemoved
-    1607:1618:void onGroupDestroy(java.lang.String,java.lang.String) -> onGroupDestroy
-    1587:1587:com.interestfriend.activity.ChatActivity access$0(com.interestfriend.activity.ChatActivity$GroupListener) -> a
+    1592:1603:void onUserRemoved(java.lang.String,java.lang.String) -> onUserRemoved
+    1608:1619:void onGroupDestroy(java.lang.String,java.lang.String) -> onGroupDestroy
+    1588:1588:com.interestfriend.activity.ChatActivity access$0(com.interestfriend.activity.ChatActivity$GroupListener) -> a
 com.interestfriend.activity.ChatActivity$GroupListener$1 -> com.interestfriend.activity.l:
     com.interestfriend.activity.ChatActivity$GroupListener this$1 -> a
     java.lang.String val$groupId -> b
-    1593:1600:void run() -> run
+    1594:1601:void run() -> run
 com.interestfriend.activity.ChatActivity$GroupListener$2 -> com.interestfriend.activity.m:
     com.interestfriend.activity.ChatActivity$GroupListener this$1 -> a
     java.lang.String val$groupId -> b
-    1609:1616:void run() -> run
+    1610:1617:void run() -> run
 com.interestfriend.activity.ChatActivity$ListScrollListener -> com.interestfriend.activity.ChatActivity$b:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1521:1560:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
-    1566:1566:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+    1522:1561:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    1567:1567:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
 com.interestfriend.activity.ChatActivity$NewMessageBroadcastReceiver -> com.interestfriend.activity.ChatActivity$c:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1151:1172:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    1152:1173:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.interestfriend.activity.ChatActivity$PressToSpeakListen -> com.interestfriend.activity.ChatActivity$d:
     com.interestfriend.activity.ChatActivity this$0 -> a
-    1227:1302:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    1228:1303:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
 com.interestfriend.activity.ChatAllHistoryActivity -> com.interestfriend.activity.ChatAllHistoryActivity:
     android.widget.ListView listView -> a
     android.widget.TextView txt_title -> b
@@ -14592,39 +14593,39 @@ com.interestfriend.activity.CircleInfoActivity -> com.interestfriend.activity.Ci
     android.app.Dialog dialog -> x
     86:91:void onCreate(android.os.Bundle) -> onCreate
     94:100:void getIntentData() -> c
-    103:135:void initView() -> d
-    138:145:void setListener() -> e
-    148:156:void setValue() -> f
-    159:164:void setCircleLogo(android.graphics.Bitmap,java.lang.String) -> a
-    167:190:void upDateLogo() -> g
-    193:202:void showLogo() -> h
-    205:219:void joinDialog() -> i
-    222:250:void joinCircle() -> j
-    254:295:void onClick(android.view.View) -> onClick
-    299:362:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    365:378:void intentMemberInfoActivity() -> k
-    382:384:void menu1_select() -> a
-    388:390:void menu2_select() -> b
+    103:134:void initView() -> d
+    137:146:void setListener() -> e
+    149:157:void setValue() -> f
+    160:165:void setCircleLogo(android.graphics.Bitmap,java.lang.String) -> a
+    168:191:void upDateLogo() -> g
+    194:203:void showLogo() -> h
+    206:220:void joinDialog() -> i
+    223:251:void joinCircle() -> j
+    255:300:void onClick(android.view.View) -> onClick
+    304:367:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    370:383:void intentMemberInfoActivity() -> k
+    387:389:void menu1_select() -> a
+    393:395:void menu2_select() -> b
     82:82:android.app.Dialog access$0(com.interestfriend.activity.CircleInfoActivity) -> a
     68:68:com.interestfriend.data.Circles access$1(com.interestfriend.activity.CircleInfoActivity) -> b
-    221:221:void access$2(com.interestfriend.activity.CircleInfoActivity) -> c
-    204:204:void access$3(com.interestfriend.activity.CircleInfoActivity) -> d
+    222:222:void access$2(com.interestfriend.activity.CircleInfoActivity) -> c
+    205:205:void access$3(com.interestfriend.activity.CircleInfoActivity) -> d
 com.interestfriend.activity.CircleInfoActivity$1 -> com.interestfriend.activity.o:
     com.interestfriend.activity.CircleInfoActivity this$0 -> a
-    174:187:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    175:188:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CircleInfoActivity$2 -> com.interestfriend.activity.p:
     com.interestfriend.activity.CircleInfoActivity this$0 -> a
-    210:211:void onOKClick() -> a
-    216:216:void onCancleClick() -> b
+    211:212:void onOKClick() -> a
+    217:217:void onCancleClick() -> b
 com.interestfriend.activity.CircleInfoActivity$3 -> com.interestfriend.activity.q:
     com.interestfriend.activity.CircleInfoActivity this$0 -> a
     android.app.Dialog val$dialog -> b
-    234:247:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    235:248:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CircleInfoActivity$4 -> com.interestfriend.activity.r:
     com.interestfriend.activity.CircleInfoActivity this$0 -> a
-    276:283:void onclick(int) -> a
+    277:284:void onclick(int) -> a
 com.interestfriend.activity.CircleMemberActivity -> com.interestfriend.activity.CircleMemberActivity:
     android.widget.ImageView img_avatar -> a
     android.widget.TextView txt_register_time -> b
@@ -15649,39 +15650,44 @@ com.interestfriend.activity.SearchCirclsActivity -> com.interestfriend.activity.
     com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter adapter -> g
     java.util.List listCircles -> h
     java.lang.String category_name -> i
-    com.interestfriend.view.PullDownView mPullDownView -> j
-    int page -> k
-    63:74:void onCreate(android.os.Bundle) -> onCreate
-    77:89:void initView() -> c
+    int page -> j
+    android.view.View view_foot -> k
+    66:77:void onCreate(android.os.Bundle) -> onCreate
+    80:89:void initView() -> c
     92:97:android.view.animation.LayoutAnimationController getLayoutAni() -> d
-    101:105:void setListener() -> e
-    108:110:void setValue() -> f
-    204:209:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    213:246:void getCircleList() -> g
-    250:258:void onClick(android.view.View) -> onClick
-    263:263:void onRefresh() -> a
-    267:268:void onMore() -> b
-    58:58:com.interestfriend.view.PullDownView access$0(com.interestfriend.activity.SearchCirclsActivity) -> a
-    49:49:android.app.Dialog access$1(com.interestfriend.activity.SearchCirclsActivity) -> b
-    55:55:java.util.List access$2(com.interestfriend.activity.SearchCirclsActivity) -> c
-    51:51:com.interestfriend.data.CategoryCircleList access$3(com.interestfriend.activity.SearchCirclsActivity) -> d
-    53:53:com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter access$4(com.interestfriend.activity.SearchCirclsActivity) -> e
-    53:53:void access$5(com.interestfriend.activity.SearchCirclsActivity,com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter) -> a
-    45:45:android.widget.ListView access$6(com.interestfriend.activity.SearchCirclsActivity) -> f
-    59:59:int access$7(com.interestfriend.activity.SearchCirclsActivity) -> g
-    59:59:void access$8(com.interestfriend.activity.SearchCirclsActivity,int) -> a
+    101:128:void setListener() -> e
+    131:133:void setValue() -> f
+    227:232:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    236:270:void getCircleList() -> g
+    274:282:void onClick(android.view.View) -> onClick
+    287:287:void onRefresh() -> a
+    291:292:void onMore() -> b
+    54:54:java.util.List access$0(com.interestfriend.activity.SearchCirclsActivity) -> a
+    60:60:android.view.View access$1(com.interestfriend.activity.SearchCirclsActivity) -> b
+    234:234:void access$2(com.interestfriend.activity.SearchCirclsActivity) -> c
+    48:48:android.app.Dialog access$3(com.interestfriend.activity.SearchCirclsActivity) -> d
+    50:50:com.interestfriend.data.CategoryCircleList access$4(com.interestfriend.activity.SearchCirclsActivity) -> e
+    52:52:com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter access$5(com.interestfriend.activity.SearchCirclsActivity) -> f
+    52:52:void access$6(com.interestfriend.activity.SearchCirclsActivity,com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter) -> a
+    44:44:android.widget.ListView access$7(com.interestfriend.activity.SearchCirclsActivity) -> g
+    58:58:int access$8(com.interestfriend.activity.SearchCirclsActivity) -> h
+    58:58:void access$9(com.interestfriend.activity.SearchCirclsActivity,int) -> a
 com.interestfriend.activity.SearchCirclsActivity$1 -> com.interestfriend.activity.bd:
     com.interestfriend.activity.SearchCirclsActivity this$0 -> a
-    217:243:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    108:118:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
+    125:125:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
+com.interestfriend.activity.SearchCirclsActivity$2 -> com.interestfriend.activity.be:
+    com.interestfriend.activity.SearchCirclsActivity this$0 -> a
+    241:267:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter -> com.interestfriend.activity.SearchCirclsActivity$a:
     java.util.List list -> b
     android.content.Context mContext -> c
     com.interestfriend.activity.SearchCirclsActivity this$0 -> a
-    123:123:int getCount() -> getCount
-    128:128:java.lang.Object getItem(int) -> getItem
-    133:133:long getItemId(int) -> getItemId
-    138:189:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    146:146:int getCount() -> getCount
+    151:151:java.lang.Object getItem(int) -> getItem
+    156:156:long getItemId(int) -> getItemId
+    161:212:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder -> com.interestfriend.activity.SearchCirclsActivity$a$a:
     com.interestfriend.view.RoundAngleImageView img_circle_logo -> b
     android.widget.TextView txt_circle_name -> c
@@ -15689,16 +15695,16 @@ com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder -> c
     android.widget.TextView txt_circle_desc -> e
     android.widget.TextView txt_circle_member_num -> f
     com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter this$1 -> a
-    193:193:void access$0(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,com.interestfriend.view.RoundAngleImageView) -> a
-    194:194:void access$1(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> a
-    195:195:void access$2(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> b
-    196:196:void access$3(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> c
-    197:197:void access$4(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> d
-    194:194:android.widget.TextView access$5(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> a
-    196:196:android.widget.TextView access$6(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> b
-    197:197:android.widget.TextView access$7(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> c
-    193:193:com.interestfriend.view.RoundAngleImageView access$8(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> d
-    195:195:android.widget.TextView access$9(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> e
+    216:216:void access$0(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,com.interestfriend.view.RoundAngleImageView) -> a
+    217:217:void access$1(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> a
+    218:218:void access$2(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> b
+    219:219:void access$3(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> c
+    220:220:void access$4(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder,android.widget.TextView) -> d
+    217:217:android.widget.TextView access$5(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> a
+    219:219:android.widget.TextView access$6(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> b
+    220:220:android.widget.TextView access$7(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> c
+    216:216:com.interestfriend.view.RoundAngleImageView access$8(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> d
+    218:218:android.widget.TextView access$9(com.interestfriend.activity.SearchCirclsActivity$MyCircleAdapter$ViewHolder) -> e
 com.interestfriend.activity.SettingActivity -> com.interestfriend.activity.SettingActivity:
     android.widget.TextView txt_message_prompt -> a
     android.widget.TextView txt_feddback -> b
@@ -15717,16 +15723,16 @@ com.interestfriend.activity.SettingActivity -> com.interestfriend.activity.Setti
     156:174:void getNewVersion() -> e
     88:88:void access$0(com.interestfriend.activity.SettingActivity) -> a
     37:37:android.app.Dialog access$1(com.interestfriend.activity.SettingActivity) -> b
-com.interestfriend.activity.SettingActivity$1 -> com.interestfriend.activity.be:
+com.interestfriend.activity.SettingActivity$1 -> com.interestfriend.activity.bf:
     com.interestfriend.activity.SettingActivity this$0 -> a
     78:79:void onOKClick() -> a
     83:83:void onCancleClick() -> b
-com.interestfriend.activity.SettingActivity$2 -> com.interestfriend.activity.bf:
+com.interestfriend.activity.SettingActivity$2 -> com.interestfriend.activity.bg:
     com.interestfriend.activity.SettingActivity this$0 -> a
     95:107:void onSuccess() -> onSuccess
     112:112:void onProgress(int,java.lang.String) -> onProgress
     117:117:void onError(int,java.lang.String) -> onError
-com.interestfriend.activity.SettingActivity$3 -> com.interestfriend.activity.bg:
+com.interestfriend.activity.SettingActivity$3 -> com.interestfriend.activity.bh:
     com.interestfriend.activity.SettingActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     163:171:void getNewVersion(int,java.lang.String,java.lang.String,java.lang.String) -> a
@@ -15754,23 +15760,23 @@ com.interestfriend.activity.ShowBigImage -> com.interestfriend.activity.ShowBigI
 com.interestfriend.activity.ShowBigImage$1 -> com.interestfriend.activity.ShowBigImage$1:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     121:122:void onClick(android.view.View) -> onClick
-com.interestfriend.activity.ShowBigImage$2 -> com.interestfriend.activity.bh:
+com.interestfriend.activity.ShowBigImage$2 -> com.interestfriend.activity.bi:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     167:191:void onSuccess(java.lang.String) -> onSuccess
     194:206:void onError(java.lang.String) -> onError
     209:216:void onProgress(int) -> onProgress
     164:164:com.interestfriend.activity.ShowBigImage access$0(com.interestfriend.activity.ShowBigImage$2) -> a
-com.interestfriend.activity.ShowBigImage$2$1 -> com.interestfriend.activity.bi:
+com.interestfriend.activity.ShowBigImage$2$1 -> com.interestfriend.activity.bj:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     170:189:void run() -> run
-com.interestfriend.activity.ShowBigImage$2$2 -> com.interestfriend.activity.bj:
+com.interestfriend.activity.ShowBigImage$2$2 -> com.interestfriend.activity.bk:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     202:204:void run() -> run
-com.interestfriend.activity.ShowBigImage$2$3 -> com.interestfriend.activity.bk:
+com.interestfriend.activity.ShowBigImage$2$3 -> com.interestfriend.activity.bl:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     int val$progress -> b
     213:214:void run() -> run
-com.interestfriend.activity.ShowBigImage$3 -> com.interestfriend.activity.bl:
+com.interestfriend.activity.ShowBigImage$3 -> com.interestfriend.activity.bm:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     com.easemob.cloud.HttpFileManager val$httpFileMgr -> b
     java.lang.String val$remoteFilePath -> c
@@ -15783,26 +15789,26 @@ com.interestfriend.activity.ShowNormalFileActivity -> com.interestfriend.activit
     26:91:void onCreate(android.os.Bundle) -> onCreate
     22:22:java.io.File access$0(com.interestfriend.activity.ShowNormalFileActivity) -> a
     21:21:android.widget.ProgressBar access$1(com.interestfriend.activity.ShowNormalFileActivity) -> b
-com.interestfriend.activity.ShowNormalFileActivity$1 -> com.interestfriend.activity.bm:
+com.interestfriend.activity.ShowNormalFileActivity$1 -> com.interestfriend.activity.bn:
     com.interestfriend.activity.ShowNormalFileActivity this$0 -> a
     com.easemob.chat.FileMessageBody val$messageBody -> b
     java.util.Map val$maps -> c
     45:88:void run() -> run
     43:43:com.interestfriend.activity.ShowNormalFileActivity access$0(com.interestfriend.activity.ShowNormalFileActivity$1) -> a
-com.interestfriend.activity.ShowNormalFileActivity$1$1 -> com.interestfriend.activity.bn:
+com.interestfriend.activity.ShowNormalFileActivity$1$1 -> com.interestfriend.activity.bo:
     com.interestfriend.activity.ShowNormalFileActivity$1 this$1 -> a
     55:62:void onSuccess(java.lang.String) -> onSuccess
     66:71:void onProgress(int) -> onProgress
     75:85:void onError(java.lang.String) -> onError
     51:51:com.interestfriend.activity.ShowNormalFileActivity$1 access$0(com.interestfriend.activity.ShowNormalFileActivity$1$1) -> a
-com.interestfriend.activity.ShowNormalFileActivity$1$1$1 -> com.interestfriend.activity.bo:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$1 -> com.interestfriend.activity.bp:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     57:60:void run() -> run
-com.interestfriend.activity.ShowNormalFileActivity$1$1$2 -> com.interestfriend.activity.bp:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$2 -> com.interestfriend.activity.bq:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     int val$progress -> b
     68:69:void run() -> run
-com.interestfriend.activity.ShowNormalFileActivity$1$1$3 -> com.interestfriend.activity.bq:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$3 -> com.interestfriend.activity.br:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     java.lang.String val$msg -> b
     77:83:void run() -> run
@@ -15817,23 +15823,23 @@ com.interestfriend.activity.ShowVideoActivity -> com.interestfriend.activity.Sho
     35:35:android.widget.RelativeLayout access$0(com.interestfriend.activity.ShowVideoActivity) -> a
     36:36:android.widget.ProgressBar access$1(com.interestfriend.activity.ShowVideoActivity) -> b
     37:37:java.lang.String access$2(com.interestfriend.activity.ShowVideoActivity) -> c
-com.interestfriend.activity.ShowVideoActivity$1 -> com.interestfriend.activity.br:
+com.interestfriend.activity.ShowVideoActivity$1 -> com.interestfriend.activity.bs:
     com.interestfriend.activity.ShowVideoActivity this$0 -> a
     103:118:void onSuccess(java.lang.String) -> onSuccess
     122:132:void onProgress(int) -> onProgress
     136:149:void onError(java.lang.String) -> onError
     99:99:com.interestfriend.activity.ShowVideoActivity access$0(com.interestfriend.activity.ShowVideoActivity$1) -> a
-com.interestfriend.activity.ShowVideoActivity$1$1 -> com.interestfriend.activity.bs:
+com.interestfriend.activity.ShowVideoActivity$1$1 -> com.interestfriend.activity.bt:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     107:115:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$1$2 -> com.interestfriend.activity.bt:
+com.interestfriend.activity.ShowVideoActivity$1$2 -> com.interestfriend.activity.bu:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     int val$progress -> b
     127:129:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$1$3 -> com.interestfriend.activity.bu:
+com.interestfriend.activity.ShowVideoActivity$1$3 -> com.interestfriend.activity.bv:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     146:146:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$2 -> com.interestfriend.activity.bv:
+com.interestfriend.activity.ShowVideoActivity$2 -> com.interestfriend.activity.bw:
     com.interestfriend.activity.ShowVideoActivity this$0 -> a
     com.easemob.cloud.HttpFileManager val$httpFileMgr -> b
     java.lang.String val$remoteUrl -> c
@@ -15854,7 +15860,7 @@ com.interestfriend.activity.UpdateCircleDiscriptionActivity -> com.interestfrien
     83:98:void onClick(android.view.View) -> onClick
     28:28:android.app.Dialog access$0(com.interestfriend.activity.UpdateCircleDiscriptionActivity) -> a
     25:25:android.widget.EditText access$1(com.interestfriend.activity.UpdateCircleDiscriptionActivity) -> b
-com.interestfriend.activity.UpdateCircleDiscriptionActivity$1 -> com.interestfriend.activity.bw:
+com.interestfriend.activity.UpdateCircleDiscriptionActivity$1 -> com.interestfriend.activity.bx:
     com.interestfriend.activity.UpdateCircleDiscriptionActivity this$0 -> a
     61:75:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
@@ -15877,7 +15883,7 @@ com.interestfriend.activity.UpdateUserInfoActivity -> com.interestfriend.activit
     35:35:android.app.Dialog access$0(com.interestfriend.activity.UpdateUserInfoActivity) -> a
     39:39:int access$1(com.interestfriend.activity.UpdateUserInfoActivity) -> b
     37:37:com.interestfriend.data.CircleMember access$2(com.interestfriend.activity.UpdateUserInfoActivity) -> c
-com.interestfriend.activity.UpdateUserInfoActivity$1 -> com.interestfriend.activity.bx:
+com.interestfriend.activity.UpdateUserInfoActivity$1 -> com.interestfriend.activity.by:
     com.interestfriend.activity.UpdateUserInfoActivity this$0 -> a
     java.lang.String val$value -> b
     105:119:void taskFinish(com.interestfriend.data.enums.RetError) -> a
@@ -15948,15 +15954,15 @@ com.interestfriend.activity.VideoCommentActivity -> com.interestfriend.activity.
 com.interestfriend.activity.VideoCommentActivity$1 -> com.interestfriend.activity.VideoCommentActivity$1:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     155:168:void onClick(android.view.View) -> onClick
-com.interestfriend.activity.VideoCommentActivity$2 -> com.interestfriend.activity.by:
+com.interestfriend.activity.VideoCommentActivity$2 -> com.interestfriend.activity.bz:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     176:177:void run() -> run
-com.interestfriend.activity.VideoCommentActivity$3 -> com.interestfriend.activity.bz:
+com.interestfriend.activity.VideoCommentActivity$3 -> com.interestfriend.activity.ca:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     com.interestfriend.data.VideoComment val$comment -> b
     219:237:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.VideoCommentActivity$4 -> com.interestfriend.activity.ca:
+com.interestfriend.activity.VideoCommentActivity$4 -> com.interestfriend.activity.cb:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     int val$position -> c
@@ -16016,34 +16022,34 @@ com.interestfriend.activity.VoiceCallActivity -> com.interestfriend.activity.Voi
     70:70:boolean access$11(com.interestfriend.activity.VoiceCallActivity) -> i
     66:66:boolean access$12(com.interestfriend.activity.VoiceCallActivity) -> j
     56:56:int[] $SWITCH_TABLE$com$interestfriend$activity$VoiceCallActivity$CallingState() -> d
-com.interestfriend.activity.VoiceCallActivity$1 -> com.interestfriend.activity.cb:
+com.interestfriend.activity.VoiceCallActivity$1 -> com.interestfriend.activity.cc:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     144:145:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$2 -> com.interestfriend.activity.cc:
+com.interestfriend.activity.VoiceCallActivity$2 -> com.interestfriend.activity.cd:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     154:155:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3 -> com.interestfriend.activity.cd:
+com.interestfriend.activity.VoiceCallActivity$3 -> com.interestfriend.activity.ce:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState -> b
     180:314:void onCallStateChanged(com.easemob.chat.EMCallStateChangeListener$CallState,com.easemob.chat.EMCallStateChangeListener$CallError) -> onCallStateChanged
     174:174:int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState() -> a
     174:174:com.interestfriend.activity.VoiceCallActivity access$1(com.interestfriend.activity.VoiceCallActivity$3) -> a
-com.interestfriend.activity.VoiceCallActivity$3$1 -> com.interestfriend.activity.ce:
+com.interestfriend.activity.VoiceCallActivity$3$1 -> com.interestfriend.activity.cf:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     189:191:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$2 -> com.interestfriend.activity.cf:
+com.interestfriend.activity.VoiceCallActivity$3$2 -> com.interestfriend.activity.cg:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     202:204:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$3 -> com.interestfriend.activity.cg:
+com.interestfriend.activity.VoiceCallActivity$3$3 -> com.interestfriend.activity.ch:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     216:229:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$4 -> com.interestfriend.activity.ch:
+com.interestfriend.activity.VoiceCallActivity$3$4 -> com.interestfriend.activity.ci:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     com.easemob.chat.EMCallStateChangeListener$CallError val$fError -> b
     238:254:void postDelayedCloseMsg() -> a
     258:304:void run() -> run
     236:236:com.interestfriend.activity.VoiceCallActivity$3 access$0(com.interestfriend.activity.VoiceCallActivity$3$4) -> a
-com.interestfriend.activity.VoiceCallActivity$3$4$1 -> com.interestfriend.activity.ci:
+com.interestfriend.activity.VoiceCallActivity$3$4$1 -> com.interestfriend.activity.cj:
     com.interestfriend.activity.VoiceCallActivity$3$4 this$2 -> a
     242:251:void run() -> run
 com.interestfriend.activity.VoiceCallActivity$CallingState -> com.interestfriend.activity.VoiceCallActivity$a:
@@ -16073,7 +16079,7 @@ com.interestfriend.activity.WelcomActivity -> com.interestfriend.activity.Welcom
     27:27:java.util.List access$1(com.interestfriend.activity.WelcomActivity) -> b
     24:24:android.widget.Button access$2(com.interestfriend.activity.WelcomActivity) -> c
     23:23:android.widget.Button access$3(com.interestfriend.activity.WelcomActivity) -> d
-com.interestfriend.activity.WelcomActivity$1 -> com.interestfriend.activity.cj:
+com.interestfriend.activity.WelcomActivity$1 -> com.interestfriend.activity.ck:
     com.interestfriend.activity.WelcomActivity this$0 -> a
     75:87:void onPageSelected(int) -> onPageSelected
     92:92:void onPageScrolled(int,float,int) -> onPageScrolled
@@ -16086,7 +16092,7 @@ com.interestfriend.activity.WelcomActivity$MyPagerAdapter -> com.interestfriend.
     146:148:void destroyItem(android.view.View,int,java.lang.Object) -> destroyItem
 com.interestfriend.activity.WelcomLoadingActivity -> com.interestfriend.activity.WelcomLoadingActivity:
     17:41:void onCreate(android.os.Bundle) -> onCreate
-com.interestfriend.activity.WelcomLoadingActivity$1 -> com.interestfriend.activity.ck:
+com.interestfriend.activity.WelcomLoadingActivity$1 -> com.interestfriend.activity.cl:
     com.interestfriend.activity.WelcomLoadingActivity this$0 -> a
     25:38:void run() -> run
 com.interestfriend.activity.imagefactory.ImageFactory -> com.interestfriend.activity.imagefactory.a:
@@ -16189,173 +16195,170 @@ com.interestfriend.adapter.ChatAdapter -> com.interestfriend.adapter.ChatAdapter
     com.easemob.chat.EMConversation conversation -> v
     android.content.Context context -> w
     int user_id -> x
-    com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick mCallBack -> y
+    com.interestfriend.adapter.ChatAdapter$MessageOnLongClick mCallBack -> y
     int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type -> z
     int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status -> A
-    131:131:int getCount() -> getCount
-    138:141:void refresh() -> a
-    144:144:com.easemob.chat.EMMessage getItem(int) -> a
-    148:148:long getItemId(int) -> getItemId
-    155:186:int getItemViewType(int) -> getItemViewType
-    190:190:int getViewTypeCount() -> getViewTypeCount
-    194:222:android.view.View createViewByMessage(com.easemob.chat.EMMessage,int) -> a
-    230:534:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    540:541:void setmCallBack(com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick) -> a
-    552:585:void handleTextMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int) -> a
-    596:599:void handleVoiceCallMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int) -> b
-    611:704:void handleImageMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> a
-    717:831:void handleVideoMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> b
-    843:915:void handleVoiceMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> c
-    927:1027:void handleFileMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> d
-    1039:1066:void handleLocationMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> e
-    1076:1099:void sendMsgInBackground(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> a
-    1107:1149:void showDownloadImageProgress(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> b
-    1157:1210:void sendPictureMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> c
-    1220:1252:void updateSendedView(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> d
-    1270:1319:boolean showImageView(java.lang.String,android.widget.ImageView,java.lang.String,java.lang.String,com.easemob.chat.EMMessage) -> a
-    1337:1376:void showVideoThumbView(java.lang.String,android.widget.ImageView,java.lang.String,com.easemob.chat.EMMessage) -> a
+    129:129:int getCount() -> getCount
+    136:139:void refresh() -> a
+    142:142:com.easemob.chat.EMMessage getItem(int) -> a
+    146:146:long getItemId(int) -> getItemId
+    153:184:int getItemViewType(int) -> getItemViewType
+    188:188:int getViewTypeCount() -> getViewTypeCount
+    192:220:android.view.View createViewByMessage(com.easemob.chat.EMMessage,int) -> a
+    228:532:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    544:568:void handleTextMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int) -> a
+    579:582:void handleVoiceCallMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int) -> b
+    594:687:void handleImageMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> a
+    700:814:void handleVideoMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> b
+    826:898:void handleVoiceMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> c
+    910:1010:void handleFileMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> d
+    1022:1049:void handleLocationMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder,int,android.view.View) -> e
+    1059:1082:void sendMsgInBackground(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> a
+    1090:1132:void showDownloadImageProgress(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> b
+    1140:1193:void sendPictureMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> c
+    1203:1235:void updateSendedView(com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> d
+    1253:1302:boolean showImageView(java.lang.String,android.widget.ImageView,java.lang.String,java.lang.String,com.easemob.chat.EMMessage) -> a
+    1320:1359:void showVideoThumbView(java.lang.String,android.widget.ImageView,java.lang.String,com.easemob.chat.EMMessage) -> a
+    1413:1414:void setmCallBack(com.interestfriend.adapter.ChatAdapter$MessageOnLongClick) -> a
     1:1:java.lang.Object getItem(int) -> getItem
-    112:112:android.content.Context access$1(com.interestfriend.adapter.ChatAdapter) -> a
-    107:107:android.app.Activity access$2(com.interestfriend.adapter.ChatAdapter) -> b
-    82:82:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type() -> b
-    537:537:com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick access$4(com.interestfriend.adapter.ChatAdapter) -> c
-    82:82:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status() -> c
-    1218:1218:void access$6(com.interestfriend.adapter.ChatAdapter,com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> a
+    110:110:android.content.Context access$1(com.interestfriend.adapter.ChatAdapter) -> a
+    105:105:android.app.Activity access$2(com.interestfriend.adapter.ChatAdapter) -> b
+    80:80:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type() -> b
+    80:80:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status() -> c
+    1201:1201:void access$5(com.interestfriend.adapter.ChatAdapter,com.easemob.chat.EMMessage,com.interestfriend.adapter.ChatAdapter$ViewHolder) -> a
 com.interestfriend.adapter.ChatAdapter$1 -> com.interestfriend.adapter.ChatAdapter$1:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     int val$position -> b
     com.easemob.chat.EMMessage val$message -> c
-    455:481:void onClick(android.view.View) -> onClick
+    453:479:void onClick(android.view.View) -> onClick
 com.interestfriend.adapter.ChatAdapter$10 -> com.interestfriend.adapter.a:
-    com.interestfriend.adapter.ChatAdapter this$0 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    1169:1177:void onSuccess() -> onSuccess
-    1181:1195:void onError(int,java.lang.String) -> onError
-    1199:1204:void onProgress(int,java.lang.String) -> onProgress
-    1165:1165:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$10) -> a
-com.interestfriend.adapter.ChatAdapter$10$1 -> com.interestfriend.adapter.b:
-    com.interestfriend.adapter.ChatAdapter$10 this$1 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    1173:1175:void run() -> run
-com.interestfriend.adapter.ChatAdapter$10$2 -> com.interestfriend.adapter.c:
-    com.interestfriend.adapter.ChatAdapter$10 this$1 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    1183:1193:void run() -> run
-com.interestfriend.adapter.ChatAdapter$10$3 -> com.interestfriend.adapter.d:
-    com.interestfriend.adapter.ChatAdapter$10 this$1 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    int val$progress -> c
-    1201:1202:void run() -> run
-com.interestfriend.adapter.ChatAdapter$11 -> com.interestfriend.adapter.e:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> c
-    1224:1250:void run() -> run
-com.interestfriend.adapter.ChatAdapter$12 -> com.interestfriend.adapter.ChatAdapter$12:
+    1207:1233:void run() -> run
+com.interestfriend.adapter.ChatAdapter$11 -> com.interestfriend.adapter.ChatAdapter$11:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     java.lang.String val$localFullSizePath -> b
     com.easemob.chat.EMMessage val$message -> c
     java.lang.String val$remote -> d
-    1281:1312:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.ChatAdapter$13 -> com.interestfriend.adapter.ChatAdapter$13:
+    1264:1295:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.ChatAdapter$12 -> com.interestfriend.adapter.ChatAdapter$12:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
-    1346:1368:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.ChatAdapter$2 -> com.interestfriend.adapter.f:
-    com.interestfriend.adapter.ChatAdapter this$0 -> a
-    int val$position -> b
-    561:564:boolean onLongClick(android.view.View) -> onLongClick
-com.interestfriend.adapter.ChatAdapter$3 -> com.interestfriend.adapter.g:
+    1329:1351:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.ChatAdapter$2 -> com.interestfriend.adapter.b:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    670:698:void run() -> run
-    666:666:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$3) -> a
-com.interestfriend.adapter.ChatAdapter$3$1 -> com.interestfriend.adapter.h:
+    653:681:void run() -> run
+    649:649:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$2) -> a
+com.interestfriend.adapter.ChatAdapter$2$1 -> com.interestfriend.adapter.c:
+    com.interestfriend.adapter.ChatAdapter$2 this$1 -> a
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    com.easemob.chat.EMMessage val$message -> c
+    java.util.Timer val$timer -> d
+    655:678:void run() -> run
+com.interestfriend.adapter.ChatAdapter$3 -> com.interestfriend.adapter.d:
+    com.interestfriend.adapter.ChatAdapter this$0 -> a
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    com.easemob.chat.EMMessage val$message -> c
+    java.util.Timer val$timer -> d
+    775:805:void run() -> run
+    771:771:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$3) -> a
+com.interestfriend.adapter.ChatAdapter$3$1 -> com.interestfriend.adapter.e:
     com.interestfriend.adapter.ChatAdapter$3 this$1 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    672:695:void run() -> run
-com.interestfriend.adapter.ChatAdapter$4 -> com.interestfriend.adapter.i:
+    779:802:void run() -> run
+com.interestfriend.adapter.ChatAdapter$4 -> com.interestfriend.adapter.f:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    com.easemob.chat.EMMessage val$message -> c
-    java.util.Timer val$timer -> d
-    792:822:void run() -> run
-    788:788:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$4) -> a
-com.interestfriend.adapter.ChatAdapter$4$1 -> com.interestfriend.adapter.j:
+    847:856:void onSuccess() -> onSuccess
+    860:860:void onProgress(int,java.lang.String) -> onProgress
+    864:872:void onError(int,java.lang.String) -> onError
+    843:843:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$4) -> a
+com.interestfriend.adapter.ChatAdapter$4$1 -> com.interestfriend.adapter.g:
     com.interestfriend.adapter.ChatAdapter$4 this$1 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    com.easemob.chat.EMMessage val$message -> c
-    java.util.Timer val$timer -> d
-    796:819:void run() -> run
-com.interestfriend.adapter.ChatAdapter$5 -> com.interestfriend.adapter.k:
-    com.interestfriend.adapter.ChatAdapter this$0 -> a
+    851:853:void run() -> run
+com.interestfriend.adapter.ChatAdapter$4$2 -> com.interestfriend.adapter.h:
+    com.interestfriend.adapter.ChatAdapter$4 this$1 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    864:873:void onSuccess() -> onSuccess
-    877:877:void onProgress(int,java.lang.String) -> onProgress
-    881:889:void onError(int,java.lang.String) -> onError
-    860:860:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$5) -> a
-com.interestfriend.adapter.ChatAdapter$5$1 -> com.interestfriend.adapter.l:
-    com.interestfriend.adapter.ChatAdapter$5 this$1 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    868:870:void run() -> run
-com.interestfriend.adapter.ChatAdapter$5$2 -> com.interestfriend.adapter.m:
-    com.interestfriend.adapter.ChatAdapter$5 this$1 -> a
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
-    885:886:void run() -> run
-com.interestfriend.adapter.ChatAdapter$6 -> com.interestfriend.adapter.ChatAdapter$6:
+    868:869:void run() -> run
+com.interestfriend.adapter.ChatAdapter$5 -> com.interestfriend.adapter.ChatAdapter$5:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     java.lang.String val$filePath -> b
     com.easemob.chat.NormalFileMessageBody val$fileMessageBody -> c
     com.easemob.chat.EMMessage val$message -> d
-    937:958:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.ChatAdapter$7 -> com.interestfriend.adapter.n:
+    920:941:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.ChatAdapter$6 -> com.interestfriend.adapter.i:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    989:1019:void run() -> run
-    985:985:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$7) -> a
-com.interestfriend.adapter.ChatAdapter$7$1 -> com.interestfriend.adapter.o:
-    com.interestfriend.adapter.ChatAdapter$7 this$1 -> a
+    972:1002:void run() -> run
+    968:968:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$6) -> a
+com.interestfriend.adapter.ChatAdapter$6$1 -> com.interestfriend.adapter.j:
+    com.interestfriend.adapter.ChatAdapter$6 this$1 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    993:1016:void run() -> run
-com.interestfriend.adapter.ChatAdapter$8 -> com.interestfriend.adapter.p:
+    976:999:void run() -> run
+com.interestfriend.adapter.ChatAdapter$7 -> com.interestfriend.adapter.k:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> c
-    1083:1085:void onSuccess() -> onSuccess
-    1089:1091:void onError(int,java.lang.String) -> onError
-    1095:1095:void onProgress(int,java.lang.String) -> onProgress
-com.interestfriend.adapter.ChatAdapter$9 -> com.interestfriend.adapter.q:
+    1066:1068:void onSuccess() -> onSuccess
+    1072:1074:void onError(int,java.lang.String) -> onError
+    1078:1078:void onProgress(int,java.lang.String) -> onProgress
+com.interestfriend.adapter.ChatAdapter$8 -> com.interestfriend.adapter.l:
     com.interestfriend.adapter.ChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> c
-    1116:1127:void onSuccess() -> onSuccess
-    1132:1132:void onError(int,java.lang.String) -> onError
-    1136:1146:void onProgress(int,java.lang.String) -> onProgress
-    1112:1112:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$9) -> a
-com.interestfriend.adapter.ChatAdapter$9$1 -> com.interestfriend.adapter.r:
+    1099:1110:void onSuccess() -> onSuccess
+    1115:1115:void onError(int,java.lang.String) -> onError
+    1119:1129:void onProgress(int,java.lang.String) -> onProgress
+    1095:1095:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$8) -> a
+com.interestfriend.adapter.ChatAdapter$8$1 -> com.interestfriend.adapter.m:
+    com.interestfriend.adapter.ChatAdapter$8 this$1 -> a
+    com.easemob.chat.EMMessage val$message -> b
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> c
+    1103:1108:void run() -> run
+com.interestfriend.adapter.ChatAdapter$8$2 -> com.interestfriend.adapter.n:
+    com.interestfriend.adapter.ChatAdapter$8 this$1 -> a
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    int val$progress -> c
+    1123:1125:void run() -> run
+com.interestfriend.adapter.ChatAdapter$9 -> com.interestfriend.adapter.o:
+    com.interestfriend.adapter.ChatAdapter this$0 -> a
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    1152:1160:void onSuccess() -> onSuccess
+    1164:1178:void onError(int,java.lang.String) -> onError
+    1182:1187:void onProgress(int,java.lang.String) -> onProgress
+    1148:1148:com.interestfriend.adapter.ChatAdapter access$0(com.interestfriend.adapter.ChatAdapter$9) -> a
+com.interestfriend.adapter.ChatAdapter$9$1 -> com.interestfriend.adapter.p:
     com.interestfriend.adapter.ChatAdapter$9 this$1 -> a
-    com.easemob.chat.EMMessage val$message -> b
-    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> c
-    1120:1125:void run() -> run
-com.interestfriend.adapter.ChatAdapter$9$2 -> com.interestfriend.adapter.s:
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    1156:1158:void run() -> run
+com.interestfriend.adapter.ChatAdapter$9$2 -> com.interestfriend.adapter.q:
+    com.interestfriend.adapter.ChatAdapter$9 this$1 -> a
+    com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
+    1166:1176:void run() -> run
+com.interestfriend.adapter.ChatAdapter$9$3 -> com.interestfriend.adapter.r:
     com.interestfriend.adapter.ChatAdapter$9 this$1 -> a
     com.interestfriend.adapter.ChatAdapter$ViewHolder val$holder -> b
     int val$progress -> c
-    1140:1142:void run() -> run
+    1184:1185:void run() -> run
 com.interestfriend.adapter.ChatAdapter$MapClickListener -> com.interestfriend.adapter.ChatAdapter$MapClickListener:
     com.easemob.util.LatLng location -> a
     java.lang.String address -> b
     com.interestfriend.adapter.ChatAdapter this$0 -> c
-    1418:1423:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.ChatAdapter$ViewHolder -> com.interestfriend.adapter.ChatAdapter$a:
+    1401:1406:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.ChatAdapter$MessageOnLongClick -> com.interestfriend.adapter.ChatAdapter$a:
+    void onLongClick(int,android.view.View,android.view.View) -> onLongClick
+com.interestfriend.adapter.ChatAdapter$ViewHolder -> com.interestfriend.adapter.ChatAdapter$b:
     android.widget.ImageView iv -> a
     android.widget.TextView tv -> b
     android.widget.ProgressBar pb -> c
@@ -16373,7 +16376,7 @@ com.interestfriend.adapter.ChatAdapter$ViewHolder -> com.interestfriend.adapter.
     android.widget.TextView tv_file_name -> o
     android.widget.TextView tv_file_size -> p
     android.widget.TextView tv_file_download_state -> q
-com.interestfriend.adapter.ChatAllHistoryAdapter -> com.interestfriend.adapter.t:
+com.interestfriend.adapter.ChatAllHistoryAdapter -> com.interestfriend.adapter.s:
     android.view.LayoutInflater inflater -> a
     android.content.Context mContext -> b
     int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type -> c
@@ -16385,7 +16388,7 @@ com.interestfriend.adapter.ChatAllHistoryAdapter$1 -> com.interestfriend.adapter
     com.interestfriend.adapter.ChatAllHistoryAdapter this$0 -> a
     com.easemob.chat.EMConversation val$conversation -> b
     191:196:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.ChatAllHistoryAdapter$ViewHolder -> com.interestfriend.adapter.t$a:
+com.interestfriend.adapter.ChatAllHistoryAdapter$ViewHolder -> com.interestfriend.adapter.s$a:
     android.widget.TextView name -> a
     android.widget.TextView unreadLabel -> b
     android.widget.TextView message -> c
@@ -16394,7 +16397,7 @@ com.interestfriend.adapter.ChatAllHistoryAdapter$ViewHolder -> com.interestfrien
     android.view.View msgState -> f
     android.widget.RelativeLayout list_item_layout -> g
     android.widget.ImageView img_del -> h
-com.interestfriend.adapter.ChatGridViewAdapter -> com.interestfriend.adapter.u:
+com.interestfriend.adapter.ChatGridViewAdapter -> com.interestfriend.adapter.t:
     android.content.Context mContext -> a
     java.util.List list -> b
     int type -> c
@@ -16403,11 +16406,11 @@ com.interestfriend.adapter.ChatGridViewAdapter -> com.interestfriend.adapter.u:
     63:63:java.lang.Object getItem(int) -> getItem
     68:68:long getItemId(int) -> getItemId
     73:102:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.ChatGridViewAdapter$ViewHolder -> com.interestfriend.adapter.u$a:
+com.interestfriend.adapter.ChatGridViewAdapter$ViewHolder -> com.interestfriend.adapter.t$a:
     android.widget.ImageView img -> a
     android.widget.TextView txt_title -> b
     com.interestfriend.adapter.ChatGridViewAdapter this$0 -> c
-com.interestfriend.adapter.CircleMemberAdapter -> com.interestfriend.adapter.v:
+com.interestfriend.adapter.CircleMemberAdapter -> com.interestfriend.adapter.u:
     java.util.List list -> a
     android.content.Context mContext -> b
     32:32:int getCount() -> getCount
@@ -16416,7 +16419,7 @@ com.interestfriend.adapter.CircleMemberAdapter -> com.interestfriend.adapter.v:
     47:93:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
     103:117:java.lang.String getAlpha(java.lang.String) -> a
     124:146:void showAlpha(int,com.interestfriend.adapter.CircleMemberAdapter$ViewHolder) -> a
-com.interestfriend.adapter.CircleMemberAdapter$ViewHolder -> com.interestfriend.adapter.v$a:
+com.interestfriend.adapter.CircleMemberAdapter$ViewHolder -> com.interestfriend.adapter.u$a:
     com.interestfriend.view.RoundAngleImageView img_user_avatar -> b
     android.widget.TextView txt_user_name -> c
     android.widget.TextView txt_user_desc -> d
@@ -16427,14 +16430,14 @@ com.interestfriend.adapter.CircleMemberAdapter$ViewHolder -> com.interestfriend.
     150:150:android.widget.TextView access$3(com.interestfriend.adapter.CircleMemberAdapter$ViewHolder) -> a
     151:151:android.widget.TextView access$4(com.interestfriend.adapter.CircleMemberAdapter$ViewHolder) -> b
     149:149:com.interestfriend.view.RoundAngleImageView access$5(com.interestfriend.adapter.CircleMemberAdapter$ViewHolder) -> c
-com.interestfriend.adapter.CommentAdapter -> com.interestfriend.adapter.w:
+com.interestfriend.adapter.CommentAdapter -> com.interestfriend.adapter.v:
     java.util.List list -> a
     android.content.Context mContext -> b
     34:34:int getCount() -> getCount
     39:39:java.lang.Object getItem(int) -> getItem
     44:44:long getItemId(int) -> getItemId
     49:109:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.CommentAdapter$ViewHolder -> com.interestfriend.adapter.w$a:
+com.interestfriend.adapter.CommentAdapter$ViewHolder -> com.interestfriend.adapter.v$a:
     com.interestfriend.view.RoundAngleImageView img_user_avatar -> a
     android.widget.TextView txt_user_name -> b
     android.widget.TextView txt_comment_content -> c
@@ -16447,7 +16450,7 @@ com.interestfriend.adapter.CommentAdapter$ViewHolder -> com.interestfriend.adapt
     113:113:com.interestfriend.view.RoundAngleImageView access$5(com.interestfriend.adapter.CommentAdapter$ViewHolder) -> b
     115:115:android.widget.TextView access$6(com.interestfriend.adapter.CommentAdapter$ViewHolder) -> c
     116:116:android.widget.TextView access$7(com.interestfriend.adapter.CommentAdapter$ViewHolder) -> d
-com.interestfriend.adapter.ExpressionAdapter -> com.interestfriend.adapter.x:
+com.interestfriend.adapter.ExpressionAdapter -> com.interestfriend.adapter.w:
     36:50:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.interestfriend.adapter.ExpressionPagerAdapter -> com.interestfriend.adapter.ExpressionPagerAdapter:
     java.util.List views -> a
@@ -16482,183 +16485,185 @@ com.interestfriend.adapter.GroupChatAdapter -> com.interestfriend.adapter.GroupC
     com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick mCallBack -> x
     int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type -> y
     int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status -> z
-    123:123:int getCount() -> getCount
-    130:131:void refresh() -> a
-    134:134:com.easemob.chat.EMMessage getItem(int) -> a
-    138:138:long getItemId(int) -> getItemId
-    145:176:int getItemViewType(int) -> getItemViewType
-    180:180:int getViewTypeCount() -> getViewTypeCount
-    184:213:android.view.View createViewByMessage(com.easemob.chat.EMMessage,int) -> a
-    221:429:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    441:487:void handleTextMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int) -> a
-    499:592:void handleImageMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> a
-    605:718:void handleVideoMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> b
-    730:802:void handleVoiceMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> c
-    814:914:void handleFileMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> d
-    926:953:void handleLocationMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> e
-    963:985:void sendMsgInBackground(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> a
-    993:1035:void showDownloadImageProgress(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> b
-    1043:1096:void sendPictureMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> c
-    1106:1138:void updateSendedView(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> d
-    1156:1205:boolean showImageView(java.lang.String,android.widget.ImageView,java.lang.String,java.lang.String,com.easemob.chat.EMMessage) -> a
-    1223:1262:void showVideoThumbView(java.lang.String,android.widget.ImageView,java.lang.String,com.easemob.chat.EMMessage) -> a
-    1316:1317:void setmCallBack(com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick) -> a
+    124:124:int getCount() -> getCount
+    131:132:void refresh() -> a
+    135:135:com.easemob.chat.EMMessage getItem(int) -> a
+    139:139:long getItemId(int) -> getItemId
+    146:177:int getItemViewType(int) -> getItemViewType
+    181:181:int getViewTypeCount() -> getViewTypeCount
+    185:214:android.view.View createViewByMessage(com.easemob.chat.EMMessage,int) -> a
+    222:432:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    444:490:void handleTextMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int) -> a
+    502:595:void handleImageMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> a
+    608:721:void handleVideoMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> b
+    733:805:void handleVoiceMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> c
+    817:917:void handleFileMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> d
+    929:956:void handleLocationMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder,int,android.view.View) -> e
+    966:988:void sendMsgInBackground(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> a
+    996:1038:void showDownloadImageProgress(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> b
+    1046:1099:void sendPictureMessage(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> c
+    1109:1141:void updateSendedView(com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> d
+    1159:1208:boolean showImageView(java.lang.String,android.widget.ImageView,java.lang.String,java.lang.String,com.easemob.chat.EMMessage) -> a
+    1226:1265:void showVideoThumbView(java.lang.String,android.widget.ImageView,java.lang.String,com.easemob.chat.EMMessage) -> a
+    1320:1321:void setmCallBack(com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick) -> a
     1:1:java.lang.Object getItem(int) -> getItem
-    108:108:android.content.Context access$1(com.interestfriend.adapter.GroupChatAdapter) -> a
-    103:103:android.app.Activity access$2(com.interestfriend.adapter.GroupChatAdapter) -> b
-    78:78:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type() -> b
-    1313:1313:com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick access$4(com.interestfriend.adapter.GroupChatAdapter) -> c
-    78:78:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status() -> c
-    1104:1104:void access$6(com.interestfriend.adapter.GroupChatAdapter,com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> a
-com.interestfriend.adapter.GroupChatAdapter$1 -> com.interestfriend.adapter.y:
+    109:109:android.content.Context access$1(com.interestfriend.adapter.GroupChatAdapter) -> a
+    104:104:android.app.Activity access$2(com.interestfriend.adapter.GroupChatAdapter) -> b
+    79:79:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Type() -> b
+    1317:1317:com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick access$4(com.interestfriend.adapter.GroupChatAdapter) -> c
+    79:79:int[] $SWITCH_TABLE$com$easemob$chat$EMMessage$Status() -> c
+    1107:1107:void access$6(com.interestfriend.adapter.GroupChatAdapter,com.easemob.chat.EMMessage,com.interestfriend.adapter.GroupChatAdapter$ViewHolder) -> a
+com.interestfriend.adapter.GroupChatAdapter$1 -> com.interestfriend.adapter.x:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     int val$position -> b
-    450:453:boolean onLongClick(android.view.View) -> onLongClick
-com.interestfriend.adapter.GroupChatAdapter$10 -> com.interestfriend.adapter.z:
+    com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> c
+    453:456:boolean onLongClick(android.view.View) -> onLongClick
+com.interestfriend.adapter.GroupChatAdapter$10 -> com.interestfriend.adapter.y:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> c
-    1110:1136:void run() -> run
+    1113:1139:void run() -> run
 com.interestfriend.adapter.GroupChatAdapter$11 -> com.interestfriend.adapter.GroupChatAdapter$11:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     java.lang.String val$localFullSizePath -> b
     com.easemob.chat.EMMessage val$message -> c
     java.lang.String val$remote -> d
-    1167:1198:void onClick(android.view.View) -> onClick
+    1170:1201:void onClick(android.view.View) -> onClick
 com.interestfriend.adapter.GroupChatAdapter$12 -> com.interestfriend.adapter.GroupChatAdapter$12:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
-    1232:1254:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.GroupChatAdapter$2 -> com.interestfriend.adapter.aa:
+    1235:1257:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.GroupChatAdapter$2 -> com.interestfriend.adapter.z:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    558:586:void run() -> run
-    554:554:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$2) -> a
-com.interestfriend.adapter.GroupChatAdapter$2$1 -> com.interestfriend.adapter.ab:
+    561:589:void run() -> run
+    557:557:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$2) -> a
+com.interestfriend.adapter.GroupChatAdapter$2$1 -> com.interestfriend.adapter.aa:
     com.interestfriend.adapter.GroupChatAdapter$2 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    560:583:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$3 -> com.interestfriend.adapter.ac:
+    563:586:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$3 -> com.interestfriend.adapter.ab:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    679:709:void run() -> run
-    675:675:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$3) -> a
-com.interestfriend.adapter.GroupChatAdapter$3$1 -> com.interestfriend.adapter.ad:
+    682:712:void run() -> run
+    678:678:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$3) -> a
+com.interestfriend.adapter.GroupChatAdapter$3$1 -> com.interestfriend.adapter.ac:
     com.interestfriend.adapter.GroupChatAdapter$3 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    683:706:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$4 -> com.interestfriend.adapter.ae:
+    686:709:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$4 -> com.interestfriend.adapter.ad:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    751:760:void onSuccess() -> onSuccess
-    764:764:void onProgress(int,java.lang.String) -> onProgress
-    768:776:void onError(int,java.lang.String) -> onError
-    747:747:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$4) -> a
-com.interestfriend.adapter.GroupChatAdapter$4$1 -> com.interestfriend.adapter.af:
+    754:763:void onSuccess() -> onSuccess
+    767:767:void onProgress(int,java.lang.String) -> onProgress
+    771:779:void onError(int,java.lang.String) -> onError
+    750:750:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$4) -> a
+com.interestfriend.adapter.GroupChatAdapter$4$1 -> com.interestfriend.adapter.ae:
     com.interestfriend.adapter.GroupChatAdapter$4 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    755:757:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$4$2 -> com.interestfriend.adapter.ag:
+    758:760:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$4$2 -> com.interestfriend.adapter.af:
     com.interestfriend.adapter.GroupChatAdapter$4 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    772:773:void run() -> run
+    775:776:void run() -> run
 com.interestfriend.adapter.GroupChatAdapter$5 -> com.interestfriend.adapter.GroupChatAdapter$5:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     java.lang.String val$filePath -> b
     com.easemob.chat.NormalFileMessageBody val$fileMessageBody -> c
     com.easemob.chat.EMMessage val$message -> d
-    824:845:void onClick(android.view.View) -> onClick
-com.interestfriend.adapter.GroupChatAdapter$6 -> com.interestfriend.adapter.ah:
+    827:848:void onClick(android.view.View) -> onClick
+com.interestfriend.adapter.GroupChatAdapter$6 -> com.interestfriend.adapter.ag:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    876:906:void run() -> run
-    872:872:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$6) -> a
-com.interestfriend.adapter.GroupChatAdapter$6$1 -> com.interestfriend.adapter.ai:
+    879:909:void run() -> run
+    875:875:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$6) -> a
+com.interestfriend.adapter.GroupChatAdapter$6$1 -> com.interestfriend.adapter.ah:
     com.interestfriend.adapter.GroupChatAdapter$6 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     com.easemob.chat.EMMessage val$message -> c
     java.util.Timer val$timer -> d
-    880:903:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$7 -> com.interestfriend.adapter.aj:
+    883:906:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$7 -> com.interestfriend.adapter.ai:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> c
-    970:971:void onSuccess() -> onSuccess
-    975:977:void onError(int,java.lang.String) -> onError
-    981:981:void onProgress(int,java.lang.String) -> onProgress
-com.interestfriend.adapter.GroupChatAdapter$8 -> com.interestfriend.adapter.ak:
+    973:974:void onSuccess() -> onSuccess
+    978:980:void onError(int,java.lang.String) -> onError
+    984:984:void onProgress(int,java.lang.String) -> onProgress
+com.interestfriend.adapter.GroupChatAdapter$8 -> com.interestfriend.adapter.aj:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> c
-    1002:1013:void onSuccess() -> onSuccess
-    1018:1018:void onError(int,java.lang.String) -> onError
-    1022:1032:void onProgress(int,java.lang.String) -> onProgress
-    998:998:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$8) -> a
-com.interestfriend.adapter.GroupChatAdapter$8$1 -> com.interestfriend.adapter.al:
+    1005:1016:void onSuccess() -> onSuccess
+    1021:1021:void onError(int,java.lang.String) -> onError
+    1025:1035:void onProgress(int,java.lang.String) -> onProgress
+    1001:1001:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$8) -> a
+com.interestfriend.adapter.GroupChatAdapter$8$1 -> com.interestfriend.adapter.ak:
     com.interestfriend.adapter.GroupChatAdapter$8 this$1 -> a
     com.easemob.chat.EMMessage val$message -> b
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> c
-    1006:1011:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$8$2 -> com.interestfriend.adapter.am:
+    1009:1014:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$8$2 -> com.interestfriend.adapter.al:
     com.interestfriend.adapter.GroupChatAdapter$8 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     int val$progress -> c
-    1026:1028:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$9 -> com.interestfriend.adapter.an:
+    1029:1031:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$9 -> com.interestfriend.adapter.am:
     com.interestfriend.adapter.GroupChatAdapter this$0 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    1055:1063:void onSuccess() -> onSuccess
-    1067:1081:void onError(int,java.lang.String) -> onError
-    1085:1090:void onProgress(int,java.lang.String) -> onProgress
-    1051:1051:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$9) -> a
-com.interestfriend.adapter.GroupChatAdapter$9$1 -> com.interestfriend.adapter.ao:
+    1058:1066:void onSuccess() -> onSuccess
+    1070:1084:void onError(int,java.lang.String) -> onError
+    1088:1093:void onProgress(int,java.lang.String) -> onProgress
+    1054:1054:com.interestfriend.adapter.GroupChatAdapter access$0(com.interestfriend.adapter.GroupChatAdapter$9) -> a
+com.interestfriend.adapter.GroupChatAdapter$9$1 -> com.interestfriend.adapter.an:
     com.interestfriend.adapter.GroupChatAdapter$9 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    1059:1061:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$9$2 -> com.interestfriend.adapter.ap:
+    1062:1064:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$9$2 -> com.interestfriend.adapter.ao:
     com.interestfriend.adapter.GroupChatAdapter$9 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
-    1069:1079:void run() -> run
-com.interestfriend.adapter.GroupChatAdapter$9$3 -> com.interestfriend.adapter.aq:
+    1072:1082:void run() -> run
+com.interestfriend.adapter.GroupChatAdapter$9$3 -> com.interestfriend.adapter.ap:
     com.interestfriend.adapter.GroupChatAdapter$9 this$1 -> a
     com.interestfriend.adapter.GroupChatAdapter$ViewHolder val$holder -> b
     int val$progress -> c
-    1087:1088:void run() -> run
+    1090:1091:void run() -> run
 com.interestfriend.adapter.GroupChatAdapter$MapClickListener -> com.interestfriend.adapter.GroupChatAdapter$MapClickListener:
     com.easemob.util.LatLng location -> a
     java.lang.String address -> b
     com.interestfriend.adapter.GroupChatAdapter this$0 -> c
-    1304:1309:void onClick(android.view.View) -> onClick
+    1308:1313:void onClick(android.view.View) -> onClick
 com.interestfriend.adapter.GroupChatAdapter$MessageOnLongClick -> com.interestfriend.adapter.GroupChatAdapter$a:
-    void onLongClick(int,android.view.View) -> onLongClick
+    void onLongClick(int,android.view.View,android.view.View) -> a
 com.interestfriend.adapter.GroupChatAdapter$ViewHolder -> com.interestfriend.adapter.GroupChatAdapter$b:
-    android.widget.ImageView iv -> a
-    android.widget.TextView tv -> b
-    android.widget.ProgressBar pb -> c
-    android.widget.ImageView staus_iv -> d
-    com.interestfriend.view.RoundAngleImageView head_iv -> e
-    android.widget.TextView tv_userId -> f
-    android.widget.ImageView playBtn -> g
-    android.widget.TextView timeLength -> h
-    android.widget.TextView size -> i
-    android.widget.LinearLayout container_status_btn -> j
-    android.widget.LinearLayout ll_container -> k
-    android.widget.ImageView iv_read_status -> l
-    android.widget.TextView tv_ack -> m
-    android.widget.TextView tv_delivered -> n
-    android.widget.TextView tv_file_name -> o
-    android.widget.TextView tv_file_size -> p
-    android.widget.TextView tv_file_download_state -> q
+    android.widget.RelativeLayout layout_parent -> a
+    android.widget.ImageView iv -> b
+    android.widget.TextView tv -> c
+    android.widget.ProgressBar pb -> d
+    android.widget.ImageView staus_iv -> e
+    com.interestfriend.view.RoundAngleImageView head_iv -> f
+    android.widget.TextView tv_userId -> g
+    android.widget.ImageView playBtn -> h
+    android.widget.TextView timeLength -> i
+    android.widget.TextView size -> j
+    android.widget.LinearLayout container_status_btn -> k
+    android.widget.LinearLayout ll_container -> l
+    android.widget.ImageView iv_read_status -> m
+    android.widget.TextView tv_ack -> n
+    android.widget.TextView tv_delivered -> o
+    android.widget.TextView tv_file_name -> p
+    android.widget.TextView tv_file_size -> q
+    android.widget.TextView tv_file_download_state -> r
 com.interestfriend.adapter.GrowthAdapter -> com.interestfriend.adapter.GrowthAdapter:
     java.util.List lists -> a
     android.content.Context mContext -> b
@@ -16680,12 +16685,12 @@ com.interestfriend.adapter.GrowthAdapter -> com.interestfriend.adapter.GrowthAda
     242:242:void access$4(com.interestfriend.adapter.GrowthAdapter,com.interestfriend.data.Growth,android.widget.TextView) -> b
     319:319:void access$5(com.interestfriend.adapter.GrowthAdapter,int,int) -> a
     49:49:void access$6(com.interestfriend.adapter.GrowthAdapter,boolean) -> a
-com.interestfriend.adapter.GrowthAdapter$1 -> com.interestfriend.adapter.ar:
+com.interestfriend.adapter.GrowthAdapter$1 -> com.interestfriend.adapter.aq:
     com.interestfriend.adapter.GrowthAdapter this$0 -> a
     com.interestfriend.data.Growth val$growth -> b
     260:272:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.adapter.GrowthAdapter$2 -> com.interestfriend.adapter.as:
+com.interestfriend.adapter.GrowthAdapter$2 -> com.interestfriend.adapter.ar:
     com.interestfriend.adapter.GrowthAdapter this$0 -> a
     com.interestfriend.data.Growth val$growth -> b
     289:300:void taskFinish(com.interestfriend.data.enums.RetError) -> a
@@ -16710,24 +16715,24 @@ com.interestfriend.adapter.GrowthAdapter$ViewHolder -> com.interestfriend.adapte
     android.view.View line2 -> i
     android.widget.TextView btn_praise -> j
     com.interestfriend.adapter.GrowthAdapter this$0 -> k
-com.interestfriend.adapter.GrowthImgAdapter -> com.interestfriend.adapter.at:
+com.interestfriend.adapter.GrowthImgAdapter -> com.interestfriend.adapter.as:
     android.content.Context mContext -> a
     java.util.List listData -> b
     28:28:int getCount() -> getCount
     33:33:java.lang.Object getItem(int) -> getItem
     38:38:long getItemId(int) -> getItemId
     43:60:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.GrowthImgAdapter$ViewHolder -> com.interestfriend.adapter.at$a:
+com.interestfriend.adapter.GrowthImgAdapter$ViewHolder -> com.interestfriend.adapter.as$a:
     android.widget.ImageView img -> a
     com.interestfriend.adapter.GrowthImgAdapter this$0 -> b
-com.interestfriend.adapter.GrowthListCommentAdapter -> com.interestfriend.adapter.au:
+com.interestfriend.adapter.GrowthListCommentAdapter -> com.interestfriend.adapter.at:
     java.util.List list -> a
     android.content.Context mContext -> b
     32:32:int getCount() -> getCount
     37:37:java.lang.Object getItem(int) -> getItem
     42:42:long getItemId(int) -> getItemId
     47:99:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.GrowthListCommentAdapter$ViewHolder -> com.interestfriend.adapter.au$a:
+com.interestfriend.adapter.GrowthListCommentAdapter$ViewHolder -> com.interestfriend.adapter.at$a:
     com.interestfriend.view.RoundAngleImageView img_user_avatar -> a
     android.widget.TextView txt_user_name -> b
     android.widget.TextView txt_comment_content -> c
@@ -16772,14 +16777,14 @@ com.interestfriend.adapter.GrowthVideoAdapter$ViewHolder -> com.interestfriend.a
     android.widget.ImageView video_img -> i
     android.widget.RelativeLayout videoClick -> j
     com.interestfriend.adapter.GrowthVideoAdapter this$0 -> k
-com.interestfriend.adapter.MemberCirclesAdapter -> com.interestfriend.adapter.av:
+com.interestfriend.adapter.MemberCirclesAdapter -> com.interestfriend.adapter.au:
     java.util.List list -> a
     android.content.Context mContext -> b
     29:29:int getCount() -> getCount
     34:34:java.lang.Object getItem(int) -> getItem
     39:39:long getItemId(int) -> getItemId
     44:68:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder -> com.interestfriend.adapter.av$a:
+com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder -> com.interestfriend.adapter.au$a:
     com.interestfriend.view.RoundAngleImageView img_circle_logo -> a
     android.widget.TextView txt_circle_name -> b
     android.widget.TextView txt_circle_desc -> c
@@ -16792,14 +16797,14 @@ com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder -> com.interestfriend
     74:74:android.widget.TextView access$5(com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder) -> b
     75:75:android.widget.TextView access$6(com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder) -> c
     72:72:com.interestfriend.view.RoundAngleImageView access$7(com.interestfriend.adapter.MemberCirclesAdapter$ViewHolder) -> d
-com.interestfriend.adapter.MyCircleAdapter -> com.interestfriend.adapter.aw:
+com.interestfriend.adapter.MyCircleAdapter -> com.interestfriend.adapter.av:
     java.util.List list -> a
     android.content.Context mContext -> b
     30:30:int getCount() -> getCount
     35:35:java.lang.Object getItem(int) -> getItem
     40:40:long getItemId(int) -> getItemId
     45:92:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.MyCircleAdapter$ViewHolder -> com.interestfriend.adapter.aw$a:
+com.interestfriend.adapter.MyCircleAdapter$ViewHolder -> com.interestfriend.adapter.av$a:
     com.interestfriend.view.RoundAngleImageView img_circle_logo -> a
     android.widget.TextView txt_circle_name -> b
     android.widget.TextView txt_unread -> c
@@ -16815,14 +16820,14 @@ com.interestfriend.adapter.MyCircleAdapter$ViewHolder -> com.interestfriend.adap
     100:100:android.widget.TextView access$7(com.interestfriend.adapter.MyCircleAdapter$ViewHolder) -> c
     96:96:com.interestfriend.view.RoundAngleImageView access$8(com.interestfriend.adapter.MyCircleAdapter$ViewHolder) -> d
     98:98:android.widget.TextView access$9(com.interestfriend.adapter.MyCircleAdapter$ViewHolder) -> e
-com.interestfriend.adapter.NearCirclesAdapter -> com.interestfriend.adapter.ax:
+com.interestfriend.adapter.NearCirclesAdapter -> com.interestfriend.adapter.aw:
     java.util.List list -> a
     android.content.Context mContext -> b
     29:29:int getCount() -> getCount
     34:34:java.lang.Object getItem(int) -> getItem
     39:39:long getItemId(int) -> getItemId
     44:74:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.NearCirclesAdapter$ViewHolder -> com.interestfriend.adapter.ax$a:
+com.interestfriend.adapter.NearCirclesAdapter$ViewHolder -> com.interestfriend.adapter.aw$a:
     android.widget.TextView txt_circle_member_num -> a
     com.interestfriend.view.RoundAngleImageView img_circle_logo -> b
     android.widget.TextView txt_circle_name -> c
@@ -16835,24 +16840,24 @@ com.interestfriend.adapter.NearCirclesAdapter$ViewHolder -> com.interestfriend.a
     80:80:android.widget.TextView access$5(com.interestfriend.adapter.NearCirclesAdapter$ViewHolder) -> b
     79:79:com.interestfriend.view.RoundAngleImageView access$6(com.interestfriend.adapter.NearCirclesAdapter$ViewHolder) -> c
     81:81:android.widget.TextView access$7(com.interestfriend.adapter.NearCirclesAdapter$ViewHolder) -> d
-com.interestfriend.adapter.PraiseAdapter -> com.interestfriend.adapter.ay:
+com.interestfriend.adapter.PraiseAdapter -> com.interestfriend.adapter.ax:
     java.util.List praises -> a
     android.content.Context mContext -> b
     28:28:int getCount() -> getCount
     33:33:java.lang.Object getItem(int) -> getItem
     38:38:long getItemId(int) -> getItemId
     43:58:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.PraiseAdapter$ViewHolder -> com.interestfriend.adapter.ay$a:
+com.interestfriend.adapter.PraiseAdapter$ViewHolder -> com.interestfriend.adapter.ax$a:
     com.interestfriend.view.RoundAngleImageView user_avatar -> a
     com.interestfriend.adapter.PraiseAdapter this$0 -> b
-com.interestfriend.adapter.VideoCommentAdapter -> com.interestfriend.adapter.az:
+com.interestfriend.adapter.VideoCommentAdapter -> com.interestfriend.adapter.ay:
     java.util.List list -> a
     android.content.Context mContext -> b
     32:32:int getCount() -> getCount
     37:37:java.lang.Object getItem(int) -> getItem
     42:42:long getItemId(int) -> getItemId
     47:99:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.VideoCommentAdapter$ViewHolder -> com.interestfriend.adapter.az$a:
+com.interestfriend.adapter.VideoCommentAdapter$ViewHolder -> com.interestfriend.adapter.ay$a:
     com.interestfriend.view.RoundAngleImageView img_user_avatar -> a
     android.widget.TextView txt_user_name -> b
     android.widget.TextView txt_comment_content -> c
@@ -16865,14 +16870,14 @@ com.interestfriend.adapter.VideoCommentAdapter$ViewHolder -> com.interestfriend.
     103:103:com.interestfriend.view.RoundAngleImageView access$5(com.interestfriend.adapter.VideoCommentAdapter$ViewHolder) -> b
     105:105:android.widget.TextView access$6(com.interestfriend.adapter.VideoCommentAdapter$ViewHolder) -> c
     106:106:android.widget.TextView access$7(com.interestfriend.adapter.VideoCommentAdapter$ViewHolder) -> d
-com.interestfriend.adapter.VideoListCommentAdapter -> com.interestfriend.adapter.ba:
+com.interestfriend.adapter.VideoListCommentAdapter -> com.interestfriend.adapter.az:
     java.util.List list -> a
     android.content.Context mContext -> b
     32:32:int getCount() -> getCount
     37:37:java.lang.Object getItem(int) -> getItem
     42:42:long getItemId(int) -> getItemId
     47:100:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.interestfriend.adapter.VideoListCommentAdapter$ViewHolder -> com.interestfriend.adapter.ba$a:
+com.interestfriend.adapter.VideoListCommentAdapter$ViewHolder -> com.interestfriend.adapter.az$a:
     com.interestfriend.view.RoundAngleImageView img_user_avatar -> a
     android.widget.TextView txt_user_name -> b
     android.widget.TextView txt_comment_content -> c
@@ -17614,10 +17619,10 @@ com.interestfriend.data.IData -> com.interestfriend.a.o:
     void update(com.interestfriend.data.IData) -> a
 com.interestfriend.data.MyCircles -> com.interestfriend.a.p:
     long serialVersionUID -> c
-    18:18:void read(android.database.sqlite.SQLiteDatabase) -> a
-    22:42:void write(android.database.sqlite.SQLiteDatabase) -> b
-    45:45:java.lang.String toDbUnionInsertString() -> v
-    53:53:java.lang.String getDbInsertKeyString() -> w
+    17:17:void read(android.database.sqlite.SQLiteDatabase) -> a
+    21:41:void write(android.database.sqlite.SQLiteDatabase) -> b
+    44:44:java.lang.String toDbUnionInsertString() -> v
+    52:52:java.lang.String getDbInsertKeyString() -> w
 com.interestfriend.data.NearCircleList -> com.interestfriend.a.q:
     java.lang.String SEARCH_NEAR_CIRCLES_API -> a
     java.util.List listCircles -> b
@@ -18104,7 +18109,7 @@ com.interestfriend.fragment.CircleGroupChatFragment -> com.interestfriend.fragme
     1345:1350:void hideKeyboard() -> k
     1407:1407:java.lang.String getToChatUsername() -> d
     1413:1441:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    1447:1481:void onLongClick(int,android.view.View) -> onLongClick
+    1448:1482:void onLongClick(int,android.view.View,android.view.View) -> a
     135:135:android.widget.ImageView access$0(com.interestfriend.fragment.CircleGroupChatFragment) -> a
     149:149:android.graphics.drawable.Drawable[] access$1(com.interestfriend.fragment.CircleGroupChatFragment) -> b
     143:143:android.support.v4.view.ViewPager access$2(com.interestfriend.fragment.CircleGroupChatFragment) -> c
@@ -18148,7 +18153,7 @@ com.interestfriend.fragment.CircleGroupChatFragment$10 -> com.interestfriend.fra
 com.interestfriend.fragment.CircleGroupChatFragment$11 -> com.interestfriend.fragment.c:
     com.interestfriend.fragment.CircleGroupChatFragment this$0 -> a
     int val$position_message -> b
-    1454:1478:void onclick(int) -> a
+    1455:1479:void onclick(int) -> a
 com.interestfriend.fragment.CircleGroupChatFragment$2 -> com.interestfriend.fragment.d:
     com.interestfriend.fragment.CircleGroupChatFragment this$0 -> a
     188:189:void handleMessage(android.os.Message) -> handleMessage
@@ -18344,30 +18349,30 @@ com.interestfriend.fragment.MyCircleFragment -> com.interestfriend.fragment.MyCi
     84:85:void setListener() -> c
     88:91:void setValue() -> d
     94:108:void initQuery() -> e
-    166:177:void registerBoradcastReceiver() -> a
-    275:307:void refushCircleGroupChatHositiory() -> f
-    310:319:void setUnread(java.lang.String,int,int) -> a
-    322:334:void getCircleList() -> g
-    337:339:void onDestroy() -> onDestroy
-    343:357:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    370:376:void onResume() -> onResume
+    169:180:void registerBoradcastReceiver() -> a
+    278:310:void refushCircleGroupChatHositiory() -> f
+    313:322:void setUnread(java.lang.String,int,int) -> a
+    325:337:void getCircleList() -> g
+    340:342:void onDestroy() -> onDestroy
+    346:360:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    373:379:void onResume() -> onResume
     49:49:java.util.List access$0(com.interestfriend.fragment.MyCircleFragment) -> a
     51:51:com.interestfriend.adapter.MyCircleAdapter access$1(com.interestfriend.fragment.MyCircleFragment) -> b
-    321:321:void access$2(com.interestfriend.fragment.MyCircleFragment) -> c
-    271:271:void access$3(com.interestfriend.fragment.MyCircleFragment) -> d
+    324:324:void access$2(com.interestfriend.fragment.MyCircleFragment) -> c
+    274:274:void access$3(com.interestfriend.fragment.MyCircleFragment) -> d
     55:55:com.interestfriend.data.CirclesList access$4(com.interestfriend.fragment.MyCircleFragment) -> e
     57:57:void access$5(com.interestfriend.fragment.MyCircleFragment,android.app.Dialog) -> a
     57:57:android.app.Dialog access$6(com.interestfriend.fragment.MyCircleFragment) -> f
 com.interestfriend.fragment.MyCircleFragment$1 -> com.interestfriend.fragment.u:
     com.interestfriend.fragment.MyCircleFragment this$0 -> a
-    185:268:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    188:271:void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.interestfriend.fragment.MyCircleFragment$2 -> com.interestfriend.fragment.v:
     com.interestfriend.fragment.MyCircleFragment this$0 -> a
-    326:331:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    329:334:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.fragment.MyCircleFragment$MyAsyncQueryHandler -> com.interestfriend.fragment.MyCircleFragment$a:
     com.interestfriend.fragment.MyCircleFragment this$0 -> a
-    126:159:void onQueryComplete(int,java.lang.Object,android.database.Cursor) -> onQueryComplete
+    126:162:void onQueryComplete(int,java.lang.Object,android.database.Cursor) -> onQueryComplete
 com.interestfriend.fragment.VideoFragment -> com.interestfriend.fragment.VideoFragment:
     android.widget.ListView growth_listView -> a
     com.interestfriend.view.PullDownView mPullDownView -> b
@@ -18788,25 +18793,26 @@ com.interestfriend.popwindow.MessageCopyPopWindow -> com.interestfriend.popwindo
     android.widget.PopupWindow popupWindow -> a
     android.content.Context mContext -> b
     android.view.View v -> c
-    android.view.View view -> d
-    android.widget.ListView listview -> e
-    com.interestfriend.popwindow.MessageCopyPopWindow$MyAdapter adapter -> f
-    com.interestfriend.popwindow.MessageCopyPopWindow$OnlistOnclick callback -> g
-    java.lang.String[] listdata -> h
-    41:45:void initView() -> c
-    52:56:void initPopwindow() -> d
-    62:71:void show() -> a
-    75:76:void dismiss() -> b
-    120:121:void setOnlistOnclick(com.interestfriend.popwindow.MessageCopyPopWindow$OnlistOnclick) -> a
-    125:127:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    28:28:java.lang.String[] access$0(com.interestfriend.popwindow.MessageCopyPopWindow) -> a
+    android.view.View v_parent -> d
+    android.view.View view -> e
+    android.widget.ListView listview -> f
+    com.interestfriend.popwindow.MessageCopyPopWindow$MyAdapter adapter -> g
+    com.interestfriend.popwindow.MessageCopyPopWindow$OnlistOnclick callback -> h
+    java.lang.String[] listdata -> i
+    44:48:void initView() -> c
+    55:59:void initPopwindow() -> d
+    65:76:void show() -> a
+    80:81:void dismiss() -> b
+    125:126:void setOnlistOnclick(com.interestfriend.popwindow.MessageCopyPopWindow$OnlistOnclick) -> a
+    130:132:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    29:29:java.lang.String[] access$0(com.interestfriend.popwindow.MessageCopyPopWindow) -> a
     22:22:android.content.Context access$1(com.interestfriend.popwindow.MessageCopyPopWindow) -> b
 com.interestfriend.popwindow.MessageCopyPopWindow$MyAdapter -> com.interestfriend.popwindow.a$a:
     com.interestfriend.popwindow.MessageCopyPopWindow this$0 -> a
-    82:82:int getCount() -> getCount
-    87:87:java.lang.Object getItem(int) -> getItem
-    92:92:long getItemId(int) -> getItemId
-    97:110:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    87:87:int getCount() -> getCount
+    92:92:java.lang.Object getItem(int) -> getItem
+    97:97:long getItemId(int) -> getItemId
+    102:115:android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.interestfriend.popwindow.MessageCopyPopWindow$OnlistOnclick -> com.interestfriend.popwindow.a$b:
     void onclick(int) -> a
 com.interestfriend.popwindow.MessageCopyPopWindow$ViewHolder -> com.interestfriend.popwindow.a$c:

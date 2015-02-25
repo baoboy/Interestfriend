@@ -57,7 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dip"
         android:layout_marginTop="5dip"
-        android:text="Copyright 2014 Quyou.All Rights Reserved"
+        android:text="Copyright 2015 Quyou.All Rights Reserved"
         android:textColor="#8c000000"
         android:textSize="11sp" />
 

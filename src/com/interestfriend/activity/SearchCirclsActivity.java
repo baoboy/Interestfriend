@@ -225,7 +225,7 @@ public class SearchCirclsActivity extends BaseActivity implements
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 			long arg3) {
 		Intent intent = new Intent();
-		intent.putExtra("circle", listCircles.get(position - 1));
+		intent.putExtra("circle", listCircles.get(position));
 		intent.setClass(this, CircleInfoActivity.class);
 		startActivity(intent);
 		Utils.leftOutRightIn(this);

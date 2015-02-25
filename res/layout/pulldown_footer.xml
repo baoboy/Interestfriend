@@ -19,6 +19,6 @@
         android:paddingTop="10dp"
         android:text="@string/loading_more"
         android:textColor="#c8313131"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
 </LinearLayout>

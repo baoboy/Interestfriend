@@ -1,10 +1,9 @@
 package com.interestfriend.data;
 
-import com.interestfriend.data.enums.CircleMemberState;
-import com.interestfriend.db.Const;
-
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.interestfriend.db.Const;
 
 public class MyCircles extends Circles {
 

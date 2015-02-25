@@ -14979,6 +14979,7 @@ com.interestfriend.R$id: int list
 com.interestfriend.R$id: int listView
 com.interestfriend.R$id: int listView1
 com.interestfriend.R$id: int list_item_layout
+com.interestfriend.R$id: int listview
 com.interestfriend.R$id: int ll_btn_container
 com.interestfriend.R$id: int ll_click_area
 com.interestfriend.R$id: int ll_coming_call
@@ -15577,7 +15578,7 @@ com.interestfriend.activity.ChatActivity: void onBackPressed()
 com.interestfriend.activity.ChatActivity: void onNewIntent(android.content.Intent)
 com.interestfriend.activity.ChatActivity: java.lang.String getToChatUsername()
 com.interestfriend.activity.ChatActivity: void onItemClick(android.widget.AdapterView,android.view.View,int,long)
-com.interestfriend.activity.ChatActivity: void onLongClick(int,android.view.View)
+com.interestfriend.activity.ChatActivity: void onLongClick(int,android.view.View,android.view.View)
 com.interestfriend.activity.ChatActivity: android.widget.ImageView access$0(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity: android.graphics.drawable.Drawable[] access$1(com.interestfriend.activity.ChatActivity)
 com.interestfriend.activity.ChatActivity: android.support.v4.view.ViewPager access$2(com.interestfriend.activity.ChatActivity)
@@ -15778,12 +15779,12 @@ com.interestfriend.adapter.CategoryCircleAdapter$AvatarClick
 com.interestfriend.adapter.CategoryCircleAdapter$AvatarClick: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$1
 com.interestfriend.adapter.ChatAdapter$1: void onClick(android.view.View)
+com.interestfriend.adapter.ChatAdapter$11
+com.interestfriend.adapter.ChatAdapter$11: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$12
 com.interestfriend.adapter.ChatAdapter$12: void onClick(android.view.View)
-com.interestfriend.adapter.ChatAdapter$13
-com.interestfriend.adapter.ChatAdapter$13: void onClick(android.view.View)
-com.interestfriend.adapter.ChatAdapter$6
-com.interestfriend.adapter.ChatAdapter$6: void onClick(android.view.View)
+com.interestfriend.adapter.ChatAdapter$5
+com.interestfriend.adapter.ChatAdapter$5: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAdapter$MapClickListener
 com.interestfriend.adapter.ChatAdapter$MapClickListener: void onClick(android.view.View)
 com.interestfriend.adapter.ChatAllHistoryAdapter$1
