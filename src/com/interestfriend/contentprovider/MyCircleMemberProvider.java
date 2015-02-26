@@ -38,6 +38,9 @@ public class MyCircleMemberProvider {
 		public static final String USER_REGISTER_TIME = "user_register_time";
 		public static final String USER_DECLARATION = "user_declaration";
 		public static final String USER_DESCRIPTION = "user_description";
+		public static final String USER_ADDRESS = "user_address";
+		public static final String USER_PROVINCE = "user_province";
+		public static final String USER_PROVINCE_KEY = "user_province_key";
 
 	}
 

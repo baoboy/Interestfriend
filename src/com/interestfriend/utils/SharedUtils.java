@@ -192,6 +192,36 @@ public class SharedUtils {
 
 	}
 
+	public static void setAPPUserAddress(String value) {
+		editor.putString("app_user_address", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserAddress() {
+		return sharedPreferences.getString("app_user_address", "");
+
+	}
+
+	public static void setAPPUserProvince(String value) {
+		editor.putString("app_user_province", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserProvince() {
+		return sharedPreferences.getString("app_user_province", "");
+
+	}
+
+	public static void setAPPUserProvinceKey(String value) {
+		editor.putString("app_user_province_key", value);
+		editor.commit();
+	}
+
+	public static String getAPPUserProvinceKey() {
+		return sharedPreferences.getString("app_user_province_key", "");
+
+	}
+
 	public static void setAPPUserChatID(String value) {
 		editor.putString("app_user_chat_id", value);
 		editor.commit();

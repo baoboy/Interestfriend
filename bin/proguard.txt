@@ -290,7 +290,7 @@
 # view res/layout/row_sent_voice_call.xml #generated:20
 -keep class com.interestfriend.view.RoundAngleImageView { <init>(...); }
 
-# view res/layout/activity_circle_member.xml #generated:244
+# view res/layout/activity_circle_member.xml #generated:275
 # view res/layout/activity_comment.xml #generated:237
 # view res/layout/activity_praise_and_comment.xml #generated:241
 # view res/layout/activity_video_comment.xml #generated:155

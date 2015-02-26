@@ -702,7 +702,7 @@ containing a value of this type.
         public static final int Layparent=0x7f0a0104;
         public static final int Listview=0x7f0a0019;
         public static final int PullDownlistView=0x7f0a0092;
-        public static final int adre=0x7f0a0052;
+        public static final int adre=0x7f0a004a;
         public static final int alpha=0x7f0a00cc;
         public static final int ampm_hitspace=0x7f0a014e;
         public static final int ampm_label=0x7f0a014f;
@@ -772,7 +772,7 @@ containing a value of this type.
         public static final int chatting_video_data_area=0x7f0a0138;
         public static final int chronometer=0x7f0a00ad;
         public static final int circle_description=0x7f0a0042;
-        public static final int circle_listView=0x7f0a0051;
+        public static final int circle_listView=0x7f0a0053;
         public static final int circle_member_listview=0x7f0a00cb;
         public static final int circle_member_num=0x7f0a00ca;
         public static final int circle_name=0x7f0a003b;
@@ -786,8 +786,8 @@ containing a value of this type.
         public static final int date_picker_month_and_day=0x7f0a0003;
         public static final int date_picker_year=0x7f0a0006;
         public static final int day_picker_selected_date_layout=0x7f0a0002;
-        public static final int decl=0x7f0a004c;
-        public static final int decr=0x7f0a004f;
+        public static final int decl=0x7f0a004e;
+        public static final int decr=0x7f0a0051;
         public static final int dialog=0x7f0a00ef;
         public static final int dialogContent=0x7f0a00dd;
         public static final int dialog_view=0x7f0a010c;
@@ -870,8 +870,8 @@ containing a value of this type.
         public static final int layout_circle_desc=0x7f0a0041;
         public static final int layout_comment=0x7f0a0061;
         public static final int layout_conent=0x7f0a00d6;
-        public static final int layout_declaration=0x7f0a004b;
-        public static final int layout_description=0x7f0a004e;
+        public static final int layout_declaration=0x7f0a004d;
+        public static final int layout_description=0x7f0a0050;
         public static final int layout_parent=0x7f0a0093;
         public static final int layout_praise=0x7f0a005f;
         public static final int layout_scroll=0x7f0a0055;
@@ -991,7 +991,7 @@ containing a value of this type.
         public static final int tv_nick=0x7f0a00b0;
         public static final int tv_userid=0x7f0a012a;
         public static final int txt_about=0x7f0a009e;
-        public static final int txt_address=0x7f0a0053;
+        public static final int txt_address=0x7f0a004b;
         public static final int txt_birthday=0x7f0a0049;
         public static final int txt_category=0x7f0a006d;
         public static final int txt_circle_category=0x7f0a003f;
@@ -1003,9 +1003,9 @@ containing a value of this type.
         public static final int txt_circle_name=0x7f0a003c;
         public static final int txt_comment_content=0x7f0a00da;
         public static final int txt_content=0x7f0a0059;
-        public static final int txt_declaration=0x7f0a004d;
+        public static final int txt_declaration=0x7f0a004f;
         public static final int txt_del=0x7f0a00db;
-        public static final int txt_description=0x7f0a0050;
+        public static final int txt_description=0x7f0a0052;
         public static final int txt_dissolve_circle=0x7f0a00cf;
         public static final int txt_distance=0x7f0a0111;
         public static final int txt_feedback=0x7f0a009c;
@@ -1019,7 +1019,7 @@ containing a value of this type.
         public static final int txt_num_show=0x7f0a00ee;
         public static final int txt_page=0x7f0a011e;
         public static final int txt_quit_circle=0x7f0a00d1;
-        public static final int txt_register_time=0x7f0a004a;
+        public static final int txt_register_time=0x7f0a004c;
         public static final int txt_reply=0x7f0a00dc;
         public static final int txt_seting=0x7f0a00e3;
         public static final int txt_time=0x7f0a0057;

@@ -85,7 +85,8 @@ public class CircleMemberList extends AbstractData {
 		Collections.sort(circleMemberLists, new Comparator<CircleMember>() {
 			@Override
 			public int compare(CircleMember lhs, CircleMember rhs) {
-				return lhs.getSortkey().compareTo(rhs.getSortkey());
+				return lhs.getUser_province_key().compareTo(
+						rhs.getUser_province_key());
 			}
 		});
 
@@ -108,7 +109,7 @@ public class CircleMemberList extends AbstractData {
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
-		} 
+		}
 	}
 
 	private void delById(int uid) {

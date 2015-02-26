@@ -61,16 +61,10 @@ public class CircleMemberAdapter extends BaseAdapter {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		if ("女".equals(list.get(position).getUser_gender())) {
-			// holder.txt_user_name.setText(Html
-			// .fromHtml("<font color=#FF9a9a>[MM] </font>"
-			// + list.get(position).getUser_name()));
 			holder.txt_user_name.setText(Html
 					.fromHtml("<font color=#FF9a9a>[MM] "
 							+ list.get(position).getUser_name() + "</font>"));
 		} else {
-			// holder.txt_user_name.setText(Html
-			// .fromHtml("<font color=#19b5ee>[GG] </font>"
-			// + list.get(position).getUser_name()));
 			holder.txt_user_name.setText(Html
 					.fromHtml("<font color=#19b5ee>[GG] "
 							+ list.get(position).getUser_name() + "</font>"));
@@ -89,8 +83,8 @@ public class CircleMemberAdapter extends BaseAdapter {
 				holder.img_user_avatar, R.drawable.default_avatar);
 		holder.img_user_avatar.setOnClickListener(new ShowBigAvatariListener(
 				mContext, list.get(position).getUser_avatar()));
- 		 showAlpha(position, holder);
- 		return contentView;
+		showAlpha(position, holder);
+		return contentView;
 	}
 
 	/**
@@ -120,21 +114,22 @@ public class CircleMemberAdapter extends BaseAdapter {
 	}
 
 	private void showAlpha(int position, ViewHolder holder) {
+		String province = list.get(position).getUser_province();
 		// 当前联系人的sortKey
-		String currentStr = getAlpha(list.get(position).getSortkey());
+		String currentStr = getAlpha(list.get(position).getUser_province_key());
 		// 上一个联系人的sortKey
 		String previewStr = (position - 1) >= 0 ? getAlpha(list.get(
-				position - 1).getSortkey()) : " ";
+				position - 1).getUser_province_key()) : " ";
 		/**
 		 * 判断显示#、A-Z的TextView隐藏与显示
 		 */
 		if (!previewStr.equals(currentStr)) { // 当前联系人的sortKey与上一个联系人的sortKey不同，说明当前联系人是新组
 			holder.alpha.setVisibility(View.VISIBLE);
-			holder.alpha.setText(currentStr);
+			holder.alpha.setText(province);
 		} else {
 			if (position == 1) {
 				holder.alpha.setVisibility(View.VISIBLE);
-				holder.alpha.setText(currentStr);
+				holder.alpha.setText(province);
 
 			} else {
 				holder.alpha.setVisibility(View.GONE);

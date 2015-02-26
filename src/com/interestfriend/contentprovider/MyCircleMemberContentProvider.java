@@ -232,6 +232,14 @@ public class MyCircleMemberContentProvider extends ContentProvider {
 		sMyCirclesProjectionMap.put(
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION,
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION);
-
+		sMyCirclesProjectionMap.put(
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_ADDRESS,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_ADDRESS);
+		sMyCirclesProjectionMap.put(
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE);
+		sMyCirclesProjectionMap.put(
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE_KEY,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE_KEY);
 	}
 }

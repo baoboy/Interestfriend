@@ -30,6 +30,9 @@ public class MemberSelfPaser implements IParser {
 		String user_declaration = obj.getString("userDeclaration");
 		String user_description = obj.getString("userDescription");
 		String user_chat_id = obj.getString("userChatId");
+		String user_address = obj.getString("userAddress");
+		String user_province = obj.getString("userProvince");
+		String user_province_key = obj.getString("userProvinceKey");
 		System.out.println("user::::::::::::" + user_declaration + "    "
 				+ userName);
 		CircleMember member = new CircleMember();
@@ -45,6 +48,9 @@ public class MemberSelfPaser implements IParser {
 		member.setUser_declaration(user_declaration);
 		member.setUser_description(user_description);
 		member.setUser_chat_id(user_chat_id);
+		member.setUser_address(user_address);
+		member.setUser_province(user_province);
+		member.setUser_province_key(user_province_key);
 		Result ret = new Result();
 		ret.setData(member);
 		return ret;

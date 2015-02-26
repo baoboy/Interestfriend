@@ -61,6 +61,9 @@ public class MyApplation extends Application {
 		memberSelf.setUser_name(SharedUtils.getAPPUserName());
 		memberSelf.setUser_register_time(SharedUtils.getAPPUserRegisterTime());
 		memberSelf.setSortkey(SharedUtils.getAPPUserSortKey());
+		memberSelf.setUser_address(SharedUtils.getAPPUserAddress());
+		memberSelf.setUser_province(SharedUtils.getAPPUserProvince());
+		memberSelf.setUser_province_key(SharedUtils.getAPPUserProvinceKey());
 	}
 
 	public static CircleMember getMemberSelf() {

@@ -139,6 +139,23 @@
             android:textColor="@color/reg_desc_text"
             android:textSize="14.0sp" />
 
+        <TextView
+            android:id="@+id/txt_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="选择地区"
+            android:paddingBottom="8.0dip"
+            android:paddingTop="20dip"
+            android:singleLine="true"
+            android:textColor="@color/unberlineview_text"
+            android:textColorHint="@color/text_desc"
+            android:textSize="16.0sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:background="@color/unberlineview_bottomline" />
+
         <Button
             android:id="@+id/btnNext"
             android:layout_width="match_parent"

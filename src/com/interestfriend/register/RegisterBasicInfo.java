@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.fourmob.datetimepicker.date.DatePickerDialog.OnDateSetListener;
 import com.interestfriend.R;
+import com.interestfriend.popwindow.CityListPopWindow;
 import com.interestfriend.popwindow.SelectPicPopwindow;
+import com.interestfriend.popwindow.CityListPopWindow.SelectCity;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.utils.PhotoUtils;
 import com.interestfriend.utils.ToastUtil;
@@ -35,10 +37,12 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 	private Button btn_next;
 	private RelativeLayout layoutMale;
 	private RelativeLayout layoutoFemal;
+	private TextView txt_address;
 
 	private DatePickerDialog datePickerDialog;
 	private SelectPicPopwindow pop;
 	private String photoPath = "";
+	private CityListPopWindow city_pop;
 
 	public RegisterBasicInfo(RegisterActivity activity, View contentRootView) {
 		super(activity, contentRootView);
@@ -59,6 +63,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 		txtBirthday = (TextView) findViewById(R.id.txt_birthday);
 		imgAvater = (ImageView) findViewById(R.id.img_avatar);
 		btn_next = (Button) findViewById(R.id.btnNext);
+		txt_address = (TextView) findViewById(R.id.txt_address);
 		setListener();
 	}
 
@@ -69,6 +74,7 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 		txtBirthday.setOnClickListener(this);
 		imgAvater.setOnClickListener(this);
 		btn_next.setOnClickListener(this);
+		txt_address.setOnClickListener(this);
 	}
 
 	public void setUserPhoto(Bitmap bitmap, String path) {
@@ -88,7 +94,9 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 
 	private void setNextEnbale() {
 		if ((!"".equals(photoPath) && !"".equals(txtBirthday.getText()
-				.toString())) && (rFemale.isChecked() || rMale.isChecked())) {
+				.toString()))
+				&& (rFemale.isChecked() || rMale.isChecked())
+				&& !"".equals(txt_address.getText().toString())) {
 			btn_next.setEnabled(true);
 			btn_next.setBackgroundResource(R.drawable.btn_selector);
 		} else {
@@ -134,6 +142,23 @@ public class RegisterBasicInfo extends RegisterStep implements OnClickListener,
 				mActivity.getmRegister().setUser_gender("ÄÐ");
 			}
 			mOnNextListener.next();
+			break;
+		case R.id.txt_address:
+			city_pop = new CityListPopWindow(mContext, v);
+			city_pop.setmCallBack(new SelectCity() {
+
+				@Override
+				public void selectCity(String province, String province_key,
+						String city) {
+					txt_address.setText(province + " " + city);
+					mActivity.getmRegister().setUser_address(
+							province + " " + city);
+					mActivity.getmRegister().setUser_province(province);
+					mActivity.getmRegister().setUser_province_key(province_key);
+					setNextEnbale();
+				}
+			});
+			city_pop.show();
 			break;
 		default:
 			break;

@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                     android:textColor="@color/txt_desc_color" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -113,7 +113,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                     android:textColor="@color/txt_desc_color" />
+                    android:textColor="@color/txt_desc_color" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.2dip"
+                android:background="@color/bg_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="13dip"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:paddingTop="13dip" >
+
+                <TextView
+                    android:id="@+id/adre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="地区"
+                    android:textColor="@color/txt_color" />
+
+                <TextView
+                    android:id="@+id/txt_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/adre"
+                    android:gravity="right"
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View
@@ -140,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                     android:textColor="@color/txt_desc_color" />
+                    android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 
             <View

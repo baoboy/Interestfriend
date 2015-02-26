@@ -135,7 +135,10 @@ public class CircleMemberFragment extends Fragment implements
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_CHAT_ID,
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_REGISTER_TIME,
 				MyCircleMemberProvider.MyCircleMemberColumns.USER_DECLARATION,
-				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION }; // 查询的列
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_DESCRIPTION,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_ADDRESS,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE,
+				MyCircleMemberProvider.MyCircleMemberColumns.USER_PROVINCE_KEY }; // 查询的列
 		asyncQuery.startQuery(0, null,
 				MyCircleMemberProvider.MyCircleMemberColumns.CONTENT_URI,
 				projection,
@@ -181,6 +184,10 @@ public class CircleMemberFragment extends Fragment implements
 					member.setUser_register_time(cursor.getString(10));
 					member.setUser_declaration(cursor.getString(11));
 					member.setUser_description(cursor.getString(12));
+					member.setUser_address(cursor.getString(13));
+					member.setUser_province(cursor.getString(14));
+					member.setUser_province_key(cursor.getString(15));
+
 					cirlceMemberLists.add(member);
 					cursor.moveToNext();
 				}

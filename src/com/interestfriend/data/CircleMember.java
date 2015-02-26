@@ -20,9 +20,7 @@ import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
 import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.BitmapUtils;
-import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
-import com.interestfriend.utils.Utils;
 
 public class CircleMember extends AbstractData {
 	private static final String JOIN_OFFCIAL_CIRCLE_API = "JoinOfficialCircleServlet";
@@ -32,6 +30,7 @@ public class CircleMember extends AbstractData {
 	private static String RECEIVE_JOIN_CIRCL_EREQUEST = "ReceiveJoinCircleRequestServlet";
 	private static String REFUSE_JOIN_CIRCL_EREQUEST = "RefuseJoinCircleRequestServlet";
 	private static final String GET_USER_INFO = "GetUserInfoServlet";
+	private static final String UPDATE_USER_ADDRESS = "UpdateUserAddressServlet";
 
 	private int user_id;
 	private int circle_id;
@@ -48,6 +47,33 @@ public class CircleMember extends AbstractData {
 	private CircleMemberState state;
 	private String user_declaration = "";
 	private String user_description = "";
+	private String user_address = "";
+	private String user_province = "";
+	private String user_province_key = "";
+
+	public String getUser_address() {
+		return user_address;
+	}
+
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
+	}
+
+	public String getUser_province() {
+		return user_province;
+	}
+
+	public void setUser_province(String user_province) {
+		this.user_province = user_province;
+	}
+
+	public String getUser_province_key() {
+		return user_province_key;
+	}
+
+	public void setUser_province_key(String user_province_key) {
+		this.user_province_key = user_province_key;
+	}
 
 	public String getUser_declaration() {
 		return user_declaration;
@@ -347,6 +373,20 @@ public class CircleMember extends AbstractData {
 		}
 	}
 
+	public RetError upDateUserAddress() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_address", user_address);
+		params.put("user_province", user_province);
+		params.put("user_province_key", user_province_key);
+		Result ret = ApiRequest.request(UPDATE_USER_ADDRESS, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
 	public RetError kickOutMember() {
 		IParser parser = new StringParser("lastReqTime");
 		HashMap<String, Object> params = new HashMap<String, Object>();
@@ -387,6 +427,9 @@ public class CircleMember extends AbstractData {
 		cv.put("user_register_time", user_register_time);
 		cv.put("user_declaration", user_declaration);
 		cv.put("user_description", user_description);
+		cv.put("user_address", user_address);
+		cv.put("user_province", user_province);
+		cv.put("user_province_key", user_province_key);
 
 		if (this.state == CircleMemberState.UPDATE) {
 			db.update(dbName, cv, conditionsKey, conditionsValue);
@@ -419,6 +462,12 @@ public class CircleMember extends AbstractData {
 					.getColumnIndex("user_declaration"));
 			this.user_description = cursor.getString(cursor
 					.getColumnIndex("user_description"));
+			this.user_address = cursor.getString(cursor
+					.getColumnIndex("user_address"));
+			this.user_province = cursor.getString(cursor
+					.getColumnIndex("user_province"));
+			this.user_province_key = cursor.getString(cursor
+					.getColumnIndex("user_province_key"));
 		}
 	}
 
@@ -427,11 +476,13 @@ public class CircleMember extends AbstractData {
 				+ user_cellphone + "','" + user_avatar + "','" + user_birthday
 				+ "','" + user_gender + "','" + sortkey + "','" + pinyinFir
 				+ "','" + user_chat_id + "','" + user_register_time + "','"
-				+ user_declaration + "','" + user_description + "'";
+				+ user_declaration + "','" + user_description + "','"
+				+ user_address + "','" + user_province + "','"
+				+ user_province_key + "'";
 	}
 
 	public static String getDbInsertKeyString() {
-		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir, user_chat_id, user_register_time, user_declaration, user_description"
+		return " (circle_id, user_id, user_name, user_cellphone, user_avatar, user_birthday, user_gender, sortkey, pinyinFir, user_chat_id, user_register_time, user_declaration, user_description, user_address, user_province, user_province_key"
 				+ ") ";
 	}
 }

@@ -134,8 +134,10 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="13dip"
                 android:paddingLeft="10dip"
-                android:paddingRight="10dip" >
+                android:paddingRight="10dip"
+                android:paddingTop="13dip" >
 
                 <TextView
                     android:id="@+id/adre"
@@ -148,14 +150,12 @@
                 <TextView
                     android:id="@+id/txt_address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/adre"
                     android:drawablePadding="8dip"
                     android:drawableRight="@drawable/icon_friend_right_arrow"
-                    android:paddingBottom="13dip"
-                    android:paddingTop="13dip"
-                    android:text="aaaaaaaa"
+                    android:gravity="right"
                     android:textColor="@color/txt_desc_color" />
             </RelativeLayout>
 

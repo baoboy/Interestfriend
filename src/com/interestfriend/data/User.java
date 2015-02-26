@@ -7,11 +7,9 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.Result;
-import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MemberSelfPaser;
 import com.interestfriend.parser.SimpleParser;
-import com.interestfriend.parser.StringParser;
 import com.interestfriend.utils.BitmapUtils;
 import com.interestfriend.utils.PinYinUtils;
 import com.interestfriend.utils.SharedUtils;
@@ -32,6 +30,33 @@ public class User {
 	private String user_birthday = "";// 用户注册生日
 	private String user_password = "";// 用户注册密码
 	private int user_id = 0;
+	private String user_address = "";
+	private String user_province = "";
+	private String user_province_key = "";
+
+	public String getUser_address() {
+		return user_address;
+	}
+
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
+	}
+
+	public String getUser_province() {
+		return user_province;
+	}
+
+	public void setUser_province(String user_province) {
+		this.user_province = user_province;
+	}
+
+	public String getUser_province_key() {
+		return user_province_key;
+	}
+
+	public void setUser_province_key(String user_province_key) {
+		this.user_province_key = user_province_key;
+	}
 
 	public int getUser_id() {
 		return user_id;
@@ -134,6 +159,9 @@ public class User {
 		params.put("user_birthday", user_birthday);
 		params.put("user_pinyin", PinYinUtils.getPinYin(user_name));
 		params.put("user_sort_key", PinYinUtils.getFirstPinYin(user_name));
+		params.put("user_address", user_address);
+		params.put("user_province", user_province);
+		params.put("user_province_key", user_province_key);
 		File file = BitmapUtils.getImageFile(user_avatar);
 		Result ret = ApiRequest.requestWithFile(USER_REGISTER_API, params,
 				file, parser);
@@ -181,6 +209,9 @@ public class User {
 			SharedUtils.setAPPUserRegisterTime(member.getUser_register_time());
 			SharedUtils.setAPPUserSortKey(member.getSortkey());
 			SharedUtils.setAPPUserChatID(member.getUser_chat_id());
+			SharedUtils.setAPPUserAddress(member.getUser_address());
+			SharedUtils.setAPPUserProvince(member.getUser_province());
+			SharedUtils.setAPPUserProvinceKey(member.getUser_province_key());
 			SharedUtils.setUid(member.getUser_id() + "");
 			this.user_id = member.getUser_id();
 			return RetError.NONE;

@@ -596,7 +596,7 @@ int drawable welcome4 0x7f0201a9
 int id Layparent 0x7f0a0104
 int id Listview 0x7f0a0019
 int id PullDownlistView 0x7f0a0092
-int id adre 0x7f0a0052
+int id adre 0x7f0a004a
 int id alpha 0x7f0a00cc
 int id ampm_hitspace 0x7f0a014e
 int id ampm_label 0x7f0a014f
@@ -666,7 +666,7 @@ int id chatting_status_btn 0x7f0a00aa
 int id chatting_video_data_area 0x7f0a0138
 int id chronometer 0x7f0a00ad
 int id circle_description 0x7f0a0042
-int id circle_listView 0x7f0a0051
+int id circle_listView 0x7f0a0053
 int id circle_member_listview 0x7f0a00cb
 int id circle_member_num 0x7f0a00ca
 int id circle_name 0x7f0a003b
@@ -680,8 +680,8 @@ int id date_picker_month 0x7f0a0004
 int id date_picker_month_and_day 0x7f0a0003
 int id date_picker_year 0x7f0a0006
 int id day_picker_selected_date_layout 0x7f0a0002
-int id decl 0x7f0a004c
-int id decr 0x7f0a004f
+int id decl 0x7f0a004e
+int id decr 0x7f0a0051
 int id dialog 0x7f0a00ef
 int id dialogContent 0x7f0a00dd
 int id dialog_view 0x7f0a010c
@@ -764,8 +764,8 @@ int id layout_circle_creator 0x7f0a003d
 int id layout_circle_desc 0x7f0a0041
 int id layout_comment 0x7f0a0061
 int id layout_conent 0x7f0a00d6
-int id layout_declaration 0x7f0a004b
-int id layout_description 0x7f0a004e
+int id layout_declaration 0x7f0a004d
+int id layout_description 0x7f0a0050
 int id layout_parent 0x7f0a0093
 int id layout_praise 0x7f0a005f
 int id layout_scroll 0x7f0a0055
@@ -885,7 +885,7 @@ int id tv_location 0x7f0a0130
 int id tv_nick 0x7f0a00b0
 int id tv_userid 0x7f0a012a
 int id txt_about 0x7f0a009e
-int id txt_address 0x7f0a0053
+int id txt_address 0x7f0a004b
 int id txt_birthday 0x7f0a0049
 int id txt_category 0x7f0a006d
 int id txt_circle_category 0x7f0a003f
@@ -897,9 +897,9 @@ int id txt_circle_info 0x7f0a00d3
 int id txt_circle_name 0x7f0a003c
 int id txt_comment_content 0x7f0a00da
 int id txt_content 0x7f0a0059
-int id txt_declaration 0x7f0a004d
+int id txt_declaration 0x7f0a004f
 int id txt_del 0x7f0a00db
-int id txt_description 0x7f0a0050
+int id txt_description 0x7f0a0052
 int id txt_dissolve_circle 0x7f0a00cf
 int id txt_distance 0x7f0a0111
 int id txt_feedback 0x7f0a009c
@@ -913,7 +913,7 @@ int id txt_num 0x7f0a010a
 int id txt_num_show 0x7f0a00ee
 int id txt_page 0x7f0a011e
 int id txt_quit_circle 0x7f0a00d1
-int id txt_register_time 0x7f0a004a
+int id txt_register_time 0x7f0a004c
 int id txt_reply 0x7f0a00dc
 int id txt_seting 0x7f0a00e3
 int id txt_time 0x7f0a0057

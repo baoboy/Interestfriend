@@ -24,6 +24,7 @@ import com.interestfriend.popwindow.CityListPopWindow;
 import com.interestfriend.popwindow.CityListPopWindow.SelectCity;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
+import com.interestfriend.task.UpdateUserAddressTask;
 import com.interestfriend.task.UpdateUserAvatarTask;
 import com.interestfriend.utils.BroadCast;
 import com.interestfriend.utils.Constants;
@@ -103,6 +104,7 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		txt_user_name.setText(member.getUser_name());
 		txt_declaration.setText(member.getUser_declaration());
 		txt_description.setText(member.getUser_description());
+		txt_address.setText(member.getUser_address());
 	}
 
 	private void setListener() {
@@ -152,6 +154,10 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 				public void selectCity(String province, String province_key,
 						String city) {
 					txt_address.setText(province + " " + city);
+					member.setUser_address(province + " " + city);
+					member.setUser_province(province);
+					member.setUser_province_key(province_key);
+					updateAddress();
 				}
 			});
 			city_pop.show();
@@ -159,6 +165,34 @@ public class CircleMemberOfSelfInfoActivity extends BaseActivity implements
 		default:
 			break;
 		}
+	}
+
+	private void updateAddress() {
+		dialog = DialogUtil.createLoadingDialog(this, "ÇëÉÔºò");
+		dialog.show();
+		UpdateUserAddressTask task = new UpdateUserAddressTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("ÐÞ¸Ä³É¹¦", Toast.LENGTH_SHORT);
+				SharedUtils.setAPPUserAddress(member.getUser_address());
+				SharedUtils.setAPPUserProvince(member.getUser_province());
+				SharedUtils.setAPPUserProvinceKey(member.getUser_province_key());
+				MyApplation.getMemberSelf().setUser_address(
+						member.getUser_address());
+				MyApplation.getMemberSelf().setUser_province(
+						member.getUser_province());
+				MyApplation.getMemberSelf().setUser_province_key(
+						member.getUser_province_key());
+			}
+		});
+		task.execute(member);
 	}
 
 	private void intentUpdateActivity(String column, String content,

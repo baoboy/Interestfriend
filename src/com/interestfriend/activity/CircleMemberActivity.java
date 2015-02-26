@@ -56,6 +56,7 @@ public class CircleMemberActivity extends BaseActivity implements
 	private ListView circle_listView;
 	private ImageView back;
 	private ImageView right_image;
+	private TextView txt_address;
 
 	private CircleMember member;
 
@@ -101,6 +102,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_declaration = (TextView) findViewById(R.id.txt_declaration);
 		txt_description = (TextView) findViewById(R.id.txt_description);
 		circle_listView = (ListView) findViewById(R.id.circle_listView);
+		txt_address = (TextView) findViewById(R.id.txt_address);
 		back = (ImageView) findViewById(R.id.back);
 		Utils.getFocus(txt_title);
 		setListener();
@@ -123,6 +125,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_user_name.setText(member.getUser_name());
 		txt_declaration.setText(member.getUser_declaration());
 		txt_description.setText(member.getUser_description());
+		txt_address.setText(member.getUser_address());
 		adapter = new MemberCirclesAdapter(this, lists);
 		circle_listView.setAdapter(adapter);
 		Circles circlr = new Circles();
