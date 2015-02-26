@@ -133,9 +133,9 @@ public class CircleMemberActivity extends BaseActivity implements
 		circlr.findCircleCreatorByID(DBUtils.getDBsa(1));
 		int creator = circlr.getCreator_id();
 		if (creator == SharedUtils.getIntUid()) {
-			menuStr = new String[] { "私聊", "踢出圈子" };
+			menuStr = new String[] { "私聊", "加好友", "踢出圈子" };
 		} else {
-			menuStr = new String[] { "私聊" };
+			menuStr = new String[] { "私聊", "加好友" };
 		}
 		getCircleList();
 	}
@@ -205,6 +205,8 @@ public class CircleMemberActivity extends BaseActivity implements
 						Utils.leftOutRightIn(CircleMemberActivity.this);
 						break;
 					case 1:
+						break;
+					case 2:
 						kickOutDialog();
 						break;
 					default:
