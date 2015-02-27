@@ -36,6 +36,9 @@ public class InviteMessgeDao {
 	public static final String COLUMN_NAME_STATUS = "status";
 	public static final String COLUMN_NAME_ISINVITEFROMME = "isInviteFromMe";
 
+	public InviteMessgeDao() {
+	}
+
 	/**
 	 * 保存message
 	 * 
@@ -64,6 +67,8 @@ public class InviteMessgeDao {
 
 			cursor.close();
 		}
+		System.out.println("new_friend::::::::::::" + id);
+
 		return id;
 	}
 
@@ -130,6 +135,7 @@ public class InviteMessgeDao {
 			}
 			cursor.close();
 		}
+		System.out.println("new_friend::::::::::::" + msgs);
 		return msgs;
 	}
 

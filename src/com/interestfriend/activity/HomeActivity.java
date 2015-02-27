@@ -33,6 +33,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easemob.chat.ConnectionListener;
+import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactListener;
 import com.easemob.chat.EMContactManager;
@@ -92,6 +93,9 @@ public class HomeActivity extends FragmentActivity implements
 		// 监听联系人的变化等
 		EMContactManager.getInstance().setContactListener(
 				new MyContactListener());
+		EMChat.getInstance().setAppInited();
+		inviteMessgeDao = new InviteMessgeDao();
+
 	}
 
 	@Override
@@ -488,15 +492,15 @@ public class HomeActivity extends FragmentActivity implements
 
 		@Override
 		public void onContactInvited(String user_chat_id, String reason_arr) {
+			System.out.println("new_friend::::::::::::" + reason_arr);
 			String result[] = reason_arr.split(",");
 			String reason = result[0];
 			String user_name = result[1];
 			String user_avatar = result[2];
 			int user_id = Integer.valueOf(result[3]);
-			System.out.println("user::::::::::::" + user_chat_id);
+
 			// 接到邀请的消息，如果不处理(同意或拒绝)，掉线后，服务器会自动再发过来，所以客户端不需要重复提醒
 			List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
-
 			for (InviteMessage inviteMessage : msgs) {
 				if (inviteMessage.getFrom_user_chat_id().equals(user_chat_id)) {
 					inviteMessgeDao.deleteMessage(user_chat_id);
