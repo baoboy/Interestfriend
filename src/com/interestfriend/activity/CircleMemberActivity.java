@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easemob.chat.EMContactManager;
 import com.interestfriend.R;
 import com.interestfriend.adapter.MemberCirclesAdapter;
 import com.interestfriend.data.CircleMember;
@@ -205,6 +206,7 @@ public class CircleMemberActivity extends BaseActivity implements
 						Utils.leftOutRightIn(CircleMemberActivity.this);
 						break;
 					case 1:
+						addDialog();
 						break;
 					case 2:
 						kickOutDialog();
@@ -219,6 +221,56 @@ public class CircleMemberActivity extends BaseActivity implements
 		default:
 			break;
 		}
+	}
+
+	private void addDialog() {
+		PromptDialog.Builder dia = DialogUtil.confirmDialog(this, "确定要加 "
+				+ member.getUser_name() + " 为好友吗?", "确定", "取消",
+				new ConfirmDialog() {
+
+					@Override
+					public void onOKClick() {
+						dialog = DialogUtil.createLoadingDialog(
+								CircleMemberActivity.this, "请稍候");
+						dialog.show();
+						addFriend();
+					}
+
+					@Override
+					public void onCancleClick() {
+					}
+				});
+		dia.show();
+	}
+
+	private void addFriend() {
+		new Thread(new Runnable() {
+			public void run() {
+
+				try {
+					// 写死了个reason，实际应该让用户手动填入
+					EMContactManager.getInstance().addContact(
+							member.getUser_chat_id(),
+							"加个好友呗," + SharedUtils.getAPPUserName() + ","
+									+ SharedUtils.getAPPUserAvatar() + ","
+									+ SharedUtils.getUid());
+					runOnUiThread(new Runnable() {
+						public void run() {
+							dialog.dismiss();
+							ToastUtil.showToast("发送请求成功,等待对方验证",
+									Toast.LENGTH_SHORT);
+						}
+					});
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						public void run() {
+							dialog.dismiss();
+							ToastUtil.showToast("请求添加好友失败", Toast.LENGTH_SHORT);
+						}
+					});
+				}
+			}
+		}).start();
 	}
 
 	private void kickOutDialog() {

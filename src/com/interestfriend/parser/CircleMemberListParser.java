@@ -44,9 +44,14 @@ public class CircleMemberListParser implements IParser {
 			String user_state = obj.getString("userState");
 			String user_declaration = obj.getString("userDeclaration");
 			String user_description = obj.getString("userDescription");
-			String user_address = obj.getString("userAddress");
-			String user_province = obj.getString("userProvince");
-			String user_province_key = obj.getString("userProvinceKey");
+			String user_address = "";
+			String user_province = "";
+			String user_province_key = "";
+			if (obj.has("userAddress")) {
+				user_address = obj.getString("userAddress");
+				user_province = obj.getString("userProvince");
+				user_province_key = obj.getString("userProvinceKey");
+			}
 			CircleMember member = new CircleMember();
 			member.setUser_id(userID);
 			member.setUser_name(userName);

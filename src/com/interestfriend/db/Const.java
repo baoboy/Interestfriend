@@ -1,5 +1,8 @@
 package com.interestfriend.db;
 
+import com.interestfriend.data.ChatUserDao;
+import com.interestfriend.data.InviteMessgeDao;
+
 public class Const {
 	public static final String MY_CIRCLE_TABLE_NAME = "my_circles";
 	public static final String MY_CIRCLE_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
@@ -33,4 +36,22 @@ public class Const {
 	public static final String PRAISE_TABLE_NAME = "praise";
 	public static final String PRAISE_TABLE_STRUCTURE = "_id integer PRIMARY KEY AUTOINCREMENT,"
 			+ " user_id integer, user_avatar integer ,growth_id integer  ";
+	public static final String USERNAME_TABLE_CREATE = "CREATE TABLE "
+			+ ChatUserDao.TABLE_NAME + " (" + ChatUserDao.COLUMN_USER_AVATAR
+			+ " TEXT, " + ChatUserDao.COLUMN_USER_ID + " INTEGER, "
+			+ ChatUserDao.COLUMN_USER_NAME + " TEXT, "
+			+ ChatUserDao.COLUMN_USER_CHAT_ID + " TEXT PRIMARY KEY);";
+
+	public static final String INIVTE_MESSAGE_TABLE_CREATE = "CREATE TABLE "
+			+ InviteMessgeDao.TABLE_NAME + " ("
+			+ InviteMessgeDao.COLUMN_NAME_ID
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_NAME + " TEXT, "
+			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_ID + " INTEGER, "
+			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_AVATAR + " TEXT, "
+			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_CHAT_ID + " TEXT, "
+			+ InviteMessgeDao.COLUMN_NAME_REASON + " TEXT, "
+			+ InviteMessgeDao.COLUMN_NAME_STATUS + " INTEGER, "
+			+ InviteMessgeDao.COLUMN_NAME_ISINVITEFROMME + " INTEGER, "
+			+ InviteMessgeDao.COLUMN_NAME_TIME + " TEXT); ";
 }

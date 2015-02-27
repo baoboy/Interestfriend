@@ -72,6 +72,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 		db.execSQL("create table IF NOT EXISTS " + Const.PRAISE_TABLE_NAME
 				+ "( " + Const.PRAISE_TABLE_STRUCTURE + " )");
+		db.execSQL(Const.USERNAME_TABLE_CREATE);
+		db.execSQL(Const.INIVTE_MESSAGE_TABLE_CREATE);
 	}
 
 	@Override

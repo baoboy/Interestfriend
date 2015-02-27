@@ -441,7 +441,8 @@ public class CircleMember extends AbstractData {
 		Cursor cursor = db.query(Const.CIRCLE_MEMBER_TABLE, new String[] {
 				"circle_id", "user_name", "user_avatar", "user_birthday",
 				"user_gender", "user_chat_id", "user_register_time",
-				"user_declaration", "user_description" }, "user_id=?",
+				"user_declaration", "user_description", "user_address",
+				"user_province", "user_province_key" }, "user_id=?",
 				new String[] { user_id + "" }, null, null, null);
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst();

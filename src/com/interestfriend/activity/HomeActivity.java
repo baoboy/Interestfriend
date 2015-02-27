@@ -20,6 +20,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,13 +33,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.easemob.chat.ConnectionListener;
+import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMContactListener;
+import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
 import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.ChatUserDao;
+import com.interestfriend.data.InviteMessage;
+import com.interestfriend.data.InviteMessage.InviteMesageStatus;
+import com.interestfriend.data.InviteMessgeDao;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.db.DataBaseHelper;
 import com.interestfriend.fragment.FindCircleFragmen;
@@ -82,6 +90,12 @@ public class HomeActivity extends FragmentActivity implements
 		registerReceive();
 		EMChatManager.getInstance().addConnectionListener(
 				new MyConnectionListener());
+		// 监听联系人的变化等
+		EMContactManager.getInstance().setContactListener(
+				new MyContactListener());
+		EMChat.getInstance().setAppInited();
+		inviteMessgeDao = new InviteMessgeDao();
+
 	}
 
 	@Override
@@ -413,6 +427,121 @@ public class HomeActivity extends FragmentActivity implements
 				}
 			}).show();
 
+		}
+
+	}
+
+	private InviteMessgeDao inviteMessgeDao;
+	private ChatUserDao userDao;
+
+	/***
+	 * 好友变化listener
+	 * 
+	 */
+	private class MyContactListener implements EMContactListener {
+
+		@Override
+		public void onContactAdded(List<String> usernameList) {
+			// 保存增加的联系人
+			// Map<String, ChatUser> localUsers = DemoApplication.getInstance()
+			// .getContactList();
+			// Map<String, ChatUser> toAddUsers = new HashMap<String,
+			// ChatUser>();
+			// for (String username : usernameList) {
+			// ChatUser user = setUserHead(username);
+			// // 添加好友时可能会回调added方法两次
+			// if (!localUsers.containsKey(username)) {
+			// userDao.saveContact(user);
+			// }
+			// toAddUsers.put(username, user);
+			// }
+			// localUsers.putAll(toAddUsers);
+
+		}
+
+		@Override
+		public void onContactDeleted(final List<String> usernameList) {
+			// 被删除
+			// Map<String, ChatUser> localUsers = DemoApplication.getInstance()
+			// .getContactList();
+			// for (String username : usernameList) {
+			// localUsers.remove(username);
+			// userDao.deleteContact(username);
+			// inviteMessgeDao.deleteMessage(username);
+			// }
+			// runOnUiThread(new Runnable() {
+			// public void run() {
+			// // 如果正在与此用户的聊天页面
+			// String st10 = getResources().getString(
+			// R.string.have_you_removed);
+			// if (ChatActivity.activityInstance != null
+			// && usernameList
+			// .contains(ChatActivity.activityInstance
+			// .getToChatUsername())) {
+			// Toast.makeText(
+			// MainActivity.this,
+			// ChatActivity.activityInstance
+			// .getToChatUsername() + st10, 1).show();
+			// ChatActivity.activityInstance.finish();
+			// }
+			//
+			// }
+			// });
+
+		}
+
+		@Override
+		public void onContactInvited(String user_chat_id, String reason_arr) {
+			System.out.println("new_friend::::::::::::" + reason_arr);
+			String result[] = reason_arr.split(",");
+			String reason = result[0];
+			String user_name = result[1];
+			String user_avatar = result[2];
+			int user_id = Integer.valueOf(result[3]);
+
+			// 接到邀请的消息，如果不处理(同意或拒绝)，掉线后，服务器会自动再发过来，所以客户端不需要重复提醒
+			List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
+			for (InviteMessage inviteMessage : msgs) {
+				if (inviteMessage.getFrom_user_chat_id().equals(user_chat_id)) {
+					inviteMessgeDao.deleteMessage(user_chat_id);
+				}
+			}
+			// 自己封装的javabean
+			InviteMessage msg = new InviteMessage();
+			msg.setFrom_user_chat_id(user_chat_id);
+			msg.setFrom_user_avatar(user_avatar);
+			msg.setFrom_user_id(user_id);
+			msg.setFrom_user_name(user_name);
+			msg.setTime(System.currentTimeMillis());
+			msg.setReason(reason);
+			// 设置相应status
+			msg.setStatus(InviteMesageStatus.BEINVITEED);
+			// 保存msg
+			inviteMessgeDao.saveMessage(msg);
+		}
+
+		@Override
+		public void onContactAgreed(String username) {
+			// List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
+			// for (InviteMessage inviteMessage : msgs) {
+			// if (inviteMessage.getFrom().equals(username)) {
+			// return;
+			// }
+			// }
+			// // 自己封装的javabean
+			// InviteMessage msg = new InviteMessage();
+			// msg.setFrom(username);
+			// msg.setTime(System.currentTimeMillis());
+			// Log.d(TAG, username + "同意了你的好友请求");
+			// msg.setStatus(InviteMesageStatus.BEAGREED);
+			// notifyNewIviteMessage(msg);
+
+		}
+
+		@Override
+		public void onContactRefused(String username) {
+			// 参考同意，被邀请实现此功能,demo未实现
+			Log.d(username, username + "拒绝了你的好友请求");
 		}
 
 	}
