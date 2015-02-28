@@ -110,5 +110,7 @@
     <string name="title_activity_praise_and_comment">PraiseAndCommentActivity</string>
     <string name="title_activity_welcom_loading">WelcomLoadingActivity</string>
     <string name="title_activity_kick_out">KickOutActivity</string>
+    <string name="title_activity_friend_vertify">FriendVertifyActivity</string>
+    <string name="title_activity_add_friend">AddFriendActivity</string>
 
 </resources>
