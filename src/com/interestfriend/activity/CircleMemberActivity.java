@@ -206,7 +206,16 @@ public class CircleMemberActivity extends BaseActivity implements
 						Utils.leftOutRightIn(CircleMemberActivity.this);
 						break;
 					case 1:
-						addDialog();
+						// addDialog();
+						startActivity(new Intent(CircleMemberActivity.this,
+								AddFriendActivity.class)
+								.putExtra("add_user_name",
+										member.getUser_name())
+								.putExtra("add_user_avatar",
+										member.getUser_avatar())
+								.putExtra("add_user_chat_id",
+										member.getUser_chat_id()));
+						Utils.leftOutRightIn(CircleMemberActivity.this);
 						break;
 					case 2:
 						kickOutDialog();

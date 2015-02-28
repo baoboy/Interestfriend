@@ -317,6 +317,18 @@
             android:label="@string/title_activity_kick_out"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.FriendVertifyListActivity"
+            android:label="@string/title_activity_friend_vertify" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.FriendVertifyActivity"
+            android:label="@string/title_activity_friend_vertify" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.AddFriendActivity"
+            android:label="@string/title_activity_add_friend" >
+        </activity>
     </application>
 
 </manifest>

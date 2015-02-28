@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/titlebar"
+        android:layout_width="fill_parent"
+        layout="@layout/title_bar" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dip"
+        android:layout_marginTop="20dip"
+        android:background="@color/bg_line" />
+
+    <RelativeLayout
+        android:id="@+id/info_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="5dip" >
+
+        <!-- com.interestfriend.view.RoundAngleImageView -->
+
+        <com.interestfriend.view.RoundAngleImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_margin="5dip"
+            android:src="@drawable/picture_default_head" />
+
+        <TextView
+            android:id="@+id/txt_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dip"
+            android:layout_toRightOf="@+id/img_avatar"
+            android:singleLine="true"
+            android:text="TextView"
+            android:textColor="@color/txt_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dip"
+        android:background="@color/bg_line" />
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top"
+        android:hint="输入验证信息"
+        android:minHeight="70dip"
+        android:padding="10dip"
+        android:textColor="@color/text_desc"
+        android:textSize="16sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dip"
+        android:background="@color/bg_line" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/btn_selector"
+        android:text="加好友"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_30" />
+
+</LinearLayout>

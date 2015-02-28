@@ -51,6 +51,7 @@ public class Const {
 			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_AVATAR + " TEXT, "
 			+ InviteMessgeDao.COLUMN_NAME_FROM_USER_CHAT_ID + " TEXT, "
 			+ InviteMessgeDao.COLUMN_NAME_REASON + " TEXT, "
+			+ InviteMessgeDao.COLUMN_FROM_CIRCLE + " TEXT, "
 			+ InviteMessgeDao.COLUMN_NAME_STATUS + " INTEGER, "
 			+ InviteMessgeDao.COLUMN_NAME_ISINVITEFROMME + " INTEGER, "
 			+ InviteMessgeDao.COLUMN_NAME_TIME + " TEXT); ";

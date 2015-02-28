@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
+import com.interestfriend.activity.FriendVertifyListActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.showbigpic.ImagePagerActivity;
@@ -41,6 +42,8 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private TextView txt_message;
 	private TextView txt_user_info;
 	private TextView txt_setting;
+	private TextView txt_friend_vertify;
+	private TextView txt_my_friend;
 
 	public DrawerLeftMenu(Context context) {
 		super(context);
@@ -86,11 +89,16 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
 		txt_user_info = (TextView) rootView.findViewById(R.id.txt_user_info);
 		txt_setting = (TextView) rootView.findViewById(R.id.txt_seting);
+		txt_friend_vertify = (TextView) rootView
+				.findViewById(R.id.txt_friend_vertify);
+		txt_my_friend = (TextView) rootView.findViewById(R.id.txt_my_friend);
 		layotu_parent.setOnClickListener(this);
 		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
 		txt_setting.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
+		txt_friend_vertify.setOnClickListener(this);
+		txt_my_friend.setOnClickListener(this);
 		addView(rootView);
 	}
 
@@ -120,6 +128,24 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			message.setBounds(0, 0, message.getMinimumWidth(),
 					message.getMinimumHeight());
 			txt_message.setCompoundDrawables(message, null, null, null);
+		}
+	}
+
+	public void setFriendVertifyPrompt(boolean visible) {
+		if (visible) {
+			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
+			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
+					prompt.getMinimumHeight());
+			Drawable message = getResources().getDrawable(R.drawable.message);
+			message.setBounds(0, 0, message.getMinimumWidth(),
+					message.getMinimumHeight());
+			txt_friend_vertify
+					.setCompoundDrawables(message, null, prompt, null);
+		} else {
+			Drawable message = getResources().getDrawable(R.drawable.message);
+			message.setBounds(0, 0, message.getMinimumWidth(),
+					message.getMinimumHeight());
+			txt_friend_vertify.setCompoundDrawables(message, null, null, null);
 		}
 	}
 
@@ -176,6 +202,10 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			intent.putExtras(bundle);
 			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
 			mContext.startActivity(intent);
+			break;
+		case R.id.txt_friend_vertify:
+			mContext.startActivity(new Intent(mContext,
+					FriendVertifyListActivity.class));
 			break;
 		default:
 			break;

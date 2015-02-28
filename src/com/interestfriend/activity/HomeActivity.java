@@ -94,8 +94,6 @@ public class HomeActivity extends FragmentActivity implements
 		EMContactManager.getInstance().setContactListener(
 				new MyContactListener());
 		EMChat.getInstance().setAppInited();
-		inviteMessgeDao = new InviteMessgeDao();
-
 	}
 
 	@Override
@@ -315,6 +313,9 @@ public class HomeActivity extends FragmentActivity implements
 			img_prompt.setVisibility(View.VISIBLE);
 		} else {
 			lfetMenu.setMessagePrompt(false);
+			if (img_prompt.getVisibility() == View.VISIBLE) {
+				return;
+			}
 			img_prompt.setVisibility(View.GONE);
 
 		}
@@ -431,7 +432,7 @@ public class HomeActivity extends FragmentActivity implements
 
 	}
 
-	private InviteMessgeDao inviteMessgeDao;
+	private InviteMessgeDao inviteMessgeDao = new InviteMessgeDao();
 	private ChatUserDao userDao;
 
 	/***
@@ -498,12 +499,16 @@ public class HomeActivity extends FragmentActivity implements
 			String user_name = result[1];
 			String user_avatar = result[2];
 			int user_id = Integer.valueOf(result[3]);
+			String from_circle = result[4];
 
 			// 接到邀请的消息，如果不处理(同意或拒绝)，掉线后，服务器会自动再发过来，所以客户端不需要重复提醒
-			List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
+			List<InviteMessage> msgs = inviteMessgeDao.getMessagesList(DBUtils
+					.getDBsa(2));
+
 			for (InviteMessage inviteMessage : msgs) {
 				if (inviteMessage.getFrom_user_chat_id().equals(user_chat_id)) {
-					inviteMessgeDao.deleteMessage(user_chat_id);
+					inviteMessgeDao.deleteMessage(user_chat_id,
+							DBUtils.getDBsa(2));
 				}
 			}
 			// 自己封装的javabean
@@ -514,10 +519,12 @@ public class HomeActivity extends FragmentActivity implements
 			msg.setFrom_user_name(user_name);
 			msg.setTime(System.currentTimeMillis());
 			msg.setReason(reason);
+			msg.setFrom_circle(from_circle);
 			// 设置相应status
 			msg.setStatus(InviteMesageStatus.BEINVITEED);
 			// 保存msg
-			inviteMessgeDao.saveMessage(msg);
+			inviteMessgeDao.saveMessage(msg, DBUtils.getDBsa(2));
+			getFriendVertifyCount();
 		}
 
 		@Override
@@ -552,5 +559,18 @@ public class HomeActivity extends FragmentActivity implements
 		if (getIntent().getBooleanExtra("conflict", false)
 				&& !isConflictDialogShow)
 			showConflictDialog();
+	}
+
+	private void getFriendVertifyCount() {
+		int count = inviteMessgeDao.getInviteMessageCount(DBUtils.getDBsa(2));
+		System.out.println("new_friend::::::::::::count" + count);
+		if (count > 0) {
+			lfetMenu.setFriendVertifyPrompt(true);
+			img_prompt.setVisibility(View.VISIBLE);
+		} else {
+			lfetMenu.setFriendVertifyPrompt(false);
+			img_prompt.setVisibility(View.GONE);
+
+		}
 	}
 }

@@ -144,8 +144,8 @@ public class MyCircleFragment extends Fragment implements OnItemClickListener {
 					circles.setGroup_id(group_id);
 					circles.setCreator_id(creator_id);
 					circles.setCircle_member_num(circle_membet_num);
-					circles.setCircle_category(cursor.getInt(6));
-					circles.setCircle_creator_name(cursor.getString(7));
+					circles.setCircle_category_name(cursor.getString(6));
+					circles.setCircle_create_time(cursor.getString(7));
 					circles.setCircle_creator_name(cursor.getString(8));
 					lists.add(circles);
 					cursor.moveToNext();

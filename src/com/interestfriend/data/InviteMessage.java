@@ -13,11 +13,14 @@
  */
 package com.interestfriend.data;
 
-public class InviteMessage {
+import java.io.Serializable;
+
+public class InviteMessage implements Serializable {
 	private String from_user_name;
 	private String from_user_avatar = "";
 	private int from_user_id;
 	private String from_user_chat_id = "";
+	private String from_circle = "";
 	// 时间
 	private long time;
 	// 添加理由
@@ -27,6 +30,14 @@ public class InviteMessage {
 	private InviteMesageStatus status;
 
 	private int id;
+
+	public String getFrom_circle() {
+		return from_circle;
+	}
+
+	public void setFrom_circle(String from_circle) {
+		this.from_circle = from_circle;
+	}
 
 	public String getFrom_user_chat_id() {
 		return from_user_chat_id;
