@@ -16,7 +16,6 @@ package com.interestfriend.data;
 import com.easemob.chat.EMContact;
 
 public class ChatUser extends EMContact {
-	private static final String USER_FRIENDS_API = "GetUserFriendServlet";
 
 	private int unreadMsgCount;
 	private String user_name = "";

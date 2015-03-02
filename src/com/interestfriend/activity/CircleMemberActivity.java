@@ -17,9 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.easemob.chat.EMContactManager;
 import com.interestfriend.R;
 import com.interestfriend.adapter.MemberCirclesAdapter;
+import com.interestfriend.data.ChatUserDao;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Circles;
 import com.interestfriend.data.CirclesList;
@@ -77,12 +77,16 @@ public class CircleMemberActivity extends BaseActivity implements
 
 	private Dialog dialog;
 
+	private int from;// 从哪个界面进入 -1从好友界面进入
+	private boolean isFriend;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_circle_member);
 		member = (CircleMember) getIntent().getSerializableExtra(
 				"circle_member");
+		from = getIntent().getIntExtra("from", 0);
 		circleList = new CirclesList();
 		initView();
 	}
@@ -99,6 +103,7 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_gender = (TextView) findViewById(R.id.txt_gender);
 		txt_register_time = (TextView) findViewById(R.id.txt_register_time);
 		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("个人资料");
 		txt_user_name = (TextView) findViewById(R.id.txt_user_name);
 		txt_declaration = (TextView) findViewById(R.id.txt_declaration);
 		txt_description = (TextView) findViewById(R.id.txt_description);
@@ -122,7 +127,6 @@ public class CircleMemberActivity extends BaseActivity implements
 		txt_birthday.setText(member.getUser_birthday());
 		txt_gender.setText(member.getUser_gender());
 		txt_register_time.setText(member.getUser_register_time());
-		txt_title.setText("个人资料");
 		txt_user_name.setText(member.getUser_name());
 		txt_declaration.setText(member.getUser_declaration());
 		txt_description.setText(member.getUser_description());
@@ -132,12 +136,28 @@ public class CircleMemberActivity extends BaseActivity implements
 		Circles circlr = new Circles();
 		circlr.setCircle_id(member.getCircle_id());
 		circlr.findCircleCreatorByID(DBUtils.getDBsa(1));
-		int creator = circlr.getCreator_id();
-		if (creator == SharedUtils.getIntUid()) {
-			menuStr = new String[] { "私聊", "加好友", "踢出圈子" };
+		if (from == -1) {
+			menuStr = new String[] { "私聊", "删除好友" };
 		} else {
-			menuStr = new String[] { "私聊", "加好友" };
+			ChatUserDao dao = new ChatUserDao();
+			isFriend = dao.getFriendByUserID(member.getUser_id());
+			int creator = circlr.getCreator_id();
+			if (isFriend) {
+				if (creator == SharedUtils.getIntUid()) {
+					menuStr = new String[] { "私聊", "踢出圈子" };
+				} else {
+					menuStr = new String[] { "私聊" };
+				}
+			} else {
+				if (creator == SharedUtils.getIntUid()) {
+					menuStr = new String[] { "私聊", "加好友", "踢出圈子" };
+				} else {
+					menuStr = new String[] { "私聊", "加好友" };
+				}
+			}
+
 		}
+
 		getCircleList();
 	}
 
@@ -206,16 +226,25 @@ public class CircleMemberActivity extends BaseActivity implements
 						Utils.leftOutRightIn(CircleMemberActivity.this);
 						break;
 					case 1:
-						// addDialog();
-						startActivity(new Intent(CircleMemberActivity.this,
-								AddFriendActivity.class)
-								.putExtra("add_user_name",
-										member.getUser_name())
-								.putExtra("add_user_avatar",
-										member.getUser_avatar())
-								.putExtra("add_user_chat_id",
-										member.getUser_chat_id()));
-						Utils.leftOutRightIn(CircleMemberActivity.this);
+						if (from == -1) {
+							delFriendDialog();
+						} else {
+							if (isFriend) {
+								kickOutDialog();
+							} else {
+								startActivity(new Intent(
+										CircleMemberActivity.this,
+										AddFriendActivity.class)
+										.putExtra("add_user_name",
+												member.getUser_name())
+										.putExtra("add_user_avatar",
+												member.getUser_avatar())
+										.putExtra("add_user_chat_id",
+												member.getUser_chat_id()));
+								Utils.leftOutRightIn(CircleMemberActivity.this);
+							}
+						}
+
 						break;
 					case 2:
 						kickOutDialog();
@@ -232,54 +261,20 @@ public class CircleMemberActivity extends BaseActivity implements
 		}
 	}
 
-	private void addDialog() {
-		PromptDialog.Builder dia = DialogUtil.confirmDialog(this, "确定要加 "
-				+ member.getUser_name() + " 为好友吗?", "确定", "取消",
-				new ConfirmDialog() {
+	private void delFriendDialog() {
+		PromptDialog.Builder dialog = DialogUtil.confirmDialog(this,
+				"确定要删除好友吗?", "确定", "取消", new ConfirmDialog() {
 
 					@Override
 					public void onOKClick() {
-						dialog = DialogUtil.createLoadingDialog(
-								CircleMemberActivity.this, "请稍候");
-						dialog.show();
-						addFriend();
+
 					}
 
 					@Override
 					public void onCancleClick() {
 					}
 				});
-		dia.show();
-	}
-
-	private void addFriend() {
-		new Thread(new Runnable() {
-			public void run() {
-
-				try {
-					// 写死了个reason，实际应该让用户手动填入
-					EMContactManager.getInstance().addContact(
-							member.getUser_chat_id(),
-							"加个好友呗," + SharedUtils.getAPPUserName() + ","
-									+ SharedUtils.getAPPUserAvatar() + ","
-									+ SharedUtils.getUid());
-					runOnUiThread(new Runnable() {
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("发送请求成功,等待对方验证",
-									Toast.LENGTH_SHORT);
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("请求添加好友失败", Toast.LENGTH_SHORT);
-						}
-					});
-				}
-			}
-		}).start();
+		dialog.show();
 	}
 
 	private void kickOutDialog() {

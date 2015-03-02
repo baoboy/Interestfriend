@@ -20,6 +20,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.interestfriend.db.Const;
 import com.interestfriend.db.DBUtils;
 
 public class ChatUserDao {
@@ -90,5 +91,13 @@ public class ChatUserDao {
 		if (db.isOpen()) {
 			db.replace(TABLE_NAME, null, values);
 		}
+	}
+
+	public boolean getFriendByUserID(int user_id) {
+		SQLiteDatabase db = DBUtils.getDBsa(2);
+		Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_USER_NAME },
+				COLUMN_USER_ID + "=?", new String[] { user_id + "" }, null,
+				null, null);
+		return cursor.getCount() > 0;
 	}
 }

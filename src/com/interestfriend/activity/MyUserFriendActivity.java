@@ -3,8 +3,10 @@ package com.interestfriend.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Dialog;
 import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +18,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.interestfriend.R;
+import com.interestfriend.adapter.MyUserFriendAdapter;
 import com.interestfriend.contentprovider.MyUserFriendProvider;
 import com.interestfriend.data.ChatUser;
 import com.interestfriend.data.ChatUserDao;
+import com.interestfriend.data.CircleMember;
+import com.interestfriend.data.UserFriendList;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.db.DBUtils;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.GetUserFriendTask;
+import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.Utils;
 
 public class MyUserFriendActivity extends BaseActivity implements
 		OnClickListener {
@@ -26,9 +37,15 @@ public class MyUserFriendActivity extends BaseActivity implements
 
 	private List<ChatUser> lists = new ArrayList<ChatUser>();
 
+	private MyUserFriendAdapter adapter;
+
 	private ImageView back;
 	private TextView txt_title;
 	private ListView mListView;
+
+	private UserFriendList list = new UserFriendList();
+
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +71,29 @@ public class MyUserFriendActivity extends BaseActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+				CircleMember member = new CircleMember();
+				member.setUser_id(lists.get(position).getUser_id());
+				member.read(DBUtils.getDBsa(1));
+				Intent intent = new Intent();
+				intent.putExtra("circle_member", member);
+				intent.putExtra("from", -1);
+				intent.setClass(MyUserFriendActivity.this,
+						CircleMemberActivity.class);
+				startActivity(intent);
+				Utils.leftOutRightIn(MyUserFriendActivity.this);
 			}
 		});
 	}
 
 	private void setValue() {
-		// adapter = new InviteMessageAdapter(this, dao.getLists());
-		// mListView.setAdapter(adapter);
+		adapter = new MyUserFriendAdapter(this, lists);
+		mListView.setAdapter(adapter);
+		;
 	}
 
 	private void initQuery() {
+		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
+		dialog.show();
 		asyncQuery = new MyAsyncQueryHandler(getContentResolver());
 		String[] projection = { ChatUserDao.COLUMN_USER_AVATAR,
 				ChatUserDao.COLUMN_USER_CHAT_ID,
@@ -110,14 +140,30 @@ public class MyUserFriendActivity extends BaseActivity implements
 					lists.add(user);
 					cursor.moveToNext();
 				}
-				// adapter.notifyDataSetChanged();
-				// refushCircleGroupChatHositiory();
-				// myCircleList.setLocalCircles(lists);
-				// getCircleList();
-			} else {
-
+				adapter.notifyDataSetChanged();
+				dialog.dismiss();
 			}
+			getUserFriend();
 		}
+	}
+
+	private void getUserFriend() {
+		GetUserFriendTask task = new GetUserFriendTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				lists.clear();
+				lists.addAll(list.getLists());
+				adapter.notifyDataSetChanged();
+			}
+		});
+		task.execute(list);
 	}
 
 	@Override

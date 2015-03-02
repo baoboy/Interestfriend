@@ -59,7 +59,7 @@ public class InviteMessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) contentView.getTag();
 		}
 		holder.txt_user_name.setText(list.get(position).getFrom_user_name());
-		holder.txt_user_desc.setText(list.get(position).getReason());
+		holder.txt_user_desc.setText("验证信息:" + list.get(position).getReason());
 
 		UniversalImageLoadTool.disPlay(
 				list.get(position).getFrom_user_avatar(),
