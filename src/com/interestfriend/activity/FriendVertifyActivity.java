@@ -1,5 +1,6 @@
 package com.interestfriend.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +9,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.InviteMessage;
+import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.AddFriendTask;
+import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.utils.Utils;
 import com.interestfriend.view.RoundAngleImageView;
@@ -30,6 +37,8 @@ public class FriendVertifyActivity extends BaseActivity implements
 	private TextView txt_laiyuan;
 
 	private InviteMessage message;
+
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +95,30 @@ public class FriendVertifyActivity extends BaseActivity implements
 			startActivity(intent);
 			Utils.leftOutRightIn(this);
 			break;
+		case R.id.btn_tongyi:
+			add();
+			break;
+
 		default:
 			break;
 		}
+	}
+
+	private void add() {
+		dialog = DialogUtil.createLoadingDialog(this, "ÇëÉÔºò");
+		dialog.show();
+		AddFriendTask task = new AddFriendTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("²Ù×÷³É¹¦", Toast.LENGTH_SHORT);
+			};
+		});
+		task.execute(message);
 	}
 }

@@ -14,8 +14,19 @@
 package com.interestfriend.data;
 
 import java.io.Serializable;
+import java.util.HashMap;
+
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.data.enums.RetStatus;
+import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.Result;
+import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.SimpleParser;
+import com.interestfriend.utils.SharedUtils;
 
 public class InviteMessage implements Serializable {
+	private static final String ADD_FRIEND_API = "AddUserFriendServlet";
+
 	private String from_user_name;
 	private String from_user_avatar = "";
 	private int from_user_id;
@@ -119,4 +130,23 @@ public class InviteMessage implements Serializable {
 
 	}
 
+	public RetError addFriend() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_id", SharedUtils.getUid());
+		params.put("user_name", SharedUtils.getAPPUserName());
+		params.put("user_avatar", SharedUtils.getAPPUserAvatar());
+		params.put("user_chat_id", SharedUtils.getAPPUserChatID());
+		params.put("user_friend_id", from_user_id);
+		params.put("user_friend_name", from_user_name);
+		params.put("user_friend_avatar", from_user_avatar);
+		params.put("user_friend_chat_id", from_user_chat_id);
+		params.put("user_friend_circle", from_circle);
+		Result ret = ApiRequest.request(ADD_FRIEND_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
 }
