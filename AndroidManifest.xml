@@ -212,6 +212,9 @@
         <provider
             android:name="com.interestfriend.contentprovider.MyCircleVideoContentProvider"
             android:authorities="com.quyou.circle.videos" />
+        <provider
+            android:name="com.interestfriend.contentprovider.MyUserFriendContentProvider"
+            android:authorities="com.quyou.user.friends" />
 
         <activity
             android:name="com.interestfriend.activity.NearCirclesActivity"
@@ -328,6 +331,10 @@
         <activity
             android:name="com.interestfriend.activity.AddFriendActivity"
             android:label="@string/title_activity_add_friend" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.MyUserFriendActivity"
+            android:label="@string/title_activity_my_user_friend" >
         </activity>
     </application>
 

@@ -112,5 +112,6 @@
     <string name="title_activity_kick_out">KickOutActivity</string>
     <string name="title_activity_friend_vertify">FriendVertifyActivity</string>
     <string name="title_activity_add_friend">AddFriendActivity</string>
+    <string name="title_activity_my_user_friend">MyUserFriendActivity</string>
 
 </resources>

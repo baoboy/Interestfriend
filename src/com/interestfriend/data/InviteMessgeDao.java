@@ -79,13 +79,14 @@ public class InviteMessgeDao extends AbstractData {
 			values.put(COLUMN_NAME_TIME, message.getTime());
 			values.put(COLUMN_NAME_STATUS, message.getStatus().ordinal());
 			db.insert(TABLE_NAME, null, values);
-			Cursor cursor = db.rawQuery("select last_insert_rowid() from "
-					+ TABLE_NAME, null);
-			if (cursor.moveToFirst()) {
-				id = cursor.getInt(0);
-			}
 
-			cursor.close();
+			// Cursor cursor = db.rawQuery("select last_insert_rowid() from "
+			// + TABLE_NAME, null);
+			// if (cursor.moveToFirst()) {
+			// id = cursor.getInt(0);
+			// }
+
+			// cursor.close();
 		}
 
 		return id;

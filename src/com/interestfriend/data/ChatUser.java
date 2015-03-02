@@ -16,11 +16,22 @@ package com.interestfriend.data;
 import com.easemob.chat.EMContact;
 
 public class ChatUser extends EMContact {
+	private static final String USER_FRIENDS_API = "GetUserFriendServlet";
+
 	private int unreadMsgCount;
 	private String user_name = "";
 	private String user_avatar = "";
 	private int user_id;
 	private String user_chat_id = "";
+	private String user_friend_circle = "";
+
+	public String getUser_friend_circle() {
+		return user_friend_circle;
+	}
+
+	public void setUser_friend_circle(String user_friend_circle) {
+		this.user_friend_circle = user_friend_circle;
+	}
 
 	public String getUser_chat_id() {
 		return user_chat_id;
@@ -79,4 +90,5 @@ public class ChatUser extends EMContact {
 	public String toString() {
 		return user_name;
 	}
+
 }

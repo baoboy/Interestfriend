@@ -39,9 +39,9 @@ public final class R {
 		public static final int titlebar = 0x7f0a000f;
 	}
 	public static final class layout {
-		public static final int fynn_prompt_dialog_normal = 0x7f030047;
-		public static final int fynn_prompt_dialog_titlebar = 0x7f030048;
-		public static final int fynn_prompt_dialog_titlebar_skyblue = 0x7f030049;
+		public static final int fynn_prompt_dialog_normal = 0x7f030048;
+		public static final int fynn_prompt_dialog_titlebar = 0x7f030049;
+		public static final int fynn_prompt_dialog_titlebar_skyblue = 0x7f03004a;
 	}
 	public static final class style {
 		public static final int AppBaseTheme = 0x7f060000;

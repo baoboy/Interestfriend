@@ -23,6 +23,7 @@ import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
 import com.interestfriend.activity.FriendVertifyListActivity;
+import com.interestfriend.activity.MyUserFriendActivity;
 import com.interestfriend.activity.SettingActivity;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.showbigpic.ImagePagerActivity;
@@ -206,6 +207,10 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		case R.id.txt_friend_vertify:
 			mContext.startActivity(new Intent(mContext,
 					FriendVertifyListActivity.class));
+			break;
+		case R.id.txt_my_friend:
+			mContext.startActivity(new Intent(mContext,
+					MyUserFriendActivity.class));
 			break;
 		default:
 			break;

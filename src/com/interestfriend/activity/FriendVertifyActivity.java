@@ -11,9 +11,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easemob.chat.EMChatManager;
 import com.interestfriend.R;
+import com.interestfriend.data.ChatUser;
+import com.interestfriend.data.ChatUserDao;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.InviteMessage;
+import com.interestfriend.data.InviteMessgeDao;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
@@ -96,7 +100,7 @@ public class FriendVertifyActivity extends BaseActivity implements
 			Utils.leftOutRightIn(this);
 			break;
 		case R.id.btn_tongyi:
-			add();
+			acceptInvitation();
 			break;
 
 		default:
@@ -104,9 +108,42 @@ public class FriendVertifyActivity extends BaseActivity implements
 		}
 	}
 
-	private void add() {
+	/**
+	 * 同意好友请求或者群申请
+	 * 
+	 * @param button
+	 * @param username
+	 */
+	private void acceptInvitation() {
 		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
 		dialog.show();
+		new Thread(new Runnable() {
+			public void run() {
+				// 调用sdk的同意方法
+				try {
+					EMChatManager.getInstance().acceptInvitation(
+							message.getFrom_user_chat_id());
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							add();
+						}
+					});
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							dialog.dismiss();
+							ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
+						}
+					});
+
+				}
+			}
+		}).start();
+	}
+
+	private void add() {
 		AddFriendTask task = new AddFriendTask();
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			public void taskFinish(RetError result) {
@@ -117,6 +154,16 @@ public class FriendVertifyActivity extends BaseActivity implements
 					return;
 				}
 				ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
+				InviteMessgeDao inviteMessgeDao = new InviteMessgeDao();
+				inviteMessgeDao.deleteMessage(message.getFrom_user_chat_id(),
+						DBUtils.getDBsa(2));
+				ChatUser user = new ChatUser();
+				user.setUser_avatar(message.getFrom_user_avatar());
+				user.setUser_chat_id(message.getFrom_user_chat_id());
+				user.setUser_id(message.getFrom_user_id());
+				user.setUser_name(message.getFrom_user_name());
+				ChatUserDao dao = new ChatUserDao();
+				dao.saveContact(user);
 			};
 		});
 		task.execute(message);
