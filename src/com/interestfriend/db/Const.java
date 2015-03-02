@@ -40,6 +40,7 @@ public class Const {
 			+ ChatUserDao.TABLE_NAME + " (" + ChatUserDao.COLUMN_USER_AVATAR
 			+ " TEXT, " + ChatUserDao.COLUMN_USER_ID + " INTEGER, "
 			+ ChatUserDao.COLUMN_USER_NAME + " TEXT, "
+			+ ChatUserDao.COLUMN_USER_FROM_CIRCLE + " TEXT, "
 			+ ChatUserDao.COLUMN_USER_CHAT_ID + " TEXT PRIMARY KEY);";
 
 	public static final String INIVTE_MESSAGE_TABLE_CREATE = "CREATE TABLE "

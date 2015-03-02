@@ -28,6 +28,7 @@ public class ChatUserDao {
 	public static final String COLUMN_USER_ID = "user_id";
 	public static final String COLUMN_USER_AVATAR = "use_avatar";
 	public static final String COLUMN_USER_CHAT_ID = "user_chat_id";
+	public static final String COLUMN_USER_FROM_CIRCLE = "user_from_circle";
 
 	/**
 	 * 获取好友list
@@ -49,11 +50,14 @@ public class ChatUserDao {
 						.getColumnIndex(COLUMN_USER_ID));
 				String user_chat_id = cursor.getString(cursor
 						.getColumnIndex(COLUMN_USER_CHAT_ID));
+				String user_from_circle = cursor.getString(cursor
+						.getColumnIndex(COLUMN_USER_FROM_CIRCLE));
 				ChatUser user = new ChatUser();
 				user.setUser_avatar(user_avatar);
 				user.setUser_chat_id(user_chat_id);
 				user.setUser_name(user_name);
 				user.setUser_id(user_id);
+				user.setUser_friend_circle(user_from_circle);
 				lists.add(user);
 			}
 			cursor.close();
@@ -82,6 +86,7 @@ public class ChatUserDao {
 		values.put(COLUMN_USER_AVATAR, user.getUser_avatar());
 		values.put(COLUMN_USER_ID, user.getUser_id());
 		values.put(COLUMN_USER_CHAT_ID, user.getUser_chat_id());
+		values.put(COLUMN_USER_FROM_CIRCLE, user.getUser_friend_circle());
 		if (db.isOpen()) {
 			db.replace(TABLE_NAME, null, values);
 		}
