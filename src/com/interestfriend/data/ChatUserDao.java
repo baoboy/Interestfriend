@@ -20,7 +20,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.interestfriend.db.Const;
 import com.interestfriend.db.DBUtils;
 
 public class ChatUserDao {
@@ -67,13 +66,13 @@ public class ChatUserDao {
 	}
 
 	/**
-	 * 删除�?��联系�? * @param username
+	 * 删除�?��联系�? *
 	 */
-	public void deleteContact(String username) {
+	public void deleteContact(int user_id) {
 		SQLiteDatabase db = DBUtils.getDBsa(2);
 		if (db.isOpen()) {
-			db.delete(TABLE_NAME, COLUMN_USER_CHAT_ID + " = ?",
-					new String[] { username });
+			db.delete(TABLE_NAME, COLUMN_USER_ID + " = ?",
+					new String[] { user_id + "" });
 		}
 	}
 

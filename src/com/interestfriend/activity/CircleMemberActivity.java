@@ -17,8 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.easemob.chat.EMContactManager;
 import com.interestfriend.R;
 import com.interestfriend.adapter.MemberCirclesAdapter;
+import com.interestfriend.data.ChatUser;
 import com.interestfriend.data.ChatUserDao;
 import com.interestfriend.data.CircleMember;
 import com.interestfriend.data.Circles;
@@ -31,6 +33,7 @@ import com.interestfriend.interfaces.ConfirmDialog;
 import com.interestfriend.popwindow.RightMenuPopwindow;
 import com.interestfriend.popwindow.RightMenuPopwindow.OnlistOnclick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
+import com.interestfriend.task.DelUserFriendTask;
 import com.interestfriend.task.GetMemberCircleListTask;
 import com.interestfriend.task.GetUserInfoTask;
 import com.interestfriend.task.KickOutMemberTask;
@@ -261,13 +264,71 @@ public class CircleMemberActivity extends BaseActivity implements
 		}
 	}
 
+	private void delFromServer() {
+		DelUserFriendTask task = new DelUserFriendTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("删除成功", Toast.LENGTH_SHORT);
+				sendBroadcast(new Intent(Constants.DEL_USER_FRIEND).putExtra(
+						"user_id", member.getUser_id()));
+				finishThisActivity();
+			}
+		});
+		ChatUser user = new ChatUser();
+		user.setUser_id(member.getUser_id());
+		task.execute(user);
+	}
+
+	/**
+	 * 删除联系人
+	 * 
+	 * @param toDeleteUser
+	 */
+	public void deleteContact() {
+		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.show();
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					EMContactManager.getInstance().deleteContact(
+							member.getUser_chat_id());
+					runOnUiThread(new Runnable() {
+						public void run() {
+							delFromServer();
+						}
+					});
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						public void run() {
+							dialog.dismiss();
+							ToastUtil.showToast(
+									"删除失败" + e.toString()
+											+ member.getUser_chat_id(),
+									Toast.LENGTH_LONG);
+						}
+					});
+
+				}
+
+			}
+		}).start();
+
+	}
+
 	private void delFriendDialog() {
 		PromptDialog.Builder dialog = DialogUtil.confirmDialog(this,
 				"确定要删除好友吗?", "确定", "取消", new ConfirmDialog() {
 
 					@Override
 					public void onOKClick() {
-
+						deleteContact();
 					}
 
 					@Override

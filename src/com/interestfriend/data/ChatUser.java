@@ -13,9 +13,18 @@
  */
 package com.interestfriend.data;
 
+import java.util.HashMap;
+
 import com.easemob.chat.EMContact;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.data.enums.RetStatus;
+import com.interestfriend.data.result.ApiRequest;
+import com.interestfriend.data.result.Result;
+import com.interestfriend.parser.IParser;
+import com.interestfriend.parser.SimpleParser;
 
 public class ChatUser extends EMContact {
+	public static final String DEL_USER_FRIEND_API = "DelUserFriendServlet";
 
 	private int unreadMsgCount;
 	private String user_name = "";
@@ -90,4 +99,15 @@ public class ChatUser extends EMContact {
 		return user_name;
 	}
 
+	public RetError delFriend() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_friend_id", user_id);
+		Result ret = ApiRequest.request(DEL_USER_FRIEND_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
 }

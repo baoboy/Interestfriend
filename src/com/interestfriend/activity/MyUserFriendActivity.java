@@ -5,8 +5,11 @@ import java.util.List;
 
 import android.app.Dialog;
 import android.content.AsyncQueryHandler;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -23,11 +26,14 @@ import com.interestfriend.contentprovider.MyUserFriendProvider;
 import com.interestfriend.data.ChatUser;
 import com.interestfriend.data.ChatUserDao;
 import com.interestfriend.data.CircleMember;
+import com.interestfriend.data.MyCircles;
 import com.interestfriend.data.UserFriendList;
+import com.interestfriend.data.AbstractData.Status;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetUserFriendTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.Utils;
 
@@ -164,6 +170,42 @@ public class MyUserFriendActivity extends BaseActivity implements
 			}
 		});
 		task.execute(list);
+	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.DEL_USER_FRIEND);
+		// 注册广播
+		registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.DEL_USER_FRIEND)) {
+				int user_id = intent.getIntExtra("user_id", 0);
+				del(user_id);
+				ChatUserDao dao = new ChatUserDao();
+				dao.deleteContact(user_id);
+			}
+		}
+	};
+
+	private void del(int user_id) {
+		for (ChatUser user : lists) {
+			if (user.getUser_id() == user_id) {
+				lists.remove(user);
+				break;
+			}
+		}
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override
