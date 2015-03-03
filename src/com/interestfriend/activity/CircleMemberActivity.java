@@ -297,8 +297,11 @@ public class CircleMemberActivity extends BaseActivity implements
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					EMContactManager.getInstance().deleteContact(
-							member.getUser_chat_id());
+					List<String> usernames = EMContactManager.getInstance()
+							.getContactUserNames();
+					System.out.println("chat:::::::::::::;" + usernames);
+					String chat_id = member.getUser_chat_id();
+					EMContactManager.getInstance().deleteContact(chat_id);
 					runOnUiThread(new Runnable() {
 						public void run() {
 							delFromServer();
@@ -312,6 +315,8 @@ public class CircleMemberActivity extends BaseActivity implements
 									"É¾³ýÊ§°Ü" + e.toString()
 											+ member.getUser_chat_id(),
 									Toast.LENGTH_LONG);
+							System.out.println("chat:::::::::::::;"
+									+ e.toString());
 						}
 					});
 

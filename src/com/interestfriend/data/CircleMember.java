@@ -330,6 +330,7 @@ public class CircleMember extends AbstractData {
 			this.user_description = member.getUser_description();
 			this.user_register_time = member.getUser_register_time();
 			this.user_gender = member.getUser_gender();
+			this.user_chat_id = member.getUser_chat_id();
 			return RetError.NONE;
 		} else {
 			return ret.getErr();
