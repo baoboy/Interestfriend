@@ -93,7 +93,6 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 			@Override
 			public void onSuccess() {
 				dialog.dismiss();
-				MyApplation.exit(false);
 				Utils.cleanDatabaseByName(SettingActivity.this);
 				SharedUtils.setUid(0 + "");
 				SharedUtils.setAPPUserAvatar("");
@@ -102,6 +101,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				SharedUtils.clearData();
 				DBUtils.dbase = null;
 				DBUtils.close();
+				MyApplation.exit(true);
 				startActivity(new Intent(SettingActivity.this,
 						LoginActivity.class));
 			}

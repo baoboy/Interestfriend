@@ -60,6 +60,7 @@ public class MyUserFriendActivity extends BaseActivity implements
 		initView();
 		setValue();
 		initQuery();
+		registerBoradcastReceiver();
 	}
 
 	private void initView() {
@@ -148,8 +149,9 @@ public class MyUserFriendActivity extends BaseActivity implements
 				}
 				adapter.notifyDataSetChanged();
 				dialog.dismiss();
+			} else {
+				getUserFriend();
 			}
-			getUserFriend();
 		}
 	}
 
@@ -196,6 +198,11 @@ public class MyUserFriendActivity extends BaseActivity implements
 				dao.deleteContact(user_id);
 			}
 		}
+	};
+
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(mBroadcastReceiver);
 	};
 
 	private void del(int user_id) {
