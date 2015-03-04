@@ -1,7 +1,10 @@
 package com.interestfriend.activity;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,10 +16,12 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.InviteMessageAdapter;
+import com.interestfriend.data.InviteMessage;
 import com.interestfriend.data.InviteMessgeDao;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.GetInviteMessageTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.Utils;
 
@@ -39,6 +44,7 @@ public class FriendVertifyListActivity extends BaseActivity implements
 		initView();
 		setValue();
 		getInviteMessage();
+		registerBoradcastReceiver();
 	}
 
 	private void initView() {
@@ -96,4 +102,41 @@ public class FriendVertifyListActivity extends BaseActivity implements
 			break;
 		}
 	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.DEL_USER_FRIEND);
+		// 注册广播
+		registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.ADDED_USER_FRIEND)
+					|| action.equals(Constants.REDUED_USER_FRIEND)) {
+				int user_id = intent.getIntExtra("user_id", 0);
+				for (InviteMessage message : dao.getLists()) {
+					if (message.getFrom_user_id() == user_id) {
+						dao.getLists().remove(message);
+						break;
+					}
+				}
+				adapter.notifyDataSetChanged();
+			}
+		}
+	};
+
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(mBroadcastReceiver);
+	};
+
 }

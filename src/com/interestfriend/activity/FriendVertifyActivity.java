@@ -22,6 +22,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.AddFriendTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
@@ -102,17 +103,17 @@ public class FriendVertifyActivity extends BaseActivity implements
 		case R.id.btn_tongyi:
 			acceptInvitation();
 			break;
-
+		case R.id.btn_jujue:
+			refuseInvitation();
+			break;
 		default:
 			break;
 		}
 	}
 
 	/**
-	 * 同意好友请求或者群申请
+	 * 同意好友请求
 	 * 
-	 * @param button
-	 * @param username
 	 */
 	private void acceptInvitation() {
 		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
@@ -165,8 +166,49 @@ public class FriendVertifyActivity extends BaseActivity implements
 				user.setUser_friend_circle(message.getFrom_circle());
 				ChatUserDao dao = new ChatUserDao();
 				dao.saveContact(user);
+				sendBroadcast(new Intent(Constants.ADDED_USER_FRIEND).putExtra(
+						"user_id", message.getFrom_user_id()));
+				finishThisActivity();
 			};
 		});
 		task.execute(message);
 	}
+
+	private void refuseInvitation() {
+		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
+		dialog.show();
+		new Thread(new Runnable() {
+			public void run() {
+				// 调用sdk的同意方法
+				try {
+					EMChatManager.getInstance().refuseInvitation(
+							message.getFrom_user_chat_id());
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
+							InviteMessgeDao inviteMessgeDao = new InviteMessgeDao();
+							inviteMessgeDao.deleteMessage(
+									message.getFrom_user_chat_id(),
+									DBUtils.getDBsa(2));
+							sendBroadcast(new Intent(
+									Constants.REDUED_USER_FRIEND).putExtra(
+									"user_id", message.getFrom_user_id()));
+							finishThisActivity();
+						}
+					});
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							dialog.dismiss();
+							ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
+						}
+					});
+
+				}
+			}
+		}).start();
+	}
+
 }

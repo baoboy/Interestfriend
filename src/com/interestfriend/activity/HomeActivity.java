@@ -416,13 +416,13 @@ public class HomeActivity extends FragmentActivity implements
 				@Override
 				public void onClick(Dialog dialog, int which) {
 					dialog.dismiss();
-					MyApplation.exit(false);
 					Utils.cleanDatabaseByName(HomeActivity.this);
 					SharedUtils.setUid(0 + "");
 					DataBaseHelper.setIinstanceNull();
 					SharedUtils.clearData();
 					DBUtils.dbase = null;
 					DBUtils.close();
+					MyApplation.exit(true);
 					startActivity(new Intent(HomeActivity.this,
 							LoginActivity.class));
 				}
