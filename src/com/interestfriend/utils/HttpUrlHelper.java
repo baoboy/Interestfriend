@@ -108,6 +108,7 @@ public class HttpUrlHelper {
 	 * @return
 	 */
 	public static String postUrlData(String url, List<NameValuePair> pairs) {
+		Logger.out("ApiRequest.request.result.url", url, Level.DEBUG);
 		try {
 			HttpPost httpPost = new HttpPost(url);
 			HttpClient httpclient = new DefaultHttpClient();

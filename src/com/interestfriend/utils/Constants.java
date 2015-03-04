@@ -10,6 +10,7 @@ public class Constants {
 	public static final String GROWTH_USER_ID = "growth";
 	public static final String KICK_OUT_USER_ID = "kickout";
 	public static final String JONI_NOTIFY_USER_ID = "joinnotify";
+	public static final String ADD_USER_FRIEND_INVITE = "adduserfriendinvite";
 
 	// »·ÐÅ
 

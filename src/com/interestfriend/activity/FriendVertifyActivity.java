@@ -12,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.data.ChatUser;
 import com.interestfriend.data.ChatUserDao;
@@ -40,17 +43,54 @@ public class FriendVertifyActivity extends BaseActivity implements
 	private RelativeLayout info_layout;
 	private TextView txt_laiyuan;
 
+	private String user_id = "";
+	private EMConversation conversation;
+	private EMMessage lastMessage;
+
 	private InviteMessage message;
 
 	private Dialog dialog;
+
+	private String reason = "";
+	private int user_friend_id;
+	private String user_friend_name = "";
+	private String user_firend_avatar = "";
+	private String from_circle = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_friend_vertify);
-		message = (InviteMessage) getIntent().getSerializableExtra("message");
+		 message = (InviteMessage)
+		 getIntent().getSerializableExtra("message");
+//		getLastMessage();
 		initView();
 		setValue();
+	}
+
+	private void getLastMessage() {
+		user_id = getIntent().getStringExtra("userId");
+		conversation = EMChatManager.getInstance().getConversation(user_id);
+		lastMessage = conversation.getLastMessage();
+		try {
+			user_friend_id = Integer.valueOf(lastMessage
+					.getIntAttribute("user_friend_id"));
+			reason = lastMessage.getStringAttribute("reason");
+			user_friend_name = lastMessage
+					.getStringAttribute("user_friend_name");
+			user_firend_avatar = lastMessage
+					.getStringAttribute("user_firend_avatar");
+			from_circle = lastMessage.getStringAttribute("from_circle");
+		} catch (EaseMobException e) {
+			e.printStackTrace();
+			System.out.println("e:::::::::::::::;;;" + e.toString());
+		}
+		message = new InviteMessage();
+		message.setFrom_circle(from_circle);
+		message.setFrom_user_avatar(user_firend_avatar);
+		message.setFrom_user_id(user_friend_id);
+		message.setFrom_user_name(user_friend_name);
+		message.setReason(reason);
 	}
 
 	private void initView() {

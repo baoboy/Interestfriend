@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.easemob.chat.EMContactManager;
 import com.interestfriend.R;
-import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.InviteMessage;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.AddUserFriendInviteTask;
 import com.interestfriend.utils.DialogUtil;
-import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
@@ -66,36 +67,23 @@ public class AddFriendActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void addFriend() {
-		new Thread(new Runnable() {
-			public void run() {
-
-				try {
-					// 写死了个reason，实际应该让用户手动填入
-					EMContactManager.getInstance().addContact(
-							add_user_chat_id,
-							edit_content.getText().toString() + ","
-									+ SharedUtils.getAPPUserName() + ","
-									+ SharedUtils.getAPPUserAvatar() + ","
-									+ SharedUtils.getUid() + ","
-									+ MyApplation.getCircle_name() + ",");
-					runOnUiThread(new Runnable() {
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("发送请求成功,等待对方验证",
-									Toast.LENGTH_SHORT);
-							finishThisActivity();
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("请求添加好友失败", Toast.LENGTH_SHORT);
-						}
-					});
+		AddUserFriendInviteTask task = new AddUserFriendInviteTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+					if (result != RetError.NONE) {
+						return;
+					}
+					ToastUtil.showToast("发送请求成功,等待对方验证", Toast.LENGTH_SHORT);
+					finishThisActivity();
 				}
-			}
-		}).start();
+			};
+		});
+		InviteMessage message = new InviteMessage();
+		message.setReason(edit_content.getText().toString());
+		message.setFrom_user_chat_id(add_user_chat_id);
+		task.executeParallel(message);
 	}
 
 	@Override

@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMConversation;
+import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
-import com.interestfriend.adapter.InviteMessageAdapter;
-import com.interestfriend.data.InviteMessgeDao;
-import com.interestfriend.data.enums.RetError;
-import com.interestfriend.interfaces.AbstractTaskPostCallBack;
-import com.interestfriend.task.GetInviteMessageTask;
-import com.interestfriend.utils.DialogUtil;
+import com.interestfriend.adapter.InviteMessageAdapter1;
+import com.interestfriend.data.InviteMessage;
 import com.interestfriend.utils.Utils;
 
 public class FriendVertifyListActivity extends BaseActivity implements
@@ -26,19 +26,25 @@ public class FriendVertifyListActivity extends BaseActivity implements
 	private TextView txt_title;
 	private ListView mListView;
 
-	private Dialog dialog;
+	// private Dialog dialog;
 
-	private InviteMessgeDao dao = new InviteMessgeDao();
+	// private InviteMessgeDao dao = new InviteMessgeDao();
 
-	private InviteMessageAdapter adapter;
+	private InviteMessageAdapter1 adapter;
+	private String user_chat_id = "";
+
+	private EMConversation conversation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_friend_vertify_list);
+		user_chat_id = getIntent().getStringExtra("userId");
+		conversation = EMChatManager.getInstance()
+				.getConversation(user_chat_id);
 		initView();
 		setValue();
-		getInviteMessage();
+		// getInviteMessage();
 	}
 
 	private void initView() {
@@ -56,34 +62,60 @@ public class FriendVertifyListActivity extends BaseActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+				EMMessage emmessage = conversation.getMessage(position);
+				String reason = "";
+				int user_friend_id = 0;
+				String user_friend_name = "";
+				String user_firend_avatar = "";
+				String from_circle = "";
+				try {
+					user_friend_id = Integer.valueOf(emmessage
+							.getIntAttribute("user_friend_id"));
+					reason = emmessage.getStringAttribute("reason");
+					user_friend_name = emmessage
+							.getStringAttribute("user_friend_name");
+					user_firend_avatar = emmessage
+							.getStringAttribute("user_firend_avatar");
+					from_circle = emmessage.getStringAttribute("from_circle");
+				} catch (EaseMobException e) {
+					e.printStackTrace();
+					System.out.println("e:::::::::::::::;;;" + e.toString());
+				}
+				InviteMessage message = new InviteMessage();
+				message.setFrom_circle(from_circle);
+				message.setFrom_user_avatar(user_firend_avatar);
+				message.setFrom_user_id(user_friend_id);
+				message.setFrom_user_name(user_friend_name);
+				message.setReason(reason);
 				startActivity(new Intent(FriendVertifyListActivity.this,
-						FriendVertifyActivity.class).putExtra("message", dao
-						.getLists().get(position)));
+						FriendVertifyActivity.class).putExtra("message",
+						message));
 				Utils.leftOutRightIn(FriendVertifyListActivity.this);
 			}
 		});
 	}
 
 	private void setValue() {
-		adapter = new InviteMessageAdapter(this, dao.getLists());
+		// adapter = new InviteMessageAdapter(this, dao.getLists());
+		adapter = new InviteMessageAdapter1(this, conversation);
 		mListView.setAdapter(adapter);
 	}
 
-	private void getInviteMessage() {
-		dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
-		dialog.show();
-		GetInviteMessageTask task = new GetInviteMessageTask();
-		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
-			@Override
-			public void taskFinish(RetError result) {
-				if (dialog != null) {
-					dialog.dismiss();
-				}
-				adapter.notifyDataSetChanged();
-			}
-		});
-		task.execute(dao);
-	}
+	// private void getInviteMessage() {
+	// dialog = DialogUtil.createLoadingDialog(this, "«Î…‘∫Ú");
+	// dialog.show();
+	// GetInviteMessageTask task = new GetInviteMessageTask();
+	// task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+	// @Override
+	// public void taskFinish(RetError result) {
+	// if (dialog != null) {
+	// dialog.dismiss();
+	// }
+	// adapter.notifyDataSetChanged();
+	// }
+	// });
+	// task.execute(dao);
+	// }
 
 	@Override
 	public void onClick(View v) {

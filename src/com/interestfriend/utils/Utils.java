@@ -30,7 +30,8 @@ public class Utils {
 				|| Constants.FEEDBACK_USER_ID.equals(user_id)
 				|| Constants.PRAISE_USER_ID.equals(user_id)
 				|| Constants.GROWTH_USER_ID.equals(user_id)
-				|| Constants.KICK_OUT_USER_ID.equals(user_id)) {
+				|| Constants.KICK_OUT_USER_ID.equals(user_id)
+				|| Constants.ADD_USER_FRIEND_INVITE.equals(user_id)) {
 			return true;
 		}
 		return false;

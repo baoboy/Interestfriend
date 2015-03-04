@@ -157,6 +157,8 @@ public class ChatAllHistoryActivity extends BaseActivity implements
 			intent = new Intent(this, PraiseAndCommentActivity.class);
 		} else if (Constants.KICK_OUT_USER_ID.equals(username)) {
 			intent = new Intent(this, KickOutActivity.class);
+		} else if (Constants.ADD_USER_FRIEND_INVITE.equals(username)) {
+			intent = new Intent(this, FriendVertifyListActivity.class);
 		} else {
 			intent = new Intent(this, ChatActivity.class);
 			EMMessage message = conversation.getLastMessage();

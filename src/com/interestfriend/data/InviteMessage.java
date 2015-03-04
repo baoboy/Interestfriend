@@ -16,6 +16,7 @@ package com.interestfriend.data;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
@@ -26,6 +27,7 @@ import com.interestfriend.utils.SharedUtils;
 
 public class InviteMessage implements Serializable {
 	private static final String ADD_FRIEND_API = "AddUserFriendServlet";
+	private static final String ADD_USER_FRIEND_INVITE_API = "AddUserFriendInviteServlet";
 
 	private String from_user_name;
 	private String from_user_avatar = "";
@@ -128,6 +130,24 @@ public class InviteMessage implements Serializable {
 		/** 我拒绝了对方的请求 */
 		REFUSED
 
+	}
+
+	public RetError addFriendInvite() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("to_user_chat_id", from_user_chat_id);
+		params.put("reason", reason);
+		params.put("user_id", SharedUtils.getUid());
+		params.put("user_name", SharedUtils.getAPPUserName());
+		params.put("user_avatar", SharedUtils.getAPPUserAvatar());
+		params.put("from_circle", MyApplation.getCircle_name());
+		Result ret = ApiRequest.request(ADD_USER_FRIEND_INVITE_API, params,
+				parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
 	}
 
 	public RetError addFriend() {
