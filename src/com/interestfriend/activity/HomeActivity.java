@@ -36,7 +36,6 @@ import com.easemob.chat.ConnectionListener;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactListener;
-import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.EMMessage.ChatType;
@@ -91,8 +90,8 @@ public class HomeActivity extends FragmentActivity implements
 		EMChatManager.getInstance().addConnectionListener(
 				new MyConnectionListener());
 		// 监听联系人的变化等
-		EMContactManager.getInstance().setContactListener(
-				new MyContactListener());
+		// EMContactManager.getInstance().setContactListener(
+		// new MyContactListener());
 		EMChat.getInstance().setAppInited();
 	}
 

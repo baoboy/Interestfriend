@@ -108,10 +108,11 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
 			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
 					prompt.getMinimumHeight());
-			Drawable setting = getResources().getDrawable(R.drawable.setting);
-			setting.setBounds(0, 0, setting.getMinimumWidth(),
-					setting.getMinimumHeight());
-			txt_setting.setCompoundDrawables(setting, null, prompt, null);
+			// Drawable setting =
+			// getResources().getDrawable(R.drawable.setting);
+			// setting.setBounds(0, 0, setting.getMinimumWidth(),
+			// setting.getMinimumHeight());
+			txt_setting.setCompoundDrawables(null, null, prompt, null);
 		}
 	}
 
@@ -120,15 +121,17 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			Drawable prompt = getResources().getDrawable(R.drawable.prompt);
 			prompt.setBounds(0, 0, prompt.getMinimumWidth(),
 					prompt.getMinimumHeight());
-			Drawable message = getResources().getDrawable(R.drawable.message);
-			message.setBounds(0, 0, message.getMinimumWidth(),
-					message.getMinimumHeight());
-			txt_message.setCompoundDrawables(message, null, prompt, null);
+			// Drawable message =
+			// getResources().getDrawable(R.drawable.message);
+			// message.setBounds(0, 0, message.getMinimumWidth(),
+			// message.getMinimumHeight());
+			txt_message.setCompoundDrawables(null, null, prompt, null);
 		} else {
-			Drawable message = getResources().getDrawable(R.drawable.message);
-			message.setBounds(0, 0, message.getMinimumWidth(),
-					message.getMinimumHeight());
-			txt_message.setCompoundDrawables(message, null, null, null);
+			// Drawable message =
+			// getResources().getDrawable(R.drawable.message);
+			// message.setBounds(0, 0, message.getMinimumWidth(),
+			// message.getMinimumHeight());
+			// txt_message.setCompoundDrawables(message, null, null, null);
 		}
 	}
 
