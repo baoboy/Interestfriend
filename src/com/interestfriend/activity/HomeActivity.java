@@ -422,7 +422,7 @@ public class HomeActivity extends FragmentActivity implements
 					SharedUtils.clearData();
 					DBUtils.dbase = null;
 					DBUtils.close();
-					MyApplation.exit(true);
+					MyApplation.exit(false);
 					startActivity(new Intent(HomeActivity.this,
 							LoginActivity.class));
 				}
@@ -518,7 +518,7 @@ public class HomeActivity extends FragmentActivity implements
 			// ±£´æmsg
 			inviteMessgeDao.saveMessage(msg, DBUtils.getDBsa(2));
 
-			getFriendVertifyCount();
+			// getFriendVertifyCount();
 		}
 
 		@Override
@@ -555,16 +555,16 @@ public class HomeActivity extends FragmentActivity implements
 			showConflictDialog();
 	}
 
-	private void getFriendVertifyCount() {
-		int count = inviteMessgeDao.getInviteMessageCount(DBUtils.getDBsa(2));
-		// System.out.println("new_friend::::::::::::count" + count);
-		if (count > 0) {
-			lfetMenu.setFriendVertifyPrompt(true);
-			img_prompt.setVisibility(View.VISIBLE);
-		} else {
-			lfetMenu.setFriendVertifyPrompt(false);
-			img_prompt.setVisibility(View.GONE);
-
-		}
-	}
+	// private void getFriendVertifyCount() {
+	// int count = inviteMessgeDao.getInviteMessageCount(DBUtils.getDBsa(2));
+	// // // System.out.println("new_friend::::::::::::count" + count);
+	// // if (count > 0) {
+	// // lfetMenu.setFriendVertifyPrompt(true);
+	// // img_prompt.setVisibility(View.VISIBLE);
+	// // } else {
+	// // lfetMenu.setFriendVertifyPrompt(false);
+	// // img_prompt.setVisibility(View.GONE);
+	// //
+	// // }
+	// }
 }

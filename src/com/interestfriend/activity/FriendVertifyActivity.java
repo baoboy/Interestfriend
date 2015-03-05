@@ -62,9 +62,8 @@ public class FriendVertifyActivity extends BaseActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_friend_vertify);
-		 message = (InviteMessage)
-		 getIntent().getSerializableExtra("message");
-//		getLastMessage();
+		message = (InviteMessage) getIntent().getSerializableExtra("message");
+		// getLastMessage();
 		initView();
 		setValue();
 	}
@@ -207,7 +206,7 @@ public class FriendVertifyActivity extends BaseActivity implements
 				ChatUserDao dao = new ChatUserDao();
 				dao.saveContact(user);
 				sendBroadcast(new Intent(Constants.ADDED_USER_FRIEND).putExtra(
-						"user_id", message.getFrom_user_id()));
+						"msg_id", getIntent().getStringExtra("msg_id")));
 				finishThisActivity();
 			};
 		});
@@ -233,7 +232,8 @@ public class FriendVertifyActivity extends BaseActivity implements
 									DBUtils.getDBsa(2));
 							sendBroadcast(new Intent(
 									Constants.REDUED_USER_FRIEND).putExtra(
-									"user_id", message.getFrom_user_id()));
+									"msg_id",
+									getIntent().getStringExtra("msg_id")));
 							finishThisActivity();
 						}
 					});

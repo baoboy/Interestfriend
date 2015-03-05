@@ -92,7 +92,7 @@ public class FriendVertifyListActivity extends BaseActivity implements
 				message.setReason(reason);
 				startActivity(new Intent(FriendVertifyListActivity.this,
 						FriendVertifyActivity.class).putExtra("message",
-						message));
+						message).putExtra("msg_id", emmessage.getMsgId()));
 				Utils.leftOutRightIn(FriendVertifyListActivity.this);
 			}
 		});
@@ -137,7 +137,8 @@ public class FriendVertifyListActivity extends BaseActivity implements
 	 */
 	public void registerBoradcastReceiver() {
 		IntentFilter myIntentFilter = new IntentFilter();
-		myIntentFilter.addAction(Constants.DEL_USER_FRIEND);
+		myIntentFilter.addAction(Constants.ADDED_USER_FRIEND);
+		myIntentFilter.addAction(Constants.REDUED_USER_FRIEND);
 		// ×¢²á¹ã²¥
 		registerReceiver(mBroadcastReceiver, myIntentFilter);
 	}
@@ -151,6 +152,9 @@ public class FriendVertifyListActivity extends BaseActivity implements
 			String action = intent.getAction();
 			if (action.equals(Constants.ADDED_USER_FRIEND)
 					|| action.equals(Constants.REDUED_USER_FRIEND)) {
+				String msg_id = intent.getStringExtra("msg_id");
+				System.out.println("msg::::::::::::::" + msg_id);
+				conversation.removeMessage(msg_id);
 				adapter.notifyDataSetChanged();
 			}
 		}

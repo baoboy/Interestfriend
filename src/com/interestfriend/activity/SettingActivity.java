@@ -101,7 +101,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener {
 				SharedUtils.clearData();
 				DBUtils.dbase = null;
 				DBUtils.close();
-				MyApplation.exit(true);
+				MyApplation.exit(false);
 				startActivity(new Intent(SettingActivity.this,
 						LoginActivity.class));
 			}

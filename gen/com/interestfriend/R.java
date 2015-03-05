@@ -1017,13 +1017,13 @@ containing a value of this type.
         public static final int txt_dissolve_circle=0x7f0a00d4;
         public static final int txt_distance=0x7f0a0118;
         public static final int txt_feedback=0x7f0a00a2;
-        public static final int txt_friend_vertify=0x7f0a00e8;
+        public static final int txt_friend_vertify=0x7f0a00ea;
         public static final int txt_gender=0x7f0a004b;
         public static final int txt_info=0x7f0a0110;
         public static final int txt_laiyuan=0x7f0a0075;
         public static final int txt_message=0x7f0a00e7;
         public static final int txt_message_prompt=0x7f0a00a1;
-        public static final int txt_my_friend=0x7f0a00e9;
+        public static final int txt_my_friend=0x7f0a00e8;
         public static final int txt_name=0x7f0a004a;
         public static final int txt_new_version=0x7f0a00a3;
         public static final int txt_num=0x7f0a0111;
@@ -1032,7 +1032,7 @@ containing a value of this type.
         public static final int txt_quit_circle=0x7f0a00d6;
         public static final int txt_register_time=0x7f0a004f;
         public static final int txt_reply=0x7f0a00e1;
-        public static final int txt_seting=0x7f0a00ea;
+        public static final int txt_seting=0x7f0a00e9;
         public static final int txt_time=0x7f0a005a;
         public static final int txt_title=0x7f0a00c1;
         public static final int txt_user_agreement=0x7f0a0013;
