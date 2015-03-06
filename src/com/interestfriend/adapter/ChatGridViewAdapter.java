@@ -47,10 +47,16 @@ public class ChatGridViewAdapter extends BaseAdapter {
 		map.put("name", "位置");
 		map.put("pic_id", R.drawable.chat_location_noraml);
 		list.add(map);
-		map = new HashMap<String, Object>();
-		map.put("name", "语音电话");
-		map.put("pic_id", R.drawable.chat_voice_call_normal);
-		list.add(map);
+		if (type == 0) {
+			map = new HashMap<String, Object>();
+			map.put("name", "语音电话");
+			map.put("pic_id", R.drawable.chat_voice_call_normal);
+			list.add(map);
+			map = new HashMap<String, Object>();
+			map.put("name", "视频电话");
+			map.put("pic_id", R.drawable.chat_video_normal);
+			list.add(map);
+		}
 	}
 
 	@Override
@@ -85,19 +91,6 @@ public class ChatGridViewAdapter extends BaseAdapter {
 		holder.img.setImageResource(Integer.parseInt(list.get(position)
 				.get("pic_id").toString()));
 		holder.txt_title.setText(list.get(position).get("name").toString());
-
-		if (position == list.size() - 1) {
-			// if (type == 1) {
-			holder.img.setVisibility(View.INVISIBLE);
-			holder.txt_title.setVisibility(View.INVISIBLE);
-			// } else {
-			// holder.img.setVisibility(View.VISIBLE);
-			// holder.txt_title.setVisibility(View.VISIBLE);
-			// }
-		} else {
-			holder.img.setVisibility(View.VISIBLE);
-			holder.txt_title.setVisibility(View.VISIBLE);
-		}
 
 		return convertView;
 	}

@@ -58,7 +58,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -101,6 +100,7 @@ import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.ChatItemGridView;
 import com.interestfriend.view.ExpandGridView;
 
 /**
@@ -191,7 +191,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	private String user_name = "";
 	private String user_avatar = "";
 
-	private GridView mGridView;
+	private ChatItemGridView mGridView;
 
 	private List<View> views = new ArrayList<View>();
 	private List<View> dots = new ArrayList<View>();
@@ -233,7 +233,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 	 * initView
 	 */
 	protected void initView() {
-		mGridView = (GridView) findViewById(R.id.m_gridview);
+		mGridView = (ChatItemGridView) findViewById(R.id.m_gridview);
 		mGridView.setAdapter(new ChatGridViewAdapter(this, 0));
 		mGridView.setOnItemClickListener(this);
 		back = (ImageView) findViewById(R.id.back);
@@ -1652,15 +1652,24 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 					REQUEST_CODE_MAP);
 			break;
 		case 5:
-			if (!EMChatManager.getInstance().isConnected()) {
-				Toast.makeText(this, "尚未连接至服务器，请稍后重试", 0).show();
-				return;
-			}
-			startActivity(new Intent(ChatActivity.this, VoiceCallActivity.class)
-					.putExtra("username", toChatUsername)
-					.putExtra("isComingCall", false)
-					.putExtra("user_name", user_name)
-					.putExtra("user_avatar", user_avatar));
+			if (!EMChatManager.getInstance().isConnected())
+				Toast.makeText(this, R.string.not_connect_to_server, 0).show();
+			else
+				startActivity(new Intent(ChatActivity.this,
+						VoiceCallActivity.class)
+						.putExtra("user_chat_id", toChatUsername)
+						.putExtra("isComingCall", false)
+						.putExtra("call_user_avatar", user_avatar)
+						.putExtra("call_user_name", user_name));
+			break;
+		case 6:
+			if (!EMChatManager.getInstance().isConnected())
+				Toast.makeText(this, R.string.not_connect_to_server, 0).show();
+			else
+				startActivity(new Intent(this, VideoCallActivity.class)
+						.putExtra("user_chat_id", toChatUsername)
+						.putExtra("isComingCall", false)
+						.putExtra("call_user_name", user_name));
 			break;
 		default:
 			break;

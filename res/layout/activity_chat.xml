@@ -241,18 +241,14 @@
                     android:layout_height="0.5dip"
                     android:background="#d5d5d5" />
 
-                <GridView
+                <com.interestfriend.view.ChatItemGridView
                     android:id="@+id/m_gridview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#d5d5d5"
-                    android:horizontalSpacing="1.0px"
+                    android:layout_height="match_parent"
+                    android:horizontalSpacing="5.0px"
                     android:listSelector="@null"
                     android:numColumns="3"
-                    android:smoothScrollbar="true"
-                    android:soundEffectsEnabled="true"
-                    android:stretchMode="columnWidth"
-                    android:verticalSpacing="1.0px" />
+                    android:verticalSpacing="5.0px" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

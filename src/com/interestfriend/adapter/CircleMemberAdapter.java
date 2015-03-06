@@ -115,6 +115,7 @@ public class CircleMemberAdapter extends BaseAdapter {
 
 	private void showAlpha(int position, ViewHolder holder) {
 		String province = list.get(position).getUser_province();
+		province = "".equals(province) ? "未知地区" : province;
 		// 当前联系人的sortKey
 		String currentStr = getAlpha(list.get(position).getUser_province_key());
 		// 上一个联系人的sortKey

@@ -49,7 +49,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -88,8 +87,8 @@ import com.interestfriend.utils.CommonUtils;
 import com.interestfriend.utils.ImageUtils;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.SmileUtils;
-import com.interestfriend.utils.ToastUtil;
 import com.interestfriend.utils.Utils;
+import com.interestfriend.view.ChatItemGridView;
 import com.interestfriend.view.ExpandGridView;
 
 @SuppressLint("NewApi")
@@ -169,7 +168,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	private TextView txt_title;
 
 	private PowerManager.WakeLock wakeLock;
-	private GridView mGridView;
+	private ChatItemGridView mGridView;
 	private ImageView back;
 
 	private List<View> views = new ArrayList<View>();
@@ -208,7 +207,7 @@ public class CircleGroupChatFragment extends Fragment implements
 	protected void initView() {
 		back = (ImageView) getView().findViewById(R.id.back);
 		back.setOnClickListener(this);
-		mGridView = (GridView) getView().findViewById(R.id.m_gridview);
+		mGridView = (ChatItemGridView) getView().findViewById(R.id.m_gridview);
 		mGridView.setAdapter(new ChatGridViewAdapter(getActivity(), 1));
 		mGridView.setOnItemClickListener(this);
 		txt_title = (TextView) getView().findViewById(R.id.title_txt);

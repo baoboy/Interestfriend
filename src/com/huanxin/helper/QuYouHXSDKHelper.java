@@ -32,7 +32,7 @@ import com.interestfriend.activity.JoinCircleActivity;
 import com.interestfriend.activity.KickOutActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
-import com.interestfriend.receive.VoiceCallReceiver;
+import com.interestfriend.receive.CallReceiver;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.Utils;
@@ -198,8 +198,8 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 	protected void initListener() {
 		super.initListener();
 		IntentFilter callFilter = new IntentFilter(EMChatManager.getInstance()
-				.getIncomingVoiceCallBroadcastAction());
-		appContext.registerReceiver(new VoiceCallReceiver(), callFilter);
+				.getIncomingCallBroadcastAction());
+		appContext.registerReceiver(new CallReceiver(), callFilter);
 	}
 
 	@Override

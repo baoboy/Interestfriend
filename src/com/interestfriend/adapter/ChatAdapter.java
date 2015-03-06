@@ -95,7 +95,8 @@ public class ChatAdapter extends BaseAdapter {
 	private static final int MESSAGE_TYPE_RECV_FILE = 11;
 	private static final int MESSAGE_TYPE_SENT_VOICE_CALL = 12;
 	private static final int MESSAGE_TYPE_RECV_VOICE_CALL = 13;
-
+	private static final int MESSAGE_TYPE_SENT_VIDEO_CALL = 14;
+	private static final int MESSAGE_TYPE_RECV_VIDEO_CALL = 15;
 	public static final String IMAGE_DIR = "chat/image/";
 	public static final String VOICE_DIR = "chat/audio/";
 	public static final String VIDEO_DIR = "chat/video";
@@ -156,6 +157,10 @@ public class ChatAdapter extends BaseAdapter {
 					Constants.MESSAGE_ATTR_IS_VOICE_CALL, false))
 				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT
 						: MESSAGE_TYPE_SENT_TXT;
+			else if (message.getBooleanAttribute(
+					Constants.MESSAGE_ATTR_IS_VIDEO_CALL, false))
+				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL
+						: MESSAGE_TYPE_SENT_VIDEO_CALL;
 			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL
 					: MESSAGE_TYPE_SENT_VOICE_CALL;
 		}
@@ -217,6 +222,12 @@ public class ChatAdapter extends BaseAdapter {
 				return message.direct == EMMessage.Direct.RECEIVE ? inflater
 						.inflate(R.layout.row_received_voice_call, null)
 						: inflater.inflate(R.layout.row_sent_voice_call, null);
+			// 视频通话
+			else if (message.getBooleanAttribute(
+					Constants.MESSAGE_ATTR_IS_VIDEO_CALL, false))
+				return message.direct == EMMessage.Direct.RECEIVE ? inflater
+						.inflate(R.layout.row_received_video_call, null)
+						: inflater.inflate(R.layout.row_sent_video_call, null);
 			return message.direct == EMMessage.Direct.RECEIVE ? inflater
 					.inflate(R.layout.row_received_message, null) : inflater
 					.inflate(R.layout.row_sent_message, null);
@@ -266,9 +277,11 @@ public class ChatAdapter extends BaseAdapter {
 				} catch (Exception e) {
 				}
 
-				// 语音通话
+				// 语音通话及视频通话
 				if (message.getBooleanAttribute(
-						Constants.MESSAGE_ATTR_IS_VOICE_CALL, false)) {
+						Constants.MESSAGE_ATTR_IS_VOICE_CALL, false)
+						|| message.getBooleanAttribute(
+								Constants.MESSAGE_ATTR_IS_VIDEO_CALL, false)) {
 					holder.iv = (ImageView) convertView
 							.findViewById(R.id.iv_call_icon);
 					holder.tv = (TextView) convertView
@@ -417,12 +430,14 @@ public class ChatAdapter extends BaseAdapter {
 			handleImageMessage(message, holder, position, convertView);
 			break;
 		case TXT: // 文本
-			if (!message.getBooleanAttribute(
-					Constants.MESSAGE_ATTR_IS_VOICE_CALL, false))
-				handleTextMessage(message, holder, position);
+			if (message.getBooleanAttribute(
+					Constants.MESSAGE_ATTR_IS_VOICE_CALL, false)
+					|| message.getBooleanAttribute(
+							Constants.MESSAGE_ATTR_IS_VIDEO_CALL, false))
+				// 音视频通话
+				handleCallMessage(message, holder, position);
 			else
-				// 语音电话
-				handleVoiceCallMessage(message, holder, position);
+				handleTextMessage(message, holder, position);
 			break;
 		case LOCATION: // 位置
 			handleLocationMessage(message, holder, position, convertView);
@@ -575,6 +590,20 @@ public class ChatAdapter extends BaseAdapter {
 	 * @param position
 	 */
 	private void handleVoiceCallMessage(EMMessage message, ViewHolder holder,
+			final int position) {
+		TextMessageBody txtBody = (TextMessageBody) message.getBody();
+		holder.tv.setText(txtBody.getMessage());
+
+	}
+
+	/**
+	 * 音视频通话记录
+	 * 
+	 * @param message
+	 * @param holder
+	 * @param position
+	 */
+	private void handleCallMessage(EMMessage message, ViewHolder holder,
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		holder.tv.setText(txtBody.getMessage());

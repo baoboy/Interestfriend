@@ -87,6 +87,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.interestfriend.activity.VideoCallActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.interestfriend.activity.ShowVideoActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >

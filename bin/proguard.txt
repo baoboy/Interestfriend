@@ -8,118 +8,118 @@
 # view res/layout/activity_home.xml #generated:11
 -keep class android.support.v4.widget.DrawerLayout { <init>(...); }
 
-# view AndroidManifest.xml #generated:147
+# view AndroidManifest.xml #generated:151
 -keep class com.baidu.location.f { <init>(...); }
 
 # view res/layout/activity_baidumap.xml #generated:47
 -keep class com.baidu.mapapi.map.MapView { <init>(...); }
 
-# view AndroidManifest.xml #generated:146
+# view AndroidManifest.xml #generated:150
 -keep class com.easemob.chat.EMChatService { <init>(...); }
 
-# view AndroidManifest.xml #generated:132
+# view AndroidManifest.xml #generated:136
 -keep class com.easemob.chat.StartServiceReceiver { <init>(...); }
 
 # view res/layout/year_label_text_view.xml #generated:2
 -keep class com.fourmob.datetimepicker.date.TextViewWithCircularIndicator { <init>(...); }
 
-# view AndroidManifest.xml #generated:304
+# view AndroidManifest.xml #generated:308
 -keep class com.interestfriend.activity.AboutActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:331
+# view AndroidManifest.xml #generated:335
 -keep class com.interestfriend.activity.AddFriendActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:69
 -keep class com.interestfriend.activity.BaiduMapActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:161
+# view AndroidManifest.xml #generated:165
 -keep class com.interestfriend.activity.CategoryCircleActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:63
 -keep class com.interestfriend.activity.ChatActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:224
+# view AndroidManifest.xml #generated:228
 -keep class com.interestfriend.activity.ChatAllHistoryActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:171
+# view AndroidManifest.xml #generated:175
 -keep class com.interestfriend.activity.CircleInfoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:234
+# view AndroidManifest.xml #generated:238
 -keep class com.interestfriend.activity.CircleMemberActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:176
+# view AndroidManifest.xml #generated:180
 -keep class com.interestfriend.activity.CircleMemberOfSelfInfoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:239
+# view AndroidManifest.xml #generated:243
 -keep class com.interestfriend.activity.CommentActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:56
 -keep class com.interestfriend.activity.CreateCircleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:284
+# view AndroidManifest.xml #generated:288
 -keep class com.interestfriend.activity.DissolveCircleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:259
+# view AndroidManifest.xml #generated:263
 -keep class com.interestfriend.activity.FeedBackActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:327
+# view AndroidManifest.xml #generated:331
 -keep class com.interestfriend.activity.FriendVertifyActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:323
+# view AndroidManifest.xml #generated:327
 -keep class com.interestfriend.activity.FriendVertifyListActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:181
+# view AndroidManifest.xml #generated:185
 -keep class com.interestfriend.activity.HomeActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:95
+# view AndroidManifest.xml #generated:99
 -keep class com.interestfriend.activity.ImageGridActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:269
+# view AndroidManifest.xml #generated:273
 -keep class com.interestfriend.activity.JoinCircleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:318
+# view AndroidManifest.xml #generated:322
 -keep class com.interestfriend.activity.KickOutActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:191
+# view AndroidManifest.xml #generated:195
 -keep class com.interestfriend.activity.LoginActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:120
+# view AndroidManifest.xml #generated:124
 -keep class com.interestfriend.activity.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:264
+# view AndroidManifest.xml #generated:268
 -keep class com.interestfriend.activity.MessageWarnctivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:335
+# view AndroidManifest.xml #generated:339
 -keep class com.interestfriend.activity.MyUserFriendActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:219
+# view AndroidManifest.xml #generated:223
 -keep class com.interestfriend.activity.NearCirclesActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:294
+# view AndroidManifest.xml #generated:298
 -keep class com.interestfriend.activity.PraiseAndCommentActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:111
+# view AndroidManifest.xml #generated:115
 -keep class com.interestfriend.activity.PublicshGrowthActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:116
+# view AndroidManifest.xml #generated:120
 -keep class com.interestfriend.activity.PublishGrowthImagePagerActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:196
+# view AndroidManifest.xml #generated:200
 -keep class com.interestfriend.activity.PublishVideoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:274
+# view AndroidManifest.xml #generated:278
 -keep class com.interestfriend.activity.ReceiveJoinCircleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:100
+# view AndroidManifest.xml #generated:104
 -keep class com.interestfriend.activity.RecorderVideoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:279
+# view AndroidManifest.xml #generated:283
 -keep class com.interestfriend.activity.RefuseJoinCircleActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:166
+# view AndroidManifest.xml #generated:170
 -keep class com.interestfriend.activity.SearchCirclsActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:249
+# view AndroidManifest.xml #generated:253
 -keep class com.interestfriend.activity.SettingActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:75
@@ -128,25 +128,28 @@
 # view AndroidManifest.xml #generated:80
 -keep class com.interestfriend.activity.ShowNormalFileActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:89
+# view AndroidManifest.xml #generated:93
 -keep class com.interestfriend.activity.ShowVideoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:289
+# view AndroidManifest.xml #generated:293
 -keep class com.interestfriend.activity.UpdateCircleDiscriptionActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:229
+# view AndroidManifest.xml #generated:233
 -keep class com.interestfriend.activity.UpdateUserInfoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:308
+# view AndroidManifest.xml #generated:312
 -keep class com.interestfriend.activity.UserAgreement { <init>(...); }
 
-# view AndroidManifest.xml #generated:244
+# view AndroidManifest.xml #generated:89
+-keep class com.interestfriend.activity.VideoCallActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:248
 -keep class com.interestfriend.activity.VideoCommentActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:85
 -keep class com.interestfriend.activity.VoiceCallActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:299
+# view AndroidManifest.xml #generated:303
 -keep class com.interestfriend.activity.WelcomActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:36
@@ -158,42 +161,46 @@
 # view AndroidManifest.xml #generated:30
 -keep class com.interestfriend.applation.MyApplation { <init>(...); }
 
-# view AndroidManifest.xml #generated:105
+# view AndroidManifest.xml #generated:109
 -keep class com.interestfriend.chooseimage.SelectPhotoActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:206
+# view AndroidManifest.xml #generated:210
 -keep class com.interestfriend.contentprovider.MyCircleGrowthsContentProvider { <init>(...); }
 
-# view AndroidManifest.xml #generated:209
+# view AndroidManifest.xml #generated:213
 -keep class com.interestfriend.contentprovider.MyCircleMemberContentProvider { <init>(...); }
 
-# view AndroidManifest.xml #generated:212
+# view AndroidManifest.xml #generated:216
 -keep class com.interestfriend.contentprovider.MyCircleVideoContentProvider { <init>(...); }
 
-# view AndroidManifest.xml #generated:203
+# view AndroidManifest.xml #generated:207
 -keep class com.interestfriend.contentprovider.MyCirclesContentProvider { <init>(...); }
 
-# view AndroidManifest.xml #generated:215
+# view AndroidManifest.xml #generated:219
 -keep class com.interestfriend.contentprovider.MyUserFriendContentProvider { <init>(...); }
 
-# view AndroidManifest.xml #generated:254
+# view AndroidManifest.xml #generated:258
 -keep class com.interestfriend.findpassword.FindPasswordActivity { <init>(...); }
 
 # view res/layout/activity_show_big_image.xml #generated:8
 # view res/layout/image_detail_fragment.xml #generated:12
 -keep class com.interestfriend.photoview.PhotoView { <init>(...); }
 
-# view AndroidManifest.xml #generated:187
+# view AndroidManifest.xml #generated:191
 -keep class com.interestfriend.register.RegisterActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:315
+# view AndroidManifest.xml #generated:319
 -keep class com.interestfriend.service.UpLoadErrorLogService { <init>(...); }
 
-# view AndroidManifest.xml #generated:313
+# view AndroidManifest.xml #generated:317
 -keep class com.interestfriend.service.UpdateService { <init>(...); }
 
-# view AndroidManifest.xml #generated:126
+# view AndroidManifest.xml #generated:130
 -keep class com.interestfriend.showbigpic.ImagePagerActivity { <init>(...); }
+
+# view res/layout/activity_chat.xml #generated:244
+# view res/layout/circle_chat.xml #generated:242
+-keep class com.interestfriend.view.ChatItemGridView { <init>(...); }
 
 # view res/layout/activity_imagefactory.xml #generated:7
 -keep class com.interestfriend.view.CropImageView { <init>(...); }
