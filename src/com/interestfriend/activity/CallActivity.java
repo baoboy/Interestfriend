@@ -10,7 +10,9 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
 import com.interestfriend.utils.Constants;
+import com.interestfriend.utils.SharedUtils;
 
 public class CallActivity extends BaseActivity {
 
@@ -23,6 +25,9 @@ public class CallActivity extends BaseActivity {
 	protected SoundPool soundPool;
 	protected Ringtone ringtone;
 	protected int outgoing;
+	protected String call_user_name = "";
+	protected String call_user_avatar = "";
+	protected int call_user_id;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -164,7 +169,13 @@ public class CallActivity extends BaseActivity {
 			message.setAttribute(Constants.MESSAGE_ATTR_IS_VOICE_CALL, true);
 		else
 			message.setAttribute(Constants.MESSAGE_ATTR_IS_VIDEO_CALL, true);
-
+		message.setAttribute("to_user_name", call_user_name);
+		message.setAttribute("to_user_avatar", call_user_avatar);
+		message.setAttribute("from_user_name", SharedUtils.getAPPUserName());
+		message.setAttribute("from_user_avatar", call_user_avatar);
+		message.setAttribute("circle_name", MyApplation.getCircle_name());
+		message.setAttribute("user_id", SharedUtils.getIntUid());
+		message.setAttribute("to_user_id", call_user_id);
 		// 设置消息body
 		message.addBody(txtBody);
 		message.setMsgId(msgid);

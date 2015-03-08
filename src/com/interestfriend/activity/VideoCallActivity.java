@@ -114,9 +114,11 @@ public class VideoCallActivity extends CallActivity implements OnClickListener {
 		// 获取通话是否为接收方向的
 		isInComingCall = getIntent().getBooleanExtra("isComingCall", false);
 		user_chat_id = getIntent().getStringExtra("user_chat_id");
-
+		call_user_name = getIntent().getStringExtra("call_user_name");
+		call_user_avatar = getIntent().getStringExtra("call_user_avatar");
+		call_user_id = getIntent().getIntExtra("call_user_id", 0);
 		// 设置通话人
-		nickTextView.setText(user_chat_id);
+		nickTextView.setText(call_user_name);
 
 		// 显示本地图像的surfaceview
 		localSurface = (SurfaceView) findViewById(R.id.local_surface);

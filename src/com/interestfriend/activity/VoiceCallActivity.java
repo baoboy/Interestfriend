@@ -39,6 +39,8 @@ import com.easemob.chat.EMCallStateChangeListener;
 import com.easemob.chat.EMChatManager;
 import com.easemob.exceptions.EMServiceNotReadyException;
 import com.interestfriend.R;
+import com.interestfriend.applation.MyApplation;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.UniversalImageLoadTool;
 import com.interestfriend.view.RoundAngleImageView;
 
@@ -68,8 +70,6 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 	private boolean isAnswered;
 	private LinearLayout voiceContronlLayout;
 	private RoundAngleImageView img_avatar;
-	private String call_user_name = "";
-	private String call_user_avatar = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +109,8 @@ public class VoiceCallActivity extends CallActivity implements OnClickListener {
 		isInComingCall = getIntent().getBooleanExtra("isComingCall", false);
 		call_user_name = getIntent().getStringExtra("call_user_name");
 		call_user_avatar = getIntent().getStringExtra("call_user_avatar");
+		call_user_id = getIntent().getIntExtra("call_user_id", 0);
+
 		UniversalImageLoadTool.disPlay(call_user_avatar, img_avatar,
 				R.drawable.default_avatar);
 		// 设置通话人

@@ -303,6 +303,7 @@
 # view res/layout/row_received_message.xml #generated:23
 # view res/layout/row_received_picture.xml #generated:20
 # view res/layout/row_received_video.xml #generated:20
+# view res/layout/row_received_video_call.xml #generated:20
 # view res/layout/row_received_voice.xml #generated:20
 # view res/layout/row_received_voice_call.xml #generated:20
 # view res/layout/row_sent_file.xml #generated:21
@@ -310,6 +311,7 @@
 # view res/layout/row_sent_message.xml #generated:21
 # view res/layout/row_sent_picture.xml #generated:20
 # view res/layout/row_sent_video.xml #generated:20
+# view res/layout/row_sent_video_call.xml #generated:20
 # view res/layout/row_sent_voice.xml #generated:20
 # view res/layout/row_sent_voice_call.xml #generated:20
 -keep class com.interestfriend.view.RoundAngleImageView { <init>(...); }

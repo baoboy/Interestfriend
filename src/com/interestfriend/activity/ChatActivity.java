@@ -218,6 +218,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 		user_avatar = getIntent().getStringExtra("user_avatar");
 		user_name = getIntent().getStringExtra("user_name");
 		user_id = getIntent().getIntExtra("user_id", -1);
+
 		if (user_name == null || "".equals(user_name)) {
 			CircleMember memmber = new CircleMember();
 			memmber.setUser_chat_id(toChatUsername);
@@ -1660,7 +1661,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 						.putExtra("user_chat_id", toChatUsername)
 						.putExtra("isComingCall", false)
 						.putExtra("call_user_avatar", user_avatar)
-						.putExtra("call_user_name", user_name));
+						.putExtra("call_user_name", user_name)
+						.putExtra("call_user_id", user_id));
 			break;
 		case 6:
 			if (!EMChatManager.getInstance().isConnected())
@@ -1669,7 +1671,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener,
 				startActivity(new Intent(this, VideoCallActivity.class)
 						.putExtra("user_chat_id", toChatUsername)
 						.putExtra("isComingCall", false)
-						.putExtra("call_user_name", user_name));
+						.putExtra("call_user_name", user_name)
+						.putExtra("call_user_avatar", user_avatar)
+						.putExtra("call_user_id", user_id));
 			break;
 		default:
 			break;
