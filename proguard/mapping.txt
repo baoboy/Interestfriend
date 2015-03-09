@@ -18890,9 +18890,8 @@ com.interestfriend.db.DataBaseHelper -> com.interestfriend.a.c:
     35:40:com.interestfriend.db.DataBaseHelper getInstance(android.content.Context,java.lang.String) -> a
     44:45:void setIinstanceNull() -> b
     49:50:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
-    54:81:void createDB(android.database.sqlite.SQLiteDatabase) -> a
-    86:94:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
-    97:108:void deleteOldDB(android.database.sqlite.SQLiteDatabase) -> b
+    54:80:void createDB(android.database.sqlite.SQLiteDatabase) -> a
+    86:108:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
 com.interestfriend.findpassword.FindPasswordActivity -> com.interestfriend.findpassword.FindPasswordActivity:
     android.widget.TextView txt_title -> b
     android.widget.TextView txt_page -> c
@@ -21237,7 +21236,7 @@ com.interestfriend.video.util.ImageResizer -> com.interestfriend.video.util.g:
     int mImageHeight -> b
     54:56:void setImageSize(int,int) -> a
     64:65:void setImageSize(int) -> a
-    79:79:android.graphics.Bitmap processBitmap(int) -> c
+    77:79:android.graphics.Bitmap processBitmap(int) -> c
     86:87:android.graphics.Bitmap processBitmap(java.lang.Object) -> a
     114:130:android.graphics.Bitmap decodeSampledBitmapFromResource(android.content.res.Resources,int,int,int,com.interestfriend.video.util.ImageCache) -> a
     154:169:android.graphics.Bitmap decodeSampledBitmapFromFile(java.lang.String,int,int,com.interestfriend.video.util.ImageCache) -> a
@@ -21288,7 +21287,7 @@ com.interestfriend.video.util.ImageWorker$BitmapWorkerTask -> com.interestfriend
     java.lang.Object mData -> e
     java.lang.ref.WeakReference imageViewReference -> f
     com.interestfriend.video.util.ImageWorker this$0 -> d
-    244:291:android.graphics.drawable.BitmapDrawable doInBackground(java.lang.Void[]) -> a
+    241:291:android.graphics.drawable.BitmapDrawable doInBackground(java.lang.Void[]) -> a
     302:314:void onPostExecute(android.graphics.drawable.BitmapDrawable) -> a
     318:322:void onCancelled(android.graphics.drawable.BitmapDrawable) -> b
     329:336:android.widget.ImageView getAttachedImageView() -> h
@@ -24697,30 +24696,30 @@ fynn.app.PromptDialog -> fynn.app.PromptDialog:
 fynn.app.PromptDialog$Builder -> fynn.app.PromptDialog$Builder:
     fynn.app.PromptDialog dialog -> a
     android.content.Context context -> b
-    java.lang.CharSequence title -> c
-    java.lang.CharSequence message -> d
-    java.lang.CharSequence button1Text -> e
-    java.lang.CharSequence button2Text -> f
-    java.lang.CharSequence button3Text -> g
-    int button1TextColor -> h
-    int button2TextColor -> i
-    int button3TextColor -> j
-    int titleColor -> k
-    int messageColor -> l
-    float button1Size -> m
-    float button2Size -> n
-    float button3Size -> o
-    float titleSize -> p
-    float messageSize -> q
-    android.content.res.ColorStateList titleColorStateList -> r
-    android.content.res.ColorStateList messageColorStateList -> s
-    android.content.res.ColorStateList button1ColorStateList -> t
-    android.content.res.ColorStateList button2ColorStateList -> u
-    android.content.res.ColorStateList button3ColorStateList -> v
-    int titlebarGravity -> w
-    android.graphics.drawable.Drawable icon -> x
-    boolean cancelable -> y
-    boolean isMessageCenter -> z
+    boolean messageGravityIsCenter -> c
+    java.lang.CharSequence title -> d
+    java.lang.CharSequence message -> e
+    java.lang.CharSequence button1Text -> f
+    java.lang.CharSequence button2Text -> g
+    java.lang.CharSequence button3Text -> h
+    int button1TextColor -> i
+    int button2TextColor -> j
+    int button3TextColor -> k
+    int titleColor -> l
+    int messageColor -> m
+    float button1Size -> n
+    float button2Size -> o
+    float button3Size -> p
+    float titleSize -> q
+    float messageSize -> r
+    android.content.res.ColorStateList titleColorStateList -> s
+    android.content.res.ColorStateList messageColorStateList -> t
+    android.content.res.ColorStateList button1ColorStateList -> u
+    android.content.res.ColorStateList button2ColorStateList -> v
+    android.content.res.ColorStateList button3ColorStateList -> w
+    int titlebarGravity -> x
+    android.graphics.drawable.Drawable icon -> y
+    boolean cancelable -> z
     boolean canceledOnTouchOutside -> A
     android.view.View view -> B
     int viewStyle -> C
@@ -24730,47 +24729,47 @@ fynn.app.PromptDialog$Builder -> fynn.app.PromptDialog$Builder:
     int button1Flag -> G
     int button2Flag -> H
     int button3Flag -> I
-    120:133:void initData() -> d
-    136:136:android.content.Context getContext() -> a
-    140:141:fynn.app.PromptDialog$Builder setTitleBarGravity(int) -> a
-    145:146:fynn.app.PromptDialog$Builder setTitle(java.lang.CharSequence) -> a
-    150:151:fynn.app.PromptDialog$Builder setTitle(int) -> b
-    155:156:fynn.app.PromptDialog$Builder setTitleColor(int) -> c
-    160:161:fynn.app.PromptDialog$Builder setTitleColor(android.content.res.ColorStateList) -> a
-    165:166:fynn.app.PromptDialog$Builder setTitleSize(float) -> a
-    170:171:fynn.app.PromptDialog$Builder setIcon(android.graphics.drawable.Drawable) -> a
-    175:176:fynn.app.PromptDialog$Builder setIcon(int) -> d
-    180:181:fynn.app.PromptDialog$Builder setMessage(java.lang.CharSequence) -> b
-    185:186:fynn.app.PromptDialog$Builder setMessage(int) -> e
-    190:191:fynn.app.PromptDialog$Builder setMessageColor(int) -> f
-    195:196:fynn.app.PromptDialog$Builder setMessageColor(android.content.res.ColorStateList) -> b
-    200:201:fynn.app.PromptDialog$Builder setMessageSize(float) -> b
-    206:209:fynn.app.PromptDialog$Builder setButton1(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> a
-    214:217:fynn.app.PromptDialog$Builder setButton1(int,fynn.app.PromptDialog$OnClickListener) -> a
-    221:222:fynn.app.PromptDialog$Builder setButton1TextColor(int) -> g
-    226:227:fynn.app.PromptDialog$Builder setButton1TextColor(android.content.res.ColorStateList) -> c
-    231:232:fynn.app.PromptDialog$Builder setButton1Size(float) -> c
-    237:240:fynn.app.PromptDialog$Builder setButton2(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> b
-    245:248:fynn.app.PromptDialog$Builder setButton2(int,fynn.app.PromptDialog$OnClickListener) -> b
-    252:253:fynn.app.PromptDialog$Builder setButton2TextColor(int) -> h
-    257:258:fynn.app.PromptDialog$Builder setButton2TextColor(android.content.res.ColorStateList) -> d
-    262:263:fynn.app.PromptDialog$Builder setButton2Size(float) -> d
-    268:271:fynn.app.PromptDialog$Builder setButton3(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> c
-    276:279:fynn.app.PromptDialog$Builder setButton3(int,fynn.app.PromptDialog$OnClickListener) -> c
-    283:284:fynn.app.PromptDialog$Builder setButton3TextColor(int) -> i
-    288:289:fynn.app.PromptDialog$Builder setButton3TextColor(android.content.res.ColorStateList) -> e
-    293:294:fynn.app.PromptDialog$Builder setButton3Size(float) -> e
-    298:299:fynn.app.PromptDialog$Builder setCancelable(boolean) -> a
-    303:304:fynn.app.PromptDialog$Builder setMessageGravityIsCenter(boolean) -> b
+    121:134:void initData() -> d
+    137:137:android.content.Context getContext() -> a
+    141:142:fynn.app.PromptDialog$Builder setTitleBarGravity(int) -> a
+    146:147:fynn.app.PromptDialog$Builder setTitle(java.lang.CharSequence) -> a
+    151:152:fynn.app.PromptDialog$Builder setMessageGravityIsCenter(boolean) -> a
+    156:157:fynn.app.PromptDialog$Builder setTitle(int) -> b
+    161:162:fynn.app.PromptDialog$Builder setTitleColor(int) -> c
+    166:167:fynn.app.PromptDialog$Builder setTitleColor(android.content.res.ColorStateList) -> a
+    171:172:fynn.app.PromptDialog$Builder setTitleSize(float) -> a
+    176:177:fynn.app.PromptDialog$Builder setIcon(android.graphics.drawable.Drawable) -> a
+    181:182:fynn.app.PromptDialog$Builder setIcon(int) -> d
+    186:187:fynn.app.PromptDialog$Builder setMessage(java.lang.CharSequence) -> b
+    191:192:fynn.app.PromptDialog$Builder setMessage(int) -> e
+    196:197:fynn.app.PromptDialog$Builder setMessageColor(int) -> f
+    201:202:fynn.app.PromptDialog$Builder setMessageColor(android.content.res.ColorStateList) -> b
+    206:207:fynn.app.PromptDialog$Builder setMessageSize(float) -> b
+    212:215:fynn.app.PromptDialog$Builder setButton1(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> a
+    220:223:fynn.app.PromptDialog$Builder setButton1(int,fynn.app.PromptDialog$OnClickListener) -> a
+    227:228:fynn.app.PromptDialog$Builder setButton1TextColor(int) -> g
+    232:233:fynn.app.PromptDialog$Builder setButton1TextColor(android.content.res.ColorStateList) -> c
+    237:238:fynn.app.PromptDialog$Builder setButton1Size(float) -> c
+    243:246:fynn.app.PromptDialog$Builder setButton2(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> b
+    251:254:fynn.app.PromptDialog$Builder setButton2(int,fynn.app.PromptDialog$OnClickListener) -> b
+    258:259:fynn.app.PromptDialog$Builder setButton2TextColor(int) -> h
+    263:264:fynn.app.PromptDialog$Builder setButton2TextColor(android.content.res.ColorStateList) -> d
+    268:269:fynn.app.PromptDialog$Builder setButton2Size(float) -> d
+    274:277:fynn.app.PromptDialog$Builder setButton3(java.lang.CharSequence,fynn.app.PromptDialog$OnClickListener) -> c
+    282:285:fynn.app.PromptDialog$Builder setButton3(int,fynn.app.PromptDialog$OnClickListener) -> c
+    289:290:fynn.app.PromptDialog$Builder setButton3TextColor(int) -> i
+    294:295:fynn.app.PromptDialog$Builder setButton3TextColor(android.content.res.ColorStateList) -> e
+    299:300:fynn.app.PromptDialog$Builder setButton3Size(float) -> e
+    304:305:fynn.app.PromptDialog$Builder setCancelable(boolean) -> b
     309:310:fynn.app.PromptDialog$Builder setCanceledOnTouchOutside(boolean) -> c
     314:315:fynn.app.PromptDialog$Builder setView(android.view.View) -> a
     323:338:fynn.app.PromptDialog$Builder setViewStyle(int) -> j
     344:584:fynn.app.PromptDialog create() -> b
     588:589:fynn.app.PromptDialog show() -> c
-    99:99:fynn.app.PromptDialog$OnClickListener access$0(fynn.app.PromptDialog$Builder) -> a
+    100:100:fynn.app.PromptDialog$OnClickListener access$0(fynn.app.PromptDialog$Builder) -> a
     67:67:fynn.app.PromptDialog access$1(fynn.app.PromptDialog$Builder) -> b
-    100:100:fynn.app.PromptDialog$OnClickListener access$2(fynn.app.PromptDialog$Builder) -> c
-    101:101:fynn.app.PromptDialog$OnClickListener access$3(fynn.app.PromptDialog$Builder) -> d
+    101:101:fynn.app.PromptDialog$OnClickListener access$2(fynn.app.PromptDialog$Builder) -> c
+    102:102:fynn.app.PromptDialog$OnClickListener access$3(fynn.app.PromptDialog$Builder) -> d
 fynn.app.PromptDialog$Builder$1 -> fynn.app.PromptDialog$Builder$1:
     fynn.app.PromptDialog$Builder this$1 -> a
     447:449:void onClick(android.view.View) -> onClick
