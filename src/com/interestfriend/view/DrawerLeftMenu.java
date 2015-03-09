@@ -131,7 +131,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			// getResources().getDrawable(R.drawable.message);
 			// message.setBounds(0, 0, message.getMinimumWidth(),
 			// message.getMinimumHeight());
-			// txt_message.setCompoundDrawables(message, null, null, null);
+			txt_message.setCompoundDrawables(null, null, null, null);
 		}
 	}
 

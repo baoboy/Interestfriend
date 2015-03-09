@@ -153,16 +153,16 @@ public class ChatAdapter extends BaseAdapter {
 	public int getItemViewType(int position) {
 		EMMessage message = conversation.getMessage(position);
 		if (message.getType() == EMMessage.Type.TXT) {
-			if (!message.getBooleanAttribute(
+			if (message.getBooleanAttribute(
 					Constants.MESSAGE_ATTR_IS_VOICE_CALL, false))
-				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT
-						: MESSAGE_TYPE_SENT_TXT;
+				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL
+						: MESSAGE_TYPE_SENT_VOICE_CALL;
 			else if (message.getBooleanAttribute(
 					Constants.MESSAGE_ATTR_IS_VIDEO_CALL, false))
 				return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VIDEO_CALL
 						: MESSAGE_TYPE_SENT_VIDEO_CALL;
-			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_VOICE_CALL
-					: MESSAGE_TYPE_SENT_VOICE_CALL;
+			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_TXT
+					: MESSAGE_TYPE_SENT_TXT;
 		}
 		if (message.getType() == EMMessage.Type.IMAGE) {
 			return message.direct == EMMessage.Direct.RECEIVE ? MESSAGE_TYPE_RECV_IMAGE
@@ -190,7 +190,7 @@ public class ChatAdapter extends BaseAdapter {
 	}
 
 	public int getViewTypeCount() {
-		return 14;
+		return 16;
 	}
 
 	private View createViewByMessage(EMMessage message, int position) {
@@ -617,9 +617,9 @@ public class ChatAdapter extends BaseAdapter {
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		holder.tv.setText(txtBody.getMessage());
- 		String user_avatar = "";
+		String user_avatar = "";
 		try {
- 			user_avatar = message.getStringAttribute("from_user_avatar");
+			user_avatar = message.getStringAttribute("from_user_avatar");
 		} catch (EaseMobException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

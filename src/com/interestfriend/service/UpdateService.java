@@ -101,12 +101,12 @@ public class UpdateService extends Service {
 					InputStream is = entity.getContent();
 					if (is != null) {
 						File destDir = new File(FileUtils.getRootDir(),
-								"/changlianxi/download");
+								"/quyou/download");
 						if (!destDir.exists()) {
 							destDir.mkdirs();
 						}
 						tempFile = new File(FileUtils.getRootDir()
-								+ "/changlianxi/download", url.substring(url
+								+ "/quyou/download", url.substring(url
 								.lastIndexOf("/") + 1));
 						if (tempFile.exists()) {
 							tempFile.delete();

@@ -32,7 +32,7 @@
 -libraryjars libs/android-support-v7-recyclerview.jar
 -libraryjars libs/BaiduLBS_Android.jar
 -libraryjars libs/baidumapapi_v2_1_1.jar
--libraryjars libs/easemobchat_2.1.3.jar
+-libraryjars libs/easemobchat_2.1.5.jar
 -libraryjars libs/httpmime-4.2.1.jar
 -libraryjars libs/universalimageloaderlibrary1.9.0.jar
  

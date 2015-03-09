@@ -68,7 +68,8 @@ public class CircleMemberListParser implements IParser {
 			member.setUser_description(user_description);
 			member.setUser_address(user_address);
 			member.setUser_province(user_province);
-			member.setUser_province_key(user_province_key);
+			member.setUser_province_key(user_province_key.equals("") ? "Î´ÖªµØÇø"
+					: user_province_key);
 			lists.add(member);
 		}
 		CircleMemberList list = new CircleMemberList();

@@ -6,12 +6,16 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.interestfriend.applation.MyApplation;
+import com.interestfriend.data.ChatUserDao;
+import com.interestfriend.data.InviteMessgeDao;
 import com.interestfriend.utils.SharedUtils;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "tf";
 	private static DataBaseHelper instance;
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION_1 = 1;
+	private static final int DATABASE_VERSION_2 = 2;
+	private static final int DATABASE_VERSION = DATABASE_VERSION_2;
 
 	public DataBaseHelper(Context context, String name, CursorFactory factory,
 			int version) {
@@ -72,13 +76,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 		db.execSQL("create table IF NOT EXISTS " + Const.PRAISE_TABLE_NAME
 				+ "( " + Const.PRAISE_TABLE_STRUCTURE + " )");
-		db.execSQL(Const.USERNAME_TABLE_CREATE);
-		db.execSQL(Const.INIVTE_MESSAGE_TABLE_CREATE);
+
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// uodate tables
+		if (oldVersion <= DATABASE_VERSION_1) {
+			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+					+ " ADD COLUMN user_address varchar;");
+			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+					+ " ADD COLUMN user_province varchar;");
+			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+					+ " ADD COLUMN user_province_key varchar;");
+		}
 
+		// create new tables
+		if (newVersion == DATABASE_VERSION_2) {
+			db.execSQL(Const.USERNAME_TABLE_CREATE);
+			db.execSQL(Const.INIVTE_MESSAGE_TABLE_CREATE);
+		}
 	}
 
 }

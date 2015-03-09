@@ -312,9 +312,6 @@ public class HomeActivity extends FragmentActivity implements
 			img_prompt.setVisibility(View.VISIBLE);
 		} else {
 			lfetMenu.setMessagePrompt(false);
-			if (img_prompt.getVisibility() == View.VISIBLE) {
-				return;
-			}
 			img_prompt.setVisibility(View.GONE);
 
 		}

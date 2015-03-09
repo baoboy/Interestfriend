@@ -50,7 +50,7 @@ public class HttpUrlHelper {
 	// 192.168.1.103
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://123.56.46.254:8080/InterestFriend/servlet/"; // 服务器地址
+	public static final String DEFAULT_HOST = "http://192.168.31.247:8080/InterestFriend/servlet/"; // 服务器地址
 
 	/**
 	 * get 提交方式 // *
