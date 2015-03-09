@@ -593,7 +593,17 @@ public class ChatAdapter extends BaseAdapter {
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		holder.tv.setText(txtBody.getMessage());
-
+		String user_name = "";
+		String user_avatar = "";
+		try {
+			user_name = message.getStringAttribute("user_name");
+			user_avatar = message.getStringAttribute("user_avatar");
+		} catch (EaseMobException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
+				R.drawable.picture_default_head);
 	}
 
 	/**
@@ -607,7 +617,15 @@ public class ChatAdapter extends BaseAdapter {
 			final int position) {
 		TextMessageBody txtBody = (TextMessageBody) message.getBody();
 		holder.tv.setText(txtBody.getMessage());
-
+ 		String user_avatar = "";
+		try {
+ 			user_avatar = message.getStringAttribute("from_user_avatar");
+		} catch (EaseMobException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		UniversalImageLoadTool.disPlay(user_avatar, holder.head_iv,
+				R.drawable.picture_default_head);
 	}
 
 	/**

@@ -20,6 +20,8 @@ import android.content.Intent;
 
 import com.interestfriend.activity.VideoCallActivity;
 import com.interestfriend.activity.VoiceCallActivity;
+import com.interestfriend.data.CircleMember;
+import com.interestfriend.db.DBUtils;
 
 public class CallReceiver extends BroadcastReceiver {
 
@@ -28,17 +30,24 @@ public class CallReceiver extends BroadcastReceiver {
 
 		// 拨打方username
 		String from = intent.getStringExtra("from");
+		CircleMember member = new CircleMember();
+		member.setUser_chat_id(from);
+		member.getUserDetailByUserChatId(DBUtils.getDBsa(2));
 		// call type
 		String type = intent.getStringExtra("type");
 		if ("video".equals(type)) { // 视频通话
 			context.startActivity(new Intent(context, VideoCallActivity.class)
 					.putExtra("user_chat_id", from)
 					.putExtra("isComingCall", true)
+					.putExtra("call_user_avatar", member.getUser_avatar())
+					.putExtra("call_user_name", member.getUser_name())
 					.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 		} else { // 音频通话
 			context.startActivity(new Intent(context, VoiceCallActivity.class)
 					.putExtra("user_chat_id", from)
 					.putExtra("isComingCall", true)
+					.putExtra("call_user_name", member.getUser_name())
+					.putExtra("call_user_avatar", member.getUser_avatar())
 					.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 		}
 	}
