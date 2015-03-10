@@ -81,20 +81,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// uodate tables
-		if (oldVersion <= DATABASE_VERSION_1) {
-			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
-					+ " ADD COLUMN user_address varchar;");
-			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
-					+ " ADD COLUMN user_province varchar;");
-			db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
-					+ " ADD COLUMN user_province_key varchar;");
-		}
 
 		// create new tables
 		if (newVersion == DATABASE_VERSION_2) {
 			db.execSQL(Const.USERNAME_TABLE_CREATE);
 			db.execSQL(Const.INIVTE_MESSAGE_TABLE_CREATE);
+
+			// db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+			// + " ADD COLUMN user_address varchar;");
+			// db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+			// + " ADD COLUMN user_province varchar;");
+			// db.execSQL("ALTER " + Const.CIRCLE_MEMBER_TABLE
+			// + " ADD COLUMN user_province_key varchar;");
+			// db.execSQL("create table " + Const.CIRCLE_MEMBER_TABLE + "( "
+			// + Const.CIRCLE_MEMBER_TABLE_STRUCTURE + " )");
+			String CREATE_TEMP_CIRCLE_MEMER = "alter table circle_members rename to _temp_circle_members";
+			String INSERT_DATA = "insert into circle_members select *,'','','' from _temp_circle_members";
+			String DROP_CIRCLE_MEMBER = "drop table _temp_circle_members";
+			db.execSQL(CREATE_TEMP_CIRCLE_MEMER);
+			db.execSQL("create table " + Const.CIRCLE_MEMBER_TABLE + "( "
+					+ Const.CIRCLE_MEMBER_TABLE_STRUCTURE + " )");
+			db.execSQL(INSERT_DATA);
+			db.execSQL(DROP_CIRCLE_MEMBER);
+
 		}
 	}
 
