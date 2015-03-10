@@ -33,6 +33,12 @@ public class ChatUser extends EMContact {
 	private String user_chat_id = "";
 	private String user_friend_circle = "";
 
+	@Override
+	public String toString() {
+		return user_name + " " + user_avatar + " " + user_chat_id + " "
+				+ user_id + " " + user_friend_circle;
+	}
+
 	public String getUser_friend_circle() {
 		return user_friend_circle;
 	}
@@ -92,11 +98,6 @@ public class ChatUser extends EMContact {
 			return false;
 		}
 		return getUsername().equals(((ChatUser) o).getUsername());
-	}
-
-	@Override
-	public String toString() {
-		return user_name;
 	}
 
 	public RetError delFriend() {

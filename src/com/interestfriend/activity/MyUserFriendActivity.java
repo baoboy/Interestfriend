@@ -143,16 +143,17 @@ public class MyUserFriendActivity extends BaseActivity implements
 					user.setUser_avatar(user_avatar);
 					user.setUser_chat_id(user_chat_id);
 					user.setUser_friend_circle(user_from_circle);
-					user.setUser_id(user_id); 
+					user.setUser_id(user_id);
 					user.setUser_name(user_name);
 					lists.add(user);
 					cursor.moveToNext();
 				}
 				adapter.notifyDataSetChanged();
 				dialog.dismiss();
-			} else {
-				getUserFriend();
 			}
+			// else {
+			getUserFriend();
+			// }
 		}
 	}
 
@@ -172,7 +173,7 @@ public class MyUserFriendActivity extends BaseActivity implements
 				adapter.notifyDataSetChanged();
 			}
 		});
-		task.execute(list);
+		task.executeParallel(list);
 	}
 
 	/**

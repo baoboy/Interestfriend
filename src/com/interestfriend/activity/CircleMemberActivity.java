@@ -297,9 +297,6 @@ public class CircleMemberActivity extends BaseActivity implements
 		new Thread(new Runnable() {
 			public void run() {
 				try {
-					List<String> usernames = EMContactManager.getInstance()
-							.getContactUserNames();
-					System.out.println("chat:::::::::::::;" + usernames);
 					String chat_id = member.getUser_chat_id();
 					EMContactManager.getInstance().deleteContact(chat_id);
 					runOnUiThread(new Runnable() {

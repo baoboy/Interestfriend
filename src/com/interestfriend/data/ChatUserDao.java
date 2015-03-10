@@ -79,17 +79,14 @@ public class ChatUserDao {
 	/**
 	 * 保存�?��联系�? * @param user
 	 */
-	public void saveContact(ChatUser user) {
-		SQLiteDatabase db = DBUtils.getDBsa(2);
+	public void saveContact(ChatUser user, SQLiteDatabase db) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_USER_NAME, user.getUser_name());
 		values.put(COLUMN_USER_AVATAR, user.getUser_avatar());
 		values.put(COLUMN_USER_ID, user.getUser_id());
 		values.put(COLUMN_USER_CHAT_ID, user.getUser_chat_id());
 		values.put(COLUMN_USER_FROM_CIRCLE, user.getUser_friend_circle());
-		if (db.isOpen()) {
-			db.replace(TABLE_NAME, null, values);
-		}
+		db.insert(TABLE_NAME, null, values);
 	}
 
 	public boolean getFriendByUserID(int user_id) {

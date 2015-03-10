@@ -47,7 +47,7 @@ public class Const {
 			+ " TEXT, "
 			+ ChatUserDao.COLUMN_USER_FROM_CIRCLE
 			+ " TEXT, "
-			+ ChatUserDao.COLUMN_USER_CHAT_ID + " TEXT PRIMARY KEY);";
+			+ ChatUserDao.COLUMN_USER_CHAT_ID + ");";
 
 	public static final String INIVTE_MESSAGE_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS "
 			+ InviteMessgeDao.TABLE_NAME

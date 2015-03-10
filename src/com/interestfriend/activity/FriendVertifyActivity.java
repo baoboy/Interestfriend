@@ -204,7 +204,7 @@ public class FriendVertifyActivity extends BaseActivity implements
 				user.setUser_name(message.getFrom_user_name());
 				user.setUser_friend_circle(message.getFrom_circle());
 				ChatUserDao dao = new ChatUserDao();
-				dao.saveContact(user);
+				dao.saveContact(user, DBUtils.getDBsa(2));
 				sendBroadcast(new Intent(Constants.ADDED_USER_FRIEND).putExtra(
 						"msg_id", getIntent().getStringExtra("msg_id")));
 				finishThisActivity();

@@ -27,11 +27,13 @@ import com.easemob.exceptions.EaseMobException;
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatActivity;
 import com.interestfriend.activity.DissolveCircleActivity;
+import com.interestfriend.activity.FriendVertifyActivity;
 import com.interestfriend.activity.HomeActivity;
 import com.interestfriend.activity.JoinCircleActivity;
 import com.interestfriend.activity.KickOutActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
+import com.interestfriend.data.InviteMessage;
 import com.interestfriend.receive.CallReceiver;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.SharedUtils;
@@ -148,6 +150,38 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 						intent = new Intent(appContext, HomeActivity.class);
 					} else if (Constants.KICK_OUT_USER_ID.equals(username)) {
 						intent = new Intent(appContext, KickOutActivity.class);
+					} else if (Constants.ADD_USER_FRIEND_INVITE
+							.equals(username)) {
+						String reason = "";
+						int user_friend_id = 0;
+						String user_friend_name = "";
+						String user_firend_avatar = "";
+						String from_circle = "";
+						try {
+							user_friend_id = Integer.valueOf(message
+									.getIntAttribute("user_friend_id"));
+							reason = message.getStringAttribute("reason");
+							user_friend_name = message
+									.getStringAttribute("user_friend_name");
+							user_firend_avatar = message
+									.getStringAttribute("user_firend_avatar");
+							from_circle = message
+									.getStringAttribute("from_circle");
+						} catch (EaseMobException e) {
+							e.printStackTrace();
+
+						}
+						InviteMessage i_message = new InviteMessage();
+						i_message.setFrom_circle(from_circle);
+						i_message.setFrom_user_avatar(user_firend_avatar);
+						i_message.setFrom_user_id(user_friend_id);
+						i_message.setFrom_user_name(user_friend_name);
+						i_message.setReason(reason);
+						intent = new Intent(appContext,
+								HomeActivity.class);
+						intent.putExtra("message", i_message).putExtra(
+								"msg_id", message.getMsgId());
+
 					} else {
 						intent = new Intent(appContext, ChatActivity.class);
 						intent.putExtra("chatType",

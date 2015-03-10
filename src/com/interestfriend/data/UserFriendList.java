@@ -45,9 +45,13 @@ public class UserFriendList extends AbstractData {
 
 	@Override
 	public void write(SQLiteDatabase db) {
+		db.beginTransaction();
+		db.delete(ChatUserDao.TABLE_NAME, null, null);
 		for (ChatUser user : lists) {
 			ChatUserDao dao = new ChatUserDao();
-			dao.saveContact(user);
+			dao.saveContact(user, db);
 		}
+		db.setTransactionSuccessful();
+		db.endTransaction();
 	}
 }

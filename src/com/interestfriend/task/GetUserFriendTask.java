@@ -1,5 +1,6 @@
 package com.interestfriend.task;
 
+import com.interestfriend.data.ChatUserDao;
 import com.interestfriend.data.UserFriendList;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;

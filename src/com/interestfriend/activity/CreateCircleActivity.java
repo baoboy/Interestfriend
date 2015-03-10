@@ -173,6 +173,7 @@ public class CreateCircleActivity extends BaseActivity implements
 		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
 			@Override
 			public void taskFinish(RetError result) {
+				btn_create.setEnabled(true);
 				if (dialog != null) {
 					dialog.dismiss();
 				}
@@ -224,6 +225,7 @@ public class CreateCircleActivity extends BaseActivity implements
 				ToastUtil.showToast("圈子描述不能为空", Toast.LENGTH_SHORT);
 				return;
 			}
+			btn_create.setEnabled(false);
 			circle.setCircle_description(circleDesc);
 			circle.setCircle_name(circleName);
 			circle.setCircle_logo(imgPath);
