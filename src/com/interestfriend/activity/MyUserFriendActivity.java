@@ -95,7 +95,7 @@ public class MyUserFriendActivity extends BaseActivity implements
 	private void setValue() {
 		adapter = new MyUserFriendAdapter(this, lists);
 		mListView.setAdapter(adapter);
-		;
+
 	}
 
 	private void initQuery() {
@@ -128,6 +128,7 @@ public class MyUserFriendActivity extends BaseActivity implements
 		protected void onQueryComplete(int token, Object cookie,
 				final Cursor cursor) {
 			if (cursor == null) {
+				dialog.dismiss();
 				return;
 			}
 			if (cursor.getCount() > 0) {
@@ -142,7 +143,7 @@ public class MyUserFriendActivity extends BaseActivity implements
 					user.setUser_avatar(user_avatar);
 					user.setUser_chat_id(user_chat_id);
 					user.setUser_friend_circle(user_from_circle);
-					user.setUser_id(user_id);
+					user.setUser_id(user_id); 
 					user.setUser_name(user_name);
 					lists.add(user);
 					cursor.moveToNext();

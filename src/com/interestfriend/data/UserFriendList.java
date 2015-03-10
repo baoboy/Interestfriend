@@ -31,7 +31,6 @@ public class UserFriendList extends AbstractData {
 	public RetError getUserFriendList() {
 		IParser parser = new UserFriendsParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();
-
 		Result<?> ret = ApiRequest.request(USER_FRIENDS_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			if (ret.getData() instanceof UserFriendList) {
