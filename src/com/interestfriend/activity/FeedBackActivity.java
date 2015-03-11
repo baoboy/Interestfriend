@@ -164,7 +164,7 @@ public class FeedBackActivity extends BaseActivity implements OnClickListener,
 	private NewMessageBroadcastReceiver receiver;
 	public static FeedBackActivity activityInstance = null;
 	// 给谁发送消息
-	private String toChatUsername = "ed3afde007785ceaea990c35477ed35f";
+	private String toChatUsername = "81f7d977c49aaa00fb2cd0d35fed6a9a";
 	private VoiceRecorder voiceRecorder;
 	private ChatAdapter adapter;
 	private File cameraFile;

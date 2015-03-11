@@ -25,6 +25,7 @@ import com.interestfriend.data.enums.RetError;
 import com.interestfriend.db.DBUtils;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.task.AddFriendTask;
+import com.interestfriend.task.RefuseInvitationTask;
 import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.ToastUtil;
@@ -83,7 +84,6 @@ public class FriendVertifyActivity extends BaseActivity implements
 			from_circle = lastMessage.getStringAttribute("from_circle");
 		} catch (EaseMobException e) {
 			e.printStackTrace();
-			System.out.println("e:::::::::::::::;;;" + e.toString());
 		}
 		message = new InviteMessage();
 		message.setFrom_circle(from_circle);
@@ -157,30 +157,7 @@ public class FriendVertifyActivity extends BaseActivity implements
 	private void acceptInvitation() {
 		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
 		dialog.show();
-		new Thread(new Runnable() {
-			public void run() {
-				// 调用sdk的同意方法
-				try {
-					EMChatManager.getInstance().acceptInvitation(
-							message.getFrom_user_chat_id());
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							add();
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
-						}
-					});
-
-				}
-			}
-		}).start();
+		add();
 	}
 
 	private void add() {
@@ -213,42 +190,30 @@ public class FriendVertifyActivity extends BaseActivity implements
 		task.execute(message);
 	}
 
+	private void refuse() {
+		RefuseInvitationTask task = new RefuseInvitationTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
+				sendBroadcast(new Intent(Constants.REDUED_USER_FRIEND)
+						.putExtra("msg_id", getIntent()
+								.getStringExtra("msg_id")));
+				finishThisActivity();
+			};
+		});
+		task.execute(message);
+	}
+
 	private void refuseInvitation() {
 		dialog = DialogUtil.createLoadingDialog(this, "请稍候");
 		dialog.show();
-		new Thread(new Runnable() {
-			public void run() {
-				// 调用sdk的同意方法
-				try {
-					EMChatManager.getInstance().refuseInvitation(
-							message.getFrom_user_chat_id());
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							ToastUtil.showToast("操作成功", Toast.LENGTH_SHORT);
-							InviteMessgeDao inviteMessgeDao = new InviteMessgeDao();
-							inviteMessgeDao.deleteMessage(
-									message.getFrom_user_chat_id(),
-									DBUtils.getDBsa(2));
-							sendBroadcast(new Intent(
-									Constants.REDUED_USER_FRIEND).putExtra(
-									"msg_id",
-									getIntent().getStringExtra("msg_id")));
-							finishThisActivity();
-						}
-					});
-				} catch (final Exception e) {
-					runOnUiThread(new Runnable() {
-						@Override
-						public void run() {
-							dialog.dismiss();
-							ToastUtil.showToast("操作失败", Toast.LENGTH_SHORT);
-						}
-					});
-
-				}
-			}
-		}).start();
+		refuse();
 	}
 
 }

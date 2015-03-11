@@ -13378,27 +13378,27 @@ com.huanxin.helper.HXSDKHelper$2 -> com.a.a.c:
     275:280:void onDisconnected(int) -> onDisconnected
     284:285:void onConnected() -> onConnected
 com.huanxin.helper.QuYouHXSDKHelper -> com.a.a.d:
-    50:53:void initHXOptions() -> d
-    58:58:com.easemob.chat.OnMessageNotifyListener getMessageNotifyListener() -> f
-    127:127:com.easemob.chat.OnNotificationClickListener getNotificationClickListener() -> g
-    191:195:void onConnectionConflict() -> i
-    199:203:void initListener() -> h
-    207:232:void logout(com.easemob.EMCallBack) -> a
+    52:55:void initHXOptions() -> d
+    60:60:com.easemob.chat.OnMessageNotifyListener getMessageNotifyListener() -> f
+    129:129:com.easemob.chat.OnNotificationClickListener getNotificationClickListener() -> g
+    225:229:void onConnectionConflict() -> i
+    233:237:void initListener() -> h
+    241:266:void logout(com.easemob.EMCallBack) -> a
 com.huanxin.helper.QuYouHXSDKHelper$1 -> com.a.a.e:
     com.huanxin.helper.QuYouHXSDKHelper this$0 -> a
-    62:80:java.lang.String onNewMessageNotify(com.easemob.chat.EMMessage) -> onNewMessageNotify
-    86:107:java.lang.String onLatestMessageNotify(com.easemob.chat.EMMessage,int,int) -> onLatestMessageNotify
-    115:115:java.lang.String onSetNotificationTitle(com.easemob.chat.EMMessage) -> onSetNotificationTitle
-    120:120:int onSetSmallIcon(com.easemob.chat.EMMessage) -> onSetSmallIcon
+    64:82:java.lang.String onNewMessageNotify(com.easemob.chat.EMMessage) -> onNewMessageNotify
+    88:109:java.lang.String onLatestMessageNotify(com.easemob.chat.EMMessage,int,int) -> onLatestMessageNotify
+    117:117:java.lang.String onSetNotificationTitle(com.easemob.chat.EMMessage) -> onSetNotificationTitle
+    122:122:int onSetSmallIcon(com.easemob.chat.EMMessage) -> onSetSmallIcon
 com.huanxin.helper.QuYouHXSDKHelper$2 -> com.a.a.f:
     com.huanxin.helper.QuYouHXSDKHelper this$0 -> a
-    132:184:android.content.Intent onNotificationClick(com.easemob.chat.EMMessage) -> onNotificationClick
+    134:218:android.content.Intent onNotificationClick(com.easemob.chat.EMMessage) -> onNotificationClick
 com.huanxin.helper.QuYouHXSDKHelper$3 -> com.a.a.g:
     com.huanxin.helper.QuYouHXSDKHelper this$0 -> a
     com.easemob.EMCallBack val$callback -> b
-    211:215:void onSuccess() -> onSuccess
-    221:221:void onError(int,java.lang.String) -> onError
-    226:229:void onProgress(int,java.lang.String) -> onProgress
+    245:249:void onSuccess() -> onSuccess
+    255:255:void onError(int,java.lang.String) -> onError
+    260:263:void onProgress(int,java.lang.String) -> onProgress
 com.interestfriend.BuildConfig -> com.interestfriend.a:
     boolean DEBUG -> a
 com.interestfriend.Manifest -> com.interestfriend.b:
@@ -15187,21 +15187,21 @@ com.interestfriend.activity.CircleMemberActivity -> com.interestfriend.activity.
     193:202:void showAvatar() -> f
     206:265:void onClick(android.view.View) -> onClick
     268:287:void delFromServer() -> g
-    295:328:void deleteContact() -> a
-    331:344:void delFriendDialog() -> h
-    347:362:void kickOutDialog() -> i
-    365:390:void kickOut() -> j
-    393:403:void getCircleList() -> k
-    408:413:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    295:325:void deleteContact() -> a
+    328:341:void delFriendDialog() -> h
+    344:359:void kickOutDialog() -> i
+    362:387:void kickOut() -> j
+    390:400:void getCircleList() -> k
+    405:410:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
     81:81:android.app.Dialog access$0(com.interestfriend.activity.CircleMemberActivity) -> a
     127:127:void access$1(com.interestfriend.activity.CircleMemberActivity) -> b
     65:65:com.interestfriend.data.CircleMember access$2(com.interestfriend.activity.CircleMemberActivity) -> c
     83:83:int access$3(com.interestfriend.activity.CircleMemberActivity) -> d
-    330:330:void access$4(com.interestfriend.activity.CircleMemberActivity) -> e
+    327:327:void access$4(com.interestfriend.activity.CircleMemberActivity) -> e
     84:84:boolean access$5(com.interestfriend.activity.CircleMemberActivity) -> f
-    346:346:void access$6(com.interestfriend.activity.CircleMemberActivity) -> g
+    343:343:void access$6(com.interestfriend.activity.CircleMemberActivity) -> g
     267:267:void access$7(com.interestfriend.activity.CircleMemberActivity) -> h
-    364:364:void access$8(com.interestfriend.activity.CircleMemberActivity) -> i
+    361:361:void access$8(com.interestfriend.activity.CircleMemberActivity) -> i
     69:69:java.util.List access$9(com.interestfriend.activity.CircleMemberActivity) -> j
     67:67:com.interestfriend.data.CirclesList access$10(com.interestfriend.activity.CircleMemberActivity) -> k
     71:71:com.interestfriend.adapter.MemberCirclesAdapter access$11(com.interestfriend.activity.CircleMemberActivity) -> l
@@ -15218,31 +15218,31 @@ com.interestfriend.activity.CircleMemberActivity$3 -> com.interestfriend.activit
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CircleMemberActivity$4 -> com.interestfriend.activity.w:
     com.interestfriend.activity.CircleMemberActivity this$0 -> a
-    300:325:void run() -> run
+    300:322:void run() -> run
     297:297:com.interestfriend.activity.CircleMemberActivity access$0(com.interestfriend.activity.CircleMemberActivity$4) -> a
 com.interestfriend.activity.CircleMemberActivity$4$1 -> com.interestfriend.activity.x:
     com.interestfriend.activity.CircleMemberActivity$4 this$1 -> a
-    307:308:void run() -> run
+    304:305:void run() -> run
 com.interestfriend.activity.CircleMemberActivity$4$2 -> com.interestfriend.activity.y:
     com.interestfriend.activity.CircleMemberActivity$4 this$1 -> a
     java.lang.Exception val$e -> b
-    313:320:void run() -> run
+    310:317:void run() -> run
 com.interestfriend.activity.CircleMemberActivity$5 -> com.interestfriend.activity.z:
     com.interestfriend.activity.CircleMemberActivity this$0 -> a
-    336:337:void onOKClick() -> a
-    341:341:void onCancleClick() -> b
+    333:334:void onOKClick() -> a
+    338:338:void onCancleClick() -> b
 com.interestfriend.activity.CircleMemberActivity$6 -> com.interestfriend.activity.aa:
     com.interestfriend.activity.CircleMemberActivity this$0 -> a
-    353:354:void onOKClick() -> a
-    358:358:void onCancleClick() -> b
+    350:351:void onOKClick() -> a
+    355:355:void onCancleClick() -> b
 com.interestfriend.activity.CircleMemberActivity$7 -> com.interestfriend.activity.ab:
     com.interestfriend.activity.CircleMemberActivity this$0 -> a
     android.app.Dialog val$dialogLoad -> b
-    371:387:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    368:384:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CircleMemberActivity$8 -> com.interestfriend.activity.ac:
     com.interestfriend.activity.CircleMemberActivity this$0 -> a
-    398:400:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    395:397:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CircleMemberOfSelfInfoActivity -> com.interestfriend.activity.CircleMemberOfSelfInfoActivity:
     android.widget.ImageView img_avatar -> a
@@ -15391,27 +15391,28 @@ com.interestfriend.activity.CreateCircleActivity -> com.interestfriend.activity.
     88:93:void setListener() -> d
     96:102:void setAvatar(android.graphics.Bitmap,java.lang.String) -> a
     107:167:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
-    170:204:void createCircle() -> e
-    208:258:void onClick(android.view.View) -> onClick
-    262:265:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    271:273:void menu1_select() -> a
-    277:279:void menu2_select() -> b
-    282:293:void setBtnVisible() -> f
-    297:298:void afterTextChanged(android.text.Editable) -> afterTextChanged
-    304:304:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
-    309:309:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
-    63:63:android.app.Dialog access$0(com.interestfriend.activity.CreateCircleActivity) -> a
-    61:61:com.interestfriend.data.Circles access$1(com.interestfriend.activity.CreateCircleActivity) -> b
-    57:57:void access$2(com.interestfriend.activity.CreateCircleActivity,int) -> a
-    52:52:android.widget.TextView access$3(com.interestfriend.activity.CreateCircleActivity) -> c
-    281:281:void access$4(com.interestfriend.activity.CreateCircleActivity) -> d
+    170:205:void createCircle() -> e
+    209:260:void onClick(android.view.View) -> onClick
+    264:267:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    273:275:void menu1_select() -> a
+    279:281:void menu2_select() -> b
+    284:295:void setBtnVisible() -> f
+    299:300:void afterTextChanged(android.text.Editable) -> afterTextChanged
+    306:306:void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
+    311:311:void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
+    49:49:android.widget.Button access$0(com.interestfriend.activity.CreateCircleActivity) -> a
+    63:63:android.app.Dialog access$1(com.interestfriend.activity.CreateCircleActivity) -> b
+    61:61:com.interestfriend.data.Circles access$2(com.interestfriend.activity.CreateCircleActivity) -> c
+    57:57:void access$3(com.interestfriend.activity.CreateCircleActivity,int) -> a
+    52:52:android.widget.TextView access$4(com.interestfriend.activity.CreateCircleActivity) -> d
+    283:283:void access$5(com.interestfriend.activity.CreateCircleActivity) -> e
 com.interestfriend.activity.CreateCircleActivity$1 -> com.interestfriend.activity.ak:
     com.interestfriend.activity.CreateCircleActivity this$0 -> a
-    176:201:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    176:202:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.CreateCircleActivity$2 -> com.interestfriend.activity.al:
     com.interestfriend.activity.CreateCircleActivity this$0 -> a
-    248:251:void getSelectKey(com.interestfriend.data.CategoryCircle) -> a
+    250:253:void getSelectKey(com.interestfriend.data.CategoryCircle) -> a
 com.interestfriend.activity.DissolveCircleActivity -> com.interestfriend.activity.DissolveCircleActivity:
     android.widget.ImageView back -> a
     android.widget.TextView txt_title -> b
@@ -15636,42 +15637,26 @@ com.interestfriend.activity.FriendVertifyActivity -> com.interestfriend.activity
     java.lang.String user_friend_name -> q
     java.lang.String user_firend_avatar -> r
     java.lang.String from_circle -> s
-    63:69:void onCreate(android.os.Bundle) -> onCreate
-    72:94:void getLastMessage() -> a
+    64:70:void onCreate(android.os.Bundle) -> onCreate
+    73:94:void getLastMessage() -> a
     97:108:void initView() -> b
     111:115:void setListener() -> c
     118:123:void setValue() -> d
     127:151:void onClick(android.view.View) -> onClick
-    158:184:void acceptInvitation() -> e
-    187:214:void add() -> f
-    217:252:void refuseInvitation() -> g
-    51:51:com.interestfriend.data.InviteMessage access$0(com.interestfriend.activity.FriendVertifyActivity) -> a
-    186:186:void access$1(com.interestfriend.activity.FriendVertifyActivity) -> b
-    53:53:android.app.Dialog access$2(com.interestfriend.activity.FriendVertifyActivity) -> c
+    158:161:void acceptInvitation() -> e
+    164:191:void add() -> f
+    194:211:void refuse() -> g
+    214:217:void refuseInvitation() -> h
+    54:54:android.app.Dialog access$0(com.interestfriend.activity.FriendVertifyActivity) -> a
+    52:52:com.interestfriend.data.InviteMessage access$1(com.interestfriend.activity.FriendVertifyActivity) -> b
 com.interestfriend.activity.FriendVertifyActivity$1 -> com.interestfriend.activity.au:
     com.interestfriend.activity.FriendVertifyActivity this$0 -> a
-    164:182:void run() -> run
-    160:160:com.interestfriend.activity.FriendVertifyActivity access$0(com.interestfriend.activity.FriendVertifyActivity$1) -> a
-com.interestfriend.activity.FriendVertifyActivity$1$1 -> com.interestfriend.activity.av:
-    com.interestfriend.activity.FriendVertifyActivity$1 this$1 -> a
-    169:170:void run() -> run
-com.interestfriend.activity.FriendVertifyActivity$1$2 -> com.interestfriend.activity.aw:
-    com.interestfriend.activity.FriendVertifyActivity$1 this$1 -> a
-    176:178:void run() -> run
-com.interestfriend.activity.FriendVertifyActivity$2 -> com.interestfriend.activity.ax:
-    com.interestfriend.activity.FriendVertifyActivity this$0 -> a
-    190:211:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    167:188:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.FriendVertifyActivity$3 -> com.interestfriend.activity.ay:
+com.interestfriend.activity.FriendVertifyActivity$2 -> com.interestfriend.activity.av:
     com.interestfriend.activity.FriendVertifyActivity this$0 -> a
-    223:250:void run() -> run
-    219:219:com.interestfriend.activity.FriendVertifyActivity access$0(com.interestfriend.activity.FriendVertifyActivity$3) -> a
-com.interestfriend.activity.FriendVertifyActivity$3$1 -> com.interestfriend.activity.az:
-    com.interestfriend.activity.FriendVertifyActivity$3 this$1 -> a
-    228:238:void run() -> run
-com.interestfriend.activity.FriendVertifyActivity$3$2 -> com.interestfriend.activity.ba:
-    com.interestfriend.activity.FriendVertifyActivity$3 this$1 -> a
-    244:246:void run() -> run
+    197:208:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.FriendVertifyListActivity -> com.interestfriend.activity.FriendVertifyListActivity:
     android.widget.ImageView back -> a
     android.widget.TextView txt_title -> b
@@ -15682,19 +15667,19 @@ com.interestfriend.activity.FriendVertifyListActivity -> com.interestfriend.acti
     android.content.BroadcastReceiver mBroadcastReceiver -> g
     43:51:void onCreate(android.os.Bundle) -> onCreate
     54:59:void initView() -> b
-    62:99:void setListener() -> c
-    103:105:void setValue() -> d
-    125:133:void onClick(android.view.View) -> onClick
-    139:144:void registerBoradcastReceiver() -> a
-    164:166:void onDestroy() -> onDestroy
+    62:103:void setListener() -> c
+    107:109:void setValue() -> d
+    129:137:void onClick(android.view.View) -> onClick
+    143:148:void registerBoradcastReceiver() -> a
+    168:170:void onDestroy() -> onDestroy
     39:39:com.easemob.chat.EMConversation access$0(com.interestfriend.activity.FriendVertifyListActivity) -> a
     36:36:com.interestfriend.adapter.InviteMessageAdapter1 access$1(com.interestfriend.activity.FriendVertifyListActivity) -> b
-com.interestfriend.activity.FriendVertifyListActivity$1 -> com.interestfriend.activity.bb:
+com.interestfriend.activity.FriendVertifyListActivity$1 -> com.interestfriend.activity.aw:
     com.interestfriend.activity.FriendVertifyListActivity this$0 -> a
-    152:160:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.interestfriend.activity.FriendVertifyListActivity$2 -> com.interestfriend.activity.bc:
+    156:164:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.interestfriend.activity.FriendVertifyListActivity$2 -> com.interestfriend.activity.ax:
     com.interestfriend.activity.FriendVertifyListActivity this$0 -> a
-    68:97:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    68:101:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.interestfriend.activity.HomeActivity -> com.interestfriend.activity.HomeActivity:
     com.interestfriend.view.HackyViewPager mPager -> b
     com.interestfriend.activity.HomeActivity$ImagePagerAdapter mAdapter -> c
@@ -15794,11 +15779,11 @@ com.interestfriend.activity.ImageGridFragment -> com.interestfriend.activity.Ima
     47:47:int access$2(com.interestfriend.activity.ImageGridFragment) -> c
     48:48:int access$3(com.interestfriend.activity.ImageGridFragment) -> d
     49:49:com.interestfriend.activity.ImageGridFragment$ImageAdapter access$4(com.interestfriend.activity.ImageGridFragment) -> e
-com.interestfriend.activity.ImageGridFragment$1 -> com.interestfriend.activity.bd:
+com.interestfriend.activity.ImageGridFragment$1 -> com.interestfriend.activity.ay:
     com.interestfriend.activity.ImageGridFragment this$0 -> a
     100:109:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
     114:114:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-com.interestfriend.activity.ImageGridFragment$2 -> com.interestfriend.activity.be:
+com.interestfriend.activity.ImageGridFragment$2 -> com.interestfriend.activity.az:
     com.interestfriend.activity.ImageGridFragment this$0 -> a
     android.widget.GridView val$mGridView -> b
     129:148:void onGlobalLayout() -> onGlobalLayout
@@ -15850,12 +15835,12 @@ com.interestfriend.activity.JoinCircleActivity -> com.interestfriend.activity.Jo
 com.interestfriend.activity.JoinCircleActivity$1 -> com.interestfriend.activity.JoinCircleActivity$1:
     com.interestfriend.activity.JoinCircleActivity this$0 -> a
     83:84:void onClick(android.view.View) -> onClick
-com.interestfriend.activity.JoinCircleActivity$2 -> com.interestfriend.activity.bf:
+com.interestfriend.activity.JoinCircleActivity$2 -> com.interestfriend.activity.ba:
     com.interestfriend.activity.JoinCircleActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     100:120:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.JoinCircleActivity$3 -> com.interestfriend.activity.bg:
+com.interestfriend.activity.JoinCircleActivity$3 -> com.interestfriend.activity.bb:
     com.interestfriend.activity.JoinCircleActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     134:144:void taskFinish(com.interestfriend.data.enums.RetError) -> a
@@ -15890,7 +15875,7 @@ com.interestfriend.activity.KickOutActivity -> com.interestfriend.activity.KickO
     42:42:int access$0(com.interestfriend.activity.KickOutActivity) -> a
     43:43:int access$1(com.interestfriend.activity.KickOutActivity) -> b
     38:38:com.easemob.chat.EMConversation access$2(com.interestfriend.activity.KickOutActivity) -> c
-com.interestfriend.activity.KickOutActivity$1 -> com.interestfriend.activity.bh:
+com.interestfriend.activity.KickOutActivity$1 -> com.interestfriend.activity.bc:
     com.interestfriend.activity.KickOutActivity this$0 -> a
     72:81:void run() -> run
 com.interestfriend.activity.KickOutActivity$2 -> com.interestfriend.activity.KickOutActivity$2:
@@ -15922,15 +15907,15 @@ com.interestfriend.activity.LoginActivity -> com.interestfriend.activity.LoginAc
     180:180:void access$2(com.interestfriend.activity.LoginActivity,java.lang.String,java.lang.String) -> a
     46:46:android.os.Handler access$3(com.interestfriend.activity.LoginActivity) -> b
     45:45:int access$4(com.interestfriend.activity.LoginActivity) -> c
-com.interestfriend.activity.LoginActivity$1 -> com.interestfriend.activity.bi:
+com.interestfriend.activity.LoginActivity$1 -> com.interestfriend.activity.bd:
     com.interestfriend.activity.LoginActivity this$0 -> a
     48:71:void handleMessage(android.os.Message) -> handleMessage
-com.interestfriend.activity.LoginActivity$2 -> com.interestfriend.activity.bj:
+com.interestfriend.activity.LoginActivity$2 -> com.interestfriend.activity.be:
     com.interestfriend.activity.LoginActivity this$0 -> a
     java.lang.String val$user_cellphone -> b
     java.lang.String val$user_password -> c
     156:176:void run() -> run
-com.interestfriend.activity.LoginActivity$3 -> com.interestfriend.activity.bk:
+com.interestfriend.activity.LoginActivity$3 -> com.interestfriend.activity.bf:
     com.interestfriend.activity.LoginActivity this$0 -> a
     java.lang.String val$username -> b
     java.lang.String val$password -> c
@@ -15938,7 +15923,7 @@ com.interestfriend.activity.LoginActivity$3 -> com.interestfriend.activity.bk:
     206:206:void onProgress(int,java.lang.String) -> onProgress
     211:222:void onError(int,java.lang.String) -> onError
     183:183:com.interestfriend.activity.LoginActivity access$0(com.interestfriend.activity.LoginActivity$3) -> a
-com.interestfriend.activity.LoginActivity$3$1 -> com.interestfriend.activity.bl:
+com.interestfriend.activity.LoginActivity$3$1 -> com.interestfriend.activity.bg:
     com.interestfriend.activity.LoginActivity$3 this$1 -> a
     java.lang.String val$message -> b
     213:220:void run() -> run
@@ -15993,30 +15978,30 @@ com.interestfriend.activity.MyUserFriendActivity -> com.interestfriend.activity.
     75:93:void setListener() -> c
     96:99:void setValue() -> d
     102:112:void initQuery() -> e
-    160:176:void getUserFriend() -> f
-    182:186:void registerBoradcastReceiver() -> a
-    205:207:void onDestroy() -> onDestroy
-    210:217:void del(int) -> a
-    221:229:void onClick(android.view.View) -> onClick
-    209:209:void access$0(com.interestfriend.activity.MyUserFriendActivity,int) -> a
+    161:177:void getUserFriend() -> f
+    183:187:void registerBoradcastReceiver() -> a
+    206:208:void onDestroy() -> onDestroy
+    211:218:void del(int) -> a
+    222:230:void onClick(android.view.View) -> onClick
+    210:210:void access$0(com.interestfriend.activity.MyUserFriendActivity,int) -> a
     54:54:android.app.Dialog access$1(com.interestfriend.activity.MyUserFriendActivity) -> a
     44:44:java.util.List access$2(com.interestfriend.activity.MyUserFriendActivity) -> b
     46:46:com.interestfriend.adapter.MyUserFriendAdapter access$3(com.interestfriend.activity.MyUserFriendActivity) -> c
-    159:159:void access$4(com.interestfriend.activity.MyUserFriendActivity) -> d
+    160:160:void access$4(com.interestfriend.activity.MyUserFriendActivity) -> d
     52:52:com.interestfriend.data.UserFriendList access$5(com.interestfriend.activity.MyUserFriendActivity) -> e
-com.interestfriend.activity.MyUserFriendActivity$1 -> com.interestfriend.activity.bm:
+com.interestfriend.activity.MyUserFriendActivity$1 -> com.interestfriend.activity.bh:
     com.interestfriend.activity.MyUserFriendActivity this$0 -> a
-    194:201:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.interestfriend.activity.MyUserFriendActivity$2 -> com.interestfriend.activity.bn:
+    195:202:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.interestfriend.activity.MyUserFriendActivity$2 -> com.interestfriend.activity.bi:
     com.interestfriend.activity.MyUserFriendActivity this$0 -> a
     81:91:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.interestfriend.activity.MyUserFriendActivity$3 -> com.interestfriend.activity.bo:
+com.interestfriend.activity.MyUserFriendActivity$3 -> com.interestfriend.activity.bj:
     com.interestfriend.activity.MyUserFriendActivity this$0 -> a
-    164:173:void taskFinish(com.interestfriend.data.enums.RetError) -> a
+    165:174:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
 com.interestfriend.activity.MyUserFriendActivity$MyAsyncQueryHandler -> com.interestfriend.activity.MyUserFriendActivity$a:
     com.interestfriend.activity.MyUserFriendActivity this$0 -> a
-    130:156:void onQueryComplete(int,java.lang.Object,android.database.Cursor) -> onQueryComplete
+    130:157:void onQueryComplete(int,java.lang.Object,android.database.Cursor) -> onQueryComplete
 com.interestfriend.activity.NearCirclesActivity -> com.interestfriend.activity.NearCirclesActivity:
     android.widget.ListView mlistView -> a
     android.widget.TextView txt_title -> b
@@ -16048,7 +16033,7 @@ com.interestfriend.activity.NearCirclesActivity -> com.interestfriend.activity.N
     46:46:android.widget.ListView access$6(com.interestfriend.activity.NearCirclesActivity) -> f
     59:59:int access$7(com.interestfriend.activity.NearCirclesActivity) -> g
     59:59:void access$8(com.interestfriend.activity.NearCirclesActivity,int) -> a
-com.interestfriend.activity.NearCirclesActivity$1 -> com.interestfriend.activity.bp:
+com.interestfriend.activity.NearCirclesActivity$1 -> com.interestfriend.activity.bk:
     com.interestfriend.activity.NearCirclesActivity this$0 -> a
     200:226:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
@@ -16135,16 +16120,16 @@ com.interestfriend.activity.PraiseAndCommentActivity -> com.interestfriend.activ
     79:79:java.util.List access$6(com.interestfriend.activity.PraiseAndCommentActivity) -> f
     78:78:com.interestfriend.adapter.CommentAdapter access$7(com.interestfriend.activity.PraiseAndCommentActivity) -> g
     347:347:void access$8(com.interestfriend.activity.PraiseAndCommentActivity) -> h
-com.interestfriend.activity.PraiseAndCommentActivity$1 -> com.interestfriend.activity.bq:
+com.interestfriend.activity.PraiseAndCommentActivity$1 -> com.interestfriend.activity.bl:
     com.interestfriend.activity.PraiseAndCommentActivity this$0 -> a
     198:212:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.PraiseAndCommentActivity$2 -> com.interestfriend.activity.br:
+com.interestfriend.activity.PraiseAndCommentActivity$2 -> com.interestfriend.activity.bm:
     com.interestfriend.activity.PraiseAndCommentActivity this$0 -> a
     com.interestfriend.data.Comment val$comment -> b
     330:342:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.PraiseAndCommentActivity$3 -> com.interestfriend.activity.bs:
+com.interestfriend.activity.PraiseAndCommentActivity$3 -> com.interestfriend.activity.bn:
     com.interestfriend.activity.PraiseAndCommentActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     int val$position -> c
@@ -16204,12 +16189,12 @@ com.interestfriend.activity.PublishGrowthImagePagerActivity -> com.interestfrien
     38:38:void access$2(com.interestfriend.activity.PublishGrowthImagePagerActivity,int) -> a
     36:36:com.interestfriend.activity.PublishGrowthImagePagerActivity$DelPic access$3() -> a
     38:38:int access$4(com.interestfriend.activity.PublishGrowthImagePagerActivity) -> c
-com.interestfriend.activity.PublishGrowthImagePagerActivity$1 -> com.interestfriend.activity.bt:
+com.interestfriend.activity.PublishGrowthImagePagerActivity$1 -> com.interestfriend.activity.bo:
     com.interestfriend.activity.PublishGrowthImagePagerActivity this$0 -> a
     69:69:void onPageScrollStateChanged(int) -> onPageScrollStateChanged
     73:73:void onPageScrolled(int,float,int) -> onPageScrolled
     77:81:void onPageSelected(int) -> onPageSelected
-com.interestfriend.activity.PublishGrowthImagePagerActivity$2 -> com.interestfriend.activity.bu:
+com.interestfriend.activity.PublishGrowthImagePagerActivity$2 -> com.interestfriend.activity.bp:
     com.interestfriend.activity.PublishGrowthImagePagerActivity this$0 -> a
     141:143:void onOKClick() -> a
     147:147:void onCancleClick() -> b
@@ -16305,11 +16290,11 @@ com.interestfriend.activity.RecorderVideoActivity -> com.interestfriend.activity
     138:138:boolean access$1(com.interestfriend.activity.RecorderVideoActivity) -> b
     82:82:android.view.SurfaceHolder access$2(com.interestfriend.activity.RecorderVideoActivity) -> c
     159:159:void access$3(com.interestfriend.activity.RecorderVideoActivity) -> d
-com.interestfriend.activity.RecorderVideoActivity$1 -> com.interestfriend.activity.bv:
+com.interestfriend.activity.RecorderVideoActivity$1 -> com.interestfriend.activity.bq:
     com.interestfriend.activity.RecorderVideoActivity this$0 -> a
     255:257:void onOKClick() -> a
     261:272:void onCancleClick() -> b
-com.interestfriend.activity.RecorderVideoActivity$2 -> com.interestfriend.activity.bw:
+com.interestfriend.activity.RecorderVideoActivity$2 -> com.interestfriend.activity.br:
     com.interestfriend.activity.RecorderVideoActivity this$0 -> a
     454:458:void onScanCompleted(java.lang.String,android.net.Uri) -> onScanCompleted
     462:463:void onMediaScannerConnected() -> onMediaScannerConnected
@@ -16370,11 +16355,11 @@ com.interestfriend.activity.SearchCirclsActivity -> com.interestfriend.activity.
     44:44:android.widget.ListView access$7(com.interestfriend.activity.SearchCirclsActivity) -> g
     58:58:int access$8(com.interestfriend.activity.SearchCirclsActivity) -> h
     58:58:void access$9(com.interestfriend.activity.SearchCirclsActivity,int) -> a
-com.interestfriend.activity.SearchCirclsActivity$1 -> com.interestfriend.activity.bx:
+com.interestfriend.activity.SearchCirclsActivity$1 -> com.interestfriend.activity.bs:
     com.interestfriend.activity.SearchCirclsActivity this$0 -> a
     108:118:void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
     125:125:void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
-com.interestfriend.activity.SearchCirclsActivity$2 -> com.interestfriend.activity.by:
+com.interestfriend.activity.SearchCirclsActivity$2 -> com.interestfriend.activity.bt:
     com.interestfriend.activity.SearchCirclsActivity this$0 -> a
     241:267:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
@@ -16421,16 +16406,16 @@ com.interestfriend.activity.SettingActivity -> com.interestfriend.activity.Setti
     156:174:void getNewVersion() -> e
     88:88:void access$0(com.interestfriend.activity.SettingActivity) -> a
     37:37:android.app.Dialog access$1(com.interestfriend.activity.SettingActivity) -> b
-com.interestfriend.activity.SettingActivity$1 -> com.interestfriend.activity.bz:
+com.interestfriend.activity.SettingActivity$1 -> com.interestfriend.activity.bu:
     com.interestfriend.activity.SettingActivity this$0 -> a
     78:79:void onOKClick() -> a
     83:83:void onCancleClick() -> b
-com.interestfriend.activity.SettingActivity$2 -> com.interestfriend.activity.ca:
+com.interestfriend.activity.SettingActivity$2 -> com.interestfriend.activity.bv:
     com.interestfriend.activity.SettingActivity this$0 -> a
     95:107:void onSuccess() -> onSuccess
     112:112:void onProgress(int,java.lang.String) -> onProgress
     117:117:void onError(int,java.lang.String) -> onError
-com.interestfriend.activity.SettingActivity$3 -> com.interestfriend.activity.cb:
+com.interestfriend.activity.SettingActivity$3 -> com.interestfriend.activity.bw:
     com.interestfriend.activity.SettingActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     163:171:void getNewVersion(int,java.lang.String,java.lang.String,java.lang.String) -> a
@@ -16458,23 +16443,23 @@ com.interestfriend.activity.ShowBigImage -> com.interestfriend.activity.ShowBigI
 com.interestfriend.activity.ShowBigImage$1 -> com.interestfriend.activity.ShowBigImage$1:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     121:122:void onClick(android.view.View) -> onClick
-com.interestfriend.activity.ShowBigImage$2 -> com.interestfriend.activity.cc:
+com.interestfriend.activity.ShowBigImage$2 -> com.interestfriend.activity.bx:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     167:191:void onSuccess(java.lang.String) -> onSuccess
     194:206:void onError(java.lang.String) -> onError
     209:216:void onProgress(int) -> onProgress
     164:164:com.interestfriend.activity.ShowBigImage access$0(com.interestfriend.activity.ShowBigImage$2) -> a
-com.interestfriend.activity.ShowBigImage$2$1 -> com.interestfriend.activity.cd:
+com.interestfriend.activity.ShowBigImage$2$1 -> com.interestfriend.activity.by:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     170:189:void run() -> run
-com.interestfriend.activity.ShowBigImage$2$2 -> com.interestfriend.activity.ce:
+com.interestfriend.activity.ShowBigImage$2$2 -> com.interestfriend.activity.bz:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     202:204:void run() -> run
-com.interestfriend.activity.ShowBigImage$2$3 -> com.interestfriend.activity.cf:
+com.interestfriend.activity.ShowBigImage$2$3 -> com.interestfriend.activity.ca:
     com.interestfriend.activity.ShowBigImage$2 this$1 -> a
     int val$progress -> b
     213:214:void run() -> run
-com.interestfriend.activity.ShowBigImage$3 -> com.interestfriend.activity.cg:
+com.interestfriend.activity.ShowBigImage$3 -> com.interestfriend.activity.cb:
     com.interestfriend.activity.ShowBigImage this$0 -> a
     com.easemob.cloud.HttpFileManager val$httpFileMgr -> b
     java.lang.String val$remoteFilePath -> c
@@ -16487,26 +16472,26 @@ com.interestfriend.activity.ShowNormalFileActivity -> com.interestfriend.activit
     26:91:void onCreate(android.os.Bundle) -> onCreate
     22:22:java.io.File access$0(com.interestfriend.activity.ShowNormalFileActivity) -> a
     21:21:android.widget.ProgressBar access$1(com.interestfriend.activity.ShowNormalFileActivity) -> b
-com.interestfriend.activity.ShowNormalFileActivity$1 -> com.interestfriend.activity.ch:
+com.interestfriend.activity.ShowNormalFileActivity$1 -> com.interestfriend.activity.cc:
     com.interestfriend.activity.ShowNormalFileActivity this$0 -> a
     com.easemob.chat.FileMessageBody val$messageBody -> b
     java.util.Map val$maps -> c
     45:88:void run() -> run
     43:43:com.interestfriend.activity.ShowNormalFileActivity access$0(com.interestfriend.activity.ShowNormalFileActivity$1) -> a
-com.interestfriend.activity.ShowNormalFileActivity$1$1 -> com.interestfriend.activity.ci:
+com.interestfriend.activity.ShowNormalFileActivity$1$1 -> com.interestfriend.activity.cd:
     com.interestfriend.activity.ShowNormalFileActivity$1 this$1 -> a
     55:62:void onSuccess(java.lang.String) -> onSuccess
     66:71:void onProgress(int) -> onProgress
     75:85:void onError(java.lang.String) -> onError
     51:51:com.interestfriend.activity.ShowNormalFileActivity$1 access$0(com.interestfriend.activity.ShowNormalFileActivity$1$1) -> a
-com.interestfriend.activity.ShowNormalFileActivity$1$1$1 -> com.interestfriend.activity.cj:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$1 -> com.interestfriend.activity.ce:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     57:60:void run() -> run
-com.interestfriend.activity.ShowNormalFileActivity$1$1$2 -> com.interestfriend.activity.ck:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$2 -> com.interestfriend.activity.cf:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     int val$progress -> b
     68:69:void run() -> run
-com.interestfriend.activity.ShowNormalFileActivity$1$1$3 -> com.interestfriend.activity.cl:
+com.interestfriend.activity.ShowNormalFileActivity$1$1$3 -> com.interestfriend.activity.cg:
     com.interestfriend.activity.ShowNormalFileActivity$1$1 this$2 -> a
     java.lang.String val$msg -> b
     77:83:void run() -> run
@@ -16521,23 +16506,23 @@ com.interestfriend.activity.ShowVideoActivity -> com.interestfriend.activity.Sho
     35:35:android.widget.RelativeLayout access$0(com.interestfriend.activity.ShowVideoActivity) -> a
     36:36:android.widget.ProgressBar access$1(com.interestfriend.activity.ShowVideoActivity) -> b
     37:37:java.lang.String access$2(com.interestfriend.activity.ShowVideoActivity) -> c
-com.interestfriend.activity.ShowVideoActivity$1 -> com.interestfriend.activity.cm:
+com.interestfriend.activity.ShowVideoActivity$1 -> com.interestfriend.activity.ch:
     com.interestfriend.activity.ShowVideoActivity this$0 -> a
     103:118:void onSuccess(java.lang.String) -> onSuccess
     122:132:void onProgress(int) -> onProgress
     136:149:void onError(java.lang.String) -> onError
     99:99:com.interestfriend.activity.ShowVideoActivity access$0(com.interestfriend.activity.ShowVideoActivity$1) -> a
-com.interestfriend.activity.ShowVideoActivity$1$1 -> com.interestfriend.activity.cn:
+com.interestfriend.activity.ShowVideoActivity$1$1 -> com.interestfriend.activity.ci:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     107:115:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$1$2 -> com.interestfriend.activity.co:
+com.interestfriend.activity.ShowVideoActivity$1$2 -> com.interestfriend.activity.cj:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     int val$progress -> b
     127:129:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$1$3 -> com.interestfriend.activity.cp:
+com.interestfriend.activity.ShowVideoActivity$1$3 -> com.interestfriend.activity.ck:
     com.interestfriend.activity.ShowVideoActivity$1 this$1 -> a
     146:146:void run() -> run
-com.interestfriend.activity.ShowVideoActivity$2 -> com.interestfriend.activity.cq:
+com.interestfriend.activity.ShowVideoActivity$2 -> com.interestfriend.activity.cl:
     com.interestfriend.activity.ShowVideoActivity this$0 -> a
     com.easemob.cloud.HttpFileManager val$httpFileMgr -> b
     java.lang.String val$remoteUrl -> c
@@ -16558,7 +16543,7 @@ com.interestfriend.activity.UpdateCircleDiscriptionActivity -> com.interestfrien
     83:98:void onClick(android.view.View) -> onClick
     28:28:android.app.Dialog access$0(com.interestfriend.activity.UpdateCircleDiscriptionActivity) -> a
     25:25:android.widget.EditText access$1(com.interestfriend.activity.UpdateCircleDiscriptionActivity) -> b
-com.interestfriend.activity.UpdateCircleDiscriptionActivity$1 -> com.interestfriend.activity.cr:
+com.interestfriend.activity.UpdateCircleDiscriptionActivity$1 -> com.interestfriend.activity.cm:
     com.interestfriend.activity.UpdateCircleDiscriptionActivity this$0 -> a
     61:75:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
@@ -16581,7 +16566,7 @@ com.interestfriend.activity.UpdateUserInfoActivity -> com.interestfriend.activit
     35:35:android.app.Dialog access$0(com.interestfriend.activity.UpdateUserInfoActivity) -> a
     39:39:int access$1(com.interestfriend.activity.UpdateUserInfoActivity) -> b
     37:37:com.interestfriend.data.CircleMember access$2(com.interestfriend.activity.UpdateUserInfoActivity) -> c
-com.interestfriend.activity.UpdateUserInfoActivity$1 -> com.interestfriend.activity.cs:
+com.interestfriend.activity.UpdateUserInfoActivity$1 -> com.interestfriend.activity.cn:
     com.interestfriend.activity.UpdateUserInfoActivity this$0 -> a
     java.lang.String val$value -> b
     105:119:void taskFinish(com.interestfriend.data.enums.RetError) -> a
@@ -16642,31 +16627,31 @@ com.interestfriend.activity.VideoCallActivity -> com.interestfriend.activity.Vid
     63:63:android.os.Handler access$8(com.interestfriend.activity.VideoCallActivity) -> g
     56:56:boolean access$9(com.interestfriend.activity.VideoCallActivity) -> h
     58:58:boolean access$10(com.interestfriend.activity.VideoCallActivity) -> i
-com.interestfriend.activity.VideoCallActivity$1 -> com.interestfriend.activity.ct:
+com.interestfriend.activity.VideoCallActivity$1 -> com.interestfriend.activity.co:
     com.interestfriend.activity.VideoCallActivity this$0 -> a
     157:158:void run() -> run
-com.interestfriend.activity.VideoCallActivity$2 -> com.interestfriend.activity.cu:
+com.interestfriend.activity.VideoCallActivity$2 -> com.interestfriend.activity.cp:
     com.interestfriend.activity.VideoCallActivity this$0 -> a
     int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState -> b
     242:396:void onCallStateChanged(com.easemob.chat.EMCallStateChangeListener$CallState,com.easemob.chat.EMCallStateChangeListener$CallError) -> onCallStateChanged
     236:236:int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState() -> a
     236:236:com.interestfriend.activity.VideoCallActivity access$1(com.interestfriend.activity.VideoCallActivity$2) -> a
-com.interestfriend.activity.VideoCallActivity$2$1 -> com.interestfriend.activity.cv:
+com.interestfriend.activity.VideoCallActivity$2$1 -> com.interestfriend.activity.cq:
     com.interestfriend.activity.VideoCallActivity$2 this$1 -> a
     249:253:void run() -> run
-com.interestfriend.activity.VideoCallActivity$2$2 -> com.interestfriend.activity.cw:
+com.interestfriend.activity.VideoCallActivity$2$2 -> com.interestfriend.activity.cr:
     com.interestfriend.activity.VideoCallActivity$2 this$1 -> a
     262:265:void run() -> run
-com.interestfriend.activity.VideoCallActivity$2$3 -> com.interestfriend.activity.cx:
+com.interestfriend.activity.VideoCallActivity$2$3 -> com.interestfriend.activity.cs:
     com.interestfriend.activity.VideoCallActivity$2 this$1 -> a
     276:294:void run() -> run
-com.interestfriend.activity.VideoCallActivity$2$4 -> com.interestfriend.activity.cy:
+com.interestfriend.activity.VideoCallActivity$2$4 -> com.interestfriend.activity.ct:
     com.interestfriend.activity.VideoCallActivity$2 this$1 -> a
     com.easemob.chat.EMCallStateChangeListener$CallError val$fError -> b
     302:316:void postDelayedCloseMsg() -> a
     320:386:void run() -> run
     300:300:com.interestfriend.activity.VideoCallActivity$2 access$0(com.interestfriend.activity.VideoCallActivity$2$4) -> a
-com.interestfriend.activity.VideoCallActivity$2$4$1 -> com.interestfriend.activity.cz:
+com.interestfriend.activity.VideoCallActivity$2$4$1 -> com.interestfriend.activity.cu:
     com.interestfriend.activity.VideoCallActivity$2$4 this$2 -> a
     306:314:void run() -> run
 com.interestfriend.activity.VideoCallActivity$localCallback -> com.interestfriend.activity.VideoCallActivity$a:
@@ -16732,15 +16717,15 @@ com.interestfriend.activity.VideoCommentActivity -> com.interestfriend.activity.
 com.interestfriend.activity.VideoCommentActivity$1 -> com.interestfriend.activity.VideoCommentActivity$1:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     155:168:void onClick(android.view.View) -> onClick
-com.interestfriend.activity.VideoCommentActivity$2 -> com.interestfriend.activity.da:
+com.interestfriend.activity.VideoCommentActivity$2 -> com.interestfriend.activity.cv:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     176:177:void run() -> run
-com.interestfriend.activity.VideoCommentActivity$3 -> com.interestfriend.activity.db:
+com.interestfriend.activity.VideoCommentActivity$3 -> com.interestfriend.activity.cw:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     com.interestfriend.data.VideoComment val$comment -> b
     219:237:void taskFinish(com.interestfriend.data.enums.RetError) -> a
     1:1:void taskFinish(java.lang.Object) -> a
-com.interestfriend.activity.VideoCommentActivity$4 -> com.interestfriend.activity.dc:
+com.interestfriend.activity.VideoCommentActivity$4 -> com.interestfriend.activity.cx:
     com.interestfriend.activity.VideoCommentActivity this$0 -> a
     android.app.Dialog val$dialog -> b
     int val$position -> c
@@ -16779,35 +16764,35 @@ com.interestfriend.activity.VoiceCallActivity -> com.interestfriend.activity.Voi
     65:65:android.os.Handler access$5(com.interestfriend.activity.VoiceCallActivity) -> e
     70:70:boolean access$6(com.interestfriend.activity.VoiceCallActivity) -> f
     64:64:boolean access$7(com.interestfriend.activity.VoiceCallActivity) -> g
-com.interestfriend.activity.VoiceCallActivity$1 -> com.interestfriend.activity.dd:
+com.interestfriend.activity.VoiceCallActivity$1 -> com.interestfriend.activity.cy:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     129:130:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$2 -> com.interestfriend.activity.de:
+com.interestfriend.activity.VoiceCallActivity$2 -> com.interestfriend.activity.cz:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     java.lang.String val$st2 -> b
     141:142:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3 -> com.interestfriend.activity.df:
+com.interestfriend.activity.VoiceCallActivity$3 -> com.interestfriend.activity.da:
     com.interestfriend.activity.VoiceCallActivity this$0 -> a
     int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState -> b
     167:319:void onCallStateChanged(com.easemob.chat.EMCallStateChangeListener$CallState,com.easemob.chat.EMCallStateChangeListener$CallError) -> onCallStateChanged
     161:161:int[] $SWITCH_TABLE$com$easemob$chat$EMCallStateChangeListener$CallState() -> a
     161:161:com.interestfriend.activity.VoiceCallActivity access$1(com.interestfriend.activity.VoiceCallActivity$3) -> a
-com.interestfriend.activity.VoiceCallActivity$3$1 -> com.interestfriend.activity.dg:
+com.interestfriend.activity.VoiceCallActivity$3$1 -> com.interestfriend.activity.db:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     175:176:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$2 -> com.interestfriend.activity.dh:
+com.interestfriend.activity.VoiceCallActivity$3$2 -> com.interestfriend.activity.dc:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     186:189:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$3 -> com.interestfriend.activity.di:
+com.interestfriend.activity.VoiceCallActivity$3$3 -> com.interestfriend.activity.dd:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     200:214:void run() -> run
-com.interestfriend.activity.VoiceCallActivity$3$4 -> com.interestfriend.activity.dj:
+com.interestfriend.activity.VoiceCallActivity$3$4 -> com.interestfriend.activity.de:
     com.interestfriend.activity.VoiceCallActivity$3 this$1 -> a
     com.easemob.chat.EMCallStateChangeListener$CallError val$fError -> b
     222:236:void postDelayedCloseMsg() -> a
     240:309:void run() -> run
     220:220:com.interestfriend.activity.VoiceCallActivity$3 access$0(com.interestfriend.activity.VoiceCallActivity$3$4) -> a
-com.interestfriend.activity.VoiceCallActivity$3$4$1 -> com.interestfriend.activity.dk:
+com.interestfriend.activity.VoiceCallActivity$3$4$1 -> com.interestfriend.activity.df:
     com.interestfriend.activity.VoiceCallActivity$3$4 this$2 -> a
     226:233:void run() -> run
 com.interestfriend.activity.WelcomActivity -> com.interestfriend.activity.WelcomActivity:
@@ -16825,7 +16810,7 @@ com.interestfriend.activity.WelcomActivity -> com.interestfriend.activity.Welcom
     27:27:java.util.List access$1(com.interestfriend.activity.WelcomActivity) -> b
     24:24:android.widget.Button access$2(com.interestfriend.activity.WelcomActivity) -> c
     23:23:android.widget.Button access$3(com.interestfriend.activity.WelcomActivity) -> d
-com.interestfriend.activity.WelcomActivity$1 -> com.interestfriend.activity.dl:
+com.interestfriend.activity.WelcomActivity$1 -> com.interestfriend.activity.dg:
     com.interestfriend.activity.WelcomActivity this$0 -> a
     75:87:void onPageSelected(int) -> onPageSelected
     92:92:void onPageScrolled(int,float,int) -> onPageScrolled
@@ -16838,7 +16823,7 @@ com.interestfriend.activity.WelcomActivity$MyPagerAdapter -> com.interestfriend.
     146:148:void destroyItem(android.view.View,int,java.lang.Object) -> destroyItem
 com.interestfriend.activity.WelcomLoadingActivity -> com.interestfriend.activity.WelcomLoadingActivity:
     17:41:void onCreate(android.os.Bundle) -> onCreate
-com.interestfriend.activity.WelcomLoadingActivity$1 -> com.interestfriend.activity.dm:
+com.interestfriend.activity.WelcomLoadingActivity$1 -> com.interestfriend.activity.dh:
     com.interestfriend.activity.WelcomLoadingActivity this$0 -> a
     25:38:void run() -> run
 com.interestfriend.activity.imagefactory.ImageFactory -> com.interestfriend.activity.imagefactory.a:
@@ -18112,22 +18097,20 @@ com.interestfriend.data.ChatUser -> com.interestfriend.data.ChatUser:
     int user_id -> e
     java.lang.String user_chat_id -> f
     java.lang.String user_friend_circle -> g
-    37:37:java.lang.String getUser_friend_circle() -> a
-    41:42:void setUser_friend_circle(java.lang.String) -> a
-    45:45:java.lang.String getUser_chat_id() -> b
-    49:50:void setUser_chat_id(java.lang.String) -> b
-    53:53:java.lang.String getUser_name() -> c
-    57:58:void setUser_name(java.lang.String) -> c
-    61:61:java.lang.String getUser_avatar() -> d
-    65:66:void setUser_avatar(java.lang.String) -> d
-    69:69:int getUser_id() -> e
-    73:74:void setUser_id(int) -> a
-    77:77:int getUnreadMsgCount() -> f
-    81:82:void setUnreadMsgCount(int) -> b
-    86:86:int hashCode() -> hashCode
-    91:94:boolean equals(java.lang.Object) -> equals
-    99:99:java.lang.String toString() -> toString
-    103:110:com.interestfriend.data.enums.RetError delFriend() -> g
+    38:38:java.lang.String toString() -> toString
+    43:43:java.lang.String getUser_friend_circle() -> a
+    47:48:void setUser_friend_circle(java.lang.String) -> a
+    51:51:java.lang.String getUser_chat_id() -> b
+    55:56:void setUser_chat_id(java.lang.String) -> b
+    59:59:java.lang.String getUser_name() -> c
+    63:64:void setUser_name(java.lang.String) -> c
+    67:67:java.lang.String getUser_avatar() -> d
+    71:72:void setUser_avatar(java.lang.String) -> d
+    75:75:int getUser_id() -> e
+    79:80:void setUser_id(int) -> a
+    83:83:int getUnreadMsgCount() -> f
+    87:88:void setUnreadMsgCount(int) -> b
+    91:98:com.interestfriend.data.enums.RetError delFriend() -> g
 com.interestfriend.data.ChatUserDao -> com.interestfriend.data.d:
     java.lang.String TABLE_NAME -> a
     java.lang.String COLUMN_USER_NAME -> b
@@ -18137,8 +18120,8 @@ com.interestfriend.data.ChatUserDao -> com.interestfriend.data.d:
     java.lang.String COLUMN_USER_FROM_CIRCLE -> f
     39:65:java.util.List getContactList() -> a
     72:77:void deleteContact(int) -> a
-    83:93:void saveContact(com.interestfriend.data.ChatUser) -> a
-    96:100:boolean getFriendByUserID(int) -> b
+    83:90:void saveContact(com.interestfriend.data.ChatUser,android.database.sqlite.SQLiteDatabase) -> a
+    93:97:boolean getFriendByUserID(int) -> b
 com.interestfriend.data.CircleMember -> com.interestfriend.data.e:
     java.lang.String JOIN_OFFCIAL_CIRCLE_API -> c
     java.lang.String UPDATE_USER_INFO -> d
@@ -18505,15 +18488,16 @@ com.interestfriend.data.IData -> com.interestfriend.data.q:
 com.interestfriend.data.InviteMessage -> com.interestfriend.data.r:
     java.lang.String ADD_FRIEND_API -> a
     java.lang.String ADD_USER_FRIEND_INVITE_API -> b
-    java.lang.String from_user_name -> c
-    java.lang.String from_user_avatar -> d
-    int from_user_id -> e
-    java.lang.String from_user_chat_id -> f
-    java.lang.String from_circle -> g
-    long time -> h
-    java.lang.String reason -> i
-    com.interestfriend.data.InviteMessage$InviteMesageStatus status -> j
-    int id -> k
+    java.lang.String REFUSE_INVITION_API -> c
+    java.lang.String from_user_name -> d
+    java.lang.String from_user_avatar -> e
+    int from_user_id -> f
+    java.lang.String from_user_chat_id -> g
+    java.lang.String from_circle -> h
+    long time -> i
+    java.lang.String reason -> j
+    com.interestfriend.data.InviteMessage$InviteMesageStatus status -> k
+    int id -> l
     48:48:java.lang.String getFrom_circle() -> a
     52:53:void setFrom_circle(java.lang.String) -> a
     56:56:java.lang.String getFrom_user_chat_id() -> b
@@ -18532,8 +18516,9 @@ com.interestfriend.data.InviteMessage -> com.interestfriend.data.r:
     108:109:void setStatus(com.interestfriend.data.InviteMessage$InviteMesageStatus) -> a
     112:112:int getId() -> i
     116:117:void setId(int) -> b
-    136:149:com.interestfriend.data.enums.RetError addFriendInvite() -> j
-    154:169:com.interestfriend.data.enums.RetError addFriend() -> k
+    136:150:com.interestfriend.data.enums.RetError addFriendInvite() -> j
+    155:170:com.interestfriend.data.enums.RetError addFriend() -> k
+    175:183:com.interestfriend.data.enums.RetError refuseInvitation() -> l
 com.interestfriend.data.InviteMessage$InviteMesageStatus -> com.interestfriend.data.r$a:
     com.interestfriend.data.InviteMessage$InviteMesageStatus BEINVITEED -> a
     com.interestfriend.data.InviteMessage$InviteMesageStatus BEREFUSED -> b
@@ -18659,7 +18644,7 @@ com.interestfriend.data.UserFriendList -> com.interestfriend.data.z:
     24:24:java.util.List getLists() -> b
     28:29:void setLists(java.util.List) -> a
     32:42:com.interestfriend.data.enums.RetError getUserFriendList() -> c
-    48:52:void write(android.database.sqlite.SQLiteDatabase) -> b
+    48:56:void write(android.database.sqlite.SQLiteDatabase) -> b
 com.interestfriend.data.Video -> com.interestfriend.data.aa:
     java.lang.String UP_LOAD_VIDEO -> f
     java.lang.String video_img -> g
@@ -20271,7 +20256,7 @@ com.interestfriend.task.GetNearCirclesTask -> com.interestfriend.task.t:
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.interestfriend.task.GetUserFriendTask -> com.interestfriend.task.u:
     com.interestfriend.data.UserFriendList list -> a
-    13:18:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.UserFriendList[]) -> a
+    14:19:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.UserFriendList[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.interestfriend.task.GetUserInfoTask -> com.interestfriend.task.v:
     com.interestfriend.data.CircleMember user -> a
@@ -20360,13 +20345,17 @@ com.interestfriend.task.ReceiveJoinCircleTask -> com.interestfriend.task.ah:
     java.lang.String join_circle_name -> c
     21:24:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CircleMember[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.RefuseJoinCircleTask -> com.interestfriend.task.ai:
+com.interestfriend.task.RefuseInvitationTask -> com.interestfriend.task.ai:
+    com.interestfriend.data.InviteMessage message -> a
+    12:14:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.InviteMessage[]) -> a
+    1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.interestfriend.task.RefuseJoinCircleTask -> com.interestfriend.task.aj:
     com.interestfriend.data.CircleMember member -> a
     java.lang.String request_join_circle_user_huanxin_username -> b
     java.lang.String join_circle_name -> c
     21:24:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CircleMember[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.SaveImageTask -> com.interestfriend.task.aj:
+com.interestfriend.task.SaveImageTask -> com.interestfriend.task.ak:
     com.interestfriend.task.SaveImageTask$SaveImge callBack -> a
     android.graphics.Bitmap bmp -> b
     16:17:void setCallBack(com.interestfriend.task.SaveImageTask$SaveImge) -> a
@@ -20374,29 +20363,29 @@ com.interestfriend.task.SaveImageTask -> com.interestfriend.task.aj:
     35:37:void onPostExecute(java.lang.Void) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.SaveImageTask$SaveImge -> com.interestfriend.task.aj$a:
+com.interestfriend.task.SaveImageTask$SaveImge -> com.interestfriend.task.ak$a:
     void saveFinish() -> a
-com.interestfriend.task.SearchCirclesByCategoryTask -> com.interestfriend.task.ak:
+com.interestfriend.task.SearchCirclesByCategoryTask -> com.interestfriend.task.al:
     com.interestfriend.data.CategoryCircleList list -> a
     int page -> b
     17:19:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CategoryCircleList[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.SendCommentTask -> com.interestfriend.task.al:
+com.interestfriend.task.SendCommentTask -> com.interestfriend.task.am:
     com.interestfriend.data.Comment comment -> a
     int growth_publisher_id -> b
     17:22:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.Comment[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.SendVideoCommentTask -> com.interestfriend.task.am:
+com.interestfriend.task.SendVideoCommentTask -> com.interestfriend.task.an:
     com.interestfriend.data.VideoComment comment -> a
     13:18:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.VideoComment[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpDateMemberInfoTask -> com.interestfriend.task.an:
+com.interestfriend.task.UpDateMemberInfoTask -> com.interestfriend.task.ao:
     com.interestfriend.data.CircleMember member -> a
     java.lang.String clounm -> b
     java.lang.String value -> c
     22:35:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CircleMember[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpDateNewVersionTask -> com.interestfriend.task.ao:
+com.interestfriend.task.UpDateNewVersionTask -> com.interestfriend.task.ap:
     java.lang.String serverVersion -> a
     java.lang.String versionLink -> b
     java.lang.String version_info -> c
@@ -20410,45 +20399,45 @@ com.interestfriend.task.UpDateNewVersionTask -> com.interestfriend.task.ao:
     95:96:void setCallBack(com.interestfriend.task.UpDateNewVersionTask$UpDateVersion) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpDateNewVersionTask$UpDateVersion -> com.interestfriend.task.ao$a:
+com.interestfriend.task.UpDateNewVersionTask$UpDateVersion -> com.interestfriend.task.ap$a:
     void getNewVersion(int,java.lang.String,java.lang.String,java.lang.String) -> a
-com.interestfriend.task.UpLoadGrowthTask -> com.interestfriend.task.ap:
+com.interestfriend.task.UpLoadGrowthTask -> com.interestfriend.task.aq:
     com.interestfriend.data.Growth growth -> a
     13:18:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.Growth[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpLoadVideoTask -> com.interestfriend.task.aq:
+com.interestfriend.task.UpLoadVideoTask -> com.interestfriend.task.ar:
     com.interestfriend.data.Video video -> a
     12:17:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.Video[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpdateCircleDiscriptionTask -> com.interestfriend.task.ar:
+com.interestfriend.task.UpdateCircleDiscriptionTask -> com.interestfriend.task.as:
     com.interestfriend.data.Circles circle -> a
     13:19:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.Circles[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpdateCircleLogoTask -> com.interestfriend.task.as:
+com.interestfriend.task.UpdateCircleLogoTask -> com.interestfriend.task.at:
     com.interestfriend.data.Circles circle -> a
     13:19:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.Circles[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpdateLoginPassword -> com.interestfriend.task.at:
+com.interestfriend.task.UpdateLoginPassword -> com.interestfriend.task.au:
     com.interestfriend.data.User user -> a
     11:13:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.User[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpdateUserAddressTask -> com.interestfriend.task.au:
+com.interestfriend.task.UpdateUserAddressTask -> com.interestfriend.task.av:
     com.interestfriend.data.CircleMember member -> a
     12:14:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CircleMember[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UpdateUserAvatarTask -> com.interestfriend.task.av:
+com.interestfriend.task.UpdateUserAvatarTask -> com.interestfriend.task.aw:
     com.interestfriend.data.CircleMember member -> a
     13:18:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.CircleMember[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UploadErrorLogTask -> com.interestfriend.task.aw:
+com.interestfriend.task.UploadErrorLogTask -> com.interestfriend.task.ax:
     java.io.File file -> a
     16:21:com.interestfriend.data.enums.RetError doInBackground(java.io.File[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.UserRegisterTask -> com.interestfriend.task.ax:
+com.interestfriend.task.UserRegisterTask -> com.interestfriend.task.ay:
     com.interestfriend.data.User register -> a
     11:13:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.User[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.interestfriend.task.VerifyCellPhoneTask -> com.interestfriend.task.ay:
+com.interestfriend.task.VerifyCellPhoneTask -> com.interestfriend.task.az:
     com.interestfriend.data.User register -> a
     12:14:com.interestfriend.data.enums.RetError doInBackground(com.interestfriend.data.User[]) -> a
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
