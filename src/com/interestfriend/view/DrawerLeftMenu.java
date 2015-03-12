@@ -16,15 +16,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.activity.ChatAllHistoryActivity;
 import com.interestfriend.activity.CircleMemberOfSelfInfoActivity;
-import com.interestfriend.activity.FriendVertifyListActivity;
 import com.interestfriend.activity.MyUserFriendActivity;
 import com.interestfriend.activity.SettingActivity;
+import com.interestfriend.activity.XinQingQiangActivity;
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.UpDateNewVersionTask;
@@ -39,11 +38,11 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private View rootView;
 	private ImageView img_avatar;
 	private TextView txt_user_name;
- 	private TextView txt_message;
+	private TextView txt_message;
 	private TextView txt_user_info;
 	private TextView txt_setting;
-	// private TextView txt_friend_vertify;
 	private TextView txt_my_friend;
+	private TextView txt_xinqinqiang;
 
 	public DrawerLeftMenu(Context context) {
 		super(context);
@@ -84,11 +83,14 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		img_avatar = (ImageView) rootView.findViewById(R.id.img_avatar);
 		txt_user_name = (TextView) rootView.findViewById(R.id.txt_user_name);
 		txt_user_name.getBackground().setAlpha(120);
- 		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
+		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
 		txt_user_info = (TextView) rootView.findViewById(R.id.txt_user_info);
 		txt_setting = (TextView) rootView.findViewById(R.id.txt_seting);
 		txt_my_friend = (TextView) rootView.findViewById(R.id.txt_my_friend);
- 		txt_message.setOnClickListener(this);
+		txt_xinqinqiang = (TextView) rootView
+				.findViewById(R.id.txt_xinqinqiang);
+		txt_xinqinqiang.setOnClickListener(this);
+		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
 		txt_setting.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
@@ -200,9 +202,13 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
 			mContext.startActivity(intent);
 			break;
-  		case R.id.txt_my_friend:
+		case R.id.txt_my_friend:
 			mContext.startActivity(new Intent(mContext,
 					MyUserFriendActivity.class));
+			break;
+		case R.id.txt_xinqinqiang:
+			mContext.startActivity(new Intent(mContext,
+					XinQingQiangActivity.class));
 			break;
 		default:
 			break;

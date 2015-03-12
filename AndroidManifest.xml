@@ -340,6 +340,14 @@
             android:name="com.interestfriend.activity.MyUserFriendActivity"
             android:label="@string/title_activity_my_user_friend" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.XinQingQiangActivity"
+            android:label="@string/title_activity_xin_qing_qiang" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.CreateXinQingActivity"
+            android:label="@string/title_activity_create_xin_qing" >
+        </activity>
     </application>
 
 </manifest>

@@ -82,6 +82,27 @@
             android:layout_width="fill_parent"
             android:layout_height="0.2dip"
             android:background="@color/bg_line" />
+        <!-- android:drawableLeft="@drawable/message" -->
+
+        <TextView
+            android:id="@+id/txt_xinqinqiang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/left_menu"
+            android:drawablePadding="5dip"
+            android:gravity="center_vertical"
+            android:paddingBottom="12dip"
+            android:paddingLeft="30dip"
+            android:paddingRight="10dip"
+            android:paddingTop="12dip"
+            android:text="心情墙"
+            android:textColor="@color/txt_color"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.2dip"
+            android:background="@color/bg_line" />
 
         <TextView
             android:id="@+id/txt_my_friend"
