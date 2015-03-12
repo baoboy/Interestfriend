@@ -39,8 +39,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 	private View rootView;
 	private ImageView img_avatar;
 	private TextView txt_user_name;
-	private LinearLayout layotu_parent;
-	private TextView txt_message;
+ 	private TextView txt_message;
 	private TextView txt_user_info;
 	private TextView txt_setting;
 	// private TextView txt_friend_vertify;
@@ -85,20 +84,14 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 		img_avatar = (ImageView) rootView.findViewById(R.id.img_avatar);
 		txt_user_name = (TextView) rootView.findViewById(R.id.txt_user_name);
 		txt_user_name.getBackground().setAlpha(120);
-		layotu_parent = (LinearLayout) rootView
-				.findViewById(R.id.layout_parent);
-		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
+ 		txt_message = (TextView) rootView.findViewById(R.id.txt_message);
 		txt_user_info = (TextView) rootView.findViewById(R.id.txt_user_info);
 		txt_setting = (TextView) rootView.findViewById(R.id.txt_seting);
-		// txt_friend_vertify = (TextView) rootView
-		// .findViewById(R.id.txt_friend_vertify);
 		txt_my_friend = (TextView) rootView.findViewById(R.id.txt_my_friend);
-		layotu_parent.setOnClickListener(this);
-		txt_message.setOnClickListener(this);
+ 		txt_message.setOnClickListener(this);
 		txt_user_info.setOnClickListener(this);
 		txt_setting.setOnClickListener(this);
 		img_avatar.setOnClickListener(this);
-		// txt_friend_vertify.setOnClickListener(this);
 		txt_my_friend.setOnClickListener(this);
 		addView(rootView);
 	}
@@ -207,11 +200,7 @@ public class DrawerLeftMenu extends FrameLayout implements OnClickListener {
 			intent.putExtra(Constants.EXTRA_IMAGE_INDEX, 1);
 			mContext.startActivity(intent);
 			break;
-		case R.id.txt_friend_vertify:
-			mContext.startActivity(new Intent(mContext,
-					FriendVertifyListActivity.class));
-			break;
-		case R.id.txt_my_friend:
+  		case R.id.txt_my_friend:
 			mContext.startActivity(new Intent(mContext,
 					MyUserFriendActivity.class));
 			break;

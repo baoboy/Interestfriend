@@ -28,7 +28,7 @@ import com.interestfriend.utils.SharedUtils;
 public class InviteMessage implements Serializable {
 	private static final String ADD_FRIEND_API = "AddUserFriendServlet";
 	private static final String ADD_USER_FRIEND_INVITE_API = "AddUserFriendInviteServlet";
-
+	private static final String REFUSE_INVITION_API = "RefuseInvitationServlet";
 	private String from_user_name;
 	private String from_user_avatar = "";
 	private int from_user_id;
@@ -138,6 +138,7 @@ public class InviteMessage implements Serializable {
 		params.put("to_user_chat_id", from_user_chat_id);
 		params.put("reason", reason);
 		params.put("user_id", SharedUtils.getUid());
+		params.put("user_chat_id", SharedUtils.getAPPUserChatID());
 		params.put("user_name", SharedUtils.getAPPUserName());
 		params.put("user_avatar", SharedUtils.getAPPUserAvatar());
 		params.put("from_circle", MyApplation.getCircle_name());
@@ -163,6 +164,19 @@ public class InviteMessage implements Serializable {
 		params.put("user_friend_chat_id", from_user_chat_id);
 		params.put("user_friend_circle", from_circle);
 		Result ret = ApiRequest.request(ADD_FRIEND_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError refuseInvitation() {
+		IParser parser = new SimpleParser();
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_chat_id", SharedUtils.getAPPUserChatID());
+		params.put("user_friend_id", from_user_id);
+		Result ret = ApiRequest.request(REFUSE_INVITION_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			return RetError.NONE;
 		} else {

@@ -87,19 +87,6 @@ public class ChatUser extends EMContact {
 		this.unreadMsgCount = unreadMsgCount;
 	}
 
-	@Override
-	public int hashCode() {
-		return 17 * getUsername().hashCode();
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == null || !(o instanceof ChatUser)) {
-			return false;
-		}
-		return getUsername().equals(((ChatUser) o).getUsername());
-	}
-
 	public RetError delFriend() {
 		IParser parser = new SimpleParser();
 		HashMap<String, Object> params = new HashMap<String, Object>();

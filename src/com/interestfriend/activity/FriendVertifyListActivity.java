@@ -71,6 +71,7 @@ public class FriendVertifyListActivity extends BaseActivity implements
 				String user_friend_name = "";
 				String user_firend_avatar = "";
 				String from_circle = "";
+				String user_friend_chat_id = "";
 				try {
 					user_friend_id = Integer.valueOf(emmessage
 							.getIntAttribute("user_friend_id"));
@@ -80,6 +81,8 @@ public class FriendVertifyListActivity extends BaseActivity implements
 					user_firend_avatar = emmessage
 							.getStringAttribute("user_firend_avatar");
 					from_circle = emmessage.getStringAttribute("from_circle");
+					user_friend_chat_id = emmessage
+							.getStringAttribute("user_friend_chat_id");
 				} catch (EaseMobException e) {
 					e.printStackTrace();
 					System.out.println("e:::::::::::::::;;;" + e.toString());
@@ -90,6 +93,7 @@ public class FriendVertifyListActivity extends BaseActivity implements
 				message.setFrom_user_id(user_friend_id);
 				message.setFrom_user_name(user_friend_name);
 				message.setReason(reason);
+				message.setFrom_user_chat_id(user_friend_chat_id);
 				startActivity(new Intent(FriendVertifyListActivity.this,
 						FriendVertifyActivity.class).putExtra("message",
 						message).putExtra("msg_id", emmessage.getMsgId()));
