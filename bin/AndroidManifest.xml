@@ -348,6 +348,10 @@
             android:name="com.interestfriend.activity.CreateXinQingActivity"
             android:label="@string/title_activity_create_xin_qing" >
         </activity>
+        <activity
+            android:name="com.interestfriend.activity.SetImageEffectActivity"
+            android:label="@string/title_activity_set_image_effect" >
+        </activity>
     </application>
 
 </manifest>
