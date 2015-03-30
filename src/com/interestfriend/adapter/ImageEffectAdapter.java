@@ -15,10 +15,15 @@ import com.interestfriend.view.RoundAngleImageView;
 public class ImageEffectAdapter extends BaseAdapter {
 	private Context mContext;
 	private FilterList filters = new FilterList();
+	private int select_index;
 
 	public ImageEffectAdapter(Context mContext) {
 		this.mContext = mContext;
 		initData();
+	}
+
+	public void setSelect_index(int select_index) {
+		this.select_index = select_index;
 	}
 
 	private void initData() {
@@ -93,6 +98,17 @@ public class ImageEffectAdapter extends BaseAdapter {
 			break;
 		default:
 			break;
+		}
+		if (position == select_index) {
+			holder.img.setBackgroundResource(R.drawable.image_effect_bg);
+			holder.img.setPadding(3, 3, 3, 3);
+			holder.txt.setTextColor(mContext.getResources().getColor(
+					R.color.white));
+		} else {
+			holder.img.setBackgroundResource(0);
+			holder.img.setPadding(0, 0, 0, 0);
+			holder.txt.setTextColor(mContext.getResources().getColor(
+					R.color.image_effect_text_color));
 		}
 		return conventView;
 	}

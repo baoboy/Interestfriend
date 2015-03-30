@@ -9,7 +9,8 @@
         android:id="@+id/image"
         android:layout_width="80dip"
         android:layout_height="80dip"
-        android:scaleType="matrix"
+        android:padding="3dip"
+        android:scaleType="fitXY"
         android:src="@drawable/img_yuantu" />
 
     <TextView
@@ -18,6 +19,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dip"
         android:text="TextView"
-        android:textColor="@color/white" />
+        android:textColor="#878685" />
 
 </LinearLayout>

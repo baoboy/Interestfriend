@@ -28,7 +28,7 @@
     <color name="txt_desc_color">#666666</color>
     <color name="city_select_color">#37b669</color>
     <color name="city_nomal_color">#6f6f6f</color>
-
+    <color name="image_effect_text_color"> #878685</color>
     <!-- 环信 -->
 
     <color name="common_top_bar_blue">#4ebcd3</color>

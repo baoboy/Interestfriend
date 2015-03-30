@@ -326,31 +326,38 @@
         </activity>
         <activity
             android:name="com.interestfriend.activity.FriendVertifyListActivity"
-            android:label="@string/title_activity_friend_vertify" >
+            android:label="@string/title_activity_friend_vertify"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.FriendVertifyActivity"
-            android:label="@string/title_activity_friend_vertify" >
+            android:label="@string/title_activity_friend_vertify"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.AddFriendActivity"
-            android:label="@string/title_activity_add_friend" >
+            android:label="@string/title_activity_add_friend"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.MyUserFriendActivity"
-            android:label="@string/title_activity_my_user_friend" >
+            android:label="@string/title_activity_my_user_friend"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.XinQingQiangActivity"
-            android:label="@string/title_activity_xin_qing_qiang" >
+            android:label="@string/title_activity_xin_qing_qiang"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.CreateXinQingActivity"
-            android:label="@string/title_activity_create_xin_qing" >
+            android:label="@string/title_activity_create_xin_qing"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.interestfriend.activity.SetImageEffectActivity"
-            android:label="@string/title_activity_set_image_effect" >
+            android:label="@string/title_activity_set_image_effect"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

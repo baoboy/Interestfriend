@@ -36,6 +36,7 @@ import android.widget.RelativeLayout.LayoutParams;
 import com.interestfriend.R;
 import com.interestfriend.activity.CreateXinQingActivity;
 import com.interestfriend.activity.SetImageEffectActivity;
+import com.interestfriend.utils.BitmapUtils;
 import com.interestfriend.utils.Utils;
 
 //import android.hardware.Camera.CameraInfo;
@@ -79,7 +80,6 @@ public class CameraCallback implements SurfaceHolder.Callback {
 		// parameters.setPreviewSize(width, height);//需要判断支持的预览
 
 		mCamera.setParameters(mParameters);
-
 		mCamera.startPreview();
 	}
 
@@ -295,6 +295,7 @@ public class CameraCallback implements SurfaceHolder.Callback {
 					fos = new FileOutputStream(file);
 					boolean compress = bitmap.compress(CompressFormat.JPEG,
 							100, fos);
+
 					if (compress) {
 						handler.sendEmptyMessage(CreateXinQingActivity.MESSAGE_SVAE_SUCCESS);
 					} else {

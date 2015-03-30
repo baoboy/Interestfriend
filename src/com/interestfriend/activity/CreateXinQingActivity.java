@@ -1,6 +1,5 @@
 package com.interestfriend.activity;
 
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,7 +20,6 @@ public class CreateXinQingActivity extends BaseActivity implements
 	private ImageView img_camera_switch;
 	private ImageView img_take_photo;
 	private ImageView img_select_photo;
-	private Camera mCamera;
 	private SurfaceView mSurfaceView;
 	private SurfaceHolder mHolder;
 	private CameraCallback mCallback;
