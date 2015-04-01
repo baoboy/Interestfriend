@@ -3,6 +3,7 @@ package com.interestfriend.activity;
 import jp.co.cyberagent.android.gpuimage.GPUImage.OnPictureSavedListener;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.GPUImageView;
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -19,6 +20,11 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.ImageEffectAdapter;
+import com.interestfriend.data.XinQing;
+import com.interestfriend.data.enums.RetError;
+import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.task.AddXinQingTask;
+import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.GPUImageFilterTools;
 import com.interestfriend.utils.GPUImageFilterTools.FilterList;
@@ -44,6 +50,8 @@ public class SetImageEffectActivity extends BaseActivity implements
 	private TextView btn_send;
 
 	private String img_save_path = "";
+
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +141,7 @@ public class SetImageEffectActivity extends BaseActivity implements
 
 	@Override
 	public void onPictureSaved(Uri uri) {
-		ToastUtil.showToast(img_save_path);
+		upLoad();
 	};
 
 	@Override
@@ -143,6 +151,8 @@ public class SetImageEffectActivity extends BaseActivity implements
 			finishThisActivity();
 			break;
 		case R.id.txt_page:
+			dialog = DialogUtil.createLoadingDialog(this);
+			dialog.show();
 			img_save_path = FileUtils.getQuYouGPUImageSavePath()
 					+ System.currentTimeMillis() + ".jpg";
 			image.saveToPictures("GPUImage", img_save_path, this);
@@ -150,5 +160,24 @@ public class SetImageEffectActivity extends BaseActivity implements
 		default:
 			break;
 		}
+	}
+
+	private void upLoad() {
+		AddXinQingTask task = new AddXinQingTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			public void taskFinish(RetError result) {
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+				if (result != RetError.NONE) {
+					return;
+				}
+				ToastUtil.showToast("发布成功");
+			};
+		});
+		XinQing xin = new XinQing();
+		xin.setContent(edit_content.getText().toString());
+		xin.setImage_url(img_save_path);
+		task.executeParallel(xin);
 	}
 }

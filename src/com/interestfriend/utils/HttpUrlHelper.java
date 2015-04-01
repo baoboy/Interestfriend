@@ -45,12 +45,11 @@ import com.interestfriend.utils.Logger.Level;
  * 
  */
 public class HttpUrlHelper {
-	// 192.168.31.247公司
+	// 192.168.1.106公司
 	// 123.56.46.254线上
-	// 192.168.1.103
 	public static final int CONNECTION_TIMEOUT = 10 * 1000;
 	public static final int SO_TIMEOUT = 10 * 1000;
-	public static final String DEFAULT_HOST = "http://123.56.46.254:8080/InterestFriend/servlet/"; // 服务器地址
+	public static final String DEFAULT_HOST = "http://192.168.1.106:8080/InterestFriend/servlet/"; // 服务器地址
 
 	/**
 	 * get 提交方式 // *

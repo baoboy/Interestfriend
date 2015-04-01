@@ -44,6 +44,10 @@ public class DialogUtil {
 
 	}
 
+	public static Dialog createLoadingDialog(Context context) {
+		return createLoadingDialog(context, "请稍候...");
+	}
+
 	/**
 	 * 确认对话框
 	 * 
