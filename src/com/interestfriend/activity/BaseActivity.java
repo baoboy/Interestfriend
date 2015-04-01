@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 
 import com.interestfriend.applation.MyApplation;
 import com.interestfriend.utils.Utils;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends Activity implements OnClickListener {
 	/**
 	 * 屏幕的宽度、高度、密度
 	 */
@@ -40,5 +42,10 @@ public class BaseActivity extends Activity {
 	protected void finishThisActivity() {
 		finish();
 		Utils.rightOut(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+
 	}
 }

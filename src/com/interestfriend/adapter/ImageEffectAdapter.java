@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.interestfriend.R;
 import com.interestfriend.utils.GPUImageFilterTools.FilterList;
-import com.interestfriend.utils.GPUImageFilterTools.FilterType;
 import com.interestfriend.view.RoundAngleImageView;
 
 public class ImageEffectAdapter extends BaseAdapter {
@@ -17,25 +16,13 @@ public class ImageEffectAdapter extends BaseAdapter {
 	private FilterList filters = new FilterList();
 	private int select_index;
 
-	public ImageEffectAdapter(Context mContext) {
+	public ImageEffectAdapter(Context mContext, FilterList filters) {
 		this.mContext = mContext;
-		initData();
+		this.filters = filters;
 	}
 
 	public void setSelect_index(int select_index) {
 		this.select_index = select_index;
-	}
-
-	private void initData() {
-		filters.addFilter("原图", FilterType.CONTRAST);
-		filters.addFilter("经典LOMO", FilterType.CONTRAST);
-		filters.addFilter("旧时光", FilterType.MONOCHROME);
-		filters.addFilter("唯美", FilterType.TONE_CURVE);
-		filters.addFilter("维也纳", FilterType.LOOKUP_AMATORKA);
-		filters.addFilter("回忆", FilterType.SEPIA);
-		filters.addFilter("黑白", FilterType.GRAYSCALE);
-		filters.addFilter("阿宝色", FilterType.HUE);
-		filters.addFilter("浓厚", FilterType.GAMMA);
 	}
 
 	@Override

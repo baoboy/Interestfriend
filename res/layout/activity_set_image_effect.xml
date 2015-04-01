@@ -9,14 +9,40 @@
     <include
         android:id="@+id/titlebar"
         android:layout_width="fill_parent"
-        layout="@layout/title_bar" />
+        layout="@layout/register_titlebar" />
+    <!-- jp.co.cyberagent.android.gpuimage.GPUImageView -->
 
-    <ImageView
+
+    <!-- <RelativeLayout -->
+    <!-- android:layout_width="match_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_above="@+id/layout_bottom" -->
+    <!-- android:layout_below="@+id/titlebar" > -->
+
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="230dip"
+        android:layout_above="@+id/layout_bottom"
+        android:layout_below="@+id/titlebar"
+        android:scaleType="centerCrop"
+        android:src="@drawable/chat_takepic_normal" />
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/layout_bottom"
-        android:layout_below="@+id/titlebar" />
+        android:layout_below="@+id/titlebar"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:background="@null"
+        android:gravity="center"
+        android:minHeight="200dip"
+        android:textColor="@color/white"
+        android:textSize="21sp" >
+    </EditText>
+    <!-- </RelativeLayout> -->
 
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -37,7 +63,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_margin="10dp" >
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
 
                 <GridView
                     android:id="@+id/gridView1"

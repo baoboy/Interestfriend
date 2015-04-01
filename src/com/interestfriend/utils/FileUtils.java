@@ -248,6 +248,16 @@ public class FileUtils {
 
 	}
 
+	public static String getQuYouGPUImageSavePath() {
+		String path = getRootDir() + "/quyouImgSave/GPUImage/";
+		File destDir = new File(path);
+		if (!destDir.exists()) {// 创建文件�?
+			destDir.mkdirs();
+		}
+		return path;
+
+	}
+
 	public static String getQuYouVideoSavePath() {
 		String path = getQuYouDir() + "/quyouVideo/";
 		File destDir = new File(path);

@@ -348,6 +348,9 @@
 # view res/layout/time_picker_dialog.xml #generated:35
 -keep class com.sleepbot.datetimepicker.time.RadialPickerLayout { <init>(...); }
 
+# view res/layout/activity_set_image_effect.xml #generated:22
+-keep class jp.co.cyberagent.android.gpuimage.GPUImageView { <init>(...); }
+
 # onClick res/layout/activity_chat.xml #generated:85
 # onClick res/layout/activity_feed_back.xml #generated:85
 # onClick res/layout/circle_chat.xml #generated:84

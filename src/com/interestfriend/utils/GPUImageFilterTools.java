@@ -156,7 +156,7 @@ public class GPUImageFilterTools {
 		builder.create().show();
 	}
 
-	private static GPUImageFilter createFilterForType(final Context context,
+	public static GPUImageFilter createFilterForType(final Context context,
 			final FilterType type) {
 		switch (type) {
 		case CONTRAST:
