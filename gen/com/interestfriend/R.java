@@ -1232,7 +1232,8 @@ containing a value of this type.
         public static final int time_picker_dialog=0x7f03008d;
         public static final int title_bar=0x7f03008e;
         public static final int version_update=0x7f03008f;
-        public static final int year_label_text_view=0x7f030090;
+        public static final int xinqing_list_item=0x7f030090;
+        public static final int year_label_text_view=0x7f030091;
     }
     public static final class raw {
         public static final int cities=0x7f050000;

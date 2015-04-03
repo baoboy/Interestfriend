@@ -30,7 +30,7 @@ public class AddFriendActivity extends BaseActivity implements OnClickListener {
 
 	private String user_name = "";
 	private String user_avatar = "";
-	private String add_user_chat_id = "";
+	private String add_user_chat_id = ""; 
 	private Dialog dialog;
 
 	@Override

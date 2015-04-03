@@ -1124,7 +1124,8 @@ int layout time_header_label 0x7f03008c
 int layout time_picker_dialog 0x7f03008d
 int layout title_bar 0x7f03008e
 int layout version_update 0x7f03008f
-int layout year_label_text_view 0x7f030090
+int layout xinqing_list_item 0x7f030090
+int layout year_label_text_view 0x7f030091
 int raw cities 0x7f050000
 int raw outgoing 0x7f050001
 int raw province 0x7f050002

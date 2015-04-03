@@ -233,6 +233,8 @@
 # view res/layout/growth_video_self_item.xml #generated:132
 # view res/layout/growth_video_self_item_1.xml #generated:133
 # view res/layout/growth_video_self_item_1.xml #generated:151
+# view res/layout/xinqing_list_item.xml #generated:104
+# view res/layout/xinqing_list_item.xml #generated:142
 -keep class com.interestfriend.view.DrawableCenterTextView { <init>(...); }
 
 # view res/layout/activity_home.xml #generated:74
@@ -276,6 +278,7 @@
 -keep class com.interestfriend.view.PasteEditText { <init>(...); }
 
 # view res/layout/activity_near_circles.xml #generated:23
+# view res/layout/activity_xin_qing_qiang.xml #generated:6
 # view res/layout/circle_growth.xml #generated:20
 -keep class com.interestfriend.view.PullDownView { <init>(...); }
 
@@ -324,6 +327,7 @@
 # view res/layout/row_sent_video_call.xml #generated:20
 # view res/layout/row_sent_voice.xml #generated:20
 # view res/layout/row_sent_voice_call.xml #generated:20
+# view res/layout/xinqing_list_item.xml #generated:17
 -keep class com.interestfriend.view.RoundAngleImageView { <init>(...); }
 
 # view res/layout/activity_circle_member.xml #generated:275

@@ -39,8 +39,12 @@
         android:background="@null"
         android:gravity="center"
         android:minHeight="200dip"
+        android:shadowColor="#ff000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
         android:textColor="@color/white"
-        android:textSize="21sp" >
+        android:textSize="23sp" >
     </EditText>
     <!-- </RelativeLayout> -->
 

@@ -245,11 +245,10 @@ public class FileUtils {
 			destDir.mkdirs();
 		}
 		return path;
-
 	}
 
 	public static String getQuYouGPUImageSavePath() {
-		String path = getRootDir() + "/quyouImgSave/GPUImage/";
+		String path = getQuYouDir() + "/GPUImage/";
 		File destDir = new File(path);
 		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();
