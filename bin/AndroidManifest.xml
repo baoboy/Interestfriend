@@ -357,8 +357,16 @@
         <activity
             android:name="com.interestfriend.activity.SetImageEffectActivity"
             android:label="@string/title_activity_set_image_effect"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.XinQingCommentActivity"
+            android:label="@string/title_activity_xin_qing_comment" >
+        </activity>
+        <activity
+            android:name="com.interestfriend.activity.RefushXinQingCommentActivity"
+            android:label="@string/title_activity_refush_xin_qing_comment" >
         </activity>
     </application>
 

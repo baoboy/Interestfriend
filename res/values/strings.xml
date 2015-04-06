@@ -138,5 +138,7 @@
     <string name="title_activity_xin_qing_qiang">XinQingQiangActivity</string>
     <string name="title_activity_create_xin_qing">CreateXinQingActivity</string>
     <string name="title_activity_set_image_effect">SetImageEffectActivity</string>
+    <string name="title_activity_xin_qing_comment">XinQingCommentActivity</string>
+    <string name="title_activity_refush_xin_qing_comment">RefushXinQingCommentActivity</string>
 
 </resources>

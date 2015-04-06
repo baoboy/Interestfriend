@@ -248,7 +248,7 @@ public class FileUtils {
 	}
 
 	public static String getQuYouGPUImageSavePath() {
-		String path = getQuYouDir() + "/GPUImage/";
+		String path = getQuYouDir() + "GPUImage/";
 		File destDir = new File(path);
 		if (!destDir.exists()) {// 创建文件�?
 			destDir.mkdirs();

@@ -11,6 +11,7 @@ public class Constants {
 	public static final String KICK_OUT_USER_ID = "kickout";
 	public static final String JONI_NOTIFY_USER_ID = "joinnotify";
 	public static final String ADD_USER_FRIEND_INVITE = "adduserfriendinvite";
+	public static final String XINQING_PRAISE_AND_COMMENT_USER_ID = "xinqing_praise_and_comment";
 
 	// »·ÐÅ
 	public static final String MESSAGE_ATTR_IS_VOICE_CALL = "is_voice_call";
@@ -31,11 +32,16 @@ public class Constants {
 	public static final String UPDATE_USER_AVATAR = "com.interestfriend.update.uer_avatar";
 	public static final String UPDATE_USER_NAME = "com.interestfriend.update.uer_name";
 	public static final String COMMENT_GROWTH = "com.interestfriend.comment_growth";
+	public static final String COMMENT_XINQING = "com.interestfriend.comment_xinqing";
+
 	public static final String COMMENT_VIDEO = "com.interestfriend.comment_video";
 	public static final String KICK_OUT_MEMBER = "com.interestfriend.kick_out_member";
 	public static final String QUIT_CIRCLE = "com.interestfriend.quit_circle";
 	public static final String COMMENT_PRAISE = "com.interestfreiend.comment_praise";
-	public static final String COMMENT_CANCEL_PRAISE = "com.interestfriend.comment_cancel_praise";
+	public static final String XINQING_COMMENT_PRAISE = "com.interestfreiend.xinqing.comment_praise";
+
+	public static final String XINQINGCOMMENT_CANCEL_PRAISE = "com.interestfriend.comment_cancel_praise";
+	public static final String COMMENT_CANCEL_PRAISE = "com.interestfriend.xinqing.comment_cancel_praise";
 	public static final String DEL_COMMENT = "com.interestfriend.delcomment";
 	public static final String UPDATE_CIRCLE_LOGO = "com.interestfriend.update.circle_logo";
 	public static final String DEL_USER_FRIEND = "com.interestfriend.del_user_friend";

@@ -8,6 +8,53 @@
 # view res/layout/activity_home.xml #generated:11
 -keep class android.support.v4.widget.DrawerLayout { <init>(...); }
 
+# view res/layout/abc_action_menu_item_layout.xml #generated:17
+-keep class android.support.v7.internal.view.menu.ActionMenuItemView { <init>(...); }
+
+# view res/layout/abc_action_menu_layout.xml #generated:17
+-keep class android.support.v7.internal.view.menu.ActionMenuView { <init>(...); }
+
+# view res/layout/abc_expanded_menu_layout.xml #generated:17
+-keep class android.support.v7.internal.view.menu.ExpandedMenuView { <init>(...); }
+
+# view res/layout/abc_list_menu_item_layout.xml #generated:17
+# view res/layout/abc_popup_menu_item_layout.xml #generated:17
+-keep class android.support.v7.internal.view.menu.ListMenuItemView { <init>(...); }
+
+# view res/layout/abc_action_bar_decor_include.xml #generated:19
+# view res/layout/abc_action_bar_decor_include.xml #generated:47
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:29
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:52
+-keep class android.support.v7.internal.widget.ActionBarContainer { <init>(...); }
+
+# view res/layout/abc_action_bar_decor_include.xml #generated:31
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:40
+# view res/layout/abc_action_mode_bar.xml #generated:19
+-keep class android.support.v7.internal.widget.ActionBarContextView { <init>(...); }
+
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:17
+-keep class android.support.v7.internal.widget.ActionBarOverlayLayout { <init>(...); }
+
+# view res/layout/abc_action_bar_decor_include.xml #generated:25
+# view res/layout/abc_action_bar_decor_overlay.xml #generated:35
+-keep class android.support.v7.internal.widget.ActionBarView { <init>(...); }
+
+# view res/layout/abc_action_bar_home.xml #generated:17
+-keep class android.support.v7.internal.widget.ActionBarView$HomeView { <init>(...); }
+
+# view res/layout/abc_action_bar_tabbar.xml #generated:17
+# view res/layout/abc_activity_chooser_view.xml #generated:19
+-keep class android.support.v7.internal.widget.LinearLayoutICS { <init>(...); }
+
+# view v11\res/layout-v11/abc_action_bar_decor.xml #generated:17
+-keep class android.support.v7.internal.widget.NativeActionModeAwareLayout { <init>(...); }
+
+# view res/layout/abc_action_bar_tab.xml #generated:17
+-keep class android.support.v7.internal.widget.ScrollingTabContainerView$TabView { <init>(...); }
+
+# view res/layout/abc_search_view.xml #generated:85
+-keep class android.support.v7.widget.SearchView$SearchAutoComplete { <init>(...); }
+
 # view AndroidManifest.xml #generated:151
 -keep class com.baidu.location.f { <init>(...); }
 
@@ -119,6 +166,9 @@
 # view AndroidManifest.xml #generated:283
 -keep class com.interestfriend.activity.RefuseJoinCircleActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:367
+-keep class com.interestfriend.activity.RefushXinQingCommentActivity { <init>(...); }
+
 # view AndroidManifest.xml #generated:170
 -keep class com.interestfriend.activity.SearchCirclsActivity { <init>(...); }
 
@@ -160,6 +210,9 @@
 
 # view AndroidManifest.xml #generated:36
 -keep class com.interestfriend.activity.WelcomLoadingActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:363
+-keep class com.interestfriend.activity.XinQingCommentActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:347
 -keep class com.interestfriend.activity.XinQingQiangActivity { <init>(...); }
@@ -223,6 +276,8 @@
 # view res/layout/activity_comment.xml #generated:165
 # view res/layout/activity_praise_and_comment.xml #generated:132
 # view res/layout/activity_praise_and_comment.xml #generated:170
+# view res/layout/activity_xin_qing_comment.xml #generated:123
+# view res/layout/activity_xin_qing_comment.xml #generated:161
 # view res/layout/growth_item.xml #generated:119
 # view res/layout/growth_item.xml #generated:136
 # view res/layout/growth_item_self.xml #generated:112
@@ -233,8 +288,8 @@
 # view res/layout/growth_video_self_item.xml #generated:132
 # view res/layout/growth_video_self_item_1.xml #generated:133
 # view res/layout/growth_video_self_item_1.xml #generated:151
-# view res/layout/xinqing_list_item.xml #generated:104
-# view res/layout/xinqing_list_item.xml #generated:142
+# view res/layout/xinqing_list_item.xml #generated:103
+# view res/layout/xinqing_list_item.xml #generated:141
 -keep class com.interestfriend.view.DrawableCenterTextView { <init>(...); }
 
 # view res/layout/activity_home.xml #generated:74
@@ -260,6 +315,7 @@
 
 # view res/layout/activity_comment.xml #generated:206
 # view res/layout/activity_praise_and_comment.xml #generated:210
+# view res/layout/activity_xin_qing_comment.xml #generated:202
 -keep class com.interestfriend.view.HorizontalListView { <init>(...); }
 
 # view res/layout/activity_login.xml #generated:21
@@ -278,7 +334,7 @@
 -keep class com.interestfriend.view.PasteEditText { <init>(...); }
 
 # view res/layout/activity_near_circles.xml #generated:23
-# view res/layout/activity_xin_qing_qiang.xml #generated:6
+# view res/layout/activity_xin_qing_qiang.xml #generated:12
 # view res/layout/circle_growth.xml #generated:20
 -keep class com.interestfriend.view.PullDownView { <init>(...); }
 
@@ -291,6 +347,7 @@
 # view res/layout/activity_praise_and_comment.xml #generated:41
 # view res/layout/activity_video_comment.xml #generated:33
 # view res/layout/activity_voice_call.xml #generated:55
+# view res/layout/activity_xin_qing_comment.xml #generated:36
 # view res/layout/circle_category_item.xml #generated:17
 # view res/layout/circle_item.xml #generated:52
 # view res/layout/circle_item_delete.xml #generated:17
@@ -327,13 +384,14 @@
 # view res/layout/row_sent_video_call.xml #generated:20
 # view res/layout/row_sent_voice.xml #generated:20
 # view res/layout/row_sent_voice_call.xml #generated:20
-# view res/layout/xinqing_list_item.xml #generated:17
+# view res/layout/xinqing_list_item.xml #generated:16
 -keep class com.interestfriend.view.RoundAngleImageView { <init>(...); }
 
 # view res/layout/activity_circle_member.xml #generated:275
 # view res/layout/activity_comment.xml #generated:237
 # view res/layout/activity_praise_and_comment.xml #generated:241
 # view res/layout/activity_video_comment.xml #generated:155
+# view res/layout/activity_xin_qing_comment.xml #generated:233
 # view res/layout/growth_item.xml #generated:94
 # view res/layout/growth_item_self.xml #generated:87
 # view res/layout/growth_video_item.xml #generated:115

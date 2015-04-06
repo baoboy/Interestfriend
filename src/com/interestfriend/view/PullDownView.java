@@ -69,6 +69,11 @@ public class PullDownView extends LinearLayout implements OnScrollOverListener {
 
 		/** 刷新事件接口 这里要注意的是获取更多完 要关闭 更多的进度条 notifyDidMore() **/
 		void onMore();
+
+	}
+
+	public interface OnScrolled {
+		void isScroll(boolean scroll);
 	}
 
 	/**

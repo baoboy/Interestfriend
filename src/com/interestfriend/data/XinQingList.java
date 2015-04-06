@@ -64,8 +64,11 @@ public class XinQingList {
 		Result ret = ApiRequest.request(GET_XINQING_LIST_API, params, parser);
 		if (ret.getStatus() == RetStatus.SUCC) {
 			XinQingList lists = (XinQingList) ret.getData();
-			this.lists.clear();
-			this.lists.addAll(lists.getLists());
+			if (refushState == 1) {
+				this.lists.addAll(0, lists.getLists());
+			} else {
+				this.lists.addAll(lists.getLists());
+			}
 			return RetError.NONE;
 		} else {
 			return ret.getErr();

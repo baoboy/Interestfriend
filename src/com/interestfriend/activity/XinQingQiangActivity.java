@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,23 +18,31 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.interestfriend.R;
 import com.interestfriend.adapter.XinQingAdapter;
 import com.interestfriend.data.XinQing;
+import com.interestfriend.data.XinQingComment;
 import com.interestfriend.data.XinQingList;
+import com.interestfriend.data.XinQingPraise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
 import com.interestfriend.popwindow.SelectPicPopwindow;
 import com.interestfriend.popwindow.SelectPicPopwindow.SelectOnclick;
 import com.interestfriend.task.GetXinQingListTask;
+import com.interestfriend.utils.Constants;
 import com.interestfriend.utils.DialogUtil;
 import com.interestfriend.utils.FileUtils;
 import com.interestfriend.utils.PhotoUtils;
+import com.interestfriend.utils.SharedUtils;
 import com.interestfriend.utils.ToastUtil;
+import com.interestfriend.utils.Utils;
 import com.interestfriend.view.PullDownView;
 import com.interestfriend.view.PullDownView.OnPullDownListener;
 
@@ -52,8 +63,10 @@ public class XinQingQiangActivity extends BaseActivity implements
 	private Dialog dialog;
 
 	private SelectPicPopwindow pop;
-	private String imgPath = "";
 	private String mTakePicturePath;
+
+	private ImageView back;
+	private TextView txt_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +79,13 @@ public class XinQingQiangActivity extends BaseActivity implements
 		xlist = new XinQingList();
 		xlist.setRefushState(1);
 		refushServerData();
+		registerBoradcastReceiver();
 	}
 
 	private void initView() {
+		back = (ImageView) findViewById(R.id.back);
+		txt_title = (TextView) findViewById(R.id.title_txt);
+		txt_title.setText("心情墙");
 		img_create = (ImageView) findViewById(R.id.img_create);
 		mPullDownView = (PullDownView) findViewById(R.id.PullDownlistView);
 		mListView = mPullDownView.getListView();
@@ -79,10 +96,26 @@ public class XinQingQiangActivity extends BaseActivity implements
 	}
 
 	private void setListener() {
+		back.setOnClickListener(this);
 		img_create.setOnClickListener(this);
 		mPullDownView.setOnPullDownListener(this);
 		mPullDownView.notifyDidMore();
 		mPullDownView.setFooterVisible(false);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View v, int position,
+					long arg3) {
+				Intent intent = new Intent();
+				intent.putExtra("xinqing", lists.get(position-1));
+				intent.putExtra("position", position-1);
+				intent.setClass(XinQingQiangActivity.this,
+						XinQingCommentActivity.class);
+				startActivity(intent);
+				Utils.leftOutRightIn(XinQingQiangActivity.this);
+			}
+		});
+
 	}
 
 	private void setValue() {
@@ -125,7 +158,9 @@ public class XinQingQiangActivity extends BaseActivity implements
 			pop.setmSelectOnclick(this);
 			pop.show();
 			break;
-
+		case R.id.back:
+			finishThisActivity();
+			break;
 		default:
 			break;
 		}
@@ -212,11 +247,90 @@ public class XinQingQiangActivity extends BaseActivity implements
 
 	@Override
 	public void onRefresh() {
-
+		if (lists.size() == 0) {
+			mPullDownView.RefreshComplete();
+			return;
+		}
+		xlist.setRefushState(1);
+		xlist.setRefushTime(lists.get(0).getPublish_time());
+		refushServerData();
 	}
 
 	@Override
 	public void onMore() {
+		xlist.setRefushState(2);
+		xlist.setRefushTime(lists.get(0).getPublish_time());
+		refushServerData();
 
 	}
+
+	/**
+	 * 注册该广播
+	 */
+	public void registerBoradcastReceiver() {
+		IntentFilter myIntentFilter = new IntentFilter();
+		myIntentFilter.addAction(Constants.COMMENT_XINQING);
+		myIntentFilter.addAction(Constants.XINQING_COMMENT_PRAISE);
+		myIntentFilter.addAction(Constants.XINQINGCOMMENT_CANCEL_PRAISE);
+		// 注册广播
+		registerReceiver(mBroadcastReceiver, myIntentFilter);
+	}
+
+	/**
+	 * 定义广播
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Constants.COMMENT_XINQING)) {
+				XinQingComment coment = (XinQingComment) intent
+						.getSerializableExtra("comment");
+				int position = intent.getIntExtra("position", -1);
+				lists.get(position).getComments().add(0, coment);
+				adapter.notifyDataSetChanged();
+			} else if (action.equals(Constants.XINQING_COMMENT_PRAISE)) {
+				int xinqing_id = intent.getIntExtra("xinqing_id", 0);
+				for (XinQing xinqing : lists) {
+					if (xinqing.getXinqing_id() == xinqing_id) {
+						XinQingPraise pr = new XinQingPraise();
+						pr.setXinqing_id(xinqing.getXinqing_id());
+						pr.setUser_avatar(SharedUtils.getAPPUserAvatar());
+						pr.setUser_id(SharedUtils.getIntUid());
+						xinqing.getPraises().add(pr);
+						xinqing.setPraise_count(xinqing.getPraise_count() + 1);
+						xinqing.setPraise(!xinqing.isPraise());
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+
+			} else if (action.equals(Constants.XINQINGCOMMENT_CANCEL_PRAISE)) {
+				int xinqing_id = intent.getIntExtra("xinqing_id", 0);
+				for (XinQing xinqing : lists) {
+					if (xinqing.getXinqing_id() == xinqing_id) {
+						for (XinQingPraise pr : xinqing.getPraises()) {
+							if (pr.getUser_id() == SharedUtils.getIntUid()) {
+								xinqing.getPraises().remove(pr);
+								break;
+							}
+						}
+						xinqing.setPraise_count(xinqing.getPraise_count() - 1);
+						xinqing.setPraise(!xinqing.isPraise());
+						adapter.notifyDataSetChanged();
+						break;
+					}
+				}
+
+			}
+		}
+	};
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(mBroadcastReceiver);
+
+	}
+
 }

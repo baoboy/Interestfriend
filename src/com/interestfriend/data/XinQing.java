@@ -1,6 +1,7 @@
 package com.interestfriend.data;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +12,16 @@ import com.interestfriend.data.enums.RetStatus;
 import com.interestfriend.data.result.ApiRequest;
 import com.interestfriend.data.result.MapResult;
 import com.interestfriend.data.result.Result;
+import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
+import com.interestfriend.parser.StringParser;
+import com.interestfriend.utils.SharedUtils;
 
-public class XinQing {
+public class XinQing implements Serializable {
 	private static final String ADD_XINQING_API = "AddXinQingServlet";
+	private static final String PRAISE_XINQING_API = "XinQingPraiseServlet";
+	private static final String CANCEL_PRAISE_XINQING_API = "CancelXinQingPraiseServlet";
 	private int xinqing_id = 0;
 	private int publisher_id = 0;// 发布者id
 	private String content = "";// 内容
@@ -23,6 +29,42 @@ public class XinQing {
 	private String publisher_name = "";
 	private String publisher_avatar = "";
 	private String image_url = "";
+	private int praise_count;
+	private List<XinQingPraise> praises = new ArrayList<XinQingPraise>();
+	private List<XinQingComment> comments = new ArrayList<XinQingComment>();
+	private boolean isPraise;
+
+	public boolean isPraise() {
+		return isPraise;
+	}
+
+	public void setPraise(boolean isPraise) {
+		this.isPraise = isPraise;
+	}
+
+	public List<XinQingPraise> getPraises() {
+		return praises;
+	}
+
+	public void setPraises(List<XinQingPraise> praises) {
+		this.praises = praises;
+	}
+
+	public List<XinQingComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<XinQingComment> comments) {
+		this.comments = comments;
+	}
+
+	public int getPraise_count() {
+		return praise_count;
+	}
+
+	public void setPraise_count(int praise_count) {
+		this.praise_count = praise_count;
+	}
 
 	public int getXinqing_id() {
 		return xinqing_id;
@@ -111,4 +153,36 @@ public class XinQing {
 			}
 		}
 	}
+
+	public RetError praiseXinQing() {
+		IParser parser = new StringParser("praise_count");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xinqing_id", xinqing_id);
+		params.put("xinqing_publisher_id", publisher_id);
+		params.put("user_name", SharedUtils.getAPPUserName());
+		Result ret = ApiRequest.request(PRAISE_XINQING_API, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.praise_count = Integer.valueOf(sr.getStr());
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
+	public RetError cancelpraiseGrowth() {
+		IParser parser = new StringParser("praise_count");
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xinqing_id", xinqing_id);
+		Result ret = ApiRequest.request(CANCEL_PRAISE_XINQING_API, params,
+				parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			StringResult sr = (StringResult) ret;
+			this.praise_count = Integer.valueOf(sr.getStr());
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
+
 }

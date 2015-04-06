@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        layout="@layout/title_bar" />
+
+    <ScrollView
+        android:id="@+id/layout_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/line1"
+        android:layout_below="@+id/layout_title"
+        android:background="@color/bg_color"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/growth_item" >
+
+                <!-- com.interestfriend.view.RoundAngleImageView -->
+
+                <com.interestfriend.view.RoundAngleImageView
+                    android:id="@+id/img_avatar"
+                    android:layout_width="35dip"
+                    android:layout_height="35dip"
+                    android:layout_marginLeft="7dip"
+                    android:layout_marginTop="7dip"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_avatar" />
+
+                <TextView
+                    android:id="@+id/txt_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/img_avatar"
+                    android:singleLine="true"
+                    android:text="舒淇"
+                    android:textColor="#485355"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_user_name"
+                    android:layout_marginLeft="10dip"
+                    android:layout_toRightOf="@+id/img_avatar"
+                    android:gravity="center"
+                    android:paddingTop="2dip"
+                    android:text="2014"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:layout_below="@+id/img_avatar"
+                    android:layout_marginTop="10dip"
+                    android:background="#d5d5d5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/line2"
+                    android:orientation="vertical" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/default_avatar" />
+
+                        <TextView
+                            android:id="@+id/txt_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="30dip"
+                            android:layout_marginRight="30dip"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:shadowColor="#ff000000"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="1"
+                            android:textColor="@color/white"
+                            android:textSize="23sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dip"
+                        android:background="#d5d5d5" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <com.interestfriend.view.DrawableCenterTextView
+                            android:id="@+id/btn_prise"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/praise_img_nomal"
+                            android:drawablePadding="3dip"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="8dip"
+                            android:paddingTop="8dip"
+                            android:text="赞(1)"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
+
+                        <!-- <View -->
+                        <!-- android:layout_width="0.5dip" -->
+                        <!-- android:layout_height="match_parent" -->
+                        <!-- android:background="#d5d5d5" /> -->
+
+
+                        <!-- <com.interestfriend.view.DrawableCenterTextView -->
+                        <!-- android:id="@+id/btn_share" -->
+                        <!-- android:layout_width="wrap_content" -->
+                        <!-- android:layout_height="wrap_content" -->
+                        <!-- android:layout_weight="1" -->
+                        <!-- android:drawableLeft="@drawable/icon_share" -->
+                        <!-- android:drawablePadding="3dip" -->
+                        <!-- android:paddingBottom="8dip" -->
+                        <!-- android:paddingTop="8dip" -->
+                        <!-- android:text="分享" -->
+                        <!-- android:textColor="@color/gray" -->
+                        <!-- android:textSize="10sp" /> -->
+
+                        <View
+                            android:layout_width="0.5dip"
+                            android:layout_height="match_parent"
+                            android:background="#d5d5d5" />
+
+                        <com.interestfriend.view.DrawableCenterTextView
+                            android:id="@+id/btn_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/icon_comment"
+                            android:drawablePadding="3dip"
+                            android:paddingBottom="8dip"
+                            android:paddingTop="8dip"
+                            android:text="回复"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_praise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dip" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dip"
+                        android:src="@drawable/praise_heade" />
+
+                    <com.interestfriend.view.HorizontalListView
+                        android:id="@+id/praise_listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip"
+                        android:layout_gravity="center_vertical"
+                        android:cacheColorHint="#00000000"
+                        android:focusable="false"
+                        android:listSelector="#00000000"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <View
+                    android:id="@+id/view_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+
+                <com.interestfriend.view.ScrollViewWithListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#d5d5d5"
+                    android:dividerHeight="0.5dip"
+                    android:focusable="false"
+                    android:listSelector="#00000000"
+                    android:scrollbars="none" />
+
+                <View
+                    android:id="@+id/view_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                    android:background="#d5d5d5" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dip"
+        android:layout_above="@+id/buttom"
+        android:background="#d5d5d5" />
+
+    <LinearLayout
+        android:id="@+id/buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#f7f7f7"
+        android:gravity="center"
+        android:padding="5dip" >
+
+        <EditText
+            android:id="@+id/edit_content"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/comment_edit"
+            android:hint="输入回复内容"
+            android:paddingBottom="8dip"
+            android:paddingLeft="10dip"
+            android:paddingTop="8dip"
+            android:scrollbars="vertical"
+            android:textSize="14sp" >
+        </EditText>
+
+        <Button
+            android:id="@+id/btnComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:background="@drawable/chat_press_speak_btn"
+            android:gravity="center"
+            android:paddingBottom="6dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
+            android:paddingTop="6dip"
+            android:text="回复 "
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

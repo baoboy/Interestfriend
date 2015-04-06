@@ -31,7 +31,8 @@ public class Utils {
 				|| Constants.PRAISE_USER_ID.equals(user_id)
 				|| Constants.GROWTH_USER_ID.equals(user_id)
 				|| Constants.KICK_OUT_USER_ID.equals(user_id)
-				|| Constants.ADD_USER_FRIEND_INVITE.equals(user_id)) {
+				|| Constants.ADD_USER_FRIEND_INVITE.equals(user_id)
+				|| Constants.XINQING_PRAISE_AND_COMMENT_USER_ID.equals(user_id)) {
 			return true;
 		}
 		return false;
