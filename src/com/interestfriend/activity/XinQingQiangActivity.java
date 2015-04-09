@@ -107,8 +107,8 @@ public class XinQingQiangActivity extends BaseActivity implements
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 				Intent intent = new Intent();
-				intent.putExtra("xinqing", lists.get(position-1));
-				intent.putExtra("position", position-1);
+				intent.putExtra("xinqing", lists.get(position - 1));
+				intent.putExtra("position", position - 1);
 				intent.setClass(XinQingQiangActivity.this,
 						XinQingCommentActivity.class);
 				startActivity(intent);
@@ -259,7 +259,7 @@ public class XinQingQiangActivity extends BaseActivity implements
 	@Override
 	public void onMore() {
 		xlist.setRefushState(2);
-		xlist.setRefushTime(lists.get(0).getPublish_time());
+		xlist.setRefushTime(lists.get((lists.size() - 1)).getPublish_time());
 		refushServerData();
 
 	}

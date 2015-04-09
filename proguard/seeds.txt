@@ -14714,6 +14714,7 @@ com.interestfriend.R$color: int gray_normal
 com.interestfriend.R$color: int gray_pressed
 com.interestfriend.R$color: int grid_state_focused
 com.interestfriend.R$color: int grid_state_pressed
+com.interestfriend.R$color: int image_effect_text_color
 com.interestfriend.R$color: int line_background
 com.interestfriend.R$color: int numbers_text_color
 com.interestfriend.R$color: int orange
@@ -14892,6 +14893,7 @@ com.interestfriend.R$drawable: int chatto_voice_playing
 com.interestfriend.R$drawable: int chatto_voice_playing_f1
 com.interestfriend.R$drawable: int chatto_voice_playing_f2
 com.interestfriend.R$drawable: int chatto_voice_playing_f3
+com.interestfriend.R$drawable: int choose_gallery_icon
 com.interestfriend.R$drawable: int choose_image_delault
 com.interestfriend.R$drawable: int circle_item_bg
 com.interestfriend.R$drawable: int circle_item_select_bg
@@ -14914,6 +14916,7 @@ com.interestfriend.R$drawable: int drag_select
 com.interestfriend.R$drawable: int dx_checkbox_gray_on
 com.interestfriend.R$drawable: int dx_checkbox_off
 com.interestfriend.R$drawable: int dx_checkbox_on
+com.interestfriend.R$drawable: int edit_imagme
 com.interestfriend.R$drawable: int ee_1
 com.interestfriend.R$drawable: int ee_10
 com.interestfriend.R$drawable: int ee_100
@@ -15106,6 +15109,7 @@ com.interestfriend.R$drawable: int icon_account
 com.interestfriend.R$drawable: int icon_add
 com.interestfriend.R$drawable: int icon_back
 com.interestfriend.R$drawable: int icon_comment
+com.interestfriend.R$drawable: int icon_create_scene
 com.interestfriend.R$drawable: int icon_delete
 com.interestfriend.R$drawable: int icon_friend_right_arrow
 com.interestfriend.R$drawable: int icon_marka
@@ -15118,22 +15122,34 @@ com.interestfriend.R$drawable: int icon_sel_off
 com.interestfriend.R$drawable: int icon_share
 com.interestfriend.R$drawable: int icon_speaker_normal
 com.interestfriend.R$drawable: int icon_speaker_on
+com.interestfriend.R$drawable: int image_effect_bg
+com.interestfriend.R$drawable: int img_abaose
+com.interestfriend.R$drawable: int img_heibai
+com.interestfriend.R$drawable: int img_huiyi
+com.interestfriend.R$drawable: int img_jiuishiguagn
 com.interestfriend.R$drawable: int img_loder
+com.interestfriend.R$drawable: int img_lomo
+com.interestfriend.R$drawable: int img_nonghou
+com.interestfriend.R$drawable: int img_weimei
+com.interestfriend.R$drawable: int img_weiyena
+com.interestfriend.R$drawable: int img_yuantu
 com.interestfriend.R$drawable: int input_bg
 com.interestfriend.R$drawable: int input_new
 com.interestfriend.R$drawable: int item_bg
 com.interestfriend.R$drawable: int jujue_btn_selector
 com.interestfriend.R$drawable: int jujuebtn_bg
 com.interestfriend.R$drawable: int jujuebtn_select_bg
+com.interestfriend.R$drawable: int lcamera_focus_frame1
+com.interestfriend.R$drawable: int lcamera_focus_frame2
+com.interestfriend.R$drawable: int lcamera_focus_frame3
 com.interestfriend.R$drawable: int left_menu
 com.interestfriend.R$drawable: int line_blue
 com.interestfriend.R$drawable: int loading_dialog_corners
 com.interestfriend.R$drawable: int location
 com.interestfriend.R$drawable: int location_msg
-com.interestfriend.R$drawable: int logao
 com.interestfriend.R$drawable: int login_btn_bg
 com.interestfriend.R$drawable: int login_error_icon
-com.interestfriend.R$drawable: int logo
+com.interestfriend.R$drawable: int lookup_amatorka
 com.interestfriend.R$drawable: int magnifier
 com.interestfriend.R$drawable: int management_off
 com.interestfriend.R$drawable: int menu_nomal
@@ -15185,6 +15201,8 @@ com.interestfriend.R$drawable: int right_menu
 com.interestfriend.R$drawable: int right_menu_selector
 com.interestfriend.R$drawable: int roominfo_add_btn_normal
 com.interestfriend.R$drawable: int roominfo_add_btn_pressed
+com.interestfriend.R$drawable: int scene_photo_button_capture_off
+com.interestfriend.R$drawable: int scene_photo_button_switch
 com.interestfriend.R$drawable: int seabar_input
 com.interestfriend.R$drawable: int search_bar_icon_normal
 com.interestfriend.R$drawable: int search_clear_normal
@@ -15244,7 +15262,7 @@ com.interestfriend.R$id
 com.interestfriend.R$id: int Layparent
 com.interestfriend.R$id: int Listview
 com.interestfriend.R$id: int PullDownlistView
-com.interestfriend.R$id: int action_settings
+com.interestfriend.R$id: int RelativeLayout1
 com.interestfriend.R$id: int adre
 com.interestfriend.R$id: int alpha
 com.interestfriend.R$id: int ampm_hitspace
@@ -15359,6 +15377,7 @@ com.interestfriend.R$id: int edit_verify_code
 com.interestfriend.R$id: int edittext_layout
 com.interestfriend.R$id: int et_sendmessage
 com.interestfriend.R$id: int gridView
+com.interestfriend.R$id: int gridView1
 com.interestfriend.R$id: int gridview
 com.interestfriend.R$id: int head_lastUpdatedTextView
 com.interestfriend.R$id: int head_progressBar
@@ -15381,10 +15400,13 @@ com.interestfriend.R$id: int img_arrow_desc
 com.interestfriend.R$id: int img_avatar
 com.interestfriend.R$id: int img_circle_avatar
 com.interestfriend.R$id: int img_circle_logo
+com.interestfriend.R$id: int img_create
 com.interestfriend.R$id: int img_del
 com.interestfriend.R$id: int img_icon
 com.interestfriend.R$id: int img_logo
 com.interestfriend.R$id: int img_prompt
+com.interestfriend.R$id: int img_select_photo
+com.interestfriend.R$id: int img_take_photo
 com.interestfriend.R$id: int img_user_avatar
 com.interestfriend.R$id: int indicator
 com.interestfriend.R$id: int info_layout
@@ -15412,6 +15434,7 @@ com.interestfriend.R$id: int lay_content
 com.interestfriend.R$id: int lay_down
 com.interestfriend.R$id: int laybg
 com.interestfriend.R$id: int layout_addview
+com.interestfriend.R$id: int layout_bottom
 com.interestfriend.R$id: int layout_category
 com.interestfriend.R$id: int layout_circle_creator
 com.interestfriend.R$id: int layout_circle_desc
@@ -15508,6 +15531,7 @@ com.interestfriend.R$id: int row_recv_pic
 com.interestfriend.R$id: int scrollView1
 com.interestfriend.R$id: int selectImage
 com.interestfriend.R$id: int separator
+com.interestfriend.R$id: int surfaceView1
 com.interestfriend.R$id: int switch_btn
 com.interestfriend.R$id: int tab_growth
 com.interestfriend.R$id: int tab_member
@@ -15543,6 +15567,7 @@ com.interestfriend.R$id: int tv_length
 com.interestfriend.R$id: int tv_location
 com.interestfriend.R$id: int tv_nick
 com.interestfriend.R$id: int tv_userid
+com.interestfriend.R$id: int txt
 com.interestfriend.R$id: int txt_about
 com.interestfriend.R$id: int txt_address
 com.interestfriend.R$id: int txt_birthday
@@ -15562,7 +15587,6 @@ com.interestfriend.R$id: int txt_description
 com.interestfriend.R$id: int txt_dissolve_circle
 com.interestfriend.R$id: int txt_distance
 com.interestfriend.R$id: int txt_feedback
-com.interestfriend.R$id: int txt_friend_vertify
 com.interestfriend.R$id: int txt_gender
 com.interestfriend.R$id: int txt_info
 com.interestfriend.R$id: int txt_laiyuan
@@ -15584,6 +15608,7 @@ com.interestfriend.R$id: int txt_user_agreement
 com.interestfriend.R$id: int txt_user_desc
 com.interestfriend.R$id: int txt_user_info
 com.interestfriend.R$id: int txt_user_name
+com.interestfriend.R$id: int txt_xinqinqiang
 com.interestfriend.R$id: int unread_msg_number
 com.interestfriend.R$id: int unread_msg_number_growth
 com.interestfriend.R$id: int user_avatar
@@ -15609,6 +15634,7 @@ com.interestfriend.R$layout: int activity_circle_member
 com.interestfriend.R$layout: int activity_circle_member_info
 com.interestfriend.R$layout: int activity_comment
 com.interestfriend.R$layout: int activity_create_circle
+com.interestfriend.R$layout: int activity_create_xin_qing
 com.interestfriend.R$layout: int activity_dissolve_circle
 com.interestfriend.R$layout: int activity_feed_back
 com.interestfriend.R$layout: int activity_find_password
@@ -15629,8 +15655,10 @@ com.interestfriend.R$layout: int activity_publish_video
 com.interestfriend.R$layout: int activity_qu_you_wain
 com.interestfriend.R$layout: int activity_receive_join_circle
 com.interestfriend.R$layout: int activity_refuse_join_circle
+com.interestfriend.R$layout: int activity_refush_xin_qing_comment
 com.interestfriend.R$layout: int activity_search_circls
 com.interestfriend.R$layout: int activity_selectphoto
+com.interestfriend.R$layout: int activity_set_image_effect
 com.interestfriend.R$layout: int activity_setting
 com.interestfriend.R$layout: int activity_show_big_image
 com.interestfriend.R$layout: int activity_show_file
@@ -15641,6 +15669,8 @@ com.interestfriend.R$layout: int activity_video_comment
 com.interestfriend.R$layout: int activity_voice_call
 com.interestfriend.R$layout: int activity_welcom
 com.interestfriend.R$layout: int activity_welcom_loading
+com.interestfriend.R$layout: int activity_xin_qing_comment
+com.interestfriend.R$layout: int activity_xin_qing_qiang
 com.interestfriend.R$layout: int chat_gridview_item
 com.interestfriend.R$layout: int choose_griditem
 com.interestfriend.R$layout: int circle_category_item
@@ -15663,7 +15693,6 @@ com.interestfriend.R$layout: int date_picker_header_view
 com.interestfriend.R$layout: int date_picker_selected_date
 com.interestfriend.R$layout: int date_picker_view_animator
 com.interestfriend.R$layout: int drawer_left_view_layout
-com.interestfriend.R$layout: int drawer_left_view_layout1
 com.interestfriend.R$layout: int expression_gridview
 com.interestfriend.R$layout: int find_password_input_phone
 com.interestfriend.R$layout: int find_password_input_verify_code
@@ -15688,6 +15717,7 @@ com.interestfriend.R$layout: int head
 com.interestfriend.R$layout: int home_activity_title
 com.interestfriend.R$layout: int image_detail_fragment
 com.interestfriend.R$layout: int image_detail_pager
+com.interestfriend.R$layout: int image_effect_item
 com.interestfriend.R$layout: int image_grid_fragment
 com.interestfriend.R$layout: int item_photofolder
 com.interestfriend.R$layout: int item_selectphoto
@@ -15739,17 +15769,14 @@ com.interestfriend.R$layout: int time_header_label
 com.interestfriend.R$layout: int time_picker_dialog
 com.interestfriend.R$layout: int title_bar
 com.interestfriend.R$layout: int version_update
+com.interestfriend.R$layout: int xinqing_list_item
 com.interestfriend.R$layout: int year_label_text_view
 com.interestfriend.R$layout: R$layout()
-com.interestfriend.R$menu
-com.interestfriend.R$menu: int add_friend
-com.interestfriend.R$menu: int friend_vertify
-com.interestfriend.R$menu: int my_user_friend
-com.interestfriend.R$menu: R$menu()
 com.interestfriend.R$raw
 com.interestfriend.R$raw: int cities
 com.interestfriend.R$raw: int outgoing
 com.interestfriend.R$raw: int province
+com.interestfriend.R$raw: int tone_cuver_sample
 com.interestfriend.R$raw: R$raw()
 com.interestfriend.R$string
 com.interestfriend.R$string: int Are_connected_to_each_other
@@ -15878,6 +15905,7 @@ com.interestfriend.R$string: int title_activity_circle_member
 com.interestfriend.R$string: int title_activity_circle_member_info
 com.interestfriend.R$string: int title_activity_comment
 com.interestfriend.R$string: int title_activity_create_circle
+com.interestfriend.R$string: int title_activity_create_xin_qing
 com.interestfriend.R$string: int title_activity_dissolve_circle
 com.interestfriend.R$string: int title_activity_feed_back
 com.interestfriend.R$string: int title_activity_find_password
@@ -15894,13 +15922,17 @@ com.interestfriend.R$string: int title_activity_publish_video
 com.interestfriend.R$string: int title_activity_qu_you_wain
 com.interestfriend.R$string: int title_activity_receive_join_circle
 com.interestfriend.R$string: int title_activity_refuse_join_circle
+com.interestfriend.R$string: int title_activity_refush_xin_qing_comment
 com.interestfriend.R$string: int title_activity_search_circls
+com.interestfriend.R$string: int title_activity_set_image_effect
 com.interestfriend.R$string: int title_activity_setting
 com.interestfriend.R$string: int title_activity_update_circle_discription
 com.interestfriend.R$string: int title_activity_update_user_info
 com.interestfriend.R$string: int title_activity_video_comment
 com.interestfriend.R$string: int title_activity_welcom
 com.interestfriend.R$string: int title_activity_welcom_loading
+com.interestfriend.R$string: int title_activity_xin_qing_comment
+com.interestfriend.R$string: int title_activity_xin_qing_qiang
 com.interestfriend.R$string: int user_card
 com.interestfriend.R$string: int video
 com.interestfriend.R$string: int viewpager_indicator
@@ -15966,6 +15998,7 @@ com.interestfriend.activity.BaseActivity: BaseActivity()
 com.interestfriend.activity.BaseActivity: void onCreate(android.os.Bundle)
 com.interestfriend.activity.BaseActivity: boolean onKeyDown(int,android.view.KeyEvent)
 com.interestfriend.activity.BaseActivity: void finishThisActivity()
+com.interestfriend.activity.BaseActivity: void onClick(android.view.View)
 com.interestfriend.activity.CallActivity
 com.interestfriend.activity.CallActivity: CallActivity()
 com.interestfriend.activity.CallActivity$CallingState: com.interestfriend.activity.CallActivity$CallingState[] values()
@@ -16153,6 +16186,9 @@ com.interestfriend.activity.CommentActivity: void onClick(int,int)
 com.interestfriend.activity.CreateCircleActivity
 com.interestfriend.activity.CreateCircleActivity: CreateCircleActivity()
 com.interestfriend.activity.CreateCircleActivity: void onClick(android.view.View)
+com.interestfriend.activity.CreateXinQingActivity
+com.interestfriend.activity.CreateXinQingActivity: CreateXinQingActivity()
+com.interestfriend.activity.CreateXinQingActivity: void onClick(android.view.View)
 com.interestfriend.activity.DissolveCircleActivity
 com.interestfriend.activity.DissolveCircleActivity: DissolveCircleActivity()
 com.interestfriend.activity.DissolveCircleActivity$1
@@ -16256,9 +16292,16 @@ com.interestfriend.activity.RefuseJoinCircleActivity$1
 com.interestfriend.activity.RefuseJoinCircleActivity$1: void onClick(android.view.View)
 com.interestfriend.activity.RefuseJoinCircleActivity$2
 com.interestfriend.activity.RefuseJoinCircleActivity$2: void onClick(android.app.Dialog,int)
+com.interestfriend.activity.RefushXinQingCommentActivity
+com.interestfriend.activity.RefushXinQingCommentActivity: RefushXinQingCommentActivity()
+com.interestfriend.activity.RefushXinQingCommentActivity: void onClick(android.view.View)
+com.interestfriend.activity.RefushXinQingCommentActivity: void onClick(int,int)
 com.interestfriend.activity.SearchCirclsActivity
 com.interestfriend.activity.SearchCirclsActivity: SearchCirclsActivity()
 com.interestfriend.activity.SearchCirclsActivity: void onClick(android.view.View)
+com.interestfriend.activity.SetImageEffectActivity
+com.interestfriend.activity.SetImageEffectActivity: SetImageEffectActivity()
+com.interestfriend.activity.SetImageEffectActivity: void onClick(android.view.View)
 com.interestfriend.activity.SettingActivity
 com.interestfriend.activity.SettingActivity: SettingActivity()
 com.interestfriend.activity.SettingActivity: void onClick(android.view.View)
@@ -16297,6 +16340,13 @@ com.interestfriend.activity.WelcomActivity: WelcomActivity()
 com.interestfriend.activity.WelcomActivity: void onClick(android.view.View)
 com.interestfriend.activity.WelcomLoadingActivity
 com.interestfriend.activity.WelcomLoadingActivity: WelcomLoadingActivity()
+com.interestfriend.activity.XinQingCommentActivity
+com.interestfriend.activity.XinQingCommentActivity: XinQingCommentActivity()
+com.interestfriend.activity.XinQingCommentActivity: void onClick(android.view.View)
+com.interestfriend.activity.XinQingCommentActivity: void onClick(int,int)
+com.interestfriend.activity.XinQingQiangActivity
+com.interestfriend.activity.XinQingQiangActivity: XinQingQiangActivity()
+com.interestfriend.activity.XinQingQiangActivity: void onClick(android.view.View)
 com.interestfriend.activity.imagefactory.ImageFactoryActivity
 com.interestfriend.activity.imagefactory.ImageFactoryActivity: ImageFactoryActivity()
 com.interestfriend.activity.imagefactory.ImageFactoryActivity$1
@@ -16332,6 +16382,8 @@ com.interestfriend.adapter.GrowthVideoAdapter$1
 com.interestfriend.adapter.GrowthVideoAdapter$1: void onClick(android.view.View)
 com.interestfriend.adapter.GrowthVideoAdapter$Onclick
 com.interestfriend.adapter.GrowthVideoAdapter$Onclick: void onClick(android.view.View)
+com.interestfriend.adapter.XinQingAdapter$Onclick
+com.interestfriend.adapter.XinQingAdapter$Onclick: void onClick(android.view.View)
 com.interestfriend.applation.MyApplation
 com.interestfriend.applation.MyApplation: MyApplation()
 com.interestfriend.chooseimage.PhotoFolderFragment
@@ -16394,6 +16446,8 @@ com.interestfriend.fragment.FindCircleFragmen: void onClick(android.view.View)
 com.interestfriend.fragment.ImageFragment
 com.interestfriend.fragment.MyCircleFragment
 com.interestfriend.fragment.VideoFragment
+com.interestfriend.interfaces.CameraCallback
+com.interestfriend.interfaces.CameraCallback: CameraCallback(android.content.Context)
 com.interestfriend.interfaces.OnAvatarClick
 com.interestfriend.interfaces.OnAvatarClick: void onClick(android.view.View)
 com.interestfriend.interfaces.ShowBigAvatariListener
@@ -16481,6 +16535,10 @@ com.interestfriend.utils.DialogUtil$3
 com.interestfriend.utils.DialogUtil$3: void onClick(android.app.Dialog,int)
 com.interestfriend.utils.DialogUtil$4
 com.interestfriend.utils.DialogUtil$4: void onClick(android.app.Dialog,int)
+com.interestfriend.utils.GPUImageFilterTools$1
+com.interestfriend.utils.GPUImageFilterTools$1: void onClick(android.content.DialogInterface,int)
+com.interestfriend.utils.GPUImageFilterTools$FilterType: com.interestfriend.utils.GPUImageFilterTools$FilterType[] values()
+com.interestfriend.utils.GPUImageFilterTools$FilterType: com.interestfriend.utils.GPUImageFilterTools$FilterType valueOf(java.lang.String)
 com.interestfriend.utils.Logger$Level: com.interestfriend.utils.Logger$Level[] values()
 com.interestfriend.utils.Logger$Level: com.interestfriend.utils.Logger$Level valueOf(java.lang.String)
 com.interestfriend.utils.SmileUtils
@@ -16677,13 +16735,6 @@ com.interestfriend.view.DrawerLeftMenu: void setAvatar(java.lang.String)
 com.interestfriend.view.DrawerLeftMenu: void setName(java.lang.String)
 com.interestfriend.view.DrawerLeftMenu: void setMessagePrompt(boolean)
 com.interestfriend.view.DrawerLeftMenu: void onClick(android.view.View)
-com.interestfriend.view.DrawerLeftMenu1
-com.interestfriend.view.DrawerLeftMenu1: DrawerLeftMenu1(android.content.Context)
-com.interestfriend.view.DrawerLeftMenu1: DrawerLeftMenu1(android.content.Context,android.util.AttributeSet)
-com.interestfriend.view.DrawerLeftMenu1: void setAvatar(java.lang.String)
-com.interestfriend.view.DrawerLeftMenu1: void setName(java.lang.String)
-com.interestfriend.view.DrawerLeftMenu1: void setMessagePrompt(boolean)
-com.interestfriend.view.DrawerLeftMenu1: void onClick(android.view.View)
 com.interestfriend.view.ExpandGridView
 com.interestfriend.view.ExpandGridView: ExpandGridView(android.content.Context)
 com.interestfriend.view.ExpandGridView: ExpandGridView(android.content.Context,android.util.AttributeSet)
@@ -16777,6 +16828,7 @@ com.interestfriend.view.RoundAngleImageView: void setOnMeasureListener(com.inter
 com.interestfriend.view.RoundAngleImageView: RoundAngleImageView(android.content.Context,android.util.AttributeSet)
 com.interestfriend.view.RoundAngleImageView: RoundAngleImageView(android.content.Context)
 com.interestfriend.view.ScrollOverListView
+com.interestfriend.view.ScrollOverListView: void setScroll(boolean)
 com.interestfriend.view.ScrollOverListView: void setShowRefresh(boolean)
 com.interestfriend.view.ScrollOverListView: ScrollOverListView(android.content.Context,android.util.AttributeSet,int)
 com.interestfriend.view.ScrollOverListView: ScrollOverListView(android.content.Context,android.util.AttributeSet)
@@ -17011,6 +17063,24 @@ javax.sdp.TimeDescription
 javax.sdp.TimeZoneAdjustment
 javax.sdp.URI
 javax.sdp.Version
+jp.co.cyberagent.android.gpuimage.GPUImage
+jp.co.cyberagent.android.gpuimage.GPUImage: GPUImage(android.content.Context)
+jp.co.cyberagent.android.gpuimage.GPUImage$ScaleType: jp.co.cyberagent.android.gpuimage.GPUImage$ScaleType[] values()
+jp.co.cyberagent.android.gpuimage.GPUImage$ScaleType: jp.co.cyberagent.android.gpuimage.GPUImage$ScaleType valueOf(java.lang.String)
+jp.co.cyberagent.android.gpuimage.GPUImageNativeLibrary
+jp.co.cyberagent.android.gpuimage.GPUImageNativeLibrary: void YUVtoRBGA(byte[],int,int,int[])
+jp.co.cyberagent.android.gpuimage.GPUImageNativeLibrary: void YUVtoARBG(byte[],int,int,int[])
+jp.co.cyberagent.android.gpuimage.GPUImageView
+jp.co.cyberagent.android.gpuimage.GPUImageView: GPUImageView(android.content.Context)
+jp.co.cyberagent.android.gpuimage.GPUImageView: GPUImageView(android.content.Context,android.util.AttributeSet)
+jp.co.cyberagent.android.gpuimage.GPUImageView: void setRatio(float)
+jp.co.cyberagent.android.gpuimage.GPUImageView: void setFilter(jp.co.cyberagent.android.gpuimage.GPUImageFilter)
+jp.co.cyberagent.android.gpuimage.GPUImageView: jp.co.cyberagent.android.gpuimage.GPUImageFilter getFilter()
+jp.co.cyberagent.android.gpuimage.GPUImageView: void setImage(android.graphics.Bitmap)
+jp.co.cyberagent.android.gpuimage.GPUImageView: void setImage(android.net.Uri)
+jp.co.cyberagent.android.gpuimage.GPUImageView: void setImage(java.io.File)
+jp.co.cyberagent.android.gpuimage.Rotation: jp.co.cyberagent.android.gpuimage.Rotation[] values()
+jp.co.cyberagent.android.gpuimage.Rotation: jp.co.cyberagent.android.gpuimage.Rotation valueOf(java.lang.String)
 net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.CandidateType: net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.CandidateType[] values()
 net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.CandidateType: net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.CandidateType valueOf(java.lang.String)
 net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.ContentPacketExtension$CreatorEnum: net.java.sip.communicator.impl.protocol.jabber.extensions.jingle.ContentPacketExtension$CreatorEnum[] values()

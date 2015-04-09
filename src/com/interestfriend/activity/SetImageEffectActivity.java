@@ -173,6 +173,7 @@ public class SetImageEffectActivity extends BaseActivity implements
 					return;
 				}
 				ToastUtil.showToast("发布成功");
+				finishThisActivity();
 			};
 		});
 		XinQing xin = new XinQing();

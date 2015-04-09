@@ -346,8 +346,7 @@ public class XinQingCommentActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
 			long arg3) {
-		pop = new CommentPopwindow(this, view, position,
-				xinqing.getPublisher_id());
+		pop = new CommentPopwindow(this, view, position, 0);
 		pop.setmCallBack(this);
 		pop.show();
 

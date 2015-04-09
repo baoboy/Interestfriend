@@ -20,6 +20,7 @@ import com.interestfriend.data.XinQing;
 import com.interestfriend.data.XinQingPraise;
 import com.interestfriend.data.enums.RetError;
 import com.interestfriend.interfaces.AbstractTaskPostCallBack;
+import com.interestfriend.interfaces.OnAvatarClick;
 import com.interestfriend.task.CancelPraiseXinQingTask;
 import com.interestfriend.task.PraiseXinQingTask;
 import com.interestfriend.utils.SharedUtils;
@@ -107,6 +108,8 @@ public class XinQingAdapter extends BaseAdapter {
 		}
 		holder.btn_comment.setOnClickListener(new Onclick(position));
 		holder.btn_praise.setOnClickListener(new Onclick(position));
+		holder.avatar.setOnClickListener(new OnAvatarClick(lists.get(position)
+				.getPublisher_id(), mContext));
 		return convertView;
 	}
 

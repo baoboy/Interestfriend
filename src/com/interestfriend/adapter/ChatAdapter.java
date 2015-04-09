@@ -234,7 +234,7 @@ public class ChatAdapter extends BaseAdapter {
 		}
 	}
 
-	@SuppressLint("NewApi")
+	@SuppressLint({ "NewApi", "WrongViewCast" })
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		final EMMessage message = getItem(position);
 		ChatType chatType = message.getChatType();

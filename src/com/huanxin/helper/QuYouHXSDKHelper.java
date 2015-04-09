@@ -33,6 +33,7 @@ import com.interestfriend.activity.JoinCircleActivity;
 import com.interestfriend.activity.KickOutActivity;
 import com.interestfriend.activity.ReceiveJoinCircleActivity;
 import com.interestfriend.activity.RefuseJoinCircleActivity;
+import com.interestfriend.activity.RefushXinQingCommentActivity;
 import com.interestfriend.data.InviteMessage;
 import com.interestfriend.receive.CallReceiver;
 import com.interestfriend.utils.Constants;
@@ -150,6 +151,10 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 						intent = new Intent(appContext, HomeActivity.class);
 					} else if (Constants.KICK_OUT_USER_ID.equals(username)) {
 						intent = new Intent(appContext, KickOutActivity.class);
+					} else if (Constants.XINQING_PRAISE_AND_COMMENT_USER_ID
+							.equals(username)) {
+						intent = new Intent(appContext,
+								RefushXinQingCommentActivity.class);
 					} else if (Constants.ADD_USER_FRIEND_INVITE
 							.equals(username)) {
 						String reason = "";
@@ -177,8 +182,7 @@ public class QuYouHXSDKHelper extends HXSDKHelper {
 						i_message.setFrom_user_id(user_friend_id);
 						i_message.setFrom_user_name(user_friend_name);
 						i_message.setReason(reason);
-						intent = new Intent(appContext,
-								HomeActivity.class);
+						intent = new Intent(appContext, HomeActivity.class);
 						intent.putExtra("message", i_message).putExtra(
 								"msg_id", message.getMsgId());
 

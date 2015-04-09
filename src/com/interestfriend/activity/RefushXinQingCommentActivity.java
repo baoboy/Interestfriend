@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.interestfriend.popwindow.CommentPopwindow;
 import com.interestfriend.popwindow.CommentPopwindow.OnCommentOnClick;
 import com.interestfriend.showbigpic.ImagePagerActivity;
 import com.interestfriend.task.CancelPraiseXinQingTask;
+import com.interestfriend.task.GetXinQingTask;
 import com.interestfriend.task.PraiseXinQingTask;
 import com.interestfriend.task.SendXinQingCommentTask;
 import com.interestfriend.utils.Constants;
@@ -98,16 +100,20 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 	private EMConversation conversation;
 	private EMMessage lastMessage;
 
+	private ScrollView mScrollView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_xin_qing_comment);
 		getDataByMessage();
 		initView();
-		setValue();
+		refush();
 	}
 
 	private void initView() {
+		mScrollView = (ScrollView) findViewById(R.id.layout_scroll);
+		mScrollView.setVisibility(View.GONE);
 		btn_praise = (TextView) findViewById(R.id.btn_prise);
 		btn_comment = (TextView) findViewById(R.id.btn_comment);
 		layout_title = (RelativeLayout) findViewById(R.id.layout_title);
@@ -125,6 +131,7 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 		praise_listView = (HorizontalListView) findViewById(R.id.praise_listView);
 		comment_layout = (LinearLayout) findViewById(R.id.layout_comment);
 		setListener();
+		txt_title.setText("ÆÀÂÛ");
 	}
 
 	private void getDataByMessage() {
@@ -134,7 +141,8 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 		try {
 			xinqing_id = Integer.valueOf(lastMessage
 					.getStringAttribute("xinqing_id"));
-
+			xinqing.setXinqing_id(xinqing_id);
+			;
 		} catch (EaseMobException e) {
 			e.printStackTrace();
 		}
@@ -151,7 +159,6 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 	}
 
 	private void setValue() {
-		txt_title.setText("ÆÀÂÛ");
 		String path = xinqing.getImage_url();
 		if (!path.startsWith("http")) {
 			path = "file://" + path;
@@ -367,8 +374,7 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View view, int position,
 			long arg3) {
-		pop = new CommentPopwindow(this, view, position,
-				xinqing.getPublisher_id());
+		pop = new CommentPopwindow(this, view, position, 0);
 		pop.setmCallBack(this);
 		pop.show();
 
@@ -417,5 +423,21 @@ public class RefushXinQingCommentActivity extends BaseActivity implements
 		isReplaySomeOne = true;
 		replaySomeOneID = comment.getPublisher_id();
 		replaySomeOneName = comment.getPublisher_name();
+	}
+
+	private void refush() {
+		GetXinQingTask task = new GetXinQingTask();
+		task.setmCallBack(new AbstractTaskPostCallBack<RetError>() {
+			@Override
+			public void taskFinish(RetError result) {
+				if (result != RetError.NONE) {
+					return;
+				}
+				setValue();
+				mScrollView.setVisibility(View.VISIBLE);
+				conversation.removeMessage(lastMessage.getMsgId());
+			}
+		});
+		task.executeParallel(xinqing);
 	}
 }

@@ -16,12 +16,15 @@ import com.interestfriend.data.result.StringResult;
 import com.interestfriend.parser.IParser;
 import com.interestfriend.parser.MapParser;
 import com.interestfriend.parser.StringParser;
+import com.interestfriend.parser.XinQingListParser;
+import com.interestfriend.parser.XinQingParser;
 import com.interestfriend.utils.SharedUtils;
 
 public class XinQing implements Serializable {
 	private static final String ADD_XINQING_API = "AddXinQingServlet";
 	private static final String PRAISE_XINQING_API = "XinQingPraiseServlet";
 	private static final String CANCEL_PRAISE_XINQING_API = "CancelXinQingPraiseServlet";
+	private static final String GET_XINQING_BY_ID = "GetXinQingByIDServlet";
 	private int xinqing_id = 0;
 	private int publisher_id = 0;// 发布者id
 	private String content = "";// 内容
@@ -185,4 +188,25 @@ public class XinQing implements Serializable {
 		}
 	}
 
+	public RetError refush() {
+		IParser parser = new XinQingParser();
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("xinqing_id", xinqing_id);
+		Result ret = ApiRequest.request(GET_XINQING_BY_ID, params, parser);
+		if (ret.getStatus() == RetStatus.SUCC) {
+			XinQing xin = (XinQing) ret.getData();
+			this.comments = xin.getComments();
+			this.content = xin.getContent();
+			this.image_url = xin.getImage_url();
+			this.isPraise = xin.isPraise();
+			this.praise_count = xin.getPraise_count();
+			this.praises = xin.getPraises();
+			this.publish_time = xin.getPublish_time();
+			this.publisher_avatar = xin.getPublisher_avatar();
+			this.publisher_name = xin.getPublisher_name();
+			return RetError.NONE;
+		} else {
+			return ret.getErr();
+		}
+	}
 }
